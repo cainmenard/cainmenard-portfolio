@@ -136,8 +136,9 @@ const WEB_APPS = [
     title: 'Bachelor Trip Planner',
     description: 'Group trip coordination app for planning a bachelor party. Shared itinerary, budget splitting, activity voting, and attendee management.',
     tech: ['React', 'Next.js', 'Supabase'],
-    link: '/bachelor-trip-demo.html',
+    link: null,
     github: null,
+    status: 'In Development',
   },
 ]
 
@@ -267,9 +268,9 @@ export default function Home() {
               Cain Menard
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
-              I help organizations in construction, energy, and infrastructure work smarter and faster with
-              digital technology, data analytics, and operational strategy. 8+ years of field-to-boardroom
-              experience turning complex problems into measurable results.
+              I started on a $1B refinery in South Texas. Now I help construction contractors stop leaving
+              money on the table — by finding the right software for their operations and making sure it
+              serves the people using it, not the other way around.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#projects" className="btn-primary">View My Work ↓</a>
@@ -297,21 +298,30 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-12">
             <div className="md:col-span-2 space-y-5 text-slate-600 leading-relaxed">
               <p>
-                I started my career in the field — managing industrial electrical and instrumentation work
-                on a $1B oil refinery in South Texas, then running $10M commercial builds in Baton Rouge.
-                That hands-on experience gave me a visceral understanding of how construction actually works,
-                which became my edge when I moved into consulting.
+                My career started in the field — managing project controls on a $1B industrial refinery
+                in South Texas, then running commercial construction projects as a GC project manager
+                across K-12 education, food &amp; beverage, and industrial warehouses. At every stop, I saw
+                the same thing: contractors running complex, high-stakes operations on manual processes,
+                disconnected spreadsheets, and software that nobody actually wanted to use.
               </p>
               <p>
-                At FMI Corporation, I combined that field perspective with finance and analytics to help
-                $30M–$1.5B contractors improve margins, modernize operations, and adopt technology. I led the
-                firm's first data infrastructure project, built analytics tools that became company standards,
-                and published research on AI and data analytics that was republished nationally.
+                That pattern led me to consulting at a 70-year-old boutique construction consultancy with
+                a gold-standard reputation in the industry. I spent three years advising contractors from
+                $30M to $1.5B in revenue — improving profitability by up to 50% through operational assessments,
+                financial benchmarking, and productivity improvement programs. I also built something the firm
+                had never done before: a full software and data analytics implementation, from scoping and
+                selling the engagement to building an AWS-hosted data pipeline and training users on-site
+                in Honolulu. It shipped with 100% adoption because I built it around how people actually
+                work, not how a vendor thinks they should.
               </p>
               <p>
-                Now as Director of Consulting & Operations at Automized Solutions, I lead teams delivering
-                digital transformation for construction, banking, real estate, and law firms — cutting manual
-                work in half, shortening project timelines, and building systems that actually get adopted.
+                Today I'm the Director of Consulting &amp; Operations at Automized, a PE-backed technology
+                startup helping specialty trade contractors — from roofing and concrete to HVAC and
+                excavation — bring the best out of their digital systems. I built our digital operations
+                consulting practice from scratch: interviewing stakeholders, mapping workflows, evaluating
+                software against real requirements weighted by the people who'll use it, and managing
+                implementations through go-live. The through-line across my career has always been the
+                same: technology should serve the people in the organization, not the other way around.
               </p>
             </div>
             <div className="space-y-6">
