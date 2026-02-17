@@ -5,11 +5,10 @@ import Image from 'next/image'
 // ─── Data ──────────────────────────────────────────────
 const NAV_ITEMS = [
   { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
   { id: 'tableau', label: 'Tableau' },
   { id: 'apps', label: 'Apps' },
   { id: 'writing', label: 'Writing' },
+  { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
 ]
@@ -80,41 +79,6 @@ const EDUCATION = [
   { degree: 'MBA, Finance & Data Analytics', school: 'University of Denver', year: '2022' },
   { degree: 'Post-Bacc, Construction Management', school: 'Louisiana State University', year: '2021' },
   { degree: 'BAS, Business Administration', school: 'University of Louisiana at Lafayette', year: '2016' },
-]
-
-const PROJECTS = [
-  {
-    title: 'AWS Data Pipeline & Analytics Platform',
-    description: 'Led FMI\'s first end-to-end software implementation for a union association. AWS-hosted pipeline using SQL, Python, DBT, and Apache Airflow feeding Tableau dashboards. Reduced reporting time by 30% with 100% user adoption across all departments.',
-    tech: ['AWS', 'Python', 'SQL', 'DBT', 'Apache Airflow', 'Tableau'],
-    link: null,
-    github: null,
-    type: 'Data Engineering',
-  },
-  {
-    title: 'Project Performance Analysis Dashboard',
-    description: 'Interactive Tableau analytics platform analyzing construction project performance metrics — margin gain/fade trends, cost overruns by category, and productivity benchmarks across divisions and market segments. Used to drive data-informed consulting recommendations.',
-    tech: ['Tableau', 'SQL', 'Data Analysis'],
-    link: 'https://public.tableau.com/app/profile/cain.menard/viz/ProjectPerformanceAnalysis/AnalysisOverview',
-    github: null,
-    type: 'Data Visualization',
-  },
-  {
-    title: 'Construction Financial Benchmarking Tool',
-    description: '500+ project analysis across margin performance, direct cost variances by labor/equipment/material/subcontractor, and profitability by division, market segment, and customer. Deployed as a standard tool for FMI consulting engagements.',
-    tech: ['Tableau', 'SQL', 'Financial Analysis'],
-    link: 'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
-    github: null,
-    type: 'Data Visualization',
-  },
-  {
-    title: 'Operational Transformation — $1.5B Contractors',
-    description: 'Delivered performance improvement engagements for heavy civil, highway, and energy clients ($30M–$1.5B), achieving profit increases up to 50%. Led stakeholder interviews, process mapping, gap analyses, and change management across 14+ business units.',
-    tech: ['Process Optimization', 'Change Management', 'Financial Modeling', 'Prosci ADKAR'],
-    link: null,
-    github: null,
-    type: 'Consulting',
-  },
 ]
 
 const WEB_APPS = [
@@ -347,68 +311,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── EXPERIENCE ─── */}
-      <section id="experience" className="py-24 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-6 fade-section">
-          <p className="section-label mb-3">Experience</p>
-          <h2 className="section-heading text-3xl md:text-4xl mb-12">Career Timeline</h2>
-          <div className="space-y-12">
-            {EXPERIENCE.map((job, i) => (
-              <div key={i} className="relative pl-10">
-                {i < EXPERIENCE.length - 1 && <div className="timeline-line" />}
-                <div className="timeline-dot" />
-                <div className="bg-white rounded-xl border border-slate-200 p-6 md:p-8">
-                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-1">
-                    <h3 className="text-lg font-bold text-slate-900">{job.company}</h3>
-                    <span className="text-sm font-medium" style={{ color: 'var(--accent)' }}>{job.role}</span>
-                  </div>
-                  <p className="text-xs text-slate-400 font-medium mb-4">{job.period} · {job.location}</p>
-                  <ul className="space-y-2">
-                    {job.bullets.map((b, j) => (
-                      <li key={j} className="text-sm text-slate-600 leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-slate-300">
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── PROJECTS ─── */}
-      <section id="projects" className="py-24">
-        <div className="max-w-6xl mx-auto px-6 fade-section">
-          <p className="section-label mb-3">Projects</p>
-          <h2 className="section-heading text-3xl md:text-4xl mb-12">Selected Work</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {PROJECTS.map((p, i) => (
-              <div key={i} className="project-card">
-                <div className="p-6 md:p-8">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-500">{p.type}</span>
-                    {p.status && <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-50 text-amber-600">{p.status}</span>}
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{p.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-4">{p.description}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {p.tech.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-medium">{t}</span>)}
-                  </div>
-                  <div className="flex gap-4">
-                    {p.link && (p.link.startsWith('/') ? 
-                      <a href={p.link} className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Demo ↗</a> :
-                      <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Live ↗</a>
-                    )}
-                    {p.github && <a href={p.github} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-slate-600 hover:underline">GitHub ↗</a>}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── TABLEAU ─── */}
       <section id="tableau" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
@@ -477,7 +379,7 @@ export default function Home() {
       </section>
 
       {/* ─── PUBLICATIONS ─── */}
-      <section id="writing" className="py-24">
+      <section id="writing" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Writing & Speaking</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-12">Published Work</h2>
@@ -499,6 +401,36 @@ export default function Home() {
                   </div>
                 )}
               </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── EXPERIENCE ─── */}
+      <section id="experience" className="py-24">
+        <div className="max-w-6xl mx-auto px-6 fade-section">
+          <p className="section-label mb-3">Experience</p>
+          <h2 className="section-heading text-3xl md:text-4xl mb-12">Career Timeline</h2>
+          <div className="space-y-12">
+            {EXPERIENCE.map((job, i) => (
+              <div key={i} className="relative pl-10">
+                {i < EXPERIENCE.length - 1 && <div className="timeline-line" />}
+                <div className="timeline-dot" />
+                <div className="bg-white rounded-xl border border-slate-200 p-6 md:p-8">
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-1">
+                    <h3 className="text-lg font-bold text-slate-900">{job.company}</h3>
+                    <span className="text-sm font-medium" style={{ color: 'var(--accent)' }}>{job.role}</span>
+                  </div>
+                  <p className="text-xs text-slate-400 font-medium mb-4">{job.period} · {job.location}</p>
+                  <ul className="space-y-2">
+                    {job.bullets.map((b, j) => (
+                      <li key={j} className="text-sm text-slate-600 leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-slate-300">
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             ))}
           </div>
         </div>
