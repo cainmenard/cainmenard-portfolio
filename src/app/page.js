@@ -108,9 +108,9 @@ const PUBLICATIONS = [
     outlet: 'FMI Quarterly, Second Edition 2023',
     description: 'Feature article demystifying AI for the construction industry — from narrow AI applications to practical tools transforming scheduling, estimating, safety monitoring, and quality control.',
     link: 'https://fmicorp.com/insights/thought-leadership/artificial-intelligence-for-engineering-and-construction-firms',
-    republished: [
-      { name: 'National Insulation Association', url: 'https://insulation.org/io/articles/artificial-intelligence-for-engineering-and-construction-firms/' },
-      { name: 'AEC Business (cited)', url: 'https://aec-business.com/slate-technologies-unveils-next-gen-ai-software-for-enhanced-construction-decision-making/' },
+    callouts: [
+      { type: 'Republished by', name: 'National Insulation Association', url: 'https://insulation.org/io/articles/artificial-intelligence-for-engineering-and-construction-firms/' },
+      { type: 'Cited in', name: 'AEC Business', url: 'https://aec-business.com/slate-technologies-unveils-next-gen-ai-software-for-enhanced-construction-decision-making/' },
     ],
   },
   {
@@ -118,22 +118,23 @@ const PUBLICATIONS = [
     outlet: 'FMI Quarterly',
     description: 'Research article on building data infrastructure, analytics maturity, and practical approaches for construction firms to leverage data-driven decision making.',
     link: 'https://fmicorp.com/uploads/media/FMI_Quarterly_DataAnalytics_Final.pdf',
-    republished: [],
+    callouts: [],
   },
   {
     title: '2023 FMI Talent Study Report',
     outlet: 'FMI Corporation',
     description: 'Industry research on workforce trends, talent acquisition, and development strategies in engineering and construction.',
     link: 'https://fmicorp.com/uploads/media/FMI_Talent_Study_Report.pdf',
-    republished: [],
+    callouts: [],
   },
   {
     title: 'US Construction Outlook: New Economy vs. Old Economy',
-    outlet: 'Industry Association Keynote (Barnes Dennig / Meaden & Moore)',
+    outlet: 'Industry Keynote',
     description: 'Recurring keynote on economic forecasts, labor productivity, and technology adoption trends for construction industry executives.',
     link: 'https://www.barnesdennig.com/wp-content/uploads/New-Economy-vs.-Old-Economy-Q1-2023_FINAL.pdf',
-    republished: [
-      { name: 'Meaden & Moore', url: 'https://www.meadenmoore.com/news/meaden-moore-hosts-construction-industry-economic-outlook-presented-by-fmi' },
+    callouts: [
+      { type: 'Presented at', name: 'Barnes Dennig', url: 'https://www.barnesdennig.com/wp-content/uploads/New-Economy-vs.-Old-Economy-Q1-2023_FINAL.pdf' },
+      { type: 'Presented at', name: 'Meaden & Moore', url: 'https://www.meadenmoore.com/news/meaden-moore-hosts-construction-industry-economic-outlook-presented-by-fmi' },
     ],
   },
 ]
@@ -335,11 +336,11 @@ export default function Home() {
                   <span className="text-xs font-medium text-slate-400">{p.outlet}</span>
                 </div>
                 <p className="text-sm text-slate-500 leading-relaxed mb-2">{p.description}</p>
-                {p.republished.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {p.republished.map((r, j) => (
-                      <span key={j} className="text-xs px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-medium">
-                        {r.name}
+                {p.callouts.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {p.callouts.map((c, j) => (
+                      <span key={j} className="text-xs px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-medium">
+                        {c.type}: {c.name}
                       </span>
                     ))}
                   </div>
