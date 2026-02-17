@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'tableau', label: 'Tableau' },
+  { id: 'apps', label: 'Apps' },
   { id: 'writing', label: 'Writing' },
   { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
@@ -83,12 +84,46 @@ const EDUCATION = [
 
 const PROJECTS = [
   {
+    title: 'AWS Data Pipeline & Analytics Platform',
+    description: 'Led FMI\'s first end-to-end software implementation for a union association. AWS-hosted pipeline using SQL, Python, DBT, and Apache Airflow feeding Tableau dashboards. Reduced reporting time by 30% with 100% user adoption across all departments.',
+    tech: ['AWS', 'Python', 'SQL', 'DBT', 'Apache Airflow', 'Tableau'],
+    link: null,
+    github: null,
+    type: 'Data Engineering',
+  },
+  {
+    title: 'Project Performance Analysis Dashboard',
+    description: 'Interactive Tableau analytics platform analyzing construction project performance metrics — margin gain/fade trends, cost overruns by category, and productivity benchmarks across divisions and market segments. Used to drive data-informed consulting recommendations.',
+    tech: ['Tableau', 'SQL', 'Data Analysis'],
+    link: 'https://public.tableau.com/app/profile/cain.menard/viz/ProjectPerformanceAnalysis/AnalysisOverview',
+    github: null,
+    type: 'Data Visualization',
+  },
+  {
+    title: 'Construction Financial Benchmarking Tool',
+    description: '500+ project analysis across margin performance, direct cost variances by labor/equipment/material/subcontractor, and profitability by division, market segment, and customer. Deployed as a standard tool for FMI consulting engagements.',
+    tech: ['Tableau', 'SQL', 'Financial Analysis'],
+    link: 'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
+    github: null,
+    type: 'Data Visualization',
+  },
+  {
+    title: 'Operational Transformation — $1.5B Contractors',
+    description: 'Delivered performance improvement engagements for heavy civil, highway, and energy clients ($30M–$1.5B), achieving profit increases up to 50%. Led stakeholder interviews, process mapping, gap analyses, and change management across 14+ business units.',
+    tech: ['Process Optimization', 'Change Management', 'Financial Modeling', 'Prosci ADKAR'],
+    link: null,
+    github: null,
+    type: 'Consulting',
+  },
+]
+
+const WEB_APPS = [
+  {
     title: 'Student Loan Payoff Tracker',
     description: 'Full-stack web app for optimizing student loan repayment using the Avalanche method. Features CSV import from Aidvantage, payment advisor with optimal allocation calculator, amortization projections, and what-if scenarios.',
     tech: ['Next.js', 'React', 'Supabase', 'Tailwind CSS', 'Recharts'],
     link: 'https://student-loan-tracker-demo.vercel.app',
     github: 'https://github.com/cainmenard/student-loan-tracker-demo',
-    type: 'Web Application',
   },
   {
     title: 'Honeymoon Planning',
@@ -96,24 +131,14 @@ const PROJECTS = [
     tech: ['React', 'Next.js', 'CSS'],
     link: '/honeymoon-demo',
     github: null,
-    type: 'Web Application',
-    status: 'In Development',
   },
   {
-    title: 'AWS Data Pipeline & Analytics Platform',
-    description: 'Led FMI\'s first end-to-end software implementation for a union association. AWS-hosted pipeline using SQL, Python, DBT, and Apache Airflow feeding Tableau dashboards. Reduced reporting time by 30% with 100% user adoption.',
-    tech: ['AWS', 'Python', 'SQL', 'DBT', 'Apache Airflow', 'Tableau'],
+    title: 'Bachelor Trip Planner',
+    description: 'Group trip coordination app for planning a bachelor party. Shared itinerary, budget splitting, activity voting, and attendee management.',
+    tech: ['React', 'Next.js', 'Supabase'],
     link: null,
     github: null,
-    type: 'Data Engineering',
-  },
-  {
-    title: 'Construction Financial Benchmarking Tool',
-    description: 'Interactive Tableau dashboard analyzing 500+ completed construction projects across margin performance, direct cost variances, and division/market segment profitability. Used by consulting teams for client engagements.',
-    tech: ['Tableau', 'SQL', 'Financial Analysis'],
-    link: 'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
-    github: null,
-    type: 'Data Visualization',
+    status: 'In Development',
   },
 ]
 
@@ -238,7 +263,7 @@ export default function Home() {
       <header className="hero-gradient min-h-screen flex items-center pt-16">
         <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-5 gap-12 items-center">
           <div className="md:col-span-3">
-            <p className="section-label mb-4">Strategy & Operations Consultant</p>
+            <p className="section-label mb-4">Digital Operations Leader</p>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>
               Cain Menard
             </h1>
@@ -402,6 +427,39 @@ export default function Home() {
                     className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>
                     Open Full Dashboard on Tableau Public ↗
                   </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WEB APPLICATIONS ─── */}
+      <section id="apps" className="py-24">
+        <div className="max-w-6xl mx-auto px-6 fade-section">
+          <p className="section-label mb-3">Web Applications</p>
+          <h2 className="section-heading text-3xl md:text-4xl mb-4">Apps I've Built</h2>
+          <p className="text-slate-500 mb-12 max-w-2xl">Full-stack web applications built with React, Next.js, and Supabase — solving real problems with clean interfaces and production-grade architecture.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {WEB_APPS.map((app, i) => (
+              <div key={i} className="project-card">
+                <div className="p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-500">Web App</span>
+                    {app.status && <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-50 text-amber-600">{app.status}</span>}
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{app.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">{app.description}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {app.tech.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-medium">{t}</span>)}
+                  </div>
+                  <div className="flex gap-4">
+                    {app.link && (app.link.startsWith('/') ?
+                      <a href={app.link} className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Demo ↗</a> :
+                      <a href={app.link} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Live ↗</a>
+                    )}
+                    {app.github && <a href={app.github} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-slate-600 hover:underline">GitHub ↗</a>}
+                  </div>
                 </div>
               </div>
             ))}
