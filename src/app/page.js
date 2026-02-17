@@ -6,7 +6,6 @@ import Image from 'next/image'
 const NAV_ITEMS = [
   { id: 'about', label: 'About' },
   { id: 'tableau', label: 'Tableau' },
-  { id: 'apps', label: 'Apps' },
   { id: 'writing', label: 'Writing' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
@@ -81,30 +80,6 @@ const EDUCATION = [
   { degree: 'BAS, Business Administration', school: 'University of Louisiana at Lafayette', year: '2016' },
 ]
 
-const WEB_APPS = [
-  {
-    title: 'Student Loan Payoff Tracker',
-    description: 'Full-stack web app for optimizing student loan repayment using the Avalanche method. Features CSV import from Aidvantage, payment advisor with optimal allocation calculator, amortization projections, and what-if scenarios.',
-    tech: ['Next.js', 'React', 'Supabase', 'Tailwind CSS', 'Recharts'],
-    link: 'https://student-loan-tracker-demo.vercel.app',
-    github: 'https://github.com/cainmenard/student-loan-tracker-demo',
-  },
-  {
-    title: 'Honeymoon Planning',
-    description: 'Interactive trip planner for a Croatia & Montenegro honeymoon. Full itinerary builder with day-by-day scheduling, budget tracker with points redemption, research database for restaurants and activities, and a to-do checklist.',
-    tech: ['React', 'Next.js', 'CSS'],
-    link: '/honeymoon-demo',
-    github: null,
-  },
-  {
-    title: 'Bachelor Trip Planner',
-    description: 'Group trip coordination app for planning a bachelor party. Shared itinerary, budget splitting, activity voting, and attendee management.',
-    tech: ['React', 'Next.js', 'Supabase'],
-    link: null,
-    github: null,
-    status: 'In Development',
-  },
-]
 
 const TABLEAU_DASHBOARDS = [
   {
@@ -346,41 +321,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── WEB APPLICATIONS ─── */}
-      <section id="apps" className="py-24">
-        <div className="max-w-6xl mx-auto px-6 fade-section">
-          <p className="section-label mb-3">Web Applications</p>
-          <h2 className="section-heading text-3xl md:text-4xl mb-4">Apps I've Built</h2>
-          <p className="text-slate-500 mb-12 max-w-2xl">Full-stack web applications built with React, Next.js, and Supabase — solving real problems with clean interfaces and production-grade architecture.</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {WEB_APPS.map((app, i) => (
-              <div key={i} className="project-card">
-                <div className="p-6 md:p-8">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-500">Web App</span>
-                    {app.status && <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-50 text-amber-600">{app.status}</span>}
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{app.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-4">{app.description}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {app.tech.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-medium">{t}</span>)}
-                  </div>
-                  <div className="flex gap-4">
-                    {app.link && (app.link.startsWith('/') ?
-                      <a href={app.link} className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Demo ↗</a> :
-                      <a href={app.link} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Live ↗</a>
-                    )}
-                    {app.github && <a href={app.github} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-slate-600 hover:underline">GitHub ↗</a>}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ─── PUBLICATIONS ─── */}
-      <section id="writing" className="py-24 bg-slate-50">
+      <section id="writing" className="py-24">
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Writing & Speaking</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-12">Published Work</h2>
@@ -408,7 +351,7 @@ export default function Home() {
       </section>
 
       {/* ─── EXPERIENCE ─── */}
-      <section id="experience" className="py-24">
+      <section id="experience" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Experience</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-12">Career Timeline</h2>
@@ -438,7 +381,7 @@ export default function Home() {
       </section>
 
       {/* ─── SKILLS & CERTIFICATIONS ─── */}
-      <section id="skills" className="py-24 bg-slate-50">
+      <section id="skills" className="py-24">
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Skills & Certifications</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Technical Toolkit</h2>
@@ -478,7 +421,7 @@ export default function Home() {
       </section>
 
       {/* ─── CONTACT ─── */}
-      <section id="contact" className="py-24">
+      <section id="contact" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <div className="max-w-2xl mx-auto text-center">
             <p className="section-label mb-3">Contact</p>
@@ -511,6 +454,7 @@ export default function Home() {
             <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">LinkedIn</a>
             <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">GitHub</a>
             <a href="mailto:cainmenard@gmail.com" className="text-sm text-slate-400 hover:text-white transition">Email</a>
+            <a href="/lagniappe" className="text-sm text-slate-400 hover:text-white transition">Lagniappe</a>
           </div>
         </div>
       </footer>
