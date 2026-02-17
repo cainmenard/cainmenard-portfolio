@@ -172,13 +172,12 @@ const SKILLS = {
 }
 
 const CERTS = [
-  'Prosci Certified Change Practitioner',
-  'Tableau Desktop Specialist',
-  'PCEP – Certified Python Programmer',
-  'Azure Data Fundamentals',
-  'Alteryx Designer Core',
-  'S&P Capital IQ',
-  'AI For Everyone (DeepLearning.AI)',
+  { name: 'Prosci Certified Change Practitioner', badge: '/cert-prosci.png', link: 'https://www.credly.com/badges/9ca3d141-3011-4313-b2e5-c03eb404d097' },
+  { name: 'Tableau Desktop Specialist', badge: '/cert-tableau.png', link: 'https://www.credly.com/badges/12d834fb-1df6-4bf2-b342-3668f2d4658a/linked_in_profile' },
+  { name: 'PCEP – Certified Python Programmer', badge: '/cert-python.png', link: 'https://www.credly.com/badges/810a015b-36cf-4f36-b120-5677a46a801c' },
+  { name: 'Alteryx Foundation Micro-Credential', badge: '/cert-alteryx-foundation.png', link: 'https://www.credly.com/badges/dd9a2e8c-b759-4ceb-b7b7-5a5acf1e0ee2/linked_in_profile' },
+  { name: 'Alteryx Server Administration', badge: '/cert-alteryx-server.png', link: 'https://www.credly.com/badges/a5b0e5c9-b866-4572-92ba-19d9fdecd821/linked_in_profile' },
+  { name: 'AI For Everyone (DeepLearning.AI)', badge: '/cert-deeplearning.jpeg', link: 'https://www.coursera.org/account/accomplishments/verify/QMYWRC8CVMDS' },
 ]
 
 // ─── Component ─────────────────────────────────────────
@@ -232,12 +231,14 @@ export default function Home() {
               Cain Menard
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
-              I started on a $1B refinery in South Texas. Now I help construction contractors stop leaving
-              money on the table — by finding the right software for their operations and making sure it
-              serves the people using it, not the other way around.
+              I started working on a $1B E&amp;I project in a South Texas refinery. Since then, I've helped
+              contractors and developers from $10M to $1.5B in revenue improve profitability, built enterprise
+              data platforms from scratch, trained 500+ managers, and delivered keynotes on economic forecasts,
+              technology, and labor productivity to hundreds of business owners and executives across the country.
+              My clients span specialty trades, general contractors, infrastructure, energy, and banking.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#projects" className="btn-primary">View My Work ↓</a>
+              <a href="#tableau" className="btn-primary">View My Work ↓</a>
               <a href="#contact" className="btn-outline">Get in Touch</a>
             </div>
             <div className="flex gap-8 mt-10 pt-8 border-t border-slate-200">
@@ -302,7 +303,7 @@ export default function Home() {
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Certifications</p>
                 <div className="space-y-1.5">
                   {CERTS.map(c => (
-                    <p key={c} className="text-xs text-slate-600">{c}</p>
+                    <a key={c.name} href={c.link} target="_blank" rel="noopener noreferrer" className="block text-xs text-slate-600 hover:text-amber-600 transition">{c.name}</a>
                   ))}
                 </div>
               </div>
@@ -436,11 +437,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── SKILLS ─── */}
+      {/* ─── SKILLS & CERTIFICATIONS ─── */}
       <section id="skills" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
-          <p className="section-label mb-3">Skills & Technologies</p>
-          <h2 className="section-heading text-3xl md:text-4xl mb-12">Technical Toolkit</h2>
+          <p className="section-label mb-3">Skills & Certifications</p>
+          <h2 className="section-heading text-3xl md:text-4xl mb-4">Technical Toolkit</h2>
+          <p className="text-slate-500 mb-12 max-w-2xl">
+            My work sits at the intersection of operations consulting and technical implementation.
+            These are the tools and credentials behind the work you see above.
+          </p>
+
+          {/* Certifications */}
+          <div className="mb-16">
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-6">Verified Certifications</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+              {CERTS.map(c => (
+                <a key={c.name} href={c.link} target="_blank" rel="noopener noreferrer"
+                  className="group bg-white rounded-xl border border-slate-200 p-4 flex flex-col items-center text-center hover:border-amber-300 hover:shadow-md transition-all duration-200">
+                  <div className="w-16 h-16 mb-3 flex items-center justify-center">
+                    <img src={c.badge} alt={c.name} className="w-full h-full object-contain rounded-lg" />
+                  </div>
+                  <p className="text-xs font-medium text-slate-700 group-hover:text-amber-600 transition leading-tight">{c.name}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Skills */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(SKILLS).map(([category, items]) => (
               <div key={category}>
