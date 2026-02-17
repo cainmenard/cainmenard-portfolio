@@ -91,10 +91,10 @@ const PROJECTS = [
     type: 'Web Application',
   },
   {
-    title: 'OneRoof Honeymoon Hub',
-    description: 'Collaborative honeymoon planning platform for couples. Features a shared dashboard for comparing destinations, tracking budgets, collecting guest contributions, and managing itineraries with real-time sync.',
-    tech: ['React', 'Supabase', 'Tailwind CSS', 'PostgreSQL'],
-    link: null,
+    title: 'Honeymoon Planning',
+    description: 'Interactive trip planner for a Croatia & Montenegro honeymoon. Full itinerary builder with day-by-day scheduling, budget tracker with points redemption, research database for restaurants and activities, and a to-do checklist.',
+    tech: ['React', 'Next.js', 'CSS'],
+    link: '/honeymoon-demo',
     github: null,
     type: 'Web Application',
     status: 'In Development',
@@ -362,7 +362,10 @@ export default function Home() {
                     {p.tech.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-medium">{t}</span>)}
                   </div>
                   <div className="flex gap-4">
-                    {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Live ↗</a>}
+                    {p.link && (p.link.startsWith('/') ? 
+                      <a href={p.link} className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Demo ↗</a> :
+                      <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Live ↗</a>
+                    )}
                     {p.github && <a href={p.github} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-slate-600 hover:underline">GitHub ↗</a>}
                   </div>
                 </div>
