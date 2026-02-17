@@ -136,9 +136,8 @@ const WEB_APPS = [
     title: 'Bachelor Trip Planner',
     description: 'Group trip coordination app for planning a bachelor party. Shared itinerary, budget splitting, activity voting, and attendee management.',
     tech: ['React', 'Next.js', 'Supabase'],
-    link: null,
+    link: '/bachelor-trip-demo.html',
     github: null,
-    status: 'In Development',
   },
 ]
 
