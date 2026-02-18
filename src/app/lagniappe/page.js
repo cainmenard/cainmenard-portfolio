@@ -1,5 +1,6 @@
 'use client'
 
+// ─── Data ──────────────────────────────────────────────
 const WEB_APPS = [
   {
     title: 'Student Loan Payoff Tracker',
@@ -24,6 +25,12 @@ const WEB_APPS = [
   },
 ]
 
+const RECIPES = [
+  // Placeholder — recipes will be added here
+  // { title: 'Crawfish Étouffée', description: 'The real deal. No shortcuts.', tags: ['Cajun', 'Seafood'] },
+]
+
+// ─── Component ─────────────────────────────────────────
 export default function Lagniappe() {
   return (
     <>
@@ -35,16 +42,78 @@ export default function Lagniappe() {
           </div>
         </header>
 
-        {/* Content */}
+        {/* ─── ABOUT ME ─── */}
         <section className="py-24">
           <div className="max-w-4xl mx-auto px-6">
             <p className="section-label mb-3">Lagniappe</p>
-            <h1 className="section-heading text-3xl md:text-4xl mb-4">Side Projects</h1>
+            <h1 className="section-heading text-3xl md:text-4xl mb-4">About Me</h1>
             <p className="text-slate-500 mb-12 max-w-2xl">
-              <em>Lagniappe</em> (lan-yap) — a Louisiana French word meaning "a little something extra."
-              These are personal projects I've built for fun, to learn new tools, or to solve problems
-              in my own life. They're separate from my professional work but they reflect how I think
-              about building things: start with a real problem, keep the interface clean, and ship it.
+              <em>Lagniappe</em> (lan-yap) — Cajun French for "a little something extra."
+            </p>
+
+            <div className="text-slate-600 leading-relaxed max-w-2xl space-y-5">
+              <p>
+                I grew up in Lafayette, Louisiana — the heart of Cajun country — where I picked up
+                a deep appreciation for good food, good stories, and figuring things out with whatever
+                you've got on hand. That last part hasn't changed much.
+              </p>
+              <p>
+                Outside of work, I'm usually in the kitchen trying to perfect my cajun cooking
+                (étouffée is the current obsession), under the hood of my 3rd gen Tacoma or Audi Q5 as a
+                certified YouTube mechanic, or behind a drum kit — I've been playing for 20 years,
+                with the hearing damage to prove it. I also try to get outdoors as much as possible,
+                whether that's hunting, fishing, or just getting out of the house.
+              </p>
+              <p>
+                This page is the stuff that doesn't fit neatly on a resume but makes up a lot of who I am.
+                Side projects I've built, dashboards from non-construction work, and eventually, the
+                recipes I'm working on getting right.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── RECIPES ─── */}
+        <section className="py-24 bg-slate-50">
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="section-label mb-3">From the Kitchen</p>
+            <h2 className="section-heading text-3xl md:text-4xl mb-4">Cajun Recipes</h2>
+            <p className="text-slate-500 mb-12 max-w-2xl">
+              Recipes I've been cooking (and refining) since I could reach the stove.
+              Mostly Cajun, always from scratch. This section is a work in progress.
+            </p>
+
+            {RECIPES.length > 0 ? (
+              <div className="grid md:grid-cols-2 gap-6">
+                {RECIPES.map((r, i) => (
+                  <div key={i} className="bg-white rounded-xl border border-slate-200 p-6">
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{r.title}</h3>
+                    <p className="text-sm text-slate-500 mb-3">{r.description}</p>
+                    {r.tags && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {r.tags.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-medium">{t}</span>)}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-white rounded-xl border border-dashed border-slate-300 p-12 text-center">
+                <p className="text-slate-400 text-sm">Recipes coming soon. Check back — I'm working on getting the roux right first.</p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* ─── SIDE PROJECTS ─── */}
+        <section className="py-24 bg-slate-50">
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="section-label mb-3">Side Projects</p>
+            <h2 className="section-heading text-3xl md:text-4xl mb-4">Things I've Built</h2>
+            <p className="text-slate-500 mb-12 max-w-2xl">
+              Personal projects built to learn new tools or solve real problems.
+              Separate from professional work, but they reflect how I think about building things:
+              start with a real problem, keep the interface clean, and ship it.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               {WEB_APPS.map((app, i) => (

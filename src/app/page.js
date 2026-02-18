@@ -219,6 +219,8 @@ export default function Home() {
                 {item.label}
               </a>
             ))}
+            <span className="w-px h-4 bg-slate-200"></span>
+            <a href="/lagniappe" className="nav-link text-slate-400 hover:text-amber-600" style={{ borderBottom: 'none' }}>Lagniappe</a>
           </div>
           <a href="mailto:cainmenard@gmail.com" className="btn-primary text-xs py-2 px-5 hidden md:inline-flex">Get in Touch</a>
           <button onClick={() => setMobileNav(!mobileNav)} className="md:hidden p-2 -mr-2" aria-label="Menu">
@@ -239,6 +241,8 @@ export default function Home() {
               {item.label}
             </a>
           ))}
+          <span className="w-12 h-px bg-slate-200"></span>
+          <a href="/lagniappe" className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={() => setMobileNav(false)}>Lagniappe</a>
           <a href="mailto:cainmenard@gmail.com" className="btn-primary mt-4" onClick={() => setMobileNav(false)}>Get in Touch</a>
         </div>
       )}
@@ -251,26 +255,29 @@ export default function Home() {
             <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>
               Cain Menard
             </h1>
-            <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
-              I started working on a $1B E&amp;I project in a South Texas refinery. Since then, I've helped
-              contractors and developers from $10M to $1.5B in revenue improve profitability, built enterprise
-              data platforms from scratch, trained 500+ managers, and delivered keynotes on economic forecasts,
-              technology, and labor productivity to hundreds of business owners and executives across the country.
-              My clients span specialty trades, general contractors, infrastructure, energy, and banking.
+            <p className="text-lg text-slate-600 leading-relaxed mb-6 max-w-xl">
+              I started working on a $1B E&amp;I project in a South Texas refinery. Since then, I've spent
+              my career helping companies across construction, energy, and infrastructure modernize
+              how they operate — through consulting, data analytics, and technology.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-10">
               <a href="#tableau" className="btn-primary">View My Work ↓</a>
               <a href="#contact" className="btn-outline">Get in Touch</a>
             </div>
-            <div className="flex gap-8 mt-10 pt-8 border-t border-slate-200">
-              <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>8+</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Years Experience</p></div>
-              <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>50%</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Profit Improvement</p></div>
-              <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>100%</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">User Adoption</p></div>
+            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-8 border-t border-slate-200 mb-6">
+              <div><p className="text-xl font-bold" style={{ color: 'var(--navy)' }}>500+</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Managers Trained</p></div>
+              <div><p className="text-xl font-bold" style={{ color: 'var(--navy)' }}>Keynote Speaker</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Nationally</p></div>
+              <div><p className="text-xl font-bold" style={{ color: 'var(--navy)' }}>Prosci</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Certified Change Practitioner</p></div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {['Specialty Trades', 'General Contractors', 'Infrastructure', 'Energy', 'Banking'].map(s => (
+                <span key={s} className="text-xs px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 font-medium">{s}</span>
+              ))}
             </div>
           </div>
           <div className="md:col-span-2 flex justify-center">
             <div className="headshot-ring">
-              <img src="/headshot.jpg" alt="Cain Menard" />
+              <Image src="/headshot.jpg" alt="Cain Menard" width={220} height={220} className="rounded-full object-cover" priority />
             </div>
           </div>
         </div>
@@ -282,33 +289,38 @@ export default function Home() {
           <p className="section-label mb-3">About</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-8">Background</h2>
           <div className="grid md:grid-cols-3 gap-12">
-            <div className="md:col-span-2 space-y-5 text-slate-600 leading-relaxed">
-              <p>
-                My career started in the field — managing project controls on a $1B industrial refinery
-                in South Texas, then running commercial construction projects as a GC project manager
-                across K-12 education, food &amp; beverage, and industrial warehouses. At every stop, I saw
-                the same thing: contractors running complex, high-stakes operations on manual processes,
-                disconnected spreadsheets, and software that nobody actually wanted to use.
-              </p>
-              <p>
-                That pattern led me to consulting at a 70-year-old boutique construction consultancy with
-                a gold-standard reputation in the industry. I spent three years advising contractors from
-                $30M to $1.5B in revenue — improving profitability by up to 50% through operational assessments,
-                financial benchmarking, and productivity improvement programs. I also built something the firm
-                had never done before: a full software and data analytics implementation, from scoping and
-                selling the engagement to building an AWS-hosted data pipeline and training users on-site
-                in Honolulu. It shipped with 100% adoption because I built it around how people actually
-                work, not how a vendor thinks they should.
-              </p>
-              <p>
-                Today I'm the Director of Consulting &amp; Operations at Automized, a PE-backed technology
-                startup helping specialty trade contractors — from roofing and concrete to HVAC and
-                excavation — bring the best out of their digital systems. I built our digital operations
-                consulting practice from scratch: interviewing stakeholders, mapping workflows, evaluating
-                software against real requirements weighted by the people who'll use it, and managing
-                implementations through go-live. The through-line across my career has always been the
-                same: technology should serve the people in the organization, not the other way around.
-              </p>
+            <div className="md:col-span-2 text-slate-600 leading-relaxed">
+              <div className="pb-6 mb-6 border-b border-slate-100">
+                <p>
+                  My career started in the field — managing project controls on a $1B industrial refinery
+                  in South Texas, then running commercial construction projects as a GC project manager
+                  across K-12 education, food &amp; beverage, and industrial warehouses. At every stop, I saw
+                  the same thing: contractors running complex, high-stakes operations on manual processes,
+                  disconnected spreadsheets, and software that nobody actually wanted to use.
+                </p>
+              </div>
+              <div className="pb-6 mb-6 border-b border-slate-100">
+                <p>
+                  That pattern led me to consulting at a 70-year-old boutique construction consultancy with
+                  a gold-standard reputation in the industry. I spent three years advising contractors from
+                  $30M to $1.5B in revenue — improving profitability through operational assessments,
+                  financial benchmarking, and productivity improvement programs. I also built something the firm
+                  had never done before: a full software and data analytics implementation, from scoping and
+                  selling the engagement to building an AWS-hosted data pipeline and training users on-site
+                  in Honolulu.
+                </p>
+              </div>
+              <div>
+                <p>
+                  Today I'm the Director of Consulting &amp; Operations at Automized, a PE-backed technology
+                  startup helping specialty trade contractors — from roofing and concrete to HVAC and
+                  excavation — bring the best out of their digital systems. I built our digital operations
+                  consulting practice from scratch: interviewing stakeholders, mapping workflows, evaluating
+                  software against real requirements weighted by the people who'll use it, and managing
+                  implementations through go-live. The through-line across my career has always been the
+                  same: technology should serve the people in the organization, not the other way around.
+                </p>
+              </div>
             </div>
             <div className="space-y-6">
               <div>
@@ -330,7 +342,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Tableau Gallery</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Data Visualizations</h2>
-          <p className="text-slate-500 mb-12 max-w-2xl">Interactive dashboards built for real consulting engagements. Best viewed on desktop — or click through to explore the full version on Tableau Public.</p>
+          <p className="text-slate-500 mb-12 max-w-2xl">Interactive dashboards built for real consulting engagements. Click through to explore the full version on Tableau Public.</p>
           <div className="space-y-10">
             {TABLEAU_DASHBOARDS.map((d, i) => (
               <div key={i} className="bg-white rounded-xl border border-slate-200 overflow-hidden">
@@ -399,8 +411,15 @@ export default function Home() {
       {/* ─── EXPERIENCE ─── */}
       <section id="experience" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
-          <p className="section-label mb-3">Experience</p>
-          <h2 className="section-heading text-3xl md:text-4xl mb-12">Career Timeline</h2>
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+            <div>
+              <p className="section-label mb-3">Experience</p>
+              <h2 className="section-heading text-3xl md:text-4xl">Career Timeline</h2>
+            </div>
+            <a href="/Cain_Menard_Resume.pdf" download className="btn-outline text-xs py-2 px-5">
+              Download Resume ↓
+            </a>
+          </div>
           <div className="space-y-12">
             {EXPERIENCE.map((job, i) => (
               <div key={i} className="relative pl-10">
@@ -487,6 +506,9 @@ export default function Home() {
               <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">
                 GitHub ↗
               </a>
+              <a href="/Cain_Menard_Resume.pdf" download className="btn-outline">
+                Resume ↓
+              </a>
             </div>
             <p className="text-sm text-slate-400">(337) 654-2304 · Atlanta, GA</p>
           </div>
@@ -501,7 +523,6 @@ export default function Home() {
             <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">LinkedIn</a>
             <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">GitHub</a>
             <a href="mailto:cainmenard@gmail.com" className="text-sm text-slate-400 hover:text-white transition">Email</a>
-            <a href="/lagniappe" className="text-sm text-slate-400 hover:text-white transition">Lagniappe</a>
           </div>
         </div>
       </footer>
