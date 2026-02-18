@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 
 // ─── Data ──────────────────────────────────────────────
 const WEB_APPS = [
@@ -27,7 +28,15 @@ const WEB_APPS = [
 
 const RECIPES = [
   // Placeholder — recipes will be added here
-  // { title: 'Crawfish Étouffée', description: 'The real deal. No shortcuts.', tags: ['Cajun', 'Seafood'] },
+  // { title: 'Gumbo', description: 'Dark roux. The real one.', tags: ['Cajun', 'Soup'] },
+]
+
+// Photo grid — replace src paths with your own photos
+const PHOTOS = [
+  { src: '/lagniappe/photo-1.jpg', alt: 'Add your photo here', caption: '' },
+  { src: '/lagniappe/photo-2.jpg', alt: 'Add your photo here', caption: '' },
+  { src: '/lagniappe/photo-3.jpg', alt: 'Add your photo here', caption: '' },
+  { src: '/lagniappe/photo-4.jpg', alt: 'Add your photo here', caption: '' },
 ]
 
 // ─── Component ─────────────────────────────────────────
@@ -35,21 +44,38 @@ export default function Lagniappe() {
   return (
     <>
       <div className="min-h-screen bg-white">
-        {/* Header */}
-        <header className="py-8 border-b border-slate-200">
-          <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
-            <a href="/" className="text-sm font-semibold uppercase tracking-wider text-slate-400 hover:text-slate-900 transition">← Back to Main</a>
+
+        {/* ─── HERO BANNER ─── */}
+        <div className="relative h-[40vh] min-h-[320px] overflow-hidden">
+          {/* 
+            Replace /lagniappe/banner.jpg with your Louisiana bayou/swamp photo.
+            Recommended: 1600x600+ landscape, cypress trees, Spanish moss, golden hour.
+          */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900">
+            <img
+              src="/lagniappe/banner.jpg"
+              alt="Louisiana bayou"
+              className="w-full h-full object-cover opacity-60"
+              onError={(e) => { e.target.style.display = 'none' }}
+            />
           </div>
-        </header>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+          <div className="relative h-full flex flex-col justify-end">
+            <div className="max-w-4xl mx-auto px-6 pb-10 w-full">
+              <a href="/" className="text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white transition mb-4 inline-block">← Back to Main</a>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-display)' }}>Lagniappe</h1>
+              <p className="text-white/70 text-lg italic">
+                (lan-yap) — Cajun French for "a little something extra."
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* ─── ABOUT ME ─── */}
         <section className="py-24">
           <div className="max-w-4xl mx-auto px-6">
-            <p className="section-label mb-3">Lagniappe</p>
-            <h1 className="section-heading text-3xl md:text-4xl mb-4">About Me</h1>
-            <p className="text-slate-500 mb-12 max-w-2xl">
-              <em>Lagniappe</em> (lan-yap) — Cajun French for "a little something extra."
-            </p>
+            <p className="section-label mb-3">About Me</p>
+            <h2 className="section-heading text-3xl md:text-4xl mb-8">The Rest of the Story</h2>
 
             <div className="text-slate-600 leading-relaxed max-w-2xl space-y-5">
               <p>
@@ -58,28 +84,60 @@ export default function Lagniappe() {
                 you've got on hand. That last part hasn't changed much.
               </p>
               <p>
-                Outside of work, I'm usually in the kitchen trying to perfect my cajun cooking
-                (étouffée is the current obsession), under the hood of my 3rd gen Tacoma or Audi Q5 as a
-                certified YouTube mechanic, or behind a drum kit — I've been playing for 20 years,
-                with the hearing damage to prove it. I also try to get outdoors as much as possible,
-                whether that's hunting, fishing, or just getting out of the house.
+                I'm marrying Samantha in September 2026. We met while I was earning my MBA at the
+                University of Denver, juggling three internships, and somehow still finding weekends
+                to go to concerts and snowboard mountains together. She's been along for the ride ever since.
               </p>
               <p>
-                This page is the stuff that doesn't fit neatly on a resume but makes up a lot of who I am.
-                Side projects I've built, dashboards from non-construction work, and eventually, the
-                recipes I'm working on getting right.
+                Outside of work, I'm on a lifelong mission to perfect my gumbo recipe — I'm building
+                a <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">recipe collection</a> below
+                to document the journey. I'm a certified YouTube mechanic, usually found under the hood
+                of my 3rd gen Toyota Tacoma or Audi Q5. I've been playing drums for 20 years, with the
+                hearing damage to prove it. And I try to get outside as much as possible — hiking in the
+                mountains with Samantha, paddling open canoes down whitewater, kayak fishing in a salt
+                marsh, or taking the Tacoma off-road.
               </p>
+              <p>
+                The information on this page won't be found on my resume, but it makes up a lot of who I am.
+              </p>
+            </div>
+
+            {/* ─── PHOTO GRID ─── */}
+            {/* 
+              Add your photos to /public/lagniappe/:
+              - photo-1.jpg (e.g., you and Samantha outdoors)
+              - photo-2.jpg (e.g., the Tacoma on a trail / off-roading)
+              - photo-3.jpg (e.g., behind a drum kit)
+              - photo-4.jpg (e.g., cast iron gumbo / cooking)
+              
+              Recommended: square or 4:3 ratio, at least 600px wide.
+              Photos will appear in a 2x2 grid below the about text.
+            */}
+            <div className="grid grid-cols-2 gap-3 mt-12 max-w-2xl">
+              {PHOTOS.map((p, i) => (
+                <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.style.display = 'none'
+                      e.target.parentElement.innerHTML = '<div class="absolute inset-0 flex items-center justify-center"><p class="text-xs text-slate-300">Add photo</p></div>'
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* ─── RECIPES ─── */}
-        <section className="py-24 bg-slate-50">
+        <section id="recipes" className="py-24 bg-slate-50">
           <div className="max-w-4xl mx-auto px-6">
             <p className="section-label mb-3">From the Kitchen</p>
             <h2 className="section-heading text-3xl md:text-4xl mb-4">Cajun Recipes</h2>
             <p className="text-slate-500 mb-12 max-w-2xl">
-              Recipes I've been cooking (and refining) since I could reach the stove.
+              Recipes I've been cooking and refining since I could reach the stove.
               Mostly Cajun, always from scratch. This section is a work in progress.
             </p>
 
@@ -99,14 +157,16 @@ export default function Lagniappe() {
               </div>
             ) : (
               <div className="bg-white rounded-xl border border-dashed border-slate-300 p-12 text-center">
-                <p className="text-slate-400 text-sm">Recipes coming soon. Check back — I'm working on getting the roux right first.</p>
+                <p className="text-2xl mb-2">🍳</p>
+                <p className="text-sm font-semibold text-slate-400">Recipes coming soon</p>
+                <p className="text-xs text-slate-300 mt-1">Gumbo, étouffée, boudin, and more on the way.</p>
               </div>
             )}
           </div>
         </section>
 
         {/* ─── SIDE PROJECTS ─── */}
-        <section className="py-24 bg-slate-50">
+        <section className="py-24">
           <div className="max-w-4xl mx-auto px-6">
             <p className="section-label mb-3">Side Projects</p>
             <h2 className="section-heading text-3xl md:text-4xl mb-4">Things I've Built</h2>

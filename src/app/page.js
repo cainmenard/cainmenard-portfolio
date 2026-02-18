@@ -84,21 +84,21 @@ const EDUCATION = [
 const TABLEAU_DASHBOARDS = [
   {
     title: 'Project Performance Analysis',
-    context: 'Built for FMI consulting engagements',
+    context: 'Built for consulting engagements',
     description: 'Analyzed margin gain/fade trends, cost overruns by category, and productivity benchmarks across divisions and market segments to drive data-informed consulting recommendations for construction contractors.',
     embedUrl: 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no',
     link: 'https://public.tableau.com/app/profile/cain.menard/viz/ProjectPerformanceAnalysis/AnalysisOverview',
   },
   {
     title: 'Financial Benchmarking Analysis',
-    context: 'Deployed as a standard tool for FMI consulting engagements',
+    context: 'Deployed as a standard consulting tool',
     description: '500+ project analysis across margin performance, direct cost variances by labor, equipment, material, and subcontractor — with profitability breakdowns by division, market segment, and customer for specialty trade contractors.',
     embedUrl: 'https://public.tableau.com/views/FinancialBenchmarkingAnalysis/ControlPanel?:embed=y&:display_count=no&:showVizHome=no',
     link: 'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
   },
   {
     title: 'Cognitive & Physical Health Report',
-    context: 'Built for a health club client engagement',
+    context: 'Built for a health club exploring the relationship between cognition and physical fitness',
     description: 'Client-facing dashboard tracking member wellness metrics including workout history, cognitive assessment trends, and engagement patterns to help the club optimize programming and retention.',
     embedUrl: 'https://public.tableau.com/views/CognitiveandPhysicalHealthReport/ControlPanel?:embed=y&:display_count=no&:showVizHome=no',
     link: 'https://public.tableau.com/app/profile/cain.menard/viz/CognitiveandPhysicalHealthReport/ControlPanel',
@@ -411,15 +411,8 @@ export default function Home() {
       {/* ─── EXPERIENCE ─── */}
       <section id="experience" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
-            <div>
-              <p className="section-label mb-3">Experience</p>
-              <h2 className="section-heading text-3xl md:text-4xl">Career Timeline</h2>
-            </div>
-            <a href="/Cain_Menard_Resume.pdf" download className="btn-outline text-xs py-2 px-5">
-              Download Resume ↓
-            </a>
-          </div>
+          <p className="section-label mb-3">Experience</p>
+          <h2 className="section-heading text-3xl md:text-4xl mb-12">Career Timeline</h2>
           <div className="space-y-12">
             {EXPERIENCE.map((job, i) => (
               <div key={i} className="relative pl-10">
@@ -505,9 +498,6 @@ export default function Home() {
               </a>
               <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">
                 GitHub ↗
-              </a>
-              <a href="/Cain_Menard_Resume.pdf" download className="btn-outline">
-                Resume ↓
               </a>
             </div>
             <p className="text-sm text-slate-400">(337) 654-2304 · Atlanta, GA</p>
