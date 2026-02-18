@@ -157,7 +157,7 @@ const RECIPES = [
   {
     id: 'red-beans',
     title: "Mimi's Red Beans and Rice",
-    attribution: "Camellia Brand's Famous Red Beans and Rice — with Mimi's tips",
+    attribution: 'My grandmother, Judy LeBlanc — "Mimi" (adapted from Camellia Brand)',
     tags: ['Cajun', 'Beans', 'Rice'],
     serves: '6–8',
     ingredients: [
@@ -189,7 +189,7 @@ const RECIPES = [
   {
     id: 'potato-salad',
     title: "Mimi's Potato Salad",
-    attribution: 'My grandmother — "Mimi"',
+    attribution: 'My grandmother, Judy LeBlanc — "Mimi"',
     tags: ['Cajun', 'Side'],
     ingredients: [
       '3 medium red potatoes',
@@ -212,7 +212,7 @@ const RECIPES = [
   {
     id: 'chowder',
     title: "Mimi's American Chowder",
-    attribution: 'My grandmother — "Mimi"',
+    attribution: 'My grandmother, Judy LeBlanc — "Mimi"',
     tags: ['Soup', 'Comfort'],
     serves: '8–10',
     ingredients: [
@@ -542,7 +542,7 @@ export default function Lagniappe() {
             <p className="text-slate-500 mb-12 max-w-2xl">
               Recipes I&apos;ve been cooking and refining since I could reach the stove.
               Mostly Cajun, always from scratch. Some are mine, some have been passed
-              down through generations of Menard and Lege women who never wrote anything down
+              down through generations of Menard and Bernard women who never wrote anything down
               quite the same way twice.
             </p>
 
