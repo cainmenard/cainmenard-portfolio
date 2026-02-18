@@ -84,19 +84,22 @@ const EDUCATION = [
 const TABLEAU_DASHBOARDS = [
   {
     title: 'Project Performance Analysis',
-    description: 'Comprehensive analysis of construction project performance metrics including margin gain/fade, cost overruns, and productivity benchmarks.',
+    context: 'Built for FMI consulting engagements',
+    description: 'Analyzed margin gain/fade trends, cost overruns by category, and productivity benchmarks across divisions and market segments to drive data-informed consulting recommendations for construction contractors.',
     embedUrl: 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no',
     link: 'https://public.tableau.com/app/profile/cain.menard/viz/ProjectPerformanceAnalysis/AnalysisOverview',
   },
   {
     title: 'Financial Benchmarking Analysis',
-    description: 'Financial benchmarking dashboard for a specialty trade contractor analyzing 500+ projects, margin variances by division, market segment, and customer.',
+    context: 'Deployed as a standard tool for FMI consulting engagements',
+    description: '500+ project analysis across margin performance, direct cost variances by labor, equipment, material, and subcontractor — with profitability breakdowns by division, market segment, and customer for specialty trade contractors.',
     embedUrl: 'https://public.tableau.com/views/FinancialBenchmarkingAnalysis/ControlPanel?:embed=y&:display_count=no&:showVizHome=no',
     link: 'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
   },
   {
     title: 'Cognitive & Physical Health Report',
-    description: 'Health and wellness tracking dashboard with workout history, cognitive assessment trends, and client engagement metrics.',
+    context: 'Built for a health club client engagement',
+    description: 'Client-facing dashboard tracking member wellness metrics including workout history, cognitive assessment trends, and engagement patterns to help the club optimize programming and retention.',
     embedUrl: 'https://public.tableau.com/views/CognitiveandPhysicalHealthReport/ControlPanel?:embed=y&:display_count=no&:showVizHome=no',
     link: 'https://public.tableau.com/app/profile/cain.menard/viz/CognitiveandPhysicalHealthReport/ControlPanel',
   },
@@ -156,10 +159,33 @@ const CERTS = [
   { name: 'AI For Everyone (DeepLearning.AI)', badge: '/cert-deeplearning.jpeg', link: 'https://www.coursera.org/account/accomplishments/verify/QMYWRC8CVMDS' },
 ]
 
+// ─── Lazy Tableau Embed ──────────────────────────────
+function TableauEmbed({ embedUrl, title }) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); obs.disconnect() }
+    }, { rootMargin: '200px' })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+  return (
+    <div ref={ref} className="tableau-container">
+      {visible ? <iframe src={embedUrl} allowFullScreen title={title} /> : (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="text-sm text-slate-400">Loading dashboard...</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ─── Component ─────────────────────────────────────────
 export default function Home() {
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const [mobileNav, setMobileNav] = useState(false)
 
   // Scroll observer for fade-in + nav highlight
   useEffect(() => {
@@ -195,8 +221,27 @@ export default function Home() {
             ))}
           </div>
           <a href="mailto:cainmenard@gmail.com" className="btn-primary text-xs py-2 px-5 hidden md:inline-flex">Get in Touch</a>
+          <button onClick={() => setMobileNav(!mobileNav)} className="md:hidden p-2 -mr-2" aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              {mobileNav ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></>}
+            </svg>
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Nav Overlay */}
+      {mobileNav && (
+        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-6 md:hidden" onClick={() => setMobileNav(false)}>
+          {NAV_ITEMS.map(item => (
+            <a key={item.id} href={`#${item.id}`}
+              className="text-xl font-semibold text-slate-800 hover:text-amber-600 transition"
+              onClick={() => setMobileNav(false)}>
+              {item.label}
+            </a>
+          ))}
+          <a href="mailto:cainmenard@gmail.com" className="btn-primary mt-4" onClick={() => setMobileNav(false)}>Get in Touch</a>
+        </div>
+      )}
 
       {/* ─── HERO ─── */}
       <header className="hero-gradient min-h-screen flex items-center pt-16">
@@ -219,8 +264,8 @@ export default function Home() {
             </div>
             <div className="flex gap-8 mt-10 pt-8 border-t border-slate-200">
               <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>8+</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Years Experience</p></div>
-              <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>$1.5B</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Client Revenue</p></div>
-              <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>500+</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Managers Trained</p></div>
+              <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>50%</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Profit Improvement</p></div>
+              <div><p className="text-2xl font-bold" style={{ color: 'var(--navy)' }}>100%</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">User Adoption</p></div>
             </div>
           </div>
           <div className="md:col-span-2 flex justify-center">
@@ -275,14 +320,6 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Certifications</p>
-                <div className="space-y-1.5">
-                  {CERTS.map(c => (
-                    <a key={c.name} href={c.link} target="_blank" rel="noopener noreferrer" className="block text-xs text-slate-600 hover:text-amber-600 transition">{c.name}</a>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -293,24 +330,30 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Tableau Gallery</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Data Visualizations</h2>
-          <p className="text-slate-500 mb-12 max-w-2xl">Interactive Tableau dashboards built for consulting engagements and personal projects. Click any dashboard to explore the full interactive version.</p>
+          <p className="text-slate-500 mb-12 max-w-2xl">Interactive dashboards built for real consulting engagements. Best viewed on desktop — or click through to explore the full version on Tableau Public.</p>
           <div className="space-y-10">
             {TABLEAU_DASHBOARDS.map((d, i) => (
               <div key={i} className="bg-white rounded-xl border border-slate-200 overflow-hidden">
                 <div className="p-6 pb-4">
-                  <h3 className="text-lg font-bold text-slate-900 mb-1">{d.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-bold text-slate-900">{d.title}</h3>
+                    <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500">{d.context}</span>
+                  </div>
                   <p className="text-sm text-slate-500">{d.description}</p>
                 </div>
-                <div className="px-6 pb-6">
-                  <div className="tableau-container">
-                    <iframe
-                      src={d.embedUrl}
-                      allowFullScreen
-                      title={d.title}
-                    />
-                  </div>
+                {/* Desktop: lazy-loaded embed */}
+                <div className="px-6 pb-6 hidden md:block">
+                  <TableauEmbed embedUrl={d.embedUrl} title={d.title} />
                 </div>
-                <div className="px-6 pb-5 border-t border-slate-100 pt-3">
+                {/* Mobile: link card instead of embed */}
+                <div className="px-6 pb-4 md:hidden">
+                  <a href={d.link} target="_blank" rel="noopener noreferrer"
+                    className="block p-4 rounded-lg bg-slate-50 border border-slate-200 text-center hover:bg-slate-100 transition">
+                    <p className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Open Interactive Dashboard ↗</p>
+                    <p className="text-xs text-slate-400 mt-1">Best experienced on desktop</p>
+                  </a>
+                </div>
+                <div className="px-6 pb-5 border-t border-slate-100 pt-3 hidden md:block">
                   <a href={d.link} target="_blank" rel="noopener noreferrer"
                     className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>
                     Open Full Dashboard on Tableau Public ↗
@@ -339,9 +382,11 @@ export default function Home() {
                 {p.callouts.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-3">
                     {p.callouts.map((c, j) => (
-                      <span key={j} className="text-xs px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-medium">
-                        {c.type}: {c.name}
-                      </span>
+                      <a key={j} href={c.url} target="_blank" rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-xs px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-medium hover:bg-amber-100 transition">
+                        {c.type}: {c.name} ↗
+                      </a>
                     ))}
                   </div>
                 )}
@@ -426,10 +471,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <div className="max-w-2xl mx-auto text-center">
             <p className="section-label mb-3">Contact</p>
-            <h2 className="section-heading text-3xl md:text-4xl mb-6">Let's Connect</h2>
+            <h2 className="section-heading text-3xl md:text-4xl mb-6">Let's Talk</h2>
             <p className="text-slate-500 mb-10 leading-relaxed">
-              Interested in digital transformation, data analytics, or operational strategy for your organization?
-              I'm always open to discussing new opportunities and ideas.
+              Whether you're a contractor trying to figure out why you're leaving money on the table,
+              a firm looking to modernize operations, or just someone who wants to talk shop —
+              I'm always up for a conversation.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-10">
               <a href="mailto:cainmenard@gmail.com" className="btn-primary">
