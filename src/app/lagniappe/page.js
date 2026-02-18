@@ -1,7 +1,9 @@
 'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 
 // ─── Data ──────────────────────────────────────────────
+
 const WEB_APPS = [
   {
     title: 'Student Loan Payoff Tracker',
@@ -27,19 +29,320 @@ const WEB_APPS = [
 ]
 
 const RECIPES = [
-  // Placeholder — recipes will be added here
-  // { title: 'Gumbo', description: 'Dark roux. The real one.', tags: ['Cajun', 'Soup'] },
+  {
+    id: 'gumbo',
+    title: "Cain's Chicken, Duck & Sausage Gumbo",
+    attribution: "Me — I've been fine-tuning this recipe since I can remember, adjusting every time I cook it",
+    tags: ['Cajun', 'Soup', 'Roux'],
+    ingredients: [
+      '2 chicken thighs',
+      '2 chicken breasts',
+      'Optional: 1 duck breast (preferably wild)',
+      '¼–½ cup grapeseed oil',
+      '½ cup all-purpose flour',
+      '1.5 yellow onion',
+      '1.5 green bell pepper',
+      '4 ribs of celery',
+      '6–10 cloves garlic',
+      '2–3 bay leaves',
+      '12 oz amber-style beer or good lager',
+      '4 cups chicken stock (preferably that homemade liquid gold)',
+      '3–5 cups water',
+      "½ lb andouille sausage (preferably Savoie's, Mild)",
+      '1 lb kielbasa sausage (optional: buy uncooked, smoke in your Traeger)',
+    ],
+    notes: [
+      'Spicy sausage often makes the gumbo too spicy altogether. Gumbo is typically not super spicy. Can always add hot sauce in your own bowl.',
+    ],
+    steps: [
+      'If smoking your own kielbasa, smoke the sausage at 225°F for about 2 hours.',
+      'After starting the sausage, prepare duck breast by scoring the fat cap and placing on wire mesh rack in a metal pan in the Traeger. Only smoke long enough to start browning the duck, maybe half as long as the sausage. You want to keep the duck fat.',
+      'Chicken thighs in smoker at 300°F for 20 minutes max (not totally cooked — cooks throughout in gumbo). Alt: Cook in oven at 300°F for 15–20 minutes max.',
+      "In that old Magnalite pot, make your roux. Dark dark, yeah, like 80% cacao chocolate. Alt: If no Magnalite, cast iron pot or roaster, or heavy, thick-bottomed stainless steel pot or roaster.",
+      "Add the holy trinity: onion, bell pepper, and celery, and stir often until just starting to get soft, but don't forget the pope…",
+      'Add your garlic (the pope) towards the end of cooking down the veggies. Garlic takes less time to soften.',
+      'Deglaze the pot with ¾ of the beer (savoring the rest), scraping the bottom with a wooden spoon until all the browned bits are released. Stir constantly until it returns to a simmer.',
+      "Add the stock and the water… SLOWLY, stirring in a little bit at a time. This helps with mixing the roux with the liquid, and avoids a clumpy finished product. Getting the roux and liquids to mix well can take some finesse, I've learned.",
+      "IMPORTANT: Never add the stock cold. The roux and stock will not mix well, and you'll have stringy roux. The only fix is to simmer the gumbo for 5–6 hours, which will reduce gumbo liquid 10–20%. To avoid this, always add stock at room temp. It's not a bad idea to microwave on high for 30 seconds.",
+      'Add your seasoning: bay leaves, Slap Ya Momma (or other made-in-Louisiana Cajun seasoning), and grind fresh black pepper until your wrists begin to burn.',
+      'Add the chicken and chicken fat. Optional — if using duck: throw away the fat cap from duck breast, add the duck breast and liquid duck fat from the pan.',
+      'Bring back to bare simmer.',
+      'Simmer on low (1.5–2/10 heat) for minimum of 2–3 hours, or maximum of 6 hours on lowest temperature. Prevent boil, which burns the roux.',
+    ],
+  },
+  {
+    id: 'chicken-stock',
+    title: 'Chicken Stock Liquid Gold',
+    attribution: 'Me',
+    tags: ['Base', 'Stock'],
+    ingredients: [
+      '4 to 8 pounds chicken parts — wings, bones, breasts, and legs',
+      '4 quarts water',
+      '2 bell peppers',
+      '2 large yellow onions, diced',
+      '4 large carrots, diced',
+      '4 large celery ribs, diced',
+      '8 crushed medium cloves garlic',
+      'Bay leaves',
+      '2 large sprigs parsley',
+      '2 packets unflavored gelatin, dissolved in ½ cup cold water (optional)',
+    ],
+    notes: [
+      'Four pounds of chicken per four quarts of water is the minimum for a good stock. Up to eight pounds yields an even richer, deeper stock.',
+      'Different parts contribute different amounts of gelatin: breast meat produces a delicious but thin stock, while wings produce slightly less clean flavor with lots of gelatin.',
+      'If your stock still looks thin like water even after being fully refrigerated, add the gelatin solution.',
+      'Feel free to add other herbs, such as fresh thyme or bay leaves.',
+    ],
+    steps: [
+      'Combine chicken, water, onions, carrots, celery, garlic, and parsley in a large stockpot and bring to a simmer over low heat.',
+      'Lower heat, maintaining a very gentle simmer, and cook for 1 hour 30 minutes.',
+      'Strain stock through a fine-mesh strainer, let cool, then transfer to containers and refrigerate until completely chilled, about 6 hours.',
+      'Skim off and remove any fat and scum on the surface.',
+      'Refrigerate for up to 5 days or freeze for up to 6 months.',
+      'If stock is thin even after being fully refrigerated, add optional gelatin solution and bring to a boil until fully dissolved, then refrigerate or freeze.',
+    ],
+  },
+  {
+    id: 'etouffee',
+    title: "Mimi's Shrimp or Crawfish Étouffée",
+    attribution: 'My great-grandmother, Vida Lege',
+    tags: ['Cajun', 'Seafood'],
+    serves: '6',
+    ingredients: [
+      '½ cup margarine or butter',
+      '1½ cups chopped onions',
+      '½ cup chopped green pepper',
+      '½ cup chopped celery',
+      '1 garlic clove, minced (more)',
+      '2 tbsp flour, 1 cup water',
+      '2 tsp tomato paste (can use ketchup)',
+      '1 tbsp Worcestershire sauce',
+      '2 lbs shrimp or crawfish',
+      '1 tsp salt, ½ tsp pepper',
+      '½ to 1 tsp bottled red pepper sauce',
+    ],
+    notes: [],
+    steps: [
+      'Melt margarine in dutch oven or microwave — add onions, green pepper, celery, and garlic. Sauté until soft.',
+      'Mix flour with water and add to vegetables with tomato paste and Worcestershire sauce. Simmer 15 minutes.',
+      'Add shrimp or crawfish, salt and pepper. Simmer additional 15 minutes.',
+      'Add pepper sauce (optional) and cook 5 more minutes. Serve over hot rice.',
+    ],
+  },
+  {
+    id: 'crab-soup',
+    title: "Memaw's Lump Crab Meat Soup",
+    attribution: 'My grandmother, Audrey Menard — "Memaw"',
+    tags: ['Cajun', 'Seafood', 'Soup'],
+    familyNote: '"This soup was a tradition in our home on Xmas Eve or New Years Eve — Bon Appetit." With boiled chicken & made chicken salad (finger sandwiches). Love, Maw Maw',
+    ingredients: [
+      '1 hen',
+      '1 large onion, chopped fine',
+      'Seasoning — black pepper, salt to taste',
+      '2 stalks celery, chopped fine',
+      '1 qt half & half',
+      '2 lbs lump crab meat',
+      '8 tbsp butter',
+      '¾ cup flour',
+      '1 gallon chicken stock (made by boiling the hen)',
+    ],
+    notes: [],
+    steps: [
+      'Make broth (stock) for soup. Boil hen with enough water to cover — add chopped onion, celery, and seasoning. When hen is tender, remove from pot.',
+      'Measure broth — you need 1 gallon (add water if needed). Set aside.',
+      'In same pot, make white sauce — stir in ¾ cup flour, gradually add 1 gallon chicken stock. Cook a while on medium heat.',
+      "Add half & half and all crab meat. Don't overcook. 15 minutes.",
+      'Serve warm. Top each serving with fine chopped parsley and onion top.',
+    ],
+  },
+  {
+    id: 'red-beans',
+    title: "Mimi's Red Beans and Rice",
+    attribution: "Camellia Brand's Famous Red Beans and Rice — with Mimi's tips",
+    tags: ['Cajun', 'Beans', 'Rice'],
+    serves: '6–8',
+    ingredients: [
+      "1 (1-pound) package Camellia's Red Beans",
+      '1 pound smoked sausage, sliced',
+      '8–10 cups water',
+      '¼ stick of butter',
+      '2 cups chopped seasoning blend (onions, celery, green bell peppers, parsley flakes)',
+      '1 toe garlic, chopped',
+      '1 bay leaf',
+      'Salt to taste',
+      'Pepper to taste',
+      'Cajun seasoning to taste',
+      'Hot cooked rice',
+    ],
+    notes: [],
+    familyNote: 'Mimi\'s tip: "Remove some beans in a plate and mash to make it creamer!! Makes a lot!! Good cooking!!"',
+    steps: [
+      'Rinse and sort red kidney beans. (Optional: Soak beans using your preferred method.)',
+      'In large heavy pot, cook sliced sausage for 5 minutes.',
+      'Add chopped seasoning blend and garlic to cooked sausage, along with ¼ stick butter, and continue to cook until onions turn soft and clear.',
+      'Add beans, water, and bay leaf.',
+      'Bring to rolling boil for 30 minutes, stirring every 10 minutes.',
+      'Reduce heat, simmer for 1–2 hours, stirring occasionally, until beans are desired tenderness.',
+      'Add Cajun seasoning plus salt and pepper to taste.',
+      'Serve over hot cooked rice.',
+    ],
+  },
+  {
+    id: 'potato-salad',
+    title: "Mimi's Potato Salad",
+    attribution: 'My grandmother — "Mimi"',
+    tags: ['Cajun', 'Side'],
+    ingredients: [
+      '3 medium red potatoes',
+      '6 eggs',
+      'Salt (light)',
+      '¼ onion (at most)',
+      '1 tbsp mustard',
+      '⅓ cup mayo',
+    ],
+    notes: [],
+    steps: [
+      'Boil potatoes with peelings on — not too mushy.',
+      'Boil eggs.',
+      'Cool and peel potatoes, chop small or mash. Salt potatoes lightly.',
+      'Separate yolk from white. Chop up the whites into the potatoes.',
+      'Mash yolks on a plate, grate in ¼ onion, add mustard and mayo. Mix.',
+      'Fold yolk mixture into potatoes.',
+    ],
+  },
+  {
+    id: 'chowder',
+    title: "Mimi's American Chowder",
+    attribution: 'My grandmother — "Mimi"',
+    tags: ['Soup', 'Comfort'],
+    serves: '8–10',
+    ingredients: [
+      '1 large onion, chopped',
+      '2 tbsp margarine',
+      '4 cups chopped potatoes',
+      '2 cups water',
+      '1 cup celery, chopped',
+      '2 tsp salt',
+      '¼ tsp pepper',
+      '2 cups milk',
+      '2 tbsp flour',
+      '½ pkg smoked sausage',
+      '⅓ lb American cheese, cubed',
+    ],
+    notes: [],
+    steps: [
+      'Sauté onion and celery in margarine. Add sausage, potatoes, water, and seasonings.',
+      'Cover and simmer 15 minutes or until vegetables are tender.',
+      'Gradually add a small amount of milk to flour, stirring until well blended. Add to vegetables.',
+      'Add remaining milk. Heat. Add cheese until it melts.',
+    ],
+  },
+  {
+    id: 'rice-dressing',
+    title: "Mimi's Rice Dressing",
+    attribution: 'My great-grandmother — "Mama"',
+    tags: ['Cajun', 'Side', 'Rice'],
+    serves: '6–8',
+    ingredients: [
+      '1½ lbs ground beef',
+      '¼ cup vegetable oil (less)',
+      '¼ cup flour (less)',
+      '1 medium onion, chopped',
+      '1 bell pepper, chopped',
+      '3 cloves garlic, minced',
+      '2 stalks celery',
+      'Onion tops',
+      'Water',
+      '1 can cream of mushroom soup',
+    ],
+    notes: [],
+    steps: [
+      'Make roux. Brown and stir continuously.',
+      'When dark brown, add meat and cook on medium heat until dark. Stir often, breaking up lumps.',
+      'After cooked, add onion, celery, bell pepper, and garlic. Cook slowly on medium heat uncovered, stirring often, then cover until completely cooked.',
+      'Add water with soup and cook slowly on low for 1 hour 15 minutes, covered.',
+      'Before serving, add onion tops and chopped garlic. Mix carefully with rice over double boiler.',
+    ],
+  },
 ]
 
-// Photo grid — replace src paths with your own photos
 const PHOTOS = [
-  { src: '/lagniappe/photo-1.jpg', alt: 'Add your photo here', caption: '' },
-  { src: '/lagniappe/photo-2.jpg', alt: 'Add your photo here', caption: '' },
-  { src: '/lagniappe/photo-3.jpg', alt: 'Add your photo here', caption: '' },
-  { src: '/lagniappe/photo-4.jpg', alt: 'Add your photo here', caption: '' },
+  { src: '/lagniappe/photo-1.jpg', alt: 'Photo' },
+  { src: '/lagniappe/photo-2.jpg', alt: 'Photo' },
+  { src: '/lagniappe/photo-3.jpg', alt: 'Photo' },
+  { src: '/lagniappe/photo-4.jpg', alt: 'Photo' },
 ]
 
-// ─── Component ─────────────────────────────────────────
+// ─── Recipe Card ───────────────────────────────────────
+function RecipeCard({ recipe }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+      <button onClick={() => setOpen(!open)} className="w-full text-left p-6 hover:bg-slate-50 transition">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-1">{recipe.title}</h3>
+            <p className="text-xs text-slate-400 italic">From the kitchen of: {recipe.attribution}</p>
+            {recipe.serves && <p className="text-xs text-slate-400 mt-1">Serves {recipe.serves}</p>}
+          </div>
+          <span className="text-slate-300 text-xl mt-1 shrink-0">{open ? '−' : '+'}</span>
+        </div>
+        {!open && (
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            {recipe.tags.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-medium">{t}</span>)}
+          </div>
+        )}
+      </button>
+
+      {open && (
+        <div className="px-6 pb-6 border-t border-slate-100 pt-4 space-y-5">
+          <div className="flex flex-wrap gap-1.5">
+            {recipe.tags.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-medium">{t}</span>)}
+          </div>
+
+          <div>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Ingredients</p>
+            <ul className="space-y-1.5">
+              {recipe.ingredients.map((ing, i) => (
+                <li key={i} className="text-sm text-slate-600 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[9px] before:w-1.5 before:h-1.5 before:rounded-full before:bg-amber-300">
+                  {ing}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {recipe.notes && recipe.notes.length > 0 && (
+            <div className="bg-amber-50 rounded-lg p-4 space-y-2">
+              {recipe.notes.map((n, i) => (
+                <p key={i} className="text-xs text-amber-800 leading-relaxed">{n}</p>
+              ))}
+            </div>
+          )}
+
+          <div>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Instructions</p>
+            <ol className="space-y-3">
+              {recipe.steps.map((step, i) => (
+                <li key={i} className="text-sm text-slate-600 leading-relaxed pl-7 relative">
+                  <span className="absolute left-0 top-0 text-xs font-bold text-amber-500 w-5">{i + 1}.</span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {recipe.familyNote && (
+            <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <p className="text-xs text-slate-500 italic leading-relaxed">★ {recipe.familyNote}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ─── Page Component ────────────────────────────────────
 export default function Lagniappe() {
   return (
     <>
@@ -47,10 +350,6 @@ export default function Lagniappe() {
 
         {/* ─── HERO BANNER ─── */}
         <div className="relative h-[40vh] min-h-[320px] overflow-hidden">
-          {/* 
-            Replace /lagniappe/banner.jpg with your Louisiana bayou/swamp photo.
-            Recommended: 1600x600+ landscape, cypress trees, Spanish moss, golden hour.
-          */}
           <div className="absolute inset-0 bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900">
             <img
               src="/lagniappe/banner.jpg"
@@ -65,7 +364,7 @@ export default function Lagniappe() {
               <a href="/" className="text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white transition mb-4 inline-block">← Back to Main</a>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-display)' }}>Lagniappe</h1>
               <p className="text-white/70 text-lg italic">
-                (lan-yap) — Cajun French for "a little something extra."
+                (lan-yap) — Cajun French for &quot;a little something extra.&quot;
               </p>
             </div>
           </div>
@@ -81,38 +380,49 @@ export default function Lagniappe() {
               <p>
                 I grew up in Lafayette, Louisiana — the heart of Cajun country — where I picked up
                 a deep appreciation for good food, good stories, and figuring things out with whatever
-                you've got on hand. That last part hasn't changed much.
+                you&apos;ve got on hand. That last part hasn&apos;t changed much.
               </p>
               <p>
-                I'm marrying Samantha in September 2026. We met while I was earning my MBA at the
+                I&apos;m marrying Samantha in September 2026. We met while I was earning my MBA at the
                 University of Denver, juggling three internships, and somehow still finding weekends
-                to go to concerts and snowboard mountains together. She's been along for the ride ever since.
+                to go to concerts and snowboard mountains together. She&apos;s been along for the ride ever since.
               </p>
               <p>
-                Outside of work, I'm on a lifelong mission to perfect my gumbo recipe — I'm building
-                a <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">recipe collection</a> below
-                to document the journey. I'm a certified YouTube mechanic, usually found under the hood
-                of my 3rd gen Toyota Tacoma or Audi Q5. I've been playing drums for 20 years, with the
-                hearing damage to prove it. And I try to get outside as much as possible — hiking in the
-                mountains with Samantha, paddling open canoes down whitewater, kayak fishing in a salt
-                marsh, or taking the Tacoma off-road.
+                I love to travel. My senior year at UL Lafayette, I was approved to graduate several
+                weeks early — so instead of walking at Commencement, I boarded a flight to India.
+                I spent time in Kolkata volunteering with the Missionaries of Charity, working in
+                homes for the homeless, disabled, and dying, and spending Christmas with children
+                living in the streets. From there, I trekked to Mount Everest Base Camp, where I
+                took a photo in my cap and gown at 17,598 feet. The story was picked up
+                by{' '}
+                <a
+                  href="https://www.klfy.com/local/ul-lafayette-student-skips-graduation-heads-to-india-for-missionary-work-instead/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition"
+                >
+                  a local news station in Lafayette
+                </a>{' '}
+                — my five minutes of fame.
               </p>
               <p>
-                The information on this page won't be found on my resume, but it makes up a lot of who I am.
+                Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe — I&apos;m building
+                a{' '}
+                <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">
+                  recipe collection
+                </a>{' '}
+                below to document the journey. I&apos;m a certified YouTube mechanic, usually found under
+                the hood of my 3rd gen Toyota Tacoma or Audi Q5. I&apos;ve been playing drums for 20
+                years, with the hearing damage to prove it. And I try to get outside as much as
+                possible — hiking in the mountains with Samantha, paddling open canoes down
+                whitewater, kayak fishing in a salt marsh, or taking the Tacoma off-road.
+              </p>
+              <p>
+                The information on this page won&apos;t be found on my resume, but it makes up a lot of who I am.
               </p>
             </div>
 
             {/* ─── PHOTO GRID ─── */}
-            {/* 
-              Add your photos to /public/lagniappe/:
-              - photo-1.jpg (e.g., you and Samantha outdoors)
-              - photo-2.jpg (e.g., the Tacoma on a trail / off-roading)
-              - photo-3.jpg (e.g., behind a drum kit)
-              - photo-4.jpg (e.g., cast iron gumbo / cooking)
-              
-              Recommended: square or 4:3 ratio, at least 600px wide.
-              Photos will appear in a 2x2 grid below the about text.
-            */}
             <div className="grid grid-cols-2 gap-3 mt-12 max-w-2xl">
               {PHOTOS.map((p, i) => (
                 <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
@@ -137,31 +447,15 @@ export default function Lagniappe() {
             <p className="section-label mb-3">From the Kitchen</p>
             <h2 className="section-heading text-3xl md:text-4xl mb-4">Cajun Recipes</h2>
             <p className="text-slate-500 mb-12 max-w-2xl">
-              Recipes I've been cooking and refining since I could reach the stove.
-              Mostly Cajun, always from scratch. This section is a work in progress.
+              Recipes I&apos;ve been cooking and refining since I could reach the stove.
+              Mostly Cajun, always from scratch. Some are mine, some have been passed
+              down through generations of Menard and Lege women who never wrote anything down
+              quite the same way twice.
             </p>
 
-            {RECIPES.length > 0 ? (
-              <div className="grid md:grid-cols-2 gap-6">
-                {RECIPES.map((r, i) => (
-                  <div key={i} className="bg-white rounded-xl border border-slate-200 p-6">
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">{r.title}</h3>
-                    <p className="text-sm text-slate-500 mb-3">{r.description}</p>
-                    {r.tags && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {r.tags.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-medium">{t}</span>)}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="bg-white rounded-xl border border-dashed border-slate-300 p-12 text-center">
-                <p className="text-2xl mb-2">🍳</p>
-                <p className="text-sm font-semibold text-slate-400">Recipes coming soon</p>
-                <p className="text-xs text-slate-300 mt-1">Gumbo, étouffée, boudin, and more on the way.</p>
-              </div>
-            )}
+            <div className="space-y-4">
+              {RECIPES.map(r => <RecipeCard key={r.id} recipe={r} />)}
+            </div>
           </div>
         </section>
 
@@ -169,7 +463,7 @@ export default function Lagniappe() {
         <section className="py-24">
           <div className="max-w-4xl mx-auto px-6">
             <p className="section-label mb-3">Side Projects</p>
-            <h2 className="section-heading text-3xl md:text-4xl mb-4">Things I've Built</h2>
+            <h2 className="section-heading text-3xl md:text-4xl mb-4">Things I&apos;ve Built</h2>
             <p className="text-slate-500 mb-12 max-w-2xl">
               Personal projects built to learn new tools or solve real problems.
               Separate from professional work, but they reflect how I think about building things:
