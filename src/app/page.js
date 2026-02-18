@@ -5,7 +5,7 @@ import Image from 'next/image'
 // ─── Data ──────────────────────────────────────────────
 const NAV_ITEMS = [
   { id: 'about', label: 'About' },
-  { id: 'tableau', label: 'Tableau' },
+  { id: 'projects', label: 'Projects' },
   { id: 'writing', label: 'Writing' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
@@ -261,7 +261,7 @@ export default function Home() {
               how they operate — through consulting, data analytics, and technology.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
-              <a href="#tableau" className="btn-primary">View My Work ↓</a>
+              <a href="#projects" className="btn-primary">View My Work ↓</a>
               <a href="#contact" className="btn-outline">Get in Touch</a>
             </div>
             <div className="flex flex-wrap gap-x-8 gap-y-4 pt-8 border-t border-slate-200 mb-6">
@@ -338,9 +338,9 @@ export default function Home() {
       </section>
 
       {/* ─── TABLEAU ─── */}
-      <section id="tableau" className="py-24 bg-slate-50">
+      <section id="projects" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
-          <p className="section-label mb-3">Tableau Gallery</p>
+          <p className="section-label mb-3">Projects</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Data Visualizations</h2>
           <p className="text-slate-500 mb-12 max-w-2xl">Interactive dashboards built for real consulting engagements. Click through to explore the full version on Tableau Public.</p>
           <div className="space-y-10">

@@ -1,6 +1,5 @@
 'use client'
-import { useState } from 'react'
-import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
 // ─── Data ──────────────────────────────────────────────
 
@@ -343,9 +342,68 @@ function RecipeCard({ recipe }) {
 }
 
 // ─── Page Component ────────────────────────────────────
+const LAGNIAPPE_NAV = [
+  { id: 'about', label: 'About' },
+  { id: 'dev-projects', label: 'Dev Projects' },
+  { id: 'recipes', label: 'Recipes' },
+]
+
 export default function Lagniappe() {
+  const [activeSection, setActiveSection] = useState('')
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileNav, setMobileNav] = useState(false)
+
+  useEffect(() => {
+    const sectionEls = document.querySelectorAll('section[id]')
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id) })
+    }, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' })
+    sectionEls.forEach(el => navObs.observe(el))
+
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll)
+    return () => { navObs.disconnect(); window.removeEventListener('scroll', onScroll) }
+  }, [])
+
   return (
     <>
+      {/* ─── NAV ─── */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-glass shadow-sm' : 'bg-transparent'}`}>
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+          <a href="/" className="text-lg font-bold tracking-tight" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>CM</a>
+          <div className="hidden md:flex items-center gap-8">
+            {LAGNIAPPE_NAV.map(item => (
+              <a key={item.id} href={`#${item.id}`}
+                className={`nav-link ${activeSection === item.id ? 'active' : ''}`}>
+                {item.label}
+              </a>
+            ))}
+            <span className="w-px h-4 bg-slate-200"></span>
+            <a href="/" className="nav-link text-slate-400 hover:text-amber-600" style={{ borderBottom: 'none' }}>Main Site</a>
+          </div>
+          <button onClick={() => setMobileNav(!mobileNav)} className="md:hidden p-2 -mr-2" aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              {mobileNav ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></>}
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Nav Overlay */}
+      {mobileNav && (
+        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-6 md:hidden" onClick={() => setMobileNav(false)}>
+          {LAGNIAPPE_NAV.map(item => (
+            <a key={item.id} href={`#${item.id}`}
+              className="text-xl font-semibold text-slate-800 hover:text-amber-600 transition"
+              onClick={() => setMobileNav(false)}>
+              {item.label}
+            </a>
+          ))}
+          <span className="w-12 h-px bg-slate-200"></span>
+          <a href="/" className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={() => setMobileNav(false)}>Main Site</a>
+        </div>
+      )}
+
       <div className="min-h-screen bg-white">
 
         {/* ─── HERO BANNER ─── */}
@@ -361,7 +419,6 @@ export default function Lagniappe() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
           <div className="relative h-full flex flex-col justify-end">
             <div className="max-w-4xl mx-auto px-6 pb-10 w-full">
-              <a href="/" className="text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white transition mb-4 inline-block">← Back to Main</a>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-display)' }}>Lagniappe</h1>
               <p className="text-white/70 text-lg italic">
                 (lan-yap) — Cajun French for &quot;a little something extra.&quot;
@@ -371,7 +428,7 @@ export default function Lagniappe() {
         </div>
 
         {/* ─── ABOUT ME ─── */}
-        <section className="py-24">
+        <section id="about" className="py-24">
           <div className="max-w-4xl mx-auto px-6">
             <p className="section-label mb-3">About Me</p>
             <h2 className="section-heading text-3xl md:text-4xl mb-8">The Rest of the Story</h2>
@@ -441,29 +498,11 @@ export default function Lagniappe() {
           </div>
         </section>
 
-        {/* ─── RECIPES ─── */}
-        <section id="recipes" className="py-24 bg-slate-50">
+        {/* ─── DEV PROJECTS ─── */}
+        <section id="dev-projects" className="py-24 bg-slate-50">
           <div className="max-w-4xl mx-auto px-6">
-            <p className="section-label mb-3">From the Kitchen</p>
-            <h2 className="section-heading text-3xl md:text-4xl mb-4">Cajun Recipes</h2>
-            <p className="text-slate-500 mb-12 max-w-2xl">
-              Recipes I&apos;ve been cooking and refining since I could reach the stove.
-              Mostly Cajun, always from scratch. Some are mine, some have been passed
-              down through generations of Menard and Lege women who never wrote anything down
-              quite the same way twice.
-            </p>
-
-            <div className="space-y-4">
-              {RECIPES.map(r => <RecipeCard key={r.id} recipe={r} />)}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── SIDE PROJECTS ─── */}
-        <section className="py-24">
-          <div className="max-w-4xl mx-auto px-6">
-            <p className="section-label mb-3">Side Projects</p>
-            <h2 className="section-heading text-3xl md:text-4xl mb-4">Things I&apos;ve Built</h2>
+            <p className="section-label mb-3">Dev Projects</p>
+            <h2 className="section-heading text-3xl md:text-4xl mb-4">Personal Builds</h2>
             <p className="text-slate-500 mb-12 max-w-2xl">
               Personal projects built to learn new tools or solve real problems.
               Separate from professional work, but they reflect how I think about building things:
@@ -491,6 +530,24 @@ export default function Lagniappe() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── RECIPES ─── */}
+        <section id="recipes" className="py-24">
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="section-label mb-3">From the Kitchen</p>
+            <h2 className="section-heading text-3xl md:text-4xl mb-4">Cajun Recipes</h2>
+            <p className="text-slate-500 mb-12 max-w-2xl">
+              Recipes I&apos;ve been cooking and refining since I could reach the stove.
+              Mostly Cajun, always from scratch. Some are mine, some have been passed
+              down through generations of Menard and Lege women who never wrote anything down
+              quite the same way twice.
+            </p>
+
+            <div className="space-y-4">
+              {RECIPES.map(r => <RecipeCard key={r.id} recipe={r} />)}
             </div>
           </div>
         </section>
