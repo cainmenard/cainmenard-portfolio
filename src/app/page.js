@@ -186,6 +186,21 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const [mobileNav, setMobileNav] = useState(false)
+  const [formStatus, setFormStatus] = useState('idle') // idle | sending | sent | error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setFormStatus('sending')
+    try {
+      const res = await fetch('https://formspree.io/f/mgollvll', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(e.target),
+      })
+      if (res.ok) { setFormStatus('sent'); e.target.reset() }
+      else { setFormStatus('error') }
+    } catch { setFormStatus('error') }
+  }
 
   // Scroll observer for fade-in + nav highlight
   useEffect(() => {
@@ -493,30 +508,36 @@ export default function Home() {
 
           {/* Contact Form */}
           <div className="max-w-lg mx-auto mb-12">
-            <form
-              action="https://formspree.io/f/mgollvll"
-              method="POST"
-              className="space-y-4"
-            >
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Name</label>
-                  <input type="text" id="name" name="name" required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="Your name" />
+            {formStatus === 'sent' ? (
+              <div className="text-center py-8">
+                <p className="text-2xl mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>Message sent.</p>
+                <p className="text-slate-500 text-sm">I&apos;ll get back to you soon.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Name</label>
+                    <input type="text" id="name" name="name" required
+                      className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="Your name" />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Email</label>
+                    <input type="email" id="email" name="email" required
+                      className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="you@company.com" />
+                  </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Email</label>
-                  <input type="email" id="email" name="email" required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="you@company.com" />
+                  <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Message</label>
+                  <textarea id="message" name="message" rows={4} required
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition resize-none" placeholder="What's on your mind?" />
                 </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Message</label>
-                <textarea id="message" name="message" rows={4} required
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition resize-none" placeholder="What's on your mind?" />
-              </div>
-              <button type="submit" className="btn-primary w-full justify-center">Send Message</button>
-            </form>
+                <button type="submit" disabled={formStatus === 'sending'} className="btn-primary w-full justify-center">
+                  {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
+                </button>
+                {formStatus === 'error' && <p className="text-red-500 text-sm text-center">Something went wrong. Try emailing me directly.</p>}
+              </form>
+            )}
           </div>
 
           <div className="max-w-2xl mx-auto text-center">
