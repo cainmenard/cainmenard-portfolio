@@ -184,8 +184,8 @@ body {
 
 /* Headshot */
 .headshot-ring {
-  width: 220px;
-  height: 220px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   padding: 4px;
   background: linear-gradient(135deg, var(--accent), var(--navy));
@@ -196,6 +196,31 @@ body {
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #fff;
+}
+
+/* Hero entrance animation */
+.hero-fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes heroIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile nav animation */
+.mobile-nav-overlay {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-nav-closed {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+}
+.mobile-nav-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 /* Contact button */
@@ -243,6 +268,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .headshot-ring { width: 160px; height: 160px; }
+  .headshot-ring { width: 200px; height: 200px; }
   .tableau-container { padding-top: 75%; }
 }

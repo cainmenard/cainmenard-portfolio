@@ -187,6 +187,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileNav, setMobileNav] = useState(false)
   const [formStatus, setFormStatus] = useState('idle') // idle | sending | sent | error
+  const [showAllJobs, setShowAllJobs] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -247,42 +248,49 @@ export default function Home() {
       </nav>
 
       {/* Mobile Nav Overlay */}
-      {mobileNav && (
-        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-6 md:hidden" onClick={() => setMobileNav(false)}>
-          {NAV_ITEMS.map(item => (
-            <a key={item.id} href={`#${item.id}`}
-              className="text-xl font-semibold text-slate-800 hover:text-amber-600 transition"
-              onClick={() => setMobileNav(false)}>
-              {item.label}
-            </a>
-          ))}
-          <span className="w-12 h-px bg-slate-200"></span>
-          <a href="/lagniappe" className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={() => setMobileNav(false)}>Lagniappe</a>
-          <a href="#contact" className="btn-primary mt-4" onClick={() => setMobileNav(false)}>Get in Touch</a>
-        </div>
-      )}
+      <div className={`fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-6 md:hidden mobile-nav-overlay ${mobileNav ? 'mobile-nav-open' : 'mobile-nav-closed'}`}>
+        {NAV_ITEMS.map(item => (
+          <a key={item.id} href={`#${item.id}`}
+            className="text-xl font-semibold text-slate-800 hover:text-amber-600 transition"
+            onClick={() => setMobileNav(false)}>
+            {item.label}
+          </a>
+        ))}
+        <span className="w-12 h-px bg-slate-200"></span>
+        <a href="/lagniappe" className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={() => setMobileNav(false)}>Lagniappe</a>
+        <a href="#contact" className="btn-primary mt-4" onClick={() => setMobileNav(false)}>Get in Touch</a>
+      </div>
 
       {/* ─── HERO ─── */}
       <header className="hero-gradient min-h-screen flex items-center pt-16">
         <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-5 gap-12 items-center">
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 hero-fade-in">
             <p className="section-label mb-4">Digital Operations Leader</p>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>
               Cain Menard
             </h1>
-            <p className="text-lg text-slate-600 leading-relaxed mb-6 max-w-xl">
-              I started working on a $1B E&amp;I project in a South Texas refinery. Since then, I've spent
+            <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
+              I started working on a $1B E&amp;I project in a South Texas refinery. Since then, I&apos;ve spent
               my career helping companies across construction, energy, and infrastructure modernize
               how they operate — through consulting, data analytics, and technology.
             </p>
-            <div className="flex flex-wrap gap-4 mb-10">
+            <div className="flex flex-wrap gap-4 mb-12">
               <a href="#projects" className="btn-primary">View My Work ↓</a>
               <a href="#contact" className="btn-outline">Get in Touch</a>
             </div>
-            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-8 border-t border-slate-200 mb-6">
-              <div><p className="text-xl font-bold" style={{ color: 'var(--navy)' }}>500+</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Managers Trained</p></div>
-              <div><p className="text-xl font-bold" style={{ color: 'var(--navy)' }}>Keynote Speaker</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Nationally</p></div>
-              <div><p className="text-xl font-bold" style={{ color: 'var(--navy)' }}>Prosci</p><p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Certified Change Practitioner</p></div>
+            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 mb-8">
+              <div>
+                <p className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>500+</p>
+                <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mt-1">Managers Trained</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>50%</p>
+                <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mt-1">YoY Revenue Growth</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>$1.5B</p>
+                <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mt-1">Client Revenue Served</p>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {['Specialty Trades', 'General Contractors', 'Infrastructure', 'Energy', 'Banking'].map(s => (
@@ -290,9 +298,9 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="md:col-span-2 flex justify-center">
+          <div className="md:col-span-2 flex justify-center hero-fade-in" style={{ animationDelay: '0.15s' }}>
             <div className="headshot-ring">
-              <Image src="/headshot.jpg" alt="Cain Menard" width={220} height={220} className="rounded-full object-cover" priority />
+              <Image src="/headshot.jpg" alt="Cain Menard" width={280} height={280} className="rounded-full object-cover" priority />
             </div>
           </div>
         </div>
@@ -338,6 +346,23 @@ export default function Home() {
               </div>
             </div>
             <div className="space-y-6">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">At a Glance</p>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-2xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>8+</p>
+                    <p className="text-xs text-slate-500">Years in construction &amp; infrastructure</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>$1B+</p>
+                    <p className="text-xs text-slate-500">Largest project managed</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>3</p>
+                    <p className="text-xs text-slate-500">Published industry articles</p>
+                  </div>
+                </div>
+              </div>
               <div>
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Education</p>
                 {EDUCATION.map(e => (
@@ -356,8 +381,8 @@ export default function Home() {
       <section id="projects" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Projects</p>
-          <h2 className="section-heading text-3xl md:text-4xl mb-4">Data Visualizations</h2>
-          <p className="text-slate-500 mb-12 max-w-2xl">Interactive dashboards built for real consulting engagements. Click through to explore the full version on Tableau Public.</p>
+          <h2 className="section-heading text-3xl md:text-4xl mb-4">Work Samples</h2>
+          <p className="text-slate-500 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements. Click through to explore the full version on Tableau Public.</p>
           <div className="space-y-10">
             {TABLEAU_DASHBOARDS.map((d, i) => (
               <div key={i} className="bg-white rounded-xl border border-slate-200 overflow-hidden">
@@ -429,9 +454,9 @@ export default function Home() {
           <p className="section-label mb-3">Experience</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-12">Career Timeline</h2>
           <div className="space-y-12">
-            {EXPERIENCE.map((job, i) => (
+            {(showAllJobs ? EXPERIENCE : EXPERIENCE.slice(0, 2)).map((job, i) => (
               <div key={i} className="relative pl-10">
-                {i < EXPERIENCE.length - 1 && <div className="timeline-line" />}
+                {i < (showAllJobs ? EXPERIENCE.length : 2) - 1 && <div className="timeline-line" />}
                 <div className="timeline-dot" />
                 <div className="bg-white rounded-xl border border-slate-200 p-6 md:p-8">
                   <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-1">
@@ -450,6 +475,16 @@ export default function Home() {
               </div>
             ))}
           </div>
+          {!showAllJobs && (
+            <div className="text-center mt-10">
+              <button onClick={() => setShowAllJobs(true)}
+                className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition hover:translate-y-[-1px]"
+                style={{ color: 'var(--accent)' }}>
+                Show {EXPERIENCE.length - 2} Earlier Roles
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
