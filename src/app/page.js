@@ -144,8 +144,8 @@ const PUBLICATIONS = [
 
 const SKILLS = {
   'Data & Analytics': ['SQL', 'Python', 'Tableau', 'Power BI', 'Alteryx', 'DBT', 'Apache Airflow', 'Excel (Advanced)'],
-  'Cloud & Infrastructure': ['AWS', 'Supabase', 'PostgreSQL', 'MySQL', 'Vercel'],
-  'Development': ['JavaScript', 'React', 'Next.js', 'Tailwind CSS', 'HTML/CSS', 'Git'],
+  'Data Infrastructure': ['AWS', 'Supabase', 'PostgreSQL', 'MySQL', 'Vercel'],
+  'Technical Tools': ['JavaScript', 'React', 'Next.js', 'Tailwind CSS', 'HTML/CSS', 'Git'],
   'Strategy & Management': ['Change Management (Prosci)', 'Agile / Scrum', 'Financial Modeling', 'Process Optimization', 'Stakeholder Management'],
   'Industry': ['Construction Operations', 'Energy & Infrastructure', 'Digital Transformation', 'Risk Management', 'Preconstruction'],
 }
@@ -222,7 +222,7 @@ export default function Home() {
             <span className="w-px h-4 bg-slate-200"></span>
             <a href="/lagniappe" className="nav-link text-slate-400 hover:text-amber-600" style={{ borderBottom: 'none' }}>Lagniappe</a>
           </div>
-          <a href="mailto:cainmenard@gmail.com" className="btn-primary text-xs py-2 px-5 hidden md:inline-flex">Get in Touch</a>
+          <a href="#contact" className="btn-primary text-xs py-2 px-5 hidden md:inline-flex">Get in Touch</a>
           <button onClick={() => setMobileNav(!mobileNav)} className="md:hidden p-2 -mr-2" aria-label="Menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {mobileNav ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></>}
@@ -243,7 +243,7 @@ export default function Home() {
           ))}
           <span className="w-12 h-px bg-slate-200"></span>
           <a href="/lagniappe" className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={() => setMobileNav(false)}>Lagniappe</a>
-          <a href="mailto:cainmenard@gmail.com" className="btn-primary mt-4" onClick={() => setMobileNav(false)}>Get in Touch</a>
+          <a href="#contact" className="btn-primary mt-4" onClick={() => setMobileNav(false)}>Get in Touch</a>
         </div>
       )}
 
@@ -456,7 +456,7 @@ export default function Home() {
                 <a key={c.name} href={c.link} target="_blank" rel="noopener noreferrer"
                   className="group bg-white rounded-xl border border-slate-200 p-4 flex flex-col items-center text-center hover:border-amber-300 hover:shadow-md transition-all duration-200">
                   <div className="w-16 h-16 mb-3 flex items-center justify-center">
-                    <img src={c.badge} alt={c.name} className="w-full h-full object-contain rounded-lg" />
+                    <Image src={c.badge} alt={c.name} width={64} height={64} className="w-full h-full object-contain rounded-lg" loading="lazy" />
                   </div>
                   <p className="text-xs font-medium text-slate-700 group-hover:text-amber-600 transition leading-tight">{c.name}</p>
                 </a>
@@ -483,14 +483,45 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <div className="max-w-2xl mx-auto text-center">
             <p className="section-label mb-3">Contact</p>
-            <h2 className="section-heading text-3xl md:text-4xl mb-6">Let's Talk</h2>
+            <h2 className="section-heading text-3xl md:text-4xl mb-6">Let&apos;s Talk</h2>
             <p className="text-slate-500 mb-10 leading-relaxed">
-              Whether you're a contractor trying to figure out why you're leaving money on the table,
+              Whether you&apos;re a contractor trying to figure out why you&apos;re leaving money on the table,
               a firm looking to modernize operations, or just someone who wants to talk shop —
-              I'm always up for a conversation.
+              I&apos;m always up for a conversation.
             </p>
+          </div>
+
+          {/* Contact Form */}
+          <div className="max-w-lg mx-auto mb-12">
+            <form
+              action="https://formspree.io/f/mgollvll"
+              method="POST"
+              className="space-y-4"
+            >
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Name</label>
+                  <input type="text" id="name" name="name" required
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="Your name" />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Email</label>
+                  <input type="email" id="email" name="email" required
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="you@company.com" />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Message</label>
+                <textarea id="message" name="message" rows={4} required
+                  className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition resize-none" placeholder="What's on your mind?" />
+              </div>
+              <button type="submit" className="btn-primary w-full justify-center">Send Message</button>
+            </form>
+          </div>
+
+          <div className="max-w-2xl mx-auto text-center">
             <div className="flex flex-wrap justify-center gap-4 mb-10">
-              <a href="mailto:cainmenard@gmail.com" className="btn-primary">
+              <a href="mailto:cainmenard@gmail.com" className="btn-outline">
                 cainmenard@gmail.com
               </a>
               <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">
