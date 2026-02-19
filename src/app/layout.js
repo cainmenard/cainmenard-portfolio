@@ -1,6 +1,8 @@
 import '@/app/globals.css'
 import { Analytics } from '@vercel/analytics/react'
-import Script from 'next/script'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import BackToTop from '@/components/BackToTop'
+import ErrorBoundary from '@/components/ErrorBoundary'
 
 export const metadata = {
   title: 'Cain Menard — Digital Operations Leader',
@@ -55,10 +57,22 @@ const jsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <Script id="json-ld" type="application/ld+json" strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        {children}
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors">
+        <ThemeProvider>
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
+          <BackToTop />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
