@@ -494,7 +494,7 @@ export default function Home() {
           {/* Contact Form */}
           <div className="max-w-lg mx-auto mb-12">
             <form
-              action="https://formspree.io/f/YOUR_FORM_ID"
+              action="https://formspree.io/f/mgollvll"
               method="POST"
               className="space-y-4"
             >
