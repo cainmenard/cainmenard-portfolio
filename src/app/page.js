@@ -74,7 +74,7 @@ export default function Home() {
               how they operate — through consulting, data analytics, and technology.
             </p>
             <div className="flex flex-wrap gap-4 mb-12">
-              <a href="#projects" className="btn-primary">View My Work &darr;</a>
+              <a href="#projects" className="btn-primary">View My Work ↓</a>
               <a href="#contact" className="btn-outline">Get in Touch</a>
             </div>
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 dark:border-slate-700 mb-8">
@@ -167,7 +167,7 @@ export default function Home() {
                 {EDUCATION.map(e => (
                   <div key={e.degree} className="mb-3">
                     <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{e.degree}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{e.school} &middot; {e.year}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">{e.school} · {e.year}</p>
                   </div>
                 ))}
               </div>
@@ -200,14 +200,14 @@ export default function Home() {
                 <div className="px-6 pb-4 md:hidden">
                   <a href={d.link} target="_blank" rel="noopener noreferrer"
                     className="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center hover:bg-slate-100 dark:hover:bg-slate-750 transition">
-                    <p className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Open Interactive Dashboard &nearr;</p>
+                    <p className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Open Interactive Dashboard ↗</p>
                     <p className="text-xs text-slate-400 mt-1">Best experienced on desktop</p>
                   </a>
                 </div>
                 <div className="px-6 pb-5 border-t border-slate-100 dark:border-slate-800 pt-3 hidden md:block">
                   <a href={d.link} target="_blank" rel="noopener noreferrer"
                     className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>
-                    Open Full Dashboard on Tableau Public &nearr;
+                    Open Full Dashboard on Tableau Public ↗
                   </a>
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function Home() {
                       <a key={j} href={c.url} target="_blank" rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
                         className="text-xs px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 font-medium hover:bg-amber-100 dark:hover:bg-amber-900/50 transition">
-                        {c.type}: {c.name} &nearr;
+                        {c.type}: {c.name} ↗
                       </a>
                     ))}
                   </div>
@@ -261,7 +261,7 @@ export default function Home() {
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white">{job.company}</h3>
                     <span className="text-sm font-medium" style={{ color: 'var(--accent)' }}>{job.role}</span>
                   </div>
-                  <p className="text-xs text-slate-400 font-medium mb-4">{job.period} &middot; {job.location}</p>
+                  <p className="text-xs text-slate-400 font-medium mb-4">{job.period} · {job.location}</p>
                   <ul className="space-y-2">
                     {job.bullets.map((b, j) => (
                       <li key={j} className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-slate-300 dark:before:bg-slate-600">
@@ -373,10 +373,10 @@ export default function Home() {
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex flex-wrap justify-center gap-4 mb-10">
               <a href="mailto:cainmenard@gmail.com" className="btn-outline">cainmenard@gmail.com</a>
-              <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">LinkedIn &nearr;</a>
-              <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">GitHub &nearr;</a>
+              <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">LinkedIn ↗</a>
+              <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">GitHub ↗</a>
             </div>
-            <p className="text-sm text-slate-400">(337) 654-2304 &middot; Atlanta, GA</p>
+            <p className="text-sm text-slate-400">(337) 654-2304 · Atlanta, GA</p>
           </div>
         </div>
       </section>
