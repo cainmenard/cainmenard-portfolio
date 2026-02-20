@@ -77,18 +77,21 @@ export default function Home() {
               <a href="#projects" className="btn-primary">View My Work ↓</a>
               <a href="#contact" className="btn-outline">Get in Touch</a>
             </div>
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 dark:border-slate-700 mb-8">
-              <div>
-                <p className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>500+</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">Managers Trained</p>
+            <div className="grid grid-cols-3 gap-4 md:gap-6 pt-8 border-t border-slate-200 dark:border-slate-700 mb-8">
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>01</p>
+                <p className="text-sm md:text-base font-bold mb-1" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>Built It</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Project engineer &rarr; PM on $1B+ in construction projects</p>
               </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>50%</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">YoY Revenue Growth</p>
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>02</p>
+                <p className="text-sm md:text-base font-bold mb-1" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>Advised On It</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Strategy and operations consultant for $30M–$6B contractors</p>
               </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>$1.5B</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">Client Revenue Served</p>
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>03</p>
+                <p className="text-sm md:text-base font-bold mb-1" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>Now I Automate It</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Director leading digital ops transformations</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -181,39 +184,52 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Projects</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Work Samples</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements. Click through to explore the full version on Tableau Public.</p>
+          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements — plus a featured case study on rebuilding analytics with AI. Explore the Tableau originals or see how the process evolved.</p>
 
           {/* ─── FEATURED: AI Evolution Case Study ─── */}
-          <a href="/ai-evolution" className="featured-project-card block mb-10 stagger-child">
-            <div className="flex flex-wrap items-center gap-2 mb-3">
+          <a href="/ai-evolution" className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
+            <div className="flex flex-wrap items-center gap-2 mb-4">
               <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
               <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">Case Study</span>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">From Tableau Dashboard to AI-Built Web App</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5 max-w-2xl">
-              I spent months building a project performance dashboard in Tableau for consulting clients.
-              Then I rebuilt it as a deployed React application in hours — using Claude Code and Wispr Flow voice-to-code.
-              Same analysis. Radically different process.
-            </p>
-            <div className="grid grid-cols-3 gap-4 max-w-lg mb-5">
+            <div className="flex items-start gap-4 mb-3">
+              <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex-shrink-0 mt-0.5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600 dark:text-amber-400">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+              </div>
               <div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">From Tableau Dashboard to AI-Built Web App</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
+                  I spent months building a project performance dashboard in Tableau for specialty trade contractors.
+                  Then I rebuilt it as a deployed React application in hours — using Claude Code and Wispr Flow voice-to-code.
+                  Same analysis. Radically different process.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 max-w-lg mb-5">
+              <div className="bg-slate-50 dark:bg-slate-800/60 rounded-lg p-3 text-center">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Before</p>
                 <p className="text-lg font-bold text-slate-900 dark:text-white">Months</p>
                 <p className="text-xs text-slate-400">Tableau Desktop</p>
               </div>
-              <div>
+              <div className="rounded-lg p-3 text-center" style={{ background: 'rgba(217, 119, 6, 0.06)' }}>
                 <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>After</p>
                 <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>Hours</p>
                 <p className="text-xs text-slate-400">AI + Voice-to-Code</p>
               </div>
-              <div>
+              <div className="bg-green-50 dark:bg-green-900/10 rounded-lg p-3 text-center">
                 <p className="text-xs font-semibold uppercase tracking-wider text-green-500 mb-1">Result</p>
                 <p className="text-lg font-bold text-green-600 dark:text-green-400">Deployed</p>
                 <p className="text-xs text-slate-400">React + Vercel</p>
               </div>
             </div>
-            <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
-              Read the Full Story &rarr;
+            <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
+              Read the Full Story
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
             </span>
           </a>
 
