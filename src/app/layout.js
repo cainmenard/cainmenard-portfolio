@@ -1,6 +1,5 @@
 import '@/app/globals.css'
 import { Analytics } from '@vercel/analytics/react'
-import { ThemeProvider } from '@/components/ThemeProvider'
 import BackToTop from '@/components/BackToTop'
 import ErrorBoundary from '@/components/ErrorBoundary'
 
@@ -60,19 +59,17 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors">
-        <ThemeProvider>
-          <ErrorBoundary>
-            {children}
-          </ErrorBoundary>
-          <BackToTop />
-        </ThemeProvider>
+      <body>
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
+        <BackToTop />
         <Analytics />
       </body>
     </html>
