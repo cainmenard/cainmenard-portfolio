@@ -478,10 +478,9 @@ body {
 .webapp-iframe-container {
   position: relative;
   width: 100%;
-  padding-top: 62.5%;
+  overflow: hidden;
   background: #f1f5f9;
   border-radius: 12px;
-  overflow: hidden;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
 }
@@ -491,9 +490,7 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 .webapp-iframe-container iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  display: block;
   border: 0;
 }
 

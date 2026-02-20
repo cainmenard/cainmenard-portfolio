@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Nav from '@/components/Nav'
 import MobileNav from '@/components/MobileNav'
 import Footer from '@/components/Footer'
@@ -13,6 +13,22 @@ export default function AIEvolution() {
   const activeSection = useSectionObserver()
   const scrolled = useScrollPosition()
   const [mobileNav, setMobileNav] = useState(false)
+
+  const iframeContainerRef = useRef(null)
+  const [iframeScale, setIframeScale] = useState(1)
+
+  useEffect(() => {
+    const el = iframeContainerRef.current
+    if (!el) return
+    const updateScale = () => {
+      const width = el.clientWidth
+      setIframeScale(width / 1440)
+    }
+    const observer = new ResizeObserver(updateScale)
+    observer.observe(el)
+    updateScale()
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <>
@@ -149,12 +165,22 @@ export default function AIEvolution() {
 
             {/* Desktop: iframe */}
             <div className="hidden md:block">
-              <div className="webapp-iframe-container">
+              <div
+                className="webapp-iframe-container"
+                ref={iframeContainerRef}
+                style={{ height: `${900 * iframeScale}px` }}
+              >
                 <iframe
                   src={WEBAPP_URL}
                   title="Project Performance Analysis Web App"
                   loading="lazy"
                   allow="clipboard-read; clipboard-write"
+                  style={{
+                    width: '1440px',
+                    height: '900px',
+                    transform: `scale(${iframeScale})`,
+                    transformOrigin: 'top left',
+                  }}
                 />
               </div>
             </div>
