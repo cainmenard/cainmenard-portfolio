@@ -379,6 +379,13 @@ body {
   border-color: #334155;
   border-left-color: var(--accent);
 }
+.featured-project-card--rich {
+  background: linear-gradient(135deg, #fff 0%, #fffbeb 100%);
+  border-left-width: 4px;
+}
+.dark .featured-project-card--rich {
+  background: linear-gradient(135deg, #1e293b 0%, #1e293b 60%, #292524 100%);
+}
 .featured-project-card:hover {
   border-left-color: var(--navy);
   box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(217, 119, 6, 0.12);
