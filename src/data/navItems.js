@@ -12,3 +12,10 @@ export const LAGNIAPPE_NAV = [
   { id: 'dev-projects', label: 'Dev Projects' },
   { id: 'recipes', label: 'Recipes' },
 ]
+
+export const AI_EVOLUTION_NAV = [
+  { id: 'evolution', label: 'Evolution' },
+  { id: 'live-app', label: 'Live App' },
+  { id: 'comparison', label: 'Comparison' },
+  { id: 'perspective', label: 'Perspective' },
+]

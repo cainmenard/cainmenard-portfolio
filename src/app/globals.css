@@ -362,7 +362,180 @@ body {
   color: #94a3b8;
 }
 
+/* ─── Featured Project Card ─── */
+.featured-project-card {
+  display: block;
+  padding: 28px 32px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  color: inherit;
+}
+.dark .featured-project-card {
+  background: #1e293b;
+  border-color: #334155;
+  border-left-color: var(--accent);
+}
+.featured-project-card:hover {
+  border-left-color: var(--navy);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(217, 119, 6, 0.12);
+  transform: translateY(-3px);
+}
+.dark .featured-project-card:hover {
+  border-left-color: var(--accent-light);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245, 158, 11, 0.15);
+}
+
+/* ─── Evolution Timeline ─── */
+.evolution-timeline {
+  position: relative;
+  padding-left: 40px;
+}
+.evolution-timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #94a3b8, var(--accent), #22c55e);
+}
+.dark .evolution-timeline::before {
+  background: linear-gradient(to bottom, #475569, var(--accent), #22c55e);
+}
+.evolution-phase {
+  position: relative;
+  padding-bottom: 48px;
+}
+.evolution-phase:last-child {
+  padding-bottom: 0;
+}
+.evolution-phase-marker {
+  position: absolute;
+  left: -33px;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  z-index: 1;
+}
+.dark .evolution-phase-marker {
+  border-color: #0f172a;
+}
+.evolution-phase-marker--tableau {
+  background: #64748b;
+  box-shadow: 0 0 0 2px #64748b;
+}
+.evolution-phase-marker--ai {
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.evolution-phase-marker--result {
+  background: #22c55e;
+  box-shadow: 0 0 0 2px #22c55e;
+}
+.evolution-phase-content {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s;
+}
+.dark .evolution-phase-content {
+  background: #1e293b;
+  border-color: #334155;
+}
+.evolution-phase-label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.evolution-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+.dark .evolution-tag {
+  background: #0f172a;
+  color: #94a3b8;
+  border-color: #334155;
+}
+
+/* ─── Webapp Iframe Container ─── */
+.webapp-iframe-container {
+  position: relative;
+  width: 100%;
+  padding-top: 62.5%;
+  background: #f1f5f9;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+}
+.dark .webapp-iframe-container {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.webapp-iframe-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+
+/* ─── Comparison Cards ─── */
+.comparison-card {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+.dark .comparison-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+.comparison-card--tableau {
+  border-left: 3px solid #64748b;
+}
+.comparison-card--ai {
+  border-left: 3px solid var(--accent);
+}
+.comparison-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+.dark .comparison-row {
+  border-bottom-color: #1e293b;
+}
+.comparison-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .headshot-ring { width: 200px; height: 200px; }
   .tableau-container { padding-top: 75%; }
+  .webapp-iframe-container { padding-top: 75%; }
+  .evolution-timeline { padding-left: 32px; }
+  .evolution-timeline::before { left: 11px; }
+  .evolution-phase-marker { left: -28px; width: 14px; height: 14px; }
+  .evolution-phase-content { padding: 18px; }
+  .featured-project-card { padding: 20px 24px; }
 }
