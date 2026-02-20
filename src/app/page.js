@@ -182,6 +182,41 @@ export default function Home() {
           <p className="section-label mb-3">Projects</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Work Samples</h2>
           <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements. Click through to explore the full version on Tableau Public.</p>
+
+          {/* ─── FEATURED: AI Evolution Case Study ─── */}
+          <a href="/ai-evolution" className="featured-project-card block mb-10 stagger-child">
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
+              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">Case Study</span>
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">From Tableau Dashboard to AI-Built Web App</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5 max-w-2xl">
+              I spent months building a project performance dashboard in Tableau for consulting clients.
+              Then I rebuilt it as a deployed React application in hours — using Claude Code and Wispr Flow voice-to-code.
+              Same analysis. Radically different process.
+            </p>
+            <div className="grid grid-cols-3 gap-4 max-w-lg mb-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Before</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white">Months</p>
+                <p className="text-xs text-slate-400">Tableau Desktop</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>After</p>
+                <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>Hours</p>
+                <p className="text-xs text-slate-400">AI + Voice-to-Code</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-green-500 mb-1">Result</p>
+                <p className="text-lg font-bold text-green-600 dark:text-green-400">Deployed</p>
+                <p className="text-xs text-slate-400">React + Vercel</p>
+              </div>
+            </div>
+            <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
+              Read the Full Story &rarr;
+            </span>
+          </a>
+
           <div className="space-y-10">
             {TABLEAU_DASHBOARDS.map((d, i) => (
               <div key={i} className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden stagger-child">
