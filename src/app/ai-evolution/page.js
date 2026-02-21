@@ -51,9 +51,9 @@ export default function AIEvolution() {
               The Expertise Didn&apos;t.
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-2xl">
-              I spent months building a project performance dashboard in Tableau. Then I rebuilt
-              it — all of it — as a production web application in hours using AI and voice-to-code.
-              No dev team, no licensing fees, no platform constraints.
+              Remember that GEICO commercial? A couple of well-groomed cavemen sitting in a nice
+              restaurant, visibly offended that GEICO just told the world their website was
+              &ldquo;so easy, a caveman could do it.&rdquo;
             </p>
             <div className="flex items-center gap-3 pb-8 border-b border-slate-200 dark:border-slate-700">
               <Image src="/headshot.jpg" alt="Cain Menard" width={44} height={44} className="rounded-full" priority />
@@ -80,20 +80,19 @@ export default function AIEvolution() {
           <section id="opening" className="bg-white dark:bg-slate-900 py-20">
             <div className="max-w-2xl mx-auto px-6 article-prose fade-section">
               <p className="article-drop-cap">
-                Remember{' '}
-                <a href="https://www.youtube.com/watch?v=H02iwWCrXew" target="_blank" rel="noopener noreferrer">
-                  that commercial
-                </a>
-                ? A couple of well-groomed cavemen sitting in a nice restaurant, visibly offended
-                that GEICO just told the world their website was &ldquo;so easy, a caveman could
-                do it.&rdquo;
-              </p>
-              <p>
                 The joke worked because everybody assumed some people just aren&apos;t the tech type.
                 Smart, sure — just not <em>that kind</em> of smart.
               </p>
+              <p>
+                That assumption defined how the construction industry thought about technology for
+                two decades. The field guys build things. The tech guys build software. And never
+                the twain shall meet.
+              </p>
               <p className="article-callout">
-                That assumption held up for about twenty years. It doesn&apos;t anymore.
+                That&apos;s over. The tools changed. And the people who know the most about how
+                construction actually works are about to become the most valuable players in the
+                room — not despite their lack of technical background, but because of the expertise
+                they already have.
               </p>
             </div>
           </section>
