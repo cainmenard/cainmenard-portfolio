@@ -84,9 +84,8 @@ export default function AIEvolution() {
                 Smart, sure — just not <em>that kind</em> of smart.
               </p>
               <p>
-                That assumption defined how the construction industry thought about technology for
-                two decades. The field guys build things. The tech guys build software. And never
-                the twain shall meet.
+                The construction industry has spent decades waiting for technology to catch up to
+                the people who actually build things. It finally did — just not the way anyone expected.
               </p>
               <p className="article-callout">
                 That&apos;s over. The tools changed. And the people who know the most about how

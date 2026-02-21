@@ -584,23 +584,19 @@ body {
 
 /* ─── Article Hero: Parallax Image ─── */
 .article-hero-image {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   width: 100%;
   height: 70vh;
   min-height: 400px;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   background-repeat: no-repeat;
   background-color: #1e293b;
 }
-@supports (-webkit-touch-callout: none) {
-  .article-hero-image {
-    background-attachment: scroll;
-  }
-}
 @media (max-width: 768px) {
   .article-hero-image {
-    background-attachment: scroll;
     height: 50vh;
     min-height: 280px;
   }
