@@ -14,8 +14,8 @@ export const LAGNIAPPE_NAV = [
 ]
 
 export const AI_EVOLUTION_NAV = [
+  { id: 'opening', label: 'The Story' },
   { id: 'the-shift', label: 'The Shift' },
-  { id: 'visual', label: 'Visual' },
   { id: 'comparison', label: 'Comparison' },
   { id: 'perspective', label: 'Perspective' },
 ]
