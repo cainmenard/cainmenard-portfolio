@@ -12,11 +12,22 @@ import { AI_EVOLUTION_NAV } from '@/data/navItems'
 const TABLEAU_URL = 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no'
 const WEBAPP_URL = 'https://project-performance-analysis.vercel.app'
 
+const COMPARISON_DATA = [
+  ['Timeline', 'Weeks to months', 'Hours'],
+  ['Cost', '$75/mo per seat', 'AI subscription only'],
+  ['Customization', 'Platform-constrained', "Unlimited — it's your code"],
+  ['Hosting', 'Tableau Public', 'Vercel (free tier)'],
+  ['Access', 'Requires Tableau literacy', 'Anyone with a browser'],
+  ['Data Input', 'Pre-loaded only', 'CSV upload + sample data'],
+  ['Ownership', 'Vendor-dependent', 'You own every line'],
+]
+
 export default function AIEvolution() {
   const activeSection = useSectionObserver()
   const scrolled = useScrollPosition()
   useFadeOnScroll()
   const [mobileNav, setMobileNav] = useState(false)
+  const [activeView, setActiveView] = useState('webapp')
 
   return (
     <>
@@ -125,119 +136,131 @@ export default function AIEvolution() {
             </div>
           </section>
 
-          {/* ─── VISUAL COMPARISON ─── */}
-          <section className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-5xl mx-auto px-6 fade-section">
-              <div className="grid md:grid-cols-2 gap-10">
-                {/* Left: Tableau Dashboard */}
-                <div>
-                  <div className="aspect-video rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800">
-                    <iframe
-                      src={TABLEAU_URL}
-                      title="Original Tableau Dashboard"
-                      className="w-full h-full border-0 pointer-events-none"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="mt-4 text-sm text-slate-400 text-center leading-relaxed">
-                    Weeks of development · Platform-constrained · Requires Tableau literacy
-                  </p>
-                </div>
-                {/* Right: React Web App */}
-                <div>
-                  <div className="aspect-video rounded-lg overflow-hidden border-2 border-amber-400 dark:border-amber-500 bg-slate-100 dark:bg-slate-800">
-                    <iframe
-                      src={WEBAPP_URL}
-                      title="React Web Application"
-                      className="w-full h-full border-0 pointer-events-none"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="mt-4 text-sm font-medium text-center leading-relaxed" style={{ color: 'var(--accent)' }}>
-                    Hours of development · $0 hosting · Unlimited customization · Anyone with a browser
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ─── COMPARISON ─── */}
-          <section id="comparison" className="bg-slate-50 dark:bg-slate-800 py-20">
+          {/* ─── INTERACTIVE COMPARISON SHOWCASE ─── */}
+          <section id="comparison" className="bg-white dark:bg-slate-900 py-20">
             <div className="max-w-4xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">Side by Side</p>
               <h2 className="article-section-heading mb-4">What Changed</h2>
-              <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">
+              <p className="text-slate-500 dark:text-slate-400 mb-10 max-w-2xl">
                 Same analytical goal. Same domain expertise. Radically different process and outcome.
+                Both tools below are live and fully functional&nbsp;&mdash; click through and use them.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Tableau */}
-                <div className="comparison-card comparison-card--tableau">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Traditional Approach</h3>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-6">Tableau Dashboard</p>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Timeline</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Weeks to months</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Cost</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">$75/mo license per seat</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Customization</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Platform-constrained</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Hosting</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Tableau Public</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Access</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Requires Tableau literacy</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Data Input</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Pre-loaded only</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Ownership</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Vendor-dependent</span>
-                  </div>
-                </div>
+              {/* ─ Toggle ─ */}
+              <div className="showcase-toggle" role="tablist">
+                <button
+                  role="tab"
+                  aria-selected={activeView === 'tableau'}
+                  className={`showcase-toggle__btn${activeView === 'tableau' ? ' showcase-toggle__btn--active' : ''}`}
+                  onClick={() => setActiveView('tableau')}
+                >
+                  <svg className="showcase-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                  Traditional BI Tool
+                </button>
+                <button
+                  role="tab"
+                  aria-selected={activeView === 'webapp'}
+                  className={`showcase-toggle__btn${activeView === 'webapp' ? ' showcase-toggle__btn--active showcase-toggle__btn--accent' : ''}`}
+                  onClick={() => setActiveView('webapp')}
+                >
+                  <svg className="showcase-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  AI-Built Web App
+                </button>
+              </div>
 
-                {/* AI */}
-                <div className="comparison-card comparison-card--ai">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">AI-Assisted Approach</h3>
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-6" style={{ color: 'var(--accent)' }}>Claude Code + Wispr Flow</p>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Timeline</span>
-                    <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Hours</span>
+              {/* ─ Browser-Frame Showcase ─ */}
+              <div className={`showcase-panel${activeView === 'webapp' ? ' showcase-panel--accent' : ''}`}>
+                <div className="showcase-panel__bar">
+                  <div className="showcase-panel__dots"><span /><span /><span /></div>
+                  <div className="showcase-panel__url">
+                    {activeView === 'tableau' ? 'public.tableau.com' : 'project-performance-analysis.vercel.app'}
                   </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Cost</span>
-                    <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>AI subscription only</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Customization</span>
-                    <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Unlimited — it&apos;s your code</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Hosting</span>
-                    <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Vercel (free tier)</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Access</span>
-                    <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Anyone with a browser</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Data Input</span>
-                    <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>CSV upload + sample data</span>
-                  </div>
-                  <div className="comparison-row">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">Ownership</span>
-                    <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>You own every line</span>
-                  </div>
+                  <a
+                    href={activeView === 'tableau' ? TABLEAU_URL : WEBAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="showcase-panel__ext"
+                    aria-label="Open in new tab"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
                 </div>
+                <div className="showcase-panel__viewport">
+                  <iframe
+                    src={TABLEAU_URL}
+                    title="Original Tableau Dashboard — fully interactive"
+                    className="showcase-panel__iframe"
+                    style={{ display: activeView === 'tableau' ? 'block' : 'none' }}
+                    loading="lazy"
+                  />
+                  <iframe
+                    src={WEBAPP_URL}
+                    title="AI-Built React Web App — fully interactive"
+                    className="showcase-panel__iframe"
+                    style={{ display: activeView === 'webapp' ? 'block' : 'none' }}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              {/* ─ Info Card ─ */}
+              <div className="showcase-info" key={activeView}>
+                {activeView === 'tableau' ? (
+                  <>
+                    <h3 className="showcase-info__title">Tableau Public Dashboard</h3>
+                    <p className="showcase-info__desc">
+                      A project performance analytics dashboard built over several weeks in Tableau Desktop.
+                      Fully functional&nbsp;&mdash; data modeling, calculated fields, interactive filters, and multiple views.
+                      Hosted on Tableau Public. Requires a Tableau license to edit and Tableau literacy to navigate.
+                    </p>
+                    <div className="showcase-info__tags">
+                      <span className="showcase-tag showcase-tag--neutral">Weeks to build</span>
+                      <span className="showcase-tag showcase-tag--neutral">$75/mo per seat</span>
+                      <span className="showcase-tag showcase-tag--neutral">Platform-constrained</span>
+                      <span className="showcase-tag showcase-tag--neutral">Requires Tableau literacy</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="showcase-info__title showcase-info__title--accent">AI-Built React Web App</h3>
+                    <p className="showcase-info__desc">
+                      A full production web application built in hours using Claude Code and Wispr Flow voice-to-code.
+                      Five dashboard views, interactive charts, KPI cards, CSV upload, executive insights, and strategic
+                      recommendations. Deployed free on Vercel. No login. No license. Open it and use it.
+                    </p>
+                    <div className="showcase-info__tags">
+                      <span className="showcase-tag showcase-tag--accent">Hours to build</span>
+                      <span className="showcase-tag showcase-tag--accent">$0 hosting</span>
+                      <span className="showcase-tag showcase-tag--accent">Unlimited customization</span>
+                      <span className="showcase-tag showcase-tag--accent">Anyone with a browser</span>
+                    </div>
+                  </>
+                )}
+                <a
+                  href={activeView === 'tableau' ? TABLEAU_URL : WEBAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`showcase-cta${activeView === 'webapp' ? ' showcase-cta--accent' : ''}`}
+                >
+                  Open Live Demo
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+
+              {/* ─ Unified Comparison Table ─ */}
+              <div className="showcase-compare">
+                <div className="showcase-compare__head">
+                  <div className="showcase-compare__label">Metric</div>
+                  <div className="showcase-compare__label">Tableau</div>
+                  <div className="showcase-compare__label showcase-compare__label--accent">AI Approach</div>
+                </div>
+                {COMPARISON_DATA.map(([metric, tableau, ai]) => (
+                  <div className="showcase-compare__row" key={metric}>
+                    <div className="showcase-compare__metric">{metric}</div>
+                    <div className="showcase-compare__val">{tableau}</div>
+                    <div className="showcase-compare__val showcase-compare__val--accent">{ai}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
