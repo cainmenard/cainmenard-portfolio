@@ -51,9 +51,8 @@ export default function AIEvolution() {
               The Expertise Didn&apos;t.
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-2xl">
-              Remember that GEICO commercial? A couple of well-groomed cavemen sitting in a nice
-              restaurant, visibly offended that GEICO just told the world their website was
-              &ldquo;so easy, a caveman could do it.&rdquo;
+              The construction industry has spent decades waiting for technology to catch up to
+              the people who actually build things. It finally did — just not the way anyone expected.
             </p>
             <div className="flex items-center gap-3 pb-8 border-b border-slate-200 dark:border-slate-700">
               <Image src="/headshot.jpg" alt="Cain Menard" width={44} height={44} className="rounded-full" priority />
@@ -80,12 +79,13 @@ export default function AIEvolution() {
           <section id="opening" className="bg-white dark:bg-slate-900 py-20">
             <div className="max-w-2xl mx-auto px-6 article-prose fade-section">
               <p className="article-drop-cap">
-                The joke worked because everybody assumed some people just aren&apos;t the tech type.
-                Smart, sure — just not <em>that kind</em> of smart.
+                Remember that GEICO commercial? A couple of well-groomed cavemen sitting in a nice
+                restaurant, visibly offended that GEICO just told the world their website was
+                &ldquo;so easy, a caveman could do it.&rdquo;
               </p>
               <p>
-                The construction industry has spent decades waiting for technology to catch up to
-                the people who actually build things. It finally did — just not the way anyone expected.
+                The joke worked because everybody assumed some people just aren&apos;t the tech type.
+                Smart, sure — just not <em>that kind</em> of smart.
               </p>
               <p className="article-callout">
                 That&apos;s over. The tools changed. And the people who know the most about how
