@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import Nav from '@/components/Nav'
 import MobileNav from '@/components/MobileNav'
 import Footer from '@/components/Footer'
@@ -7,28 +7,13 @@ import { useSectionObserver } from '@/hooks/useSectionObserver'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
 import { AI_EVOLUTION_NAV } from '@/data/navItems'
 
+const TABLEAU_URL = 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no'
 const WEBAPP_URL = 'https://project-performance-analysis.vercel.app'
 
 export default function AIEvolution() {
   const activeSection = useSectionObserver()
   const scrolled = useScrollPosition()
   const [mobileNav, setMobileNav] = useState(false)
-
-  const iframeContainerRef = useRef(null)
-  const [iframeScale, setIframeScale] = useState(1)
-
-  useEffect(() => {
-    const el = iframeContainerRef.current
-    if (!el) return
-    const updateScale = () => {
-      const width = el.clientWidth
-      setIframeScale(width / 1440)
-    }
-    const observer = new ResizeObserver(updateScale)
-    observer.observe(el)
-    updateScale()
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <>
@@ -50,209 +35,98 @@ export default function AIEvolution() {
 
       <div className="min-h-screen bg-white dark:bg-slate-900">
 
-        {/* ─── HERO ─── */}
-        <section className="hero-gradient pt-32 pb-20">
-          <div className="max-w-4xl mx-auto px-6 text-center hero-fade-in">
-            <div className="flex flex-wrap justify-center gap-3 mb-6">
-              <span className="text-xs font-medium px-3 py-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">By Cain Menard</span>
-              <span className="text-xs font-medium px-3 py-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">For construction &amp; consulting executives</span>
+        {/* ─── HERO: Video ─── */}
+        <section className="bg-black pt-20">
+          <div className="w-full max-w-6xl mx-auto px-4">
+            <div className="aspect-video rounded-b-xl overflow-hidden">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/H02iwWCrXew?si=oEQo_OBK3Htpvp0H"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
-            <h1 className="section-heading text-4xl md:text-5xl lg:text-6xl mb-6">
-              The Tool Changed.<br className="hidden sm:block" /> The Expertise Didn&apos;t.
-            </h1>
-            <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10">
-              I spent months building a project performance dashboard in Tableau. Then I rebuilt it — all of it — as
-              a production web application in hours using AI and voice-to-code. No dev team, no licensing fees, no
-              platform constraints. Just domain expertise and a conversation with a machine.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a href="#evolution" className="btn-primary">See the Evolution</a>
-              <a href="/" className="btn-outline">Back to Portfolio</a>
+          </div>
+          <div className="max-w-3xl mx-auto px-6 pt-14 pb-20 hero-fade-in">
+            <div className="text-lg md:text-xl text-slate-300 leading-relaxed space-y-6 text-center">
+              <p>
+                Remember that commercial? A couple of well-groomed cavemen sitting in a nice restaurant,
+                visibly offended that GEICO just told the world their website was &ldquo;so easy, a caveman
+                could do it.&rdquo;
+              </p>
+              <p>
+                The joke worked because everybody assumed some people just aren&apos;t the tech type.
+                Smart, sure — just not <em className="text-slate-200">that kind</em> of smart.
+              </p>
+              <p className="text-white font-semibold text-xl md:text-2xl pt-2">
+                That assumption held up for about twenty years. It doesn&apos;t anymore.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* ─── EVOLUTION TIMELINE ─── */}
-        <section id="evolution" className="py-24 bg-white dark:bg-slate-900">
+        {/* ─── THE SHIFT ─── */}
+        <section id="the-shift" className="py-24 bg-white dark:bg-slate-900">
           <div className="max-w-3xl mx-auto px-6">
-            <p className="section-label mb-3">The Journey</p>
-            <h2 className="section-heading text-3xl md:text-4xl mb-4">How It Evolved</h2>
-            <p className="text-slate-500 dark:text-slate-400 mb-14 max-w-2xl">
-              Same analytical thinking, applied with different tools — and a radically different timeline.
-              This isn&apos;t theoretical. It&apos;s a side-by-side look at what actually happened.
-            </p>
-
-            <div className="evolution-timeline">
-
-              {/* Phase 1: Tableau */}
-              <div className="evolution-phase">
-                <div className="evolution-phase-marker evolution-phase-marker--tableau" />
-                <div className="evolution-phase-content">
-                  <p className="evolution-phase-label">Phase 1 — Months</p>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">The Tableau Era</h3>
-                  <div className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 space-y-3">
-                    <p>
-                      Built as part of real consulting engagements, this Tableau dashboard required weeks of data
-                      modeling, calculated fields, parameter actions, and iterative design. Each revision
-                      meant re-publishing to Tableau Public. The analysis was solid — but the process was
-                      slow, the tool ran $75/month per seat, and the audience was limited to people comfortable
-                      navigating Tableau&apos;s interface.
-                    </p>
-                    <p>
-                      This is the reality most consulting firms and construction companies know well. McKinsey
-                      found that construction companies spend less than 1% of revenue on IT — less than a third
-                      of what comparable industries invest. So when a useful dashboard does get built, it tends
-                      to live on one person&apos;s desktop, locked behind a license most stakeholders don&apos;t have.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="evolution-tag">Tableau Desktop</span>
-                    <span className="evolution-tag">SQL</span>
-                    <span className="evolution-tag">Months of effort</span>
-                    <span className="evolution-tag">Manual data transforms</span>
-                    <span className="evolution-tag">$75/mo license</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Phase 2: AI */}
-              <div className="evolution-phase">
-                <div className="evolution-phase-marker evolution-phase-marker--ai" />
-                <div className="evolution-phase-content">
-                  <p className="evolution-phase-label">Phase 2 — Hours</p>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">The AI Leap</h3>
-                  <div className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 space-y-3">
-                    <p>
-                      Using Claude Code as an AI pair-programmer and Wispr Flow for voice-to-code,
-                      I rebuilt the entire analysis as a standalone web application. No drag-and-drop
-                      interface — just a conversation. I described what I wanted, refined it in real
-                      time, and watched production-quality React code materialize from spoken ideas.
-                      Wispr Flow turned stream-of-consciousness thinking — the messy, nonlinear way
-                      you actually think through project performance problems — into structured prompts
-                      that Claude Code executed with precision.
-                    </p>
-                    <p>
-                      This isn&apos;t as unusual as it sounds anymore. A Google principal engineer recently
-                      reported that Claude Code reproduced in one hour what her team had spent a year
-                      building. GitHub&apos;s own controlled study found that developers using AI coding tools
-                      completed tasks 55.8% faster. And a Harvard/BCG study of 758 consultants showed AI
-                      users producing 40% higher-quality output while finishing 25% faster. The speed is
-                      real — but the quality holding up is what makes this a paradigm shift, not just a shortcut.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="evolution-tag">Claude Code</span>
-                    <span className="evolution-tag">Wispr Flow</span>
-                    <span className="evolution-tag">Hours of effort</span>
-                    <span className="evolution-tag">Voice-to-code</span>
-                    <span className="evolution-tag">Natural language</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Phase 3: Result */}
-              <div className="evolution-phase">
-                <div className="evolution-phase-marker evolution-phase-marker--result" />
-                <div className="evolution-phase-content">
-                  <p className="evolution-phase-label">The Result</p>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">A Production Web Application</h3>
-                  <div className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 space-y-3">
-                    <p>
-                      A multi-page React + TypeScript application with five dashboard views, interactive
-                      Recharts visualizations (bar, scatter, pie, radar), KPI cards, CSV upload with
-                      auto-parsing, cross-dimensional filters, AI-generated executive insights, strategic
-                      recommendations, and full dark mode — deployed to Vercel at zero cost. Anyone with a
-                      browser can use it. No license, no login, no limitations.
-                    </p>
-                    <p>
-                      For context: Google now generates roughly half of its new code with AI. Over 90% of
-                      Fortune 100 companies have deployed GitHub Copilot. The AI code tools market is growing
-                      at 25%+ annually and is expected to reach $25–30 billion by 2030. This isn&apos;t
-                      early-adopter territory anymore — it&apos;s where the industry is heading.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="evolution-tag">React + TypeScript</span>
-                    <span className="evolution-tag">Recharts</span>
-                    <span className="evolution-tag">Vite</span>
-                    <span className="evolution-tag">Tailwind CSS</span>
-                    <span className="evolution-tag">Vercel</span>
-                    <span className="evolution-tag">Zero licensing cost</span>
-                  </div>
-                </div>
-              </div>
+            <p className="section-label mb-3">The Shift</p>
+            <h2 className="section-heading text-3xl md:text-4xl mb-8">
+              The Gap Between Thinking and Building Just Collapsed
+            </h2>
+            <div className="text-slate-600 dark:text-slate-300 leading-relaxed space-y-6 text-base md:text-lg">
+              <p>
+                A completed project performance dashboard built over several weeks or months three years
+                ago — data modeling, formulas, iterative design, testing, troubleshooting, and revisions —
+                can be rebuilt as a full production web application in just hours today. 5 powerful dashboard
+                views, interactive charts, KPI cards, cross-dimensional filters, executive insights, and
+                strategic recommendations. Deployed for free. No license, no login, no IT department involved,
+                using Claude Code as an AI pair-programmer and Wispr Flow for voice-to-code. The process was
+                stream-of-consciousness — describing what the application should do in a long, ranting
+                &ldquo;word salad,&rdquo; refining in real time, watching production-quality lines of React
+                code materialize from verbal instructions.
+              </p>
+              <p className="text-slate-900 dark:text-white font-medium text-lg md:text-xl">
+                It&apos;s not a prototype. It&apos;s a deployed application, built by describing what it
+                should do in plain English.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* ─── LIVE APP EMBED ─── */}
-        <section id="live-app" className="py-24 bg-slate-50 dark:bg-slate-800">
+        {/* ─── VISUAL COMPARISON ─── */}
+        <section id="visual" className="py-24 bg-slate-50 dark:bg-slate-800">
           <div className="max-w-5xl mx-auto px-6">
-            <p className="section-label mb-3">Live Application</p>
-            <h2 className="section-heading text-3xl md:text-4xl mb-4">Try It Yourself</h2>
-            <p className="text-slate-500 dark:text-slate-400 mb-10 max-w-2xl">
-              This is the actual application — running live below. Load the sample data set
-              to explore KPI dashboards, cost analysis, gain/fade breakdowns, and more.
-              Same analytical depth as the Tableau version. Different delivery mechanism entirely.
-            </p>
-
-            {/* Desktop: iframe */}
-            <div className="hidden md:block">
-              <div
-                className="webapp-iframe-container"
-                ref={iframeContainerRef}
-                style={{ height: `${900 * iframeScale}px` }}
-              >
-                <iframe
-                  src={WEBAPP_URL}
-                  title="Project Performance Analysis Web App"
-                  loading="lazy"
-                  allow="clipboard-read; clipboard-write"
-                  style={{
-                    width: '1440px',
-                    height: '900px',
-                    transform: `scale(${iframeScale})`,
-                    transformOrigin: 'top left',
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Mobile: link card */}
-            <div className="md:hidden">
-              <a
-                href={WEBAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-8 text-center transition-all hover:shadow-lg hover:border-amber-300"
-              >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-50 dark:bg-amber-900/20 mb-4">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600">
-                    <rect x="2" y="3" width="20" height="14" rx="2" />
-                    <line x1="8" y1="21" x2="16" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
+            <div className="grid md:grid-cols-2 gap-10">
+              {/* Left: Tableau Dashboard */}
+              <div>
+                <div className="aspect-video rounded-xl overflow-hidden border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 shadow-sm">
+                  <iframe
+                    src={TABLEAU_URL}
+                    title="Original Tableau Dashboard"
+                    className="w-full h-full border-0 pointer-events-none"
+                    loading="lazy"
+                  />
                 </div>
-                <p className="text-lg font-bold text-slate-900 dark:text-white mb-1">Open the Full Application</p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">Best experienced on a larger screen</p>
-              </a>
-            </div>
-
-            <div className="mt-6 text-center">
-              <a
-                href={WEBAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide uppercase hover:underline transition"
-                style={{ color: 'var(--accent)' }}
-              >
-                Open Full Application in New Tab
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-              </a>
+                <p className="mt-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-center">
+                  Weeks of development · Platform-constrained · Requires Tableau literacy
+                </p>
+              </div>
+              {/* Right: React Web App */}
+              <div>
+                <div className="aspect-video rounded-xl overflow-hidden border-2 border-amber-400 dark:border-amber-500 bg-white dark:bg-slate-900 shadow-sm">
+                  <iframe
+                    src={WEBAPP_URL}
+                    title="React Web Application"
+                    className="w-full h-full border-0 pointer-events-none"
+                    loading="lazy"
+                  />
+                </div>
+                <p className="mt-5 text-sm font-medium leading-relaxed text-center" style={{ color: 'var(--accent)' }}>
+                  Hours of development · $0 hosting · Unlimited customization · Anyone with a browser
+                </p>
+              </div>
             </div>
           </div>
         </section>
