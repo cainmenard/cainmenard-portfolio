@@ -346,9 +346,8 @@ export default function AIEvolution() {
           {/* ─── CONSTRUCTION PROFESSIONALS ─── */}
           <section id="untapped-builders" className="bg-white dark:bg-slate-900 py-20">
             <div className="max-w-2xl mx-auto px-6 fade-section">
-              <p className="section-label mb-3">The Real Builders</p>
               <h2 className="article-section-heading mb-8">
-                Construction Professionals Aren&apos;t Cavemen — They&apos;re Untapped Builders
+                The Real Builders
               </h2>
             </div>
 
@@ -409,46 +408,50 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  The GEICO analogy needs a clarification. Superintendents, project managers, and estimators
-                  aren&apos;t cavemen. They&apos;re the people who actually understand how projects succeed and
-                  fail — which cost drivers erode margins, which reports are just busy work, which metrics
-                  predict trouble six weeks before it hits the financials. That&apos;s fifteen, twenty, thirty
-                  years of hard-earned experience that no software developer can replicate.
+                  Let me be clear — superintendents, project managers, and estimators aren&apos;t cavemen.
+                  They&apos;re the people who actually understand how projects make or lose money. Which cost
+                  drivers eat margins. Which reports are just busy work nobody reads. Which leading indicators
+                  flag trouble six weeks before it shows up in the financials. That&apos;s fifteen, twenty,
+                  thirty years of hard-earned knowledge that no software developer in Silicon Valley is going
+                  to replicate.
                 </p>
                 <p>
                   The problem has never been that construction professionals aren&apos;t smart enough for
                   technology. The technology has never been smart enough for them. Good tech adapts to the
-                  user, and the construction industry has been forced to settle for less.
+                  user, and the construction industry has been forced to settle for less. I wrote about this a
+                  year ago: software developers should be upskilling and adapting their work to serve the
+                  construction industry — not the other way around. I still believe that.
                 </p>
                 <p>
                   Until now, the IT department — if the company even had one — occupied a small, dark corner
                   of the office. JBKnowledge found fewer than half of construction companies have a single
-                  dedicated IT employee. Many firms still have field supervisors without devices, turning in
-                  paper daily reports and handwritten timekeeping — running multi-million-dollar projects with
-                  the same information tools available in 1985.
+                  dedicated IT employee. I still walk into companies where field supervisors don&apos;t have
+                  devices. Paper daily reports. Handwritten timekeeping. Multi-million-dollar projects managed
+                  with the same information tools available in 1985.
                 </p>
                 <p>
                   Meanwhile, those same companies are struggling to hire younger talent born into a
                   digital-first world. Gen Z participation in construction more than doubled between 2019 and
                   2023. But 41% of the pre-2020 workforce is expected to retire by 2031. There&apos;s a ticking
-                  clock on the institutional knowledge in people&apos;s heads — and no clear mechanism to capture
-                  it before it walks out the door.
+                  clock on the institutional knowledge in your people&apos;s heads — and no clear mechanism to
+                  capture it before it walks out the door.
                 </p>
                 <p className="article-callout">
                   Here&apos;s the shift most people miss: those same superintendents who&apos;ve never written a
-                  line of code may become prolific software builders. Building custom applications is becoming
-                  as simple as describing what you need in plain language.
+                  line of code may become your most prolific software builders. Building custom applications is
+                  becoming as simple as describing what you need out loud, the way you&apos;d explain it to a
+                  colleague.
                 </p>
                 <p>
-                  Kevin Roose, a <em>New York Times</em> journalist, built a functional app in roughly ten
-                  minutes using an AI tool. A non-coder in rural Philippines built a custom expense management
-                  app in two hours with plain language prompts. Harvard Business School now has an active
-                  teaching case — &ldquo;Lovable: Vibe Coding for the Other 99%&rdquo; — on exactly this thesis.
+                  Kevin Roose, a <em>New York Times</em> technology columnist, built a functional app in about
+                  ten minutes. A non-coder in the Philippines built a custom expense management app in two
+                  hours using plain language prompts. Harvard Business School has an active teaching case on
+                  it — &ldquo;Lovable: Vibe Coding for the Other 99%.&rdquo;
                 </p>
                 <p>
-                  If those people can do it, a PM who understands earned value and cost-to-complete can do it.
-                  And the software they&apos;d build would actually solve the problems they face — because
-                  they&apos;re the ones who understand those problems.
+                  If those people can do it, your best PM can do it. And the software they&apos;d build would
+                  actually solve the problems they deal with every day — because they&apos;re the ones who
+                  understand those problems.
                 </p>
               </div>
             </div>
