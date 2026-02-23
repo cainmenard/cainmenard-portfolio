@@ -343,6 +343,117 @@ export default function AIEvolution() {
             </div>
           </section>
 
+          {/* ─── CONSTRUCTION PROFESSIONALS ─── */}
+          <section id="untapped-builders" className="bg-white dark:bg-slate-900 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">The Real Builders</p>
+              <h2 className="article-section-heading mb-8">
+                Construction Professionals Aren&apos;t Cavemen — They&apos;re Untapped Builders
+              </h2>
+            </div>
+
+            {/* ─ Icon Transformation Banner ─ */}
+            <div className="max-w-3xl mx-auto px-6 my-12 fade-section">
+              <div className="transform-banner">
+                <div className="transform-banner__group">
+                  <div className="transform-banner__icon-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
+                      <path d="M2 18v3h3"/><path d="M22 18v3h-3"/><path d="M12 2v4"/><path d="M6.8 6.8l2.8 2.8"/><path d="M17.2 6.8l-2.8 2.8"/><path d="M2 12h4"/><path d="M18 12h4"/><circle cx="12" cy="12" r="3"/><path d="M2 21h20"/>
+                    </svg>
+                    <span className="transform-banner__label">Superintendent</span>
+                  </div>
+                  <div className="transform-banner__icon-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
+                      <path d="M2 6l10-3 10 3-10 3z"/><path d="M2 6v6l10 3 10-3V6"/><path d="M12 22V9"/>
+                    </svg>
+                    <span className="transform-banner__label">Estimator</span>
+                  </div>
+                  <div className="transform-banner__icon-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
+                      <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14l2 2 4-4"/>
+                    </svg>
+                    <span className="transform-banner__label">Project Manager</span>
+                  </div>
+                </div>
+
+                <div className="transform-banner__arrow">
+                  <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__arrow-svg">
+                    <line x1="2" y1="12" x2="42" y2="12" />
+                    <polyline points="36 6 42 12 36 18" />
+                  </svg>
+                </div>
+
+                <div className="transform-banner__group">
+                  <div className="transform-banner__icon-card transform-banner__icon-card--accent">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
+                      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8l3 3-3 3"/><line x1="13" y1="14" x2="17" y2="14"/>
+                    </svg>
+                    <span className="transform-banner__label">Custom Apps</span>
+                  </div>
+                  <div className="transform-banner__icon-card transform-banner__icon-card--accent">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
+                      <rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>
+                    </svg>
+                    <span className="transform-banner__label">Mobile Tools</span>
+                  </div>
+                  <div className="transform-banner__icon-card transform-banner__icon-card--accent">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
+                      <path d="M21 12V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h7"/><path d="M16 19h6"/><path d="M19 16v6"/><path d="M7 10h0"/><path d="M11 10h0"/><path d="M7 14h0"/><path d="M11 14h0"/>
+                    </svg>
+                    <span className="transform-banner__label">Dashboards</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  The GEICO analogy needs a clarification. Superintendents, project managers, and estimators
+                  aren&apos;t cavemen. They&apos;re the people who actually understand how projects succeed and
+                  fail — which cost drivers erode margins, which reports are just busy work, which metrics
+                  predict trouble six weeks before it hits the financials. That&apos;s fifteen, twenty, thirty
+                  years of hard-earned experience that no software developer can replicate.
+                </p>
+                <p>
+                  The problem has never been that construction professionals aren&apos;t smart enough for
+                  technology. The technology has never been smart enough for them. Good tech adapts to the
+                  user, and the construction industry has been forced to settle for less.
+                </p>
+                <p>
+                  Until now, the IT department — if the company even had one — occupied a small, dark corner
+                  of the office. JBKnowledge found fewer than half of construction companies have a single
+                  dedicated IT employee. Many firms still have field supervisors without devices, turning in
+                  paper daily reports and handwritten timekeeping — running multi-million-dollar projects with
+                  the same information tools available in 1985.
+                </p>
+                <p>
+                  Meanwhile, those same companies are struggling to hire younger talent born into a
+                  digital-first world. Gen Z participation in construction more than doubled between 2019 and
+                  2023. But 41% of the pre-2020 workforce is expected to retire by 2031. There&apos;s a ticking
+                  clock on the institutional knowledge in people&apos;s heads — and no clear mechanism to capture
+                  it before it walks out the door.
+                </p>
+                <p className="article-callout">
+                  Here&apos;s the shift most people miss: those same superintendents who&apos;ve never written a
+                  line of code may become prolific software builders. Building custom applications is becoming
+                  as simple as describing what you need in plain language.
+                </p>
+                <p>
+                  Kevin Roose, a <em>New York Times</em> journalist, built a functional app in roughly ten
+                  minutes using an AI tool. A non-coder in rural Philippines built a custom expense management
+                  app in two hours with plain language prompts. Harvard Business School now has an active
+                  teaching case — &ldquo;Lovable: Vibe Coding for the Other 99%&rdquo; — on exactly this thesis.
+                </p>
+                <p>
+                  If those people can do it, a PM who understands earned value and cost-to-complete can do it.
+                  And the software they&apos;d build would actually solve the problems they face — because
+                  they&apos;re the ones who understand those problems.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* ─── MORE CONTENT COMING SOON ─── */}
 
           <Footer variant="simple" />
