@@ -265,6 +265,84 @@ export default function AIEvolution() {
             </div>
           </section>
 
+          {/* ─── THE NUMBERS BEHIND THE SHIFT ─── */}
+          <section id="the-numbers" className="bg-slate-50 dark:bg-slate-800 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">The Evidence</p>
+              <h2 className="article-section-heading mb-8">
+                The Numbers Behind the Shift
+              </h2>
+              <div className="article-prose">
+                <p>
+                  This isn&apos;t an edge case. The productivity data is accumulating fast.
+                </p>
+                <p>
+                  GitHub&apos;s controlled experiment found developers using AI coding tools completed
+                  tasks 55.8% faster. Harvard and BCG tested 758 consultants and found AI users produced
+                  40% higher-quality output while finishing 25% faster. A Google principal engineer gave
+                  Claude Code a three-paragraph problem description and received a working result in one
+                  hour that matched what her team had spent a year building.
+                </p>
+              </div>
+            </div>
+
+            {/* ─ Data Callout Strip ─ */}
+            <div className="max-w-4xl mx-auto px-6 my-14 fade-section">
+              <div className="stat-strip">
+                <div className="stat-card stagger-child">
+                  <p className="stat-card__number">55.8%</p>
+                  <p className="stat-card__label">faster task completion with AI coding tools</p>
+                  <p className="stat-card__source">
+                    <svg className="stat-card__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Source: GitHub/arXiv RCT
+                  </p>
+                </div>
+                <div className="stat-card stagger-child">
+                  <p className="stat-card__number">40%</p>
+                  <p className="stat-card__label">higher quality output</p>
+                  <p className="stat-card__source">
+                    <svg className="stat-card__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.18L18.5 7.5 12 10.82 5.5 7.5 12 4.18zM5 8.82l6 3.33v7.03l-6-3.33V8.82zm8 10.36v-7.03l6-3.33v7.03l-6 3.33z"/></svg>
+                    Source: Harvard/BCG, 758 consultants
+                  </p>
+                </div>
+                <div className="stat-card stagger-child">
+                  <p className="stat-card__number">1 hr <span className="stat-card__vs">vs.</span> 1 yr</p>
+                  <p className="stat-card__label">AI reproduction of team project</p>
+                  <p className="stat-card__source">
+                    <svg className="stat-card__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                    Source: Google/The Decoder
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Google now generates roughly half its new code with AI. Over 90% of Fortune 100 companies
+                  have deployed GitHub Copilot. Gartner projects 90% of software engineers will use AI code
+                  assistants by 2028, up from under 14% in early 2024. The AI code tools market is valued at
+                  $7.4 billion and heading toward $25–30 billion by 2030.
+                </p>
+                <p>
+                  Andrej Karpathy, co-founder of OpenAI, coined what he calls &ldquo;vibe coding&rdquo; and
+                  declared: &ldquo;The hottest new programming language is English.&rdquo; Jensen Huang,
+                  NVIDIA&apos;s CEO, at the World Government Summit: &ldquo;Everybody in the world is now a
+                  programmer.&rdquo; Satya Nadella, in his 2025 letter to shareholders: &ldquo;More than any
+                  transformation before it, this generation of AI is radically changing every layer of the
+                  tech stack.&rdquo;
+                </p>
+                <p className="article-callout">
+                  For balance: a rigorous 2025 METR study found experienced open-source developers were
+                  actually 19% slower with AI tools on complex maintenance tasks — while believing they
+                  were 20% faster. AI excels at building new things from domain knowledge. It struggles with
+                  maintaining complex legacy codebases. That distinction matters significantly for how
+                  companies should think about adoption.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* ─── MORE CONTENT COMING SOON ─── */}
 
           <Footer variant="simple" />
