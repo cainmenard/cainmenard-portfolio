@@ -1092,14 +1092,15 @@ body {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  padding: 0 0.5rem;
 }
 .transform-banner__arrow-svg {
-  width: 48px;
-  height: 24px;
-  color: #cbd5e1;
+  width: 80px;
+  height: 32px;
+  color: #94a3b8;
 }
 .dark .transform-banner__arrow-svg {
-  color: #475569;
+  color: #64748b;
 }
 
 @media (max-width: 768px) {
@@ -1126,7 +1127,7 @@ body {
     transform: rotate(90deg);
   }
   .transform-banner__arrow-svg {
-    width: 36px;
-    height: 18px;
+    width: 56px;
+    height: 24px;
   }
 }

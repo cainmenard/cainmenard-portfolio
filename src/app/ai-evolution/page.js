@@ -377,9 +377,9 @@ export default function AIEvolution() {
                 </div>
 
                 <div className="transform-banner__arrow">
-                  <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__arrow-svg">
-                    <line x1="2" y1="12" x2="42" y2="12" />
-                    <polyline points="36 6 42 12 36 18" />
+                  <svg viewBox="0 0 80 32" fill="none" className="transform-banner__arrow-svg">
+                    <line x1="4" y1="16" x2="64" y2="16" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                    <polyline points="56 6 68 16 56 26" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                   </svg>
                 </div>
 
