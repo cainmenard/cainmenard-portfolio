@@ -343,6 +343,74 @@ export default function AIEvolution() {
             </div>
           </section>
 
+          {/* ─── THE INDUSTRY THAT STANDS TO GAIN THE MOST ─── */}
+          <section id="industry-productivity" className="bg-white dark:bg-slate-900 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">The Industry</p>
+              <h2 className="article-section-heading mb-8">
+                The Industry That Stands to Gain the Most
+              </h2>
+            </div>
+
+            {/* ─ Productivity Bar Chart ─ */}
+            <div className="max-w-3xl mx-auto px-6 my-12 fade-section">
+              <div className="prod-chart">
+                <p className="prod-chart__title">Productivity Growth, 2000&ndash;2022</p>
+                <p className="prod-chart__subtitle">Indexed output per worker</p>
+                <div className="prod-chart__bars">
+                  <div className="prod-chart__row">
+                    <span className="prod-chart__label">Construction</span>
+                    <div className="prod-chart__track">
+                      <div className="prod-chart__fill prod-chart__fill--construction">
+                        <span className="prod-chart__value prod-chart__value--outside">10%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="prod-chart__row">
+                    <span className="prod-chart__label">Manufacturing</span>
+                    <div className="prod-chart__track">
+                      <div className="prod-chart__fill prod-chart__fill--manufacturing">
+                        <span className="prod-chart__value">90%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="prod-chart__decline">
+                  <svg className="prod-chart__decline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6" />
+                    <polyline points="17 18 23 18 23 12" />
+                  </svg>
+                  <span className="prod-chart__decline-text">2020&ndash;2022: Construction productivity declined 8%</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Construction productivity grew 10% between 2000 and 2022. Manufacturing grew 90% over the
+                  same period. Let that sink in. And from 2020 to 2022, construction productivity didn&apos;t
+                  just stagnate&nbsp;&mdash; it actually declined by 8%.
+                </p>
+                <p>
+                  Construction is the second-least digitized major industry in the United States. Most companies
+                  spend less than 1% of revenue on IT. For comparison, automotive and aerospace spend 3&ndash;5%.
+                  The gap is massive&nbsp;&mdash; construction underspends cross-industry IT averages by 60&ndash;70%.
+                </p>
+                <p>
+                  And the tools that do get implemented? They rarely deliver. Over 70% of ERP implementations
+                  fail to meet their original business objectives. The industry hemorrhages an estimated $177
+                  billion a year to operational inefficiencies. In 2020, poor data management alone cost the
+                  construction industry $1.84 trillion globally&nbsp;&mdash; and only 55% of companies even have
+                  a formal data plan. Ninety-six percent of the data generated on construction projects goes
+                  completely unused. Field teams lose nearly two full working days every week&nbsp;&mdash; 14+
+                  hours&nbsp;&mdash; just searching for project information and dealing with problems that
+                  shouldn&apos;t exist.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* ─── CONSTRUCTION PROFESSIONALS ─── */}
           <section id="untapped-builders" className="bg-white dark:bg-slate-900 py-20">
             <div className="max-w-2xl mx-auto px-6 fade-section">
