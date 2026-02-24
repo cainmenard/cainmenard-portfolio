@@ -352,58 +352,52 @@ export default function AIEvolution() {
               </h2>
             </div>
 
-            {/* ─ Icon Transformation Banner ─ */}
-            <div className="max-w-3xl mx-auto px-6 my-12 fade-section">
-              <div className="transform-banner">
-                <div className="transform-banner__group">
-                  <div className="transform-banner__icon-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
-                      <path d="M2 18v3h3"/><path d="M22 18v3h-3"/><path d="M12 2v4"/><path d="M6.8 6.8l2.8 2.8"/><path d="M17.2 6.8l-2.8 2.8"/><path d="M2 12h4"/><path d="M18 12h4"/><circle cx="12" cy="12" r="3"/><path d="M2 21h20"/>
-                    </svg>
-                    <span className="transform-banner__label">Superintendent</span>
+            {/* ─ Builder Expertise Visualization ─ */}
+            <div className="max-w-4xl mx-auto px-6 my-12 fade-section">
+              <div className="builder-viz">
+                <div className="builder-viz__col">
+                  <p className="builder-viz__heading">The Expertise</p>
+                  <div className="builder-viz__card">
+                    <p className="builder-viz__role">Superintendent</p>
+                    <p className="builder-viz__insight">Knows which crews fall behind before the schedule shows it</p>
                   </div>
-                  <div className="transform-banner__icon-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
-                      <path d="M2 6l10-3 10 3-10 3z"/><path d="M2 6v6l10 3 10-3V6"/><path d="M12 22V9"/>
-                    </svg>
-                    <span className="transform-banner__label">Estimator</span>
+                  <div className="builder-viz__card">
+                    <p className="builder-viz__role">Estimator</p>
+                    <p className="builder-viz__insight">Knows which cost drivers eat margins before the bid closes</p>
                   </div>
-                  <div className="transform-banner__icon-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
-                      <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14l2 2 4-4"/>
-                    </svg>
-                    <span className="transform-banner__label">Project Manager</span>
+                  <div className="builder-viz__card">
+                    <p className="builder-viz__role">Project Manager</p>
+                    <p className="builder-viz__insight">Knows which indicators flag trouble six weeks before the financials</p>
                   </div>
                 </div>
 
-                <div className="transform-banner__arrow">
-                  <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__arrow-svg">
-                    <line x1="2" y1="12" x2="42" y2="12" />
-                    <polyline points="36 6 42 12 36 18" />
-                  </svg>
+                <div className="builder-viz__bridge">
+                  <div className="builder-viz__bridge-line" />
+                  <div className="builder-viz__bridge-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                  </div>
+                  <div className="builder-viz__bridge-line" />
                 </div>
 
-                <div className="transform-banner__group">
-                  <div className="transform-banner__icon-card transform-banner__icon-card--accent">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
-                      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8l3 3-3 3"/><line x1="13" y1="14" x2="17" y2="14"/>
-                    </svg>
-                    <span className="transform-banner__label">Custom Apps</span>
+                <div className="builder-viz__col">
+                  <p className="builder-viz__heading builder-viz__heading--accent">What They&apos;ll Build</p>
+                  <div className="builder-viz__output-card">
+                    <p className="builder-viz__output-name">Crew Performance Tracker</p>
+                    <p className="builder-viz__output-desc">Real-time field monitoring with automated alerts</p>
                   </div>
-                  <div className="transform-banner__icon-card transform-banner__icon-card--accent">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
-                      <rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>
-                    </svg>
-                    <span className="transform-banner__label">Mobile Tools</span>
+                  <div className="builder-viz__output-card">
+                    <p className="builder-viz__output-name">Cost Analysis Dashboard</p>
+                    <p className="builder-viz__output-desc">Live margin tracking and variance reporting</p>
                   </div>
-                  <div className="transform-banner__icon-card transform-banner__icon-card--accent">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform-banner__icon">
-                      <path d="M21 12V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h7"/><path d="M16 19h6"/><path d="M19 16v6"/><path d="M7 10h0"/><path d="M11 10h0"/><path d="M7 14h0"/><path d="M11 14h0"/>
-                    </svg>
-                    <span className="transform-banner__label">Dashboards</span>
+                  <div className="builder-viz__output-card">
+                    <p className="builder-viz__output-name">Project Health Monitor</p>
+                    <p className="builder-viz__output-desc">Early warning system for at-risk projects</p>
                   </div>
                 </div>
               </div>
+              <p className="builder-viz__footer">Same knowledge. New medium. No code required.</p>
             </div>
 
             <div className="max-w-2xl mx-auto px-6 fade-section">
