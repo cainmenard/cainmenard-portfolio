@@ -823,6 +823,118 @@ export default function AIEvolution() {
             </div>
           </section>
 
+          {/* ─── FUNCTIONAL EXPERIENCE IS THE NEW BOTTLENECK ─── */}
+          <section id="functional-experience" className="bg-slate-50 dark:bg-slate-800/50 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">The Bottleneck</p>
+              <h2 className="article-section-heading mb-8">
+                Functional Experience Is the New Bottleneck
+              </h2>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  MIT labor economist David Autor argues that AI&apos;s unique opportunity is to
+                  &ldquo;extend the relevance, reach, and value of human expertise.&rdquo; That framing
+                  matters. Technical execution is being commoditized at a pace that would have been
+                  unimaginable five years ago. What&apos;s becoming scarce&nbsp;&mdash; genuinely
+                  scarce&nbsp;&mdash; is the domain knowledge that determines what to build and why it
+                  actually matters.
+                </p>
+                <p>
+                  Erik Brynjolfsson at Stanford studied over 5,000 workers and found AI increased
+                  productivity 14&ndash;15% on average. But the breakdown is what&apos;s interesting:
+                  novice workers improved 34%, while experienced workers saw minimal gains. The AI was
+                  essentially encoding top performers&apos; best practices and distributing them to everyone
+                  else. A study in <em>Management Science</em> made the point explicit&nbsp;&mdash; AI
+                  creates the greatest value when domain experts themselves can apply it, not when it gets
+                  filtered through an IT specialist who doesn&apos;t know the work.
+                </p>
+              </div>
+            </div>
+
+            {/* ─ Pull Quote: David Autor ─ */}
+            <div className="max-w-3xl mx-auto px-6 my-12 fade-section">
+              <div className="bottleneck-pull-quote">
+                <p className="bottleneck-pull-quote__text">
+                  &ldquo;AI&apos;s unique opportunity is to extend the relevance, reach, and value of human expertise.&rdquo;
+                </p>
+                <p className="bottleneck-pull-quote__attribution">
+                  &mdash; David Autor, MIT
+                </p>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Here&apos;s where it gets interesting, though. That same Harvard/BCG study found that
+                  when consultants applied AI to tasks outside its capability boundary&nbsp;&mdash; things
+                  that require real judgment, intuition, or knowing which number to trust when two reports
+                  disagree&nbsp;&mdash; they were about 20% less likely to get the right answer than
+                  consultants working without AI at all. The tool made sloppy work worse. It exposed people
+                  who were mailing it in. Knowing when and where to apply AI was the single biggest
+                  differentiator between winning and failure.
+                </p>
+                <p>
+                  That should matter to every construction leader reading this. Knowing how projects
+                  fail&nbsp;&mdash; budget overruns, material price escalations, change orders stacking up
+                  and eating your margin before anyone flags it&nbsp;&mdash; doesn&apos;t become less
+                  important in an AI-enabled world. It becomes more valuable, because for the first time
+                  that knowledge can be expressed as fine-tuned tooling rather than shoehorned into a
+                  vendor&apos;s template that was built for a generic version of your business.
+                </p>
+              </div>
+            </div>
+
+            {/* ─ Historical Parallel: The Tyranny of Spreadsheets ─ */}
+            <div className="max-w-3xl mx-auto px-6 my-16 fade-section">
+              <div className="spreadsheet-parallel">
+                <p className="spreadsheet-parallel__label">Historical Parallel</p>
+                <p className="spreadsheet-parallel__title">The Tyranny of Spreadsheets</p>
+                <div className="spreadsheet-parallel__numbers">
+                  <div className="spreadsheet-parallel__stat">
+                    <p className="spreadsheet-parallel__year">1980</p>
+                    <p className="spreadsheet-parallel__value">339,000</p>
+                    <p className="spreadsheet-parallel__desc">accountants when VisiCalc launched</p>
+                  </div>
+                  <div className="spreadsheet-parallel__arrow" aria-hidden="true">→</div>
+                  <div className="spreadsheet-parallel__stat">
+                    <p className="spreadsheet-parallel__year">2022</p>
+                    <p className="spreadsheet-parallel__value">1,400,000</p>
+                    <p className="spreadsheet-parallel__desc">accountants</p>
+                  </div>
+                </div>
+                <p className="spreadsheet-parallel__caption">
+                  The spreadsheet didn&apos;t replace accountants. It made them more productive and expanded the market.
+                </p>
+                <p className="spreadsheet-parallel__source">
+                  Source: Bureau of Labor Statistics, via Tim Harford / Financial Times
+                </p>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  The historical parallel is worth sitting with. When VisiCalc launched the first digital
+                  spreadsheet in 1980, there were 339,000 accountants in the U.S. By 2022, there were 1.4
+                  million. Tim Harford at the <em>Financial Times</em> put it plainly: the spreadsheet
+                  didn&apos;t kill the profession. It made accountants more productive and blew the market
+                  wide open for what they could do.
+                </p>
+                <p>
+                  AI coding tools are doing the same thing for domain expertise. The difference is that the
+                  industries with the widest gap between what people know and what they&apos;ve been able to
+                  build with that knowledge stand to win the most&nbsp;&mdash; and by that measure,
+                  construction isn&apos;t just in the game. It&apos;s sitting on the biggest opportunity in
+                  the room.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* ─── MORE CONTENT COMING SOON ─── */}
 
           <Footer variant="simple" />

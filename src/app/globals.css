@@ -1513,3 +1513,140 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ─── Functional Experience – Pull Quote ─── */
+.bottleneck-pull-quote {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.08);
+}
+.dark .bottleneck-pull-quote {
+  background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.bottleneck-pull-quote__text {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--navy);
+  max-width: 540px;
+  margin: 0 auto;
+}
+.dark .bottleneck-pull-quote__text {
+  color: #f1f5f9;
+}
+.bottleneck-pull-quote__attribution {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Functional Experience – Spreadsheet Parallel Graphic ─── */
+.spreadsheet-parallel {
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 2.5rem 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border-top: 3px solid var(--accent);
+}
+.dark .spreadsheet-parallel {
+  background: #0b1120;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.spreadsheet-parallel__label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.spreadsheet-parallel__title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.spreadsheet-parallel__numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
+}
+.spreadsheet-parallel__stat {
+  flex: 0 1 auto;
+}
+.spreadsheet-parallel__year {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+.spreadsheet-parallel__value {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--accent-light);
+  line-height: 1.1;
+}
+.spreadsheet-parallel__desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+.spreadsheet-parallel__arrow {
+  font-size: 2rem;
+  color: #475569;
+  flex-shrink: 0;
+}
+.spreadsheet-parallel__caption {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #e2e8f0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.spreadsheet-parallel__source {
+  font-size: 0.7rem;
+  color: #475569;
+  margin-top: 1.25rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .bottleneck-pull-quote {
+    padding: 2rem 1.5rem;
+  }
+  .spreadsheet-parallel {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  .spreadsheet-parallel__numbers {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spreadsheet-parallel__numbers {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .spreadsheet-parallel__arrow {
+    transform: rotate(90deg);
+  }
+}

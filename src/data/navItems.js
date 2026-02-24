@@ -22,4 +22,5 @@ export const AI_EVOLUTION_NAV = [
   { id: 'industry-productivity', label: 'The Industry' },
   { id: 'dotcom-parallel', label: 'The Parallel' },
   { id: 'legacy-software', label: 'Legacy Software' },
+  { id: 'functional-experience', label: 'The Bottleneck' },
 ]
