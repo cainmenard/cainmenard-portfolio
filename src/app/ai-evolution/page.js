@@ -347,6 +347,9 @@ export default function AIEvolution() {
           <section id="untapped-builders" className="bg-white dark:bg-slate-900 py-20">
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Real Builders</p>
+              <h2 className="article-section-heading mb-8">
+                The Real Builders
+              </h2>
             </div>
 
             {/* ─ Icon Transformation Banner ─ */}
