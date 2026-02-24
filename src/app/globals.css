@@ -1406,3 +1406,110 @@ body {
     min-width: 480px;
   }
 }
+
+/* ─── Legacy Software – IDC Callout Visualization ─── */
+.legacy-callout-viz {
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 2.5rem 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border-top: 3px solid var(--accent);
+}
+.dark .legacy-callout-viz {
+  background: #0b1120;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.legacy-callout-viz__label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.legacy-callout-viz__text {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: #e2e8f0;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.legacy-callout-viz__accent {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+.legacy-callout-viz__source {
+  font-size: 0.7rem;
+  color: #475569;
+  margin-top: 1.25rem;
+  font-weight: 500;
+}
+
+/* ─── Legacy Software – Adapt Cards ─── */
+.adapt-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(15, 23, 42, 0.1);
+}
+.dark .adapt-cards {
+  background: #0f172a;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.adapt-card {
+  background: #0f172a;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.dark .adapt-card {
+  background: #0b1120;
+}
+.adapt-card__company {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.adapt-card__summary {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #94a3b8;
+  flex: 1;
+}
+.adapt-card__year {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ef4444;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .adapt-cards {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 12px;
+  }
+  .adapt-card {
+    padding: 1.5rem 1.25rem;
+  }
+  .legacy-callout-viz {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .adapt-cards {
+    grid-template-columns: 1fr;
+  }
+}
