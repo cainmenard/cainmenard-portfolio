@@ -20,4 +20,5 @@ export const AI_EVOLUTION_NAV = [
   { id: 'the-numbers', label: 'The Numbers' },
   { id: 'untapped-builders', label: 'The Builders' },
   { id: 'industry-productivity', label: 'The Industry' },
+  { id: 'dotcom-parallel', label: 'The Parallel' },
 ]

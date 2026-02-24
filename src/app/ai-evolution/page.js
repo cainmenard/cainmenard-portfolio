@@ -541,6 +541,174 @@ export default function AIEvolution() {
             </div>
           </section>
 
+          {/* ─── THE DOT-COM PARALLEL ─── */}
+          <section id="dotcom-parallel" className="bg-white dark:bg-slate-900 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">The Pattern</p>
+              <h2 className="article-section-heading mb-8">
+                The Dot-Com Parallel
+              </h2>
+            </div>
+
+            {/* ─ Timeline Curve Graphic ─ */}
+            <div className="max-w-4xl mx-auto px-6 my-12 fade-section">
+              <div className="dotcom-chart">
+                <p className="dotcom-chart__title">The Dot-Com Pattern</p>
+                <p className="dotcom-chart__subtitle">Technology adoption follows a predictable arc</p>
+
+                <div className="dotcom-curve">
+                  {/* ── Dot-Com Bubble Curve ── */}
+                  <svg viewBox="0 0 800 340" fill="none" xmlns="http://www.w3.org/2000/svg" className="dotcom-curve__svg" preserveAspectRatio="xMidYMid meet">
+                    {/* Grid lines */}
+                    <line x1="60" y1="240" x2="760" y2="240" stroke="#1e293b" strokeWidth="1" />
+
+                    {/* Phase labels along bottom */}
+                    <text x="150" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">ERUPTION</text>
+                    <text x="340" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">FRENZY</text>
+                    <text x="480" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">CRASH</text>
+                    <text x="660" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">GOLDEN AGE</text>
+
+                    {/* Phase divider ticks */}
+                    <line x1="240" y1="235" x2="240" y2="245" stroke="#334155" strokeWidth="1" />
+                    <line x1="420" y1="235" x2="420" y2="245" stroke="#334155" strokeWidth="1" />
+                    <line x1="540" y1="235" x2="540" y2="245" stroke="#334155" strokeWidth="1" />
+
+                    {/* Main dot-com curve */}
+                    <path
+                      d="M 80 220 C 120 210, 160 190, 200 160 C 240 130, 280 70, 340 30 C 380 10, 400 15, 420 30 C 460 70, 480 160, 500 200 C 520 220, 540 225, 560 218 C 600 200, 660 160, 720 120"
+                      stroke="url(#dotcomGradient)"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      className="dotcom-curve__path"
+                    />
+
+                    {/* Gradient definition */}
+                    <defs>
+                      <linearGradient id="dotcomGradient" x1="80" y1="0" x2="720" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#22c55e" />
+                        <stop offset="35%" stopColor="#f59e0b" />
+                        <stop offset="55%" stopColor="#ef4444" />
+                        <stop offset="100%" stopColor="#22c55e" />
+                      </linearGradient>
+                      <linearGradient id="aiGradient" x1="80" y1="0" x2="480" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#3b82f6" />
+                        <stop offset="100%" stopColor="#8b5cf6" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Key event markers on the curve */}
+                    {/* NASDAQ Peak */}
+                    <circle cx="340" cy="30" r="5" fill="#f59e0b" className="dotcom-curve__dot" />
+                    <line x1="340" y1="38" x2="340" y2="58" stroke="#f59e0b" strokeWidth="1" opacity="0.5" />
+                    <rect x="262" y="60" width="156" height="36" rx="6" fill="#1e293b" stroke="#f59e0b" strokeWidth="1" opacity="0.9" />
+                    <text x="340" y="75" fill="#f59e0b" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">NASDAQ PEAK</text>
+                    <text x="340" y="89" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">March 2000 &bull; 5,048</text>
+
+                    {/* Crash */}
+                    <circle cx="480" cy="188" r="5" fill="#ef4444" className="dotcom-curve__dot" />
+                    <line x1="480" y1="170" x2="480" y2="145" stroke="#ef4444" strokeWidth="1" opacity="0.5" />
+                    <rect x="414" y="112" width="132" height="36" rx="6" fill="#1e293b" stroke="#ef4444" strokeWidth="1" opacity="0.9" />
+                    <text x="480" y="127" fill="#ef4444" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">CRASH</text>
+                    <text x="480" y="141" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">$5 trillion wiped out</text>
+
+                    {/* Amazon $7 */}
+                    <circle cx="530" cy="222" r="5" fill="#ef4444" className="dotcom-curve__dot" />
+                    <line x1="530" y1="210" x2="530" y2="188" stroke="#94a3b8" strokeWidth="1" opacity="0.3" />
+                    <rect x="468" y="155" width="124" height="36" rx="6" fill="#1e293b" stroke="#64748b" strokeWidth="1" opacity="0.9" />
+                    <text x="530" y="170" fill="#e2e8f0" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">AMAZON AT $7</text>
+                    <text x="530" y="184" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">per share</text>
+
+                    {/* Golden Age */}
+                    <circle cx="700" cy="128" r="5" fill="#22c55e" className="dotcom-curve__dot" />
+                    <line x1="700" y1="120" x2="700" y2="100" stroke="#22c55e" strokeWidth="1" opacity="0.5" />
+                    <rect x="610" y="58" width="180" height="44" rx="6" fill="#1e293b" stroke="#22c55e" strokeWidth="1" opacity="0.9" />
+                    <text x="700" y="74" fill="#22c55e" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">GOLDEN AGE</text>
+                    <text x="700" y="93" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">Amazon &bull; Google &bull; Booking</text>
+
+                    {/* ── AI Investment Cycle (parallel line below) ── */}
+                    <line x1="60" y1="300" x2="760" y2="300" stroke="#0f172a" strokeWidth="1" />
+
+                    {/* AI curve - partial, with dashed future */}
+                    <path
+                      d="M 80 298 C 140 290, 200 270, 260 248 C 300 234, 340 220, 380 210"
+                      stroke="url(#aiGradient)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      className="dotcom-curve__ai-path"
+                    />
+                    {/* Dashed future portion */}
+                    <path
+                      d="M 380 210 C 420 200, 460 196, 520 200 C 560 206, 600 220, 640 226 C 680 230, 720 218, 740 210"
+                      stroke="#8b5cf6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeDasharray="6 4"
+                      opacity="0.4"
+                    />
+
+                    {/* AI label */}
+                    <rect x="80" y="308" width="200" height="24" rx="4" fill="rgba(139, 92, 246, 0.1)" stroke="#8b5cf6" strokeWidth="1" opacity="0.6" />
+                    <text x="180" y="324" fill="#a78bfa" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">AI INVESTMENT CYCLE, 2022–?</text>
+
+                    {/* AI data point markers */}
+                    <circle cx="120" cy="294" r="3.5" fill="#3b82f6" />
+                    <text x="120" y="289" fill="#93c5fd" fontSize="8" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">ChatGPT</text>
+
+                    <circle cx="220" cy="265" r="3.5" fill="#6366f1" />
+                    <text x="220" y="258" fill="#a5b4fc" fontSize="8" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">$100B+</text>
+
+                    <circle cx="320" cy="238" r="3.5" fill="#7c3aed" />
+                    <text x="320" y="231" fill="#c4b5fd" fontSize="8" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">NVIDIA 10×</text>
+
+                    <circle cx="380" cy="210" r="4" fill="#8b5cf6" stroke="#c4b5fd" strokeWidth="1.5" />
+                    <text x="395" y="205" fill="#c4b5fd" fontSize="8" textAnchor="start" fontFamily="var(--font-body), system-ui, sans-serif">Today</text>
+
+                    {/* Question mark for future */}
+                    <text x="640" y="222" fill="#8b5cf6" fontSize="16" fontWeight="700" opacity="0.4" textAnchor="middle" fontFamily="var(--font-display), Georgia, serif">?</text>
+                  </svg>
+                </div>
+
+                <p className="dotcom-chart__source">Source: Carlota Pérez, <em>Technological Revolutions and Financial Capital</em></p>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Every major technological revolution follows the same pattern. Economist Carlota Pérez mapped it
+                  across five centuries of industrial history: a breakthrough technology triggers an eruption of
+                  investment, which escalates into speculative frenzy, which inevitably crashes&nbsp;&mdash; and
+                  then, after the wreckage clears, the technology actually delivers on its original promise. The
+                  golden age doesn&apos;t come from the hype. It comes after it.
+                </p>
+                <p>
+                  The dot-com bubble is the cleanest modern example. The NASDAQ hit 5,048 in March 2000. Within
+                  two years, $5 trillion in market value evaporated. Amazon traded at $7 a share. Pets.com became
+                  a punchline. Most people concluded the internet had been overhyped.
+                </p>
+                <p className="article-callout">
+                  They were wrong about the technology. They were right about the timeline. The companies that
+                  survived the crash&nbsp;&mdash; Amazon, Google, Booking.com&nbsp;&mdash; went on to become
+                  some of the most valuable enterprises in human history. The crash didn&apos;t disprove the
+                  thesis. It cleared the field for the people who actually knew how to build.
+                </p>
+                <p>
+                  The AI investment cycle is following the same curve. Over $100 billion in venture funding.
+                  NVIDIA&apos;s market cap up 10× in two years. Startups valued at billions before generating
+                  meaningful revenue. The pattern is unmistakable&nbsp;&mdash; and if Pérez&apos;s framework
+                  holds, what comes next isn&apos;t the end of AI. It&apos;s the beginning of the deployment
+                  phase, where the technology stops being a financial instrument and starts being infrastructure.
+                </p>
+                <p>
+                  For construction, that distinction matters enormously. The companies that will capture the most
+                  value from AI aren&apos;t the ones buying the hype today. They&apos;re the ones building
+                  quietly&nbsp;&mdash; turning domain expertise into working tools, one problem at a time, while
+                  everyone else argues about whether the bubble will pop.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* ─── MORE CONTENT COMING SOON ─── */}
 
           <Footer variant="simple" />
