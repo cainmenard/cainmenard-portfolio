@@ -721,6 +721,108 @@ export default function AIEvolution() {
             </div>
           </section>
 
+          {/* ─── LEGACY SOFTWARE MUST ADAPT OR DISAPPEAR ─── */}
+          <section id="legacy-software" className="bg-white dark:bg-slate-900 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">The Reckoning</p>
+              <h2 className="article-section-heading mb-8">
+                Legacy Software Must Adapt or Disappear
+              </h2>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Custom applications built by domain experts will begin replacing large portions of
+                  what legacy software currently does. Vendors that don&apos;t fundamentally enable deep
+                  configuration and customization beyond what&apos;s traditionally offered will lose
+                  market share. Some will cease to exist.
+                </p>
+                <p>
+                  Microsoft CEO Satya Nadella declared &ldquo;SaaS is dead&rdquo; in late 2024. His
+                  argument: business applications are databases with business logic bolted on. In an
+                  agent-driven world, that logic migrates to AI agents that are database-agnostic. The
+                  application layer collapses.
+                </p>
+                <p>
+                  The market is responding. The iShares Expanded Tech-Software Sector ETF fell over
+                  23% in early 2026. Salesforce and Workday each dropped over 40% in twelve months.
+                  IDC concluded SaaS has become &ldquo;a patchwork of interfaces and data silos,
+                  forcing users to adapt to the software rather than the other way around.&rdquo;
+                </p>
+              </div>
+            </div>
+
+            {/* ─ IDC Callout Visualization ─ */}
+            <div className="max-w-3xl mx-auto px-6 my-12 fade-section">
+              <div className="legacy-callout-viz">
+                <p className="legacy-callout-viz__label">IDC Prediction</p>
+                <p className="legacy-callout-viz__text">
+                  By 2028, <span className="legacy-callout-viz__accent">70% of software vendors</span> will
+                  need to fundamentally restructure their pricing models.
+                </p>
+                <p className="legacy-callout-viz__source">Source: International Data Corporation (IDC)</p>
+              </div>
+            </div>
+
+            {/* ─ Companies That Failed to Adapt ─ */}
+            <div className="max-w-4xl mx-auto px-6 my-16 fade-section">
+              <p className="text-center text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-6" style={{ fontFamily: 'var(--font-body), system-ui, sans-serif' }}>
+                Companies That Failed to Adapt
+              </p>
+              <div className="adapt-cards">
+                <div className="adapt-card stagger-child">
+                  <p className="adapt-card__company">Kodak</p>
+                  <p className="adapt-card__summary">
+                    Invented the digital camera in 1975. Suppressed it.
+                  </p>
+                  <p className="adapt-card__year">Bankrupt 2012</p>
+                </div>
+                <div className="adapt-card stagger-child">
+                  <p className="adapt-card__company">Blockbuster</p>
+                  <p className="adapt-card__summary">
+                    9,000 stores, rejected Netflix.
+                  </p>
+                  <p className="adapt-card__year">Bankrupt 2010</p>
+                </div>
+                <div className="adapt-card stagger-child">
+                  <p className="adapt-card__company">Nokia</p>
+                  <p className="adapt-card__summary">
+                    40%+ global market share. Missed touchscreens.
+                  </p>
+                  <p className="adapt-card__year">Sold 2014</p>
+                </div>
+                <div className="adapt-card stagger-child">
+                  <p className="adapt-card__company">Siebel</p>
+                  <p className="adapt-card__summary">
+                    Created CRM. Failed cloud transition.
+                  </p>
+                  <p className="adapt-card__year">Acquired by Oracle 2006</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  In construction specifically, McKinsey found individual teams routinely build their
+                  own digital solutions without coordinating&nbsp;&mdash; creating a proliferation of
+                  competing, overlapping tools within a single company. JBKnowledge&apos;s surveys
+                  found 65% of respondents use spreadsheets for estimating despite having dedicated
+                  estimating software. The off-the-shelf products simply don&apos;t meet actual needs.
+                </p>
+                <p>
+                  Every company has its secret sauce. Every contractor knows a good project from a bad
+                  one. Every business has different requirements. For the first time, there&apos;s an
+                  accessible pathway to building exactly what it needs&nbsp;&mdash; facilitating its
+                  functional processes, its data, and serving its people&nbsp;&mdash; without a
+                  software development team or a vendor&apos;s interpretation of &ldquo;what
+                  construction companies want.&rdquo;
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* ─── MORE CONTENT COMING SOON ─── */}
 
           <Footer variant="simple" />
