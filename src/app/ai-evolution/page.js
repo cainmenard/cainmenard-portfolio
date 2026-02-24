@@ -924,6 +924,155 @@ export default function AIEvolution() {
                   didn&apos;t kill the profession. It made accountants more productive and blew the market
                   wide open for what they could do.
                 </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ─── READINESS COMES BEFORE TOOLS ─── */}
+          <section id="readiness" className="bg-white dark:bg-slate-900 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">Readiness</p>
+              <h2 className="article-section-heading mb-8">
+                Readiness Comes Before Tools
+              </h2>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Most construction companies aren&apos;t positioned to reap the benefits of AI tools yet. The
+                  problem isn&apos;t an inability to change or disinterest in finding better ways to
+                  work&nbsp;&mdash; every contractor has a story about &ldquo;that one project&rdquo;-turned
+                  success story thanks to a game-time judgment call that just might work. The problem is they
+                  haven&apos;t laid the foundation yet.
+                </p>
+                <p>
+                  A peer-reviewed study of highway construction and asset management technology implementations
+                  found less than 10% of failures result from technical problems. Eighty percent of success
+                  depends on addressing people and process issues.
+                </p>
+              </div>
+            </div>
+
+            {/* ─ Callout: Technology Focus Quote ─ */}
+            <div className="max-w-3xl mx-auto px-6 my-12 fade-section">
+              <div className="readiness-callout">
+                <p className="readiness-callout__text">
+                  &ldquo;Any attempt to implement technology that focuses solely on technology is likely to fail
+                  in the construction industry.&rdquo;
+                </p>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Prosci&apos;s research shows organizations with structured change management are 7x more
+                  likely to achieve project objectives. A study in the <em>Journal of Information Technology in
+                  Construction</em> analyzed 167 technology-adoption cases across AEC firms and identified the
+                  top practices for success: change-agent effectiveness, measured benchmarks, realistic
+                  timeframes, and communicated benefits. Not better software. Not bigger budgets. People,
+                  process, and communication.
+                </p>
+              </div>
+            </div>
+
+            {/* ─ Visual: Readiness Framework — 4-Pillar Graphic ─ */}
+            <div className="max-w-4xl mx-auto px-6 my-16 fade-section">
+              <div className="readiness-framework">
+                <p className="readiness-framework__label">Readiness Framework</p>
+                <div className="readiness-framework__pillars">
+                  <div className="readiness-pillar stagger-child">
+                    <div className="readiness-pillar__icon" aria-hidden="true">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                    <p className="readiness-pillar__title">Talent</p>
+                    <p className="readiness-pillar__question">
+                      Do you have domain experts willing to learn new tools&nbsp;&mdash; and leadership willing
+                      to invest in them?
+                    </p>
+                  </div>
+                  <div className="readiness-pillar stagger-child">
+                    <div className="readiness-pillar__icon" aria-hidden="true">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                      </svg>
+                    </div>
+                    <p className="readiness-pillar__title">Process</p>
+                    <p className="readiness-pillar__question">
+                      Can you automate what you have, or are you automating chaos?
+                    </p>
+                  </div>
+                  <div className="readiness-pillar stagger-child">
+                    <div className="readiness-pillar__icon" aria-hidden="true">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3" />
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                      </svg>
+                    </div>
+                    <p className="readiness-pillar__title">Data</p>
+                    <p className="readiness-pillar__question">
+                      Is your data clean, integrated, and accessible&nbsp;&mdash; or siloed and unreliable?
+                    </p>
+                  </div>
+                  <div className="readiness-pillar stagger-child">
+                    <div className="readiness-pillar__icon" aria-hidden="true">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="6" cy="6" r="3" />
+                        <circle cx="18" cy="6" r="3" />
+                        <circle cx="6" cy="18" r="3" />
+                        <circle cx="18" cy="18" r="3" />
+                        <line x1="8.5" y1="7.5" x2="15.5" y2="16.5" />
+                        <line x1="15.5" y1="7.5" x2="8.5" y2="16.5" />
+                      </svg>
+                    </div>
+                    <p className="readiness-pillar__title">Integration</p>
+                    <p className="readiness-pillar__question">
+                      Do your systems talk to each other, or are they islands?
+                    </p>
+                  </div>
+                </div>
+                <div className="readiness-framework__foundation">
+                  <p>Process before technology. Data before dashboards. People before platforms.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  Before any company can capture value from this technology shift, it needs honest answers to
+                  hard questions across four areas:
+                </p>
+                <p>
+                  <strong>Talent.</strong> Domain experts willing to learn new tools, and leadership willing to
+                  invest in their development. With 94% of firms struggling to fill positions and mass
+                  retirements on the horizon, institutional knowledge is the most valuable and most perishable
+                  asset a construction company owns.
+                </p>
+                <p>
+                  <strong>Process.</strong> Automating a broken process produces broken results faster. If an
+                  estimating workflow lives in fourteen spreadsheets with no version control, AI won&apos;t fix
+                  it. The Carnegie Mellon Capability Maturity Model makes the principle clear: the quality of
+                  any system is directly related to the quality of the process behind it.
+                </p>
+                <p>
+                  <strong>Data.</strong> Ninety-six percent of construction data goes unused. Gartner predicts
+                  organizations will abandon 60% of AI projects unsupported by AI-ready data. The average
+                  construction business uses 11 separate data environments (often in the form of 11 disconnected
+                  systems). If data is siloed, duplicated, and unreliable, no tool will produce reliable outputs.
+                </p>
+                <p>
+                  <strong>Integration.</strong> Nearly a third of construction companies report their systems
+                  don&apos;t communicate with each other. Disconnected estimating tools, PM platforms, accounting
+                  systems, and field apps don&apos;t just leave value on the table&nbsp;&mdash; they actively
+                  create the conditions for inefficiency.
+                </p>
                 <p>
                   AI coding tools are doing the same thing for domain expertise. The difference is that the
                   industries with the widest gap between what people know and what they&apos;ve been able to
