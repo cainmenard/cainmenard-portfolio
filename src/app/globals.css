@@ -1313,3 +1313,96 @@ body {
     height: 32px;
   }
 }
+
+/* ─── Dot-Com Parallel Timeline Chart ─── */
+.dotcom-chart {
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 2.5rem 2rem 1.75rem;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(15, 23, 42, 0.1);
+}
+.dark .dotcom-chart {
+  background: #0b1120;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.dotcom-chart__title {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.375rem;
+}
+.dotcom-chart__subtitle {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+.dotcom-curve {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.dotcom-curve__svg {
+  width: 100%;
+  height: auto;
+  min-width: 500px;
+  display: block;
+}
+
+/* Animate the main curve path on scroll */
+.dotcom-curve__path {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-section.visible .dotcom-curve__path {
+  stroke-dashoffset: 0;
+}
+
+/* Animate the AI parallel path */
+.dotcom-curve__ai-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
+}
+.fade-section.visible .dotcom-curve__ai-path {
+  stroke-dashoffset: 0;
+}
+
+/* Pulse animation for the event dots */
+.dotcom-curve__dot {
+  animation: none;
+}
+.fade-section.visible .dotcom-curve__dot {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.dotcom-chart__source {
+  font-size: 0.7rem;
+  color: #475569;
+  margin-top: 1.25rem;
+  text-align: right;
+  font-style: normal;
+}
+.dotcom-chart__source em {
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .dotcom-chart {
+    padding: 2rem 1rem 1.5rem;
+  }
+  .dotcom-curve {
+    margin: 0 -0.5rem;
+  }
+  .dotcom-curve__svg {
+    min-width: 480px;
+  }
+}
