@@ -674,36 +674,48 @@ export default function AIEvolution() {
 
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-8 mb-4" style={{ fontFamily: 'var(--font-display), Georgia, serif' }}>
+                  Not convinced? That&apos;s fair. The investment numbers warrant skepticism.
+                </h3>
                 <p>
-                  Every major technological revolution follows the same pattern. Economist Carlota Pérez mapped it
-                  across five centuries of industrial history: a breakthrough technology triggers an eruption of
-                  investment, which escalates into speculative frenzy, which inevitably crashes&nbsp;&mdash; and
-                  then, after the wreckage clears, the technology actually delivers on its original promise. The
-                  golden age doesn&apos;t come from the hype. It comes after it.
-                </p>
-                <p>
-                  The dot-com bubble is the cleanest modern example. The NASDAQ hit 5,048 in March 2000. Within
-                  two years, $5 trillion in market value evaporated. Amazon traded at $7 a share. Pets.com became
-                  a punchline. Most people concluded the internet had been overhyped.
+                  AI venture capital hit $202 billion in 2025&nbsp;&mdash; capturing roughly half of all global
+                  VC funding. NVIDIA&apos;s stock rocketed 2,000% from 2022 lows to a market cap north of $5
+                  trillion. Michael Burry called the AI boom &ldquo;a glorious folly&rdquo; and compared NVIDIA
+                  to Cisco, which surged 3,800% before crashing 88% and never recovering to its
+                  inflation-adjusted peak. Jeff Bezos called it &ldquo;kind of an industrial bubble.&rdquo; Sam
+                  Altman&nbsp;&mdash; ChatGPT&apos;s version of Steve Jobs&nbsp;&mdash; himself said,
+                  &ldquo;People will overinvest and lose money.&rdquo; An MIT study found 95% of 52
+                  organizations achieved zero ROI from generative AI investments.
                 </p>
                 <p className="article-callout">
-                  They were wrong about the technology. They were right about the timeline. The companies that
-                  survived the crash&nbsp;&mdash; Amazon, Google, Booking.com&nbsp;&mdash; went on to become
-                  some of the most valuable enterprises in human history. The crash didn&apos;t disprove the
-                  thesis. It cleared the field for the people who actually knew how to build.
+                  &ldquo;95% of organizations studied achieved zero ROI from generative AI
+                  investments.&rdquo;&nbsp;&mdash; MIT Sloan
                 </p>
                 <p>
-                  The AI investment cycle is following the same curve. Over $100 billion in venture funding.
-                  NVIDIA&apos;s market cap up 10× in two years. Startups valued at billions before generating
-                  meaningful revenue. The pattern is unmistakable&nbsp;&mdash; and if Pérez&apos;s framework
-                  holds, what comes next isn&apos;t the end of AI. It&apos;s the beginning of the deployment
-                  phase, where the technology stops being a financial instrument and starts being infrastructure.
+                  The dot-com crash wiped out $5 trillion in market value. Pets.com went from IPO to liquidation
+                  in 268 days. Webvan raised over a billion dollars and was dead in two years.
                 </p>
                 <p>
-                  For construction, that distinction matters enormously. The companies that will capture the most
-                  value from AI aren&apos;t the ones buying the hype today. They&apos;re the ones building
-                  quietly&nbsp;&mdash; turning domain expertise into working tools, one problem at a time, while
-                  everyone else argues about whether the bubble will pop.
+                  But the technology survived. Internet users grew from 361 million in 2000 to over 4
+                  billion&nbsp;&mdash; continuously, straight through the bust and out the other side. More than
+                  70% of Americans were already online when the market bottomed out. The bad business models
+                  died. The technology didn&apos;t.
+                </p>
+                <p>
+                  And the failed ideas came back with better execution. Webvan became Instacart. Pets.com became
+                  Chewy ($8.7 billion IPO). Kozmo became DoorDash. Amazon crashed from $107 to $7 a share
+                  before becoming one of the most valuable companies on Earth.
+                </p>
+                <p>
+                  Carlota Pérez, a techno-economist who&apos;s studied five major technological revolutions,
+                  found they all follow the same arc: eruption, speculative frenzy, collapse, then a prosperous
+                  golden age. The question for construction leaders isn&apos;t whether there will be a
+                  correction. It&apos;s whether your company is positioned to come out the other
+                  side&nbsp;&mdash; because that&apos;s where the real money is made.
+                </p>
+                <p className="article-callout">
+                  &ldquo;The biggest and most sustainable profits tend to be made after the bubble has collapsed,
+                  not during the speculative frenzy.&rdquo;&nbsp;&mdash; Carlota Pérez
                 </p>
               </div>
             </div>
