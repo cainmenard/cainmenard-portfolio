@@ -348,7 +348,7 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Real Builders</p>
               <h2 className="article-section-heading mb-8">
-                The Real Builders
+                Your Best People Are About to Become Your Best Builders
               </h2>
             </div>
 
