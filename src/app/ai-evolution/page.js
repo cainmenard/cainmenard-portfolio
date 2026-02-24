@@ -516,6 +516,27 @@ export default function AIEvolution() {
                   hours&nbsp;&mdash; just searching for project information and dealing with problems that
                   shouldn&apos;t exist.
                 </p>
+                <p>
+                  None of this is a technology problem. It&apos;s a fit problem. The people who understand the
+                  work best&nbsp;&mdash; who know exactly what dashboard they wish they had, which reports are
+                  useless, which metrics actually predict when a job is going sideways&nbsp;&mdash; have always
+                  been the furthest from the tools that could help them. They&apos;ve never had a way to turn
+                  that knowledge into software without a six-figure budget and a year-long timeline.
+                </p>
+                <p>
+                  AI changes that math. The AI-in-construction market sits at $3.9 billion today, projected to
+                  hit $22.7 billion by 2032. Even Procore&nbsp;&mdash; the biggest construction management
+                  platform in the market&nbsp;&mdash; launched an Agent Builder that lets construction
+                  professionals customize AI workflows without writing a single line of code. The AGC&apos;s 2025
+                  Workforce Survey shows 44% of firms already expect AI and robotics to improve job quality and
+                  productivity.
+                </p>
+                <p className="article-callout">
+                  The industry that&apos;s historically been last to adopt technology may have the most to gain
+                  from what&apos;s happening right now. The gap between what construction professionals know and
+                  what they&apos;ve been able to build with that knowledge is wider here than anywhere else. That
+                  gap is closing fast.
+                </p>
               </div>
             </div>
           </section>
