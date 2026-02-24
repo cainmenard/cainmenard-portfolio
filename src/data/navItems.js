@@ -18,6 +18,6 @@ export const AI_EVOLUTION_NAV = [
   { id: 'the-shift', label: 'The Shift' },
   { id: 'comparison', label: 'Comparison' },
   { id: 'the-numbers', label: 'The Numbers' },
-  { id: 'industry-productivity', label: 'The Industry' },
   { id: 'untapped-builders', label: 'The Builders' },
+  { id: 'industry-productivity', label: 'The Industry' },
 ]
