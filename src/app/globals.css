@@ -144,6 +144,12 @@ body {
     top: 50%;
     transform: translateY(-50%);
     z-index: 40;
+    transition: opacity 300ms ease;
+  }
+
+  .side-nav--hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .article-page {
@@ -156,8 +162,8 @@ body {
   }
 
   .article-page .editorial-centerpiece {
-    /* Left edge stays at reading column boundary (no left breakout).
-       Right edge naturally extends to viewport right. */
+    margin-left: -160px;
+    width: calc(100% + 160px);
   }
 }
 
