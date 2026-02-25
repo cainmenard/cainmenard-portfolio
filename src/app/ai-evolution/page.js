@@ -24,7 +24,7 @@ const COMPARISON_DATA = [
 
 export default function AIEvolution() {
   const activeSection = useSectionObserver()
-  const scrolled = useScrollPosition()
+  const scrolled = useScrollPosition(100)
   useFadeOnScroll()
   const [mobileNav, setMobileNav] = useState(false)
   const [activeView, setActiveView] = useState('webapp')
@@ -42,6 +42,7 @@ export default function AIEvolution() {
       />
       <MobileNav
         navItems={AI_EVOLUTION_NAV}
+        activeSection={activeSection}
         mobileNav={mobileNav}
         onClose={() => setMobileNav(false)}
         secondaryLink={{ href: '/', label: 'Portfolio' }}
