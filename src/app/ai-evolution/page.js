@@ -668,7 +668,7 @@ export default function AIEvolution() {
                   </svg>
                 </div>
 
-                <p className="dotcom-chart__source">Source: Carlota Pérez, <em>Technological Revolutions and Financial Capital</em></p>
+                <p className="dotcom-chart__source"><a href="https://en.wikipedia.org/wiki/Carlota_Perez" target="_blank" rel="noopener noreferrer" className="cite-num">Source: Carlota Pérez, <em>Technological Revolutions and Financial Capital</em></a></p>
               </div>
             </div>
 
@@ -678,27 +678,27 @@ export default function AIEvolution() {
                   Not convinced? That&apos;s fair. The investment numbers warrant skepticism.
                 </h3>
                 <p>
-                  AI venture capital hit $202 billion in 2025&nbsp;&mdash; capturing roughly half of all global
+                  AI venture capital hit $202 billion in 2025<a href="https://news.crunchbase.com/ai/global-vc-funding-annual-report-2025/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>20</sup></a>&nbsp;&mdash; capturing roughly half of all global
                   VC funding. NVIDIA&apos;s stock rocketed 2,000% from 2022 lows to a market cap north of $5
                   trillion. Michael Burry called the AI boom &ldquo;a glorious folly&rdquo; and compared NVIDIA
                   to Cisco, which surged 3,800% before crashing 88% and never recovering to its
                   inflation-adjusted peak. Jeff Bezos called it &ldquo;kind of an industrial bubble.&rdquo; Sam
                   Altman&nbsp;&mdash; ChatGPT&apos;s version of Steve Jobs&nbsp;&mdash; himself said,
                   &ldquo;People will overinvest and lose money.&rdquo; An MIT study found 95% of 52
-                  organizations achieved zero ROI from generative AI investments.
+                  organizations achieved zero ROI from generative AI investments.<a href="https://www.axios.com/2025/08/21/ai-wall-street-big-tech" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>21</sup></a>
                 </p>
               </div>
             </div>
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
                 &ldquo;95% of organizations studied achieved zero ROI from generative AI
-                investments.&rdquo;&nbsp;&mdash; MIT Sloan
+                investments.&rdquo;&nbsp;&mdash; MIT Sloan<a href="https://exec-ed.berkeley.edu/2025/09/beyond-roi-are-we-using-the-wrong-metric-in-measuring-ai-success/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>22</sup></a>
               </p>
             </div>
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  The dot-com crash wiped out $5 trillion in market value. Pets.com went from IPO to liquidation
+                  The dot-com crash wiped out $5 trillion in market value.<a href="https://en.wikipedia.org/wiki/Dot-com_bubble" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>23</sup></a> Pets.com went from IPO to liquidation
                   in 268 days. Webvan raised over a billion dollars and was dead in two years.
                 </p>
                 <p>
@@ -713,7 +713,7 @@ export default function AIEvolution() {
                   before becoming one of the most valuable companies on Earth.
                 </p>
                 <p>
-                  Carlota Pérez, a techno-economist who&apos;s studied five major technological revolutions,
+                  Carlota Pérez,<a href="https://en.wikipedia.org/wiki/Carlota_Perez" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>24</sup></a> a techno-economist who&apos;s studied five major technological revolutions,
                   found they all follow the same arc: eruption, speculative frenzy, collapse, then a prosperous
                   golden age. The question for construction leaders isn&apos;t whether there will be a
                   correction. It&apos;s whether your company is positioned to come out the other
@@ -724,7 +724,7 @@ export default function AIEvolution() {
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
                 &ldquo;The biggest and most sustainable profits tend to be made after the bubble has collapsed,
-                not during the speculative frenzy.&rdquo;&nbsp;&mdash; Carlota Pérez
+                not during the speculative frenzy.&rdquo;&nbsp;&mdash; Carlota Pérez<a href="https://en.wikipedia.org/wiki/Carlota_Perez" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>24</sup></a>
               </p>
             </div>
           </section>
@@ -747,16 +747,16 @@ export default function AIEvolution() {
                   market share. Some will cease to exist.
                 </p>
                 <p>
-                  Microsoft CEO Satya Nadella declared &ldquo;SaaS is dead&rdquo; in late 2024. His
+                  Microsoft CEO Satya Nadella declared &ldquo;SaaS is dead&rdquo; in late 2024.<a href="https://medium.com/@iamdavidchan/did-satya-nadelle-really-say-saas-is-dead-fa064f3d65d1" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>25</sup></a> His
                   argument: business applications are databases with business logic bolted on. In an
                   agent-driven world, that logic migrates to AI agents that are database-agnostic. The
                   application layer collapses.
                 </p>
                 <p>
                   The market is responding. The iShares Expanded Tech-Software Sector ETF fell over
-                  23% in early 2026. Salesforce and Workday each dropped over 40% in twelve months.
+                  23% in early 2026.<a href="https://www.cnbc.com/2026/01/29/software-stocks-enter-bear-market-on-ai-disruption-fear-with-servicenow-plunging-11percent-thursday.html" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>26</sup></a> Salesforce and Workday each dropped over 40% in twelve months.<a href="https://www.bloomberg.com/opinion/articles/2026-02-12/salesforce-and-other-saas-companies-deserve-ai-disruption" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>27</sup></a>
                   IDC concluded SaaS has become &ldquo;a patchwork of interfaces and data silos,
-                  forcing users to adapt to the software rather than the other way around.&rdquo;
+                  forcing users to adapt to the software rather than the other way around.&rdquo;<a href="https://www.idc.com/resource-center/blog/is-saas-dead-rethinking-the-future-of-software-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>28</sup></a>
                 </p>
               </div>
             </div>
@@ -767,9 +767,9 @@ export default function AIEvolution() {
                 <p className="legacy-callout-viz__label">IDC Prediction</p>
                 <p className="legacy-callout-viz__text">
                   By 2028, <span className="legacy-callout-viz__accent">70% of software vendors</span> will
-                  need to fundamentally restructure their pricing models.
+                  need to fundamentally restructure their pricing models.<a href="https://www.idc.com/resource-center/blog/is-saas-dead-rethinking-the-future-of-software-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>28</sup></a>
                 </p>
-                <p className="legacy-callout-viz__source">Source: International Data Corporation (IDC)</p>
+                <p className="legacy-callout-viz__source"><a href="https://www.idc.com/resource-center/blog/is-saas-dead-rethinking-the-future-of-software-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" className="cite-num">Source: International Data Corporation (IDC)</a></p>
               </div>
             </div>
 
@@ -814,9 +814,9 @@ export default function AIEvolution() {
               <div className="article-prose">
                 <p>
                   In construction specifically, McKinsey found individual teams routinely build their
-                  own digital solutions without coordinating&nbsp;&mdash; creating a proliferation of
+                  own digital solutions without coordinating<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>16</sup></a>&nbsp;&mdash; creating a proliferation of
                   competing, overlapping tools within a single company. JBKnowledge&apos;s surveys
-                  found 65% of respondents use spreadsheets for estimating despite having dedicated
+                  found 65% of respondents use spreadsheets for estimating<a href="https://jbknowledge.com/construction-technology-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>12</sup></a> despite having dedicated
                   estimating software. The off-the-shelf products simply don&apos;t meet actual needs.
                 </p>
                 <p>
@@ -844,7 +844,7 @@ export default function AIEvolution() {
               <div className="article-prose">
                 <p>
                   MIT labor economist David Autor argues that AI&apos;s unique opportunity is to
-                  &ldquo;extend the relevance, reach, and value of human expertise.&rdquo; That framing
+                  &ldquo;extend the relevance, reach, and value of human expertise.&rdquo;<a href="https://www.nber.org/papers/w32140" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>29</sup></a> That framing
                   matters. Technical execution is being commoditized at a pace that would have been
                   unimaginable five years ago. What&apos;s becoming scarce&nbsp;&mdash; genuinely
                   scarce&nbsp;&mdash; is the domain knowledge that determines what to build and why it
@@ -852,7 +852,7 @@ export default function AIEvolution() {
                 </p>
                 <p>
                   Erik Brynjolfsson at Stanford studied over 5,000 workers and found AI increased
-                  productivity 14&ndash;15% on average. But the breakdown is what&apos;s interesting:
+                  productivity 14&ndash;15% on average.<a href="https://academic.oup.com/qje/article-abstract/139/3/1823/7612832" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>30</sup></a> But the breakdown is what&apos;s interesting:
                   novice workers improved 34%, while experienced workers saw minimal gains. The AI was
                   essentially encoding top performers&apos; best practices and distributing them to everyone
                   else. A study in <em>Management Science</em> made the point explicit&nbsp;&mdash; AI
@@ -869,7 +869,7 @@ export default function AIEvolution() {
                   &ldquo;AI&apos;s unique opportunity is to extend the relevance, reach, and value of human expertise.&rdquo;
                 </p>
                 <p className="bottleneck-pull-quote__attribution">
-                  &mdash; David Autor, MIT
+                  &mdash; David Autor, MIT<a href="https://www.nber.org/papers/w32140" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>29</sup></a>
                 </p>
               </div>
             </div>
@@ -880,7 +880,7 @@ export default function AIEvolution() {
                   Here&apos;s where it gets interesting, though. That same Harvard/BCG study found that
                   when consultants applied AI to tasks outside its capability boundary&nbsp;&mdash; things
                   that require real judgment, intuition, or knowing which number to trust when two reports
-                  disagree&nbsp;&mdash; they were about 20% less likely to get the right answer than
+                  disagree&nbsp;&mdash; they were about 20% less likely to get the right answer<a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>31</sup></a> than
                   consultants working without AI at all. The tool made sloppy work worse. It exposed people
                   who were mailing it in. Knowing when and where to apply AI was the single biggest
                   differentiator between winning and failure.
@@ -918,7 +918,7 @@ export default function AIEvolution() {
                   The spreadsheet didn&apos;t replace accountants. It made them more productive and expanded the market.
                 </p>
                 <p className="spreadsheet-parallel__source">
-                  Source: Bureau of Labor Statistics, via Tim Harford / Financial Times
+                  <a href="https://timharford.com/2024/01/what-does-history-tell-us-about-the-impact-of-ai-on-jobs/" target="_blank" rel="noopener noreferrer" className="cite-num">Source: Bureau of Labor Statistics, via Tim Harford / Financial Times</a>
                 </p>
               </div>
             </div>
@@ -928,7 +928,7 @@ export default function AIEvolution() {
                 <p>
                   The historical parallel is worth sitting with. When VisiCalc launched the first digital
                   spreadsheet in 1980, there were 339,000 accountants in the U.S. By 2022, there were 1.4
-                  million. Tim Harford at the <em>Financial Times</em> put it plainly: the spreadsheet
+                  million.<a href="https://timharford.com/2024/01/what-does-history-tell-us-about-the-impact-of-ai-on-jobs/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>32</sup></a> Tim Harford at the <em>Financial Times</em> put it plainly: the spreadsheet
                   didn&apos;t kill the profession. It made accountants more productive and blew the market
                   wide open for what they could do.
                 </p>
