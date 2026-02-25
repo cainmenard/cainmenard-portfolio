@@ -1887,3 +1887,63 @@ body {
     padding: 2rem 1.25rem;
   }
 }
+
+/* ─── About the Author ─── */
+.author-section {
+  border-top: 3px solid var(--accent);
+  padding-top: 2rem;
+}
+
+/* ─── Sources & Further Reading ─── */
+.sources-intro {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+.dark .sources-intro {
+  color: #94a3b8;
+}
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.sources-category {
+  padding: 1.25rem 1.5rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+}
+.dark .sources-category {
+  background: #1e293b;
+  border-color: #334155;
+  border-left-color: var(--accent);
+}
+.sources-category__title {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.sources-category__items {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #475569;
+}
+.dark .sources-category__items {
+  color: #94a3b8;
+}
+.sources-category__items em {
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .sources-category {
+    padding: 1rem 1.25rem;
+  }
+}
