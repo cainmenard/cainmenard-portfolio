@@ -16,6 +16,7 @@ import { TABLEAU_DASHBOARDS } from '@/data/tableauDashboards'
 import { PUBLICATIONS } from '@/data/publications'
 import { SKILLS } from '@/data/skills'
 import { CERTS } from '@/data/certifications'
+import PersonalityTeaser from '@/components/PersonalityTeaser'
 
 export default function Home() {
   const activeSection = useSectionObserver()
@@ -50,13 +51,13 @@ export default function Home() {
         onToggleMobile={() => setMobileNav(!mobileNav)}
         logoHref="#"
         ctaHref="#contact"
-        secondaryLink={{ href: '/lagniappe', label: 'Lagniappe' }}
+        secondaryLinks={[{ href: '/personality', label: 'Personality' }, { href: '/lagniappe', label: 'Lagniappe' }]}
       />
       <MobileNav
         navItems={NAV_ITEMS}
         mobileNav={mobileNav}
         onClose={() => setMobileNav(false)}
-        secondaryLink={{ href: '/lagniappe', label: 'Lagniappe' }}
+        secondaryLinks={[{ href: '/personality', label: 'Personality' }, { href: '/lagniappe', label: 'Lagniappe' }]}
         ctaHref="#contact"
       />
 
@@ -174,6 +175,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              <PersonalityTeaser />
             </div>
           </div>
         </div>

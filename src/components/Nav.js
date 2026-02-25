@@ -2,7 +2,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ThemeToggle from './ThemeToggle'
 
-export default function Nav({ navItems, activeSection, scrolled, mobileNav, onToggleMobile, logoHref = '/', ctaHref = null, secondaryLink = null }) {
+export default function Nav({ navItems, activeSection, scrolled, mobileNav, onToggleMobile, logoHref = '/', ctaHref = null, secondaryLink = null, secondaryLinks = null }) {
+  const resolvedLinks = secondaryLinks || (secondaryLink ? [secondaryLink] : [])
   const [visibleCount, setVisibleCount] = useState(navItems.length)
   const [measured, setMeasured] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
@@ -92,7 +93,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
     })
     observer.observe(nav)
     return () => observer.disconnect()
-  }, [navItems, secondaryLink])
+  }, [navItems, secondaryLink, secondaryLinks])
 
   /* ── Scroll to section with nav-height offset ── */
   const handleNavClick = useCallback((e, id) => {
@@ -166,16 +167,19 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
             </div>
           )}
 
-          {secondaryLink && (
+          {resolvedLinks.length > 0 && (
             <div className="flex items-center gap-5 flex-shrink-0" data-nav-secondary>
               <span className="w-px h-4 bg-slate-200 dark:bg-slate-600 flex-shrink-0" />
-              <a
-                href={secondaryLink.href}
-                className="nav-link text-slate-400 hover:text-amber-600 whitespace-nowrap flex-shrink-0"
-                style={{ borderBottom: 'none' }}
-              >
-                {secondaryLink.label}
-              </a>
+              {resolvedLinks.map(link => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="nav-link text-slate-400 hover:text-amber-600 whitespace-nowrap flex-shrink-0"
+                  style={{ borderBottom: 'none' }}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           )}
         </div>
