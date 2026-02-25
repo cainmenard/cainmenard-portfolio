@@ -1168,24 +1168,11 @@ export default function AIEvolution() {
                 <p className="section-label mb-3">About the Author</p>
                 <div className="author-section__body article-prose">
                   <p>
-                    Cain Menard started his career as a field engineer on a $1B oil and gas refinery in
-                    South Texas. Since then, he&apos;s spent nearly a decade helping contractors across
-                    construction, energy, and infrastructure close the gap between how their business
-                    actually operates and what their technology stack can do about it&nbsp;&mdash; as a
-                    project manager, strategy consultant, and now as Director of Consulting &amp; Operations
-                    at Automized Solutions.
-                  </p>
-                  <p>
-                    Before Automized, he spent three years at FMI Corporation advising contractors from
-                    $30M to $1.5B in revenue on operational performance and profitability&nbsp;&mdash; and
-                    built the firm&apos;s first software and data analytics implementation from scratch,
-                    including an AWS-hosted data pipeline that went live with 100% user adoption. He&apos;s
-                    published research on AI and data analytics in <em>FMI Quarterly</em>, presented as a
-                    keynote speaker on technology adoption for construction executives, and holds an MBA
-                    in Finance and Data Analytics from the University of Denver.
-                  </p>
-                  <p>
-                    The application referenced in this article is real and live. So is everything else.
+                    Cain Menard is Director of Consulting &amp; Operations at Automized Solutions.
+                    He&apos;s spent his career in the field, in consulting, and now in digital
+                    transformation&nbsp;&mdash; helping contractors across construction and
+                    infrastructure modernize how they operate. The application referenced in this
+                    article is real and live. So is everything else.
                   </p>
                 </div>
               </div>
