@@ -265,12 +265,12 @@ export default function AIEvolution() {
                   This isn&apos;t an edge case. The productivity data is accumulating fast.
                 </p>
                 <p>
-                  GitHub&apos;s controlled experiment found developers using AI coding tools {' '}
-                  <a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener noreferrer">completed tasks 55.8% faster</a>.
-                  {' '}<a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer">Harvard and BCG tested 758 consultants</a> and found AI users produced
-                  {' '}<a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer">40% higher-quality output</a> while finishing 25% faster.
-                  {' '}<a href="https://the-decoder.com/google-engineer-says-claude-code-built-in-one-hour-what-her-team-spent-a-year-on/" target="_blank" rel="noopener noreferrer">A Google principal engineer gave Claude Code a three-paragraph problem description and received a working result in one hour</a>
-                  {' '}that matched what her team had spent a year building.
+                  GitHub&apos;s controlled experiment found developers using AI coding tools
+                  completed tasks 55.8% faster.<a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>1</sup></a>
+                  {' '}Harvard and BCG tested 758 consultants and found AI users produced
+                  40% higher-quality output while finishing 25% faster.<a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>2</sup></a>
+                  {' '}A Google principal engineer gave Claude Code a three-paragraph problem description and received a working result in one
+                  hour that matched what her team had spent a year building.<a href="https://the-decoder.com/google-engineer-says-claude-code-built-in-one-hour-what-her-team-spent-a-year-on/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>3</sup></a>
                 </p>
               </div>
             </div>
@@ -308,23 +308,26 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  <a href="https://www.computerweekly.com/news/366638839/Half-of-Googles-software-development-now-AI-generated" target="_blank" rel="noopener noreferrer">Google now generates roughly half its new code with AI</a>.
-                  {' '}<a href="https://techcrunch.com/2025/07/30/github-copilot-crosses-20-million-all-time-users/" target="_blank" rel="noopener noreferrer">Over 90% of Fortune 100 companies have deployed GitHub Copilot</a>.
-                  {' '}<a href="https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond" target="_blank" rel="noopener noreferrer">Gartner projects 90% of software engineers will use AI code assistants by 2028, up from under 14% in early 2024</a>.
-                  {' '}<a href="https://www.grandviewresearch.com/industry-analysis/ai-code-tools-market-report" target="_blank" rel="noopener noreferrer">The AI code tools market is valued at $7.4 billion and heading toward $25–30 billion by 2030</a>.
+                  Google now generates roughly half its new code with AI.<a href="https://www.computerweekly.com/news/366638839/Half-of-Googles-software-development-now-AI-generated" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>4</sup></a>
+                  {' '}Over 90% of Fortune 100 companies have deployed GitHub Copilot.<a href="https://techcrunch.com/2025/07/30/github-copilot-crosses-20-million-all-time-users/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>5</sup></a>
+                  {' '}Gartner projects 90% of software engineers will use AI code assistants by 2028, up from under 14% in early 2024.<a href="https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>6</sup></a>
+                  {' '}The AI code tools market is valued at $7.4 billion and heading toward $25–30 billion by 2030.<a href="https://www.grandviewresearch.com/industry-analysis/ai-code-tools-market-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>7</sup></a>
                 </p>
                 <p>
-                  Andrej Karpathy, co-founder of OpenAI, <a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer">coined what he calls &ldquo;vibe coding&rdquo;</a> and
-                  declared: &ldquo;<a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer">The hottest new programming language is English.</a>&rdquo; Jensen Huang,
-                  NVIDIA&apos;s CEO, at the World Government Summit: &ldquo;<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/jensen-huang-advises-against-learning-to-code-leave-it-up-to-ai" target="_blank" rel="noopener noreferrer">Everybody in the world is now a programmer.</a>&rdquo;
-                  {' '}Satya Nadella, in his 2025 letter to shareholders: &ldquo;<a href="https://businesschief.com/news/microsofts-new-growth-era-inside-satya-nadellas-ai-vision" target="_blank" rel="noopener noreferrer">More than any transformation before it, this generation of AI is radically changing every layer of the tech stack.</a>&rdquo;
+                  Andrej Karpathy, co-founder of OpenAI, coined what he calls &ldquo;vibe coding&rdquo; and
+                  declared: &ldquo;The hottest new programming language is English.&rdquo;<a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>8</sup></a> Jensen Huang,
+                  NVIDIA&apos;s CEO, at the World Government Summit: &ldquo;Everybody in the world is now a
+                  programmer.&rdquo;<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/jensen-huang-advises-against-learning-to-code-leave-it-up-to-ai" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>9</sup></a>
+                  {' '}Satya Nadella, in his 2025 letter to shareholders: &ldquo;More than any
+                  transformation before it, this generation of AI is radically changing every layer of the
+                  tech stack.&rdquo;<a href="https://businesschief.com/news/microsofts-new-growth-era-inside-satya-nadellas-ai-vision" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>10</sup></a>
                 </p>
               </div>
             </div>
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
-                For balance: <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener noreferrer">a rigorous 2025 METR study found experienced open-source developers were
-                actually 19% slower</a> with AI tools on complex maintenance tasks — while believing they
+                For balance: a rigorous 2025 METR study found experienced open-source developers were
+                actually 19% slower with AI tools on complex maintenance tasks<a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>11</sup></a> — while believing they
                 were 20% faster. AI excels at building new things from domain knowledge. It struggles with
                 maintaining complex legacy codebases. That distinction matters significantly for how
                 companies should think about adoption.

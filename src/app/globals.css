@@ -1571,6 +1571,20 @@ body {
   opacity: 0.5;
 }
 
+/* Superscript citation numbers */
+a.cite-num {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.7em;
+  margin-left: 1px;
+  transition: opacity 0.15s ease;
+}
+a.cite-num:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .stat-strip {
     grid-template-columns: 1fr;
