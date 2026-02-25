@@ -24,4 +24,5 @@ export const AI_EVOLUTION_NAV = [
   { id: 'legacy-software', label: 'Legacy Software' },
   { id: 'functional-experience', label: 'The Bottleneck' },
   { id: 'readiness', label: 'Readiness' },
+  { id: 'value', label: 'Value' },
 ]

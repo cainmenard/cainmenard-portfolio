@@ -1780,3 +1780,40 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ─── Where the Value Lives Now – Closing Pull Quote ─── */
+.closing-pullquote {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+.dark .closing-pullquote {
+  background: linear-gradient(135deg, #0b1120 0%, #1e293b 100%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.closing-pullquote__text {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.6;
+  color: #f1f5f9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .closing-pullquote {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .closing-pullquote {
+    padding: 2rem 1.25rem;
+  }
+}

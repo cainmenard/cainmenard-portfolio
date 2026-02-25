@@ -1084,7 +1084,60 @@ export default function AIEvolution() {
             </div>
           </section>
 
-          {/* ─── MORE CONTENT COMING SOON ─── */}
+          {/* ─── WHERE THE VALUE LIVES NOW ─── */}
+          <section id="value" className="bg-slate-50 dark:bg-slate-800 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">Value</p>
+              <h2 className="article-section-heading mb-8">
+                Where the Value Lives Now
+              </h2>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  The cost of building software is nose diving. Custom applications will proliferate. In the near
+                  future, domain experts across every industry will build their own tools fine-tuned to their
+                  specific operational processes.
+                </p>
+                <p>
+                  That means the value of software itself&nbsp;&mdash; the code, application, and
+                  product&nbsp;&mdash; is in structural decline. Fewer startups will emerge to sell generic solutions
+                  at per-seat pricing. The market is already punishing that model.
+                </p>
+                <p>
+                  What&apos;s not in decline: the expertise to know what to build, the operational knowledge to
+                  implement without disrupting what works, the ability to assess whether an organization is ready
+                  for new technology, and the strategic thinking that turns a compelling demo into measurable ROI.
+                </p>
+              </div>
+            </div>
+
+            {/* ─ Visual: Closing Pull Quote ─ */}
+            <div className="max-w-3xl mx-auto px-6 my-16 fade-section">
+              <div className="closing-pullquote">
+                <p className="closing-pullquote__text">
+                  &ldquo;The barrier between knowing what you need and having it built has effectively disappeared.
+                  The question is no longer &lsquo;Can we build it?&rsquo; It&apos;s &lsquo;Do we know what to
+                  build&nbsp;&mdash; and are we ready to use it?&rsquo;&rdquo;
+                </p>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  The companies that win in this next era will get the fundamentals right before chasing the fancy
+                  new tool. Process before technology. Data before dashboards. People before platforms.
+                </p>
+                <p>
+                  The barrier between knowing what you need and having it built has effectively disappeared. The
+                  question is no longer &ldquo;Can we build it?&rdquo; It&apos;s &ldquo;Do we know what to
+                  build&nbsp;&mdash; and are we ready to use it?&rdquo;
+                </p>
+              </div>
+            </div>
+          </section>
 
           <Footer variant="simple" />
         </div>
