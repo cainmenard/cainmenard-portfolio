@@ -131,6 +131,128 @@ body {
   background: rgba(245, 158, 11, 0.08);
 }
 
+/* ─── Side Navigation ─── */
+.side-nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .side-nav {
+    display: block;
+    position: fixed;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+  }
+
+  .article-page {
+    padding-left: 160px;
+  }
+
+  .article-page .article-hero-image {
+    margin-left: -160px;
+    width: calc(100% + 160px);
+  }
+}
+
+.side-nav__list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Rail track (background line connecting all dots) */
+.side-nav__list::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 5px;
+  bottom: 5px;
+  width: 2px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* Rail fill (accent progress indicator) */
+.side-nav__list::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 5px;
+  width: 2px;
+  height: calc(var(--rail-progress, 0) * (100% - 10px));
+  background: var(--accent);
+  border-radius: 1px;
+  transition: height 300ms ease;
+  pointer-events: none;
+}
+
+.side-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.side-nav__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  background: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  transition: border-color 300ms ease, background-color 300ms ease;
+}
+
+.side-nav__dot--active {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.side-nav__label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.4;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 300ms ease, color 300ms ease, font-weight 300ms ease;
+}
+
+.side-nav__label--active {
+  opacity: 1;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Side nav — dark mode */
+.dark .side-nav__list::before {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.dark .side-nav__dot {
+  border-color: rgba(148, 163, 184, 0.2);
+  background: #1e293b;
+}
+
+.dark .side-nav__dot--active {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
 /* ─── Section fade-in ─── */
 .fade-section {
   opacity: 0;
