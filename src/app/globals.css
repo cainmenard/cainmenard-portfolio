@@ -1156,7 +1156,7 @@ body {
   border-top: 2px solid var(--accent);
   border-bottom: 2px solid var(--accent);
   min-height: 90vh;
-  overflow: hidden;
+  /* No overflow:hidden — it breaks position:sticky on the column headers */
 }
 .dark .editorial-centerpiece {
   background: #0a0f1a;
@@ -1263,6 +1263,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 48px 1fr;
     align-items: start;
+    overflow: hidden; /* clip slide-in animation overflow */
   }
   .comparison-mobile-toggle {
     display: none;
