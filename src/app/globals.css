@@ -212,6 +212,19 @@ body {
   }
 }
 
+/* ─── Newspaper-style wider content for large desktop ─── */
+@media (min-width: 1280px) {
+  .article-page .max-w-2xl {
+    max-width: 48rem; /* 768px, up from 672px */
+  }
+  .article-page .max-w-3xl {
+    max-width: 56rem; /* 896px, up from 768px */
+  }
+  .article-page .max-w-4xl {
+    max-width: 64rem; /* 1024px, up from 896px */
+  }
+}
+
 .side-nav__list {
   position: relative;
   list-style: none;
