@@ -1,26 +1,179 @@
 'use client'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import ThemeToggle from './ThemeToggle'
 
 export default function Nav({ navItems, activeSection, scrolled, mobileNav, onToggleMobile, logoHref = '/', ctaHref = null, secondaryLink = null }) {
+  const [visibleCount, setVisibleCount] = useState(navItems.length)
+  const [moreOpen, setMoreOpen] = useState(false)
+  const navRef = useRef(null)
+  const moreRef = useRef(null)
+
+  /* ── Close "More" dropdown on outside click ── */
+  useEffect(() => {
+    if (!moreOpen) return
+    const handler = (e) => {
+      if (moreRef.current && !moreRef.current.contains(e.target)) setMoreOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [moreOpen])
+
+  /* ── Measure nav items and determine overflow ── */
+  useEffect(() => {
+    const nav = navRef.current
+    if (!nav) return
+
+    let widths = null
+
+    const measureWidths = () => {
+      const testEl = document.createElement('div')
+      testEl.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none;top:-9999px;left:0'
+      document.body.appendChild(testEl)
+
+      widths = navItems.map(item => {
+        const span = document.createElement('span')
+        span.className = 'nav-link'
+        span.textContent = item.label
+        testEl.appendChild(span)
+        const w = span.offsetWidth
+        testEl.removeChild(span)
+        return w
+      })
+
+      document.body.removeChild(testEl)
+    }
+
+    const calculate = () => {
+      if (!widths) return
+      const navWidth = nav.offsetWidth
+      // Reserve: px-6 padding (48), logo (~56), ml-8 gap (32), controls (~90)
+      const reserved = 48 + 56 + 32 + 90
+      const secondaryW = secondaryLink ? 110 + 20 : 0
+      const available = navWidth - reserved - secondaryW
+
+      const gap = 20
+      const moreBtnW = 72
+      let used = 0
+      let count = 0
+
+      for (let i = 0; i < widths.length; i++) {
+        const g = count > 0 ? gap : 0
+        const remaining = widths.length - i - 1
+        const moreSpace = remaining > 0 ? moreBtnW + gap : 0
+        if (used + widths[i] + g + moreSpace <= available) {
+          used += widths[i] + g
+          count++
+        } else break
+      }
+
+      setVisibleCount(Math.max(count, 3))
+      setMoreOpen(false)
+    }
+
+    const init = () => {
+      measureWidths()
+      calculate()
+    }
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(init)
+    } else {
+      init()
+    }
+
+    const observer = new ResizeObserver(calculate)
+    observer.observe(nav)
+    return () => observer.disconnect()
+  }, [navItems, secondaryLink])
+
+  /* ── Scroll to section with nav-height offset ── */
+  const handleNavClick = useCallback((e, id) => {
+    e.preventDefault()
+    const target = document.getElementById(id)
+    if (!target) return
+    const navHeight = navRef.current?.offsetHeight || 64
+    const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 12
+    window.scrollTo({ top, behavior: 'smooth' })
+    setMoreOpen(false)
+  }, [])
+
+  const visibleItems = navItems.slice(0, visibleCount)
+  const overflowItems = navItems.slice(visibleCount)
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-glass shadow-sm' : 'bg-transparent'}`}>
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        <a href={logoHref} className="text-lg font-bold tracking-tight" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>CM</a>
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map(item => (
-            <a key={item.id} href={`#${item.id}`}
-              className={`nav-link ${activeSection === item.id ? 'active' : ''}`}>
+    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-glass nav-scrolled' : 'bg-transparent'}`}>
+      <div className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14' : 'h-20'}`}>
+        {/* ── Logo ── */}
+        <a
+          href={logoHref}
+          className={`font-bold tracking-tight transition-all duration-300 flex-shrink-0 ${scrolled ? 'text-base' : 'text-lg'}`}
+          style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}
+        >
+          CM
+        </a>
+
+        {/* ── Desktop nav items ── */}
+        <div className="hidden md:flex items-center gap-5 flex-1 justify-end ml-8 min-w-0">
+          {visibleItems.map(item => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => handleNavClick(e, item.id)}
+              className={`nav-link whitespace-nowrap flex-shrink-0 ${activeSection === item.id ? 'active' : ''}`}
+            >
               {item.label}
             </a>
           ))}
+
+          {/* "More" dropdown */}
+          {overflowItems.length > 0 && (
+            <div className="relative flex-shrink-0" ref={moreRef}>
+              <button
+                onClick={() => setMoreOpen(v => !v)}
+                className={`nav-link flex items-center gap-1 whitespace-nowrap ${overflowItems.some(i => activeSection === i.id) ? 'active' : ''}`}
+                aria-expanded={moreOpen}
+                aria-haspopup="true"
+              >
+                More
+                <svg
+                  width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                  className={`transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`}
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              <div className={`nav-dropdown ${moreOpen ? 'nav-dropdown--open' : ''}`}>
+                {overflowItems.map(item => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => handleNavClick(e, item.id)}
+                    className={`nav-dropdown__item ${activeSection === item.id ? 'active' : ''}`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
           {secondaryLink && (
             <>
-              <span className="w-px h-4 bg-slate-200 dark:bg-slate-600"></span>
-              <a href={secondaryLink.href} className="nav-link text-slate-400 hover:text-amber-600" style={{ borderBottom: 'none' }}>{secondaryLink.label}</a>
+              <span className="w-px h-4 bg-slate-200 dark:bg-slate-600 flex-shrink-0" />
+              <a
+                href={secondaryLink.href}
+                className="nav-link text-slate-400 hover:text-amber-600 whitespace-nowrap flex-shrink-0"
+                style={{ borderBottom: 'none' }}
+              >
+                {secondaryLink.label}
+              </a>
             </>
           )}
         </div>
-        <div className="flex items-center gap-2">
+
+        {/* ── Controls ── */}
+        <div className="flex items-center gap-2 flex-shrink-0 ml-4">
           <ThemeToggle />
           {ctaHref && <a href={ctaHref} className="btn-primary text-xs py-2 px-5 hidden md:inline-flex">Get in Touch</a>}
           <button onClick={onToggleMobile} className="md:hidden p-2 -mr-2" aria-label="Menu">
