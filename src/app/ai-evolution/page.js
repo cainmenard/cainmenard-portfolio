@@ -1140,6 +1140,110 @@ export default function AIEvolution() {
             </div>
           </section>
 
+          {/* ─── ABOUT THE AUTHOR ─── */}
+          <section id="author" className="py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="author-section">
+                <p className="section-label mb-3">About the Author</p>
+                <div className="author-section__body article-prose">
+                  <p>
+                    Cain Menard started his career as a field engineer on a $1B oil and gas refinery in
+                    South Texas. Since then, he&apos;s spent nearly a decade helping contractors across
+                    construction, energy, and infrastructure close the gap between how their business
+                    actually operates and what their technology stack can do about it&nbsp;&mdash; as a
+                    project manager, strategy consultant, and now as Director of Consulting &amp; Operations
+                    at Automized Solutions.
+                  </p>
+                  <p>
+                    Before Automized, he spent three years at FMI Corporation advising contractors from
+                    $30M to $1.5B in revenue on operational performance and profitability&nbsp;&mdash; and
+                    built the firm&apos;s first software and data analytics implementation from scratch,
+                    including an AWS-hosted data pipeline that went live with 100% user adoption. He&apos;s
+                    published research on AI and data analytics in <em>FMI Quarterly</em>, presented as a
+                    keynote speaker on technology adoption for construction executives, and holds an MBA
+                    in Finance and Data Analytics from the University of Denver.
+                  </p>
+                  <p>
+                    The application referenced in this article is real and live. So is everything else.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ─── SOURCES & FURTHER READING ─── */}
+          <section id="sources" className="bg-slate-50 dark:bg-slate-800 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">Sources &amp; Further Reading</p>
+              <p className="sources-intro">
+                The research cited throughout this article draws from peer-reviewed academic studies,
+                industry surveys, and tier-one analyst reports. Key sources include:
+              </p>
+
+              <div className="sources-list">
+                <div className="sources-category">
+                  <h3 className="sources-category__title">AI Coding Productivity</h3>
+                  <p className="sources-category__items">
+                    Peng et al., arXiv 2023 (GitHub Copilot RCT); Dell&apos;Acqua et al., Harvard
+                    Business School 2023 (BCG/Harvard &ldquo;Jagged Frontier&rdquo; study); Becker et al.,
+                    arXiv 2025 (METR counterpoint study)
+                  </p>
+                </div>
+
+                <div className="sources-category">
+                  <h3 className="sources-category__title">AI &amp; Labor Economics</h3>
+                  <p className="sources-category__items">
+                    Autor, NBER Working Paper No. 32140, 2024; Brynjolfsson et al., <em>Quarterly
+                    Journal of Economics</em>, 2025; Tambe, <em>Management Science</em>, 2025
+                  </p>
+                </div>
+
+                <div className="sources-category">
+                  <h3 className="sources-category__title">Construction Industry Data</h3>
+                  <p className="sources-category__items">
+                    McKinsey, &ldquo;Delivering on Construction Productivity,&rdquo; 2024; McKinsey,
+                    &ldquo;Imagining Construction&apos;s Digital Future,&rdquo; 2016; FMI/Autodesk,
+                    &ldquo;Harnessing the Data Advantage,&rdquo; 2020; FMI/PlanGrid,
+                    &ldquo;Construction Disconnected,&rdquo; 2018
+                  </p>
+                </div>
+
+                <div className="sources-category">
+                  <h3 className="sources-category__title">Construction Workforce</h3>
+                  <p className="sources-category__items">
+                    AGC/NCCER 2025 Workforce Survey; HBI Construction Labor Market Report, Fall 2025;
+                    JBKnowledge Construction Technology Reports
+                  </p>
+                </div>
+
+                <div className="sources-category">
+                  <h3 className="sources-category__title">Technology Adoption &amp; Change Management</h3>
+                  <p className="sources-category__items">
+                    Prosci Best Practices in Change Management; NIH/PMC, &ldquo;Assessing Technology
+                    Implementation Success for Highway Construction,&rdquo; 2023; Maali et al.,
+                    <em> ITcon</em>, 2020
+                  </p>
+                </div>
+
+                <div className="sources-category">
+                  <h3 className="sources-category__title">Market &amp; Investment Data</h3>
+                  <p className="sources-category__items">
+                    Gartner AI Code Assistant Forecast, 2024; Crunchbase Global VC Report, 2025;
+                    IDC, &ldquo;Is SaaS Dead?&rdquo;, 2025
+                  </p>
+                </div>
+
+                <div className="sources-category">
+                  <h3 className="sources-category__title">Historical Parallels</h3>
+                  <p className="sources-category__items">
+                    P&eacute;rez, <em>Technological Revolutions and Financial Capital</em>, 2002;
+                    Harford, <em>Financial Times</em>, 2024
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <Footer variant="simple" />
         </div>
       </div>
