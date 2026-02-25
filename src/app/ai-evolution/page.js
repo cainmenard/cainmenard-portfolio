@@ -99,6 +99,8 @@ export default function AIEvolution() {
                 The joke worked because everybody assumed some people just aren&apos;t the tech type.
                 Smart, sure — just not <em>that kind</em> of smart.
               </p>
+            </div>
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
                 That&apos;s over. The tools changed. And the people who know the most about how
                 construction actually works are about to become the most valuable players in the
@@ -110,12 +112,14 @@ export default function AIEvolution() {
 
           {/* ─── THE SHIFT ─── */}
           <section id="the-shift" className="bg-slate-50 dark:bg-slate-800 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Shift</p>
               <h2 className="article-section-heading mb-8">
                 The Gap Between Thinking and Building Just Collapsed
               </h2>
-              <div className="article-prose">
+            </div>
+            <div className="max-w-2xl mx-auto px-6">
+              <div className="article-prose fade-section">
                 <p>
                   A completed project performance dashboard built over several weeks or months three years
                   ago — data modeling, formulas, iterative design, testing, troubleshooting, and revisions —
@@ -129,20 +133,22 @@ export default function AIEvolution() {
                   ranting &ldquo;word salad,&rdquo; refining in real time, watching production-quality lines of
                   React code materialize from verbal instructions.
                 </p>
-                <p className="article-callout">
-                  It&apos;s not a prototype. It&apos;s a deployed application, built by describing what it
-                  should do in plain English.
-                </p>
               </div>
+            </div>
+            <div className="max-w-3xl mx-auto px-6 fade-section">
+              <p className="article-callout">
+                It&apos;s not a prototype. It&apos;s a deployed application, built by describing what it
+                should do in plain English.
+              </p>
             </div>
           </section>
 
           {/* ─── INTERACTIVE COMPARISON SHOWCASE ─── */}
-          <section id="comparison" className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-4xl mx-auto px-6 fade-section">
+          <section id="comparison" className="comparison-centerpiece bg-white dark:bg-slate-900 py-24">
+            <div className="max-w-5xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">Side by Side</p>
               <h2 className="article-section-heading mb-4">What Changed</h2>
-              <p className="text-slate-500 dark:text-slate-400 mb-10 max-w-2xl">
+              <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">
                 Same analytical goal. Same domain expertise. Radically different process and outcome.
                 Both tools below are live and fully functional&nbsp;&mdash; click through and use them.
               </p>
@@ -268,11 +274,13 @@ export default function AIEvolution() {
 
           {/* ─── THE NUMBERS BEHIND THE SHIFT ─── */}
           <section id="the-numbers" className="bg-slate-50 dark:bg-slate-800 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Evidence</p>
               <h2 className="article-section-heading mb-8">
                 The Numbers Behind the Shift
               </h2>
+            </div>
+            <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
                   This isn&apos;t an edge case. The productivity data is accumulating fast.
@@ -333,20 +341,22 @@ export default function AIEvolution() {
                   transformation before it, this generation of AI is radically changing every layer of the
                   tech stack.&rdquo;
                 </p>
-                <p className="article-callout">
-                  For balance: a rigorous 2025 METR study found experienced open-source developers were
-                  actually 19% slower with AI tools on complex maintenance tasks — while believing they
-                  were 20% faster. AI excels at building new things from domain knowledge. It struggles with
-                  maintaining complex legacy codebases. That distinction matters significantly for how
-                  companies should think about adoption.
-                </p>
               </div>
+            </div>
+            <div className="max-w-3xl mx-auto px-6 fade-section">
+              <p className="article-callout">
+                For balance: a rigorous 2025 METR study found experienced open-source developers were
+                actually 19% slower with AI tools on complex maintenance tasks — while believing they
+                were 20% faster. AI excels at building new things from domain knowledge. It struggles with
+                maintaining complex legacy codebases. That distinction matters significantly for how
+                companies should think about adoption.
+              </p>
             </div>
           </section>
 
           {/* ─── CONSTRUCTION PROFESSIONALS ─── */}
           <section id="untapped-builders" className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Real Builders</p>
               <h2 className="article-section-heading mb-8">
                 The Real Builders
@@ -432,12 +442,18 @@ export default function AIEvolution() {
                   clock on the institutional knowledge in your people&apos;s heads — and no clear mechanism to
                   capture it before it walks out the door.
                 </p>
-                <p className="article-callout">
-                  Here&apos;s the shift most people miss: those same superintendents who&apos;ve never written a
-                  line of code may become your most prolific software builders. Building custom applications
-                  is becoming as simple as describing what you need out loud, the way you&apos;d explain it to
-                  a colleague.
-                </p>
+              </div>
+            </div>
+            <div className="max-w-3xl mx-auto px-6 fade-section">
+              <p className="article-callout">
+                Here&apos;s the shift most people miss: those same superintendents who&apos;ve never written a
+                line of code may become your most prolific software builders. Building custom applications
+                is becoming as simple as describing what you need out loud, the way you&apos;d explain it to
+                a colleague.
+              </p>
+            </div>
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
                 <p>
                   Kevin Roose, a <em>New York Times</em> technology columnist, built a functional app in
                   about ten minutes. A non-coder in the Philippines built a custom expense management app in
@@ -455,7 +471,7 @@ export default function AIEvolution() {
 
           {/* ─── THE INDUSTRY THAT STANDS TO GAIN THE MOST ─── */}
           <section id="industry-productivity" className="bg-slate-50 dark:bg-slate-800 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Industry</p>
               <h2 className="article-section-heading mb-8">
                 The Industry That Stands to Gain the Most
@@ -532,19 +548,21 @@ export default function AIEvolution() {
                   Workforce Survey shows 44% of firms already expect AI and robotics to improve job quality and
                   productivity.
                 </p>
-                <p className="article-callout">
-                  The industry that&apos;s historically been last to adopt technology may have the most to gain
-                  from what&apos;s happening right now. The gap between what construction professionals know and
-                  what they&apos;ve been able to build with that knowledge is wider here than anywhere else. That
-                  gap is closing fast.
-                </p>
               </div>
+            </div>
+            <div className="max-w-3xl mx-auto px-6 fade-section">
+              <p className="article-callout">
+                The industry that&apos;s historically been last to adopt technology may have the most to gain
+                from what&apos;s happening right now. The gap between what construction professionals know and
+                what they&apos;ve been able to build with that knowledge is wider here than anywhere else. That
+                gap is closing fast.
+              </p>
             </div>
           </section>
 
           {/* ─── THE DOT-COM PARALLEL ─── */}
           <section id="dotcom-parallel" className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Pattern</p>
               <h2 className="article-section-heading mb-8">
                 The Dot-Com Parallel
@@ -688,10 +706,16 @@ export default function AIEvolution() {
                   &ldquo;People will overinvest and lose money.&rdquo; An MIT study found 95% of 52
                   organizations achieved zero ROI from generative AI investments.
                 </p>
-                <p className="article-callout">
-                  &ldquo;95% of organizations studied achieved zero ROI from generative AI
-                  investments.&rdquo;&nbsp;&mdash; MIT Sloan
-                </p>
+              </div>
+            </div>
+            <div className="max-w-3xl mx-auto px-6 fade-section">
+              <p className="article-callout">
+                &ldquo;95% of organizations studied achieved zero ROI from generative AI
+                investments.&rdquo;&nbsp;&mdash; MIT Sloan
+              </p>
+            </div>
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
                 <p>
                   The dot-com crash wiped out $5 trillion in market value. Pets.com went from IPO to liquidation
                   in 268 days. Webvan raised over a billion dollars and was dead in two years.
@@ -714,17 +738,19 @@ export default function AIEvolution() {
                   correction. It&apos;s whether your company is positioned to come out the other
                   side&nbsp;&mdash; because that&apos;s where the real money is made.
                 </p>
-                <p className="article-callout">
-                  &ldquo;The biggest and most sustainable profits tend to be made after the bubble has collapsed,
-                  not during the speculative frenzy.&rdquo;&nbsp;&mdash; Carlota Pérez
-                </p>
               </div>
+            </div>
+            <div className="max-w-3xl mx-auto px-6 fade-section">
+              <p className="article-callout">
+                &ldquo;The biggest and most sustainable profits tend to be made after the bubble has collapsed,
+                not during the speculative frenzy.&rdquo;&nbsp;&mdash; Carlota Pérez
+              </p>
             </div>
           </section>
 
           {/* ─── LEGACY SOFTWARE MUST ADAPT OR DISAPPEAR ─── */}
           <section id="legacy-software" className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Reckoning</p>
               <h2 className="article-section-heading mb-8">
                 Legacy Software Must Adapt or Disappear
@@ -826,7 +852,7 @@ export default function AIEvolution() {
 
           {/* ─── FUNCTIONAL EXPERIENCE IS THE NEW BOTTLENECK ─── */}
           <section id="functional-experience" className="bg-slate-50 dark:bg-slate-800/50 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Bottleneck</p>
               <h2 className="article-section-heading mb-8">
                 Functional Experience Is the New Bottleneck
@@ -931,7 +957,7 @@ export default function AIEvolution() {
 
           {/* ─── READINESS COMES BEFORE TOOLS ─── */}
           <section id="readiness" className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">Readiness</p>
               <h2 className="article-section-heading mb-8">
                 Readiness Comes Before Tools
@@ -1087,7 +1113,7 @@ export default function AIEvolution() {
 
           {/* ─── WHERE THE VALUE LIVES NOW ─── */}
           <section id="value" className="bg-slate-50 dark:bg-slate-800 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
+            <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">Value</p>
               <h2 className="article-section-heading mb-8">
                 Where the Value Lives Now
