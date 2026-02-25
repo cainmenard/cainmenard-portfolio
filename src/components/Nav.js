@@ -4,9 +4,11 @@ import ThemeToggle from './ThemeToggle'
 
 export default function Nav({ navItems, activeSection, scrolled, mobileNav, onToggleMobile, logoHref = '/', ctaHref = null, secondaryLink = null }) {
   const [visibleCount, setVisibleCount] = useState(navItems.length)
+  const [measured, setMeasured] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
   const navRef = useRef(null)
   const moreRef = useRef(null)
+  const itemsRef = useRef(null)
 
   /* ── Close "More" dropdown on outside click ── */
   useEffect(() => {
@@ -21,7 +23,8 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
   /* ── Measure nav items and determine overflow ── */
   useEffect(() => {
     const nav = navRef.current
-    if (!nav) return
+    const container = itemsRef.current
+    if (!nav || !container) return
 
     let widths = null
 
@@ -29,7 +32,6 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
       const testEl = document.createElement('div')
       testEl.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none;top:-9999px;left:0'
       document.body.appendChild(testEl)
-
       widths = navItems.map(item => {
         const span = document.createElement('span')
         span.className = 'nav-link'
@@ -39,20 +41,23 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
         testEl.removeChild(span)
         return w
       })
-
       document.body.removeChild(testEl)
     }
 
     const calculate = () => {
       if (!widths) return
-      const navWidth = nav.offsetWidth
-      // Reserve: px-6 padding (48), logo (~56), ml-8 gap (32), controls (~90)
-      const reserved = 48 + 56 + 32 + 90
-      const secondaryW = secondaryLink ? 110 + 20 : 0
-      const available = navWidth - reserved - secondaryW
 
+      // Use actual container width — flex-1 min-w-0 gives the true available space
+      const containerWidth = container.clientWidth
+
+      // Measure the secondary link area if present in the DOM
+      const secondaryEl = container.querySelector('[data-nav-secondary]')
+      const secondaryW = secondaryEl ? secondaryEl.offsetWidth + 20 : 0
+
+      const available = containerWidth - secondaryW
       const gap = 20
-      const moreBtnW = 72
+      const moreBtnW = 80
+
       let used = 0
       let count = 0
 
@@ -68,6 +73,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
 
       setVisibleCount(Math.max(count, 3))
       setMoreOpen(false)
+      setMeasured(true)
     }
 
     const init = () => {
@@ -81,7 +87,9 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
       init()
     }
 
-    const observer = new ResizeObserver(calculate)
+    const observer = new ResizeObserver(() => {
+      if (widths) calculate()
+    })
     observer.observe(nav)
     return () => observer.disconnect()
   }, [navItems, secondaryLink])
@@ -113,7 +121,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
         </a>
 
         {/* ── Desktop nav items ── */}
-        <div className="hidden md:flex items-center gap-5 flex-1 justify-end ml-8 min-w-0">
+        <div ref={itemsRef} className={`hidden md:flex items-center gap-5 flex-1 justify-end ml-8 min-w-0 ${!measured ? 'invisible' : ''}`}>
           {visibleItems.map(item => (
             <a
               key={item.id}
@@ -159,7 +167,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
           )}
 
           {secondaryLink && (
-            <>
+            <div className="flex items-center gap-5 flex-shrink-0" data-nav-secondary>
               <span className="w-px h-4 bg-slate-200 dark:bg-slate-600 flex-shrink-0" />
               <a
                 href={secondaryLink.href}
@@ -168,7 +176,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
               >
                 {secondaryLink.label}
               </a>
-            </>
+            </div>
           )}
         </div>
 
