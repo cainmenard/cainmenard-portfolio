@@ -412,14 +412,14 @@ export default function AIEvolution() {
                 <p>
                   Until now, the IT department — if the company even had one — occupied a small, dark corner
                   of the office. JBKnowledge found fewer than half of construction companies have a single
-                  dedicated IT employee. I still walk into companies where field supervisors don&apos;t have
+                  dedicated IT employee.<a href="https://jbknowledge.com/construction-technology-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>12</sup></a> I still walk into companies where field supervisors don&apos;t have
                   devices. Paper daily reports. Handwritten timekeeping. Multi-million-dollar projects managed
                   with the same information tools available in 1985.
                 </p>
                 <p>
                   Meanwhile, those same companies are struggling to hire younger talent born into a
                   digital-first world. Gen Z participation in construction more than doubled between 2019 and
-                  2023. But 41% of the pre-2020 workforce is expected to retire by 2031. There&apos;s a ticking
+                  2023.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> But 41% of the pre-2020 workforce is expected to retire by 2031.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> There&apos;s a ticking
                   clock on the institutional knowledge in your people&apos;s heads — and no clear mechanism to
                   capture it before it walks out the door.
                 </p>
@@ -437,9 +437,9 @@ export default function AIEvolution() {
               <div className="article-prose">
                 <p>
                   Kevin Roose, a <em>New York Times</em> technology columnist, built a functional app in
-                  about ten minutes. A non-coder in the Philippines built a custom expense management app in
+                  about ten minutes.<a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a> A non-coder in the Philippines built a custom expense management app in
                   two hours using plain language prompts. Harvard Business School has an active teaching
-                  case on it — &ldquo;Lovable: Vibe Coding for the Other 99%.&rdquo;
+                  case on it — &ldquo;Lovable: Vibe Coding for the Other 99%.&rdquo;<a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a>
                 </p>
                 <p>
                   If those people can do it, your best PM can do it. And the software they&apos;d build would
@@ -496,22 +496,22 @@ export default function AIEvolution() {
               <div className="article-prose">
                 <p>
                   Construction productivity grew 10% between 2000 and 2022. Manufacturing grew 90% over the
-                  same period. Let that sink in. And from 2020 to 2022, construction productivity didn&apos;t
-                  just stagnate&nbsp;&mdash; it actually declined by 8%.
+                  same period.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> Let that sink in. And from 2020 to 2022, construction productivity didn&apos;t
+                  just stagnate&nbsp;&mdash; it actually declined by 8%.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a>
                 </p>
                 <p>
-                  Construction is the second-least digitized major industry in the United States. Most companies
-                  spend less than 1% of revenue on IT. For comparison, automotive and aerospace spend 3&ndash;5%.
+                  Construction is the second-least digitized major industry in the United States.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>16</sup></a> Most companies
+                  spend less than 1% of revenue on IT.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>16</sup></a> For comparison, automotive and aerospace spend 3&ndash;5%.
                   The gap is massive&nbsp;&mdash; construction underspends cross-industry IT averages by 60&ndash;70%.
                 </p>
                 <p>
                   And the tools that do get implemented? They rarely deliver. Over 70% of ERP implementations
-                  fail to meet their original business objectives. The industry hemorrhages an estimated $177
-                  billion a year to operational inefficiencies. In 2020, poor data management alone cost the
+                  fail to meet their original business objectives.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> The industry hemorrhages an estimated $177
+                  billion a year to operational inefficiencies.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> In 2020, poor data management alone cost the
                   construction industry $1.84 trillion globally&nbsp;&mdash; and only 55% of companies even have
-                  a formal data plan. Ninety-six percent of the data generated on construction projects goes
-                  completely unused. Field teams lose nearly two full working days every week&nbsp;&mdash; 14+
-                  hours&nbsp;&mdash; just searching for project information and dealing with problems that
+                  a formal data plan.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> Ninety-six percent of the data generated on construction projects goes
+                  completely unused.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> Field teams lose nearly two full working days every week&nbsp;&mdash; 14+
+                  hours&nbsp;&mdash; just searching for project information<a href="https://www.construction.com/toolkit/reports/construction-disconnected" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>18</sup></a> and dealing with problems that
                   shouldn&apos;t exist.
                 </p>
                 <p>
@@ -523,11 +523,11 @@ export default function AIEvolution() {
                 </p>
                 <p>
                   AI changes that math. The AI-in-construction market sits at $3.9 billion today, projected to
-                  hit $22.7 billion by 2032. Even Procore&nbsp;&mdash; the biggest construction management
+                  hit $22.7 billion by 2032.<a href="https://www.fortunebusinessinsights.com/ai-in-construction-market-109848" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>19</sup></a> Even Procore&nbsp;&mdash; the biggest construction management
                   platform in the market&nbsp;&mdash; launched an Agent Builder that lets construction
                   professionals customize AI workflows without writing a single line of code. The AGC&apos;s 2025
                   Workforce Survey shows 44% of firms already expect AI and robotics to improve job quality and
-                  productivity.
+                  productivity.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a>
                 </p>
               </div>
             </div>
