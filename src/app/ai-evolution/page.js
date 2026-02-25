@@ -1,13 +1,9 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import Nav from '@/components/Nav'
-import MobileNav from '@/components/MobileNav'
+import SideNav from '@/components/SideNav'
 import Footer from '@/components/Footer'
-import { useSectionObserver } from '@/hooks/useSectionObserver'
 import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
-import { useScrollPosition } from '@/hooks/useScrollPosition'
-import { AI_EVOLUTION_NAV } from '@/data/navItems'
 
 const TABLEAU_URL = 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no'
 const WEBAPP_URL = 'https://project-performance-analysis.vercel.app'
@@ -23,35 +19,17 @@ const COMPARISON_DATA = [
 ]
 
 export default function AIEvolution() {
-  const activeSection = useSectionObserver()
-  const scrolled = useScrollPosition(100)
   useFadeOnScroll()
-  const [mobileNav, setMobileNav] = useState(false)
   const [activeView, setActiveView] = useState('webapp')
 
   return (
     <>
-      <Nav
-        navItems={AI_EVOLUTION_NAV}
-        activeSection={activeSection}
-        scrolled={scrolled}
-        mobileNav={mobileNav}
-        onToggleMobile={() => setMobileNav(!mobileNav)}
-        logoHref="/"
-        secondaryLink={{ href: '/', label: 'Portfolio' }}
-      />
-      <MobileNav
-        navItems={AI_EVOLUTION_NAV}
-        activeSection={activeSection}
-        mobileNav={mobileNav}
-        onClose={() => setMobileNav(false)}
-        secondaryLink={{ href: '/', label: 'Portfolio' }}
-      />
+      <SideNav />
 
-      <div className="min-h-screen">
+      <div className="min-h-screen article-page">
 
         {/* ─── HERO ─── */}
-        <header className="bg-white dark:bg-slate-900 pt-28 pb-14">
+        <header className="bg-white dark:bg-slate-900 pt-16 pb-14">
           <div className="max-w-3xl mx-auto px-6 hero-fade-in">
             <div className="flex items-center gap-3 mb-8">
               <span className="article-tag">Case Study</span>
