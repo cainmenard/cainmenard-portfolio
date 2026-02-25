@@ -957,7 +957,7 @@ export default function AIEvolution() {
                 <p>
                   A peer-reviewed study of highway construction and asset management technology implementations
                   found less than 10% of failures result from technical problems. Eighty percent of success
-                  depends on addressing people and process issues.
+                  depends on addressing people and process issues.<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10571839/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>33</sup></a>
                 </p>
               </div>
             </div>
@@ -967,7 +967,7 @@ export default function AIEvolution() {
               <div className="readiness-callout">
                 <p className="readiness-callout__text">
                   &ldquo;Any attempt to implement technology that focuses solely on technology is likely to fail
-                  in the construction industry.&rdquo;
+                  in the construction industry.&rdquo;<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10571839/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>33</sup></a>
                 </p>
               </div>
             </div>
@@ -976,8 +976,8 @@ export default function AIEvolution() {
               <div className="article-prose">
                 <p>
                   Prosci&apos;s research shows organizations with structured change management are 7x more
-                  likely to achieve project objectives. A study in the <em>Journal of Information Technology in
-                  Construction</em> analyzed 167 technology-adoption cases across AEC firms and identified the
+                  likely to achieve project objectives.<a href="https://www.prosci.com/blog/change-management-best-practices" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>34</sup></a> A study in the <em>Journal of Information Technology in
+                  Construction</em> analyzed 167 technology-adoption cases across AEC firms<a href="https://www.itcon.org/paper/2020/17" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>35</sup></a> and identified the
                   top practices for success: change-agent effectiveness, measured benchmarks, realistic
                   timeframes, and communicated benefits. Not better software. Not bigger budgets. People,
                   process, and communication.
@@ -1059,25 +1059,25 @@ export default function AIEvolution() {
                 </p>
                 <p>
                   <strong>Talent.</strong> Domain experts willing to learn new tools, and leadership willing to
-                  invest in their development. With 94% of firms struggling to fill positions and mass
+                  invest in their development. With 94% of firms struggling to fill positions<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> and mass
                   retirements on the horizon, institutional knowledge is the most valuable and most perishable
                   asset a construction company owns.
                 </p>
                 <p>
                   <strong>Process.</strong> Automating a broken process produces broken results faster. If an
                   estimating workflow lives in fourteen spreadsheets with no version control, AI won&apos;t fix
-                  it. The Carnegie Mellon Capability Maturity Model makes the principle clear: the quality of
+                  it. The Carnegie Mellon Capability Maturity Model<a href="https://en.wikipedia.org/wiki/Capability_Maturity_Model" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>36</sup></a> makes the principle clear: the quality of
                   any system is directly related to the quality of the process behind it.
                 </p>
                 <p>
-                  <strong>Data.</strong> Ninety-six percent of construction data goes unused. Gartner predicts
-                  organizations will abandon 60% of AI projects unsupported by AI-ready data. The average
-                  construction business uses 11 separate data environments (often in the form of 11 disconnected
+                  <strong>Data.</strong> Ninety-six percent of construction data goes unused.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> Gartner predicts
+                  organizations will abandon 60% of AI projects unsupported by AI-ready data.<a href="https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>37</sup></a> The average
+                  construction business uses 11 separate data environments<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> (often in the form of 11 disconnected
                   systems). If data is siloed, duplicated, and unreliable, no tool will produce reliable outputs.
                 </p>
                 <p>
                   <strong>Integration.</strong> Nearly a third of construction companies report their systems
-                  don&apos;t communicate with each other. Disconnected estimating tools, PM platforms, accounting
+                  don&apos;t communicate with each other.<a href="https://www.construction.com/toolkit/reports/construction-disconnected" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>18</sup></a> Disconnected estimating tools, PM platforms, accounting
                   systems, and field apps don&apos;t just leave value on the table&nbsp;&mdash; they actively
                   create the conditions for inefficiency.
                 </p>
