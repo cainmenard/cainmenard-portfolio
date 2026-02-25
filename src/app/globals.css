@@ -131,6 +131,45 @@ body {
   background: rgba(245, 158, 11, 0.08);
 }
 
+/* ─── Back to Home Link ─── */
+.back-to-home {
+  position: fixed;
+  top: 1rem;
+  left: 1.5rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #475569;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 10px;
+  padding: 0.45rem 0.85rem 0.45rem 0.65rem;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  transition: color 200ms ease, box-shadow 200ms ease;
+}
+
+.back-to-home:hover {
+  color: var(--accent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+.dark .back-to-home {
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.dark .back-to-home:hover {
+  color: var(--accent);
+}
+
 /* ─── Side Navigation ─── */
 .side-nav {
   display: none;

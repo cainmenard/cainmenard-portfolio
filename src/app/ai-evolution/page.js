@@ -34,6 +34,18 @@ export default function AIEvolution() {
     <>
       <SideNav />
 
+      {/* ─── Back to Home ─── */}
+      <a
+        href="/"
+        className="back-to-home"
+        aria-label="Back to home page"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Home
+      </a>
+
       <div className="min-h-screen article-page">
 
         {/* ─── HERO ─── */}
