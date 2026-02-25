@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import SideNav from '@/components/SideNav'
 import Footer from '@/components/Footer'
@@ -8,19 +8,27 @@ import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
 const TABLEAU_URL = 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no'
 const WEBAPP_URL = 'https://project-performance-analysis.vercel.app'
 
-const COMPARISON_DATA = [
-  ['Timeline', 'Weeks to months', 'Hours'],
-  ['Cost', '$75/mo per seat', 'AI subscription only'],
-  ['Customization', 'Platform-constrained', "Unlimited — it's your code"],
-  ['Hosting', 'Tableau Public', 'Vercel (free tier)'],
-  ['Access', 'Requires Tableau literacy', 'Anyone with a browser'],
-  ['Data Input', 'Pre-loaded only', 'CSV upload + sample data'],
-  ['Ownership', 'Vendor-dependent', 'You own every line'],
-]
-
 export default function AIEvolution() {
   useFadeOnScroll()
   const [activeView, setActiveView] = useState('webapp')
+  const comparisonRef = useRef(null)
+  const [comparisonVisible, setComparisonVisible] = useState(false)
+
+  useEffect(() => {
+    const el = comparisonRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setComparisonVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.05 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <>
@@ -122,146 +130,110 @@ export default function AIEvolution() {
           </section>
 
           {/* ─── INTERACTIVE COMPARISON: CENTERPIECE ─── */}
-          <section id="comparison" className="editorial-centerpiece">
-            {/* Sticky section indicator — visible while scrolling through this section */}
-            <div className="centerpiece-sticky-bar">
-              <div className="centerpiece-sticky-bar__inner">
-                <span className="centerpiece-sticky-bar__tag">Exhibit A</span>
-                <span className="centerpiece-sticky-bar__sep">&mdash;</span>
-                <span className="centerpiece-sticky-bar__title">Side-by-Side Comparison</span>
-              </div>
+          <section id="comparison" className="editorial-centerpiece" ref={comparisonRef}>
+            {/* Sticky Column Headers */}
+            <div className="comparison-sticky-headers">
+              <span className="comparison-sticky-headers__label">Traditional BI Tool</span>
+              <span className="comparison-sticky-headers__vs">VS</span>
+              <span className="comparison-sticky-headers__label comparison-sticky-headers__label--accent">AI-Built Web App</span>
             </div>
 
             <div className="centerpiece-body">
-              <div className="max-w-7xl mx-auto px-6">
-                {/* Section header */}
-                <div className="max-w-2xl mb-12 fade-section">
-                  <p className="section-label mb-3">The Proof</p>
-                  <h2 className="article-section-heading mb-4">What Changed</h2>
-                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Same analytical goal. Same domain expertise. Radically different process and outcome.
-                    Both tools below are live and fully functional&nbsp;&mdash; click through and use them.
-                  </p>
+              {/* Section header */}
+              <div className="comparison-section-intro fade-section">
+                <p className="section-label mb-3">The Proof</p>
+                <h2 className="article-section-heading mb-4">What Changed</h2>
+                <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Same analytical goal. Same domain expertise. Radically different process and outcome.
+                  Both tools below are live and fully functional&nbsp;&mdash; click through and use them.
+                </p>
+              </div>
+
+              {/* ─ Toggle — visible below the dual breakpoint only ─ */}
+              <div className="comparison-mobile-toggle fade-section">
+                <div className="showcase-toggle" role="tablist">
+                  <button
+                    role="tab"
+                    aria-selected={activeView === 'tableau'}
+                    className={`showcase-toggle__btn${activeView === 'tableau' ? ' showcase-toggle__btn--active' : ''}`}
+                    onClick={() => setActiveView('tableau')}
+                  >
+                    <svg className="showcase-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    Traditional BI Tool
+                  </button>
+                  <button
+                    role="tab"
+                    aria-selected={activeView === 'webapp'}
+                    className={`showcase-toggle__btn${activeView === 'webapp' ? ' showcase-toggle__btn--active showcase-toggle__btn--accent' : ''}`}
+                    onClick={() => setActiveView('webapp')}
+                  >
+                    <svg className="showcase-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    AI-Built Web App
+                  </button>
                 </div>
+              </div>
 
-                {/* ─ Toggle — visible below the dual breakpoint only ─ */}
-                <div className="comparison-mobile-toggle fade-section">
-                  <div className="showcase-toggle" role="tablist">
-                    <button
-                      role="tab"
-                      aria-selected={activeView === 'tableau'}
-                      className={`showcase-toggle__btn${activeView === 'tableau' ? ' showcase-toggle__btn--active' : ''}`}
-                      onClick={() => setActiveView('tableau')}
-                    >
-                      <svg className="showcase-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                      Traditional BI Tool
-                    </button>
-                    <button
-                      role="tab"
-                      aria-selected={activeView === 'webapp'}
-                      className={`showcase-toggle__btn${activeView === 'webapp' ? ' showcase-toggle__btn--active showcase-toggle__btn--accent' : ''}`}
-                      onClick={() => setActiveView('webapp')}
-                    >
-                      <svg className="showcase-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                      AI-Built Web App
-                    </button>
-                  </div>
-                </div>
-
-                {/* ─ Dual Panel Area ─ */}
-                <div className="comparison-panels fade-section">
-                  {/* ── Tableau Panel ── */}
-                  <div className={`comparison-panel${activeView !== 'tableau' ? ' comparison-panel--hidden-sm' : ''}`}>
-                    <div className="comparison-panel__header">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                      <span>Traditional BI Tool</span>
+              {/* ─ Dual Panel Area ─ */}
+              <div className={`comparison-panels${comparisonVisible ? ' comparison-panels--visible' : ''}`}>
+                {/* ── Tableau Panel ── */}
+                <div className={`comparison-panel comparison-panel--slide-left${activeView !== 'tableau' ? ' comparison-panel--hidden-sm' : ''}`}>
+                  <div className="comparison-panel__browser">
+                    <div className="showcase-panel__bar">
+                      <div className="showcase-panel__dots"><span /><span /><span /></div>
+                      <div className="showcase-panel__url">public.tableau.com</div>
+                      <a href={TABLEAU_URL} target="_blank" rel="noopener noreferrer" className="showcase-panel__ext" aria-label="Open Tableau in new tab">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      </a>
                     </div>
-                    <div className="comparison-panel__browser">
-                      <div className="showcase-panel__bar">
-                        <div className="showcase-panel__dots"><span /><span /><span /></div>
-                        <div className="showcase-panel__url">public.tableau.com</div>
-                        <a href={TABLEAU_URL} target="_blank" rel="noopener noreferrer" className="showcase-panel__ext" aria-label="Open Tableau in new tab">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        </a>
-                      </div>
-                      <div className="comparison-panel__viewport">
-                        <iframe src={TABLEAU_URL} title="Original Tableau Dashboard — fully interactive" className="comparison-panel__iframe" loading="lazy" />
-                      </div>
-                    </div>
-                    <div className="comparison-panel__meta">
-                      <h3 className="comparison-panel__meta-title">Tableau Public Dashboard</h3>
-                      <p className="comparison-panel__meta-desc">
-                        A project performance analytics dashboard built over several weeks in Tableau Desktop.
-                        Fully functional&nbsp;&mdash; data modeling, calculated fields, interactive filters, and multiple views.
-                        Hosted on Tableau Public. Requires a Tableau license to edit and Tableau literacy to navigate.
-                      </p>
-                      <div className="comparison-panel__meta-tags">
-                        <span className="showcase-tag showcase-tag--neutral">Weeks to build</span>
-                        <span className="showcase-tag showcase-tag--neutral">$75/mo per seat</span>
-                        <span className="showcase-tag showcase-tag--neutral">Platform-constrained</span>
-                        <span className="showcase-tag showcase-tag--neutral">Requires Tableau literacy</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* ── Hard Vertical Divider ── */}
-                  <div className="comparison-divider" aria-hidden="true">
-                    <div className="comparison-divider__line" />
-                    <span className="comparison-divider__badge">vs</span>
-                    <div className="comparison-divider__line" />
-                  </div>
-
-                  {/* ── Web App Panel ── */}
-                  <div className={`comparison-panel comparison-panel--accent${activeView !== 'webapp' ? ' comparison-panel--hidden-sm' : ''}`}>
-                    <div className="comparison-panel__header comparison-panel__header--accent">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                      <span>AI-Built Web App</span>
-                    </div>
-                    <div className="comparison-panel__browser comparison-panel__browser--accent">
-                      <div className="showcase-panel__bar">
-                        <div className="showcase-panel__dots"><span /><span /><span /></div>
-                        <div className="showcase-panel__url">project-performance-analysis.vercel.app</div>
-                        <a href={WEBAPP_URL} target="_blank" rel="noopener noreferrer" className="showcase-panel__ext" aria-label="Open web app in new tab">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        </a>
-                      </div>
-                      <div className="comparison-panel__viewport">
-                        <iframe src={WEBAPP_URL} title="AI-Built React Web App — fully interactive" className="comparison-panel__iframe" loading="lazy" />
-                      </div>
-                    </div>
-                    <div className="comparison-panel__meta">
-                      <h3 className="comparison-panel__meta-title comparison-panel__meta-title--accent">AI-Built React Web App</h3>
-                      <p className="comparison-panel__meta-desc">
-                        A full production web application built in hours using Claude Code and Wispr Flow voice-to-code.
-                        Five dashboard views, interactive charts, KPI cards, CSV upload, executive insights, and strategic
-                        recommendations. Deployed free on Vercel. No login. No license. Open it and use it.
-                      </p>
-                      <div className="comparison-panel__meta-tags">
-                        <span className="showcase-tag showcase-tag--accent">Hours to build</span>
-                        <span className="showcase-tag showcase-tag--accent">$0 hosting</span>
-                        <span className="showcase-tag showcase-tag--accent">Unlimited customization</span>
-                        <span className="showcase-tag showcase-tag--accent">Anyone with a browser</span>
-                      </div>
+                    <div className="comparison-panel__viewport">
+                      <iframe src={TABLEAU_URL} title="Original Tableau Dashboard — fully interactive" className="comparison-panel__iframe" loading="lazy" />
                     </div>
                   </div>
                 </div>
 
-                {/* ─ Unified Comparison Table ─ */}
-                <div className="max-w-5xl mx-auto mt-16 fade-section">
-                  <div className="showcase-compare">
-                    <div className="showcase-compare__head">
-                      <div className="showcase-compare__label">Metric</div>
-                      <div className="showcase-compare__label">Tableau</div>
-                      <div className="showcase-compare__label showcase-compare__label--accent">AI Approach</div>
+                {/* ── VS Badge ── */}
+                <div className="comparison-divider" aria-hidden="true">
+                  <span className="comparison-divider__badge">VS</span>
+                </div>
+
+                {/* ── Web App Panel ── */}
+                <div className={`comparison-panel comparison-panel--accent comparison-panel--slide-right${activeView !== 'webapp' ? ' comparison-panel--hidden-sm' : ''}`}>
+                  <div className="comparison-panel__browser comparison-panel__browser--accent">
+                    <div className="showcase-panel__bar">
+                      <div className="showcase-panel__dots"><span /><span /><span /></div>
+                      <div className="showcase-panel__url">project-performance-analysis.vercel.app</div>
+                      <a href={WEBAPP_URL} target="_blank" rel="noopener noreferrer" className="showcase-panel__ext" aria-label="Open web app in new tab">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      </a>
                     </div>
-                    {COMPARISON_DATA.map(([metric, tableau, ai]) => (
-                      <div className="showcase-compare__row" key={metric}>
-                        <div className="showcase-compare__metric">{metric}</div>
-                        <div className="showcase-compare__val">{tableau}</div>
-                        <div className="showcase-compare__val showcase-compare__val--accent">{ai}</div>
-                      </div>
-                    ))}
+                    <div className="comparison-panel__viewport">
+                      <iframe src={WEBAPP_URL} title="AI-Built React Web App — fully interactive" className="comparison-panel__iframe" loading="lazy" />
+                    </div>
                   </div>
+                </div>
+              </div>
+
+              {/* ─ Metric Comparison Bar ─ */}
+              <div className="comparison-metric-bar">
+                <div className="comparison-metric-bar__item">
+                  <span className="comparison-metric-bar__label">Timeline</span>
+                  <span className="comparison-metric-bar__old">Weeks to Months</span>
+                  <span className="comparison-metric-bar__arrow">&rarr;</span>
+                  <span className="comparison-metric-bar__new">Hours</span>
+                </div>
+                <div className="comparison-metric-bar__divider" />
+                <div className="comparison-metric-bar__item">
+                  <span className="comparison-metric-bar__label">Cost</span>
+                  <span className="comparison-metric-bar__old">$75/mo per seat</span>
+                  <span className="comparison-metric-bar__arrow">&rarr;</span>
+                  <span className="comparison-metric-bar__new">$0</span>
+                </div>
+                <div className="comparison-metric-bar__divider" />
+                <div className="comparison-metric-bar__item">
+                  <span className="comparison-metric-bar__label">Access</span>
+                  <span className="comparison-metric-bar__old">Tableau literacy required</span>
+                  <span className="comparison-metric-bar__arrow">&rarr;</span>
+                  <span className="comparison-metric-bar__new">Anyone with a browser</span>
                 </div>
               </div>
             </div>
