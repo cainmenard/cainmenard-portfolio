@@ -1,6 +1,7 @@
 'use client'
 
-export default function MobileNav({ navItems, activeSection, mobileNav, onClose, secondaryLink = null, ctaHref = null }) {
+export default function MobileNav({ navItems, activeSection, mobileNav, onClose, secondaryLink = null, secondaryLinks = null, ctaHref = null }) {
+  const resolvedLinks = secondaryLinks || (secondaryLink ? [secondaryLink] : [])
   const handleNavClick = (e, id) => {
     e.preventDefault()
     onClose()
@@ -26,10 +27,12 @@ export default function MobileNav({ navItems, activeSection, mobileNav, onClose,
           {item.label}
         </a>
       ))}
-      {secondaryLink && (
+      {resolvedLinks.length > 0 && (
         <>
           <span className="w-12 h-px bg-slate-200 dark:bg-slate-700"></span>
-          <a href={secondaryLink.href} className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={onClose}>{secondaryLink.label}</a>
+          {resolvedLinks.map(link => (
+            <a key={link.href} href={link.href} className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={onClose}>{link.label}</a>
+          ))}
         </>
       )}
       {ctaHref && <a href={ctaHref} className="btn-primary mt-4" onClick={onClose}>Get in Touch</a>}
