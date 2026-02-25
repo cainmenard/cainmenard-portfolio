@@ -190,7 +190,7 @@ export default function Home() {
           <a href="/ai-evolution" className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
-              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">Case Study</span>
+              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">AI &amp; Construction</span>
             </div>
             <div className="flex items-start gap-4 mb-3">
               <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex-shrink-0 mt-0.5">
@@ -199,33 +199,33 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">From Tableau Dashboard to AI-Built Web App</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">The Tool Changed. The Expertise Didn&apos;t.</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
-                  I spent months building a project performance dashboard in Tableau for specialty trade contractors.
-                  Then I rebuilt it as a deployed React application in hours — using Claude Code and Wispr Flow voice-to-code.
-                  Same analysis. Radically different process.
+                  The construction industry has spent decades waiting for technology to catch up to the people
+                  who actually build things. It finally did &mdash; just not the way anyone expected. A deep dive into
+                  AI, domain expertise, and why construction professionals may be sitting on the biggest opportunity in the room.
                 </p>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-3 max-w-lg mb-5">
               <div className="bg-slate-50 dark:bg-slate-800/60 rounded-lg p-3 text-center">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Before</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">Months</p>
-                <p className="text-xs text-slate-400">Tableau Desktop</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Timeline</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white">Weeks</p>
+                <p className="text-xs text-slate-400">&rarr; Hours</p>
               </div>
               <div className="rounded-lg p-3 text-center" style={{ background: 'rgba(217, 119, 6, 0.06)' }}>
-                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>After</p>
-                <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>Hours</p>
-                <p className="text-xs text-slate-400">AI + Voice-to-Code</p>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>Cost</p>
+                <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>$75/mo</p>
+                <p className="text-xs text-slate-400">&rarr; $0</p>
               </div>
               <div className="bg-green-50 dark:bg-green-900/10 rounded-lg p-3 text-center">
-                <p className="text-xs font-semibold uppercase tracking-wider text-green-500 mb-1">Result</p>
-                <p className="text-lg font-bold text-green-600 dark:text-green-400">Deployed</p>
-                <p className="text-xs text-slate-400">React + Vercel</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-green-500 mb-1">Access</p>
+                <p className="text-lg font-bold text-green-600 dark:text-green-400">Anyone</p>
+                <p className="text-xs text-slate-400">with a browser</p>
               </div>
             </div>
             <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
-              Read the Full Story
+              Read the Full Article
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
