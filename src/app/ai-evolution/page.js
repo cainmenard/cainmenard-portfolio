@@ -4,6 +4,7 @@ import Image from 'next/image'
 import SideNav from '@/components/SideNav'
 import Footer from '@/components/Footer'
 import ShareButtons from '@/components/ShareButtons'
+import ReadingProgressBar from '@/components/ReadingProgressBar'
 import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
 
 const TABLEAU_URL = 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no'
@@ -48,6 +49,7 @@ export default function AIEvolution() {
 
   return (
     <>
+      <ReadingProgressBar />
       <SideNav />
 
       {/* ─── Back to Home ─── */}
