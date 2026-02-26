@@ -62,7 +62,7 @@ export default function Home() {
       />
 
       {/* ─── HERO ─── */}
-      <header className="hero-gradient min-h-screen flex items-center pt-16">
+      <header id="main-content" className="hero-gradient min-h-screen flex items-center pt-16">
         <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-5 gap-12 items-center">
           <div className="md:col-span-3 hero-fade-in">
             <p className="section-label mb-4">Digital Operations Leader</p>
@@ -392,7 +392,7 @@ export default function Home() {
 
           <div className="max-w-lg mx-auto mb-12">
             {formStatus === 'sent' ? (
-              <div className="text-center py-8">
+              <div className="text-center py-8" role="status" aria-live="polite">
                 <p className="text-2xl mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>Message sent.</p>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
               </div>
@@ -418,7 +418,7 @@ export default function Home() {
                 <button type="submit" disabled={formStatus === 'sending'} className="btn-primary w-full justify-center">
                   {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
                 </button>
-                {formStatus === 'error' && <p className="text-red-500 text-sm text-center">Something went wrong. Try emailing me directly.</p>}
+                {formStatus === 'error' && <p className="text-red-500 text-sm text-center" role="alert" aria-live="assertive">Something went wrong. Try emailing me directly.</p>}
               </form>
             )}
           </div>

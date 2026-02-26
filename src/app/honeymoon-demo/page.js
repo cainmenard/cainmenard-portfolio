@@ -448,7 +448,7 @@ function TodoView() {
         <div>
           {todos.map((t, i) => !t.done && (
             <div key={i} className="todo">
-              <button className={`todo-ck${t.done ? " dn" : ""}`} onClick={() => toggle(i)} />
+              <button className={`todo-ck${t.done ? " dn" : ""}`} onClick={() => toggle(i)} role="checkbox" aria-checked={t.done} aria-label={t.text} />
               <div>
                 <div className="todo-t">
                   {t.pri && <span className={`pdot pdot-${t.pri}`} />}
@@ -466,7 +466,7 @@ function TodoView() {
           <div>
             {todos.map((t, i) => t.done && (
               <div key={i} className="todo">
-                <button className="todo-ck dn" onClick={() => toggle(i)} />
+                <button className="todo-ck dn" onClick={() => toggle(i)} role="checkbox" aria-checked={t.done} aria-label={t.text} />
                 <div><div className="todo-t dn">{t.text}</div>{t.when && <div className="todo-m">{t.when}</div>}</div>
               </div>
             ))}
@@ -529,6 +529,7 @@ function ResearchView() {
 
 export default function App() {
   const [tab, setTab] = useState("itinerary");
+  const tabsRef = useRef([]);
   const tabs = [
     { id: "itinerary", label: "Itinerary", ct: ITINERARY.length },
     { id: "budget", label: "Budget", ct: BUDGET.length },
@@ -536,21 +537,43 @@ export default function App() {
     { id: "research", label: "Research", ct: RESEARCH.length },
   ];
 
+  const handleTabKeyDown = useCallback((e, idx) => {
+    let nextIdx = null;
+    if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+    if (nextIdx !== null) {
+      e.preventDefault();
+      setTab(tabs[nextIdx].id);
+      tabsRef.current[nextIdx]?.focus();
+    }
+  }, [tabs]);
+
   return (
     <>
       <style>{css}</style>
       <div>
         <Hero />
         <div className="nav-wrap">
-          <div className="nav">
-            {tabs.map(t => (
-              <button key={t.id} className={tab === t.id ? "on" : ""} onClick={() => setTab(t.id)}>
+          <div className="nav" role="tablist" aria-label="Trip planner sections">
+            {tabs.map((t, idx) => (
+              <button
+                key={t.id}
+                ref={(el) => { tabsRef.current[idx] = el }}
+                role="tab"
+                aria-selected={tab === t.id}
+                aria-controls={`panel-${t.id}`}
+                id={`tab-${t.id}`}
+                tabIndex={tab === t.id ? 0 : -1}
+                className={tab === t.id ? "on" : ""}
+                onClick={() => setTab(t.id)}
+                onKeyDown={(e) => handleTabKeyDown(e, idx)}
+              >
                 {t.label}<span className="ct">{t.ct}</span>
               </button>
             ))}
           </div>
         </div>
-        <div className="main">
+        <div className="main" role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`}>
           {tab === "itinerary" && <ItineraryView />}
           {tab === "budget" && <BudgetView />}
           {tab === "todos" && <TodoView />}
