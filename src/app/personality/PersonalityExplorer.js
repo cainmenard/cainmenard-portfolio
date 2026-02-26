@@ -9,7 +9,7 @@ import ThemeDetail from './components/ThemeDetail'
 import Footer from '@/components/Footer'
 
 const HEADLINE_TAGS = [
-  'ENTJ-A', '8w7', 'D: Producer', 'Thrust Energy', 'Verify · Authenticate'
+  'ENTJ-A', '8w7', 'D: Producer', '91st Extraversion', 'Thrust Energy', 'Verify · Authenticate'
 ]
 
 export default function PersonalityExplorer() {
@@ -44,7 +44,7 @@ export default function PersonalityExplorer() {
             <p className="section-label mb-3">Personality Profile</p>
             <h1 className="section-heading text-3xl md:text-4xl mb-4">How I Operate</h1>
             <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-2xl leading-relaxed">
-              Five personality assessments mapped into one interactive profile — from leadership style and communication to decision-making and what happens under pressure.
+              Six personality assessments mapped into one interactive profile — from leadership style and communication to decision-making and what happens under pressure.
             </p>
 
             {/* Headline badges */}

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const TAGS = ['ENTJ-A', '8w7', 'D: Producer', 'Thrust Energy', '7-7-3-3']
+const TAGS = ['ENTJ-A', '8w7', 'D: Producer', '91st Extraversion', 'Thrust Energy', '7-7-3-3']
 
 export default function PersonalityTeaser() {
   return (
@@ -10,7 +10,7 @@ export default function PersonalityTeaser() {
     >
       <div className="flex items-center justify-between mb-2">
         <p className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>How I Operate</p>
-        <span className="text-xs font-medium text-slate-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">5 assessments →</span>
+        <span className="text-xs font-medium text-slate-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">6 assessments →</span>
       </div>
       <div className="flex flex-wrap gap-1.5 mb-3">
         {TAGS.map(tag => (
@@ -18,7 +18,7 @@ export default function PersonalityTeaser() {
         ))}
       </div>
       <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-        Five personality assessments mapped into one interactive profile — from leadership style and communication to decision-making and what happens under pressure.
+        Six personality assessments mapped into one interactive profile — from leadership style and communication to decision-making and what happens under pressure.
       </p>
     </Link>
   )
