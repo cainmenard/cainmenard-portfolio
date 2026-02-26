@@ -106,62 +106,6 @@ export const proscanData = {
 }
 
 // ═══════════════════════════════════════
-// BIG FIVE DATA
-// ═══════════════════════════════════════
-
-export const bigFiveData = {
-  id: 'bigfive',
-  name: 'Big Five',
-  icon: '🧬',
-  headline: 'High E · Low A · Low N',
-  subtitle: 'Understand Myself',
-  source: 'Understand Myself (Jordan Peterson)',
-  summary: 'Very high extraversion (91st) with exceptional assertiveness (92nd). Very low agreeableness (11th) — especially politeness (4th). Low neuroticism (26th) provides stability under pressure. A direct, dominant, authority-challenging profile built for strategic leadership.',
-  factors: [
-    {
-      name: 'Agreeableness', percentile: 11,
-      desc: 'Competitive, straightforward, dominant, skeptical. Effective negotiator. Protects against manipulation.',
-      aspects: [
-        { name: 'Compassion', percentile: 31, desc: 'Not primarily other-oriented. Negotiates effectively on own behalf.' },
-        { name: 'Politeness', percentile: 4, desc: 'Challenges authority. Hyper-dominant. Comfortable with confrontation.' },
-      ]
-    },
-    {
-      name: 'Conscientiousness', percentile: 56,
-      desc: 'Average — reliable, reasonably decisive and organized. Balances work with life.',
-      aspects: [
-        { name: 'Industriousness', percentile: 50, desc: 'Balanced work ethic. Completes duties but values leisure.' },
-        { name: 'Orderliness', percentile: 60, desc: 'Prefers schedules and structure. Somewhat disturbed by mess.' },
-      ]
-    },
-    {
-      name: 'Extraversion', percentile: 91,
-      desc: 'Very enthusiastic, talkative, assertive, gregarious. Captivating and convincing.',
-      aspects: [
-        { name: 'Enthusiasm', percentile: 79, desc: 'Excitable, happy, easy to know. Optimistic and warm.' },
-        { name: 'Assertiveness', percentile: 92, desc: 'Take-charge type. Dominates social situations. Leadership communication.' },
-      ]
-    },
-    {
-      name: 'Neuroticism', percentile: 26,
-      desc: 'Moderately low — copes well, recovers quickly. Tolerant of stress and risk.',
-      aspects: [
-        { name: 'Withdrawal', percentile: 15, desc: 'Rarely impeded by anxiety. Handles uncertainty and complexity well.' },
-        { name: 'Volatility', percentile: 43, desc: 'Average mood stability. Calms down relatively quickly when upset.' },
-      ]
-    },
-    {
-      name: 'Openness', percentile: 68,
-      desc: 'Moderately high — creative, exploratory, intelligent. Enjoys complex abstract ideas.',
-      aspects: [
-        { name: 'Intellect', percentile: 67, desc: 'Interested in ideas and abstract concepts. Articulate, quick-thinking.' },
-        { name: 'Aesthetics', percentile: 63, desc: 'Finds beauty important. Creative, imaginative. Responds to art and music.' },
-      ]
-    },
-  ],
-}
-
-// ═══════════════════════════════════════
 // I.D. DRIVES DATA
 // ═══════════════════════════════════════
 
@@ -193,7 +137,6 @@ export const themes = [
       { source: 'MBTI', insight: 'ENTJ — Te-dominant. Organizes through logic and efficiency. Strategic commander.' },
       { source: 'DISC', insight: 'High D Producer — drives results through goal-setting, autonomy, decisive action.' },
       { source: 'ProScan', insight: 'Persuasive leadership. Builds teams, delegates authority, influences and convinces.' },
-      { source: 'Big Five', insight: '92nd percentile Assertiveness — take-charge communication associated with leadership.' },
       { source: 'Enneagram', insight: '8w7 — leads by imparting strength. Challenges authority, creates own path.' },
       { source: 'I.D.', insight: 'High Verify — leads with thorough investigation before directing action.' },
     ]
@@ -204,7 +147,6 @@ export const themes = [
     points: [
       { source: 'MBTI', insight: '68% Extraverted — speaks first, self-discloses readily, captivating in groups.' },
       { source: 'ProScan', insight: 'Seller/Persuasive — influential, positive, optimistic, inspirational.' },
-      { source: 'Big Five', insight: '91st Extraversion + 4th Politeness — energetic and unfiltered.' },
       { source: 'I.D.', insight: 'High Authenticate — communication driven by genuine connection and honesty.' },
     ]
   },
@@ -214,7 +156,6 @@ export const themes = [
     points: [
       { source: 'MBTI', insight: 'ENTJ-A (Assertive) — maintains confidence through adversity. Fi inferior = emotional blind spot.' },
       { source: 'ProScan', insight: 'Backup: verbal attack — over-explanation when cornered. Zone 5 energy provides capacity.' },
-      { source: 'Big Five', insight: '26th Neuroticism, 15th Withdrawal — rarely impeded by anxiety.' },
       { source: 'Enneagram', insight: '8→5 stress arrow — withdraws, becomes secretive and overly analytical.' },
     ]
   },
@@ -224,7 +165,6 @@ export const themes = [
     points: [
       { source: 'MBTI', insight: 'Te-Ni stack — external logic filtered through pattern recognition.' },
       { source: 'ProScan', insight: 'Feeling logic — instinctive, automatic conclusions based on inner sense.' },
-      { source: 'Big Five', insight: '67th Intellect — interested in abstract ideas. Articulate problem-solver.' },
       { source: 'I.D.', insight: '7/9 Verify — strong drive to investigate and research before committing.' },
     ]
   },
@@ -234,7 +174,6 @@ export const themes = [
     points: [
       { source: 'DISC', insight: 'Goals, competition, advancement, autonomy, recognition.' },
       { source: 'ProScan', insight: 'Thrust energy — rocket-launch self-starting drive. Needs challenge for Zone 5 energy.' },
-      { source: 'Big Five', insight: '91st Extraversion = energized by people. 11th Agreeableness = energized by competition.' },
       { source: 'Enneagram', insight: '8w7 — core desire for strength, independence, freedom. 7 wing adds pursuit of enjoyment.' },
       { source: 'I.D.', insight: 'High Authenticate — motivated by genuine relationships. Avoids Complete — not motivated by process for its own sake.' },
     ]
@@ -242,4 +181,4 @@ export const themes = [
 ]
 
 // Convenience exports
-export const allAssessments = [mbtiData, discData, enneagramData, proscanData, bigFiveData, idDrivesData]
+export const allAssessments = [mbtiData, discData, enneagramData, proscanData, idDrivesData]

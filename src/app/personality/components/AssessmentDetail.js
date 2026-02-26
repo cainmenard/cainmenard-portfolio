@@ -1,5 +1,5 @@
 'use client'
-import { mbtiData, discData, enneagramData, proscanData, bigFiveData, idDrivesData } from '../data'
+import { mbtiData, discData, enneagramData, proscanData, idDrivesData } from '../data'
 import PercentileBar from './charts/PercentileBar'
 import DichotomyScale from './charts/DichotomyScale'
 import DriveSpectrum from './charts/DriveSpectrum'
@@ -208,34 +208,6 @@ function ProScanDetail({ mode }) {
   )
 }
 
-// ─── Big Five Detail ───
-function BigFiveDetail({ mode }) {
-  const d = bigFiveData
-  return (
-    <div>
-      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">{d.summary}</p>
-
-      <SectionTitle>Factor Percentiles</SectionTitle>
-      {d.factors.map((f, i) => (
-        <div key={f.name} className="mb-4">
-          <PercentileBar label={f.name} value={f.percentile} index={i} />
-          {mode === 'full' && (
-            <div className="ml-4 mt-1">
-              <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">{f.desc}</p>
-              {f.aspects.map((a, j) => (
-                <div key={a.name} className="ml-2 mb-2">
-                  <PercentileBar label={a.name} value={a.percentile} index={i * 2 + j + 5} />
-                  <p className="text-xs text-slate-400 ml-1 -mt-1">{a.desc}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  )
-}
-
 // ─── I.D. Drives Detail ───
 function IDDrivesDetail({ mode }) {
   const d = idDrivesData
@@ -262,7 +234,6 @@ const DETAIL_MAP = {
   disc: DISCDetail,
   enneagram: EnneagramDetail,
   proscan: ProScanDetail,
-  bigfive: BigFiveDetail,
   id_drives: IDDrivesDetail,
 }
 
@@ -270,7 +241,7 @@ export default function AssessmentDetail({ assessmentId, mode }) {
   const DetailComponent = DETAIL_MAP[assessmentId]
   if (!DetailComponent) return null
 
-  const assessment = [mbtiData, discData, enneagramData, proscanData, bigFiveData, idDrivesData].find(a => a.id === assessmentId)
+  const assessment = [mbtiData, discData, enneagramData, proscanData, idDrivesData].find(a => a.id === assessmentId)
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 md:p-8 animate-fadeUp">
