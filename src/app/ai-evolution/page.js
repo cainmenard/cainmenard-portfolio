@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import SideNav from '@/components/SideNav'
 import Footer from '@/components/Footer'
+import ShareButtons from '@/components/ShareButtons'
 import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
 
 const TABLEAU_URL = 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no'
@@ -46,7 +47,22 @@ export default function AIEvolution() {
         Home
       </a>
 
-      <div className="min-h-screen article-page">
+      <article className="min-h-screen article-page">
+
+        {/* ─── BREADCRUMB ─── */}
+        <nav aria-label="Breadcrumb" className="breadcrumb-nav">
+          <ol className="breadcrumb-list">
+            <li className="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li className="breadcrumb-item">
+              <a href="/#projects">Case Studies</a>
+            </li>
+            <li className="breadcrumb-item breadcrumb-item--current" aria-current="page">
+              The Tool Changed. The Expertise Didn&apos;t.
+            </li>
+          </ol>
+        </nav>
 
         {/* ─── HERO ─── */}
         <header className="bg-white dark:bg-slate-900 pt-16 pb-14">
@@ -66,10 +82,11 @@ export default function AIEvolution() {
             </p>
             <div className="flex items-center gap-3 pb-8 border-b border-slate-200 dark:border-slate-700">
               <Image src="/headshot.jpg" alt="Cain Menard" width={44} height={44} className="rounded-full" priority />
-              <div>
+              <div className="flex-1">
                 <p className="text-sm font-semibold" style={{ color: 'var(--navy)' }}>Cain Menard</p>
                 <p className="text-xs text-slate-400">Director of Consulting &amp; Operations &nbsp;&middot;&nbsp; 18 min read</p>
               </div>
+              <ShareButtons className="share-buttons--hero" />
             </div>
           </div>
         </header>
@@ -105,6 +122,31 @@ export default function AIEvolution() {
                 room — not despite their lack of technical background, but because of the expertise
                 they already have.
               </p>
+            </div>
+          </section>
+
+          {/* ─── KEY TAKEAWAYS ─── */}
+          <section className="bg-white dark:bg-slate-900 pb-4">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="key-takeaways">
+                <div className="key-takeaways__header">
+                  <svg className="key-takeaways__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
+                    <path d="M9 18h6" />
+                    <path d="M10 22h4" />
+                    <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" />
+                  </svg>
+                  <h2 className="key-takeaways__title">Key Takeaways</h2>
+                </div>
+                <ul className="key-takeaways__list">
+                  <li>AI coding tools reduced a weeks-long Tableau dashboard rebuild to hours as a fully deployed React web application</li>
+                  <li>Domain expertise&nbsp;&mdash; not coding ability&nbsp;&mdash; is the new bottleneck for AI adoption in construction</li>
+                  <li>Construction productivity has grown only 10% since 2000 vs. 90% in manufacturing</li>
+                  <li>96% of construction data goes unused&nbsp;&mdash; the industry is the 2nd least digitized in the U.S.</li>
+                  <li>Organizations with structured change management are 7x more likely to succeed with new technology</li>
+                  <li>The value is shifting from software itself to the expertise of knowing what to build</li>
+                  <li>Readiness&nbsp;&mdash; people, process, data, integration&nbsp;&mdash; matters more than the tool</li>
+                </ul>
+              </div>
             </div>
           </section>
 
@@ -1161,6 +1203,96 @@ export default function AIEvolution() {
                     article is real and live. So is everything else.
                   </p>
                 </div>
+                <ShareButtons className="share-buttons--footer" />
+              </div>
+            </div>
+          </section>
+
+          {/* ─── FAQ ─── */}
+          <section id="faq" className="bg-slate-50 dark:bg-slate-800 py-20">
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <p className="section-label mb-3">Frequently Asked Questions</p>
+              <h2 className="article-section-heading mb-10">Common Questions</h2>
+              <div className="faq-list">
+                <details className="faq-item">
+                  <summary className="faq-item__question">
+                    Can AI replace tools like Tableau for construction analytics?
+                  </summary>
+                  <div className="faq-item__answer article-prose">
+                    <p>
+                      AI coding tools can rebuild Tableau dashboards as full production web applications
+                      in hours rather than weeks. The resulting apps are free to deploy, require no
+                      special software licenses, and are accessible to anyone with a browser. However,
+                      AI excels at building new applications from domain knowledge&nbsp;&mdash; a 2025
+                      METR study found experienced developers were actually 19% slower with AI on complex
+                      maintenance tasks.
+                    </p>
+                  </div>
+                </details>
+                <details className="faq-item">
+                  <summary className="faq-item__question">
+                    How long does it take to build a web app with AI coding tools?
+                  </summary>
+                  <div className="faq-item__answer article-prose">
+                    <p>
+                      Build times vary by complexity, but the case study documents a complete project
+                      performance analytics dashboard&nbsp;&mdash; with 5 interactive views, KPI cards,
+                      cross-dimensional filters, and executive insights&nbsp;&mdash; rebuilt as a
+                      deployed React web app in hours using Claude Code and voice-to-code tools.
+                      GitHub&apos;s controlled experiment found developers using AI coding tools
+                      completed tasks 55.8% faster overall.
+                    </p>
+                  </div>
+                </details>
+                <details className="faq-item">
+                  <summary className="faq-item__question">
+                    What skills do construction professionals need to use AI effectively?
+                  </summary>
+                  <div className="faq-item__answer article-prose">
+                    <p>
+                      Domain expertise is the most critical skill. MIT labor economist David Autor
+                      argues AI&apos;s unique opportunity is to extend the relevance and value of human
+                      expertise. Stanford research found AI creates the greatest value when domain
+                      experts themselves apply it, not when filtered through IT specialists. Construction
+                      professionals who understand project performance, cost drivers, and operational
+                      workflows are uniquely positioned&nbsp;&mdash; the barrier is now describing what
+                      to build, not knowing how to code.
+                    </p>
+                  </div>
+                </details>
+                <details className="faq-item">
+                  <summary className="faq-item__question">
+                    Is the construction industry ready for AI adoption?
+                  </summary>
+                  <div className="faq-item__answer article-prose">
+                    <p>
+                      Most construction companies need foundational work before capturing AI value.
+                      Research shows less than 10% of technology implementation failures are
+                      technical&nbsp;&mdash; 80% depend on people and process. A readiness framework
+                      should address four pillars: Talent (domain experts willing to learn), Process
+                      (standardized workflows, not chaos), Data (clean, integrated, and
+                      accessible&nbsp;&mdash; 96% of construction data currently goes unused), and
+                      Integration (connected systems, not islands). Organizations with structured
+                      change management are 7x more likely to succeed.
+                    </p>
+                  </div>
+                </details>
+                <details className="faq-item">
+                  <summary className="faq-item__question">
+                    What is the ROI of AI in construction?
+                  </summary>
+                  <div className="faq-item__answer article-prose">
+                    <p>
+                      The AI-in-construction market is projected to grow from $3.9 billion to $22.7
+                      billion by 2032. However, an MIT study found 95% of organizations achieved zero
+                      ROI from generative AI investments&nbsp;&mdash; largely due to readiness gaps, not
+                      the technology itself. Construction loses an estimated $177 billion annually to
+                      operational inefficiencies, and field teams lose 14+ hours per week searching for
+                      project information. Companies that address process, data, and change management
+                      foundations first stand to capture significant returns.
+                    </p>
+                  </div>
+                </details>
               </div>
             </div>
           </section>
@@ -1240,7 +1372,7 @@ export default function AIEvolution() {
 
           <Footer variant="simple" />
         </div>
-      </div>
+      </article>
     </>
   )
 }
