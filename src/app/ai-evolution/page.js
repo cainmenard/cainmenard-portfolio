@@ -14,6 +14,21 @@ export default function AIEvolution() {
   const [activeView, setActiveView] = useState('webapp')
   const comparisonRef = useRef(null)
   const [comparisonVisible, setComparisonVisible] = useState(false)
+  const [formStatus, setFormStatus] = useState('idle')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setFormStatus('sending')
+    try {
+      const res = await fetch('https://formspree.io/f/mgollvll', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(e.target),
+      })
+      if (res.ok) { setFormStatus('sent'); e.target.reset() }
+      else { setFormStatus('error') }
+    } catch { setFormStatus('error') }
+  }
 
   useEffect(() => {
     const el = comparisonRef.current
@@ -1296,6 +1311,63 @@ export default function AIEvolution() {
               </div>
             </div>
           </section>
+          {/* ─── CONTACT ─── */}
+          <section id="contact" className="py-24 bg-slate-50 dark:bg-slate-800">
+            <div className="max-w-6xl mx-auto px-6 fade-section">
+              <div className="max-w-2xl mx-auto text-center">
+                <p className="section-label mb-3">Contact</p>
+                <h2 className="section-heading text-3xl md:text-4xl mb-6">Let&apos;s Talk</h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-10 leading-relaxed">
+                  Whether you&apos;re a contractor trying to figure out why you&apos;re leaving money on the table,
+                  a firm looking to modernize operations, or just someone who wants to talk shop —
+                  I&apos;m always up for a conversation.
+                </p>
+              </div>
+
+              <div className="max-w-lg mx-auto mb-12">
+                {formStatus === 'sent' ? (
+                  <div className="text-center py-8" role="status" aria-live="polite">
+                    <p className="text-2xl mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>Message sent.</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="name" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Name</label>
+                        <input type="text" id="name" name="name" required
+                          className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm text-slate-800 dark:text-slate-200 placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="Your name" />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Email</label>
+                        <input type="email" id="email" name="email" required
+                          className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm text-slate-800 dark:text-slate-200 placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="you@company.com" />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Message</label>
+                      <textarea id="message" name="message" rows={4} required
+                        className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm text-slate-800 dark:text-slate-200 placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition resize-none" placeholder="What's on your mind?" />
+                    </div>
+                    <button type="submit" disabled={formStatus === 'sending'} className="btn-primary w-full justify-center">
+                      {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
+                    </button>
+                    {formStatus === 'error' && <p className="text-red-500 text-sm text-center" role="alert" aria-live="assertive">Something went wrong. Try emailing me directly.</p>}
+                  </form>
+                )}
+              </div>
+
+              <div className="max-w-2xl mx-auto text-center">
+                <div className="flex flex-wrap justify-center gap-4 mb-10">
+                  <a href="mailto:cainmenard@gmail.com" className="btn-outline">cainmenard@gmail.com</a>
+                  <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">LinkedIn ↗</a>
+                  <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">GitHub ↗</a>
+                </div>
+                <p className="text-sm text-slate-400">(337) 654-2304 &middot; Atlanta, GA</p>
+              </div>
+            </div>
+          </section>
+
           <Footer variant="simple" />
         </div>
       </article>
