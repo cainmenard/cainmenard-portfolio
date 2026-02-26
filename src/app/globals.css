@@ -698,29 +698,38 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 3px;
-  transform: translateX(-50%);
+  width: 4px;
+  margin-left: -2px;
   background: white;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4), 0 0 12px rgba(0, 0, 0, 0.15);
   cursor: col-resize;
   z-index: 10;
+}
+/* Invisible wider hit area for easier grabbing */
+.before-after-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -16px;
+  right: -16px;
 }
 .before-after-handle {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: white;
-  border: 2px solid var(--accent);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--accent);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 .before-after-handle:hover,
 .before-after-divider:focus-visible .before-after-handle {
