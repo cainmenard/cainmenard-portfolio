@@ -17,6 +17,7 @@ import { PUBLICATIONS } from '@/data/publications'
 import { SKILLS } from '@/data/skills'
 import { CERTS } from '@/data/certifications'
 import PersonalityTeaser from '@/components/PersonalityTeaser'
+import BeforeAfterSlider from '@/components/BeforeAfterSlider'
 
 export default function Home() {
   const activeSection = useSectionObserver()
@@ -189,7 +190,7 @@ export default function Home() {
           <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements — plus a featured case study on rebuilding analytics with AI. Explore the Tableau originals or see how the process evolved.</p>
 
           {/* ─── FEATURED: AI Evolution Case Study ─── */}
-          <a href="/ai-evolution" className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
+          <div className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
               <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">AI &amp; Construction</span>
@@ -209,6 +210,17 @@ export default function Home() {
                 </p>
               </div>
             </div>
+
+            {/* Before/After visual comparison */}
+            <div className="mt-4 mb-5">
+              <BeforeAfterSlider
+                beforeSrc="/tableau-dashboard.png"
+                afterSrc="/react-webapp.png"
+                beforeLabel="Tableau Dashboard"
+                afterLabel="React Web App"
+              />
+            </div>
+
             <div className="grid grid-cols-3 gap-3 max-w-lg mb-5">
               <div className="bg-slate-50 dark:bg-slate-800/60 rounded-lg p-3 text-center">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Timeline</p>
@@ -226,14 +238,14 @@ export default function Home() {
                 <p className="text-xs text-slate-400">with a browser</p>
               </div>
             </div>
-            <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
+            <a href="/ai-evolution" className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
               Read the Full Article
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
-            </span>
-          </a>
+            </a>
+          </div>
 
           <div className="space-y-10">
             {TABLEAU_DASHBOARDS.map((d, i) => (
