@@ -17,7 +17,7 @@ import { PUBLICATIONS } from '@/data/publications'
 import { SKILLS } from '@/data/skills'
 import { CERTS } from '@/data/certifications'
 import PersonalityTeaser from '@/components/PersonalityTeaser'
-import BeforeAfterSlider from '@/components/BeforeAfterSlider'
+import ComparisonEmbed from '@/components/ComparisonEmbed'
 
 export default function Home() {
   const activeSection = useSectionObserver()
@@ -211,13 +211,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Before/After visual comparison */}
+            {/* Live before/after embed comparison */}
             <div className="mt-4 mb-5">
-              <BeforeAfterSlider
-                beforeSrc="/tableau-dashboard.png"
-                afterSrc="/react-webapp.png"
-                beforeLabel="Tableau Dashboard"
-                afterLabel="React Web App"
+              <ComparisonEmbed
+                tableauUrl="https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=n&:origin=viz_share_link"
+                webAppUrl="https://project-performance-analysis.vercel.app/"
               />
             </div>
 

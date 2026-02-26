@@ -676,72 +676,23 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245, 158, 11, 0.15);
 }
 
-/* ─── Before/After Slider ─── */
-.before-after-slider-container {
+/* ─── Comparison Embed ─── */
+.comparison-embed-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border-radius: 10px;
-  cursor: col-resize;
-  user-select: none;
-  -webkit-user-select: none;
+  padding-top: 62%;
   background: #f1f5f9;
 }
-.dark .before-after-slider-container {
+.dark .comparison-embed-frame {
   background: #1e293b;
 }
-.before-after-slider-container.is-dragging {
-  cursor: col-resize;
-}
-.before-after-divider {
+.comparison-embed-frame iframe {
   position: absolute;
   top: 0;
-  bottom: 0;
-  width: 4px;
-  margin-left: -2px;
-  background: white;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4), 0 0 12px rgba(0, 0, 0, 0.15);
-  cursor: col-resize;
-  z-index: 10;
-}
-/* Invisible wider hit area for easier grabbing */
-.before-after-divider::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -16px;
-  right: -16px;
-}
-.before-after-handle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: white;
-  border: 3px solid var(--accent);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-.before-after-handle:hover,
-.before-after-divider:focus-visible .before-after-handle {
-  border-color: var(--accent-light);
-  box-shadow: 0 2px 12px rgba(217, 119, 6, 0.35);
-}
-.before-after-divider:focus-visible {
-  outline: none;
-}
-.before-after-divider:focus-visible .before-after-handle {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* ─── Evolution Timeline ─── */
