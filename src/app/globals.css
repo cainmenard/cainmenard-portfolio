@@ -2474,3 +2474,45 @@ a.cite-num:hover {
     padding: 1rem 1.25rem;
   }
 }
+
+/* ─── Skip-to-main-content link ─── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--navy);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 0 0 8px 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 100;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .fade-section .stagger-child {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .hero-fade-in {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}

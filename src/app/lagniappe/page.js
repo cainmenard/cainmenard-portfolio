@@ -12,10 +12,10 @@ import { RECIPES } from '@/data/recipes'
 import { WEB_APPS } from '@/data/webApps'
 
 const PHOTOS = [
-  { src: '/lagniappe/photo-1.jpg', alt: 'Photo' },
-  { src: '/lagniappe/photo-2.jpg', alt: 'Photo' },
-  { src: '/lagniappe/photo-3.jpg', alt: 'Photo' },
-  { src: '/lagniappe/photo-4.jpg', alt: 'Photo' },
+  { src: '/lagniappe/photo-1.jpg', alt: 'Cain and Samantha on a mountain hike' },
+  { src: '/lagniappe/photo-2.jpg', alt: 'Traveling together in Europe' },
+  { src: '/lagniappe/photo-3.jpg', alt: 'Outdoor adventure in the mountains' },
+  { src: '/lagniappe/photo-4.jpg', alt: 'Louisiana bayou country landscape' },
 ]
 
 export default function Lagniappe() {

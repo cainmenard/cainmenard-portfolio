@@ -5,14 +5,19 @@ export default function RecipeCard({ recipe }) {
   const [open, setOpen] = useState(false)
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-      <button onClick={() => setOpen(!open)} className="w-full text-left p-6 hover:bg-slate-50 dark:hover:bg-slate-750 transition">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full text-left p-6 hover:bg-slate-50 dark:hover:bg-slate-750 transition"
+        aria-expanded={open}
+        aria-controls={`recipe-${recipe.id}`}
+      >
         <div className="flex items-start justify-between gap-4">
           <div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{recipe.title}</h3>
             <p className="text-xs text-slate-400 italic">From the kitchen of: {recipe.attribution}</p>
             {recipe.serves && <p className="text-xs text-slate-400 mt-1">Serves {recipe.serves}</p>}
           </div>
-          <span className="text-slate-300 dark:text-slate-500 text-xl mt-1 shrink-0">{open ? '\u2212' : '+'}</span>
+          <span className="text-slate-300 dark:text-slate-500 text-xl mt-1 shrink-0" aria-hidden="true">{open ? '\u2212' : '+'}</span>
         </div>
         {!open && (
           <div className="flex flex-wrap gap-1.5 mt-3">
@@ -22,7 +27,7 @@ export default function RecipeCard({ recipe }) {
       </button>
 
       {open && (
-        <div className="px-6 pb-6 border-t border-slate-100 dark:border-slate-700 pt-4 space-y-5">
+        <div id={`recipe-${recipe.id}`} role="region" aria-label={recipe.title} className="px-6 pb-6 border-t border-slate-100 dark:border-slate-700 pt-4 space-y-5">
           <div className="flex flex-wrap gap-1.5">
             {recipe.tags.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 font-medium">{t}</span>)}
           </div>

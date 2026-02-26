@@ -11,6 +11,9 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
   const moreRef = useRef(null)
   const itemsRef = useRef(null)
 
+  const [focusedDropdownIndex, setFocusedDropdownIndex] = useState(-1)
+  const dropdownItemsRef = useRef([])
+
   /* ── Close "More" dropdown on outside click ── */
   useEffect(() => {
     if (!moreOpen) return
@@ -19,6 +22,34 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
     }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
+  }, [moreOpen])
+
+  /* ── Close dropdown on Escape, navigate with arrow keys ── */
+  useEffect(() => {
+    if (!moreOpen) return
+    const handler = (e) => {
+      if (e.key === 'Escape') {
+        setMoreOpen(false)
+        setFocusedDropdownIndex(-1)
+        moreRef.current?.querySelector('button')?.focus()
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        setFocusedDropdownIndex(prev => {
+          const next = Math.min(prev + 1, dropdownItemsRef.current.length - 1)
+          dropdownItemsRef.current[next]?.focus()
+          return next
+        })
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setFocusedDropdownIndex(prev => {
+          const next = Math.max(prev - 1, 0)
+          dropdownItemsRef.current[next]?.focus()
+          return next
+        })
+      }
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
   }, [moreOpen])
 
   /* ── Measure nav items and determine overflow ── */
@@ -138,7 +169,15 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
           {overflowItems.length > 0 && (
             <div className="relative flex-shrink-0" ref={moreRef}>
               <button
-                onClick={() => setMoreOpen(v => !v)}
+                onClick={() => { setMoreOpen(v => !v); setFocusedDropdownIndex(-1) }}
+                onKeyDown={(e) => {
+                  if (e.key === 'ArrowDown') {
+                    e.preventDefault()
+                    setMoreOpen(true)
+                    setFocusedDropdownIndex(0)
+                    setTimeout(() => dropdownItemsRef.current[0]?.focus(), 0)
+                  }
+                }}
                 className={`nav-link flex items-center gap-1 whitespace-nowrap ${overflowItems.some(i => activeSection === i.id) ? 'active' : ''}`}
                 aria-expanded={moreOpen}
                 aria-haspopup="true"
@@ -152,13 +191,16 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
               </button>
-              <div className={`nav-dropdown ${moreOpen ? 'nav-dropdown--open' : ''}`}>
-                {overflowItems.map(item => (
+              <div className={`nav-dropdown ${moreOpen ? 'nav-dropdown--open' : ''}`} role="menu">
+                {overflowItems.map((item, idx) => (
                   <a
                     key={item.id}
+                    ref={(el) => { dropdownItemsRef.current[idx] = el }}
                     href={`#${item.id}`}
                     onClick={(e) => handleNavClick(e, item.id)}
                     className={`nav-dropdown__item ${activeSection === item.id ? 'active' : ''}`}
+                    role="menuitem"
+                    tabIndex={moreOpen ? 0 : -1}
                   >
                     {item.label}
                   </a>
