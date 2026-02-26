@@ -16,7 +16,7 @@ export default function ComparisonEmbed({ tableauUrl, webAppUrl }) {
   }, [])
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="relative z-10">
       {/* Toggle tabs */}
       <div className="flex items-center gap-1 mb-3 bg-slate-100 dark:bg-slate-800 rounded-lg p-1 max-w-xs">
         <button
