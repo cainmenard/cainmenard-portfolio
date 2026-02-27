@@ -7,6 +7,9 @@ import IDInput from './input/IDInput'
 import ProScanInput from './input/ProScanInput'
 import MBTIWheel from './charts/MBTIWheel'
 import DISCCircle from './charts/DISCCircle'
+import EnneagramTriads from './charts/EnneagramTriads'
+import IDRadar from './charts/IDRadar'
+import ProScanBars from './charts/ProScanBars'
 
 // Default ID state — all at NEUTRAL (5)
 const DEFAULT_ID = { verify: 5, authenticate: 5, complete: 5, improvise: 5 }
@@ -110,8 +113,8 @@ export default function ComparisonContainer() {
         )}
       </div>
 
-      {/* ── Visual charts ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+      {/* ── Visual charts row 1: MBTI + DISC ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
           <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
             MBTI Position
@@ -125,6 +128,25 @@ export default function ComparisonContainer() {
           <DISCCircle visitorCode={disc} />
         </div>
       </div>
+
+      {/* ── Visual charts row 2: Enneagram + I.D. Radar ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        <div>
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
+            Enneagram Position
+          </p>
+          <EnneagramTriads visitorType={enneagram.type} visitorWing={enneagram.wing} />
+        </div>
+        <div>
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
+            I.D. Drives Profile
+          </p>
+          <IDRadar idDrives={idDrives} />
+        </div>
+      </div>
+
+      {/* ── ProScan comparison (conditional — appears when visitor ProScan is complete) ── */}
+      <ProScanBars visitorProScan={proScan} />
 
       {/* Input cards grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
