@@ -83,7 +83,7 @@ export default function DISCCircle({ visitorCode = null }) {
       {/* ── Axis labels (outside circle) ── */}
       {/* Top: Fast / Outgoing */}
       <text
-        x={CX} y={axisTop.y - 16}
+        x={CX} y={axisTop.y - 24}
         textAnchor="middle"
         fontSize={9}
         letterSpacing="0.04em"
@@ -95,7 +95,7 @@ export default function DISCCircle({ visitorCode = null }) {
 
       {/* Bottom: Moderate / Reserved */}
       <text
-        x={CX} y={axisBottom.y + 20}
+        x={CX} y={axisBottom.y + 24}
         textAnchor="middle"
         fontSize={9}
         letterSpacing="0.04em"
@@ -107,8 +107,8 @@ export default function DISCCircle({ visitorCode = null }) {
 
       {/* Left: Task-Oriented (rotated vertical text) */}
       <text
-        transform={`rotate(-90 ${axisLeft.x - 20} ${CY})`}
-        x={axisLeft.x - 20}
+        transform={`rotate(-90 ${axisLeft.x - 24} ${CY})`}
+        x={axisLeft.x - 24}
         y={CY}
         textAnchor="middle"
         dominantBaseline="middle"
@@ -122,8 +122,8 @@ export default function DISCCircle({ visitorCode = null }) {
 
       {/* Right: People-Oriented (rotated vertical text) */}
       <text
-        transform={`rotate(90 ${axisRight.x + 20} ${CY})`}
-        x={axisRight.x + 20}
+        transform={`rotate(90 ${axisRight.x + 24} ${CY})`}
+        x={axisRight.x + 24}
         y={CY}
         textAnchor="middle"
         dominantBaseline="middle"
@@ -204,19 +204,21 @@ export default function DISCCircle({ visitorCode = null }) {
             {!isMe && !isVis && (
               <circle cx={p.x} cy={p.y} r={3} fill="#475569" opacity={0.5} />
             )}
-            {/* Label */}
-            <text
-              x={lp.x}
-              y={lp.y}
-              textAnchor={anc}
-              dominantBaseline="middle"
-              fontSize={isMe || isVis ? 10 : 7.5}
-              fontWeight={isMe || isVis ? '600' : '400'}
-              fill={isMe ? '#f59e0b' : isVis ? '#38bdf8' : 'currentColor'}
-              opacity={isMe || isVis ? 1 : 0.38}
-            >
-              {profile.code}
-            </text>
+            {/* Label — omit for pure styles (D/I/S/C); they have watermarks inside ring */}
+            {profile.secondary !== null && (
+              <text
+                x={lp.x}
+                y={lp.y}
+                textAnchor={anc}
+                dominantBaseline="middle"
+                fontSize={isMe || isVis ? 10 : 7.5}
+                fontWeight={isMe || isVis ? '600' : '400'}
+                fill={isMe ? '#f59e0b' : isVis ? '#38bdf8' : 'currentColor'}
+                opacity={isMe || isVis ? 1 : 0.38}
+              >
+                {profile.code}
+              </text>
+            )}
           </g>
         )
       })}
@@ -231,13 +233,10 @@ export default function DISCCircle({ visitorCode = null }) {
 
       {/* ── Real visitor marker (animated pop-in) ── */}
       {!isDemoData && (
-        <g
-          key={visitorCode}
-          transform={`translate(${visitorPos.x} ${visitorPos.y})`}
-          style={{ transformOrigin: '0px 0px' }}
-          className="marker-pop"
-        >
-          <circle r={8} fill="#38bdf8" stroke="rgba(255,255,255,0.22)" strokeWidth={1.5} />
+        <g key={visitorCode} transform={`translate(${visitorPos.x} ${visitorPos.y})`}>
+          <g className="marker-pop">
+            <circle r={8} fill="#38bdf8" stroke="rgba(255,255,255,0.22)" strokeWidth={1.5} />
+          </g>
         </g>
       )}
 

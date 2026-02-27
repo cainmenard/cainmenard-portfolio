@@ -201,13 +201,10 @@ export default function MBTIWheel({ visitorType = null }) {
 
       {/* ── Real visitor marker (animated pop-in when type is selected) ── */}
       {!isDemoData && (
-        <g
-          key={visitorType}
-          transform={`translate(${visitorPos.x} ${visitorPos.y})`}
-          style={{ transformOrigin: '0px 0px' }}
-          className="marker-pop"
-        >
-          <circle r={8} fill="#38bdf8" stroke="rgba(255,255,255,0.22)" strokeWidth={1.5} />
+        <g key={visitorType} transform={`translate(${visitorPos.x} ${visitorPos.y})`}>
+          <g className="marker-pop">
+            <circle r={8} fill="#38bdf8" stroke="rgba(255,255,255,0.22)" strokeWidth={1.5} />
+          </g>
         </g>
       )}
 

@@ -396,6 +396,8 @@ body {
 }
 .marker-pop {
   animation: markerPop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-box: fill-box;
+  transform-origin: center center;
 }
 
 /* ─── Hero ─── */

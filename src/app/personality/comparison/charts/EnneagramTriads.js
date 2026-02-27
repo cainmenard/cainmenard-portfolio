@@ -262,11 +262,10 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
 
       {/* ── Real visitor marker (animated pop-in) ── */}
       {!isDemoData && (
-        <g key={`${visitorType}-${visitorWing}`}
-          transform={`translate(${visitorPos.x} ${visitorPos.y})`}
-          style={{ transformOrigin: '0px 0px' }}
-          className="marker-pop">
-          <circle r={8} fill="#38bdf8" stroke="rgba(255,255,255,0.22)" strokeWidth={1.5} />
+        <g key={`${visitorType}-${visitorWing}`} transform={`translate(${visitorPos.x} ${visitorPos.y})`}>
+          <g className="marker-pop">
+            <circle r={8} fill="#38bdf8" stroke="rgba(255,255,255,0.22)" strokeWidth={1.5} />
+          </g>
         </g>
       )}
 
