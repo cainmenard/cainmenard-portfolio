@@ -16,6 +16,8 @@ import { TABLEAU_DASHBOARDS } from '@/data/tableauDashboards'
 import { PUBLICATIONS } from '@/data/publications'
 import { SKILLS } from '@/data/skills'
 import { CERTS } from '@/data/certifications'
+import PersonalityTeaser from '@/components/PersonalityTeaser'
+import ComparisonEmbed from '@/components/ComparisonEmbed'
 
 export default function Home() {
   const activeSection = useSectionObserver()
@@ -50,18 +52,18 @@ export default function Home() {
         onToggleMobile={() => setMobileNav(!mobileNav)}
         logoHref="#"
         ctaHref="#contact"
-        secondaryLink={{ href: '/lagniappe', label: 'Lagniappe' }}
+        secondaryLinks={[{ href: '/personality', label: 'Personality' }, { href: '/lagniappe', label: 'Lagniappe' }]}
       />
       <MobileNav
         navItems={NAV_ITEMS}
         mobileNav={mobileNav}
         onClose={() => setMobileNav(false)}
-        secondaryLink={{ href: '/lagniappe', label: 'Lagniappe' }}
+        secondaryLinks={[{ href: '/personality', label: 'Personality' }, { href: '/lagniappe', label: 'Lagniappe' }]}
         ctaHref="#contact"
       />
 
       {/* ─── HERO ─── */}
-      <header className="hero-gradient min-h-screen flex items-center pt-16">
+      <header id="main-content" className="hero-gradient min-h-screen flex items-center pt-16">
         <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-5 gap-12 items-center">
           <div className="md:col-span-3 hero-fade-in">
             <p className="section-label mb-4">Digital Operations Leader</p>
@@ -174,6 +176,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              <PersonalityTeaser />
             </div>
           </div>
         </div>
@@ -187,51 +190,66 @@ export default function Home() {
           <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements — plus a featured case study on rebuilding analytics with AI. Explore the Tableau originals or see how the process evolved.</p>
 
           {/* ─── FEATURED: AI Evolution Case Study ─── */}
-          <a href="/ai-evolution" className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
-              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">Case Study</span>
+          <div className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
+            {/* Top section — links to article */}
+            <a href="/ai-evolution" className="block text-inherit no-underline">
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
+                <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">AI &amp; Construction</span>
+              </div>
+              <div className="flex items-start gap-4 mb-3">
+                <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex-shrink-0 mt-0.5">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600 dark:text-amber-400">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">The Tool Changed. The Expertise Didn&apos;t.</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
+                    The construction industry has spent decades waiting for technology to catch up to the people
+                    who actually build things. It finally did &mdash; just not the way anyone expected. A deep dive into
+                    AI, domain expertise, and why construction professionals may be sitting on the biggest opportunity in the room.
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            {/* Live before/after embed comparison — stays interactive */}
+            <div className="mt-4 mb-5">
+              <ComparisonEmbed
+                tableauUrl="https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no"
+                webAppUrl="https://project-performance-analysis.vercel.app/"
+              />
             </div>
-            <div className="flex items-start gap-4 mb-3">
-              <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex-shrink-0 mt-0.5">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600 dark:text-amber-400">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+
+            {/* Bottom section — links to article */}
+            <a href="/ai-evolution" className="block text-inherit no-underline">
+              <div className="grid grid-cols-3 gap-3 max-w-lg mb-5">
+                <div className="bg-slate-50 dark:bg-slate-800/60 rounded-lg p-3 text-center">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Timeline</p>
+                  <p className="text-lg font-bold text-slate-900 dark:text-white">Weeks</p>
+                  <p className="text-xs text-slate-400">&rarr; Hours</p>
+                </div>
+                <div className="rounded-lg p-3 text-center" style={{ background: 'rgba(217, 119, 6, 0.06)' }}>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>Cost</p>
+                  <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>$75/mo</p>
+                  <p className="text-xs text-slate-400">&rarr; $0</p>
+                </div>
+                <div className="bg-green-50 dark:bg-green-900/10 rounded-lg p-3 text-center">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-green-500 mb-1">Access</p>
+                  <p className="text-lg font-bold text-green-600 dark:text-green-400">Anyone</p>
+                  <p className="text-xs text-slate-400">with a browser</p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
+                Read the Full Article
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
                 </svg>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">From Tableau Dashboard to AI-Built Web App</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
-                  I spent months building a project performance dashboard in Tableau for specialty trade contractors.
-                  Then I rebuilt it as a deployed React application in hours — using Claude Code and Wispr Flow voice-to-code.
-                  Same analysis. Radically different process.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-3 gap-3 max-w-lg mb-5">
-              <div className="bg-slate-50 dark:bg-slate-800/60 rounded-lg p-3 text-center">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Before</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">Months</p>
-                <p className="text-xs text-slate-400">Tableau Desktop</p>
-              </div>
-              <div className="rounded-lg p-3 text-center" style={{ background: 'rgba(217, 119, 6, 0.06)' }}>
-                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>After</p>
-                <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>Hours</p>
-                <p className="text-xs text-slate-400">AI + Voice-to-Code</p>
-              </div>
-              <div className="bg-green-50 dark:bg-green-900/10 rounded-lg p-3 text-center">
-                <p className="text-xs font-semibold uppercase tracking-wider text-green-500 mb-1">Result</p>
-                <p className="text-lg font-bold text-green-600 dark:text-green-400">Deployed</p>
-                <p className="text-xs text-slate-400">React + Vercel</p>
-              </div>
-            </div>
-            <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
-              Read the Full Story
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </span>
-          </a>
+              </span>
+            </a>
+          </div>
 
           <div className="space-y-10">
             {TABLEAU_DASHBOARDS.map((d, i) => (
@@ -390,7 +408,7 @@ export default function Home() {
 
           <div className="max-w-lg mx-auto mb-12">
             {formStatus === 'sent' ? (
-              <div className="text-center py-8">
+              <div className="text-center py-8" role="status" aria-live="polite">
                 <p className="text-2xl mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>Message sent.</p>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
               </div>
@@ -416,7 +434,7 @@ export default function Home() {
                 <button type="submit" disabled={formStatus === 'sending'} className="btn-primary w-full justify-center">
                   {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
                 </button>
-                {formStatus === 'error' && <p className="text-red-500 text-sm text-center">Something went wrong. Try emailing me directly.</p>}
+                {formStatus === 'error' && <p className="text-red-500 text-sm text-center" role="alert" aria-live="assertive">Something went wrong. Try emailing me directly.</p>}
               </form>
             )}
           </div>
