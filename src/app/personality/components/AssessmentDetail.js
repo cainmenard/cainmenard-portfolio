@@ -1,5 +1,5 @@
 'use client'
-import { mbtiData, discData, enneagramData, proscanData, idDrivesData } from '../data'
+import { mbtiData, discData, enneagramData, proscanData, idDrivesData, bigFiveData, allAssessments } from '../data'
 import PercentileBar from './charts/PercentileBar'
 import DichotomyScale from './charts/DichotomyScale'
 import DriveSpectrum from './charts/DriveSpectrum'
@@ -228,12 +228,42 @@ function IDDrivesDetail({ mode }) {
   )
 }
 
+// ─── Big Five Detail ───
+function BigFiveDetail({ mode }) {
+  const d = bigFiveData
+  return (
+    <div>
+      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">{d.summary}</p>
+
+      <SectionTitle>Factors</SectionTitle>
+      {d.factors.map((f, i) => (
+        <div key={f.name} className="mb-4">
+          <PercentileBar label={f.name} value={f.percentile} index={i} />
+          <p className="text-xs text-slate-500 dark:text-slate-400 -mt-1 ml-1 mb-2">{f.desc}</p>
+
+          {mode === 'full' && (
+            <div className="ml-4 border-l-2 border-slate-100 dark:border-slate-700 pl-4">
+              {f.aspects.map((a, j) => (
+                <div key={a.name} className="mb-3">
+                  <PercentileBar label={a.name} value={a.percentile} index={i * 2 + j} />
+                  <p className="text-xs text-slate-500 dark:text-slate-400 -mt-1 ml-1">{a.desc}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 // ─── Main Dispatcher ───
 const DETAIL_MAP = {
   mbti: MBTIDetail,
   disc: DISCDetail,
   enneagram: EnneagramDetail,
   proscan: ProScanDetail,
+  bigfive: BigFiveDetail,
   id_drives: IDDrivesDetail,
 }
 
@@ -241,7 +271,7 @@ export default function AssessmentDetail({ assessmentId, mode }) {
   const DetailComponent = DETAIL_MAP[assessmentId]
   if (!DetailComponent) return null
 
-  const assessment = [mbtiData, discData, enneagramData, proscanData, idDrivesData].find(a => a.id === assessmentId)
+  const assessment = allAssessments.find(a => a.id === assessmentId)
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 md:p-8 animate-fadeUp">
