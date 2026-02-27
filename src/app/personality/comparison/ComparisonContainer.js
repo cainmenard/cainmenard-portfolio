@@ -5,6 +5,8 @@ import DISCSelector from './input/DISCSelector'
 import EnneagramSelector from './input/EnneagramSelector'
 import IDInput from './input/IDInput'
 import ProScanInput from './input/ProScanInput'
+import MBTIWheel from './charts/MBTIWheel'
+import DISCCircle from './charts/DISCCircle'
 
 // Default ID state — all at NEUTRAL (5)
 const DEFAULT_ID = { verify: 5, authenticate: 5, complete: 5, improvise: 5 }
@@ -106,6 +108,22 @@ export default function ComparisonContainer() {
             Reset All
           </button>
         )}
+      </div>
+
+      {/* ── Visual charts ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+        <div>
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
+            MBTI Position
+          </p>
+          <MBTIWheel visitorType={mbti} />
+        </div>
+        <div>
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
+            DISC Style
+          </p>
+          <DISCCircle visitorCode={disc} />
+        </div>
       </div>
 
       {/* Input cards grid */}

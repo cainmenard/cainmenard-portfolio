@@ -389,6 +389,15 @@ body {
   animation: fadeUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ─── SVG chart marker pop-in animation ─── */
+@keyframes markerPop {
+  from { opacity: 0; transform: scale(0.25); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.marker-pop {
+  animation: markerPop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* ─── Hero ─── */
 .hero-gradient {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 40%, #e2e8f0 100%);
