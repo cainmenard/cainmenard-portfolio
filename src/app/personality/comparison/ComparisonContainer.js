@@ -10,6 +10,7 @@ import DISCCircle from './charts/DISCCircle'
 import EnneagramTriads from './charts/EnneagramTriads'
 import IDRadar from './charts/IDRadar'
 import ProScanBars from './charts/ProScanBars'
+import InsightsPanel from './insights/InsightsPanel'
 
 // Default ID state — all at NEUTRAL (5)
 const DEFAULT_ID = { verify: 5, authenticate: 5, complete: 5, improvise: 5 }
@@ -176,18 +177,11 @@ export default function ComparisonContainer() {
         </div>
       </div>
 
-      {/* Results placeholder — appears once at least 2 frameworks are entered */}
+      {/* Collaboration Insights — appears once at least 2 frameworks are entered */}
       {completedCount >= 2 && (
-        <div className="p-6 rounded-xl border border-dashed border-amber-200 dark:border-amber-800 bg-amber-50/60 dark:bg-amber-900/10 animate-fadeUp">
-          <p className="text-sm font-bold text-amber-700 dark:text-amber-400 mb-1">
-            {completedCount} of 5 frameworks entered
-          </p>
-          <p className="text-xs text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">
-            You&apos;ve entered: {completedLabels.join(', ')}.
-            Detailed collaboration insights — communication style alignment, decision-making
-            patterns, conflict tendencies, and delegation fit — are coming in the next build phase.
-          </p>
-        </div>
+        <InsightsPanel
+          visitorProfile={{ mbti, disc, enneagram, idDrives, proScan }}
+        />
       )}
     </div>
   )
