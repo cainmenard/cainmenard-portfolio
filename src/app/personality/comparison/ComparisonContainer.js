@@ -14,6 +14,7 @@ import EnneagramTriads from './charts/EnneagramTriads'
 import IDRadar from './charts/IDRadar'
 import ProScanBars from './charts/ProScanBars'
 import InsightsPanel from './insights/InsightsPanel'
+import InsightsContainer from './insights/InsightsContainer'
 
 // ── Default state ──────────────────────────────────────────────────────────
 const DEFAULT_ID = { verify: 5, authenticate: 5, complete: 5, improvise: 5 }
@@ -386,9 +387,14 @@ export default function ComparisonContainer() {
             {/* ProScan — always visible in Compare tab using effective profile */}
             <ProScanBars visitorProScan={effectiveProScan} />
 
-            {/* Insights panel — only with real visitor data, never sample */}
+            {/* Insights panel — legacy accordion (2+ assessments) */}
             {completedCount >= 2 && (
               <InsightsPanel visitorProfile={{ mbti, disc, enneagram, idDrives, proScan }} />
+            )}
+
+            {/* Collaboration insights — card grid, appears with 1+ assessment */}
+            {completedCount >= 1 && (
+              <InsightsContainer visitorProfile={{ mbti, disc, enneagram, idDrives, proScan }} />
             )}
           </div>
         )}
