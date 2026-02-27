@@ -137,11 +137,11 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
           <g key={`tlabel-${s.key}`}>
             <text x={p.x} y={p.y - 5} textAnchor="middle" dominantBaseline="auto"
               fontSize={10} fontWeight="700" letterSpacing="0.06em"
-              fill="currentColor" opacity={0.18}>
+              fill="currentColor" opacity={0.35}>
               {s.key.toUpperCase()}
             </text>
             <text x={p.x} y={p.y + 8} textAnchor="middle" dominantBaseline="auto"
-              fontSize={7} letterSpacing="0.04em" fill="currentColor" opacity={0.13}>
+              fontSize={7} letterSpacing="0.04em" fill="currentColor" opacity={0.25}>
               {triad.coreEmotion.toUpperCase()}
             </text>
           </g>
@@ -235,7 +235,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
               fontSize={isCain || isVisitor ? 11 : 10}
               fontWeight={isCain || isVisitor ? '700' : '500'}
               fill={isCain ? '#f59e0b' : isVisitor ? '#38bdf8' : 'currentColor'}
-              opacity={isCain || isVisitor ? 1 : 0.45}>
+              opacity={isCain || isVisitor ? 1 : 0.58}>
               {typeNum}
             </text>
             {/* Short name */}
@@ -244,7 +244,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
               textAnchor={anc} dominantBaseline="auto"
               fontSize={7}
               fill={isCain ? '#f59e0b' : isVisitor ? '#38bdf8' : 'currentColor'}
-              opacity={isCain || isVisitor ? 0.7 : 0.28}>
+              opacity={isCain || isVisitor ? 0.7 : 0.45}>
               {shortName}
             </text>
           </g>
@@ -279,7 +279,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
       <g transform="translate(34 485)">
         <circle cx={0} cy={0} r={5} fill="#f59e0b" />
         <text x={13} y={1} dominantBaseline="middle" fontSize={11}
-          fill="currentColor" opacity={0.7}>
+          fill="currentColor" opacity={0.8}>
           Cain ({wingLabel(CAIN_TYPE, CAIN_WING)})
         </text>
 
@@ -290,7 +290,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
           <circle cx={0} cy={22} r={5} fill="#38bdf8" />
         )}
         <text x={13} y={23} dominantBaseline="middle" fontSize={11}
-          fill="currentColor" opacity={isDemoData ? 0.42 : 0.7}>
+          fill="currentColor" opacity={isDemoData ? 0.55 : 0.8}>
           {isDemoData
             ? `${DEMO_TYPE} (sample)`
             : wingLabel(activeType, activeWing) + ' (you)'}
@@ -301,7 +301,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
           stroke="rgba(21,128,61,0.55)" strokeWidth={1.25} strokeDasharray="3 2"
           markerEnd="url(#arr-growth)" />
         <text x={25} y={45} dominantBaseline="middle" fontSize={10}
-          fill="currentColor" opacity={0.5}>
+          fill="currentColor" opacity={0.65}>
           Growth (integration)
         </text>
 
@@ -309,7 +309,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
           stroke="rgba(185,28,28,0.55)" strokeWidth={1.25} strokeDasharray="3 2"
           markerEnd="url(#arr-stress)" />
         <text x={25} y={61} dominantBaseline="middle" fontSize={10}
-          fill="currentColor" opacity={0.5}>
+          fill="currentColor" opacity={0.65}>
           Stress (disintegration)
         </text>
       </g>
@@ -317,7 +317,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
       {/* ── Sample note ── */}
       {isDemoData && (
         <text x={CX} y={538} textAnchor="middle"
-          fontSize={8.5} letterSpacing="0.06em" fill="currentColor" opacity={0.28}>
+          fontSize={8.5} letterSpacing="0.06em" fill="currentColor" opacity={0.45}>
           SAMPLE COMPARISON SHOWN — SELECT YOUR TYPE ABOVE
         </text>
       )}

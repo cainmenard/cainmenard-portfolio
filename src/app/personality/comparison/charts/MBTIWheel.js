@@ -130,7 +130,7 @@ export default function MBTIWheel({ visitorType = null }) {
               fontWeight="700"
               letterSpacing="0.04em"
               fill="currentColor"
-              opacity={0.22}
+              opacity={0.35}
             >
               {q.name}
             </text>
@@ -141,7 +141,7 @@ export default function MBTIWheel({ visitorType = null }) {
               fontSize={7}
               letterSpacing="0.06em"
               fill="currentColor"
-              opacity={0.16}
+              opacity={0.28}
             >
               {q.label.toUpperCase()}
             </text>
@@ -183,7 +183,7 @@ export default function MBTIWheel({ visitorType = null }) {
               fontSize={isCain || isVisitor ? 11 : 9.5}
               fontWeight={isCain || isVisitor ? '600' : '400'}
               fill={isCain ? '#f59e0b' : isVisitor ? '#38bdf8' : 'currentColor'}
-              opacity={isCain || isVisitor ? 1 : 0.42}
+              opacity={isCain || isVisitor ? 1 : 0.58}
             >
               {type}
             </text>
@@ -220,7 +220,7 @@ export default function MBTIWheel({ visitorType = null }) {
       <g transform="translate(34 484)">
         {/* Cain */}
         <circle cx={0} cy={0} r={5} fill="#f59e0b" />
-        <text x={13} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={0.7}>
+        <text x={13} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={0.8}>
           Cain (ENTJ)
         </text>
 
@@ -230,7 +230,7 @@ export default function MBTIWheel({ visitorType = null }) {
         ) : (
           <circle cx={120} cy={0} r={5} fill="#38bdf8" />
         )}
-        <text x={133} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={isDemoData ? 0.42 : 0.7}>
+        <text x={133} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={isDemoData ? 0.55 : 0.8}>
           {isDemoData ? `${DEMO_TYPE} (sample)` : `${visitorType} (you)`}
         </text>
       </g>
@@ -244,7 +244,7 @@ export default function MBTIWheel({ visitorType = null }) {
           fontSize={8.5}
           letterSpacing="0.06em"
           fill="currentColor"
-          opacity={0.28}
+          opacity={0.45}
         >
           SAMPLE COMPARISON SHOWN — SELECT YOUR TYPE ABOVE
         </text>

@@ -88,7 +88,7 @@ export default function DISCCircle({ visitorCode = null }) {
         fontSize={9}
         letterSpacing="0.04em"
         fill="currentColor"
-        opacity={0.38}
+        opacity={0.60}
       >
         FAST / OUTGOING
       </text>
@@ -100,7 +100,7 @@ export default function DISCCircle({ visitorCode = null }) {
         fontSize={9}
         letterSpacing="0.04em"
         fill="currentColor"
-        opacity={0.38}
+        opacity={0.60}
       >
         MODERATE / RESERVED
       </text>
@@ -115,7 +115,7 @@ export default function DISCCircle({ visitorCode = null }) {
         fontSize={9}
         letterSpacing="0.04em"
         fill="currentColor"
-        opacity={0.38}
+        opacity={0.60}
       >
         TASK-ORIENTED
       </text>
@@ -130,7 +130,7 @@ export default function DISCCircle({ visitorCode = null }) {
         fontSize={9}
         letterSpacing="0.04em"
         fill="currentColor"
-        opacity={0.38}
+        opacity={0.60}
       >
         PEOPLE-ORIENTED
       </text>
@@ -161,7 +161,7 @@ export default function DISCCircle({ visitorCode = null }) {
               fontWeight="800"
               letterSpacing="0.02em"
               fill="currentColor"
-              opacity={0.15}
+              opacity={0.35}
             >
               {dim}
             </text>
@@ -172,7 +172,7 @@ export default function DISCCircle({ visitorCode = null }) {
               fontSize={7}
               letterSpacing="0.06em"
               fill="currentColor"
-              opacity={0.12}
+              opacity={0.25}
             >
               {info.label.toUpperCase()}
             </text>
@@ -214,7 +214,7 @@ export default function DISCCircle({ visitorCode = null }) {
                 fontSize={isMe || isVis ? 10 : 7.5}
                 fontWeight={isMe || isVis ? '600' : '400'}
                 fill={isMe ? '#f59e0b' : isVis ? '#38bdf8' : 'currentColor'}
-                opacity={isMe || isVis ? 1 : 0.38}
+                opacity={isMe || isVis ? 1 : 0.55}
               >
                 {profile.code}
               </text>
@@ -252,7 +252,7 @@ export default function DISCCircle({ visitorCode = null }) {
       <g transform="translate(34 484)">
         {/* Cain */}
         <circle cx={0} cy={0} r={5} fill="#f59e0b" />
-        <text x={13} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={0.7}>
+        <text x={13} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={0.8}>
           Cain (D — {DISC_QUADRANTS.D.label})
         </text>
 
@@ -267,7 +267,7 @@ export default function DISCCircle({ visitorCode = null }) {
           dominantBaseline="middle"
           fontSize={11}
           fill="currentColor"
-          opacity={isDemoData ? 0.42 : 0.7}
+          opacity={isDemoData ? 0.55 : 0.8}
         >
           {isDemoData
             ? `${DEMO_CODE} (sample)`
@@ -284,7 +284,7 @@ export default function DISCCircle({ visitorCode = null }) {
           fontSize={8.5}
           letterSpacing="0.06em"
           fill="currentColor"
-          opacity={0.28}
+          opacity={0.45}
         >
           SAMPLE COMPARISON SHOWN — SELECT YOUR STYLE ABOVE
         </text>
