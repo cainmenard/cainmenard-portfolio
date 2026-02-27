@@ -6,6 +6,7 @@ import AssessmentGrid from './components/AssessmentGrid'
 import AssessmentDetail from './components/AssessmentDetail'
 import ThemeExplorer from './components/ThemeExplorer'
 import ThemeDetail from './components/ThemeDetail'
+import ComparisonContainer from './comparison/ComparisonContainer'
 import Footer from '@/components/Footer'
 
 const HEADLINE_TAGS = [
@@ -84,6 +85,18 @@ export default function PersonalityExplorer() {
                 <ThemeDetail themeId={activeTheme} />
               </div>
             )}
+          </div>
+        </section>
+
+        {/* ─── Collaboration Section ─── */}
+        <section className="py-12 bg-slate-50 dark:bg-slate-800">
+          <div className="max-w-6xl mx-auto px-6">
+            <p className="section-label mb-3">Collaboration</p>
+            <h2 className="section-heading text-2xl md:text-3xl mb-2">How We Work Together</h2>
+            <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-2xl leading-relaxed">
+              Enter your own assessment results to see how our profiles compare across five frameworks — communication style, decision-making, conflict patterns, and more.
+            </p>
+            <ComparisonContainer />
           </div>
         </section>
 
