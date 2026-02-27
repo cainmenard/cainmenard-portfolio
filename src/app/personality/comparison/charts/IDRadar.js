@@ -108,7 +108,7 @@ export default function IDRadar({ idDrives }) {
         dominantBaseline="middle"
         fontSize={7.5}
         letterSpacing="0.04em"
-        fill="rgba(21,128,61,0.65)"
+        fill="rgba(21,128,61,0.80)"
       >
         USE (6–9)
       </text>
@@ -120,7 +120,7 @@ export default function IDRadar({ idDrives }) {
         dominantBaseline="middle"
         fontSize={7.5}
         letterSpacing="0.04em"
-        fill="rgba(148,163,184,0.55)"
+        fill="rgba(148,163,184,0.70)"
       >
         NEUTRAL
       </text>
@@ -132,7 +132,7 @@ export default function IDRadar({ idDrives }) {
         dominantBaseline="middle"
         fontSize={7.5}
         letterSpacing="0.04em"
-        fill="rgba(185,28,28,0.55)"
+        fill="rgba(185,28,28,0.70)"
       >
         AVOID (1–4)
       </text>
@@ -149,7 +149,7 @@ export default function IDRadar({ idDrives }) {
             dominantBaseline="middle"
             fontSize={7}
             fill="currentColor"
-            opacity={0.28}
+            opacity={0.45}
           >
             {v}
           </text>
@@ -224,7 +224,7 @@ export default function IDRadar({ idDrives }) {
             fontWeight="600"
             letterSpacing="0.03em"
             fill="currentColor"
-            opacity={0.55}
+            opacity={0.65}
           >
             {a.label}
           </text>
@@ -235,7 +235,7 @@ export default function IDRadar({ idDrives }) {
       <g transform="translate(34 454)">
         {/* Cain polygon swatch */}
         <rect x={-2} y={-6} width={12} height={12} rx={2} fill="rgba(245,158,11,0.22)" stroke="#f59e0b" strokeWidth={1.5} />
-        <text x={18} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={0.7}>
+        <text x={18} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={0.8}>
           Cain ({profileLabel(CAIN_ID)})
         </text>
 
@@ -250,7 +250,7 @@ export default function IDRadar({ idDrives }) {
           dominantBaseline="middle"
           fontSize={11}
           fill="currentColor"
-          opacity={isEngaged ? 0.7 : 0.38}
+          opacity={isEngaged ? 0.8 : 0.55}
         >
           {isEngaged ? `You (${profileLabel(visitorProfile)})` : 'Your data'}
         </text>
@@ -258,7 +258,7 @@ export default function IDRadar({ idDrives }) {
 
       {/* ── Legend: scale note ── */}
       <g transform="translate(34 490)">
-        <text fontSize={8.5} fill="currentColor" opacity={0.28} letterSpacing="0.03em">
+        <text fontSize={8.5} fill="currentColor" opacity={0.45} letterSpacing="0.03em">
           Scale 1–9 · USE = 6–9 · NEUTRAL = 5 · AVOID = 1–4
         </text>
       </g>
@@ -272,7 +272,7 @@ export default function IDRadar({ idDrives }) {
           fontSize={8.5}
           letterSpacing="0.06em"
           fill="currentColor"
-          opacity={0.28}
+          opacity={0.45}
         >
           YOUR DATA WILL APPEAR HERE — ADJUST SLIDERS ABOVE
         </text>
