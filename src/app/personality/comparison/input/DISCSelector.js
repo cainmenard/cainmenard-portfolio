@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { DISC_PROFILES, DISC_QUADRANTS } from '../data/discProfiles'
+import DISCQuiz from './DISCQuiz'
 
 /**
  * Infer the closest DISC blend code from raw dimension scores.
@@ -92,7 +93,7 @@ export default function DISCSelector({ value, onChange }) {
           DISC Style
         </label>
         <div className="flex rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 text-[11px]">
-          {['simple', 'advanced'].map(m => (
+          {['simple', 'advanced', 'quiz'].map(m => (
             <button
               key={m}
               onClick={() => handleModeChange(m)}
@@ -108,7 +109,7 @@ export default function DISCSelector({ value, onChange }) {
         </div>
       </div>
 
-      {mode === 'simple' ? (
+      {mode === 'simple' && (
         <select
           value={value || ''}
           onChange={e => onChange(e.target.value || null)}
@@ -125,8 +126,17 @@ export default function DISCSelector({ value, onChange }) {
             </optgroup>
           ))}
         </select>
-      ) : (
-        <AdvancedDISC onChange={onChange} />
+      )}
+
+      {mode === 'advanced' && <AdvancedDISC onChange={onChange} />}
+
+      {mode === 'quiz' && (
+        <DISCQuiz
+          onChange={(code) => {
+            onChange(code)
+            setMode('simple')
+          }}
+        />
       )}
 
       {selected && (
