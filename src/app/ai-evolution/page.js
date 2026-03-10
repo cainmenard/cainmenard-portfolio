@@ -1361,7 +1361,7 @@ export default function AIEvolution() {
 
               <div className="max-w-2xl mx-auto text-center">
                 <div className="flex flex-wrap justify-center gap-4 mb-10">
-                  <a href="mailto:cainmenard@gmail.com" className="btn-outline">cainmenard@gmail.com</a>
+                  <a href="mailto:info@cainmenard.com" className="btn-outline">info@cainmenard.com</a>
                   <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">LinkedIn ↗</a>
                   <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">GitHub ↗</a>
                 </div>
