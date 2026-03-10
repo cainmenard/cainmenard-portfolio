@@ -16,7 +16,7 @@ export default function Footer({ variant = 'full' }) {
         <div className="flex gap-6">
           <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)" className="text-sm text-slate-400 hover:text-white transition">LinkedIn</a>
           <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)" className="text-sm text-slate-400 hover:text-white transition">GitHub</a>
-          <a href="mailto:cainmenard@gmail.com" aria-label="Send email to Cain Menard" className="text-sm text-slate-400 hover:text-white transition">Email</a>
+          <a href="mailto:info@cainmenard.com" aria-label="Send email to Cain Menard" className="text-sm text-slate-400 hover:text-white transition">Email</a>
         </div>
       </div>
     </footer>

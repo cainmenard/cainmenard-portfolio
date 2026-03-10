@@ -667,8 +667,8 @@ export default function Home() {
 
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex flex-wrap justify-center gap-4 mb-10">
-              <a href="mailto:cainmenard@gmail.com" className="btn-outline">
-                cainmenard@gmail.com
+              <a href="mailto:info@cainmenard.com" className="btn-outline">
+                info@cainmenard.com
               </a>
               <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">
                 LinkedIn ↗
@@ -699,7 +699,7 @@ export default function Home() {
           <div className="flex gap-6">
             <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">LinkedIn</a>
             <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">GitHub</a>
-            <a href="mailto:cainmenard@gmail.com" className="text-sm text-slate-400 hover:text-white transition">Email</a>
+            <a href="mailto:info@cainmenard.com" className="text-sm text-slate-400 hover:text-white transition">Email</a>
           </div>
         </div>
       </footer>
