@@ -101,7 +101,7 @@ export default function AIEvolution() {
               <Image src="/headshot.jpg" alt="Cain Menard" width={44} height={44} className="rounded-full" priority />
               <div className="flex-1">
                 <p className="text-sm font-semibold" style={{ color: 'var(--navy)' }}>Cain Menard</p>
-                <p className="text-xs text-slate-400">Director of Consulting &amp; Operations &nbsp;&middot;&nbsp; 18 min read</p>
+                <p className="text-xs text-slate-400">Management Consultant, ERP &amp; Digital Transformation &nbsp;&middot;&nbsp; 18 min read</p>
               </div>
               <ShareButtons className="share-buttons--hero" />
             </div>
@@ -1213,8 +1213,8 @@ export default function AIEvolution() {
                 <p className="section-label mb-3">About the Author</p>
                 <div className="author-section__body article-prose">
                   <p>
-                    Cain Menard is Director of Consulting &amp; Operations at Automized Solutions.
-                    He&apos;s spent his career in the field, in consulting, and now in digital
+                    Cain Menard is a Management Consultant in ERP &amp; Digital Transformation at CEI.
+                    He&apos;s spent his career in the field, in consulting, and now in enterprise
                     transformation&nbsp;&mdash; helping contractors across construction and
                     infrastructure modernize how they operate. The application referenced in this
                     article is real and live. So is everything else.
