@@ -34,10 +34,10 @@ const articleJsonLd = {
     '@type': 'Person',
     name: 'Cain Menard',
     url: 'https://cainmenard.com',
-    jobTitle: 'Director of Consulting & Operations',
+    jobTitle: 'Management Consultant, ERP & Digital Transformation',
     worksFor: {
       '@type': 'Organization',
-      name: 'Automized Solutions',
+      name: 'CEI',
     },
   },
   publisher: {

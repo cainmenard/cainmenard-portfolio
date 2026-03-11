@@ -6,7 +6,7 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 
 export const metadata = {
   title: 'Cain Menard — Digital Operations Leader',
-  description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure. Director of Consulting at Automized Solutions.',
+  description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure. Management Consultant, ERP & Digital Transformation at CEI.',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.ico',
@@ -31,16 +31,16 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Cain Menard',
-  jobTitle: 'Director of Consulting & Operations',
-  worksFor: { '@type': 'Organization', name: 'Automized Solutions' },
+  jobTitle: 'Management Consultant, ERP & Digital Transformation',
+  worksFor: { '@type': 'Organization', name: 'CEI' },
   url: 'https://cainmenard.com',
   sameAs: [
     'https://linkedin.com/in/cainmenard',
     'https://github.com/cainmenard',
     'https://public.tableau.com/app/profile/cain.menard',
   ],
-  description: 'Digital operations leader specializing in operations consulting, data analytics, and technology implementation for construction, energy, and infrastructure companies.',
-  knowsAbout: ['Construction Operations', 'Data Analytics', 'Operations Consulting', 'Digital Transformation', 'Change Management', 'Tableau', 'AWS', 'Python', 'SQL', 'Financial Benchmarking', 'Agile'],
+  description: 'Digital operations leader specializing in ERP implementation, change management, and digital transformation for construction, energy, and infrastructure companies.',
+  knowsAbout: ['Construction Operations', 'Data Analytics', 'Operations Consulting', 'Digital Transformation', 'Change Management', 'ERP', 'Oracle', 'Business Readiness', 'Tableau', 'AWS', 'Python', 'SQL', 'Financial Benchmarking', 'Agile'],
   hasCredential: [
     { '@type': 'EducationalOccupationalCredential', name: 'MBA, Finance & Data Analytics', credentialCategory: 'degree', recognizedBy: { '@type': 'Organization', name: 'University of Denver' } },
     { '@type': 'EducationalOccupationalCredential', name: 'Prosci Certified Change Practitioner' },

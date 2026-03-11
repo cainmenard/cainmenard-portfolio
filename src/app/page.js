@@ -92,8 +92,8 @@ export default function Home() {
               </div>
               <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
                 <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>03</p>
-                <p className="text-sm md:text-base font-bold mb-1" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>Now I Automate It</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Director leading digital ops transformations</p>
+                <p className="text-sm md:text-base font-bold mb-1" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>Now I Transform It</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Management consultant leading enterprise ERP transformations</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -139,13 +139,15 @@ export default function Home() {
               </div>
               <div>
                 <p>
-                  Today I&apos;m the Director of Consulting &amp; Operations at Automized, a PE-backed technology
-                  startup helping specialty trade contractors — from roofing and concrete to HVAC and
-                  excavation — bring the best out of their digital systems. I built our digital operations
-                  consulting practice from scratch: interviewing stakeholders, mapping workflows, evaluating
-                  software against real requirements weighted by the people who&apos;ll use it, and managing
-                  implementations through go-live. The through-line across my career has always been the
-                  same: technology should serve the people in the organization, not the other way around.
+                  Today I&apos;m a Management Consultant at CEI, leading change management and business
+                  readiness for a multi-year Oracle ERP implementation across 15 business units. My work
+                  starts before anyone touches the new system — readiness assessments, stakeholder
+                  interviews, process mapping, change impact analysis — and carries through communication
+                  strategy, training plans, and adoption tracking to go-live. Before CEI, I built a digital
+                  operations consulting practice at Automized, helping specialty trade contractors bring
+                  the best out of their digital systems. The through-line across my career has always been
+                  the same: process before technology, and technology should serve the people in the
+                  organization, not the other way around.
                 </p>
               </div>
             </div>
