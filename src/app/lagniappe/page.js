@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Nav from '@/components/Nav'
 import MobileNav from '@/components/MobileNav'
@@ -22,6 +22,17 @@ export default function Lagniappe() {
   const activeSection = useSectionObserver()
   const scrolled = useScrollPosition()
   const [mobileNav, setMobileNav] = useState(false)
+
+  const embedRef = useRef(null)
+  const [embedVisible, setEmbedVisible] = useState(false)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setEmbedVisible(true); obs.disconnect() }
+    }, { rootMargin: '200px' })
+    if (embedRef.current) obs.observe(embedRef.current)
+    return () => obs.disconnect()
+  }, [])
 
   return (
     <>
@@ -146,8 +157,48 @@ export default function Lagniappe() {
               Separate from professional work, but they reflect how I think about building things:
               start with a real problem, keep the interface clean, and ship it.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {WEB_APPS.map((app, i) => (
+          </div>
+
+          {/* ─── FEATURED: Bible Atlas ─── */}
+          <div className="max-w-6xl mx-auto px-6 mb-16">
+            <div className="featured-project-card">
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-amber-700 dark:text-amber-300" style={{ background: 'rgba(217, 119, 6, 0.12)' }}>Featured</span>
+                  <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">Web App</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-2">{WEB_APPS[0].title}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 max-w-2xl">{WEB_APPS[0].description}</p>
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {WEB_APPS[0].tech.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-medium">{t}</span>)}
+                </div>
+                <div className="flex gap-4 mb-6">
+                  <a href={WEB_APPS[0].link} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Live ↗</a>
+                </div>
+              </div>
+              <div ref={embedRef} className="relative w-full" style={{ paddingTop: '62.5%' }}>
+                {embedVisible ? (
+                  <iframe
+                    src="https://bibleatlas.dev"
+                    title="Bible Atlas"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full border-0 rounded-b-xl"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 animate-pulse bg-slate-100 dark:bg-slate-700/50 rounded-b-xl">
+                    <div className="w-12 h-12 rounded-lg bg-slate-200 dark:bg-slate-600" />
+                    <div className="w-40 h-3 rounded bg-slate-200 dark:bg-slate-600" />
+                    <div className="w-24 h-2 rounded bg-slate-200 dark:bg-slate-600" />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* ─── OTHER PROJECTS ─── */}
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              {WEB_APPS.slice(1).map((app, i) => (
                 <div key={i} className="project-card stagger-child">
                   <div className="p-6 md:p-8">
                     <div className="flex items-center gap-3 mb-3">

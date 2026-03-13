@@ -484,6 +484,34 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245, 158, 11, 0.1);
 }
 
+/* ─── Featured project card ─── */
+.featured-project-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #d97706;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.06);
+}
+.dark .featured-project-card {
+  background: #1e293b;
+  border-color: #334155;
+  border-left-color: #f59e0b;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.08);
+}
+.featured-project-card:hover {
+  border-color: #cbd5e1;
+  border-left-color: #d97706;
+  box-shadow: 0 8px 30px rgba(217, 119, 6, 0.1), 0 0 0 1px rgba(217, 119, 6, 0.08);
+  transform: translateY(-2px);
+}
+.dark .featured-project-card:hover {
+  border-color: #475569;
+  border-left-color: #f59e0b;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.12), 0 0 0 1px rgba(245, 158, 11, 0.1);
+}
+
 /* ─── Tableau embed container ─── */
 .tableau-container {
   position: relative;
