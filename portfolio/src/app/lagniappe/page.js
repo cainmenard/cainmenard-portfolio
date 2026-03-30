@@ -560,7 +560,7 @@ export default function Lagniappe() {
               <a href="/" className="text-sm text-slate-400 hover:text-white transition">Main Site</a>
               <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">LinkedIn</a>
               <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition">GitHub</a>
-              <a href="mailto:cainmenard@gmail.com" className="text-sm text-slate-400 hover:text-white transition">Email</a>
+              <a href="mailto:info@cainmenard.com" className="text-sm text-slate-400 hover:text-white transition">Email</a>
             </div>
           </div>
         </footer>
