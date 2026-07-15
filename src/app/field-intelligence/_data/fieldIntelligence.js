@@ -265,6 +265,85 @@ export const FEDEX_PUNCHLINE = {
   ],
 }
 
+/**
+ * The twelve businesses on the platform, placed on a manual (0) to digital (1)
+ * axis by how their field hour is captured. A few carry real, scrubbed field
+ * notes; the rest are generic tokens with no invented numbers. `lane` spreads
+ * tokens vertically so neighbors do not overlap. The cleanest-financials
+ * business (fedex + highlight) sits on the manual side: that inversion is the
+ * point.
+ */
+export const BUSINESSES = [
+  { id: 'b1', method: 'gps', digital: 0.93, lane: 0 },
+  { id: 'b2', method: 'gps', digital: 0.86, lane: 2 },
+  {
+    id: 'b3',
+    method: 'foreman',
+    digital: 0.75,
+    lane: 0,
+    world: 'field',
+    label: 'Foreman-entered mobile',
+    stat: '1,800 / mo',
+    note: 'About 20 foremen key roughly 1,800 entries a month for 100+ crew. The foreman is the system of record and the single point of failure.',
+  },
+  { id: 'b4', method: 'foreman', digital: 0.69, lane: 2 },
+  { id: 'b5', method: 'foreman', digital: 0.63, lane: 1 },
+  {
+    id: 'b6',
+    method: 'four',
+    digital: 0.48,
+    lane: 0,
+    world: 'field',
+    label: 'Four methods at once',
+    stat: '3,100 / mo',
+    note: 'A $90M business runs four capture methods at once, about 3,100 entries a month across 150 field workers, reconciled by hand.',
+  },
+  { id: 'b7', method: 'four', digital: 0.42, lane: 2 },
+  {
+    id: 'b8',
+    method: 'paper-keyed',
+    digital: 0.3,
+    lane: 1,
+    world: 'field',
+    label: 'Paper, then keyed',
+    stat: '150 / wk',
+    note: 'Another business re-keys about 150 payroll lines a week.',
+  },
+  {
+    id: 'b9',
+    method: 'paper-keyed',
+    digital: 0.24,
+    lane: 0,
+    world: 'field',
+    fedex: true,
+    highlight: true,
+    label: 'Cleanest financials of the sixteen',
+    stat: 'FedEx, weekly',
+    note: 'The most financially mature business on the platform batches paper timecards and FedExes them to corporate every week. Roughly half of daily timecards need a fix, and the paper surfaces the error about two weeks later.',
+  },
+  { id: 'b10', method: 'paper-keyed', digital: 0.19, lane: 2 },
+  {
+    id: 'b11',
+    method: 'email',
+    digital: 0.11,
+    lane: 1,
+    world: 'field',
+    label: 'Emailed weekly',
+    stat: 'Part-timer',
+    note: 'At one business, a part-time person emails the hours in once a week.',
+  },
+  { id: 'b12', method: 'email', digital: 0.07, lane: 0 },
+]
+
+/** The animated shipment: how a paper hour reaches the books, and how late. */
+export const FEDEX_STAGES = [
+  { id: 'written', when: 'Monday', title: 'Timecard written', text: 'A crew leader fills out paper timecards on the jobsite.' },
+  { id: 'error', when: 'Same day', title: 'Half need a fix', text: 'Roughly half of daily timecards carry an error nobody has caught yet.' },
+  { id: 'shipped', when: 'Friday', title: 'Batched and FedExed', text: 'A week of paper is boxed and shipped to corporate.' },
+  { id: 'surfaced', when: 'About two weeks later', title: 'The error surfaces', text: 'Payroll finds the mistake once the paper is finally keyed.' },
+  { id: 'corrected', when: 'The correction', title: "In the employee's favor only", text: 'The fix is made in the employee’s favor, and never clawed back.' },
+]
+
 export const INDUSTRY_FRAME = {
   world: 'public',
   stat: '0.4% vs 3%',
