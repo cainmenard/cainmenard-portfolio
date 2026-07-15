@@ -19,7 +19,9 @@
   --fi-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --fi-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* default (light) palette — most bands are light */
+  /* single stable base — one warm off-white the whole way down, so the
+     background is never too light or too dark to read. Time of day lives in
+     the atmosphere layer below, not in this base. */
   --fi-bg: #faf8f5;
   --fi-surface: #ffffff;
   --fi-surface-2: #fffdfb;
@@ -27,14 +29,42 @@
   --fi-muted: #55606e;
   --fi-line: rgba(30, 42, 56, 0.14);
   --fi-line-strong: rgba(30, 42, 56, 0.28);
-  --fi-accent: #b87333;        /* true copper — graphical fills, borders */
-  --fi-accent-text: #8f531f;   /* copper for TEXT (AA on light) */
+  --fi-accent-text: #8f531f;   /* copper for TEXT — fixed, always AA on the base */
   --fi-accent-ink: #ffffff;    /* text that sits on an accent fill */
   --fi-sandbox: #2f6f7a;       /* a distinct world: teal, never copper */
   --fi-sandbox-soft: rgba(47, 111, 122, 0.10);
   --fi-danger: #b4432f;        /* loss / the cliff */
   --fi-danger-soft: rgba(180, 67, 47, 0.10);
-  --fi-glow: radial-gradient(1200px 700px at 50% -10%, rgba(184, 115, 51, 0.10), transparent 60%);
+
+  /* --- Day arc: a real sky you scroll through ----------------------------
+     --fi-progress (0 = 6:15am predawn → 1 = dusk) is written to this element
+     by JS on each scroll frame. The whole scene below is derived from it in
+     pure CSS, so the sky sweeps and the sun arcs continuously with the scroll.
+     The sky is genuinely bold (dark indigo dawn → bright midday → golden dusk)
+     — story content rides on opaque paper panels, so readability never depends
+     on the sky's luminance. Two half-progress ramps let three anchors blend
+     smoothly through the day. */
+  --fi-progress: 0;
+  --fi-p1: clamp(0, calc(var(--fi-progress) / 0.5), 1);         /* dawn→noon */
+  --fi-p2: clamp(0, calc((var(--fi-progress) - 0.5) / 0.5), 1); /* noon→dusk */
+
+  /* top-of-sky: deep indigo predawn → open blue midday → twilight violet dusk */
+  --sky-top: color-mix(in oklab,
+    color-mix(in oklab, #141a2c, #9cc1e2 calc(var(--fi-p1) * 100%)),
+    #2b2748 calc(var(--fi-p2) * 100%));
+  /* horizon band (where the sun sits): sunrise amber → pale day → sunset amber */
+  --sky-horizon: color-mix(in oklab,
+    color-mix(in oklab, #b5623f, #e7eef2 calc(var(--fi-p1) * 100%)),
+    #d98a52 calc(var(--fi-p2) * 100%));
+
+  /* the sun's own color: warm at the horizon ends, white-gold at noon */
+  --sun-color: color-mix(in oklab,
+    color-mix(in oklab, #ffb066, #fff4d8 calc(var(--fi-p1) * 100%)),
+    #ff9d54 calc(var(--fi-p2) * 100%));
+
+  --fi-accent-dawn: #a9683a;   /* cooler copper at first light */
+  --fi-accent-dusk: #c07c25;   /* warmer amber-gold by afternoon */
+  --fi-accent: color-mix(in oklab, var(--fi-accent-dawn), var(--fi-accent-dusk) calc(var(--fi-progress) * 100%));
 
   --fi-rail-h: 56px;
   --fi-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -45,50 +75,78 @@
   color: var(--fi-text);
   font-family: var(--fi-font-body);
   -webkit-font-smoothing: antialiased;
-  /* text color intentionally does NOT transition — it snaps by band */
 }
 
-/* --- Resting palettes per band --- */
-.fi-root[data-band='predawn'] {
-  --fi-bg: #12181f;
-  --fi-surface: #1a232e;
-  --fi-surface-2: #212d3a;
-  --fi-text: #f6f2ec;
-  --fi-muted: #9aa8b6;
-  --fi-line: rgba(246, 242, 236, 0.14);
-  --fi-line-strong: rgba(246, 242, 236, 0.30);
-  --fi-accent: #cf9457;
-  --fi-accent-text: #dda468;
-  --fi-accent-ink: #12181f;
-  --fi-sandbox: #57b6c4;
-  --fi-sandbox-soft: rgba(87, 182, 196, 0.12);
-  --fi-danger: #e0765c;
-  --fi-danger-soft: rgba(224, 118, 92, 0.14);
-  --fi-glow: radial-gradient(1200px 620px at 50% 112%, rgba(207, 148, 87, 0.14), transparent 70%);
-}
-.fi-root[data-band='morning'] { --fi-bg: #e9e2d8; --fi-surface: #f4efe8; --fi-surface-2: #ffffff; }
-.fi-root[data-band='midday']  { --fi-bg: #f0eae1; --fi-surface: #faf6f0; --fi-surface-2: #ffffff; }
-.fi-root[data-band='ivory']   { --fi-bg: #faf8f5; --fi-surface: #ffffff; --fi-surface-2: #fffdfb; }
-.fi-root[data-band='daybreak']{ --fi-bg: #efe9e3; --fi-surface: #f7f3ee; --fi-surface-2: #ffffff;
-  --fi-glow: radial-gradient(1200px 640px at 50% -8%, rgba(184, 115, 51, 0.12), transparent 58%);
-}
-
-/* --- Full-viewport backdrop owns the day-arc color and is the ONLY
- * thing that transitions on a band change (kept short and clean). --- */
+/* --- Full-viewport sky. A fixed scene the whole page scrolls over: a vertical
+ * sky gradient (top → horizon), a warm horizon glow, faint predawn stars, and
+ * a sun that rises, arcs, and sets. Every layer derives from --fi-progress, so
+ * the day passes continuously with the scroll. Story content sits on opaque
+ * paper panels (below), so the sky can be genuinely dark at dawn without ever
+ * risking legibility. --- */
 .fi-backdrop {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: var(--fi-bg);
-  transition: background-color 420ms ease;
+  overflow: hidden;
+  background: linear-gradient(to bottom,
+    var(--sky-top) 0%,
+    color-mix(in oklab, var(--sky-top), var(--sky-horizon) 55%) 60%,
+    var(--sky-horizon) 100%);
 }
+/* warm glow pooled at the horizon, strongest around sunrise/sunset */
 .fi-backdrop::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--fi-glow);
-  transition: opacity 420ms ease;
+  background: radial-gradient(120vw 46vh at calc(6% + var(--fi-progress) * 88%) 82vh,
+    color-mix(in oklab, var(--sky-horizon), #ffd9a8 45%),
+    transparent 70%);
+  opacity: 0.75;
 }
+
+/* the sun: rises from the horizon at dawn, peaks at midday, sets by dusk.
+   left tracks progress; top follows a parabola (4·p·(1−p) peaks at p=0.5). */
+.fi-sun {
+  position: absolute;
+  width: clamp(46px, 6vw, 92px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  left: calc(var(--fi-progress) * 100%);
+  top: calc(86vh - 76vh * (4 * var(--fi-progress) * (1 - var(--fi-progress))));
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 50%,
+    #fffdf5 0%, var(--sun-color) 46%, color-mix(in oklab, var(--sun-color), transparent 35%) 70%, transparent 74%);
+  box-shadow:
+    0 0 40px 14px color-mix(in oklab, var(--sun-color), transparent 55%),
+    0 0 140px 60px color-mix(in oklab, var(--sun-color), transparent 78%);
+}
+
+/* faint stars, only present in the predawn (first ~17% of scroll). The
+   container carries the scroll-driven fade; the pseudo carries the dots and a
+   gentle twinkle, so the two multiply instead of fighting over `opacity`. */
+.fi-stars {
+  position: absolute;
+  inset: 0 0 42vh 0;
+  opacity: clamp(0, calc(1 - var(--fi-progress) * 6), 1);
+  pointer-events: none;
+}
+.fi-stars::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 22%, #ffffff, transparent),
+    radial-gradient(1.2px 1.2px at 28% 14%, #dfe6ff, transparent),
+    radial-gradient(1.5px 1.5px at 44% 30%, #ffffff, transparent),
+    radial-gradient(1.1px 1.1px at 62% 12%, #e7ecff, transparent),
+    radial-gradient(1.6px 1.6px at 74% 26%, #ffffff, transparent),
+    radial-gradient(1.2px 1.2px at 88% 18%, #d7e0ff, transparent),
+    radial-gradient(1.3px 1.3px at 20% 40%, #ffffff, transparent),
+    radial-gradient(1.1px 1.1px at 54% 44%, #eef2ff, transparent),
+    radial-gradient(1.4px 1.4px at 82% 40%, #ffffff, transparent);
+  animation: fi-twinkle 4.5s ease-in-out infinite;
+}
+@keyframes fi-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
 .fi-content { position: relative; z-index: 1; }
 
@@ -135,6 +193,27 @@
 .fi-section { position: relative; padding: clamp(4rem, 10vh, 8rem) 0; }
 .fi-wrap { width: 100%; max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
 .fi-wrap--narrow { max-width: 46rem; }
+
+/* Story panels: every post-hero section's content rides on an opaque paper
+   card, so text is always legible no matter how dark or bright the sky behind
+   it is. The sky (and the arcing sun) show in the gutters and the gaps between
+   panels. The hero is deliberately excluded — it opens straight onto the dawn
+   sky with light text. */
+.fi-station .fi-wrap,
+#finale .fi-wrap,
+#epilogue .fi-wrap,
+#colophon .fi-wrap {
+  max-width: 62rem;
+  padding: clamp(1.75rem, 1rem + 2.4vw, 3.25rem);
+  background: color-mix(in srgb, var(--fi-bg) 93%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(115%);
+  backdrop-filter: blur(12px) saturate(115%);
+  border: 1px solid color-mix(in srgb, var(--fi-text) 9%, transparent);
+  border-radius: 22px;
+  box-shadow: 0 30px 70px -34px rgba(18, 24, 44, 0.55);
+}
+#finale .fi-wrap,
+#epilogue .fi-wrap { max-width: 48rem; }
 
 .fi-station { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; }
 
@@ -329,6 +408,16 @@
   flex-direction: column;
   justify-content: center;
   padding-top: var(--fi-rail-h);
+  /* The hero is the one place text meets the raw sky — and it's always the
+     dark predawn end of the arc, so switch to light ink here. Redefining the
+     palette vars cascades to every hero descendant (title, lead, kicker, cue). */
+  color: #f6f2ec;
+  --fi-text: #f6f2ec;
+  --fi-muted: #cdd5e2;
+  --fi-accent-text: #f0c48f;
+  --fi-line: rgba(246, 242, 236, 0.18);
+  --fi-line-strong: rgba(246, 242, 236, 0.44);
+  text-shadow: 0 1px 30px rgba(10, 14, 28, 0.45);
 }
 .fi-hero__eyebrow { margin-bottom: 1.5rem; }
 .fi-hero__title {
@@ -607,6 +696,15 @@
   .fi-drawer__icon,
   .fi-cite__note { transition-duration: 0.01ms !important; }
   .fi-hero__cue-dot { animation: none !important; }
+  /* The sky COLOR still tracks scroll (that's not vestibular motion, and
+     freezing it is what made the effect look dead before). We only still the
+     things that visibly travel: pin the sun high and centered, stop the star
+     twinkle. */
+  .fi-sun {
+    left: 50% !important;
+    top: 16vh !important;
+  }
+  .fi-stars::before { animation: none !important; }
 }
 
 /* ==================================================================

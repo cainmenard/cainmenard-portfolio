@@ -1,7 +1,8 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
 import { useActiveSection } from './_components/useActiveSection'
+import { useScrollProgress } from './_components/useScrollProgress'
 import ProgressRail from './_components/ProgressRail'
 import AgentFinale from './_components/AgentFinale'
 import { track } from './_components/track'
@@ -13,7 +14,6 @@ import StationDecisions from './_stations/StationDecisions'
 import {
   ROUTE,
   RAIL,
-  SECTION_BANDS,
   HERO,
   EPILOGUE,
   COLOPHON,
@@ -36,10 +36,27 @@ const LOOPED_SECTIONS = ['finale', 'epilogue', 'colophon']
 export default function FieldIntelligence() {
   useFadeOnScroll()
   const activeSection = useActiveSection(SECTION_IDS)
-  const band = SECTION_BANDS[activeSection] || 'predawn'
 
   const activeIndex = RAIL.findIndex((r) => r.id === activeSection)
   const looped = LOOPED_SECTIONS.includes(activeSection)
+
+  // Day-arc atmosphere: one continuous scalar (0 at dawn → 1 at dusk) is
+  // written straight onto the root as --fi-progress. CSS blends the sky wash,
+  // warms the accent, and glides the sun off that single var, so the color
+  // moves smoothly with the scroll instead of snapping at section boundaries.
+  // Written imperatively (no React state) so the tree never re-renders per frame.
+  const rootRef = useRef(null)
+  const lastProgress = useRef(-1)
+  const applyProgress = useCallback((p) => {
+    const el = rootRef.current
+    if (!el) return
+    // quantize to 0.1% steps so sub-pixel scroll jitter doesn't thrash paint
+    const q = Math.round(p * 1000) / 1000
+    if (q === lastProgress.current) return
+    lastProgress.current = q
+    el.style.setProperty('--fi-progress', String(q))
+  }, [])
+  useScrollProgress(applyProgress)
 
   // Instrumentation: coarse "which station is on screen" signal, plus a
   // one-time "hero completed" when the reader first leaves the hero.
@@ -56,8 +73,11 @@ export default function FieldIntelligence() {
   }, [activeSection])
 
   return (
-    <div className="fi-root" data-band={band}>
-      <div className="fi-backdrop" aria-hidden="true" />
+    <div className="fi-root" ref={rootRef}>
+      <div className="fi-backdrop" aria-hidden="true">
+        <div className="fi-stars" />
+        <div className="fi-sun" />
+      </div>
 
       <ProgressRail
         sections={RAIL}

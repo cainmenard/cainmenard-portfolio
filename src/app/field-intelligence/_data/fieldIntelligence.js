@@ -43,25 +43,13 @@ export const engagementNote = (projectCount) =>
   `From a completed-contracts analysis of ${projectCount} projects. Client identifiers removed. Methodology available on request.`
 
 /* ------------------------------------------------------------------ *
- * Day arc: theme bands per section (readability rule)
- * The page opens in pre-dawn dark (hero + field), makes ONE dark-to-light
- * change into the office, then stays clearly light and warms toward ivory.
- * Text color snaps by band luminance; only the background transitions.
+ * Day arc (readability rule)
+ * The page holds ONE constant, fully-legible warm off-white base the whole
+ * way down — the background never darkens under text. Time of day is carried
+ * by a light atmosphere layer only (a top sky wash, a warming accent, and the
+ * sun gliding across the rail), driven continuously by --fi-progress so it
+ * moves with the scroll instead of snapping. See field-intelligence.css.
  * ------------------------------------------------------------------ */
-export const SECTION_BANDS = {
-  hero: 'predawn',
-  field: 'predawn',
-  office: 'morning',
-  'job-cost': 'midday',
-  portfolio: 'midday',
-  decisions: 'ivory',
-  finale: 'ivory',
-  epilogue: 'daybreak',
-  colophon: 'ivory',
-}
-
-/** Which bands are dark (light text) vs light (dark text). Drives contrast. */
-export const DARK_BANDS = ['predawn']
 
 /* ------------------------------------------------------------------ *
  * Progress device: FIELD -> OFFICE -> JOB COST -> PORTFOLIO -> DECISIONS
