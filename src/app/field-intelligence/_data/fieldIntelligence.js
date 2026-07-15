@@ -102,11 +102,11 @@ export const STATIONS = [
     kicker: 'Station 1',
     title: 'One hour, twelve businesses, five ways to record it.',
     scene:
-      'A crew leader clocks in. The same hour is about to be written down five different ways, and one of them travels by FedEx.',
+      'A foreman clocks in. The same hour is about to be written down five different ways, and one of them travels by FedEx.',
     myPart:
       'I sat in the interviews and ran the current-state analysis across 12 businesses. I ran the vendor selection. I am building the training and adoption program now.',
     handoff: 'The hour gets approved. Now it has to survive the plumbing.',
-    cast: 'the crew leader who logs it',
+    cast: 'the foreman who logs it',
   },
   {
     id: 'office',
@@ -349,7 +349,7 @@ export const BUSINESSES = [
 
 /** The animated shipment: how a paper hour reaches the books, and how late. */
 export const FEDEX_STAGES = [
-  { id: 'written', when: 'Monday', title: 'Timecard written', text: 'A crew leader fills out paper timecards on the jobsite.' },
+  { id: 'written', when: 'Monday', title: 'Timecard written', text: 'A foreman fills out paper timecards on the jobsite.' },
   { id: 'error', when: 'Same day', title: 'Half need a fix', text: 'Roughly half of daily timecards carry an error nobody has caught yet.' },
   { id: 'shipped', when: 'Friday', title: 'Batched and FedExed', text: 'A week of paper is boxed and shipped to corporate.' },
   { id: 'surfaced', when: 'About two weeks later', title: 'The error surfaces', text: 'Payroll finds the mistake once the paper is finally keyed.' },
