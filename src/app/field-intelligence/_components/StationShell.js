@@ -1,7 +1,7 @@
 /**
  * Shared layout for a station: scene-setting head, the marquee interaction
- * (children), an optional data teaser, the quiet "my part" claim, optional
- * go-deeper drawers, and the one-line handoff to the next station.
+ * (children), an optional data teaser, optional go-deeper drawers, and the
+ * one-line handoff to the next station.
  *
  * Each station file supplies its own interaction and drawers; this keeps
  * the rhythm identical across all five so the page reads as one system.
@@ -25,11 +25,6 @@ export default function StationShell({ station, children, teaser, drawers }) {
         <div className="fade-section">{children}</div>
 
         {teaser && <div className="fade-section" style={{ marginTop: '1.75rem' }}>{teaser}</div>}
-
-        <div className="fi-mypart fade-section">
-          <span className="fi-mypart__tag">My part</span>
-          {station.myPart}
-        </div>
 
         {drawers && <div className="fade-section" style={{ marginTop: '2rem' }}>{drawers}</div>}
 
