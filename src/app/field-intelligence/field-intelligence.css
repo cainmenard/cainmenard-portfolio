@@ -245,25 +245,6 @@
   background: var(--fi-line-strong);
 }
 
-/* "my part" — the quiet, first-person claim */
-.fi-mypart {
-  margin-top: 2rem;
-  padding: 1rem 1.25rem;
-  border-left: 2px solid var(--fi-accent);
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--fi-text);
-}
-.fi-mypart__tag {
-  display: block;
-  font-family: var(--fi-font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fi-accent-text);
-  margin-bottom: 0.4rem;
-}
-
 /* one-line handoff to the next station */
 .fi-handoff {
   display: flex;

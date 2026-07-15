@@ -79,7 +79,7 @@ export const HERO = {
 
 /* ------------------------------------------------------------------ *
  * The five stations (fixed narrative arc)
- * Each: one line of scene-setting, the "my part" claim, a one-line handoff.
+ * Each: one line of scene-setting, one-line handoff.
  * Interactions carry the argument; this copy stays minimal.
  * ------------------------------------------------------------------ */
 export const STATIONS = [
@@ -91,8 +91,6 @@ export const STATIONS = [
     title: 'One hour, twelve businesses, five ways to record it.',
     scene:
       'A foreman clocks in. The same hour is about to be written down five different ways, and one of them travels by FedEx.',
-    myPart:
-      'I sat in the interviews and ran the current-state analysis across 12 businesses. I ran the vendor selection. I am building the training and adoption program now.',
     handoff: 'The hour gets approved. Now it has to survive the plumbing.',
     cast: 'the foreman who logs it',
     takeaway:
@@ -106,8 +104,6 @@ export const STATIONS = [
     title: 'The hour has to survive the plumbing.',
     scene:
       'The timecard is approved. Approved does not mean counted. Between here and the books sit seven systems and a lot of re-keying.',
-    myPart:
-      'I designed the data flows and the approval routing. Five flows, four live, seven systems, one middleware layer.',
     handoff: 'The hour posts to a cost code. Now the job has to tell the truth about it.',
     cast: 'the payroll clerk who reconciles it',
   },
@@ -119,8 +115,6 @@ export const STATIONS = [
     title: 'The 90% cliff.',
     scene:
       'The hour lands on a budget line. Most jobs look fine, flat, and on track, right up until the number falls off a cliff near the end.',
-    myPart:
-      "I built the job-cost and earned-value dashboards on the client's ERP data. I ran the time studies with a clipboard.",
     handoff: 'One job can raise the question. It takes the whole book to answer it.',
     cast: 'the PM whose budget absorbs it',
   },
@@ -132,8 +126,6 @@ export const STATIONS = [
     title: 'The estimating leak.',
     scene:
       'Estimating says the field blew the labor. The field says the estimate was fantasy. The completed jobs are the only arbitrator, and they usually split the bill.',
-    myPart:
-      'I ran the completed-contracts analyses on all three books. I built the selectivity model. I rebuilt the analytics as the deployed app.',
     handoff: 'Now you know what the data decides. Monday, you have to decide with it.',
     cast: 'the estimator who should have predicted it',
   },
@@ -145,7 +137,6 @@ export const STATIONS = [
     title: "Monday's docket.",
     scene:
       'Three invitations to bid are sitting in the inbox. For the first time, you can answer them with the whole day behind you.',
-    myPart: 'I ran the adoption program. I shipped the agent.',
     handoff: 'Then I build the tool that sits on top of all of it.',
     cast: 'the owner who prices the next one off it',
   },
