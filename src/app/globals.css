@@ -2856,3 +2856,207 @@ a.cite-num:hover {
     animation: none !important;
   }
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   Field Intelligence card — "Golden Hour" animated preview
+   A miniature of the /field-intelligence day-arc: a sky that sweeps
+   indigo predawn → blue midday → violet dusk, a glowing sun arcing on the
+   exact 4·p·(1−p) parabola, fading predawn stars, and a copper rail whose
+   five station dots light in sequence as a spark travels FIELD → DECISIONS.
+   Every layer derives from one scalar, --fip-p (0 → 1), written each frame by
+   FieldIntelligencePreview.js. Color anchors, ramps and the parabola are
+   lifted from src/app/field-intelligence/field-intelligence.css so the teaser
+   is a faithful preview of the real page.
+   ──────────────────────────────────────────────────────────────────────── */
+.fip-root {
+  --fip-p: 0;
+  /* two half-progress ramps let three anchors blend across the day */
+  --fip-p1: clamp(0, calc(var(--fip-p) / 0.5), 1);          /* dawn → noon */
+  --fip-p2: clamp(0, calc((var(--fip-p) - 0.5) / 0.5), 1);  /* noon → dusk */
+
+  /* top-of-sky: deep indigo predawn → open blue midday → twilight violet dusk */
+  --fip-sky-top: color-mix(in oklab,
+    color-mix(in oklab, #141a2c, #9cc1e2 calc(var(--fip-p1) * 100%)),
+    #2b2748 calc(var(--fip-p2) * 100%));
+  /* horizon band: sunrise amber → pale day → sunset amber */
+  --fip-sky-horizon: color-mix(in oklab,
+    color-mix(in oklab, #b5623f, #e7eef2 calc(var(--fip-p1) * 100%)),
+    #d98a52 calc(var(--fip-p2) * 100%));
+  /* the sun's own color: warm at the horizon ends, white-gold at noon */
+  --fip-sun-color: color-mix(in oklab,
+    color-mix(in oklab, #ffb066, #fff4d8 calc(var(--fip-p1) * 100%)),
+    #ff9d54 calc(var(--fip-p2) * 100%));
+  /* copper accent: cooler at first light → warmer amber-gold by afternoon */
+  --fip-accent: color-mix(in oklab, #a9683a, #c07c25 calc(var(--fip-p) * 100%));
+
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+.dark .fip-root {
+  border-color: rgba(148, 163, 184, 0.14);
+}
+
+/* ── Sky zone: gradient wash + warm horizon glow + stars + arcing sun ── */
+.fip-sky {
+  position: relative;
+  height: clamp(64px, 16vw, 84px);
+  overflow: hidden;
+  background: linear-gradient(to bottom,
+    var(--fip-sky-top) 0%,
+    color-mix(in oklab, var(--fip-sky-top), var(--fip-sky-horizon) 55%) 60%,
+    var(--fip-sky-horizon) 100%);
+}
+/* warm glow pooled at the horizon, its x tracking the sun */
+.fip-sky::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 90% at calc(6% + var(--fip-p) * 88%) 108%,
+    color-mix(in oklab, var(--fip-sky-horizon), #ffd9a8 45%),
+    transparent 70%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* the sun: rises from the horizon, peaks near midday, sets by dusk.
+   left tracks progress; top follows the parabola 4·p·(1−p). */
+.fip-sun {
+  position: absolute;
+  width: clamp(24px, 6vw, 36px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  left: calc(var(--fip-p) * 100%);
+  top: calc(94% - 82% * (4 * var(--fip-p) * (1 - var(--fip-p))));
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 50%,
+    #fffdf5 0%, var(--fip-sun-color) 46%,
+    color-mix(in oklab, var(--fip-sun-color), transparent 35%) 70%, transparent 74%);
+  box-shadow:
+    0 0 18px 6px color-mix(in oklab, var(--fip-sun-color), transparent 55%),
+    0 0 54px 22px color-mix(in oklab, var(--fip-sun-color), transparent 80%);
+  pointer-events: none;
+}
+
+/* faint predawn stars, gone by the first ~17% of the day */
+.fip-stars {
+  position: absolute;
+  inset: 0 0 40% 0;
+  opacity: clamp(0, calc(1 - var(--fip-p) * 6), 1);
+  pointer-events: none;
+}
+.fip-stars::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 30%, #ffffff, transparent),
+    radial-gradient(1px 1px at 28% 18%, #dfe6ff, transparent),
+    radial-gradient(1.3px 1.3px at 44% 38%, #ffffff, transparent),
+    radial-gradient(1px 1px at 61% 16%, #e7ecff, transparent),
+    radial-gradient(1.4px 1.4px at 73% 32%, #ffffff, transparent),
+    radial-gradient(1px 1px at 88% 24%, #d7e0ff, transparent),
+    radial-gradient(1.1px 1.1px at 20% 52%, #ffffff, transparent),
+    radial-gradient(1px 1px at 54% 56%, #eef2ff, transparent);
+  animation: fip-twinkle 4.5s ease-in-out infinite;
+}
+@keyframes fip-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+/* ── Rail zone: five stations on a copper line, dots lighting in sequence.
+   Its own deep-indigo backing (independent of the site theme) keeps the
+   copper dots and mono labels legible over any sky luminance. ── */
+.fip-rail {
+  position: relative;
+  padding: 14px 16px 12px;
+  background: linear-gradient(to bottom, #171e31, #131829);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.fip-rail__track {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.10);
+  overflow: visible;
+}
+.fip-rail__fill {
+  position: relative;
+  height: 100%;
+  width: calc(var(--fip-p) * 100%);
+  border-radius: 999px;
+  background: linear-gradient(to right,
+    color-mix(in oklab, var(--fip-accent), transparent 30%), var(--fip-accent));
+}
+/* the travelling "hour": a glowing spark riding the fill's leading edge */
+.fip-rail__fill::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: #fff7ea;
+  box-shadow:
+    0 0 8px 2px color-mix(in oklab, var(--fip-accent), transparent 20%),
+    0 0 16px 5px color-mix(in oklab, var(--fip-accent), transparent 55%);
+  opacity: clamp(0, calc(var(--fip-p) * 20), 1);
+}
+.fip-rail__stations {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.fip-station {
+  /* lit ≈ 0 until the spark reaches this station, then ramps quickly to 1.
+     The +0.03 lead lets FIELD read lit at the start and DECISIONS light as the
+     day closes at p = 1. */
+  --lit: clamp(0, calc((var(--fip-p) - var(--fip-station) + 0.03) * 40), 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+.fip-station:first-child { align-items: flex-start; }
+.fip-station:last-child { align-items: flex-end; }
+.fip-station__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: color-mix(in oklab, #48506a, var(--fip-accent) calc(var(--lit) * 100%));
+  box-shadow: 0 0 calc(var(--lit) * 10px) calc(var(--lit) * 1px)
+    color-mix(in oklab, var(--fip-accent), transparent 35%);
+  transform: scale(calc(1 + var(--lit) * 0.45));
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.fip-station__label {
+  font-size: clamp(0.56rem, 1.9vw, 0.66rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: color-mix(in oklab, #98a0b4, #f0c48f calc(var(--lit) * 100%));
+  transition: color 0.25s ease;
+}
+
+/* On narrow screens the five labels can't fit side by side, so label only the
+   endpoints — FIELD … DECISIONS — while the three middle dots stay as nodes.
+   The arc still reads: a spark travelling from the field to a decision. */
+@media (max-width: 560px) {
+  .fip-station:not(:first-child):not(:last-child) .fip-station__label {
+    display: none;
+  }
+  .fip-rail { padding: 12px 14px 11px; }
+  .fip-rail__track { left: 14px; right: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fip-stars::before { animation: none !important; }
+}
