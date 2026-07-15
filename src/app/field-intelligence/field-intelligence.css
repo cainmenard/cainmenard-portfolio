@@ -40,15 +40,16 @@
      --fi-progress (0 = dawn → 1 = dusk) is written to this element by JS on
      each scroll frame. Everything below is derived from it in pure CSS, so
      the sky, accent, and sun move continuously with the scroll and snap
-     nowhere. All sky anchors are near-white / low-chroma; the base text
-     (#1e2a38) clears 7:1 over every one of them. */
+     nowhere. The anchors are clearly tinted (cool dawn → warm dusk) but all
+     stay light: base text (#1e2a38) clears ~10:1 over every one, so the sky
+     reads as a real, shifting sky and never as "too dark to read". */
   --fi-progress: 0;
   --fi-p1: clamp(0, calc(var(--fi-progress) / 0.5), 1);         /* dawn→noon */
   --fi-p2: clamp(0, calc((var(--fi-progress) - 0.5) / 0.5), 1); /* noon→dusk */
 
-  --fi-sky-dawn: #e4e9f3;      /* cool early light */
-  --fi-sky-noon: #fbf7ef;      /* warm white */
-  --fi-sky-dusk: #f6e7d5;      /* warm gold */
+  --fi-sky-dawn: #c9d4ee;      /* cool periwinkle — first light */
+  --fi-sky-noon: #f6eccf;      /* warm butter — midday */
+  --fi-sky-dusk: #f1cc9f;      /* amber peach — afternoon */
   --fi-sky: color-mix(in oklab,
     color-mix(in oklab, var(--fi-sky-dawn), var(--fi-sky-noon) calc(var(--fi-p1) * 100%)),
     var(--fi-sky-dusk) calc(var(--fi-p2) * 100%));
@@ -87,17 +88,18 @@
   inset: 0;
   background: linear-gradient(to bottom,
     var(--fi-sky) 0%,
-    color-mix(in oklab, var(--fi-sky), transparent 55%) 22vh,
-    transparent 52vh);
+    color-mix(in oklab, var(--fi-sky), transparent 35%) 35vh,
+    color-mix(in oklab, var(--fi-sky), transparent 82%) 72vh,
+    transparent 100%);
 }
 /* the sun-glow: a warm radial that tracks the day across the top edge */
 .fi-backdrop::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(52vw 38vh at calc(6% + var(--fi-progress) * 88%) -8vh,
-    color-mix(in oklab, var(--fi-accent) 20%, transparent),
-    transparent 68%);
+  background: radial-gradient(46vw 40vh at calc(6% + var(--fi-progress) * 88%) -4vh,
+    color-mix(in oklab, var(--fi-accent) 34%, transparent),
+    transparent 64%);
 }
 
 .fi-content { position: relative; z-index: 1; }
