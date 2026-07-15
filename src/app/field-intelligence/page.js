@@ -74,7 +74,10 @@ export default function FieldIntelligence() {
 
   return (
     <div className="fi-root" ref={rootRef}>
-      <div className="fi-backdrop" aria-hidden="true" />
+      <div className="fi-backdrop" aria-hidden="true">
+        <div className="fi-stars" />
+        <div className="fi-sun" />
+      </div>
 
       <ProgressRail
         sections={RAIL}

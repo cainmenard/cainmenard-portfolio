@@ -1,32 +1,29 @@
 'use client'
 import { useEffect } from 'react'
-import { useReducedMotion } from './useReducedMotion'
 
 /**
  * Continuous 0→1 progress through the whole article, driving the day-arc
- * atmosphere (sky wash, warming accent, gliding sun). Unlike useActiveSection
- * — which reports a discrete "which station" — this is smooth, so the color
- * moves WITH the scroll instead of snapping at section boundaries.
+ * sky (color, sun position, stars). Unlike useActiveSection — which reports a
+ * discrete "which station" — this is smooth, so the sky moves WITH the scroll
+ * instead of snapping at section boundaries.
  *
  * Imperative by design: it calls `onChange(progress)` on each rAF tick rather
  * than returning state, so the caller can write CSS variables directly and the
  * React tree never re-renders per frame. rAF-throttled — the scroll listener
  * only flags "dirty" and a single frame reads layout, so fast wheel/touch
- * scrolls never thrash. When the viewer prefers reduced motion we skip the
- * listener and hold a static midday value (one calm, fully-legible state).
+ * scrolls never thrash.
+ *
+ * NOTE: this deliberately does NOT gate on prefers-reduced-motion. A sky color
+ * tied to scroll POSITION is not vestibular motion, and freezing it here is
+ * exactly what made the effect look dead for reduced-motion viewers. Reduced
+ * motion is handled purely in CSS — it stills the sun's travel and the star
+ * twinkle while the sky color still tracks scroll for everyone.
  *
  * @param {(progress:number)=>void} onChange  called with clamped progress [0,1].
  *   Keep it stable (useCallback) so the listener isn't re-subscribed each render.
  */
 export function useScrollProgress(onChange) {
-  const reduced = useReducedMotion()
-
   useEffect(() => {
-    if (reduced) {
-      onChange(0.5)
-      return
-    }
-
     let frame = 0
     let ticking = false
 
@@ -52,5 +49,5 @@ export function useScrollProgress(onChange) {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
     }
-  }, [reduced, onChange])
+  }, [onChange])
 }
