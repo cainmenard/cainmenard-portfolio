@@ -451,6 +451,29 @@ export const CLIFF = {
   quiet: 'Flat, flat, flat, then a cliff at about 90% complete.',
   honest: 'The weekly reforecast bends early and lands soft.',
   marker: 'Close-out fires at 80% of labor hours consumed, before the cliff.',
+  // Two forecasts of the same job. x = percent complete, y = projected margin.
+  // The quiet one holds near the bid margin, then falls off a cliff near 90%;
+  // the honest weekly reforecast bends early and lands soft. Values are shaped
+  // to the story (bids around 14, the quiet forecast lands near the 1.8 the
+  // crew-rate catch projected), not a specific job's ledger.
+  chart: {
+    yMax: 16,
+    bidMargin: 14,
+    markerX: 80,
+    markerLabel: 'Close-out fires here',
+    markerSub: '80% of labor hours',
+    cliffX: 90,
+    quiet: [
+      { x: 0, y: 14 }, { x: 25, y: 14 }, { x: 50, y: 13.9 }, { x: 70, y: 13.8 },
+      { x: 82, y: 13.5 }, { x: 88, y: 12.8 }, { x: 92, y: 8.5 }, { x: 96, y: 4.3 }, { x: 100, y: 1.8 },
+    ],
+    honest: [
+      { x: 0, y: 14 }, { x: 15, y: 12.9 }, { x: 35, y: 11.3 }, { x: 55, y: 10 },
+      { x: 72, y: 9.1 }, { x: 85, y: 8.6 }, { x: 100, y: 8.4 },
+    ],
+    quietLabel: 'The quiet forecast',
+    honestLabel: 'The honest weekly reforecast',
+  },
   crewRate: {
     world: 'field',
     actual: 71.46,

@@ -32,6 +32,8 @@
   --fi-accent-ink: #ffffff;    /* text that sits on an accent fill */
   --fi-sandbox: #2f6f7a;       /* a distinct world: teal, never copper */
   --fi-sandbox-soft: rgba(47, 111, 122, 0.10);
+  --fi-danger: #b4432f;        /* loss / the cliff */
+  --fi-danger-soft: rgba(180, 67, 47, 0.10);
   --fi-glow: radial-gradient(1200px 700px at 50% -10%, rgba(184, 115, 51, 0.10), transparent 60%);
 
   --fi-rail-h: 56px;
@@ -60,6 +62,8 @@
   --fi-accent-ink: #12181f;
   --fi-sandbox: #57b6c4;
   --fi-sandbox-soft: rgba(87, 182, 196, 0.12);
+  --fi-danger: #e0765c;
+  --fi-danger-soft: rgba(224, 118, 92, 0.14);
   --fi-glow: radial-gradient(1200px 620px at 50% 112%, rgba(207, 148, 87, 0.14), transparent 70%);
 }
 .fi-root[data-band='morning'] { --fi-bg: #e9e2d8; --fi-surface: #f4efe8; --fi-surface-2: #ffffff; }
@@ -987,4 +991,101 @@
 @media (prefers-reduced-motion: reduce) {
   .fi-pipe__node, .fi-pipe__pipe { transition-duration: 0.01ms !important; }
   .fi-pipe__drip { animation: none !important; }
+}
+
+/* ==================================================================
+ * Station 3: Job Cost (cliff chart + stopwatch)
+ * ================================================================== */
+
+/* --- The 90% cliff --- */
+.fi-cliff { margin-top: 0.5rem; }
+.fi-cliff__svg { width: 100%; height: auto; display: block; overflow: visible; }
+.fi-cliff__grid { stroke: var(--fi-line); stroke-width: 1; }
+.fi-cliff__tick { font-family: var(--fi-font-mono); font-size: 11px; fill: var(--fi-muted); }
+.fi-cliff__axis-y { font-family: var(--fi-font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--fi-muted); }
+.fi-cliff__marker { stroke: var(--fi-muted); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0; }
+.fi-cliff__marker-label { font-family: var(--fi-font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.03em; fill: var(--fi-text); opacity: 0; }
+.fi-cliff__marker-sub { font-family: var(--fi-font-mono); font-size: 9.5px; fill: var(--fi-muted); opacity: 0; }
+.fi-cliff__annot { font-family: var(--fi-font-display); font-style: italic; font-size: 14px; fill: var(--fi-danger); opacity: 0; }
+.fi-cliff__line { stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+.fi-cliff__line--quiet { stroke: var(--fi-danger); }
+.fi-cliff__line--honest { stroke: var(--fi-accent); }
+.fi-cliff__dot { opacity: 0; }
+.fi-cliff__dot--quiet { fill: var(--fi-danger); }
+.fi-cliff__dot--honest { fill: var(--fi-accent); }
+
+.fi-cliff.is-drawn .fi-cliff__line--quiet { transition: stroke-dashoffset 1.15s var(--fi-ease); stroke-dashoffset: 0; }
+.fi-cliff.is-drawn .fi-cliff__line--honest { transition: stroke-dashoffset 1.15s var(--fi-ease) 0.85s; stroke-dashoffset: 0; }
+.fi-cliff.is-drawn .fi-cliff__marker,
+.fi-cliff.is-drawn .fi-cliff__marker-label,
+.fi-cliff.is-drawn .fi-cliff__marker-sub { transition: opacity 0.5s ease 0.4s; opacity: 1; }
+.fi-cliff.is-drawn .fi-cliff__dot--quiet { transition: opacity 0.4s ease 1.15s; opacity: 1; }
+.fi-cliff.is-drawn .fi-cliff__dot--honest { transition: opacity 0.4s ease 2s; opacity: 1; }
+.fi-cliff.is-drawn .fi-cliff__annot { transition: opacity 0.5s ease 1.5s; opacity: 1; }
+
+.fi-cliff__legend { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-top: 0.85rem; }
+.fi-cliff__key { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--fi-text); }
+.fi-cliff__key::before { content: ''; width: 16px; height: 3px; border-radius: 999px; }
+.fi-cliff__key--quiet::before { background: var(--fi-danger); }
+.fi-cliff__key--honest::before { background: var(--fi-accent); }
+.fi-cliff__axis-x { font-family: var(--fi-font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-muted); margin-left: auto; }
+.fi-cliff__replay {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--fi-font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fi-text); background: transparent; border: 1px solid var(--fi-line-strong);
+  border-radius: 999px; padding: 0.35rem 0.8rem; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+}
+.fi-cliff__replay:hover { border-color: var(--fi-accent); color: var(--fi-accent-text); }
+
+.fi-jobcost__catch { margin-top: 1.75rem; }
+.fi-jobcost__study { margin-top: 2.75rem; }
+
+/* --- The stopwatch time study --- */
+.fi-stop { margin-top: 0.25rem; }
+.fi-stop__bar { display: flex; gap: 4px; height: 100px; }
+.fi-stop__seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 8px;
+}
+.fi-stop__seg--direct { background: var(--fi-text); color: var(--fi-bg); }
+.fi-stop__seg--support { background: color-mix(in srgb, var(--fi-text) 32%, var(--fi-bg)); color: var(--fi-text); }
+.fi-stop__seg--lost { background: var(--fi-accent); color: var(--fi-accent-ink); }
+.fi-stop__seg-pct { font-size: 1.4rem; font-weight: 500; line-height: 1; }
+.fi-stop__seg-label { font-size: 0.7rem; line-height: 1.2; opacity: 0.92; }
+
+.fi-stop__btn {
+  margin-top: 1.25rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--fi-font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fi-accent-text); background: transparent; border: 1px solid var(--fi-accent);
+  border-radius: 999px; padding: 0.5rem 1rem; cursor: pointer; transition: background-color 0.2s, color 0.2s;
+}
+.fi-stop__btn:hover { background: var(--fi-accent); color: var(--fi-accent-ink); }
+
+.fi-stop__reveal { margin-top: 1.5rem; animation: fi-reveal 0.5s var(--fi-ease); }
+@keyframes fi-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fi-stop__lead { font-size: 0.95rem; line-height: 1.55; margin: 0 0 1rem; max-width: 54ch; }
+.fi-stop__causes { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.85rem; }
+.fi-stop__cause {
+  display: flex; flex-direction: column; gap: 0.35rem;
+  padding: 1rem; border: 1px solid var(--fi-line); border-radius: 10px; background: var(--fi-surface);
+}
+.fi-stop__cause--finale { border-color: var(--fi-accent); background: color-mix(in srgb, var(--fi-accent) 8%, var(--fi-surface)); }
+.fi-stop__cause-rank { font-size: 1.5rem; font-weight: 500; line-height: 1; color: var(--fi-accent-text); }
+.fi-stop__cause-label { font-weight: 600; font-size: 0.9rem; line-height: 1.25; }
+.fi-stop__cause-note { font-size: 0.8rem; line-height: 1.4; color: var(--fi-muted); }
+.fi-stop__punch { font-family: var(--fi-font-display); font-style: italic; font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem); color: var(--fi-text); margin: 1.5rem 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fi-cliff__line,
+  .fi-cliff__marker, .fi-cliff__marker-label, .fi-cliff__marker-sub,
+  .fi-cliff__dot, .fi-cliff__annot { transition-duration: 0.01ms !important; }
+  .fi-stop__reveal { animation: none !important; }
 }
