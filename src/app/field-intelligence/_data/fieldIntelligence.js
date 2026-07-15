@@ -70,7 +70,7 @@ export const HERO = {
   eyebrow: 'A capability demonstration',
   title: 'A Day of Field Intelligence',
   standfirst:
-    'Follow one labor hour from the jobsite to the income statement, and back around. Five stations, five sets of hands, one hour that decides what the next job costs.',
+    'Follow one labor hour from the jobsite to the income statement, and back around.',
   orientation:
     'A scale model of real consulting work, one day standing in for the whole engagement, written and built by Cain Menard.',
   scrollCue: 'Begin at 6:15am',
