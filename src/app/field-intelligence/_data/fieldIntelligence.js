@@ -632,7 +632,7 @@ export const OBJECTIONS = [
 ]
 
 export const GUIDED_EMBED = {
-  url: 'https://project-performance-analysis.vercel.app/',
+  url: 'https://project-performance-analysis.vercel.app/?embed=1',
   label: 'Real deployed tool, sample data',
   frame:
     'The same analysis, deployed as a tool you can drive. Pick a mission and run the cut yourself.',
