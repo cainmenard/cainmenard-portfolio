@@ -388,12 +388,38 @@ export const PIPELINE = {
   world: 'field',
   frame: 'Five data flows connect seven systems through one middleware layer.',
   before: 'Before the build, only 2 of 10 integrations were automated.',
-  leaks: [
-    { id: 'rekey', label: 'Re-keying', detail: 'One business re-keys about 150 payroll lines a week.' },
-    { id: 'queue', label: 'The approval queue', detail: 'Corrections chase every paycheck cycle. The hour dies waiting.' },
+  prompt: 'Approved does not mean counted. Click the hand-off where you think the hour dies.',
+  // The stages the approved hour has to survive, left to right.
+  stages: [
+    { id: 'approved', label: 'Approved timecard' },
+    { id: 'payroll', label: 'Payroll' },
+    { id: 'erp', label: 'Job cost (ERP)' },
+    { id: 'books', label: 'The books' },
+    { id: 'budget', label: 'Budget vs actual' },
+  ],
+  // One clickable point per pipe, in order between the stages above. Two are the
+  // real leaks; the rest are hand-offs that are not where the hour dies.
+  points: [
+    {
+      id: 'queue',
+      leak: true,
+      title: 'The approval queue',
+      detail: 'The hour waits here while corrections chase every paycheck cycle. Approved is not counted.',
+    },
+    {
+      id: 'rekey',
+      leak: true,
+      title: 'Manual re-keying',
+      detail: 'One business re-keys about 150 payroll lines a week at this hand-off, by hand.',
+    },
+    { id: 'd1', leak: false, miss: 'A hand-off, but not where the hour dies.' },
+    { id: 'd2', leak: false, miss: 'A hand-off, but not where the hour dies.' },
   ],
   trigger:
     'The future state runs on one trigger. The minute a timecard is approved, the hour posts to its cost code and budget-versus-actual updates the same day, not at month-end.',
+  triggerShort:
+    'The minute a timecard is approved, the hour posts to its cost code and budget-versus-actual updates the same day.',
+  budgetBadge: 'Updated today',
   honest:
     'An integration does not fix a bad punch. It delivers the bad punch faster. So the correction workflow and the approval deadline are the real design work. One deadline moved to noon Monday, with a second round for the Tuesday stragglers.',
 }
