@@ -641,7 +641,9 @@ export const OBJECTIONS = [
 export const GUIDED_EMBED = {
   url: 'https://project-performance-analysis.vercel.app/',
   label: 'Real deployed tool, sample data',
-  note: 'The tool ships 147 sample project records. Its demo dataset is illustrative and is never cited as real client numbers.',
+  frame:
+    'It opens on a healthy portfolio average. That average is the trap. Every mission below asks the same thing the day did: cut past the average and find the jobs it hides.',
+  note: 'The tool loads a sample dataset by default. Those demo figures are illustrative and are never cited as real client numbers.',
   missions: [
     { id: 'customer', title: 'Find the losing customer', look: 'Sort customers by margin fade. One profile loses money on repeat.' },
     { id: 'category', title: 'Find the leaking cost category', look: 'Compare estimate to actual by category. Watch equipment and labor.' },
