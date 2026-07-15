@@ -66,7 +66,7 @@
   --fi-accent-dusk: #c07c25;   /* warmer amber-gold by afternoon */
   --fi-accent: color-mix(in oklab, var(--fi-accent-dawn), var(--fi-accent-dusk) calc(var(--fi-progress) * 100%));
 
-  --fi-rail-h: 56px;
+  --fi-rail-h: 60px;
   --fi-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   position: relative;
@@ -317,67 +317,104 @@
 .fi-rail__back:hover { border-color: var(--fi-accent); color: var(--fi-accent-text); }
 .fi-rail__back svg { width: 14px; height: 14px; }
 
-.fi-rail__track {
-  position: relative;
+/* ---- Editorial segmented stepper ---------------------------------------
+ * The center track is an ordered list of numbered steps. Each step carries a
+ * mono index + uppercase name ON TOP and a short segment bar BELOW, so a line
+ * never crosses the text. The segments evenly divide the track and fill copper
+ * one-by-one as the reader advances — together they read as a progress bar. */
+.fi-rail__steps {
   flex: 1 1 auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.25rem;
-  height: 100%;
+  align-items: stretch;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
 }
-/* the connecting line + fill */
-.fi-rail__line {
-  position: absolute;
-  left: 0.5rem;
-  right: 0.5rem;
-  top: 50%;
-  height: 1px;
-  background: var(--fi-line-strong);
-  transform: translateY(-50%);
+.fi-rail__step {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
 }
-.fi-rail__fill {
-  position: absolute;
-  left: 0.5rem;
-  top: 50%;
-  height: 2px;
-  width: calc((100% - 1rem) * var(--fi-rail-progress, 0));
-  background: var(--fi-accent);
-  transform: translateY(-50%);
-  transition: width 0.5s var(--fi-ease);
-}
-.fi-rail__node {
+.fi-rail__step > a {
   position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  padding: 0.25rem 0.35rem;
-  color: var(--fi-muted);
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.32rem;
+  padding: 0.2rem 0;
   text-decoration: none;
-  font-family: var(--fi-font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  transition: color 0.25s;
+  cursor: pointer;
 }
-.fi-rail__dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: var(--fi-bg);
-  border: 1.5px solid var(--fi-line-strong);
-  transition: background-color 0.25s, border-color 0.25s, transform 0.25s var(--fi-ease);
+.fi-rail__step-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.fi-rail__num {
   flex: 0 0 auto;
+  font-family: var(--fi-font-mono);
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: var(--fi-muted);
+  opacity: 0.7;
+  transition: color 0.25s ease, opacity 0.25s ease;
 }
-.fi-rail__label { white-space: nowrap; }
-.fi-rail__node:hover { color: var(--fi-text); }
-.fi-rail__node--done .fi-rail__dot { background: var(--fi-accent); border-color: var(--fi-accent); }
-.fi-rail__node--active { color: var(--fi-accent-text); }
-.fi-rail__node--active .fi-rail__dot { background: var(--fi-accent); border-color: var(--fi-accent); transform: scale(1.35); }
+.fi-rail__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--fi-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--fi-text);
+  transition: color 0.25s ease;
+}
+/* the per-step segment: an even chunk of the overall progress bar */
+.fi-rail__seg {
+  position: relative;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--fi-line);
+  overflow: hidden;
+}
+.fi-rail__seg-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  border-radius: inherit;
+  background: var(--fi-accent);
+  transition: transform 0.5s var(--fi-ease);
+}
+
+/* upcoming steps read quieter; hover previews the arrival */
+.fi-rail__step:not(.fi-rail__step--active):not(.fi-rail__step--done) .fi-rail__name {
+  color: var(--fi-muted);
+}
+.fi-rail__step > a:hover .fi-rail__name { color: var(--fi-text); }
+.fi-rail__step > a:hover .fi-rail__seg-fill { transform: scaleX(1); opacity: 0.4; }
+
+/* done: segment filled, index warms */
+.fi-rail__step--done .fi-rail__seg-fill { transform: scaleX(1); }
+.fi-rail__step--done .fi-rail__num { color: var(--fi-accent-text); opacity: 0.85; }
+
+/* active: name + index copper, segment filled with a glowing leading edge */
+.fi-rail__step--active .fi-rail__name { color: var(--fi-accent-text); font-weight: 600; }
+.fi-rail__step--active .fi-rail__num { color: var(--fi-accent-text); opacity: 1; }
+.fi-rail__step--active .fi-rail__seg { background: color-mix(in srgb, var(--fi-accent) 22%, var(--fi-line)); }
+.fi-rail__step--active .fi-rail__seg-fill {
+  transform: scaleX(1);
+  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--fi-accent) 55%, transparent);
+}
 
 /* loop-close cap: a return arc that lights up at the epilogue */
 .fi-rail__loop {
@@ -390,13 +427,20 @@
 }
 .fi-rail__loop svg { width: 18px; height: 18px; }
 .fi-rail--looped .fi-rail__loop { opacity: 1; color: var(--fi-accent-text); }
-.fi-rail--looped .fi-rail__node:first-child .fi-rail__dot {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--fi-accent) 30%, transparent);
+/* looped: every segment filled, first step re-glows to close the loop */
+.fi-rail--looped .fi-rail__seg-fill { transform: scaleX(1); }
+.fi-rail--looped .fi-rail__step:first-child .fi-rail__seg {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--fi-accent) 32%, transparent);
 }
+.fi-rail--looped .fi-rail__step:first-child .fi-rail__name { color: var(--fi-accent-text); }
 
 @media (max-width: 720px) {
-  .fi-rail__label { display: none; }
-  .fi-rail__track { justify-content: space-around; }
+  .fi-rail__steps { gap: 0.35rem; }
+  /* names collapse on narrow screens; the numbered segmented bar stays,
+     so the stepper still reads as progress instead of a bare line */
+  .fi-rail__name { display: none; }
+  .fi-rail__step-head { justify-content: center; }
+  .fi-rail__step > a { gap: 0.28rem; }
 }
 
 /* ------------------------------------------------------------------ *
@@ -690,8 +734,7 @@
   .fi-backdrop,
   .fi-backdrop::after,
   .fi-rail,
-  .fi-rail__fill,
-  .fi-rail__dot,
+  .fi-rail__seg-fill,
   .fi-drawer__region,
   .fi-drawer__icon,
   .fi-cite__note { transition-duration: 0.01ms !important; }
