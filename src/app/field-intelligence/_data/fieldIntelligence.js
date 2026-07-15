@@ -635,7 +635,7 @@ export const GUIDED_EMBED = {
   url: 'https://project-performance-analysis.vercel.app/?embed=1',
   label: 'Real deployed tool, sample data',
   frame:
-    'The same analysis, deployed as a tool you can drive. Pick a mission and run the cut yourself.',
+    'The same analysis, deployed. It opens on gain and fade, the view that leads with the net number the average hides. Pick a mission and run the cut yourself.',
   note: 'The tool loads a sample dataset by default. Those demo figures are illustrative and are never cited as real client numbers.',
   missions: [
     { id: 'customer', title: 'Find the losing customer', look: 'Sort customers by margin fade. One profile loses money on repeat.' },
