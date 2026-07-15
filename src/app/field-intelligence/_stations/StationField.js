@@ -6,7 +6,9 @@ import FedexMoment from '../_components/FedexMoment'
 import DataNote from '../_components/DataNote'
 import Citation from '../_components/Citation'
 import Drawer from '../_components/Drawer'
-import { STATIONS, CITATIONS, VENDOR_GAUNTLET, TRAINING_ARC } from '../_data/fieldIntelligence'
+import { STATIONS, CITATIONS, FIELD_FACTS, VENDOR_GAUNTLET, TRAINING_ARC } from '../_data/fieldIntelligence'
+
+const SPANISH_ONLY = FIELD_FACTS.find((f) => f.unit === 'Spanish-only')
 
 const station = STATIONS.find((s) => s.id === 'field')
 
@@ -53,10 +55,18 @@ export default function StationField() {
               {TRAINING_ARC.terminology}.
             </p>
           </Drawer>
+
+          <Drawer title="Go deeper: the design constraint" eventId="field-constraint">
+            <DataNote world="field" label="Design constraint" className="fi-constraint">
+              <p style={{ margin: 0, lineHeight: 1.55 }}>{SPANISH_ONLY.text}</p>
+            </DataNote>
+          </Drawer>
         </>
       }
     >
       <CaptureBoard onFedexClick={() => setFedexTrigger((t) => t + 1)} />
+
+      <p className="fi-board__takeaway">{station.takeaway}</p>
 
       <p className="fi-muted fi-board__frame">
         That manual-heavy spread is not incidental. Construction labor productivity has grown about 0.4% a year
@@ -68,13 +78,6 @@ export default function StationField() {
           url={CITATIONS.mckinsey.url}
         />
       </p>
-
-      <DataNote world="field" label="Design constraint" className="fi-constraint">
-        <p style={{ margin: 0, lineHeight: 1.55 }}>
-          More than 75% of about 800 workers at the largest business speak only Spanish. That is a go or no-go design
-          constraint, not a localization ticket.
-        </p>
-      </DataNote>
 
       <FedexMoment trigger={fedexTrigger} />
     </StationShell>

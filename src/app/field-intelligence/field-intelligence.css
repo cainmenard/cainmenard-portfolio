@@ -891,7 +891,18 @@
   text-transform: uppercase;
   color: var(--fi-muted);
 }
-.fi-board__frame { margin-top: 1.5rem; font-size: 0.86rem; max-width: 52ch; }
+.fi-board__takeaway {
+  margin-top: 1.5rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--fi-accent);
+  max-width: 54ch;
+  font-family: var(--fi-font-display);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--fi-ink, inherit);
+}
+
+.fi-board__frame { margin-top: 1.25rem; font-size: 0.86rem; max-width: 52ch; }
 
 /* --- FedEx shipment tracker --- */
 .fi-fedex {

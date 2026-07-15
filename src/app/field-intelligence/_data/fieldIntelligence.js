@@ -95,6 +95,8 @@ export const STATIONS = [
       'I sat in the interviews and ran the current-state analysis across 12 businesses. I ran the vendor selection. I am building the training and adoption program now.',
     handoff: 'The hour gets approved. Now it has to survive the plumbing.',
     cast: 'the foreman who logs it',
+    takeaway:
+      'The one copper marker is the tell. The business with the cleanest financials of the sixteen sits on the manual end, and it still ships its timecards to corporate by FedEx.',
   },
   {
     id: 'office',
