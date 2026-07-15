@@ -59,7 +59,9 @@ export default function StationField() {
       <CaptureBoard onFedexClick={() => setFedexTrigger((t) => t + 1)} />
 
       <p className="fi-muted fi-board__frame">
-        Construction labor productivity has grown about 0.4% a year since 2000, against about 3% in manufacturing.
+        That manual-heavy spread is not incidental. Construction labor productivity has grown about 0.4% a year
+        since 2000, against about 3% in manufacturing — the same gap that shows up as 10% cumulative growth for
+        construction against 90% for manufacturing, 2000 to 2022.
         <Citation
           detail={CITATIONS.mckinsey.detail}
           source={CITATIONS.mckinsey.label}

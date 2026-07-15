@@ -96,6 +96,7 @@ export default function FieldIntelligence() {
               A Day of <em>Field Intelligence</em>
             </h1>
             <p className="fi-lead fi-hero__standfirst">{HERO.standfirst}</p>
+            <p className="fi-hero__meta">{HERO.orientation}</p>
             <a href="#field" className="fi-hero__cue" aria-label="Begin the day">
               <span className="fi-hero__cue-dot" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

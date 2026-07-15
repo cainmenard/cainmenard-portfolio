@@ -429,7 +429,13 @@
   margin: 0 0 1.75rem;
 }
 .fi-hero__title em { font-style: italic; color: var(--fi-accent-text); }
-.fi-hero__standfirst { max-width: 40ch; margin-bottom: 3rem; }
+.fi-hero__standfirst { max-width: 40ch; margin-bottom: 1rem; }
+.fi-hero__meta {
+  max-width: 40ch;
+  margin-bottom: 3rem;
+  font-size: 0.85rem;
+  color: var(--fi-muted);
+}
 .fi-hero__cue {
   display: inline-flex;
   align-items: center;

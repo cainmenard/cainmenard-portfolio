@@ -71,6 +71,8 @@ export const HERO = {
   title: 'A Day of Field Intelligence',
   standfirst:
     'Follow one labor hour from the jobsite to the income statement, and back around. Five stations, five sets of hands, one hour that decides what the next job costs.',
+  orientation:
+    'A scale model of real consulting work, one day standing in for the whole engagement, written and built by Cain Menard.',
   scrollCue: 'Begin at 6:15am',
   time: '6:15am',
 }
@@ -88,11 +90,11 @@ export const STATIONS = [
     kicker: 'Station 1',
     title: 'One hour, twelve businesses, five ways to record it.',
     scene:
-      'A crew leader clocks in. The same hour is about to be written down five different ways, and one of them travels by FedEx.',
+      'A foreman clocks in. The same hour is about to be written down five different ways, and one of them travels by FedEx.',
     myPart:
       'I sat in the interviews and ran the current-state analysis across 12 businesses. I ran the vendor selection. I am building the training and adoption program now.',
     handoff: 'The hour gets approved. Now it has to survive the plumbing.',
-    cast: 'the crew leader who logs it',
+    cast: 'the foreman who logs it',
   },
   {
     id: 'office',
@@ -103,7 +105,7 @@ export const STATIONS = [
     scene:
       'The timecard is approved. Approved does not mean counted. Between here and the books sit seven systems and a lot of re-keying.',
     myPart:
-      'I designed the data flows and the approval routing. Five flows, seven systems, one middleware layer.',
+      'I designed the data flows and the approval routing. Five flows, four live, seven systems, one middleware layer.',
     handoff: 'The hour posts to a cost code. Now the job has to tell the truth about it.',
     cast: 'the payroll clerk who reconciles it',
   },
@@ -335,7 +337,7 @@ export const BUSINESSES = [
 
 /** The animated shipment: how a paper hour reaches the books, and how late. */
 export const FEDEX_STAGES = [
-  { id: 'written', when: 'Monday', title: 'Timecard written', text: 'A crew leader fills out paper timecards on the jobsite.' },
+  { id: 'written', when: 'Monday', title: 'Timecard written', text: 'A foreman fills out paper timecards on the jobsite.' },
   { id: 'error', when: 'Same day', title: 'Half need a fix', text: 'Roughly half of daily timecards carry an error nobody has caught yet.' },
   { id: 'shipped', when: 'Friday', title: 'Batched and FedExed', text: 'A week of paper is boxed and shipped to corporate.' },
   { id: 'surfaced', when: 'About two weeks later', title: 'The error surfaces', text: 'Payroll finds the mistake once the paper is finally keyed.' },
@@ -345,7 +347,8 @@ export const FEDEX_STAGES = [
 export const INDUSTRY_FRAME = {
   world: 'public',
   stat: '0.4% vs 3%',
-  text: 'Construction labor productivity has grown about 0.4% a year since 2000, against about 3% in manufacturing.',
+  text:
+    'Construction labor productivity has grown about 0.4% a year since 2000, against about 3% in manufacturing — the same gap that shows up as 10% cumulative growth for construction against 90% for manufacturing, 2000 to 2022.',
   citation: 'mckinsey',
 }
 
@@ -384,7 +387,7 @@ export const TRAINING_ARC = {
 /* --- Station 2: Office --- */
 export const PIPELINE = {
   world: 'field',
-  frame: 'Five data flows connect seven systems through one middleware layer.',
+  frame: 'Five data flows, four live, connect seven systems through one middleware layer.',
   before: 'Before the build, only 2 of 10 integrations were automated.',
   prompt: 'Approved does not mean counted. Click the hand-off where you think the hour dies.',
   // The stages the approved hour has to survive, left to right.
