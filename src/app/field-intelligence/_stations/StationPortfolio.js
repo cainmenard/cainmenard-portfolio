@@ -4,86 +4,90 @@ import DivergingBars from '../_components/DivergingBars'
 import SeatFlip from '../_components/SeatFlip'
 import BidRebuild from '../_components/BidRebuild'
 import GuidedEmbed from '../_components/GuidedEmbed'
-import DataNote from '../_components/DataNote'
-import StatFigure from '../_components/StatFigure'
 import Drawer from '../_components/Drawer'
-import { STATIONS, PORTFOLIO_FRAME, EPC_SCATTER, OBJECTIONS, LOOP_MECHANICS } from '../_data/fieldIntelligence'
+import { STATIONS, PORTFOLIO_FRAME, OBJECTIONS, LOOP_MECHANICS } from '../_data/fieldIntelligence'
 
 const station = STATIONS.find((s) => s.id === 'portfolio')
-const wc = EPC_SCATTER.worstCustomer
 
+/**
+ * Station 4, the centerpiece, reads as three movements instead of a flat stack
+ * of parts:
+ *   01 the hook       one book that looks fine; the scatter and its losing
+ *                     customer reveal in one beat that the average lied.
+ *   02 the proof      the same shape across three books, with the seat flip as
+ *                     a detail and the objections demoted to a quiet aside.
+ *   03 the payoff     the bias now has a price, and the analysis is a live tool.
+ */
 export default function StationPortfolio() {
   return (
     <StationShell station={station}>
-      <p className="fi-lead fi-part" style={{ maxWidth: '48ch' }}>
-        The completed jobs separate systematic bias from execution noise. Three books,{' '}
-        {PORTFOLIO_FRAME.totalProjects} projects, about {PORTFOLIO_FRAME.totalValue}.
-      </p>
-
-      {/* Would you sign it, then the scatter reveal */}
-      <div className="fade-section fi-part">
+      {/* 01: the hook, the average is a liar */}
+      <section className="fi-movement fade-section">
+        <header className="fi-movement__head">
+          <span className="fi-movement__idx">01</span>
+          <h3 className="fi-movement__title">The average is a liar.</h3>
+        </header>
         <WouldYouSign />
-      </div>
+      </section>
 
-      {/* The repeated shape across three books */}
-      <div className="fade-section fi-part">
-        <p className="fi-kicker fi-part__k">The repeated shape</p>
+      {/* 02: the proof, the same shape, three books */}
+      <section className="fi-movement fade-section">
+        <header className="fi-movement__head">
+          <span className="fi-movement__idx">02</span>
+          <h3 className="fi-movement__title">The same shape, three books.</h3>
+        </header>
+        <p className="fi-movement__lede">
+          One book could be luck. Here are three: {PORTFOLIO_FRAME.totalProjects} projects, about{' '}
+          {PORTFOLIO_FRAME.totalValue}, three different companies. The bias repeats.
+        </p>
+
         <DivergingBars />
-      </div>
 
-      {/* The seat flip */}
-      <div className="fade-section fi-part">
-        <p className="fi-kicker fi-part__k">The seat flip</p>
-        <SeatFlip />
-      </div>
-
-      {/* The customer cut */}
-      <div className="fade-section fi-part">
-        <p className="fi-kicker fi-part__k">The customer cut</p>
-        <DataNote world="field" label="The largest customer">
-          <p style={{ margin: '0 0 1rem', fontSize: '1.05rem', fontFamily: 'var(--fi-font-display)' }}>{wc.line}</p>
-          <div className="fi-cutstats">
-            <StatFigure size="sm" value={wc.projects} label="projects" />
-            <StatFigure size="sm" value={wc.revenue} label="revenue" />
-            <StatFigure size="sm" value={wc.netLoss} label="net loss" />
-            <StatFigure size="sm" value={`${wc.directOverPct}%`} label="direct costs over" />
-          </div>
-        </DataNote>
-      </div>
-
-      {/* Objections answered */}
-      <div className="fade-section fi-part">
-        <p className="fi-kicker fi-part__k">Answered before a veteran raises it</p>
-        <div className="fi-objections">
-          {OBJECTIONS.map((o) => (
-            <div key={o.id} className="fi-objection">
-              <span className="fi-objection__q">{o.title}</span>
-              <p>{o.body}</p>
-            </div>
-          ))}
+        <div className="fi-movement__part fade-section">
+          <p className="fi-kicker fi-part__k">The same company, two seats</p>
+          <SeatFlip />
         </div>
-      </div>
 
-      {/* The live tool */}
-      <div className="fade-section fi-part">
-        <p className="fi-kicker fi-part__k">The tool, deployed</p>
+        <div className="fi-movement__part fade-section">
+          <p className="fi-kicker fi-part__k">Answered before a veteran raises it</p>
+          <div className="fi-objections fi-objections--strip">
+            {OBJECTIONS.map((o) => (
+              <div key={o.id} className="fi-objection">
+                <span className="fi-objection__q">{o.title}</span>
+                <p>{o.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 03: the payoff, so you can price the next one */}
+      <section className="fi-movement fade-section">
+        <header className="fi-movement__head">
+          <span className="fi-movement__idx">03</span>
+          <h3 className="fi-movement__title">So you can price the next one.</h3>
+        </header>
+        <p className="fi-movement__lede">
+          Once the bias has a name, it has a price. The same analysis is deployed as a tool you can drive.
+        </p>
+
         <GuidedEmbed />
-      </div>
 
-      <div className="fade-section fi-part">
-        <Drawer title="Go deeper: rebuild the bid" eventId="portfolio-bid">
-          <BidRebuild />
-        </Drawer>
+        <div className="fi-movement__part fade-section">
+          <Drawer title="Go deeper: rebuild the bid" eventId="portfolio-bid">
+            <BidRebuild />
+          </Drawer>
 
-        <Drawer title="Go deeper: how the loop actually closes" eventId="portfolio-loop">
-          <ul>
-            <li>{LOOP_MECHANICS.factTable}</li>
-            <li>{LOOP_MECHANICS.segment}</li>
-            <li>{LOOP_MECHANICS.reblend}</li>
-            <li>{LOOP_MECHANICS.gate}</li>
-          </ul>
-        </Drawer>
-      </div>
+          <Drawer title="Go deeper: how the loop actually closes" eventId="portfolio-loop">
+            <ul>
+              <li>{LOOP_MECHANICS.factTable}</li>
+              <li>{LOOP_MECHANICS.segment}</li>
+              <li>{LOOP_MECHANICS.reblend}</li>
+              <li>{LOOP_MECHANICS.gate}</li>
+            </ul>
+          </Drawer>
+        </div>
+      </section>
     </StationShell>
   )
 }

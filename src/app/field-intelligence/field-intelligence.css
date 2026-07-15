@@ -1396,6 +1396,39 @@
 .fi-part { margin-top: 3.25rem; }
 .fi-part__k { margin-bottom: 1rem; }
 
+/* --- Movement grouping: the centerpiece reads as three chapters. Heavier
+       breaks between movements, a tighter rhythm inside each, so the reader
+       always knows whether a block is a new act or evidence within one. --- */
+.fi-movement { margin-top: 4.75rem; }
+.fi-movement:first-of-type { margin-top: 1.5rem; }
+.fi-movement__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--fi-line);
+}
+.fi-movement__idx {
+  flex: 0 0 auto;
+  font-family: var(--fi-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--fi-accent-text);
+  transform: translateY(-0.15em);
+}
+.fi-movement__title {
+  margin: 0;
+  font-family: var(--fi-font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--fi-text);
+}
+.fi-movement__lede { margin: 0 0 1.75rem; font-size: 1rem; line-height: 1.6; color: var(--fi-muted); max-width: 54ch; }
+.fi-movement__part { margin-top: 2.25rem; }
+
 /* --- Would you sign it + scatter --- */
 .fi-sign { margin-top: 0.5rem; }
 .fi-sign__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
@@ -1414,6 +1447,11 @@
 @keyframes fi-fadein { from { opacity: 0; } to { opacity: 0.82; } }
 .fi-sign__reaction { margin-top: 1rem; font-size: 1rem; line-height: 1.55; color: var(--fi-text); max-width: 54ch; }
 .fi-sign__note { display: block; margin-top: 0.5rem; font-size: 0.76rem; }
+/* The losing customer is the scatter's punchline, revealed in the same beat:
+   the deep-left tail has a name and a number. */
+.fi-sign__cut { margin-top: 1.75rem; padding-top: 1.4rem; border-top: 1px solid var(--fi-line); }
+.fi-sign__cut-tag { display: block; font-family: var(--fi-font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-accent-text); margin-bottom: 0.6rem; }
+.fi-sign__cut-line { margin: 0 0 1rem; font-family: var(--fi-font-display); font-size: 1.1rem; line-height: 1.35; color: var(--fi-text); }
 
 /* --- Diverging bars --- */
 .fi-div { margin-top: 0.5rem; }
@@ -1453,6 +1491,12 @@
 .fi-objection { border: 1px solid var(--fi-line); border-radius: 12px; padding: 1.1rem 1.25rem; background: var(--fi-surface); }
 .fi-objection__q { display: block; font-family: var(--fi-font-display); font-size: 1.05rem; color: var(--fi-text); margin-bottom: 0.5rem; }
 .fi-objection p { margin: 0; font-size: 0.88rem; line-height: 1.55; color: var(--fi-muted); }
+/* Strip variant: the "answered before you ask" asides read as quiet secondary
+   material, not full cards competing with the evidence above them. */
+.fi-objections--strip { display: flex; flex-direction: column; gap: 0.9rem; max-width: 62ch; }
+.fi-objections--strip .fi-objection { border: 0; border-left: 2px solid var(--fi-line-strong); border-radius: 0; padding: 0.15rem 0 0.15rem 1rem; background: transparent; }
+.fi-objections--strip .fi-objection__q { font-size: 0.92rem; margin-bottom: 0.25rem; }
+.fi-objections--strip .fi-objection p { font-size: 0.84rem; }
 
 /* --- Bid rebuild (sandbox) --- */
 .fi-bid { margin-top: 0.5rem; }
