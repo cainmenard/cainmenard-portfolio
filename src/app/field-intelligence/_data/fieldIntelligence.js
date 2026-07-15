@@ -117,7 +117,7 @@ export const STATIONS = [
     scene:
       'The timecard is approved. Approved does not mean counted. Between here and the books sit seven systems and a lot of re-keying.',
     myPart:
-      'I designed the data flows and the approval routing. Five flows, seven systems, one middleware layer.',
+      'I designed the data flows and the approval routing. Five flows, four live, seven systems, one middleware layer.',
     handoff: 'The hour posts to a cost code. Now the job has to tell the truth about it.',
     cast: 'the payroll clerk who reconciles it',
   },
@@ -398,7 +398,7 @@ export const TRAINING_ARC = {
 /* --- Station 2: Office --- */
 export const PIPELINE = {
   world: 'field',
-  frame: 'Five data flows connect seven systems through one middleware layer.',
+  frame: 'Five data flows, four live, connect seven systems through one middleware layer.',
   before: 'Before the build, only 2 of 10 integrations were automated.',
   prompt: 'Approved does not mean counted. Click the hand-off where you think the hour dies.',
   // The stages the approved hour has to survive, left to right.
