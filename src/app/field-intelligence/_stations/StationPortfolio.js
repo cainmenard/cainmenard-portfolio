@@ -68,7 +68,7 @@ export default function StationPortfolio() {
           <h3 className="fi-movement__title">So you can price the next one.</h3>
         </header>
         <p className="fi-movement__lede">
-          Once the bias has a name, it has a price. The same analysis is deployed as a tool you can drive.
+          Once the bias has a name, it has a price.
         </p>
 
         <GuidedEmbed />
