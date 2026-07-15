@@ -18,6 +18,7 @@ import { SKILLS } from '@/data/skills'
 import { CERTS } from '@/data/certifications'
 import PersonalityTeaser from '@/components/PersonalityTeaser'
 import ComparisonEmbed from '@/components/ComparisonEmbed'
+import FieldIntelligencePreview from '@/components/FieldIntelligencePreview'
 
 export default function Home() {
   const activeSection = useSectionObserver()
@@ -213,15 +214,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Station rail motif */}
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-5 text-xs font-semibold uppercase tracking-wider text-slate-400">
-              {['Field', 'Office', 'Job Cost', 'Portfolio', 'Decisions'].map((s, i, arr) => (
-                <span key={s} className="inline-flex items-center gap-2">
-                  <span className={i === 0 ? '' : 'text-slate-900 dark:text-white'} style={i === arr.length - 1 ? { color: 'var(--accent)' } : undefined}>{s}</span>
-                  {i < arr.length - 1 && <span className="text-slate-300 dark:text-slate-600" aria-hidden="true">&rarr;</span>}
-                </span>
-              ))}
-            </div>
+            {/* Animated "Golden Hour" preview — a miniature of the day-arc story */}
+            <FieldIntelligencePreview />
 
             <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
               Explore the Interactive Story
