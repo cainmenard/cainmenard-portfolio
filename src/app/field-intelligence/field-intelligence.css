@@ -1011,98 +1011,229 @@
 }
 
 /* ==================================================================
- * Station 2: Office (interactive pipeline)
+ * Station 2: Office (interactive pipeline schematic)
+ * A single responsive SVG: five system nodes bolted together by four
+ * clickable valves. The valve is the interaction, so it is drawn to read
+ * as a control at rest (accent ring, "?" glyph, a pulse until first use).
  * ================================================================== */
 .fi-pipe-wrap { margin-top: 0.5rem; }
+
+.fi-pipe__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
 .fi-pipe__status {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--fi-text);
   max-width: 54ch;
   min-height: 3em;
-  margin: 0 0 1.5rem;
+  margin: 0;
+  flex: 1 1 20ch;
 }
-
-.fi-pipe {
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  padding-bottom: 0.75rem;
-}
-.fi-pipe > * { flex: 0 0 auto; }
-
-.fi-pipe__node {
-  width: 8.5rem;
-  min-height: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0.65rem 0.5rem;
-  text-align: center;
-  border: 1px solid var(--fi-line-strong);
-  border-radius: 10px;
-  background: var(--fi-surface);
-  transition: border-color 0.35s var(--fi-ease), background-color 0.35s, box-shadow 0.35s;
-}
-.fi-pipe__node-label { font-size: 0.8rem; font-weight: 600; line-height: 1.2; color: var(--fi-text); }
-.fi-pipe__node.is-lit {
-  border-color: var(--fi-accent);
-  box-shadow: 0 0 0 1px var(--fi-accent), 0 6px 18px color-mix(in srgb, var(--fi-accent) 22%, transparent);
-}
-.fi-pipe__node--end.is-lit { background: color-mix(in srgb, var(--fi-accent) 14%, var(--fi-surface)); }
-.fi-pipe__badge {
+.fi-pipe__score { display: flex; align-items: center; gap: 0.45rem; flex: 0 0 auto; padding-top: 0.15rem; }
+.fi-pipe__score-label {
   font-family: var(--fi-font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--fi-accent-text);
-  border: 1px solid var(--fi-accent);
+  color: var(--fi-muted);
+}
+.fi-pipe__score-dot {
+  width: 11px;
+  height: 11px;
   border-radius: 999px;
-  padding: 0.1rem 0.45rem;
+  border: 1.5px solid var(--fi-line-strong);
+  background: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.fi-pipe__score-dot.is-on { background: var(--fi-danger); border-color: var(--fi-danger); }
+
+.fi-pipe { width: 100%; }
+.fi-pipe__svg { width: 100%; height: auto; display: block; overflow: visible; }
+.fi-pipe[data-orient='v'] .fi-pipe__svg { max-width: 340px; margin: 0 auto; }
+
+/* --- System nodes --- */
+.fi-pipe__node-box {
+  fill: var(--fi-surface);
+  stroke: var(--fi-line-strong);
+  stroke-width: 1.5;
+  transition: stroke 0.35s var(--fi-ease), fill 0.35s, filter 0.35s;
+}
+.fi-pipe__node-text {
+  fill: var(--fi-text);
+  font-family: var(--fi-font-body);
+  font-size: 13px;
+  font-weight: 600;
+}
+.fi-pipe__node.is-lit .fi-pipe__node-box {
+  stroke: var(--fi-accent);
+  filter: drop-shadow(0 4px 14px color-mix(in srgb, var(--fi-accent) 30%, transparent));
+}
+.fi-pipe__node--end.is-lit .fi-pipe__node-box {
+  fill: color-mix(in srgb, var(--fi-accent) 12%, var(--fi-surface));
+}
+.fi-pipe__badge { animation: fi-badge-in 0.4s var(--fi-ease) both; }
+.fi-pipe__badge-box {
+  fill: color-mix(in srgb, var(--fi-accent) 15%, var(--fi-surface));
+  stroke: var(--fi-accent);
+  stroke-width: 1;
+}
+.fi-pipe__badge-text {
+  fill: var(--fi-accent-text);
+  font-family: var(--fi-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@keyframes fi-badge-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Pipe segments + flow --- */
+.fi-pipe__seg {
+  fill: none;
+  stroke: var(--fi-line-strong);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke 0.35s var(--fi-ease);
+}
+.fi-pipe__seg.is-leak { stroke: var(--fi-danger); }
+.fi-pipe__seg.is-miss { stroke: var(--fi-line); }
+.fi-pipe__seg.is-sealed { stroke: color-mix(in srgb, var(--fi-accent) 45%, var(--fi-line-strong)); }
+.fi-pipe__seg-flow {
+  fill: none;
+  stroke: var(--fi-accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--fi-accent) 55%, transparent));
+}
+.fi-pipe__seg-flow.is-flow {
+  opacity: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.55s linear, opacity 0.2s;
 }
 
-.fi-pipe__link {
-  position: relative;
-  width: 3.5rem;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
+/* --- Valves: the clickable hand-offs --- */
+.fi-pipe__valve { cursor: pointer; }
+.fi-pipe__valve[aria-disabled='true'] { cursor: default; }
+.fi-pipe__valve-hit { fill: transparent; pointer-events: all; }
+.fi-pipe__valve-halo {
+  fill: color-mix(in srgb, var(--fi-accent) 18%, transparent);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.2s;
 }
-.fi-pipe__link:disabled { cursor: default; }
-.fi-pipe__pipe {
-  width: 100%;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--fi-line-strong);
-  transition: background-color 0.3s, box-shadow 0.3s;
+.fi-pipe__valve-ring {
+  fill: var(--fi-surface);
+  stroke: var(--fi-accent);
+  stroke-width: 2;
+  transition: stroke 0.25s, fill 0.25s, stroke-width 0.2s;
 }
-.fi-pipe__link:hover:not(:disabled) .fi-pipe__pipe { background: var(--fi-muted); }
-.fi-pipe__link.is-leak .fi-pipe__pipe,
-.fi-pipe__link.is-sealed .fi-pipe__pipe { background: var(--fi-accent); }
-.fi-pipe__link.is-miss .fi-pipe__pipe { background: var(--fi-line); }
-.fi-pipe__link.is-flow .fi-pipe__pipe { box-shadow: 0 0 8px 1px color-mix(in srgb, var(--fi-accent) 45%, transparent); }
+.fi-pipe__valve-disc {
+  fill: color-mix(in srgb, var(--fi-accent) 12%, var(--fi-surface));
+  stroke: var(--fi-accent);
+  stroke-width: 1.5;
+  transition: fill 0.25s, stroke 0.25s;
+}
+.fi-pipe__valve-q {
+  fill: var(--fi-accent-text);
+  font-family: var(--fi-font-mono);
+  font-size: 15px;
+  font-weight: 700;
+}
+.fi-pipe__valve:hover:not([aria-disabled='true']) .fi-pipe__valve-halo { opacity: 0.55; }
+.fi-pipe__valve:hover:not([aria-disabled='true']) .fi-pipe__valve-disc {
+  fill: color-mix(in srgb, var(--fi-accent) 24%, var(--fi-surface));
+}
+.fi-pipe__valve:hover:not([aria-disabled='true']) .fi-pipe__valve-ring { stroke-width: 2.5; }
+.fi-pipe__valve:focus { outline: none; }
+.fi-pipe__valve-focus {
+  fill: none;
+  stroke: var(--fi-accent-text);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+  opacity: 0;
+}
+.fi-pipe__valve:focus-visible .fi-pipe__valve-focus { opacity: 1; }
+.fi-pipe__valve:focus-visible .fi-pipe__valve-ring {
+  stroke-width: 3;
+  stroke: var(--fi-accent);
+}
+.fi-pipe__valve:focus-visible .fi-pipe__valve-halo { opacity: 0.55; }
+
+/* resting cue: pulse the halo until the first interaction */
+.fi-pipe__valve.is-hint .fi-pipe__valve-halo {
+  opacity: 0.5;
+  animation: fi-valve-pulse 1.9s ease-in-out infinite;
+}
+@keyframes fi-valve-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.55); }
+}
+
+/* leak found: the valve ruptures */
+.fi-pipe__valve.is-leak .fi-pipe__valve-ring {
+  stroke: var(--fi-danger);
+  fill: color-mix(in srgb, var(--fi-danger) 12%, var(--fi-surface));
+}
+.fi-pipe__valve.is-leak .fi-pipe__valve-disc { fill: var(--fi-danger); stroke: var(--fi-danger); }
+.fi-pipe__burst {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fi-burst 0.5s var(--fi-ease) both;
+}
+.fi-pipe__burst line { stroke: var(--fi-danger); stroke-width: 2; stroke-linecap: round; }
+@keyframes fi-burst {
+  0% { transform: scale(0.3); opacity: 0.9; }
+  60% { opacity: 0.45; }
+  100% { transform: scale(1); opacity: 0.25; }
+}
 .fi-pipe__drip {
-  position: absolute;
-  top: calc(50% + 9px);
-  left: 50%;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--fi-accent);
+  fill: var(--fi-danger);
+  transform-box: fill-box;
+  transform-origin: center;
   animation: fi-drip 1.8s ease-in-out infinite;
 }
 @keyframes fi-drip {
-  0%, 100% { opacity: 0.45; transform: translate(-50%, 0); }
-  50% { opacity: 1; transform: translate(-50%, 4px); }
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(5px); }
 }
-.fi-pipe__x { position: absolute; top: calc(50% + 7px); left: 50%; transform: translateX(-50%); color: var(--fi-muted); opacity: 0.65; line-height: 0; }
+
+/* clean hand-off: the valve seals with a check */
+.fi-pipe__valve.is-miss .fi-pipe__valve-ring,
+.fi-pipe__valve.is-clean .fi-pipe__valve-ring {
+  stroke: var(--fi-line-strong);
+  fill: var(--fi-surface);
+}
+.fi-pipe__valve.is-miss .fi-pipe__valve-disc,
+.fi-pipe__valve.is-clean .fi-pipe__valve-disc {
+  fill: color-mix(in srgb, var(--fi-muted) 14%, var(--fi-surface));
+  stroke: var(--fi-muted);
+}
+.fi-pipe__check { stroke: var(--fi-muted); stroke-width: 2.2; }
+.fi-pipe__check.is-muted { stroke: color-mix(in srgb, var(--fi-muted) 55%, transparent); }
+
+/* during the future run: every valve is sealed accent */
+.fi-pipe__valve.is-sealed .fi-pipe__valve-ring {
+  stroke: var(--fi-accent);
+  fill: color-mix(in srgb, var(--fi-accent) 14%, var(--fi-surface));
+}
+.fi-pipe__valve.is-sealed .fi-pipe__valve-disc { fill: var(--fi-accent); stroke: var(--fi-accent); }
+
+.fi-pipe__valve-label {
+  fill: var(--fi-muted);
+  font-family: var(--fi-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+}
+.fi-pipe__valve.is-leak .fi-pipe__valve-label { fill: var(--fi-accent-text); font-weight: 600; }
 
 .fi-pipe__middleware {
   margin-top: 1rem;
@@ -1151,8 +1282,15 @@
 .fi-pipe__honest { margin-top: 1.5rem; }
 
 @media (prefers-reduced-motion: reduce) {
-  .fi-pipe__node, .fi-pipe__pipe { transition-duration: 0.01ms !important; }
-  .fi-pipe__drip { animation: none !important; }
+  .fi-pipe__node-box, .fi-pipe__seg, .fi-pipe__valve-ring, .fi-pipe__valve-disc {
+    transition-duration: 0.01ms !important;
+  }
+  .fi-pipe__seg-flow.is-flow { transition: none !important; }
+  .fi-pipe__valve.is-hint .fi-pipe__valve-halo,
+  .fi-pipe__drip,
+  .fi-pipe__burst,
+  .fi-pipe__badge { animation: none !important; }
+  .fi-pipe__burst { opacity: 0.3; }
 }
 
 /* ==================================================================
