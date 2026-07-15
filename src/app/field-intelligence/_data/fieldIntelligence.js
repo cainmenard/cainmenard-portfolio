@@ -359,7 +359,8 @@ export const FEDEX_STAGES = [
 export const INDUSTRY_FRAME = {
   world: 'public',
   stat: '0.4% vs 3%',
-  text: 'Construction labor productivity has grown about 0.4% a year since 2000, against about 3% in manufacturing.',
+  text:
+    'Construction labor productivity has grown about 0.4% a year since 2000, against about 3% in manufacturing — the same gap that shows up as 10% cumulative growth for construction against 90% for manufacturing, 2000 to 2022.',
   citation: 'mckinsey',
 }
 
