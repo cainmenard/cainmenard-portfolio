@@ -19,7 +19,9 @@
   --fi-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --fi-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* default (light) palette — most bands are light */
+  /* single stable base — one warm off-white the whole way down, so the
+     background is never too light or too dark to read. Time of day lives in
+     the atmosphere layer below, not in this base. */
   --fi-bg: #faf8f5;
   --fi-surface: #ffffff;
   --fi-surface-2: #fffdfb;
@@ -27,14 +29,33 @@
   --fi-muted: #55606e;
   --fi-line: rgba(30, 42, 56, 0.14);
   --fi-line-strong: rgba(30, 42, 56, 0.28);
-  --fi-accent: #b87333;        /* true copper — graphical fills, borders */
-  --fi-accent-text: #8f531f;   /* copper for TEXT (AA on light) */
+  --fi-accent-text: #8f531f;   /* copper for TEXT — fixed, always AA on the base */
   --fi-accent-ink: #ffffff;    /* text that sits on an accent fill */
   --fi-sandbox: #2f6f7a;       /* a distinct world: teal, never copper */
   --fi-sandbox-soft: rgba(47, 111, 122, 0.10);
   --fi-danger: #b4432f;        /* loss / the cliff */
   --fi-danger-soft: rgba(180, 67, 47, 0.10);
-  --fi-glow: radial-gradient(1200px 700px at 50% -10%, rgba(184, 115, 51, 0.10), transparent 60%);
+
+  /* --- Day arc atmosphere ------------------------------------------------
+     --fi-progress (0 = dawn → 1 = dusk) is written to this element by JS on
+     each scroll frame. Everything below is derived from it in pure CSS, so
+     the sky, accent, and sun move continuously with the scroll and snap
+     nowhere. All sky anchors are near-white / low-chroma; the base text
+     (#1e2a38) clears 7:1 over every one of them. */
+  --fi-progress: 0;
+  --fi-p1: clamp(0, calc(var(--fi-progress) / 0.5), 1);         /* dawn→noon */
+  --fi-p2: clamp(0, calc((var(--fi-progress) - 0.5) / 0.5), 1); /* noon→dusk */
+
+  --fi-sky-dawn: #e4e9f3;      /* cool early light */
+  --fi-sky-noon: #fbf7ef;      /* warm white */
+  --fi-sky-dusk: #f6e7d5;      /* warm gold */
+  --fi-sky: color-mix(in oklab,
+    color-mix(in oklab, var(--fi-sky-dawn), var(--fi-sky-noon) calc(var(--fi-p1) * 100%)),
+    var(--fi-sky-dusk) calc(var(--fi-p2) * 100%));
+
+  --fi-accent-dawn: #a9683a;   /* cooler copper at first light */
+  --fi-accent-dusk: #c07c25;   /* warmer amber-gold by afternoon */
+  --fi-accent: color-mix(in oklab, var(--fi-accent-dawn), var(--fi-accent-dusk) calc(var(--fi-progress) * 100%));
 
   --fi-rail-h: 56px;
   --fi-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -45,49 +66,38 @@
   color: var(--fi-text);
   font-family: var(--fi-font-body);
   -webkit-font-smoothing: antialiased;
-  /* text color intentionally does NOT transition — it snaps by band */
 }
 
-/* --- Resting palettes per band --- */
-.fi-root[data-band='predawn'] {
-  --fi-bg: #12181f;
-  --fi-surface: #1a232e;
-  --fi-surface-2: #212d3a;
-  --fi-text: #f6f2ec;
-  --fi-muted: #9aa8b6;
-  --fi-line: rgba(246, 242, 236, 0.14);
-  --fi-line-strong: rgba(246, 242, 236, 0.30);
-  --fi-accent: #cf9457;
-  --fi-accent-text: #dda468;
-  --fi-accent-ink: #12181f;
-  --fi-sandbox: #57b6c4;
-  --fi-sandbox-soft: rgba(87, 182, 196, 0.12);
-  --fi-danger: #e0765c;
-  --fi-danger-soft: rgba(224, 118, 92, 0.14);
-  --fi-glow: radial-gradient(1200px 620px at 50% 112%, rgba(207, 148, 87, 0.14), transparent 70%);
-}
-.fi-root[data-band='morning'] { --fi-bg: #e9e2d8; --fi-surface: #f4efe8; --fi-surface-2: #ffffff; }
-.fi-root[data-band='midday']  { --fi-bg: #f0eae1; --fi-surface: #faf6f0; --fi-surface-2: #ffffff; }
-.fi-root[data-band='ivory']   { --fi-bg: #faf8f5; --fi-surface: #ffffff; --fi-surface-2: #fffdfb; }
-.fi-root[data-band='daybreak']{ --fi-bg: #efe9e3; --fi-surface: #f7f3ee; --fi-surface-2: #ffffff;
-  --fi-glow: radial-gradient(1200px 640px at 50% -8%, rgba(184, 115, 51, 0.12), transparent 58%);
-}
-
-/* --- Full-viewport backdrop owns the day-arc color and is the ONLY
- * thing that transitions on a band change (kept short and clean). --- */
+/* --- Full-viewport backdrop. Paints the constant base, then lays a light
+ * sky wash over the TOP of the viewport only (fading out below the fold, so
+ * scrolling body copy always resolves onto plain off-white) plus a soft warm
+ * sun-glow that drifts left→right across the day. Both derive from --fi-sky /
+ * --fi-progress, so the color moves continuously with the scroll — nothing
+ * snaps, and the base under text never darkens. --- */
 .fi-backdrop {
   position: fixed;
   inset: 0;
   z-index: -1;
   background-color: var(--fi-bg);
-  transition: background-color 420ms ease;
 }
+/* the sky: a top-anchored vertical wash that dissolves into the base */
+.fi-backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    var(--fi-sky) 0%,
+    color-mix(in oklab, var(--fi-sky), transparent 55%) 22vh,
+    transparent 52vh);
+}
+/* the sun-glow: a warm radial that tracks the day across the top edge */
 .fi-backdrop::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--fi-glow);
-  transition: opacity 420ms ease;
+  background: radial-gradient(52vw 38vh at calc(6% + var(--fi-progress) * 88%) -8vh,
+    color-mix(in oklab, var(--fi-accent) 20%, transparent),
+    transparent 68%);
 }
 
 .fi-content { position: relative; z-index: 1; }
@@ -266,6 +276,22 @@
   background: var(--fi-accent);
   transform: translateY(-50%);
   transition: width 0.5s var(--fi-ease);
+}
+/* the sun: a small warm disc that glides across the rail with the day
+   (continuous --fi-progress), separate from the per-station fill above.
+   No position transition — it already moves smoothly frame-by-frame. */
+.fi-rail__sun {
+  position: absolute;
+  top: 50%;
+  left: calc(0.5rem + (100% - 1rem) * var(--fi-progress, 0));
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 45%, #fff2d4 0%, var(--fi-accent) 72%);
+  box-shadow: 0 0 9px 1px color-mix(in oklab, var(--fi-accent) 55%, transparent);
+  pointer-events: none;
+  z-index: 2;
 }
 .fi-rail__node {
   position: relative;

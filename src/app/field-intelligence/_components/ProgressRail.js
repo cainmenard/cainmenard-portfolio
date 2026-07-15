@@ -41,6 +41,7 @@ export default function ProgressRail({ sections, activeIndex, looped, backHref, 
       <div className="fi-rail__track" style={{ '--fi-rail-progress': progress }}>
         <span className="fi-rail__line" aria-hidden="true" />
         <span className="fi-rail__fill" aria-hidden="true" />
+        <span className="fi-rail__sun" aria-hidden="true" title="Time of day" />
         {sections.map((s, i) => {
           const isActive = !looped && i === activeIndex
           const isDone = looped || i < activeIndex
