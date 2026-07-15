@@ -189,7 +189,48 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Projects</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Work Samples</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements — plus a featured case study on rebuilding analytics with AI. Explore the Tableau originals or see how the process evolved.</p>
+          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements — plus featured case studies on turning field work into decisions and rebuilding analytics with AI. Explore the immersive stories or the Tableau originals.</p>
+
+          {/* ─── FEATURED: Field Intelligence Interactive Case Study ─── */}
+          <a href="/field-intelligence" className="featured-project-card featured-project-card--rich block mb-10 stagger-child group text-inherit no-underline">
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
+              <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">Interactive Case Study</span>
+            </div>
+            <div className="flex items-start gap-4 mb-5">
+              <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex-shrink-0 mt-0.5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600 dark:text-amber-400">
+                  <path d="M12 2v4" /><path d="M12 18v4" /><path d="m4.93 4.93 2.83 2.83" /><path d="m16.24 16.24 2.83 2.83" /><path d="M2 12h4" /><path d="M18 12h4" /><path d="m4.93 19.07 2.83-2.83" /><path d="m16.24 7.76 2.83-2.83" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Field Intelligence</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
+                  Follow one labor hour through a construction business &mdash; from the jobsite to the income statement and back.
+                  A cinematic, single-page walk through five interactive stations, ending with a grounded AI agent that turns
+                  the field&rsquo;s raw signal into a decision.
+                </p>
+              </div>
+            </div>
+
+            {/* Station rail motif */}
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-5 text-xs font-semibold uppercase tracking-wider text-slate-400">
+              {['Field', 'Office', 'Job Cost', 'Portfolio', 'Decisions'].map((s, i, arr) => (
+                <span key={s} className="inline-flex items-center gap-2">
+                  <span className={i === 0 ? '' : 'text-slate-900 dark:text-white'} style={i === arr.length - 1 ? { color: 'var(--accent)' } : undefined}>{s}</span>
+                  {i < arr.length - 1 && <span className="text-slate-300 dark:text-slate-600" aria-hidden="true">&rarr;</span>}
+                </span>
+              ))}
+            </div>
+
+            <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
+              Explore the Interactive Story
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </span>
+          </a>
 
           {/* ─── FEATURED: AI Evolution Case Study ─── */}
           <div className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
