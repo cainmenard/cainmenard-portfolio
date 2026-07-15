@@ -156,25 +156,71 @@ export const STATIONS = [
  * ------------------------------------------------------------------ */
 export const FINALE = {
   kicker: 'Then I build the tool',
-  title: 'An AI layer, grounded and modest.',
+  title: 'An agent that only answers from the data.',
   body:
-    'After the whole pipe is built, an agent sits on top of it. Grounded on live program data, read-only at the connector, a source link on every answer. The value is trust and retrieval, not oracle answers.',
+    'The last thing I build sits on top of everything else: an agent wired to the program tracker. It reads; it never writes. Every answer points back at the rows it came from — and when a question is not a lookup, it says so instead of guessing.',
+  constraints: [
+    'Reads live program data',
+    'Read-only — it cannot change anything',
+    'Cites its source on every answer',
+  ],
+  invite: 'Ask it something. Tap a question, or type your own.',
   proof: {
     world: 'field',
     text: 'Its first backlog report surfaced 36 overdue items on day one, the oldest 84 days past date.',
   },
-  constraints: [
-    'Grounded on live program data',
-    'Read-only at the connector',
-    'A source link on every answer',
-  ],
-  agentDemo: {
-    q: 'What is overdue in the program right now?',
-    a: '36 open items are past their date. The oldest is 84 days past.',
-    source: 'Program tracker, read-only',
-  },
   tieback:
     'This is the answer to that 16% missing-information slice, the crew waiting on the office.',
+}
+
+/* ------------------------------------------------------------------ *
+ * Program tracker — the sample the finale agent reads.
+ *
+ * A working slice of the real tracker, the same shape as the live one.
+ * dueIn is signed days from today: negative = that many days past due,
+ * positive = due in that many days. `done` items are closed. The oldest
+ * open item (-84) matches the real day-one backlog number in FINALE.proof.
+ * The engine (agentEngine.js) computes every answer from these rows.
+ * ------------------------------------------------------------------ */
+export const PROGRAM_TRACKER = {
+  liveOverdue: 36,
+  liveOldestDays: 84,
+  sampleNote:
+    'A working slice of the tracker — the same shape as the live one, which holds the full 36 overdue.',
+  columns: ['Ref', 'Item', 'Book', 'Waiting on', 'Due'],
+  rows: [
+    { ref: 'T-01', task: 'Submit RFI — Bldg C slab foundation', book: 'Civil', waitingOn: 'Architect', type: 'RFI', dueIn: -84 },
+    { ref: 'T-02', task: 'Return approved rebar submittal', book: 'Concrete', waitingOn: 'Architect', type: 'Submittal', dueIn: -41 },
+    { ref: 'T-03', task: 'Price change order — added roof drains', book: 'Mechanical', waitingOn: 'GC', type: 'Change order', dueIn: -28 },
+    { ref: 'T-04', task: 'Confirm inverter delivery date', book: 'Solar', waitingOn: 'Vendor', type: 'Material', dueIn: -17 },
+    { ref: 'T-05', task: 'Close out fire-alarm inspection', book: 'Electrical', waitingOn: 'GC', type: 'Inspection', dueIn: -9 },
+    { ref: 'T-06', task: 'Reconcile backcharge — Bldg A', book: 'Civil', waitingOn: 'Field', type: 'Closeout', dueIn: -6 },
+    { ref: 'T-07', task: 'Weekly manpower projection — Bldg C', book: 'Mechanical', waitingOn: 'PM', type: 'Report', dueIn: 2 },
+    { ref: 'T-08', task: 'Submit monthly pay application', book: 'Civil', waitingOn: 'Office', type: 'Closeout', dueIn: 4 },
+    { ref: 'T-09', task: 'Schedule crane pick — panel set', book: 'Solar', waitingOn: 'GC', type: 'Inspection', dueIn: 6 },
+    { ref: 'T-10', task: 'Order switchgear — long lead', book: 'Electrical', waitingOn: 'Vendor', type: 'Material', dueIn: 21 },
+    { ref: 'T-11', task: 'Draft closeout manual — Bldg A', book: 'Mechanical', waitingOn: 'Office', type: 'Closeout', dueIn: 33 },
+    { ref: 'T-12', task: 'Approve concrete mix design', book: 'Concrete', waitingOn: 'Architect', type: 'Submittal', dueIn: 0, done: true },
+    { ref: 'T-13', task: 'RFI — grounding detail at Bldg B', book: 'Electrical', waitingOn: 'Architect', type: 'RFI', dueIn: 0, done: true },
+    { ref: 'T-14', task: 'Change order — revised duct routing', book: 'Mechanical', waitingOn: 'GC', type: 'Change order', dueIn: 0, done: true },
+    { ref: 'T-15', task: 'Punchlist walk — Bldg A east', book: 'Civil', waitingOn: 'PM', type: 'Inspection', dueIn: 0, done: true },
+    { ref: 'T-16', task: 'Submit safety plan revision', book: 'Solar', waitingOn: 'GC', type: 'Submittal', dueIn: 0, done: true },
+  ],
+}
+
+export const AGENT_CONSOLE = {
+  handle: 'field-agent',
+  status: 'grounded · read-only',
+  // The first prompt runs on load so the transcript opens on a real answer.
+  seedPrompt: 'What is overdue right now?',
+  prompts: [
+    'What is overdue right now?',
+    'Show me the oldest item',
+    'Who is the holdup?',
+    'What is due this week?',
+    'How many items are open?',
+    'Should we bid the next job?',
+  ],
 }
 
 export const EPILOGUE = {
