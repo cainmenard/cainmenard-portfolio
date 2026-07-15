@@ -837,7 +837,11 @@
 
 @media (max-width: 640px) {
   .fi-board__plot { height: 300px; }
-  .fi-board__anchor-label { font-size: 0.52rem; max-width: 4.5rem; }
+  .fi-board__axis { height: 66px; }
+  .fi-token__stat { font-size: 0.62rem; }
+  .fi-board__anchor-label { font-size: 0.5rem; max-width: 4.3rem; }
+  /* stagger alternating method labels so neighbors do not collide */
+  .fi-board__anchor:nth-child(odd) .fi-board__anchor-label { transform: translateY(2.4em); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1191,6 +1195,11 @@
 @media (max-width: 768px) {
   .fi-embed__frame { display: none; }
   .fi-embed__mobile { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+}
+@media (max-width: 480px) {
+  .fi-bid__mlabel, .fi-bid__cost-label { font-size: 0.62rem; }
+  .fi-sign__head { flex-direction: column; }
+  .fi-sign__ask { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

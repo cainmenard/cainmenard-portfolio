@@ -41,12 +41,18 @@ export default function FieldIntelligence() {
   const activeIndex = RAIL.findIndex((r) => r.id === activeSection)
   const looped = LOOPED_SECTIONS.includes(activeSection)
 
-  // Instrumentation: coarse "which station is on screen" signal.
+  // Instrumentation: coarse "which station is on screen" signal, plus a
+  // one-time "hero completed" when the reader first leaves the hero.
   const reached = useRef(new Set())
+  const heroDone = useRef(false)
   useEffect(() => {
     if (!activeSection || reached.current.has(activeSection)) return
     reached.current.add(activeSection)
     track('fi_section_reached', { section: activeSection })
+    if (!heroDone.current && activeSection !== 'hero') {
+      heroDone.current = true
+      track('fi_hero_completed')
+    }
   }, [activeSection])
 
   return (

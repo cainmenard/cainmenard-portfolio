@@ -26,10 +26,10 @@ export const metadata = {
     section: 'Construction & Data',
     images: [
       {
-        url: 'https://cainmenard.com/og-image.png',
+        url: 'https://cainmenard.com/field-intelligence-og.png',
         width: 1200,
         height: 630,
-        alt: 'A Day of Field Intelligence — an interactive construction analytics piece by Cain Menard',
+        alt: 'A Day of Field Intelligence, an interactive construction analytics piece by Cain Menard',
       },
     ],
   },
@@ -38,7 +38,7 @@ export const metadata = {
     title: 'A Day of Field Intelligence | Cain Menard',
     description:
       'One labor hour, from the jobsite to the income statement, and back. An interactive construction analytics piece.',
-    images: ['https://cainmenard.com/og-image.png'],
+    images: ['https://cainmenard.com/field-intelligence-og.png'],
   },
   alternates: {
     canonical: 'https://cainmenard.com/field-intelligence',
