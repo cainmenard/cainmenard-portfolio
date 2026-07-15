@@ -171,8 +171,18 @@ export const FINALE = {
     world: 'field',
     text: 'Its first backlog report surfaced 36 overdue items on day one, the oldest 84 days past date.',
   },
+  constraints: [
+    'Grounded on live program data',
+    'Read-only at the connector',
+    'A source link on every answer',
+  ],
+  agentDemo: {
+    q: 'What is overdue in the program right now?',
+    a: '36 open items are past their date. The oldest is 84 days past.',
+    source: 'Program tracker, read-only',
+  },
   tieback:
-    'This is the answer to the 16% of the crew day spent waiting on the office.',
+    'This is the answer to that 16% missing-information slice, the crew waiting on the office.',
 }
 
 export const EPILOGUE = {
@@ -643,21 +653,41 @@ export const GUIDED_EMBED = {
 export const DOCKET = [
   {
     id: 'losing-customer',
-    prompt: 'An invitation to bid from the customer profile that loses money.',
+    tag: 'Invitation to bid',
+    situation: 'It comes from the customer profile that loses money.',
+    question: 'What do you do?',
+    options: [
+      { id: 'fire', label: 'Fire the customer' },
+      { id: 'bid', label: 'Bid it as usual' },
+      { id: 'reprice', label: 'Reprice, or decline the loss types', best: true },
+    ],
     answer:
       'You rarely fire your biggest customer. You reprice the risk, or decline the specific job types where the losses live.',
   },
   {
     id: 'industrial-fade',
-    prompt: 'Industrial work faded 13% across three jobs.',
+    tag: 'A segment fades',
+    situation: 'Industrial work faded 13% across three jobs.',
+    question: 'Do you stop bidding it?',
+    options: [
+      { id: 'noblanket', label: 'Blanket no-bid on industrial' },
+      { id: 'all', label: 'Keep bidding it all' },
+      { id: 'band', label: 'Route it to executive approval', best: true },
+    ],
     answer:
       "Not a blanket no-bid. The selectivity model's executive-approval band. It is capacity-aware bidding: the model scores number of bidders and PM availability.",
   },
   {
     id: 'labor-over',
-    prompt: 'Labor ran 25% over.',
-    answer:
-      'Both. Raise the rates and fix planning, because the data split the bill.',
+    tag: 'Labor ran hot',
+    situation: 'Labor ran 25% over on the book.',
+    question: 'Raise rates or fix planning?',
+    options: [
+      { id: 'rates', label: 'Raise the rates' },
+      { id: 'planning', label: 'Fix the planning' },
+      { id: 'both', label: 'Both', best: true },
+    ],
+    answer: 'Both. Raise the rates and fix planning, because the data split the bill.',
   },
 ]
 

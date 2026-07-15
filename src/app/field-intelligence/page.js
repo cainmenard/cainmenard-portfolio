@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
 import { useActiveSection } from './_components/useActiveSection'
 import ProgressRail from './_components/ProgressRail'
-import DataNote from './_components/DataNote'
+import AgentFinale from './_components/AgentFinale'
 import { track } from './_components/track'
 import StationField from './_stations/StationField'
 import StationOffice from './_stations/StationOffice'
@@ -15,7 +15,6 @@ import {
   RAIL,
   SECTION_BANDS,
   HERO,
-  FINALE,
   EPILOGUE,
   COLOPHON,
   CONTACT,
@@ -93,15 +92,7 @@ export default function FieldIntelligence() {
         {/* ─── FINALE ─── */}
         <section id="finale" className="fi-section" aria-labelledby="finale-title">
           <div className="fi-wrap fi-wrap--narrow fade-section">
-            <p className="fi-kicker">{FINALE.kicker}</p>
-            <h2 id="finale-title" className="fi-display" style={{ fontSize: 'clamp(1.8rem, 1.3rem + 2.2vw, 3rem)', margin: '0.6rem 0 1.25rem' }}>
-              {FINALE.title}
-            </h2>
-            <p className="fi-lead" style={{ marginBottom: '1.5rem' }}>{FINALE.body}</p>
-            <DataNote world="field" label="Field note">
-              <p style={{ margin: 0, lineHeight: 1.55 }}>{FINALE.proof.text}</p>
-            </DataNote>
-            <p className="fi-finale__proof">{FINALE.tieback}</p>
+            <AgentFinale />
           </div>
         </section>
 

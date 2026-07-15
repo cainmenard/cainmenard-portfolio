@@ -1,25 +1,25 @@
-import StationShell, { InteractionStub } from '../_components/StationShell'
-import DataNote from '../_components/DataNote'
-import { STATIONS, FINALE } from '../_data/fieldIntelligence'
+import StationShell from '../_components/StationShell'
+import MondayDocket from '../_components/MondayDocket'
+import { STATIONS, MECHANISM_CARDS } from '../_data/fieldIntelligence'
 
 const station = STATIONS.find((s) => s.id === 'decisions')
 
 export default function StationDecisions() {
   return (
-    <StationShell
-      station={station}
-      teaser={
-        <DataNote world="field" label="Field note">
-          <p style={{ margin: 0, lineHeight: 1.55 }}>{FINALE.proof.text}</p>
-          <p className="fi-muted" style={{ margin: '0.6rem 0 0', fontSize: '0.86rem' }}>{FINALE.tieback}</p>
-        </DataNote>
-      }
-    >
-      <InteractionStub
-        label="Marquee interaction"
-        title="Monday's docket"
-        note="Three invitations to bid, answered as interactive decisions, then the mechanism cards that show what each cut of the data decides."
-      />
+    <StationShell station={station}>
+      <MondayDocket />
+
+      <div className="fade-section fi-part">
+        <p className="fi-kicker fi-part__k">What each cut of the data decides</p>
+        <div className="fi-mech">
+          {MECHANISM_CARDS.map((m) => (
+            <div key={m.id} className="fi-mech__card">
+              <h3>{m.title}</h3>
+              <p>{m.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </StationShell>
   )
 }
