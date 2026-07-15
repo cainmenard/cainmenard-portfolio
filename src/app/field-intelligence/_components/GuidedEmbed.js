@@ -35,15 +35,9 @@ export default function GuidedEmbed() {
 
   return (
     <div className="fi-embed" ref={ref}>
-      <div className="fi-embed__bar">
-        <span className="fi-embed__label">
-          <span className="fi-embed__dot" aria-hidden="true" />
-          {GUIDED_EMBED.label}
-        </span>
-        <a href={GUIDED_EMBED.url} target="_blank" rel="noopener noreferrer" className="fi-embed__open">
-          Open in new tab &#8599;
-        </a>
-      </div>
+      {GUIDED_EMBED.frame && (
+        <p className="fi-embed__frame-note">{GUIDED_EMBED.frame}</p>
+      )}
 
       <div className="fi-embed__missions" role="tablist" aria-label="Guided missions">
         {missions.map((m, i) => (
@@ -66,20 +60,31 @@ export default function GuidedEmbed() {
         <strong>{missions[mission].title}.</strong> {missions[mission].look}
       </p>
 
-      <div className="fi-embed__frame">
-        {visible ? (
-          <iframe
-            src={GUIDED_EMBED.url}
-            title="Project Performance Analysis, a deployed tool running sample data"
-            loading="lazy"
-            onLoad={() => setLoaded(true)}
-          />
-        ) : null}
-        {!loaded && (
-          <div className="fi-embed__skeleton" aria-hidden="true">
-            Loading the live tool
-          </div>
-        )}
+      <div className="fi-embed__console">
+        <div className="fi-embed__chrome">
+          <span className="fi-embed__label">
+            <span className="fi-embed__dot" aria-hidden="true" />
+            {GUIDED_EMBED.label}
+          </span>
+          <a href={GUIDED_EMBED.url} target="_blank" rel="noopener noreferrer" className="fi-embed__open">
+            Open in new tab &#8599;
+          </a>
+        </div>
+        <div className="fi-embed__frame">
+          {visible ? (
+            <iframe
+              src={GUIDED_EMBED.url}
+              title="Project Performance Analysis, a deployed tool running sample data"
+              loading="lazy"
+              onLoad={() => setLoaded(true)}
+            />
+          ) : null}
+          {!loaded && (
+            <div className="fi-embed__skeleton" aria-hidden="true">
+              Loading the live tool
+            </div>
+          )}
+        </div>
       </div>
 
       <p className="fi-embed__note fi-muted">{GUIDED_EMBED.note}</p>

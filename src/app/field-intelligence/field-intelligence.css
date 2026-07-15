@@ -1281,7 +1281,7 @@
 
 /* --- Guided embed --- */
 .fi-embed { margin-top: 0.5rem; }
-.fi-embed__bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
+.fi-embed__frame-note { font-size: 0.95rem; line-height: 1.55; margin: 0 0 1.1rem; max-width: 60ch; color: var(--fi-text); }
 .fi-embed__label { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--fi-font-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fi-accent-text); }
 .fi-embed__dot { width: 7px; height: 7px; border-radius: 999px; background: var(--fi-accent); animation: fi-fedex-pulse 2.6s var(--fi-ease) infinite; }
 .fi-embed__open { font-size: 0.78rem; color: var(--fi-text); text-decoration: none; border-bottom: 1px solid var(--fi-line-strong); }
@@ -1291,13 +1291,17 @@
 .fi-embed__chip:hover { border-color: var(--fi-accent); }
 .fi-embed__chip.is-active { background: var(--fi-accent); color: var(--fi-accent-ink); border-color: var(--fi-accent); }
 .fi-embed__look { font-size: 0.9rem; line-height: 1.5; margin: 0 0 1rem; max-width: 60ch; }
-.fi-embed__frame { position: relative; width: 100%; aspect-ratio: 16 / 10; border: 1px solid var(--fi-line-strong); border-radius: 12px; overflow: hidden; background: var(--fi-surface); }
+/* The embed is framed as a deliberate console so the external tool reads as an
+   intentional embedded instrument, not a separate app pasted into the page. */
+.fi-embed__console { border: 1px solid var(--fi-line-strong); border-radius: 14px; overflow: hidden; background: var(--fi-surface); }
+.fi-embed__chrome { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 0.7rem 0.95rem; background: var(--fi-surface); border-bottom: 1px solid var(--fi-line-strong); }
+.fi-embed__frame { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--fi-surface); }
 .fi-embed__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .fi-embed__skeleton { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--fi-muted); font-family: var(--fi-font-mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
 .fi-embed__note { margin-top: 0.75rem; font-size: 0.78rem; }
 .fi-embed__mobile { display: none; }
 @media (max-width: 768px) {
-  .fi-embed__frame { display: none; }
+  .fi-embed__console { display: none; }
   .fi-embed__mobile { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
 }
 @media (max-width: 480px) {
