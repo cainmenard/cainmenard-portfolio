@@ -891,7 +891,18 @@
   text-transform: uppercase;
   color: var(--fi-muted);
 }
-.fi-board__frame { margin-top: 1.5rem; font-size: 0.86rem; max-width: 52ch; }
+.fi-board__takeaway {
+  margin-top: 1.5rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--fi-accent);
+  max-width: 54ch;
+  font-family: var(--fi-font-display);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--fi-ink, inherit);
+}
+
+.fi-board__frame { margin-top: 1.25rem; font-size: 0.86rem; max-width: 52ch; }
 
 /* --- FedEx shipment tracker --- */
 .fi-fedex {
@@ -1394,9 +1405,31 @@
 
 /* --- Mechanism cards --- */
 .fi-mech { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
-.fi-mech__card { padding: 1.1rem 1.25rem; border: 1px solid var(--fi-line); border-left: 3px solid var(--fi-accent); border-radius: 10px; background: var(--fi-surface); }
+.fi-mech__card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--fi-line);
+  border-left: 3px solid var(--fi-accent);
+  border-radius: 10px;
+  background: var(--fi-surface);
+  transition: transform 0.22s ease, opacity 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
 .fi-mech__card h3 { font-family: var(--fi-font-display); font-size: 1.02rem; color: var(--fi-text); margin: 0 0 0.4rem; }
 .fi-mech__card p { margin: 0; font-size: 0.85rem; line-height: 1.5; color: var(--fi-muted); }
+.fi-mech__card:hover { border-color: var(--fi-line-strong); }
+.fi-mech__card:focus-visible { outline: 2px solid var(--fi-accent); outline-offset: 2px; }
+.fi-mech__card.is-active {
+  transform: translateY(-2px);
+  border-left-width: 4px;
+  border-color: var(--fi-line-strong);
+  box-shadow: 0 8px 24px rgba(30, 42, 56, 0.1);
+}
+.fi-mech__card.is-active p { color: var(--fi-text); }
+.fi-mech__card.is-dim { opacity: 0.5; }
 
 /* --- Agent finale --- */
 .fi-agent__constraints { list-style: none; margin: 1.25rem 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
@@ -1411,4 +1444,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fi-docket__answer { animation: none !important; }
+  .fi-mech__card { transition-duration: 0.01ms !important; }
+  .fi-mech__card.is-active { transform: none; }
 }

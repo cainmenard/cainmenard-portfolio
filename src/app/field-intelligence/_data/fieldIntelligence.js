@@ -95,6 +95,8 @@ export const STATIONS = [
       'I sat in the interviews and ran the current-state analysis across 12 businesses. I ran the vendor selection. I am building the training and adoption program now.',
     handoff: 'The hour gets approved. Now it has to survive the plumbing.',
     cast: 'the foreman who logs it',
+    takeaway:
+      'The one copper marker is the tell. The business with the cleanest financials of the sixteen sits on the manual end, and it still ships its timecards to corporate by FedEx.',
   },
   {
     id: 'office',
@@ -633,7 +635,7 @@ export const GUIDED_EMBED = {
   url: 'https://project-performance-analysis.vercel.app/',
   label: 'Real deployed tool, sample data',
   frame:
-    'It opens on a healthy portfolio average. That average is the trap. Every mission below asks the same thing the day did: cut past the average and find the jobs it hides.',
+    'The same analysis, deployed as a tool you can drive. Pick a mission and run the cut yourself.',
   note: 'The tool loads a sample dataset by default. Those demo figures are illustrative and are never cited as real client numbers.',
   missions: [
     { id: 'customer', title: 'Find the losing customer', look: 'Sort customers by margin fade. One profile loses money on repeat.' },

@@ -64,12 +64,6 @@ export default function StationPortfolio() {
         </div>
       </div>
 
-      {/* Rebuild the bid (sandbox) */}
-      <div className="fade-section fi-part">
-        <p className="fi-kicker fi-part__k">Rebuild the bid</p>
-        <BidRebuild />
-      </div>
-
       {/* The live tool */}
       <div className="fade-section fi-part">
         <p className="fi-kicker fi-part__k">The tool, deployed</p>
@@ -77,6 +71,10 @@ export default function StationPortfolio() {
       </div>
 
       <div className="fade-section fi-part">
+        <Drawer title="Go deeper: rebuild the bid" eventId="portfolio-bid">
+          <BidRebuild />
+        </Drawer>
+
         <Drawer title="Go deeper: how the loop actually closes" eventId="portfolio-loop">
           <ul>
             <li>{LOOP_MECHANICS.factTable}</li>
