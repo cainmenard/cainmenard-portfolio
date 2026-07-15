@@ -560,6 +560,38 @@ export const FORENSIC_BOOKS = [
   },
 ]
 
+/**
+ * The utility-scale EPC book, used for the would-you-sign / scatter reveal.
+ * The revenue-weighted aggregate fade is a harmless-looking 0.6 points, but the
+ * project-level outcomes run from a 68-point fade to a 28-point gain. The count
+ * and the range are from the analysis; the individual points illustrate the
+ * spread (a simple count skews below the revenue-weighted aggregate because the
+ * smaller projects faded harder). Five points are the largest customer.
+ */
+export const EPC_SCATTER = {
+  world: 'field',
+  projects: 39,
+  aggregate: 0.6,
+  worstFade: 68,
+  bestGain: 28,
+  note: 'Count and range are from the analysis. Individual points illustrate the spread; the aggregate is revenue-weighted.',
+  points: [
+    { v: 28 }, { v: 24 }, { v: 19 }, { v: 16 }, { v: 13 }, { v: 11 }, { v: 10 }, { v: 9 },
+    { v: 8 }, { v: 7 }, { v: 6 }, { v: 5 }, { v: 4 }, { v: 3 }, { v: 2 }, { v: 2 }, { v: 1 },
+    { v: 1 }, { v: 0 }, { v: 0 }, { v: -1 }, { v: -1 }, { v: -2 }, { v: -3 }, { v: -4 },
+    { v: -5 }, { v: -6 }, { v: -7 }, { v: -8 }, { v: -10 }, { v: -12 }, { v: -15 }, { v: -19 },
+    { v: -24 }, { v: -30, worst: true }, { v: -37, worst: true }, { v: -45, worst: true },
+    { v: -54, worst: true }, { v: -68, worst: true },
+  ],
+  worstCustomer: {
+    projects: 5,
+    revenue: '$190M',
+    netLoss: '$5.7M',
+    directOverPct: 48.6,
+    line: 'The average hides the business you just bought.',
+  },
+}
+
 export const REPEATED_SHAPE =
   'What you quote (materials, subs) holds or comes under. What you predict (labor, equipment) runs over. Quotes hold, predictions lose.'
 
