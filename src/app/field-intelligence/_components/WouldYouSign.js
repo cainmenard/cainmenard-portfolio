@@ -1,7 +1,10 @@
 'use client'
 import { useState } from 'react'
 import { EPC_SCATTER } from '../_data/fieldIntelligence'
+import StatFigure from './StatFigure'
 import { track } from './track'
+
+const wc = EPC_SCATTER.worstCustomer
 
 const W = 720
 const H = 230
@@ -99,6 +102,17 @@ export default function WouldYouSign() {
             {reaction}
             <span className="fi-sign__note fi-muted">{EPC_SCATTER.note}</span>
           </figcaption>
+
+          <div className="fi-sign__cut">
+            <span className="fi-sign__cut-tag">The largest customer</span>
+            <p className="fi-sign__cut-line">{wc.line}</p>
+            <div className="fi-cutstats">
+              <StatFigure size="sm" value={wc.projects} label="projects" />
+              <StatFigure size="sm" value={wc.revenue} label="revenue" />
+              <StatFigure size="sm" value={wc.netLoss} label="net loss" />
+              <StatFigure size="sm" value={`${wc.directOverPct}%`} label="direct costs over" />
+            </div>
+          </div>
         </figure>
       )}
     </div>

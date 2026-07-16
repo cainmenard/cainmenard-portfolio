@@ -246,25 +246,6 @@
   background: var(--fi-line-strong);
 }
 
-/* "my part" — the quiet, first-person claim */
-.fi-mypart {
-  margin-top: 2rem;
-  padding: 1rem 1.25rem;
-  border-left: 2px solid var(--fi-accent);
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--fi-text);
-}
-.fi-mypart__tag {
-  display: block;
-  font-family: var(--fi-font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fi-accent-text);
-  margin-bottom: 0.4rem;
-}
-
 /* one-line handoff to the next station */
 .fi-handoff {
   display: flex;
@@ -1397,6 +1378,39 @@
 .fi-part { margin-top: 3.25rem; }
 .fi-part__k { margin-bottom: 1rem; }
 
+/* --- Movement grouping: the centerpiece reads as three chapters. Heavier
+       breaks between movements, a tighter rhythm inside each, so the reader
+       always knows whether a block is a new act or evidence within one. --- */
+.fi-movement { margin-top: 4.75rem; }
+.fi-movement:first-of-type { margin-top: 1.5rem; }
+.fi-movement__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--fi-line);
+}
+.fi-movement__idx {
+  flex: 0 0 auto;
+  font-family: var(--fi-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--fi-accent-text);
+  transform: translateY(-0.15em);
+}
+.fi-movement__title {
+  margin: 0;
+  font-family: var(--fi-font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--fi-text);
+}
+.fi-movement__lede { margin: 0 0 1.75rem; font-size: 1rem; line-height: 1.6; color: var(--fi-muted); max-width: 54ch; }
+.fi-movement__part { margin-top: 2.25rem; }
+
 /* --- Would you sign it + scatter --- */
 .fi-sign { margin-top: 0.5rem; }
 .fi-sign__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
@@ -1415,6 +1429,11 @@
 @keyframes fi-fadein { from { opacity: 0; } to { opacity: 0.82; } }
 .fi-sign__reaction { margin-top: 1rem; font-size: 1rem; line-height: 1.55; color: var(--fi-text); max-width: 54ch; }
 .fi-sign__note { display: block; margin-top: 0.5rem; font-size: 0.76rem; }
+/* The losing customer is the scatter's punchline, revealed in the same beat:
+   the deep-left tail has a name and a number. */
+.fi-sign__cut { margin-top: 1.75rem; padding-top: 1.4rem; border-top: 1px solid var(--fi-line); }
+.fi-sign__cut-tag { display: block; font-family: var(--fi-font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-accent-text); margin-bottom: 0.6rem; }
+.fi-sign__cut-line { margin: 0 0 1rem; font-family: var(--fi-font-display); font-size: 1.1rem; line-height: 1.35; color: var(--fi-text); }
 
 /* --- Diverging bars --- */
 .fi-div { margin-top: 0.5rem; }
@@ -1454,6 +1473,12 @@
 .fi-objection { border: 1px solid var(--fi-line); border-radius: 12px; padding: 1.1rem 1.25rem; background: var(--fi-surface); }
 .fi-objection__q { display: block; font-family: var(--fi-font-display); font-size: 1.05rem; color: var(--fi-text); margin-bottom: 0.5rem; }
 .fi-objection p { margin: 0; font-size: 0.88rem; line-height: 1.55; color: var(--fi-muted); }
+/* Strip variant: the "answered before you ask" asides read as quiet secondary
+   material, not full cards competing with the evidence above them. */
+.fi-objections--strip { display: flex; flex-direction: column; gap: 0.9rem; max-width: 62ch; }
+.fi-objections--strip .fi-objection { border: 0; border-left: 2px solid var(--fi-line-strong); border-radius: 0; padding: 0.15rem 0 0.15rem 1rem; background: transparent; }
+.fi-objections--strip .fi-objection__q { font-size: 0.92rem; margin-bottom: 0.25rem; }
+.fi-objections--strip .fi-objection p { font-size: 0.84rem; }
 
 /* --- Bid rebuild (sandbox) --- */
 .fi-bid { margin-top: 0.5rem; }
@@ -1519,6 +1544,7 @@
 .fi-docket__card { display: flex; flex-direction: column; padding: 1.25rem; border: 1px solid var(--fi-line); border-radius: 14px; background: var(--fi-surface); transition: border-color 0.3s; }
 .fi-docket__card.is-decided { border-color: var(--fi-line-strong); }
 .fi-docket__tag { font-family: var(--fi-font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-accent-text); }
+.fi-docket__from { display: block; margin-top: 0.3rem; font-family: var(--fi-font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fi-muted); }
 .fi-docket__situation { font-family: var(--fi-font-display); font-size: 1.1rem; line-height: 1.3; color: var(--fi-text); margin: 0.5rem 0 0.75rem; }
 .fi-docket__q { font-size: 0.85rem; color: var(--fi-muted); margin: 0 0 0.9rem; }
 .fi-docket__options { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -1542,33 +1568,71 @@
 .fi-docket__answer-tag { font-family: var(--fi-font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-accent-text); }
 .fi-docket__answer p { margin: 0.4rem 0 0; font-size: 0.88rem; line-height: 1.5; color: var(--fi-text); }
 
-/* --- Mechanism cards --- */
-.fi-mech { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+/* --- Data-to-decision map --- */
+.fi-mech { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; align-items: start; }
 .fi-mech__card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   text-align: left;
   font: inherit;
   cursor: pointer;
-  padding: 1.1rem 1.25rem;
+  padding: 1.15rem 1.25rem;
   border: 1px solid var(--fi-line);
   border-left: 3px solid var(--fi-accent);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--fi-surface);
-  transition: transform 0.22s ease, opacity 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
-.fi-mech__card h3 { font-family: var(--fi-font-display); font-size: 1.02rem; color: var(--fi-text); margin: 0 0 0.4rem; }
-.fi-mech__card p { margin: 0; font-size: 0.85rem; line-height: 1.5; color: var(--fi-muted); }
 .fi-mech__card:hover { border-color: var(--fi-line-strong); }
 .fi-mech__card:focus-visible { outline: 2px solid var(--fi-accent); outline-offset: 2px; }
-.fi-mech__card.is-active {
-  transform: translateY(-2px);
-  border-left-width: 4px;
+.fi-mech__card.is-open {
   border-color: var(--fi-line-strong);
   box-shadow: 0 8px 24px rgba(30, 42, 56, 0.1);
 }
-.fi-mech__card.is-active p { color: var(--fi-text); }
-.fi-mech__card.is-dim { opacity: 0.5; }
+.fi-mech__station {
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+}
+.fi-mech__finding {
+  font-family: var(--fi-font-display);
+  font-size: 1.02rem;
+  line-height: 1.3;
+  color: var(--fi-text);
+  margin: 0.5rem 0 0.75rem;
+}
+.fi-mech__decision {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--fi-accent-text);
+}
+.fi-mech__arrow { flex: 0 0 auto; margin-top: 0.15em; color: var(--fi-accent); }
+.fi-mech__cut {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s var(--fi-ease);
+}
+.fi-mech__card.is-open .fi-mech__cut { grid-template-rows: 1fr; }
+.fi-mech__cut-inner { overflow: hidden; min-height: 0; }
+.fi-mech__cut-tag {
+  display: block;
+  margin: 1rem 0 0.4rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--fi-line);
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+}
+.fi-mech__cut-body { display: block; font-size: 0.84rem; line-height: 1.55; color: var(--fi-text); }
 
 /* --- Agent finale --- */
 .fi-agent__constraints { list-style: none; margin: 1.25rem 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
@@ -1754,7 +1818,7 @@
 @media (prefers-reduced-motion: reduce) {
   .fi-docket__answer { animation: none !important; }
   .fi-mech__card { transition-duration: 0.01ms !important; }
-  .fi-mech__card.is-active { transform: none; }
+  .fi-mech__cut { transition-duration: 0.01ms !important; }
   .fi-console__dot, .fi-console__typing i { animation: none !important; }
   .fi-msg--agent .fi-msg__body { animation: none !important; }
   .fi-tracker__row { transition: none !important; }
