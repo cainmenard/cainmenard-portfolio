@@ -29,10 +29,15 @@ function dueState(r) {
   return 'open'
 }
 
+function valueLabel(r) {
+  if (!r.amount) return '—'
+  return r.amount >= 1e6 ? `$${(r.amount / 1e6).toFixed(2)}M` : `$${Math.round(r.amount / 1000)}k`
+}
+
 export default function AgentConsole() {
   const reduced = useReducedMotion()
   const { rows, sampleNote, columns } = PROGRAM_TRACKER
-  const { handle, status, seedPrompt, prompts } = AGENT_CONSOLE
+  const { handle, status, seedPrompt, prompts, hint } = AGENT_CONSOLE
 
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
@@ -136,6 +141,7 @@ export default function AgentConsole() {
                     <td>
                       <span className={`fi-due fi-due--${dueState(r)}`}>{dueLabel(r)}</span>
                     </td>
+                    <td className={`fi-tracker__val${r.amount ? '' : ' is-empty'}`}>{valueLabel(r)}</td>
                   </tr>
                 )
               })}
@@ -210,6 +216,8 @@ export default function AgentConsole() {
           Ask
         </button>
       </form>
+
+      {hint && <p className="fi-console__hint">{hint}</p>}
     </div>
   )
 }
