@@ -147,25 +147,90 @@ export const STATIONS = [
  * ------------------------------------------------------------------ */
 export const FINALE = {
   kicker: 'Then I build the tool',
-  title: 'An AI layer, grounded and modest.',
+  title: 'Ask the program.',
   body:
-    'After the whole pipe is built, an agent sits on top of it. Grounded on live program data, read-only at the connector, a source link on every answer. The value is trust and retrieval, not oracle answers.',
-  proof: {
-    world: 'field',
-    text: 'Its first backlog report surfaced 36 overdue items on day one, the oldest 84 days past date.',
-  },
-  constraints: [
-    'Grounded on live program data',
-    'Read-only at the connector',
-    'A source link on every answer',
+    "The whole day's data lands in one tracker. This reads it — answering only from what is there, citing the rows every time, never writing back. The fix for the crew left waiting on the office.",
+}
+
+/* ------------------------------------------------------------------ *
+ * Program tracker — the dataset the finale agent reads.
+ *
+ * A working slice of the real tracker, the same shape as the live one.
+ * dueIn is signed days from today: negative = that many days past due,
+ * positive = due in that many days. `done` items are closed. `amount` is
+ * the dollar value where the item carries one (change orders, materials,
+ * pay apps, retention). The engine (agentEngine.js) computes every answer
+ * from these rows — filter, aggregate, and rank across every field.
+ * ------------------------------------------------------------------ */
+export const PROGRAM_TRACKER = {
+  sampleNote:
+    'A working slice of the program tracker — 40 items across five books, the same shape as the live one.',
+  columns: ['Ref', 'Item', 'Book', 'Waiting on', 'Due', 'Value'],
+  rows: [
+    // Overdue (dueIn < 0)
+    { ref: 'T-01', task: 'Submit RFI — Bldg C slab foundation', book: 'Civil', waitingOn: 'Architect', type: 'RFI', dueIn: -84 },
+    { ref: 'T-02', task: 'RFI — curtain wall embed locations', book: 'Concrete', waitingOn: 'Architect', type: 'RFI', dueIn: -63 },
+    { ref: 'T-03', task: 'Change order — added floor drains', book: 'Mechanical', waitingOn: 'GC', type: 'Change order', dueIn: -47, amount: 9800 },
+    { ref: 'T-04', task: 'Return approved rebar submittal', book: 'Concrete', waitingOn: 'Architect', type: 'Submittal', dueIn: -41 },
+    { ref: 'T-05', task: 'Change order — revised duct routing, Bldg B', book: 'Mechanical', waitingOn: 'GC', type: 'Change order', dueIn: -34, amount: 27500 },
+    { ref: 'T-06', task: 'Price change order — added roof drains', book: 'Mechanical', waitingOn: 'GC', type: 'Change order', dueIn: -28, amount: 48200 },
+    { ref: 'T-07', task: 'Switchgear submittal review', book: 'Electrical', waitingOn: 'Architect', type: 'Submittal', dueIn: -22 },
+    { ref: 'T-08', task: 'RFI — grounding detail at Bldg B', book: 'Electrical', waitingOn: 'Architect', type: 'RFI', dueIn: -19 },
+    { ref: 'T-09', task: 'Confirm inverter delivery date', book: 'Solar', waitingOn: 'Vendor', type: 'Material', dueIn: -17, amount: 612000 },
+    { ref: 'T-10', task: 'Pay app #7 — March', book: 'Civil', waitingOn: 'Office', type: 'Pay app', dueIn: -14, amount: 284000 },
+    { ref: 'T-11', task: 'Panel delivery — string combiners', book: 'Solar', waitingOn: 'Vendor', type: 'Material', dueIn: -11, amount: 95300 },
+    { ref: 'T-12', task: 'Close out fire-alarm inspection', book: 'Electrical', waitingOn: 'GC', type: 'Inspection', dueIn: -9 },
+    { ref: 'T-13', task: 'Reconcile backcharge — Bldg A', book: 'Civil', waitingOn: 'Field', type: 'Closeout', dueIn: -6, amount: 12400 },
+    { ref: 'T-14', task: 'Concrete mix design resubmittal', book: 'Concrete', waitingOn: 'Architect', type: 'Submittal', dueIn: -5 },
+    // Due soon (0–7 days)
+    { ref: 'T-15', task: 'Weekly manpower projection — Bldg C', book: 'Mechanical', waitingOn: 'PM', type: 'Report', dueIn: 2 },
+    { ref: 'T-16', task: 'Anchor bolt inspection — Bldg D', book: 'Concrete', waitingOn: 'GC', type: 'Inspection', dueIn: 3 },
+    { ref: 'T-17', task: 'Submit monthly pay application #8', book: 'Civil', waitingOn: 'Office', type: 'Pay app', dueIn: 4, amount: 301500 },
+    { ref: 'T-18', task: 'Order breakers — panelboard PB-2', book: 'Electrical', waitingOn: 'Vendor', type: 'Material', dueIn: 5, amount: 18700 },
+    { ref: 'T-19', task: 'Schedule crane pick — panel set', book: 'Solar', waitingOn: 'GC', type: 'Inspection', dueIn: 6 },
+    { ref: 'T-20', task: 'RFI response — duct penetration', book: 'Mechanical', waitingOn: 'Architect', type: 'RFI', dueIn: 7 },
+    // Open (further out)
+    { ref: 'T-21', task: 'Pay app #9 projection', book: 'Civil', waitingOn: 'Office', type: 'Pay app', dueIn: 12, amount: 260000 },
+    { ref: 'T-22', task: 'Submit rebar submittal — Bldg D', book: 'Concrete', waitingOn: 'Architect', type: 'Submittal', dueIn: 18 },
+    { ref: 'T-23', task: 'Order switchgear — long lead', book: 'Electrical', waitingOn: 'Vendor', type: 'Material', dueIn: 21, amount: 142000 },
+    { ref: 'T-24', task: 'Change order — site drainage revision', book: 'Civil', waitingOn: 'GC', type: 'Change order', dueIn: 26, amount: 63400 },
+    { ref: 'T-25', task: 'Submit O&M data — mechanical', book: 'Mechanical', waitingOn: 'Office', type: 'Closeout', dueIn: 30 },
+    { ref: 'T-26', task: 'Draft closeout manual — Bldg A', book: 'Mechanical', waitingOn: 'Office', type: 'Closeout', dueIn: 33 },
+    { ref: 'T-27', task: 'Schedule final electrical inspection', book: 'Electrical', waitingOn: 'GC', type: 'Inspection', dueIn: 40 },
+    { ref: 'T-28', task: 'Procure inverters — phase 2', book: 'Solar', waitingOn: 'Vendor', type: 'Material', dueIn: 45, amount: 588000 },
+    // Closed
+    { ref: 'T-29', task: 'Approve concrete mix design', book: 'Concrete', waitingOn: 'Architect', type: 'Submittal', dueIn: 0, done: true },
+    { ref: 'T-30', task: 'Change order — revised duct hangers', book: 'Mechanical', waitingOn: 'GC', type: 'Change order', dueIn: 0, done: true, amount: 14600 },
+    { ref: 'T-31', task: 'Punchlist walk — Bldg A east', book: 'Civil', waitingOn: 'PM', type: 'Inspection', dueIn: 0, done: true },
+    { ref: 'T-32', task: 'Submit safety plan revision', book: 'Solar', waitingOn: 'GC', type: 'Submittal', dueIn: 0, done: true },
+    { ref: 'T-33', task: 'RFI — panel schedule clarification', book: 'Electrical', waitingOn: 'Architect', type: 'RFI', dueIn: 0, done: true },
+    { ref: 'T-34', task: 'Pay app #6 — February', book: 'Civil', waitingOn: 'Office', type: 'Pay app', dueIn: 0, done: true, amount: 247000 },
+    { ref: 'T-35', task: 'Material delivery — conduit', book: 'Electrical', waitingOn: 'Vendor', type: 'Material', dueIn: 0, done: true, amount: 22100 },
+    { ref: 'T-36', task: 'Inspection — underground plumbing', book: 'Mechanical', waitingOn: 'GC', type: 'Inspection', dueIn: 0, done: true },
+    { ref: 'T-37', task: 'Closeout — Bldg B retention release', book: 'Concrete', waitingOn: 'Office', type: 'Closeout', dueIn: 0, done: true, amount: 58000 },
+    { ref: 'T-38', task: 'Change order — added receptacles', book: 'Electrical', waitingOn: 'GC', type: 'Change order', dueIn: 0, done: true, amount: 7200 },
+    { ref: 'T-39', task: 'Submittal — VFD schedule', book: 'Mechanical', waitingOn: 'Architect', type: 'Submittal', dueIn: 0, done: true },
+    { ref: 'T-40', task: 'RFI — footing depth at grid 4', book: 'Civil', waitingOn: 'Architect', type: 'RFI', dueIn: 0, done: true },
   ],
-  agentDemo: {
-    q: 'What is overdue in the program right now?',
-    a: '36 open items are past their date. The oldest is 84 days past.',
-    source: 'Program tracker, read-only',
-  },
-  tieback:
-    'This is the answer to that 16% missing-information slice, the crew waiting on the office.',
+}
+
+export const AGENT_CONSOLE = {
+  handle: 'field-agent',
+  status: 'grounded · read-only · cites every answer',
+  // The first prompt runs on load so the transcript opens on a real answer.
+  seedPrompt: 'What is overdue right now?',
+  // Chips hint at the range: a plain filter, a composed filter, a money
+  // aggregate, a group-by, a ranking, and the honest refusal.
+  prompts: [
+    'What is overdue right now?',
+    'Overdue change orders waiting on the GC',
+    'How much money is tied up in overdue items?',
+    'Break the overdue down by book',
+    'What is the oldest item?',
+    'Should we bid the next job?',
+  ],
+  // Surfaced under the input so a reader sees the axes it can combine.
+  hint: 'Filter by book, party, type, or status · aggregate a count or a dollar total · rank by oldest or biggest — and combine them.',
 }
 
 export const EPILOGUE = {

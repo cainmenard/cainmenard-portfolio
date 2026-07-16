@@ -118,7 +118,7 @@ export default function FieldIntelligence() {
 
         {/* ─── FINALE ─── */}
         <section id="finale" className="fi-section" aria-labelledby="finale-title">
-          <div className="fi-wrap fi-wrap--narrow fade-section">
+          <div className="fi-wrap fade-section">
             <AgentFinale />
           </div>
         </section>
