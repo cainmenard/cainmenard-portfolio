@@ -640,6 +640,7 @@ export const DOCKET = [
   {
     id: 'losing-customer',
     tag: 'Invitation to bid',
+    from: 'Armed by Station 4',
     situation: 'It comes from the customer profile that loses money.',
     question: 'What do you do?',
     options: [
@@ -653,6 +654,7 @@ export const DOCKET = [
   {
     id: 'industrial-fade',
     tag: 'A segment fades',
+    from: 'Armed by Station 4',
     situation: 'Industrial work faded 13% across three jobs.',
     question: 'Do you stop bidding it?',
     options: [
@@ -666,6 +668,7 @@ export const DOCKET = [
   {
     id: 'labor-over',
     tag: 'Labor ran hot',
+    from: 'Armed by Station 3',
     situation: 'Labor ran 25% over on the book.',
     question: 'Raise rates or fix planning?',
     options: [
@@ -677,15 +680,60 @@ export const DOCKET = [
   },
 ]
 
+/**
+ * The data-to-decision map. Each rule is what the day's analysis actually
+ * changes about how the next job gets priced. Selecting one reveals the
+ * specific cut it came from, tagged to the station that produced it, so the
+ * abstract rule always cashes out in a real number from earlier in the day.
+ * Every figure here is reused from the station datasets above, not invented.
+ */
 export const MECHANISM_CARDS = [
   {
     id: 'pricing',
-    title: 'Pricing follows labor risk',
-    body: 'A dual-overhead-rate method, heavier markup on self-perform labor, lighter on quoted materials and subs. An FMI method Cain applies, not authored.',
+    finding: 'Labor is where the money leaks, not materials',
+    decision: 'Mark up self-perform labor heavier than quoted work',
+    station: { id: 'portfolio', label: 'Station 4' },
+    dataCut:
+      'Labor overran 25% on the mechanical book ($17.28M bid against $21.60M spent) while quoted materials and subs held. So pricing carries a dual overhead rate, heavier on self-perform labor, lighter on quoted materials. An FMI method Cain applies, not authored.',
   },
-  { id: 'reprice', title: 'Customer cuts drive repricing', body: 'Customer-level cuts drive repricing before exit.' },
-  { id: 'seat', title: 'The seat swing prices the GC role', body: 'The nine-point margin swing between subcontractor and GC prices the role.' },
-  { id: 'planning', title: 'Variance in labor aims the budget', body: 'Variance concentrated in labor aims the improvement budget at pre-job planning.' },
-  { id: 'wip', title: 'WIP discipline protects margin', body: 'WIP discipline plus the 80%-of-labor-hours close-out protects end-of-job margin and retention.' },
-  { id: 'orgchart', title: 'The org chart is a bidding constraint', body: 'PM availability is a scored bid factor, so the org chart is a bidding constraint.' },
+  {
+    id: 'reprice',
+    finding: 'One customer profile loses money on repeat',
+    decision: 'Reprice the risk, or decline the loss job types',
+    station: { id: 'portfolio', label: 'Station 4' },
+    dataCut:
+      'On the EPC book the largest customer, 5 projects and about $190M revenue, posted a $5.7M net loss with direct costs 48.6% over. You rarely fire your biggest customer, so the cut reprices that risk before the next bid.',
+  },
+  {
+    id: 'seat',
+    finding: 'The same company earns differently by seat',
+    decision: 'Price the GC role apart from the sub role',
+    station: { id: 'portfolio', label: 'Station 4' },
+    dataCut:
+      'On the water-infrastructure book margin gained 4.18 points as a subcontractor and faded 4.85 as a GC, the same company on the same product. A nine-point swing that has to be priced into the role, not the logo.',
+  },
+  {
+    id: 'planning',
+    finding: 'The overrun is caught while the job is still open',
+    decision: 'Aim the improvement budget at pre-job planning',
+    station: { id: 'job-cost', label: 'Station 3' },
+    dataCut:
+      'Weekly earned-value reporting caught a composite crew rate running $71.46 actual against $61.18 estimated, about 17% hot, while the job was still open. The crew was not slow, it was waiting: 14% of hours were recoverable lost time. That points the fix at planning, not rates alone.',
+  },
+  {
+    id: 'wip',
+    finding: 'Margin looks fine until it falls off a cliff near the end',
+    decision: 'Close out at 80% of labor hours, before the cliff',
+    station: { id: 'job-cost', label: 'Station 3' },
+    dataCut:
+      'Job margin reads flat, flat, flat, then drops off a cliff at about 90% complete. WIP discipline plus a close-out that fires at 80% of labor hours consumed protects end-of-job margin and retention before the fall.',
+  },
+  {
+    id: 'orgchart',
+    finding: 'Who is available to run it changes whether to bid it',
+    decision: 'Score PM availability as a bid go/no-go factor',
+    station: { id: 'portfolio', label: 'Station 4' },
+    dataCut:
+      'The selectivity model is a 21-factor bid go/no-go: 69 and up you bid it, 50 to 69 needs executive approval, below 50 you walk. PM availability is one of the scored factors, so the org chart becomes a bidding constraint.',
+  },
 ]

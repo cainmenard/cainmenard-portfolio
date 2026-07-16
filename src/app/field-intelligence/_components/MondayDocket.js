@@ -25,6 +25,7 @@ export default function MondayDocket() {
         return (
           <div key={d.id} className={`fi-docket__card${picked ? ' is-decided' : ''}`}>
             <span className="fi-docket__tag">{d.tag}</span>
+            {d.from && <span className="fi-docket__from">{d.from}</span>}
             <p className="fi-docket__situation">{d.situation}</p>
             <p className="fi-docket__q">{d.question}</p>
 
