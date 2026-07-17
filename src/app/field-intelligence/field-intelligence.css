@@ -1,0 +1,2019 @@
+/* ==================================================================
+ * Field Intelligence — route-scoped styles
+ *
+ * Everything here is namespaced under .fi-root so it cannot leak into
+ * the rest of the site, and so the site's global dark-mode (.dark on
+ * <html>) cannot leak in. This route runs its own cinematic day-arc
+ * palette and ignores the global light/dark toggle by design.
+ *
+ * Readability rule (learned the hard way): the page opens pre-dawn dark
+ * and makes ONE dark-to-light change into the office, then stays clearly
+ * light and warms toward ivory. Only the background transitions; text
+ * color snaps by band luminance so background and text never meet as
+ * mid-gray. Verify WCAG AA at every resting state.
+ * ================================================================== */
+
+.fi-root {
+  /* fonts */
+  --fi-font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fi-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --fi-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* single stable base — one warm off-white the whole way down, so the
+     background is never too light or too dark to read. Time of day lives in
+     the atmosphere layer below, not in this base. */
+  --fi-bg: #faf8f5;
+  --fi-surface: #ffffff;
+  --fi-surface-2: #fffdfb;
+  --fi-text: #1e2a38;
+  --fi-muted: #55606e;
+  --fi-line: rgba(30, 42, 56, 0.14);
+  --fi-line-strong: rgba(30, 42, 56, 0.28);
+  --fi-accent-text: #8f531f;   /* copper for TEXT — fixed, always AA on the base */
+  --fi-accent-ink: #ffffff;    /* text that sits on an accent fill */
+  --fi-sandbox: #2f6f7a;       /* a distinct world: teal, never copper */
+  --fi-sandbox-soft: rgba(47, 111, 122, 0.10);
+  --fi-danger: #b4432f;        /* loss / the cliff */
+  --fi-danger-soft: rgba(180, 67, 47, 0.10);
+
+  /* --- Day arc: a real sky you scroll through ----------------------------
+     --fi-progress (0 = 6:15am predawn → 1 = dusk) is written to this element
+     by JS on each scroll frame. The whole scene below is derived from it in
+     pure CSS, so the sky sweeps and the sun arcs continuously with the scroll.
+     The sky is genuinely bold (dark indigo dawn → bright midday → golden dusk)
+     — story content rides on opaque paper panels, so readability never depends
+     on the sky's luminance. Two half-progress ramps let three anchors blend
+     smoothly through the day. */
+  --fi-progress: 0;
+  --fi-p1: clamp(0, calc(var(--fi-progress) / 0.5), 1);         /* dawn→noon */
+  --fi-p2: clamp(0, calc((var(--fi-progress) - 0.5) / 0.5), 1); /* noon→dusk */
+
+  /* top-of-sky: deep indigo predawn → open blue midday → twilight violet dusk */
+  --sky-top: color-mix(in oklab,
+    color-mix(in oklab, #141a2c, #9cc1e2 calc(var(--fi-p1) * 100%)),
+    #2b2748 calc(var(--fi-p2) * 100%));
+  /* horizon band (where the sun sits): sunrise amber → pale day → sunset amber */
+  --sky-horizon: color-mix(in oklab,
+    color-mix(in oklab, #b5623f, #e7eef2 calc(var(--fi-p1) * 100%)),
+    #d98a52 calc(var(--fi-p2) * 100%));
+
+  /* the sun's own color: warm at the horizon ends, white-gold at noon */
+  --sun-color: color-mix(in oklab,
+    color-mix(in oklab, #ffb066, #fff4d8 calc(var(--fi-p1) * 100%)),
+    #ff9d54 calc(var(--fi-p2) * 100%));
+
+  --fi-accent-dawn: #a9683a;   /* cooler copper at first light */
+  --fi-accent-dusk: #c07c25;   /* warmer amber-gold by afternoon */
+  --fi-accent: color-mix(in oklab, var(--fi-accent-dawn), var(--fi-accent-dusk) calc(var(--fi-progress) * 100%));
+
+  --fi-rail-h: 60px;
+  --fi-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  color: var(--fi-text);
+  font-family: var(--fi-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Full-viewport sky. A fixed scene the whole page scrolls over: a vertical
+ * sky gradient (top → horizon), a warm horizon glow, faint predawn stars, and
+ * a sun that rises, arcs, and sets. Every layer derives from --fi-progress, so
+ * the day passes continuously with the scroll. Story content sits on opaque
+ * paper panels (below), so the sky can be genuinely dark at dawn without ever
+ * risking legibility. --- */
+.fi-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(to bottom,
+    var(--sky-top) 0%,
+    color-mix(in oklab, var(--sky-top), var(--sky-horizon) 55%) 60%,
+    var(--sky-horizon) 100%);
+}
+/* warm glow pooled at the horizon, strongest around sunrise/sunset */
+.fi-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120vw 46vh at calc(6% + var(--fi-progress) * 88%) 82vh,
+    color-mix(in oklab, var(--sky-horizon), #ffd9a8 45%),
+    transparent 70%);
+  opacity: 0.75;
+}
+
+/* the sun: rises from the horizon at dawn, peaks at midday, sets by dusk.
+   left tracks progress; top follows a parabola (4·p·(1−p) peaks at p=0.5). */
+.fi-sun {
+  position: absolute;
+  width: clamp(46px, 6vw, 92px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  left: calc(var(--fi-progress) * 100%);
+  top: calc(86vh - 76vh * (4 * var(--fi-progress) * (1 - var(--fi-progress))));
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 50%,
+    #fffdf5 0%, var(--sun-color) 46%, color-mix(in oklab, var(--sun-color), transparent 35%) 70%, transparent 74%);
+  box-shadow:
+    0 0 40px 14px color-mix(in oklab, var(--sun-color), transparent 55%),
+    0 0 140px 60px color-mix(in oklab, var(--sun-color), transparent 78%);
+}
+
+/* faint stars, only present in the predawn (first ~17% of scroll). The
+   container carries the scroll-driven fade; the pseudo carries the dots and a
+   gentle twinkle, so the two multiply instead of fighting over `opacity`. */
+.fi-stars {
+  position: absolute;
+  inset: 0 0 42vh 0;
+  opacity: clamp(0, calc(1 - var(--fi-progress) * 6), 1);
+  pointer-events: none;
+}
+.fi-stars::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 22%, #ffffff, transparent),
+    radial-gradient(1.2px 1.2px at 28% 14%, #dfe6ff, transparent),
+    radial-gradient(1.5px 1.5px at 44% 30%, #ffffff, transparent),
+    radial-gradient(1.1px 1.1px at 62% 12%, #e7ecff, transparent),
+    radial-gradient(1.6px 1.6px at 74% 26%, #ffffff, transparent),
+    radial-gradient(1.2px 1.2px at 88% 18%, #d7e0ff, transparent),
+    radial-gradient(1.3px 1.3px at 20% 40%, #ffffff, transparent),
+    radial-gradient(1.1px 1.1px at 54% 44%, #eef2ff, transparent),
+    radial-gradient(1.4px 1.4px at 82% 40%, #ffffff, transparent);
+  animation: fi-twinkle 4.5s ease-in-out infinite;
+}
+@keyframes fi-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.fi-content { position: relative; z-index: 1; }
+
+/* ------------------------------------------------------------------ *
+ * Typography primitives
+ * ------------------------------------------------------------------ */
+.fi-display {
+  font-family: var(--fi-font-display);
+  font-optical-sizing: auto;
+  font-weight: 480;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--fi-text);
+}
+.fi-kicker {
+  font-family: var(--fi-font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+}
+.fi-time {
+  font-family: var(--fi-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--fi-muted);
+}
+.fi-lead {
+  font-size: clamp(1.05rem, 1rem + 0.5vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--fi-text);
+}
+.fi-muted { color: var(--fi-muted); }
+.fi-figure {
+  font-family: var(--fi-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ *
+ * Section + station scaffolding
+ * ------------------------------------------------------------------ */
+.fi-section { position: relative; padding: clamp(4rem, 10vh, 8rem) 0; }
+.fi-wrap { width: 100%; max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+.fi-wrap--narrow { max-width: 46rem; }
+
+/* Story panels: every post-hero section's content rides on an opaque paper
+   card, so text is always legible no matter how dark or bright the sky behind
+   it is. The sky (and the arcing sun) show in the gutters and the gaps between
+   panels. The hero is deliberately excluded — it opens straight onto the dawn
+   sky with light text. */
+.fi-station .fi-wrap,
+#finale .fi-wrap,
+#epilogue .fi-wrap,
+#colophon .fi-wrap {
+  max-width: 62rem;
+  padding: clamp(1.75rem, 1rem + 2.4vw, 3.25rem);
+  background: color-mix(in srgb, var(--fi-bg) 93%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(115%);
+  backdrop-filter: blur(12px) saturate(115%);
+  border: 1px solid color-mix(in srgb, var(--fi-text) 9%, transparent);
+  border-radius: 22px;
+  box-shadow: 0 30px 70px -34px rgba(18, 24, 44, 0.55);
+}
+/* Finale matches the station width so the console reads as a full panel;
+   the epilogue stays narrow for its centered closing statement. */
+#epilogue .fi-wrap { max-width: 48rem; }
+
+.fi-station { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; }
+
+.fi-station__head { margin-bottom: 2.5rem; }
+.fi-station__meta { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; }
+.fi-station__title {
+  font-family: var(--fi-font-display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 1.4rem + 2.4vw, 3.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0.4rem 0 1.1rem;
+  max-width: 20ch;
+}
+.fi-scene { font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem); line-height: 1.6; max-width: 42ch; color: var(--fi-text); }
+
+.fi-cast {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--fi-muted);
+}
+.fi-cast::before {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background: var(--fi-line-strong);
+}
+
+/* one-line handoff to the next station */
+.fi-handoff {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--fi-line);
+  font-family: var(--fi-font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+  color: var(--fi-text);
+}
+.fi-handoff__arrow { color: var(--fi-accent); flex: 0 0 auto; }
+
+/* ------------------------------------------------------------------ *
+ * Ledger token (replaces the old top ribbon)
+ * A fixed-spine marker that carries the hour's running value, timestamp,
+ * stamp strip, and color state down the right edge, then travels back up
+ * to the 6:15 mark at the finale. Below the mobile breakpoint the spine
+ * geometry is dropped and the same state renders as a bottom status bar.
+ *
+ * Color arc: copper (neutral) -> amber (warming) -> red (overrun/cliff)
+ * -> green (repriced). Both the token and the rail fill read the tone var,
+ * so state is legible from anywhere on the page.
+ * ------------------------------------------------------------------ */
+.fi-ledger {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none; /* only interactive children re-enable pointer events */
+  --fi-ledger-y: 0;
+  --fi-ledger-tone: var(--fi-accent);
+}
+.fi-ledger.tone-copper { --fi-ledger-tone: #a9683a; }
+.fi-ledger.tone-amber  { --fi-ledger-tone: #c07c25; }
+.fi-ledger.tone-red    { --fi-ledger-tone: #c0392b; }
+.fi-ledger.tone-green  { --fi-ledger-tone: #2e8b57; }
+
+/* Back-to-home chip, top-left (took over the ribbon's back link) */
+.fi-ledger__back {
+  position: fixed;
+  top: 0.85rem;
+  left: 0.9rem;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--fi-text);
+  text-decoration: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--fi-line);
+  background: color-mix(in srgb, var(--fi-bg) 78%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  transition: border-color 0.2s, color 0.2s;
+}
+.fi-ledger__back:hover { border-color: var(--fi-ledger-tone); color: var(--fi-accent-text); }
+.fi-ledger__back svg { width: 14px; height: 14px; }
+
+/* ---- The vertical spine ---- */
+.fi-ledger__spine {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(150px, 15vw, 210px);
+  pointer-events: none;
+}
+.fi-ledger__track {
+  position: absolute;
+  top: clamp(76px, 13vh, 128px);
+  bottom: clamp(76px, 13vh, 128px);
+  right: 42px;
+  width: 2px;
+  background: color-mix(in srgb, var(--fi-line) 80%, transparent);
+  border-radius: 999px;
+}
+/* fill from the top down to the token, colored by the current tone */
+.fi-ledger__fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: calc(var(--fi-ledger-y) * 100%);
+  background: var(--fi-ledger-tone);
+  border-radius: inherit;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--fi-ledger-tone) 55%, transparent);
+  transition: height 0.18s linear, background-color 0.5s ease;
+}
+/* the 6:15am start mark the token returns to */
+.fi-ledger__start {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--fi-line) 80%, var(--fi-ledger-tone));
+  background: var(--fi-bg);
+}
+
+/* ---- Stamp strip: one stamp per station, anchored along the rail ---- */
+.fi-ledger__stamp {
+  position: absolute;
+  right: -4.5px; /* anchor the 9px dot's center on the rail */
+  transform: translateY(-50%);
+  pointer-events: auto;
+  display: flex;
+  flex-direction: row-reverse; /* dot on the rail, label extends left */
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.fi-ledger__stamp-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--fi-line) 85%, transparent);
+  background: var(--fi-bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.fi-ledger__stamp-label {
+  font-family: var(--fi-font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+.fi-ledger__stamp[data-filled="1"] .fi-ledger__stamp-dot {
+  background: var(--fi-ledger-tone);
+  border-color: var(--fi-ledger-tone);
+}
+.fi-ledger__stamp[data-active="1"] .fi-ledger__stamp-dot {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--fi-ledger-tone) 22%, transparent);
+}
+.fi-ledger__stamp:hover .fi-ledger__stamp-label,
+.fi-ledger__stamp:focus-visible .fi-ledger__stamp-label,
+.fi-ledger__stamp[data-active="1"] .fi-ledger__stamp-label {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--fi-text);
+}
+.fi-ledger__stamp:focus-visible {
+  outline: 2px solid var(--fi-ledger-tone);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- The token itself: glyph on the rail, readout to its left ---- */
+.fi-ledger__token {
+  position: absolute;
+  right: -20px; /* anchor the 40px glyph's center on the rail */
+  top: calc(var(--fi-ledger-y) * 100%);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row-reverse; /* glyph on the rail, readout extends left */
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none; /* never blocks the stamps beneath it */
+  transition: top 0.2s var(--fi-ease);
+}
+.fi-ledger__glyph {
+  position: relative;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--fi-ledger-tone);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--fi-ledger-tone) 20%, transparent),
+    0 4px 14px color-mix(in srgb, var(--fi-ledger-tone) 42%, transparent);
+  animation: fi-ledger-pop 0.5s var(--fi-ease);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+.fi-ledger__glyph svg { width: 22px; height: 22px; }
+@keyframes fi-ledger-pop {
+  0% { transform: scale(0.55); opacity: 0.3; }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.fi-ledger__readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--fi-bg) 86%, transparent);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid color-mix(in srgb, var(--fi-ledger-tone) 30%, var(--fi-line));
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+  white-space: nowrap;
+  transition: border-color 0.5s ease;
+}
+.fi-ledger__figure {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--fi-text);
+  font-variant-numeric: tabular-nums;
+}
+.fi-ledger__unit {
+  font-style: normal;
+  font-size: 0.62em;
+  color: var(--fi-muted);
+  margin-left: 0.28em;
+}
+.fi-ledger__status {
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fi-ledger-tone);
+  transition: color 0.5s ease;
+}
+/* the present-tense verb lights only once the token has docked */
+.fi-ledger__verb {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-size: 0.72rem;
+  color: var(--fi-ledger-tone);
+  transition: opacity 0.4s ease, max-width 0.4s ease, color 0.5s ease;
+}
+.fi-ledger__verb em { font-style: italic; }
+.fi-ledger[data-settled="1"] .fi-ledger__verb { max-width: 220px; opacity: 1; }
+
+/* ---- Portfolio shatter: copper dot breaks into the real spread ---- */
+.fi-ledger__shatter { position: absolute; inset: 0; }
+.fi-ledger__shard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  opacity: 0;
+  animation: fi-shatter 0.6s var(--fi-ease) forwards;
+}
+.fi-ledger__shard--red { background: #e0685c; }
+.fi-ledger__shard--green { background: #4bbd84; }
+@keyframes fi-shatter {
+  0% { transform: translate(-50%, -50%); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(var(--dx), var(--dy)); opacity: 0.95; }
+}
+.fi-ledger__shatter.is-static .fi-ledger__shard {
+  animation: none;
+  opacity: 0.95;
+  transform: translate(-50%, -50%) translate(var(--dx), var(--dy));
+}
+.fi-ledger__spread {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fi-fade-in 0.5s ease 0.4s forwards;
+}
+.fi-ledger__spread--fade { color: #e0685c; }
+.fi-ledger__spread--gain { color: #4bbd84; }
+@keyframes fi-fade-in { to { opacity: 1; } }
+.fi-ledger__shatter.is-static .fi-ledger__spread { animation: none; opacity: 1; }
+
+/* ---- Finale: token travels home, loop glyph flashes on arrival ---- */
+.fi-ledger.is-looped .fi-ledger__token { transition: top 1.3s var(--fi-ease); }
+.fi-ledger.is-looped .fi-ledger__fill {
+  transition: height 1.3s var(--fi-ease), background-color 0.5s ease;
+}
+.fi-ledger__loopflash {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+.fi-ledger__loopflash svg { width: 22px; height: 22px; }
+.fi-ledger.is-arrived .fi-ledger__loopflash { animation: fi-loopflash 1s var(--fi-ease); }
+@keyframes fi-loopflash {
+  0% { opacity: 0; transform: scale(0.5) rotate(-40deg); }
+  40% { opacity: 1; transform: scale(1.15) rotate(0deg); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* ---- Mobile status bar ---- */
+.fi-ledger__bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  pointer-events: auto;
+  display: none;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--fi-bg) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-top: 2px solid var(--fi-ledger-tone);
+  transition: border-color 0.5s ease;
+}
+.fi-ledger__glyph--bar { width: 30px; height: 30px; animation: none; }
+.fi-ledger__glyph--bar svg { width: 17px; height: 17px; }
+.fi-ledger__bar .fi-ledger__figure { font-size: 1.05rem; }
+.fi-ledger__bar-meta {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
+}
+.fi-ledger__bar-time {
+  font-family: var(--fi-font-mono);
+  font-size: 0.66rem;
+  color: var(--fi-muted);
+}
+.fi-ledger__bar-stamp {
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fi-ledger-tone);
+  transition: color 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .fi-ledger__spine { display: none; }
+  .fi-ledger__bar { display: flex; }
+  /* Lift the global back-to-top button clear of the ledger status bar.
+     This stylesheet only loads on the Field Intelligence route, so the
+     override never touches the button on other pages. */
+  button[aria-label='Back to top'] {
+    bottom: calc(4rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Hero
+ * ------------------------------------------------------------------ */
+.fi-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--fi-rail-h);
+  /* The hero is the one place text meets the raw sky — and it's always the
+     dark predawn end of the arc, so switch to light ink here. Redefining the
+     palette vars cascades to every hero descendant (title, lead, kicker, cue). */
+  color: #f6f2ec;
+  --fi-text: #f6f2ec;
+  --fi-muted: #cdd5e2;
+  --fi-accent-text: #f0c48f;
+  --fi-line: rgba(246, 242, 236, 0.18);
+  --fi-line-strong: rgba(246, 242, 236, 0.44);
+  text-shadow: 0 1px 30px rgba(10, 14, 28, 0.45);
+}
+.fi-hero__eyebrow { margin-bottom: 1.5rem; }
+.fi-hero__title {
+  font-family: var(--fi-font-display);
+  font-weight: 420;
+  font-size: clamp(2.6rem, 1.6rem + 5.2vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.028em;
+  margin: 0 0 1.75rem;
+}
+.fi-hero__title em { font-style: italic; color: var(--fi-accent-text); }
+.fi-hero__standfirst { max-width: 40ch; margin-bottom: 1.5rem; }
+.fi-hero__meta {
+  max-width: 40ch;
+  margin-bottom: 3rem;
+  font-size: 0.85rem;
+  color: var(--fi-muted);
+}
+.fi-hero__cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+}
+.fi-hero__cue-dot {
+  width: 22px; height: 22px; border-radius: 999px;
+  border: 1px solid var(--fi-line-strong);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--fi-accent-text);
+  animation: fi-bob 2.4s var(--fi-ease) infinite;
+}
+@keyframes fi-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+
+/* ------------------------------------------------------------------ *
+ * Field note vs sandbox — the two data worlds, kept visually distinct
+ * ------------------------------------------------------------------ */
+.fi-note {
+  position: relative;
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem 1.35rem;
+  background: var(--fi-surface);
+  border: 1px solid var(--fi-line);
+}
+.fi-note__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+/* FIELD NOTE: real engagement number */
+.fi-note--field { border-left: 3px solid var(--fi-accent); }
+.fi-note--field .fi-note__tag { color: var(--fi-accent-text); }
+.fi-note--field .fi-note__tag::before {
+  content: ''; width: 7px; height: 7px; border-radius: 999px; background: var(--fi-accent);
+}
+/* SANDBOX: illustrative / composite input — deliberately different */
+.fi-note--sandbox {
+  background: var(--fi-sandbox-soft);
+  border: 1px dashed var(--fi-sandbox);
+  background-image:
+    var(--fi-sandbox-soft),
+    repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--fi-sandbox) 6%, transparent) 10px 11px);
+}
+.fi-note--sandbox .fi-note__tag { color: var(--fi-sandbox); }
+.fi-note--sandbox .fi-note__tag::before {
+  content: ''; width: 7px; height: 7px; background: var(--fi-sandbox);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+/* PROJECTED stamp */
+.fi-projected {
+  display: inline-block;
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+  border: 1px solid var(--fi-accent);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  vertical-align: middle;
+}
+
+/* ------------------------------------------------------------------ *
+ * Citation affordance — hover/tap footnote
+ * ------------------------------------------------------------------ */
+.fi-cite { position: relative; display: inline; }
+.fi-cite__btn {
+  font-family: var(--fi-font-mono);
+  font-size: 0.62em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--fi-accent-text);
+  background: transparent;
+  border: 0;
+  cursor: help;
+  padding: 0 0.15em;
+}
+.fi-cite__btn::before { content: '['; }
+.fi-cite__btn::after { content: ']'; }
+.fi-cite__note {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: min(20rem, 78vw);
+  background: var(--fi-surface-2);
+  color: var(--fi-text);
+  border: 1px solid var(--fi-line-strong);
+  border-radius: 10px;
+  padding: 0.75rem 0.85rem;
+  font-family: var(--fi-font-body);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s var(--fi-ease);
+  z-index: 30;
+}
+.fi-cite:hover .fi-cite__note,
+.fi-cite__btn:focus-visible + .fi-cite__note,
+.fi-cite__note:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.fi-cite__note a { color: var(--fi-accent-text); text-decoration: underline; }
+.fi-cite__src { display: block; margin-top: 0.35rem; font-family: var(--fi-font-mono); font-size: 0.66rem; color: var(--fi-muted); }
+
+/* ------------------------------------------------------------------ *
+ * Go-deeper drawer
+ * ------------------------------------------------------------------ */
+.fi-drawer { border-top: 1px solid var(--fi-line); }
+.fi-drawer__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--fi-text);
+  font-family: var(--fi-font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.fi-drawer__icon {
+  flex: 0 0 auto;
+  width: 20px; height: 20px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--fi-line-strong);
+  border-radius: 999px;
+  color: var(--fi-accent-text);
+  transition: transform 0.3s var(--fi-ease), border-color 0.2s;
+}
+.fi-drawer[data-open='true'] .fi-drawer__icon { transform: rotate(45deg); border-color: var(--fi-accent); }
+.fi-drawer__region {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--fi-ease);
+}
+.fi-drawer[data-open='true'] .fi-drawer__region { grid-template-rows: 1fr; }
+.fi-drawer__inner { overflow: hidden; }
+.fi-drawer__body { padding: 0 0 1.5rem; color: var(--fi-text); line-height: 1.6; }
+
+/* ------------------------------------------------------------------ *
+ * Interaction stub (spine placeholder — replaced per station)
+ * ------------------------------------------------------------------ */
+.fi-stub {
+  border: 1px dashed var(--fi-line-strong);
+  border-radius: 14px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--fi-muted);
+  background: color-mix(in srgb, var(--fi-surface) 40%, transparent);
+}
+.fi-stub__label {
+  font-family: var(--fi-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+}
+.fi-stub__title { font-family: var(--fi-font-display); font-size: 1.25rem; margin: 0.5rem 0 0.25rem; color: var(--fi-text); }
+
+/* ------------------------------------------------------------------ *
+ * Finale / epilogue / colophon
+ * ------------------------------------------------------------------ */
+.fi-finale__proof {
+  margin-top: 1.75rem;
+  font-family: var(--fi-font-display);
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.7rem);
+  line-height: 1.4;
+}
+
+.fi-epilogue { text-align: center; }
+.fi-epilogue__title {
+  font-family: var(--fi-font-display);
+  font-weight: 420;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.6rem);
+  letter-spacing: -0.02em;
+  margin: 1rem 0;
+}
+.fi-closing {
+  font-family: var(--fi-font-display);
+  font-style: italic;
+  font-size: clamp(1.6rem, 1.2rem + 2.6vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin: 2.5rem auto 0;
+  color: var(--fi-text);
+}
+.fi-closing__rule { width: 44px; height: 2px; background: var(--fi-accent); margin: 2.5rem auto 0; }
+
+.fi-colophon__lede {
+  font-family: var(--fi-font-display);
+  font-size: clamp(1.3rem, 1.1rem + 1.2vw, 2rem);
+  line-height: 1.3;
+  max-width: 24ch;
+  margin-bottom: 2.5rem;
+}
+.fi-colophon__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
+.fi-colophon__card {
+  padding: 1.25rem;
+  border: 1px solid var(--fi-line);
+  border-radius: 12px;
+  background: var(--fi-surface);
+}
+.fi-colophon__card h3 { font-family: var(--fi-font-display); font-size: 1.05rem; margin: 0 0 0.5rem; }
+.fi-colophon__card p { font-size: 0.86rem; line-height: 1.55; color: var(--fi-muted); margin: 0; }
+.fi-colophon__card a { color: var(--fi-accent-text); font-weight: 600; text-decoration: none; font-size: 0.82rem; }
+.fi-colophon__card a:hover { text-decoration: underline; }
+
+.fi-contact {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--fi-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+  font-family: var(--fi-font-mono);
+  font-size: 0.82rem;
+}
+.fi-contact__name { font-family: var(--fi-font-display); font-size: 1.1rem; font-style: normal; }
+.fi-contact a { color: var(--fi-text); text-decoration: none; border-bottom: 1px solid var(--fi-line-strong); }
+.fi-contact a:hover { color: var(--fi-accent-text); border-color: var(--fi-accent); }
+
+/* ------------------------------------------------------------------ *
+ * Focus states (accessibility)
+ * ------------------------------------------------------------------ */
+.fi-root a:focus-visible,
+.fi-root button:focus-visible,
+.fi-root summary:focus-visible {
+  outline: 2px solid var(--fi-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reduced motion — snap everything, no ambient loops
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .fi-backdrop,
+  .fi-backdrop::after,
+  .fi-drawer__region,
+  .fi-drawer__icon,
+  .fi-cite__note { transition-duration: 0.01ms !important; }
+  .fi-hero__cue-dot { animation: none !important; }
+  /* Ledger token: skip the travel/morph/scatter animations and land directly
+     on each station's final settled state, while KEEPING the color and text
+     changes (tone, value, stamps, verb) so the argument still reads. */
+  .fi-ledger__token,
+  .fi-ledger__fill,
+  .fi-ledger.is-looped .fi-ledger__token,
+  .fi-ledger.is-looped .fi-ledger__fill,
+  .fi-ledger__stamp-dot,
+  .fi-ledger__stamp-label { transition-duration: 0.01ms !important; }
+  .fi-ledger__glyph { animation: none !important; }
+  .fi-ledger__shard { animation: none !important; opacity: 0.95; transform: translate(-50%, -50%) translate(var(--dx), var(--dy)); }
+  .fi-ledger__spread { animation: none !important; opacity: 1; }
+  .fi-ledger.is-arrived .fi-ledger__loopflash { animation: none !important; }
+  /* The sky COLOR still tracks scroll (that's not vestibular motion, and
+     freezing it is what made the effect look dead before). We only still the
+     things that visibly travel: pin the sun high and centered, stop the star
+     twinkle. */
+  .fi-sun {
+    left: 50% !important;
+    top: 16vh !important;
+  }
+  .fi-stars::before { animation: none !important; }
+}
+
+/* ==================================================================
+ * Station 1: Field
+ * ================================================================== */
+
+/* --- Capture board (manual-to-digital marquee) --- */
+.fi-board { margin-top: 0.5rem; }
+.fi-board__plot { position: relative; height: 240px; }
+
+.fi-token-wrap {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.fi-token { background: transparent; border: 0; padding: 6px; cursor: default; line-height: 0; }
+.fi-token--noted, .fi-token--fedex { cursor: pointer; }
+.fi-token__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: var(--fi-surface);
+  border: 1.5px solid var(--fi-muted);
+  color: var(--fi-accent-ink);
+  transition: transform 0.2s var(--fi-ease), box-shadow 0.2s, background-color 0.2s, border-color 0.2s;
+}
+.fi-token--noted .fi-token__dot {
+  width: 16px;
+  height: 16px;
+  border-color: var(--fi-accent);
+  background: color-mix(in srgb, var(--fi-accent) 22%, var(--fi-surface));
+}
+.fi-token--fedex .fi-token__dot {
+  width: 30px;
+  height: 30px;
+  background: var(--fi-accent);
+  border-color: var(--fi-accent);
+  animation: fi-fedex-pulse 2.6s var(--fi-ease) infinite;
+}
+.fi-token--open .fi-token__dot,
+.fi-token:hover .fi-token__dot { transform: scale(1.18); }
+.fi-token__stat {
+  font-size: 0.7rem;
+  color: var(--fi-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.fi-token--fedex + .fi-token__stat,
+.fi-token-wrap:has(.fi-token--fedex) .fi-token__stat { color: var(--fi-accent-text); }
+
+@keyframes fi-fedex-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--fi-accent) 55%, transparent); }
+  70% { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.fi-token__pop {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(19rem, 74vw);
+  text-align: left;
+  background: var(--fi-surface-2);
+  color: var(--fi-text);
+  border: 1px solid var(--fi-line-strong);
+  border-radius: 10px;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
+  z-index: 25;
+}
+.fi-token__pop--fedex { border-color: var(--fi-accent); }
+.fi-token__pop-label {
+  display: block;
+  font-family: var(--fi-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+  margin-bottom: 0.4rem;
+}
+.fi-token__pop-cue {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.72rem;
+  color: var(--fi-accent-text);
+}
+
+.fi-board__axis { position: relative; height: 46px; margin-top: 0.25rem; }
+.fi-board__gradient {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--fi-muted) 70%, transparent) 0%,
+    color-mix(in srgb, var(--fi-muted) 40%, var(--fi-accent)) 55%,
+    var(--fi-accent) 100%
+  );
+}
+.fi-board__anchor {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fi-board__anchor-tick { width: 1px; height: 9px; background: var(--fi-line-strong); }
+.fi-board__anchor-label {
+  margin-top: 5px;
+  font-family: var(--fi-font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
+  color: var(--fi-muted);
+  text-align: center;
+  max-width: 7rem;
+  line-height: 1.25;
+}
+.fi-board__scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+}
+.fi-board__takeaway {
+  margin-top: 1.5rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--fi-accent);
+  max-width: 54ch;
+  font-family: var(--fi-font-display);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--fi-ink, inherit);
+}
+
+.fi-board__frame { margin-top: 1.25rem; font-size: 0.86rem; max-width: 52ch; }
+
+/* --- FedEx shipment tracker --- */
+.fi-fedex {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--fi-line);
+  border-radius: 14px;
+  background: var(--fi-surface);
+}
+.fi-fedex__track { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.75rem; }
+.fi-fedex__place {
+  flex: 0 0 auto;
+  font-family: var(--fi-font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+}
+.fi-fedex__rail { position: relative; flex: 1 1 auto; height: 2px; background: var(--fi-line-strong); border-radius: 999px; }
+.fi-fedex__rail-fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--fi-accent); transition: width 1.6s var(--fi-ease); }
+.fi-fedex__rail--transit .fi-fedex__rail-fill {
+  background: repeating-linear-gradient(90deg, var(--fi-accent) 0 6px, transparent 6px 12px);
+}
+.fi-fedex__van {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--fi-accent);
+  transition: left 1.6s var(--fi-ease);
+}
+.fi-fedex__stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.85rem;
+}
+.fi-fedex__stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--fi-line);
+  opacity: 0.38;
+  transition: opacity 0.45s ease, border-color 0.45s ease;
+}
+.fi-fedex__stage.is-active { opacity: 1; border-top-color: var(--fi-accent); }
+.fi-fedex__stage.is-current .fi-fedex__stage-title { color: var(--fi-accent-text); }
+.fi-fedex__when { font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fi-muted); }
+.fi-fedex__stage-title { font-family: var(--fi-font-display); font-size: 1rem; line-height: 1.2; }
+.fi-fedex__stage-text { font-size: 0.8rem; line-height: 1.45; color: var(--fi-muted); }
+.fi-fedex__foot { display: flex; align-items: center; gap: 1rem; margin-top: 1.75rem; flex-wrap: wrap; }
+.fi-fedex__replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fi-text);
+  background: transparent;
+  border: 1px solid var(--fi-line-strong);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.fi-fedex__replay:hover { border-color: var(--fi-accent); color: var(--fi-accent-text); }
+
+/* --- Drawer content (vendor DNA + gate + lists) --- */
+.fi-constraint { margin-top: 1.75rem; }
+.fi-drawer__body ul { margin: 0.5rem 0; padding-left: 1.1rem; }
+.fi-drawer__body li { margin: 0.3rem 0; }
+.fi-drawer__body p { margin: 0.6rem 0; }
+.fi-dna { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+.fi-dna__card { padding: 0.85rem 1rem; border: 1px solid var(--fi-line); border-radius: 10px; background: var(--fi-surface-2); }
+.fi-dna__label {
+  display: block;
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+  margin-bottom: 0.35rem;
+}
+.fi-dna__value { font-size: 0.9rem; line-height: 1.4; }
+.fi-gate { font-family: var(--fi-font-display); font-style: italic; font-size: 1.05rem; color: var(--fi-text); margin: 1rem 0; }
+
+@media (max-width: 640px) {
+  .fi-board__plot { height: 300px; }
+  .fi-board__axis { height: 66px; }
+  .fi-token__stat { font-size: 0.62rem; }
+  .fi-board__anchor-label { font-size: 0.5rem; max-width: 4.3rem; }
+  /* stagger alternating method labels so neighbors do not collide */
+  .fi-board__anchor:nth-child(odd) .fi-board__anchor-label { transform: translateY(2.4em); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fi-token__dot,
+  .fi-fedex__rail-fill,
+  .fi-fedex__van,
+  .fi-fedex__stage { transition-duration: 0.01ms !important; }
+  .fi-token--fedex .fi-token__dot { animation: none !important; }
+}
+
+/* ==================================================================
+ * Station 2: Office (interactive pipeline schematic)
+ * A single responsive SVG: five system nodes bolted together by four
+ * clickable valves. The valve is the interaction, so it is drawn to read
+ * as a control at rest (accent ring, "?" glyph, a pulse until first use).
+ * ================================================================== */
+.fi-pipe-wrap { margin-top: 0.5rem; }
+
+.fi-pipe__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.fi-pipe__status {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--fi-text);
+  max-width: 54ch;
+  min-height: 3em;
+  margin: 0;
+  flex: 1 1 20ch;
+}
+.fi-pipe__score { display: flex; align-items: center; gap: 0.45rem; flex: 0 0 auto; padding-top: 0.15rem; }
+.fi-pipe__score-label {
+  font-family: var(--fi-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+}
+.fi-pipe__score-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 1.5px solid var(--fi-line-strong);
+  background: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.fi-pipe__score-dot.is-on { background: var(--fi-danger); border-color: var(--fi-danger); }
+
+.fi-pipe { width: 100%; }
+.fi-pipe__svg { width: 100%; height: auto; display: block; overflow: visible; }
+.fi-pipe[data-orient='v'] .fi-pipe__svg { max-width: 340px; margin: 0 auto; }
+
+/* --- System nodes --- */
+.fi-pipe__node-box {
+  fill: var(--fi-surface);
+  stroke: var(--fi-line-strong);
+  stroke-width: 1.5;
+  transition: stroke 0.35s var(--fi-ease), fill 0.35s, filter 0.35s;
+}
+.fi-pipe__node-text {
+  fill: var(--fi-text);
+  font-family: var(--fi-font-body);
+  font-size: 13px;
+  font-weight: 600;
+}
+.fi-pipe__node.is-lit .fi-pipe__node-box {
+  stroke: var(--fi-accent);
+  filter: drop-shadow(0 4px 14px color-mix(in srgb, var(--fi-accent) 30%, transparent));
+}
+.fi-pipe__node--end.is-lit .fi-pipe__node-box {
+  fill: color-mix(in srgb, var(--fi-accent) 12%, var(--fi-surface));
+}
+.fi-pipe__badge { animation: fi-badge-in 0.4s var(--fi-ease) both; }
+.fi-pipe__badge-box {
+  fill: color-mix(in srgb, var(--fi-accent) 15%, var(--fi-surface));
+  stroke: var(--fi-accent);
+  stroke-width: 1;
+}
+.fi-pipe__badge-text {
+  fill: var(--fi-accent-text);
+  font-family: var(--fi-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@keyframes fi-badge-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Pipe segments + flow --- */
+.fi-pipe__seg {
+  fill: none;
+  stroke: var(--fi-line-strong);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke 0.35s var(--fi-ease);
+}
+.fi-pipe__seg.is-leak { stroke: var(--fi-danger); }
+.fi-pipe__seg.is-miss { stroke: var(--fi-line); }
+.fi-pipe__seg.is-sealed { stroke: color-mix(in srgb, var(--fi-accent) 45%, var(--fi-line-strong)); }
+.fi-pipe__seg-flow {
+  fill: none;
+  stroke: var(--fi-accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--fi-accent) 55%, transparent));
+}
+.fi-pipe__seg-flow.is-flow {
+  opacity: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.55s linear, opacity 0.2s;
+}
+
+/* --- Valves: the clickable hand-offs --- */
+.fi-pipe__valve { cursor: pointer; }
+.fi-pipe__valve[aria-disabled='true'] { cursor: default; }
+.fi-pipe__valve-hit { fill: transparent; pointer-events: all; }
+.fi-pipe__valve-halo {
+  fill: color-mix(in srgb, var(--fi-accent) 18%, transparent);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.2s;
+}
+.fi-pipe__valve-ring {
+  fill: var(--fi-surface);
+  stroke: var(--fi-accent);
+  stroke-width: 2;
+  transition: stroke 0.25s, fill 0.25s, stroke-width 0.2s;
+}
+.fi-pipe__valve-disc {
+  fill: color-mix(in srgb, var(--fi-accent) 12%, var(--fi-surface));
+  stroke: var(--fi-accent);
+  stroke-width: 1.5;
+  transition: fill 0.25s, stroke 0.25s;
+}
+.fi-pipe__valve-q {
+  fill: var(--fi-accent-text);
+  font-family: var(--fi-font-mono);
+  font-size: 15px;
+  font-weight: 700;
+}
+.fi-pipe__valve:hover:not([aria-disabled='true']) .fi-pipe__valve-halo { opacity: 0.55; }
+.fi-pipe__valve:hover:not([aria-disabled='true']) .fi-pipe__valve-disc {
+  fill: color-mix(in srgb, var(--fi-accent) 24%, var(--fi-surface));
+}
+.fi-pipe__valve:hover:not([aria-disabled='true']) .fi-pipe__valve-ring { stroke-width: 2.5; }
+.fi-pipe__valve:focus { outline: none; }
+.fi-pipe__valve-focus {
+  fill: none;
+  stroke: var(--fi-accent-text);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+  opacity: 0;
+}
+.fi-pipe__valve:focus-visible .fi-pipe__valve-focus { opacity: 1; }
+.fi-pipe__valve:focus-visible .fi-pipe__valve-ring {
+  stroke-width: 3;
+  stroke: var(--fi-accent);
+}
+.fi-pipe__valve:focus-visible .fi-pipe__valve-halo { opacity: 0.55; }
+
+/* resting cue: pulse the halo until the first interaction */
+.fi-pipe__valve.is-hint .fi-pipe__valve-halo {
+  opacity: 0.5;
+  animation: fi-valve-pulse 1.9s ease-in-out infinite;
+}
+@keyframes fi-valve-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.55); }
+}
+
+/* leak found: the valve ruptures */
+.fi-pipe__valve.is-leak .fi-pipe__valve-ring {
+  stroke: var(--fi-danger);
+  fill: color-mix(in srgb, var(--fi-danger) 12%, var(--fi-surface));
+}
+.fi-pipe__valve.is-leak .fi-pipe__valve-disc { fill: var(--fi-danger); stroke: var(--fi-danger); }
+.fi-pipe__burst {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fi-burst 0.5s var(--fi-ease) both;
+}
+.fi-pipe__burst line { stroke: var(--fi-danger); stroke-width: 2; stroke-linecap: round; }
+@keyframes fi-burst {
+  0% { transform: scale(0.3); opacity: 0.9; }
+  60% { opacity: 0.45; }
+  100% { transform: scale(1); opacity: 0.25; }
+}
+.fi-pipe__drip {
+  fill: var(--fi-danger);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fi-drip 1.8s ease-in-out infinite;
+}
+@keyframes fi-drip {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(5px); }
+}
+
+/* clean hand-off: the valve seals with a check */
+.fi-pipe__valve.is-miss .fi-pipe__valve-ring,
+.fi-pipe__valve.is-clean .fi-pipe__valve-ring {
+  stroke: var(--fi-line-strong);
+  fill: var(--fi-surface);
+}
+.fi-pipe__valve.is-miss .fi-pipe__valve-disc,
+.fi-pipe__valve.is-clean .fi-pipe__valve-disc {
+  fill: color-mix(in srgb, var(--fi-muted) 14%, var(--fi-surface));
+  stroke: var(--fi-muted);
+}
+.fi-pipe__check { stroke: var(--fi-muted); stroke-width: 2.2; }
+.fi-pipe__check.is-muted { stroke: color-mix(in srgb, var(--fi-muted) 55%, transparent); }
+
+/* during the future run: every valve is sealed accent */
+.fi-pipe__valve.is-sealed .fi-pipe__valve-ring {
+  stroke: var(--fi-accent);
+  fill: color-mix(in srgb, var(--fi-accent) 14%, var(--fi-surface));
+}
+.fi-pipe__valve.is-sealed .fi-pipe__valve-disc { fill: var(--fi-accent); stroke: var(--fi-accent); }
+
+.fi-pipe__valve-label {
+  fill: var(--fi-muted);
+  font-family: var(--fi-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+}
+.fi-pipe__valve.is-leak .fi-pipe__valve-label { fill: var(--fi-accent-text); font-weight: 600; }
+
+.fi-pipe__middleware {
+  margin-top: 1rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--fi-muted);
+  text-align: center;
+}
+
+.fi-pipe__leaks { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.85rem; margin-top: 1.5rem; }
+.fi-pipe__leak-card {
+  border: 1px solid var(--fi-accent);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--fi-accent) 8%, var(--fi-surface));
+}
+.fi-pipe__leak-title {
+  display: block;
+  font-family: var(--fi-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+  margin-bottom: 0.4rem;
+}
+.fi-pipe__leak-card p { margin: 0; font-size: 0.86rem; line-height: 1.5; }
+
+.fi-pipe__controls { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.fi-pipe__btn {
+  font-family: var(--fi-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fi-text);
+  background: transparent;
+  border: 1px solid var(--fi-line-strong);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+.fi-pipe__btn:hover { border-color: var(--fi-accent); color: var(--fi-accent-text); }
+.fi-pipe__btn--primary { background: var(--fi-accent); color: var(--fi-accent-ink); border-color: var(--fi-accent); }
+.fi-pipe__btn--primary:hover { background: color-mix(in srgb, var(--fi-accent) 82%, #000); color: var(--fi-accent-ink); }
+.fi-pipe__honest { margin-top: 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fi-pipe__node-box, .fi-pipe__seg, .fi-pipe__valve-ring, .fi-pipe__valve-disc {
+    transition-duration: 0.01ms !important;
+  }
+  .fi-pipe__seg-flow.is-flow { transition: none !important; }
+  .fi-pipe__valve.is-hint .fi-pipe__valve-halo,
+  .fi-pipe__drip,
+  .fi-pipe__burst,
+  .fi-pipe__badge { animation: none !important; }
+  .fi-pipe__burst { opacity: 0.3; }
+}
+
+/* ==================================================================
+ * Station 3: Job Cost (cliff chart + stopwatch)
+ * ================================================================== */
+
+/* --- The 90% cliff --- */
+.fi-cliff { margin-top: 0.5rem; }
+.fi-cliff__svg { width: 100%; height: auto; display: block; overflow: visible; }
+.fi-cliff__grid { stroke: var(--fi-line); stroke-width: 1; }
+.fi-cliff__tick { font-family: var(--fi-font-mono); font-size: 11px; fill: var(--fi-muted); }
+.fi-cliff__axis-y { font-family: var(--fi-font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--fi-muted); }
+.fi-cliff__marker { stroke: var(--fi-muted); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0; }
+.fi-cliff__marker-label { font-family: var(--fi-font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.03em; fill: var(--fi-text); opacity: 0; }
+.fi-cliff__marker-sub { font-family: var(--fi-font-mono); font-size: 9.5px; fill: var(--fi-muted); opacity: 0; }
+.fi-cliff__annot { font-family: var(--fi-font-display); font-style: italic; font-size: 14px; fill: var(--fi-danger); opacity: 0; }
+.fi-cliff__line { stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+.fi-cliff__line--quiet { stroke: var(--fi-danger); }
+.fi-cliff__line--honest { stroke: var(--fi-accent); }
+.fi-cliff__dot { opacity: 0; }
+.fi-cliff__dot--quiet { fill: var(--fi-danger); }
+.fi-cliff__dot--honest { fill: var(--fi-accent); }
+
+.fi-cliff.is-drawn .fi-cliff__line--quiet { transition: stroke-dashoffset 1.15s var(--fi-ease); stroke-dashoffset: 0; }
+.fi-cliff.is-drawn .fi-cliff__line--honest { transition: stroke-dashoffset 1.15s var(--fi-ease) 0.85s; stroke-dashoffset: 0; }
+.fi-cliff.is-drawn .fi-cliff__marker,
+.fi-cliff.is-drawn .fi-cliff__marker-label,
+.fi-cliff.is-drawn .fi-cliff__marker-sub { transition: opacity 0.5s ease 0.4s; opacity: 1; }
+.fi-cliff.is-drawn .fi-cliff__dot--quiet { transition: opacity 0.4s ease 1.15s; opacity: 1; }
+.fi-cliff.is-drawn .fi-cliff__dot--honest { transition: opacity 0.4s ease 2s; opacity: 1; }
+.fi-cliff.is-drawn .fi-cliff__annot { transition: opacity 0.5s ease 1.5s; opacity: 1; }
+
+.fi-cliff__legend { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-top: 0.85rem; }
+.fi-cliff__key { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--fi-text); }
+.fi-cliff__key::before { content: ''; width: 16px; height: 3px; border-radius: 999px; }
+.fi-cliff__key--quiet::before { background: var(--fi-danger); }
+.fi-cliff__key--honest::before { background: var(--fi-accent); }
+.fi-cliff__axis-x { font-family: var(--fi-font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-muted); margin-left: auto; }
+.fi-cliff__replay {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--fi-font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fi-text); background: transparent; border: 1px solid var(--fi-line-strong);
+  border-radius: 999px; padding: 0.35rem 0.8rem; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+}
+.fi-cliff__replay:hover { border-color: var(--fi-accent); color: var(--fi-accent-text); }
+
+.fi-jobcost__catch { margin-top: 1.75rem; }
+.fi-jobcost__study { margin-top: 2.75rem; }
+
+/* --- The stopwatch time study --- */
+.fi-stop { margin-top: 0.25rem; }
+.fi-stop__bar { display: flex; gap: 4px; height: 100px; }
+.fi-stop__seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 8px;
+}
+.fi-stop__seg--direct { background: var(--fi-text); color: var(--fi-bg); }
+.fi-stop__seg--support { background: color-mix(in srgb, var(--fi-text) 32%, var(--fi-bg)); color: var(--fi-text); }
+.fi-stop__seg--lost { background: var(--fi-accent); color: var(--fi-accent-ink); }
+.fi-stop__seg-pct { font-size: 1.4rem; font-weight: 500; line-height: 1; }
+.fi-stop__seg-label { font-size: 0.7rem; line-height: 1.2; opacity: 0.92; }
+
+.fi-stop__btn {
+  margin-top: 1.25rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--fi-font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fi-accent-text); background: transparent; border: 1px solid var(--fi-accent);
+  border-radius: 999px; padding: 0.5rem 1rem; cursor: pointer; transition: background-color 0.2s, color 0.2s;
+}
+.fi-stop__btn:hover { background: var(--fi-accent); color: var(--fi-accent-ink); }
+
+.fi-stop__reveal { margin-top: 1.5rem; animation: fi-reveal 0.5s var(--fi-ease); }
+@keyframes fi-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fi-stop__lead { font-size: 0.95rem; line-height: 1.55; margin: 0 0 1rem; max-width: 54ch; }
+.fi-stop__causes { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.85rem; }
+.fi-stop__cause {
+  display: flex; flex-direction: column; gap: 0.35rem;
+  padding: 1rem; border: 1px solid var(--fi-line); border-radius: 10px; background: var(--fi-surface);
+}
+.fi-stop__cause--finale { border-color: var(--fi-accent); background: color-mix(in srgb, var(--fi-accent) 8%, var(--fi-surface)); }
+.fi-stop__cause-rank { font-size: 1.5rem; font-weight: 500; line-height: 1; color: var(--fi-accent-text); }
+.fi-stop__cause-label { font-weight: 600; font-size: 0.9rem; line-height: 1.25; }
+.fi-stop__cause-note { font-size: 0.8rem; line-height: 1.4; color: var(--fi-muted); }
+.fi-stop__punch { font-family: var(--fi-font-display); font-style: italic; font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem); color: var(--fi-text); margin: 1.5rem 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fi-cliff__line,
+  .fi-cliff__marker, .fi-cliff__marker-label, .fi-cliff__marker-sub,
+  .fi-cliff__dot, .fi-cliff__annot { transition-duration: 0.01ms !important; }
+  .fi-stop__reveal { animation: none !important; }
+}
+
+/* ==================================================================
+ * Station 4: Portfolio (centerpiece)
+ * ================================================================== */
+.fi-part { margin-top: 3.25rem; }
+.fi-part__k { margin-bottom: 1rem; }
+
+/* --- Movement grouping: the centerpiece reads as three chapters. Heavier
+       breaks between movements, a tighter rhythm inside each, so the reader
+       always knows whether a block is a new act or evidence within one. --- */
+.fi-movement { margin-top: 4.75rem; }
+.fi-movement:first-of-type { margin-top: 1.5rem; }
+.fi-movement__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--fi-line);
+}
+.fi-movement__idx {
+  flex: 0 0 auto;
+  font-family: var(--fi-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--fi-accent-text);
+  transform: translateY(-0.15em);
+}
+.fi-movement__title {
+  margin: 0;
+  font-family: var(--fi-font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--fi-text);
+}
+.fi-movement__lede { margin: 0 0 1.75rem; font-size: 1rem; line-height: 1.6; color: var(--fi-muted); max-width: 54ch; }
+.fi-movement__part { margin-top: 2.25rem; }
+
+/* --- Would you sign it + scatter --- */
+.fi-sign { margin-top: 0.5rem; }
+.fi-sign__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
+.fi-sign__agg { font-size: 1rem; color: var(--fi-muted); margin: 0.5rem 0 0.5rem; display: flex; align-items: baseline; gap: 0.4rem; }
+.fi-sign__agg .fi-figure { font-size: 2.6rem; font-weight: 500; line-height: 1; color: var(--fi-text); }
+.fi-sign__ask { display: flex; gap: 0.75rem; }
+.fi-sign__scatter { margin: 1.5rem 0 0; }
+.fi-sign__scatter svg { width: 100%; height: auto; display: block; overflow: visible; }
+.fi-sign__grid { stroke: var(--fi-line); stroke-width: 1; }
+.fi-sign__tick { font-family: var(--fi-font-mono); font-size: 11px; fill: var(--fi-muted); }
+.fi-sign__agg-line { stroke: var(--fi-muted); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.fi-sign__agg-label { font-family: var(--fi-font-mono); font-size: 10px; fill: var(--fi-muted); }
+.fi-sign__dot { fill: var(--fi-accent); opacity: 0.82; animation: fi-fadein 0.4s ease backwards; }
+.fi-sign__dot--worst { fill: var(--fi-danger); opacity: 1; }
+.fi-sign__extreme { font-family: var(--fi-font-mono); font-size: 11px; fill: var(--fi-muted); }
+@keyframes fi-fadein { from { opacity: 0; } to { opacity: 0.82; } }
+.fi-sign__reaction { margin-top: 1rem; font-size: 1rem; line-height: 1.55; color: var(--fi-text); max-width: 54ch; }
+.fi-sign__note { display: block; margin-top: 0.5rem; font-size: 0.76rem; }
+/* The losing customer is the scatter's punchline, revealed in the same beat:
+   the deep-left tail has a name and a number. */
+.fi-sign__cut { margin-top: 1.75rem; padding-top: 1.4rem; border-top: 1px solid var(--fi-line); }
+.fi-sign__cut-tag { display: block; font-family: var(--fi-font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-accent-text); margin-bottom: 0.6rem; }
+.fi-sign__cut-line { margin: 0 0 1rem; font-family: var(--fi-font-display); font-size: 1.1rem; line-height: 1.35; color: var(--fi-text); }
+
+/* --- Diverging bars --- */
+.fi-div { margin-top: 0.5rem; }
+.fi-div__legend { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--fi-font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fi-muted); margin-bottom: 1rem; }
+.fi-div__book { margin-bottom: 1.6rem; }
+.fi-div__book-name { font-family: var(--fi-font-display); font-size: 1.05rem; }
+.fi-div__book-meta { display: block; font-size: 0.78rem; color: var(--fi-muted); margin-top: 0.15rem; }
+.fi-div__row { display: grid; grid-template-columns: 6.5rem 1fr 3.5rem; align-items: center; gap: 0.75rem; margin: 0.45rem 0; }
+.fi-div__cat { font-size: 0.82rem; text-align: right; color: var(--fi-text); }
+.fi-div__track { position: relative; height: 22px; }
+.fi-div__center { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--fi-line-strong); }
+.fi-div__bar { position: absolute; top: 4px; height: 14px; border-radius: 3px; transition: width 0.9s var(--fi-ease); }
+.fi-div__bar--quote { background: var(--fi-accent); }
+.fi-div__bar--predict { background: var(--fi-danger); }
+.fi-div__val { font-family: var(--fi-font-mono); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.fi-div__val--quote { color: var(--fi-accent-text); }
+.fi-div__val--predict { color: var(--fi-danger); }
+.fi-div__shape { margin-top: 1.25rem; font-family: var(--fi-font-display); font-style: italic; font-size: clamp(1.05rem, 1rem + 0.6vw, 1.35rem); line-height: 1.4; color: var(--fi-text); max-width: 48ch; }
+
+/* --- Seat flip --- */
+.fi-seat { margin-top: 0.5rem; }
+.fi-seat__toggle { display: inline-flex; border: 1px solid var(--fi-line-strong); border-radius: 999px; padding: 3px; gap: 3px; }
+.fi-seat__tab { font-family: var(--fi-font-mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.45rem 1.1rem; border: 0; background: transparent; color: var(--fi-muted); border-radius: 999px; cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+.fi-seat__tab.is-active { background: var(--fi-text); color: var(--fi-bg); }
+.fi-seat__readout { display: flex; align-items: baseline; gap: 0.6rem; margin: 1.4rem 0 0.85rem; }
+.fi-seat__num { font-size: 3.4rem; font-weight: 500; line-height: 1; transition: color 0.3s; }
+.fi-seat__readout.is-gain .fi-seat__num { color: var(--fi-accent-text); }
+.fi-seat__readout.is-fade .fi-seat__num { color: var(--fi-danger); }
+.fi-seat__unit { font-size: 1rem; color: var(--fi-muted); }
+.fi-seat__caption { max-width: 48ch; font-size: 0.9rem; line-height: 1.55; color: var(--fi-text); margin: 0; }
+
+/* --- Customer cut --- */
+.fi-cutstats { display: flex; flex-wrap: wrap; gap: 1.75rem; }
+
+/* --- Objections --- */
+.fi-objections { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+.fi-objection { border: 1px solid var(--fi-line); border-radius: 12px; padding: 1.1rem 1.25rem; background: var(--fi-surface); }
+.fi-objection__q { display: block; font-family: var(--fi-font-display); font-size: 1.05rem; color: var(--fi-text); margin-bottom: 0.5rem; }
+.fi-objection p { margin: 0; font-size: 0.88rem; line-height: 1.55; color: var(--fi-muted); }
+/* Strip variant: the "answered before you ask" asides read as quiet secondary
+   material, not full cards competing with the evidence above them. */
+.fi-objections--strip { display: flex; flex-direction: column; gap: 0.9rem; max-width: 62ch; }
+.fi-objections--strip .fi-objection { border: 0; border-left: 2px solid var(--fi-line-strong); border-radius: 0; padding: 0.15rem 0 0.15rem 1rem; background: transparent; }
+.fi-objections--strip .fi-objection__q { font-size: 0.92rem; margin-bottom: 0.25rem; }
+.fi-objections--strip .fi-objection p { font-size: 0.84rem; }
+
+/* --- Bid rebuild (sandbox) --- */
+.fi-bid { margin-top: 0.5rem; }
+.fi-bid__scale { position: relative; height: 120px; margin: 2.75rem 0 1.25rem; }
+.fi-bid__scale::before { content: ''; position: absolute; left: 0; right: 0; top: 60px; height: 2px; background: var(--fi-line-strong); }
+.fi-bid__loss { position: absolute; left: 0; top: 54px; height: 12px; background: var(--fi-danger-soft); border-right: 1px dashed var(--fi-danger); }
+.fi-bid__cost { position: absolute; top: 34px; bottom: 34px; width: 2px; background: var(--fi-text); transform: translateX(-50%); }
+.fi-bid__cost-label { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.72rem; color: var(--fi-text); margin-bottom: 6px; }
+.fi-bid__marker { position: absolute; top: 60px; transform: translate(-50%, -50%); }
+.fi-bid__dot { display: block; width: 13px; height: 13px; border-radius: 999px; margin: 0 auto; }
+.fi-bid__marker--old .fi-bid__dot { background: var(--fi-danger); }
+.fi-bid__marker--cal .fi-bid__dot { background: var(--fi-accent); }
+.fi-bid__mlabel { position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.72rem; text-align: center; }
+.fi-bid__marker--old .fi-bid__mlabel { top: 15px; color: var(--fi-danger); }
+.fi-bid__marker--cal .fi-bid__mlabel { bottom: 15px; color: var(--fi-accent-text); }
+.fi-bid__captions p { margin: 0.4rem 0; font-size: 0.86rem; line-height: 1.5; }
+.fi-bid__note { font-size: 0.78rem; margin: 0.5rem 0 0; }
+
+/* --- Guided embed --- */
+.fi-embed { margin-top: 0.5rem; }
+.fi-embed__frame-note { font-size: 0.95rem; line-height: 1.55; margin: 0 0 1.1rem; max-width: 60ch; color: var(--fi-text); }
+.fi-embed__label { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--fi-font-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fi-accent-text); }
+.fi-embed__dot { width: 7px; height: 7px; border-radius: 999px; background: var(--fi-accent); animation: fi-fedex-pulse 2.6s var(--fi-ease) infinite; }
+.fi-embed__open { font-size: 0.78rem; color: var(--fi-text); text-decoration: none; border-bottom: 1px solid var(--fi-line-strong); }
+.fi-embed__open:hover { color: var(--fi-accent-text); border-color: var(--fi-accent); }
+.fi-embed__missions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.fi-embed__chip { font-family: var(--fi-font-mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--fi-text); background: transparent; border: 1px solid var(--fi-line-strong); border-radius: 999px; padding: 0.4rem 0.85rem; cursor: pointer; transition: border-color 0.2s, background-color 0.2s, color 0.2s; }
+.fi-embed__chip:hover { border-color: var(--fi-accent); }
+.fi-embed__chip.is-active { background: var(--fi-accent); color: var(--fi-accent-ink); border-color: var(--fi-accent); }
+.fi-embed__look { font-size: 0.9rem; line-height: 1.5; margin: 0 0 1rem; max-width: 60ch; }
+/* The embed is framed as a deliberate console so the external tool reads as an
+   intentional embedded instrument, not a separate app pasted into the page. */
+.fi-embed__console { border: 1px solid var(--fi-line-strong); border-radius: 14px; overflow: hidden; background: var(--fi-surface); }
+.fi-embed__chrome { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 0.7rem 0.95rem; background: var(--fi-surface); border-bottom: 1px solid var(--fi-line-strong); }
+.fi-embed__frame { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--fi-surface); }
+.fi-embed__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.fi-embed__skeleton { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--fi-muted); font-family: var(--fi-font-mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.fi-embed__note { margin-top: 0.75rem; font-size: 0.78rem; }
+.fi-embed__mobile { display: none; }
+@media (max-width: 768px) {
+  .fi-embed__console { display: none; }
+  .fi-embed__mobile { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+}
+@media (max-width: 480px) {
+  .fi-bid__mlabel, .fi-bid__cost-label { font-size: 0.62rem; }
+  .fi-sign__head { flex-direction: column; }
+  .fi-sign__ask { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fi-div__bar { transition-duration: 0.01ms !important; }
+  .fi-sign__dot { animation: none !important; }
+  .fi-seat__num { transition: none !important; }
+  .fi-embed__dot { animation: none !important; }
+}
+
+/* ==================================================================
+ * Station 5: Decisions + finale
+ * ================================================================== */
+
+/* --- Monday's docket --- */
+.fi-docket { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 0.5rem; }
+.fi-docket__card { display: flex; flex-direction: column; padding: 1.25rem; border: 1px solid var(--fi-line); border-radius: 14px; background: var(--fi-surface); transition: border-color 0.3s; }
+.fi-docket__card.is-decided { border-color: var(--fi-line-strong); }
+.fi-docket__tag { font-family: var(--fi-font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-accent-text); }
+.fi-docket__from { display: block; margin-top: 0.3rem; font-family: var(--fi-font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fi-muted); }
+.fi-docket__situation { font-family: var(--fi-font-display); font-size: 1.1rem; line-height: 1.3; color: var(--fi-text); margin: 0.5rem 0 0.75rem; }
+.fi-docket__q { font-size: 0.85rem; color: var(--fi-muted); margin: 0 0 0.9rem; }
+.fi-docket__options { display: flex; flex-direction: column; gap: 0.5rem; }
+.fi-docket__opt {
+  text-align: left;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--fi-line-strong);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--fi-text);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, opacity 0.2s;
+}
+.fi-docket__opt:hover:not(:disabled) { border-color: var(--fi-accent); }
+.fi-docket__opt:disabled { cursor: default; }
+.fi-docket__opt.is-best { border-color: var(--fi-accent); background: color-mix(in srgb, var(--fi-accent) 12%, var(--fi-surface)); color: var(--fi-accent-text); font-weight: 600; }
+.fi-docket__opt.is-picked { border-color: var(--fi-line-strong); }
+.fi-docket__opt.is-dim { opacity: 0.4; }
+.fi-docket__answer { margin-top: 1rem; padding-top: 0.85rem; border-top: 1px solid var(--fi-line); animation: fi-reveal 0.4s var(--fi-ease); }
+.fi-docket__answer-tag { font-family: var(--fi-font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-accent-text); }
+.fi-docket__answer p { margin: 0.4rem 0 0; font-size: 0.88rem; line-height: 1.5; color: var(--fi-text); }
+
+/* --- Data-to-decision map --- */
+.fi-mech { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; align-items: start; }
+.fi-mech__card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--fi-line);
+  border-left: 3px solid var(--fi-accent);
+  border-radius: 12px;
+  background: var(--fi-surface);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.fi-mech__card:hover { border-color: var(--fi-line-strong); }
+.fi-mech__card:focus-visible { outline: 2px solid var(--fi-accent); outline-offset: 2px; }
+.fi-mech__card.is-open {
+  border-color: var(--fi-line-strong);
+  box-shadow: 0 8px 24px rgba(30, 42, 56, 0.1);
+}
+.fi-mech__station {
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-accent-text);
+}
+.fi-mech__finding {
+  font-family: var(--fi-font-display);
+  font-size: 1.02rem;
+  line-height: 1.3;
+  color: var(--fi-text);
+  margin: 0.5rem 0 0.75rem;
+}
+.fi-mech__decision {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--fi-accent-text);
+}
+.fi-mech__arrow { flex: 0 0 auto; margin-top: 0.15em; color: var(--fi-accent); }
+.fi-mech__cut {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s var(--fi-ease);
+}
+.fi-mech__card.is-open .fi-mech__cut { grid-template-rows: 1fr; }
+.fi-mech__cut-inner { overflow: hidden; min-height: 0; }
+.fi-mech__cut-tag {
+  display: block;
+  margin: 1rem 0 0.4rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--fi-line);
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+}
+.fi-mech__cut-body { display: block; font-size: 0.84rem; line-height: 1.55; color: var(--fi-text); }
+
+/* --- Agent finale --- */
+.fi-agent__constraints { list-style: none; margin: 1.25rem 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+.fi-agent__constraints li { position: relative; padding-left: 1.1rem; font-size: 0.85rem; color: var(--fi-text); }
+.fi-agent__constraints li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 999px; background: var(--fi-accent); }
+
+/* ------------------------------------------------------------------ *
+ * Finale agent console — the live grounded-retrieval demo.
+ * ------------------------------------------------------------------ */
+.fi-agent__invite {
+  margin: 1.25rem 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--fi-muted);
+}
+
+.fi-console {
+  margin: 0 0 1.75rem;
+  border: 1px solid var(--fi-line-strong);
+  border-radius: 16px;
+  background: var(--fi-surface);
+  overflow: hidden;
+  box-shadow: 0 18px 40px -28px rgba(30, 42, 56, 0.4);
+}
+
+/* top bar */
+.fi-console__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  background: var(--fi-surface-2);
+  border-bottom: 1px solid var(--fi-line);
+  font-family: var(--fi-font-mono);
+}
+.fi-console__handle { font-size: 0.78rem; color: var(--fi-accent-text); letter-spacing: 0.02em; }
+.fi-console__status {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fi-muted);
+}
+.fi-console__dot {
+  width: 7px; height: 7px; border-radius: 999px; background: var(--fi-accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--fi-accent) 60%, transparent);
+  animation: fi-console-pulse 2.4s ease-out infinite;
+}
+@keyframes fi-console-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--fi-accent) 55%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 6px transparent; }
+}
+
+/* the visible data it reads */
+.fi-console__data { border-bottom: 1px solid var(--fi-line); }
+.fi-tracker-wrap { max-height: 17rem; overflow: auto; }
+.fi-tracker { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.fi-tracker__cap {
+  caption-side: top; text-align: left; padding: 0.7rem 1rem 0.55rem;
+  font-size: 0.74rem; color: var(--fi-muted); line-height: 1.45;
+}
+.fi-tracker thead th {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--fi-surface-2);
+  font-family: var(--fi-font-mono); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--fi-muted);
+  text-align: left; padding: 0.5rem 0.85rem; border-bottom: 1px solid var(--fi-line);
+  white-space: nowrap;
+}
+.fi-tracker td {
+  padding: 0.5rem 0.85rem; border-bottom: 1px solid var(--fi-line);
+  color: var(--fi-text); vertical-align: middle;
+}
+.fi-tracker__row:last-child td { border-bottom: none; }
+.fi-tracker__row { transition: background 0.35s var(--fi-ease); }
+.fi-tracker__row.is-cited {
+  background: color-mix(in srgb, var(--fi-accent) 12%, transparent);
+  box-shadow: inset 3px 0 0 var(--fi-accent);
+}
+.fi-tracker__ref { font-family: var(--fi-font-mono); font-size: 0.74rem; color: var(--fi-muted); white-space: nowrap; }
+.fi-tracker__book { color: var(--fi-muted); }
+.fi-tracker thead th:last-child, .fi-tracker__val { text-align: right; white-space: nowrap; }
+.fi-tracker__val { font-family: var(--fi-font-mono); font-size: 0.76rem; color: var(--fi-text); }
+.fi-tracker__val.is-empty { color: var(--fi-line-strong); }
+.fi-due {
+  display: inline-block; font-family: var(--fi-font-mono); font-size: 0.68rem;
+  padding: 0.12rem 0.45rem; border-radius: 999px; white-space: nowrap;
+  border: 1px solid transparent;
+}
+.fi-due--overdue { color: var(--fi-danger); background: var(--fi-danger-soft); border-color: color-mix(in srgb, var(--fi-danger) 30%, transparent); }
+.fi-due--soon { color: var(--fi-accent-text); background: color-mix(in srgb, var(--fi-accent) 12%, transparent); }
+.fi-due--open { color: var(--fi-muted); }
+.fi-due--done { color: var(--fi-muted); opacity: 0.75; }
+
+/* transcript */
+.fi-console__thread {
+  max-height: 22rem; overflow-y: auto;
+  padding: 1.1rem; display: flex; flex-direction: column; gap: 1rem;
+  background: var(--fi-bg);
+}
+.fi-msg { display: grid; grid-template-columns: auto 1fr; gap: 0.65rem; align-items: start; }
+.fi-msg__role {
+  font-family: var(--fi-font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fi-muted); padding-top: 0.2rem; white-space: nowrap;
+}
+.fi-msg--user p { margin: 0; font-size: 0.92rem; color: var(--fi-text); font-weight: 500; }
+.fi-msg--agent .fi-msg__body {
+  border-left: 2px solid var(--fi-accent);
+  padding: 0.15rem 0 0.15rem 0.75rem;
+  animation: fi-msg-in 0.4s var(--fi-ease) both;
+}
+.fi-msg--agent .fi-msg__body p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--fi-text); }
+.fi-msg--declined .fi-msg__body, .fi-msg--unknown .fi-msg__body { border-left-color: var(--fi-line-strong); }
+@keyframes fi-msg-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.fi-msg__cites {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
+  margin-top: 0.55rem !important; font-family: var(--fi-font-mono);
+}
+.fi-msg__cites-label { font-size: 0.68rem; color: var(--fi-accent-text); margin-right: 0.15rem; }
+.fi-cite-chip {
+  font-size: 0.66rem; color: var(--fi-accent-text);
+  padding: 0.08rem 0.4rem; border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--fi-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--fi-accent) 8%, transparent);
+}
+.fi-msg__ro {
+  font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--fi-muted); margin-left: 0.15rem;
+}
+
+/* typing beat */
+.fi-console__typing { display: inline-flex; gap: 4px; align-items: center; padding-top: 0.35rem; }
+.fi-console__typing i {
+  width: 6px; height: 6px; border-radius: 999px; background: var(--fi-accent);
+  opacity: 0.4; animation: fi-typing 1s ease-in-out infinite;
+}
+.fi-console__typing i:nth-child(2) { animation-delay: 0.15s; }
+.fi-console__typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes fi-typing { 0%, 100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
+
+/* suggested prompts */
+.fi-console__chips {
+  display: flex; flex-wrap: wrap; gap: 0.45rem;
+  padding: 0.85rem 1rem; border-top: 1px solid var(--fi-line); background: var(--fi-surface);
+}
+.fi-chip {
+  font-family: var(--fi-font-body); font-size: 0.78rem; color: var(--fi-text);
+  padding: 0.35rem 0.7rem; border-radius: 999px;
+  border: 1px solid var(--fi-line-strong); background: var(--fi-surface-2);
+  cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.fi-chip:hover:not(:disabled) { border-color: var(--fi-accent); color: var(--fi-accent-text); background: color-mix(in srgb, var(--fi-accent) 7%, transparent); }
+.fi-chip:disabled { opacity: 0.5; cursor: default; }
+
+/* free-text input */
+.fi-console__form { display: flex; gap: 0.6rem; padding: 0 1rem 1rem; background: var(--fi-surface); }
+.fi-console__input {
+  flex: 1 1 auto; min-width: 0;
+  font-family: var(--fi-font-body); font-size: 0.9rem; color: var(--fi-text);
+  padding: 0.6rem 0.85rem; border-radius: 10px;
+  border: 1px solid var(--fi-line-strong); background: var(--fi-surface-2);
+}
+.fi-console__input::placeholder { color: var(--fi-muted); }
+.fi-console__input:focus-visible { outline: 2px solid var(--fi-accent); outline-offset: 1px; border-color: var(--fi-accent); }
+.fi-console__send {
+  flex: 0 0 auto; font-family: var(--fi-font-body); font-weight: 600; font-size: 0.85rem;
+  color: var(--fi-accent-ink); background: var(--fi-accent);
+  padding: 0.6rem 1.15rem; border-radius: 10px; border: none; cursor: pointer;
+  transition: filter 0.2s, opacity 0.2s;
+}
+.fi-console__send:hover:not(:disabled) { filter: brightness(1.06); }
+.fi-console__send:disabled { opacity: 0.45; cursor: default; }
+
+/* the axes it can combine — a quiet range signal under the input */
+.fi-console__hint {
+  margin: 0; padding: 0 1rem 1rem; background: var(--fi-surface);
+  font-size: 0.74rem; line-height: 1.5; color: var(--fi-muted);
+}
+
+@media (max-width: 620px) {
+  .fi-tracker__book, .fi-tracker thead th:nth-child(3), .fi-tracker__row td:nth-child(3) { display: none; }
+  .fi-tracker__val, .fi-tracker thead th:nth-child(6), .fi-tracker__row td:nth-child(6) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fi-docket__answer { animation: none !important; }
+  .fi-mech__card { transition-duration: 0.01ms !important; }
+  .fi-mech__cut { transition-duration: 0.01ms !important; }
+  .fi-console__dot, .fi-console__typing i { animation: none !important; }
+  .fi-msg--agent .fi-msg__body { animation: none !important; }
+  .fi-tracker__row { transition: none !important; }
+}

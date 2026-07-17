@@ -1,8 +1,19 @@
 export const EXPERIENCE = [
   {
+    company: 'CEI',
+    role: 'Management Consultant, ERP & Digital Transformation',
+    period: 'Mar 2026 — Present',
+    location: 'Atlanta, GA',
+    bullets: [
+      'Leading change management and business readiness for a multi-year Oracle ERP implementation across 15 business units of a publicly traded commercial roofing conglomerate.',
+      'Conducting readiness assessments across 23 functional areas, including process harmonization workshops, stakeholder alignment, communication strategy, training plan development, and change management execution through go-live.',
+      '370+ stakeholder interviews conducted across a 2-year transformation program spanning operations, finance, and HR — partnering with practice leadership and client business process owners to translate assessment findings into adoption outcomes.',
+    ],
+  },
+  {
     company: 'Automized Solutions',
     role: 'Director of Consulting & Operations',
-    period: 'May 2024 — Present',
+    period: 'May 2024 — Feb 2026',
     location: 'Atlanta, GA (Remote)',
     bullets: [
       'Lead operational transformation engagements for construction and industrial clients, delivering process optimization and change management strategies that reduced project cycle times by 50%.',

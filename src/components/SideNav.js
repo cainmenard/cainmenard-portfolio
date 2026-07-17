@@ -17,6 +17,7 @@ const SECTIONS = [
 export default function SideNav() {
   const [activeId, setActiveId] = useState('')
   const [clickedId, setClickedId] = useState(null)
+  const [hidden, setHidden] = useState(false)
   const timeoutRef = useRef(null)
 
   /* ── Intersection Observer: track which section is in view ── */
@@ -36,6 +37,18 @@ export default function SideNav() {
 
     sectionEls.forEach(el => observer.observe(el))
     return () => observer.disconnect()
+  }, [])
+
+  /* ── Hide nav when comparison section is in view ── */
+  useEffect(() => {
+    const compSection = document.getElementById('comparison')
+    if (!compSection) return
+    const obs = new IntersectionObserver(
+      ([entry]) => setHidden(entry.isIntersecting),
+      { threshold: 0.15 }
+    )
+    obs.observe(compSection)
+    return () => obs.disconnect()
   }, [])
 
   /* ── Clear click override once the observer catches up ── */
@@ -68,7 +81,7 @@ export default function SideNav() {
     : 0
 
   return (
-    <nav className="side-nav" aria-label="Article sections">
+    <nav className={`side-nav${hidden ? ' side-nav--hidden' : ''}`} aria-label="Article sections">
       <ul className="side-nav__list" style={{ '--rail-progress': progress }}>
         {SECTIONS.map((item) => {
           const isActive = currentActive === item.id
