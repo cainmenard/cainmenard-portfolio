@@ -802,3 +802,95 @@ export const MECHANISM_CARDS = [
       'The selectivity model is a 21-factor bid go/no-go: 69 and up you bid it, 50 to 69 needs executive approval, below 50 you walk. PM availability is one of the scored factors, so the org chart becomes a bidding constraint.',
   },
 ]
+
+/* ================================================================== *
+ * LEDGER TOKEN
+ * The running state the fixed-spine marker carries down the page: the
+ * dollar value the hour is worth, the stamp that fills in, the italic
+ * present-tense verb that lights at each dock, the color tone, and the
+ * glyph the token morphs into. One entry per station, plus a pre-capture
+ * seed for the hero.
+ *
+ * Every number is DERIVED from the station datasets above, never re-typed,
+ * so the ledger can never disagree with the copy:
+ *   Captured $61.18  ->  Approved $61.18 held  ->  Overran $71.46 (+17% hot)
+ *   ->  Judged the -68..+28 spread (the truth behind the 0.6pt average)
+ *   ->  Repriced +$27,500 (the calibrated bid minus the old one).
+ * ================================================================== */
+const repriceDelta = BID_REBUILD.calibratedBid - BID_REBUILD.oldBid // 27,500
+
+export const LEDGER_SEED = {
+  id: 'hero',
+  time: HERO.time,
+  stamp: null,
+  value: '$0.00',
+  unit: '/hr',
+  status: 'not yet clocked',
+  verb: 'waits for the punch',
+  tone: 'copper',
+  glyph: 'seed',
+}
+
+export const LEDGER = [
+  {
+    id: 'field',
+    time: STATIONS[0].time, // 6:15am
+    stamp: 'Captured',
+    value: `$${CLIFF.crewRate.estimated.toFixed(2)}`, // $61.18
+    unit: '/hr',
+    status: '1 in 2 wrong',
+    verb: 'logs the hour',
+    tone: 'copper',
+    glyph: 'paper',
+  },
+  {
+    id: 'office',
+    time: STATIONS[1].time, // 8:30am
+    stamp: 'Approved',
+    value: `$${CLIFF.crewRate.estimated.toFixed(2)}`, // $61.18, unchanged
+    unit: 'held',
+    status: '+2 weeks',
+    verb: 'survives the plumbing',
+    tone: 'amber',
+    glyph: 'chip',
+  },
+  {
+    id: 'job-cost',
+    time: STATIONS[2].time, // 11:30am
+    stamp: 'Overran',
+    value: `$${CLIFF.crewRate.actual.toFixed(2)}`, // $71.46
+    unit: '/hr',
+    status: `+${CLIFF.crewRate.hotPct}% hot`, // +17% hot
+    verb: 'runs hot',
+    tone: 'red',
+    glyph: 'cliff',
+    // the count-up tween runs on arrival, from the held estimate to actual
+    countFrom: CLIFF.crewRate.estimated, // 61.18
+    countTo: CLIFF.crewRate.actual, // 71.46
+  },
+  {
+    id: 'portfolio',
+    time: STATIONS[3].time, // 1:00pm
+    stamp: 'Judged',
+    value: `−${EPC_SCATTER.worstFade}…+${EPC_SCATTER.bestGain}`, // -68...+28
+    unit: '%',
+    status: 'the average lied',
+    verb: 'meets the book',
+    tone: 'red',
+    glyph: 'scatter',
+    // the shatter reveal derives its extremes from the same record
+    worstFade: EPC_SCATTER.worstFade, // 68
+    bestGain: EPC_SCATTER.bestGain, // 28
+  },
+  {
+    id: 'decisions',
+    time: STATIONS[4].time, // 2:00pm
+    stamp: 'Repriced',
+    value: `+$${repriceDelta.toLocaleString('en-US')}`, // +$27,500
+    unit: '',
+    status: 'back under control',
+    verb: 'prices the next bid',
+    tone: 'green',
+    glyph: 'coin',
+  },
+]

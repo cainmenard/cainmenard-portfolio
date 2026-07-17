@@ -262,167 +262,350 @@
 .fi-handoff__arrow { color: var(--fi-accent); flex: 0 0 auto; }
 
 /* ------------------------------------------------------------------ *
- * Progress rail (FIELD -> OFFICE -> JOB COST -> PORTFOLIO -> DECISIONS)
- * Fixed at top; closes into a loop at the epilogue.
+ * Ledger token (replaces the old top ribbon)
+ * A fixed-spine marker that carries the hour's running value, timestamp,
+ * stamp strip, and color state down the right edge, then travels back up
+ * to the 6:15 mark at the finale. Below the mobile breakpoint the spine
+ * geometry is dropped and the same state renders as a bottom status bar.
+ *
+ * Color arc: copper (neutral) -> amber (warming) -> red (overrun/cliff)
+ * -> green (repriced). Both the token and the rail fill read the tone var,
+ * so state is legible from anywhere on the page.
  * ------------------------------------------------------------------ */
-.fi-rail {
+.fi-ledger {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: 40;
-  height: var(--fi-rail-h);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0 1rem;
-  background: color-mix(in srgb, var(--fi-bg) 82%, transparent);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid var(--fi-line);
-  transition: background-color 420ms ease, border-color 420ms ease;
+  pointer-events: none; /* only interactive children re-enable pointer events */
+  --fi-ledger-y: 0;
+  --fi-ledger-tone: var(--fi-accent);
 }
-.fi-rail__back {
+.fi-ledger.tone-copper { --fi-ledger-tone: #a9683a; }
+.fi-ledger.tone-amber  { --fi-ledger-tone: #c07c25; }
+.fi-ledger.tone-red    { --fi-ledger-tone: #c0392b; }
+.fi-ledger.tone-green  { --fi-ledger-tone: #2e8b57; }
+
+/* Back-to-home chip, top-left (took over the ribbon's back link) */
+.fi-ledger__back {
+  position: fixed;
+  top: 0.85rem;
+  left: 0.9rem;
+  pointer-events: auto;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  flex: 0 0 auto;
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--fi-text);
   text-decoration: none;
-  padding: 0.35rem 0.6rem;
+  padding: 0.4rem 0.7rem;
   border-radius: 999px;
   border: 1px solid var(--fi-line);
+  background: color-mix(in srgb, var(--fi-bg) 78%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   transition: border-color 0.2s, color 0.2s;
 }
-.fi-rail__back:hover { border-color: var(--fi-accent); color: var(--fi-accent-text); }
-.fi-rail__back svg { width: 14px; height: 14px; }
+.fi-ledger__back:hover { border-color: var(--fi-ledger-tone); color: var(--fi-accent-text); }
+.fi-ledger__back svg { width: 14px; height: 14px; }
 
-/* ---- Editorial segmented stepper ---------------------------------------
- * The center track is an ordered list of numbered steps. Each step carries a
- * mono index + uppercase name ON TOP and a short segment bar BELOW, so a line
- * never crosses the text. The segments evenly divide the track and fill copper
- * one-by-one as the reader advances — together they read as a progress bar. */
-.fi-rail__steps {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: stretch;
-  gap: 0.55rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  min-width: 0;
+/* ---- The vertical spine ---- */
+.fi-ledger__spine {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(150px, 15vw, 210px);
+  pointer-events: none;
 }
-.fi-rail__step {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
+.fi-ledger__track {
+  position: absolute;
+  top: clamp(76px, 13vh, 128px);
+  bottom: clamp(76px, 13vh, 128px);
+  right: 42px;
+  width: 2px;
+  background: color-mix(in srgb, var(--fi-line) 80%, transparent);
+  border-radius: 999px;
 }
-.fi-rail__step > a {
-  position: relative;
-  flex: 1 1 auto;
-  min-width: 0;
+/* fill from the top down to the token, colored by the current tone */
+.fi-ledger__fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: calc(var(--fi-ledger-y) * 100%);
+  background: var(--fi-ledger-tone);
+  border-radius: inherit;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--fi-ledger-tone) 55%, transparent);
+  transition: height 0.18s linear, background-color 0.5s ease;
+}
+/* the 6:15am start mark the token returns to */
+.fi-ledger__start {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--fi-line) 80%, var(--fi-ledger-tone));
+  background: var(--fi-bg);
+}
+
+/* ---- Stamp strip: one stamp per station, anchored along the rail ---- */
+.fi-ledger__stamp {
+  position: absolute;
+  right: -4.5px; /* anchor the 9px dot's center on the rail */
+  transform: translateY(-50%);
+  pointer-events: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.32rem;
+  flex-direction: row-reverse; /* dot on the rail, label extends left */
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.2rem 0;
-  text-decoration: none;
+  background: none;
+  border: 0;
   cursor: pointer;
 }
-.fi-rail__step-head {
-  display: flex;
-  align-items: baseline;
-  gap: 0.4rem;
-  min-width: 0;
-}
-.fi-rail__num {
+.fi-ledger__stamp-dot {
   flex: 0 0 auto;
-  font-family: var(--fi-font-mono);
-  font-size: 0.62rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.06em;
-  color: var(--fi-muted);
-  opacity: 0.7;
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
-.fi-rail__name {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-family: var(--fi-font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--fi-text);
-  transition: color 0.25s ease;
-}
-/* the per-step segment: an even chunk of the overall progress bar */
-.fi-rail__seg {
-  position: relative;
-  height: 3px;
+  width: 9px;
+  height: 9px;
   border-radius: 999px;
-  background: var(--fi-line);
-  overflow: hidden;
+  border: 2px solid color-mix(in srgb, var(--fi-line) 85%, transparent);
+  background: var(--fi-bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.fi-rail__seg-fill {
+.fi-ledger__stamp-label {
+  font-family: var(--fi-font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+.fi-ledger__stamp[data-filled="1"] .fi-ledger__stamp-dot {
+  background: var(--fi-ledger-tone);
+  border-color: var(--fi-ledger-tone);
+}
+.fi-ledger__stamp[data-active="1"] .fi-ledger__stamp-dot {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--fi-ledger-tone) 22%, transparent);
+}
+.fi-ledger__stamp:hover .fi-ledger__stamp-label,
+.fi-ledger__stamp:focus-visible .fi-ledger__stamp-label,
+.fi-ledger__stamp[data-active="1"] .fi-ledger__stamp-label {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--fi-text);
+}
+.fi-ledger__stamp:focus-visible {
+  outline: 2px solid var(--fi-ledger-tone);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- The token itself: glyph on the rail, readout to its left ---- */
+.fi-ledger__token {
+  position: absolute;
+  right: -20px; /* anchor the 40px glyph's center on the rail */
+  top: calc(var(--fi-ledger-y) * 100%);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row-reverse; /* glyph on the rail, readout extends left */
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none; /* never blocks the stamps beneath it */
+  transition: top 0.2s var(--fi-ease);
+}
+.fi-ledger__glyph {
+  position: relative;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--fi-ledger-tone);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--fi-ledger-tone) 20%, transparent),
+    0 4px 14px color-mix(in srgb, var(--fi-ledger-tone) 42%, transparent);
+  animation: fi-ledger-pop 0.5s var(--fi-ease);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+.fi-ledger__glyph svg { width: 22px; height: 22px; }
+@keyframes fi-ledger-pop {
+  0% { transform: scale(0.55); opacity: 0.3; }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.fi-ledger__readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--fi-bg) 86%, transparent);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid color-mix(in srgb, var(--fi-ledger-tone) 30%, var(--fi-line));
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+  white-space: nowrap;
+  transition: border-color 0.5s ease;
+}
+.fi-ledger__figure {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--fi-text);
+  font-variant-numeric: tabular-nums;
+}
+.fi-ledger__unit {
+  font-style: normal;
+  font-size: 0.62em;
+  color: var(--fi-muted);
+  margin-left: 0.28em;
+}
+.fi-ledger__status {
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fi-ledger-tone);
+  transition: color 0.5s ease;
+}
+/* the present-tense verb lights only once the token has docked */
+.fi-ledger__verb {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-size: 0.72rem;
+  color: var(--fi-ledger-tone);
+  transition: opacity 0.4s ease, max-width 0.4s ease, color 0.5s ease;
+}
+.fi-ledger__verb em { font-style: italic; }
+.fi-ledger[data-settled="1"] .fi-ledger__verb { max-width: 220px; opacity: 1; }
+
+/* ---- Portfolio shatter: copper dot breaks into the real spread ---- */
+.fi-ledger__shatter { position: absolute; inset: 0; }
+.fi-ledger__shard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  opacity: 0;
+  animation: fi-shatter 0.6s var(--fi-ease) forwards;
+}
+.fi-ledger__shard--red { background: #e0685c; }
+.fi-ledger__shard--green { background: #4bbd84; }
+@keyframes fi-shatter {
+  0% { transform: translate(-50%, -50%); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(var(--dx), var(--dy)); opacity: 0.95; }
+}
+.fi-ledger__shatter.is-static .fi-ledger__shard {
+  animation: none;
+  opacity: 0.95;
+  transform: translate(-50%, -50%) translate(var(--dx), var(--dy));
+}
+.fi-ledger__spread {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fi-fade-in 0.5s ease 0.4s forwards;
+}
+.fi-ledger__spread--fade { color: #e0685c; }
+.fi-ledger__spread--gain { color: #4bbd84; }
+@keyframes fi-fade-in { to { opacity: 1; } }
+.fi-ledger__shatter.is-static .fi-ledger__spread { animation: none; opacity: 1; }
+
+/* ---- Finale: token travels home, loop glyph flashes on arrival ---- */
+.fi-ledger.is-looped .fi-ledger__token { transition: top 1.3s var(--fi-ease); }
+.fi-ledger.is-looped .fi-ledger__fill {
+  transition: height 1.3s var(--fi-ease), background-color 0.5s ease;
+}
+.fi-ledger__loopflash {
   position: absolute;
   inset: 0;
-  transform-origin: left center;
-  transform: scaleX(0);
-  border-radius: inherit;
-  background: var(--fi-accent);
-  transition: transform 0.5s var(--fi-ease);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+.fi-ledger__loopflash svg { width: 22px; height: 22px; }
+.fi-ledger.is-arrived .fi-ledger__loopflash { animation: fi-loopflash 1s var(--fi-ease); }
+@keyframes fi-loopflash {
+  0% { opacity: 0; transform: scale(0.5) rotate(-40deg); }
+  40% { opacity: 1; transform: scale(1.15) rotate(0deg); }
+  100% { opacity: 0; transform: scale(1); }
 }
 
-/* upcoming steps read quieter; hover previews the arrival */
-.fi-rail__step:not(.fi-rail__step--active):not(.fi-rail__step--done) .fi-rail__name {
-  color: var(--fi-muted);
-}
-.fi-rail__step > a:hover .fi-rail__name { color: var(--fi-text); }
-.fi-rail__step > a:hover .fi-rail__seg-fill { transform: scaleX(1); opacity: 0.4; }
-
-/* done: segment filled, index warms */
-.fi-rail__step--done .fi-rail__seg-fill { transform: scaleX(1); }
-.fi-rail__step--done .fi-rail__num { color: var(--fi-accent-text); opacity: 0.85; }
-
-/* active: name + index copper, segment filled with a glowing leading edge */
-.fi-rail__step--active .fi-rail__name { color: var(--fi-accent-text); font-weight: 600; }
-.fi-rail__step--active .fi-rail__num { color: var(--fi-accent-text); opacity: 1; }
-.fi-rail__step--active .fi-rail__seg { background: color-mix(in srgb, var(--fi-accent) 22%, var(--fi-line)); }
-.fi-rail__step--active .fi-rail__seg-fill {
-  transform: scaleX(1);
-  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--fi-accent) 55%, transparent);
-}
-
-/* loop-close cap: a return arc that lights up at the epilogue */
-.fi-rail__loop {
-  flex: 0 0 auto;
-  display: inline-flex;
+/* ---- Mobile status bar ---- */
+.fi-ledger__bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  pointer-events: auto;
+  display: none;
   align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--fi-bg) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-top: 2px solid var(--fi-ledger-tone);
+  transition: border-color 0.5s ease;
+}
+.fi-ledger__glyph--bar { width: 30px; height: 30px; animation: none; }
+.fi-ledger__glyph--bar svg { width: 17px; height: 17px; }
+.fi-ledger__bar .fi-ledger__figure { font-size: 1.05rem; }
+.fi-ledger__bar-meta {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
+}
+.fi-ledger__bar-time {
+  font-family: var(--fi-font-mono);
+  font-size: 0.66rem;
   color: var(--fi-muted);
-  opacity: 0.35;
-  transition: opacity 0.4s ease, color 0.4s ease;
 }
-.fi-rail__loop svg { width: 18px; height: 18px; }
-.fi-rail--looped .fi-rail__loop { opacity: 1; color: var(--fi-accent-text); }
-/* looped: every segment filled, first step re-glows to close the loop */
-.fi-rail--looped .fi-rail__seg-fill { transform: scaleX(1); }
-.fi-rail--looped .fi-rail__step:first-child .fi-rail__seg {
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--fi-accent) 32%, transparent);
+.fi-ledger__bar-stamp {
+  font-family: var(--fi-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fi-ledger-tone);
+  transition: color 0.5s ease;
 }
-.fi-rail--looped .fi-rail__step:first-child .fi-rail__name { color: var(--fi-accent-text); }
 
-@media (max-width: 720px) {
-  .fi-rail__steps { gap: 0.35rem; }
-  /* names collapse on narrow screens; the numbered segmented bar stays,
-     so the stepper still reads as progress instead of a bare line */
-  .fi-rail__name { display: none; }
-  .fi-rail__step-head { justify-content: center; }
-  .fi-rail__step > a { gap: 0.28rem; }
+@media (max-width: 768px) {
+  .fi-ledger__spine { display: none; }
+  .fi-ledger__bar { display: flex; }
+  /* Lift the global back-to-top button clear of the ledger status bar.
+     This stylesheet only loads on the Field Intelligence route, so the
+     override never touches the button on other pages. */
+  button[aria-label='Back to top'] {
+    bottom: calc(4rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
 }
 
 /* ------------------------------------------------------------------ *
@@ -721,12 +904,23 @@
 @media (prefers-reduced-motion: reduce) {
   .fi-backdrop,
   .fi-backdrop::after,
-  .fi-rail,
-  .fi-rail__seg-fill,
   .fi-drawer__region,
   .fi-drawer__icon,
   .fi-cite__note { transition-duration: 0.01ms !important; }
   .fi-hero__cue-dot { animation: none !important; }
+  /* Ledger token: skip the travel/morph/scatter animations and land directly
+     on each station's final settled state, while KEEPING the color and text
+     changes (tone, value, stamps, verb) so the argument still reads. */
+  .fi-ledger__token,
+  .fi-ledger__fill,
+  .fi-ledger.is-looped .fi-ledger__token,
+  .fi-ledger.is-looped .fi-ledger__fill,
+  .fi-ledger__stamp-dot,
+  .fi-ledger__stamp-label { transition-duration: 0.01ms !important; }
+  .fi-ledger__glyph { animation: none !important; }
+  .fi-ledger__shard { animation: none !important; opacity: 0.95; transform: translate(-50%, -50%) translate(var(--dx), var(--dy)); }
+  .fi-ledger__spread { animation: none !important; opacity: 1; }
+  .fi-ledger.is-arrived .fi-ledger__loopflash { animation: none !important; }
   /* The sky COLOR still tracks scroll (that's not vestibular motion, and
      freezing it is what made the effect look dead before). We only still the
      things that visibly travel: pin the sun high and centered, stop the star

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
 import { useActiveSection } from './_components/useActiveSection'
 import { useScrollProgress } from './_components/useScrollProgress'
-import ProgressRail from './_components/ProgressRail'
+import LedgerSpine from './_components/LedgerSpine'
 import AgentFinale from './_components/AgentFinale'
 import { track } from './_components/track'
 import StationField from './_stations/StationField'
@@ -14,6 +14,8 @@ import StationDecisions from './_stations/StationDecisions'
 import {
   ROUTE,
   RAIL,
+  LEDGER,
+  LEDGER_SEED,
   HERO,
   EPILOGUE,
   COLOPHON,
@@ -79,8 +81,9 @@ export default function FieldIntelligence() {
         <div className="fi-sun" />
       </div>
 
-      <ProgressRail
-        sections={RAIL}
+      <LedgerSpine
+        ledger={LEDGER}
+        seed={LEDGER_SEED}
         activeIndex={activeIndex}
         looped={looped}
         backHref={ROUTE.backHref}
