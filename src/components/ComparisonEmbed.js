@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react'
 export default function ComparisonEmbed({ tableauUrl, webAppUrl }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
-  const [active, setActive] = useState('tableau')
+  const [active, setActive] = useState('webapp')
 
   useEffect(() => {
     const obs = new IntersectionObserver(([entry]) => {
