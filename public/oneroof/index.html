@@ -389,6 +389,37 @@ body.explore.cur .cursor{display:block}
 .rb-gap{background:rgba(143,179,214,.12);border:1px solid rgba(143,179,214,.3)}
 .rb-find{font-size:13px;color:#C8D6E6;line-height:1.6}
 @media(max-width:900px){.ra-hero{grid-template-columns:1fr;gap:16px}.ra-herok{grid-template-columns:repeat(3,1fr)}.ra-acts{grid-template-columns:repeat(2,1fr)}.ra-grid2{grid-template-columns:1fr;gap:20px}.ra-tl{grid-template-columns:repeat(3,1fr);gap:14px 8px}.ra-tl:before{display:none}.ra-bar{grid-template-columns:104px 1fr 44px}}
+/* ===== forward value overlay (reuses .radv-card chrome) ===== */
+#fwd{position:fixed;inset:0;z-index:89;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.88),rgba(4,10,19,.96));backdrop-filter:blur(8px)}
+#fwd.on{display:flex}
+#fwd.on .radv-card{transform:none;opacity:1}
+#fwdBody{padding:20px 24px 30px;overflow-y:auto;position:relative}
+.fw-proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fw-proof{background:rgba(143,179,214,.05);border:1px solid rgba(143,179,214,.16);padding:14px 16px;border-left:2px solid rgba(143,179,214,.4)}
+.fw-pv{font-family:var(--serif);font-size:26px;font-weight:600;color:#EEF4FB;line-height:1}
+.fw-pn{font-family:var(--sans);font-size:13px;color:#C4D2E2;font-weight:600;margin-top:6px}
+.fw-pd{font-size:11.5px;color:#8FA3B8;line-height:1.45;margin-top:4px}
+.fw-tier{margin-bottom:20px}
+.fw-th{display:flex;align-items:baseline;gap:10px;margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid rgba(143,179,214,.12)}
+.fw-tt{font-family:var(--serif);font-size:16px;font-weight:600;color:#fff}
+.fw-td{font-family:var(--mono);font-size:9px;letter-spacing:.4px;text-transform:uppercase;color:#7E93AB}
+.fw-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fw-card{display:flex;gap:12px;align-items:flex-start;text-align:left;background:rgba(143,179,214,.04);border:1px solid rgba(143,179,214,.14);padding:13px 15px;cursor:pointer;transition:.16s}
+.fw-card:hover{border-color:var(--lnavy);background:rgba(143,179,214,.09)}
+.fw-cn{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--lnavy);flex:none;line-height:1.1}
+.fw-cc{flex:1;min-width:0}
+.fw-ct{font-family:var(--serif);font-size:14.5px;font-weight:600;color:#EEF4FB;line-height:1.25}
+.fw-ci{font-size:11.5px;color:#98AAC0;line-height:1.45;margin-top:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fw-src{font-family:var(--mono);font-size:7.5px;letter-spacing:.3px;text-transform:uppercase;color:#66809E;flex:none;border:1px solid rgba(143,179,214,.2);padding:3px 6px;white-space:nowrap}
+.fw-close-line{font-family:var(--serif);font-style:italic;font-size:17px;color:#C4D2E2;margin-top:14px;padding-top:18px;border-top:1px solid rgba(143,179,214,.14);text-align:center}
+#fwoDrawer{position:absolute;top:0;right:0;bottom:0;width:448px;max-width:90vw;background:linear-gradient(180deg,#10233A,#0B1A2C);border-left:1px solid rgba(143,179,214,.3);box-shadow:-24px 0 60px rgba(0,0,0,.5);transform:translateX(102%);transition:.34s cubic-bezier(.16,1,.3,1);padding:24px 26px;overflow-y:auto;z-index:3}
+#fwoDrawer.on{transform:none}
+.fwo-tier{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--lnavy)}
+.fwo-t{font-family:var(--serif);font-size:20px;font-weight:600;color:#fff;margin:6px 0 4px;line-height:1.2;padding-right:30px}
+.fwo-src{font-family:var(--mono);font-size:9px;color:#7E93AB;letter-spacing:.2px;margin-bottom:16px}
+.fwo-p{font-size:13px;color:#C8D6E6;line-height:1.6;margin-bottom:14px}
+.fwo-rides{color:#9FB4CC}
+@media(max-width:820px){.fw-proofs{grid-template-columns:1fr}.fw-cards{grid-template-columns:1fr}}
 /* fallback (WebGL off) */
 #fallback{position:fixed;inset:0;z-index:40;display:none;overflow-y:auto;background:
   radial-gradient(70% 45% at 50% 0%,rgba(31,58,92,.4),transparent 60%),linear-gradient(180deg,#08131F,#060F1C)}
@@ -488,6 +519,14 @@ body.explore.cur .cursor{display:block}
   <div id="radvBody"></div>
   <div id="raDrawer"></div>
  </div></div>
+ <div id="fwd" class="hud"><div class="radv-card">
+  <div class="radv-head">
+   <div><div class="radv-tag">Contributions &amp; Forward Value · the case</div><div class="radv-title">What I can build for RCA</div></div>
+   <button class="radv-close" id="fwdClose">&#10005;</button>
+  </div>
+  <div id="fwdBody"></div>
+  <div id="fwoDrawer"></div>
+ </div></div>
 </div>
 
 <script>/**
@@ -514,12 +553,12 @@ const ACTS=[
      {t:'Automation-platform migration & SOX tracing',r:'Migrated the automation platform end to end, traced financial data flows for SOX, and stood up RPA at two businesses.',imp:'Standardized how automation runs and made compliance risk visible.',w:'a data engineer I directed',c:'real',cl:'Realized'}]}],
   rel:{note:'A small team I led, working as RCA’s vendor at the time.',bus:['WeatherShield','Front Range','Deer Park']}},
  {id:'a2',x:-72,year:'2025-26',title:'The Map',tag:'Readiness program',
-  story:'The map the whole program now runs on. I led readiness assessments across all 15 businesses, on site: 370+ interviews across every function, thousands of survey responses, and a complete systems inventory. That became the diagnostic map and the plans that followed.',
+  story:'The map the whole program now runs on. I led readiness assessments across 12 businesses and corporate, on site: 376 interviews across every function, thousands of survey responses, and a complete systems inventory. That became the diagnostic map and the plans that followed.',
   toNext:'the map became the build',
   work:[
    {label:'Readiness assessments',items:[
-     {t:'Readiness assessment program',r:'Led all 15 businesses on site. 370+ interviews across 23 functions, thousands of survey responses, a complete systems inventory.',imp:'Produced the diagnostic map and 11 remediation plans the program now runs on, and quantified where the real operational pain was.',w:'a delivery team I led and each business’s leadership',c:'real',cl:'Realized'}]}],
-  rel:{note:'',bus:['Crowther','WeatherShield','Bone Dry','BDI','A-1','Davco','Pittman Waller','Front Range','Deer Park','Springer-Peterson','Hamilton','Roof-Tech','TORC','AAA','Dynamic National']}},
+     {t:'Readiness assessment program',r:'Led 12 businesses and corporate on site. 376 interviews across 23 functions, thousands of survey responses, a complete systems inventory.',imp:'Produced the diagnostic map and 11 remediation plans the program now runs on, and quantified where the real operational pain was.',w:'a delivery team I led and each business’s leadership',c:'real',cl:'Realized'}]}],
+  rel:{note:'',bus:['Crowther','WeatherShield','Bone Dry','Davco','Front Range','Deer Park','Springer-Peterson','Hamilton','Roof-Tech','TORC','AAA','Dynamic National']}},
  {id:'a3',x:78,year:'2026',title:'OneRoof',tag:'Operation OneRoof',
   story:'OneRoof today. As Training & Adoption Lead I built the workforce data spine, shipped a governed AI assistant, stood up the Change Leader Network, and run the field rollout, coordinating across six towers.',
   toNext:'the build sets up the seat',
@@ -652,7 +691,7 @@ function openCmap(){
  $('#cmap').classList.add('on');}
 function closeCmap(){$('#cmap').classList.remove('on');}
 /* ===== readiness assessment deep-dive (all figures from the OneRoof readiness dataset) ===== */
-const RA_ENT={businesses:15,interviews:376,interviewees:278,qa:8739,surveys:2869,respondents:177,procmaps:256,procSigned:162,processes:51,functions:23,window:'Jul – Nov 2025'};
+const RA_ENT={businesses:12,interviews:376,interviewees:278,qa:8739,surveys:2869,respondents:177,procmaps:256,procSigned:162,processes:51,functions:23,window:'Jul – Nov 2025'};
 const RA_FUN=['Estimating','Job Costing','Invoicing (AR)','Payroll / HR','Purchasing to Pay','Inventory','Scheduling','Service','Contracts','Field Operations','Project Financial Reporting','Service Financial Reporting','Analytics & Reporting','Forecasting / Budgeting','General Ledger','Asset Tracking','Fleet Management','Commercial & Production','Commission Reporting','WIP Reporting','Job Setup & Config','Draws & Recoveries','Lien & Compliance'];
 const RA_STATUS=[['Signed off',162,'#3B7A5E'],['Ready to sign',39,'#3E77A8'],['In QC / review',14,'#6E9BC4'],['Planned / draft',21,'#8FB3D6'],['Canceled',20,'#4A5A6E']];
 const RA_WAVES=[['Late Jul',['TORC']],['Mid Aug',['Bone Dry','WeatherShield']],['Early–mid Sep',['Dynamic National','FSO']],['Late Sep',['AAA','Front Range']],['Late Oct',['Roof Tech','Deer Park']],['Mid Nov',['Davco','Crowther']]];
@@ -669,7 +708,6 @@ const RA_BUS=[
  {k:'Davco',lk:'Davco',n:'Davco Roofing & Sheet Metal',sh:'Davco',rev:30,loc:1,mp:60,iv:17,sv:262,svp:17,qa:588,pm:1,rem:{dep:1,rb:1,nn:0,gap:1},os:'Nov 11–12',find:'A sophisticated Smartsheet operations hub; only the accounting components migrate. Clean handoffs between systems are the work.'},
  {k:'Roof Tech',lk:'Roof-Tech',n:'Roof Technologies',sh:'Roof Tech',rev:25,loc:1,mp:39,iv:10,sv:182,svp:10,qa:333,pm:0,rem:{dep:2,rb:1,nn:0,gap:1},os:'Oct 21–22',find:'Excel as de-facto middleware and system of record. More process design than technical lift; prior ERP experience already on the team.'},
  {k:'Springer-Peterson',lk:'Springer-Peterson',n:'Springer-Peterson Roofing & Sheet Metal',sh:'Springer-Peterson',rev:42,loc:1,mp:110,iv:15,sv:0,svp:0,qa:581,pm:19,rem:null,os:'',find:'Deep interview and process-map coverage captured across the office and field.'},
- {k:'Pittman Waller',lk:'Pittman Waller',n:'Pittman Waller Roofing Company',sh:'Pittman Waller',rev:22,loc:1,mp:33,iv:4,sv:0,svp:0,qa:199,pm:0,rem:null,os:'',find:'Focused interview coverage across a lean office.'},
  {k:'Hamilton',lk:'Hamilton',n:'Hamilton Roofing',sh:'Hamilton',rev:15,loc:1,mp:51,iv:1,sv:0,svp:0,qa:109,pm:0,rem:null,os:'',find:'Lightweight footprint; core operating coverage captured.'},
  {k:'FSO',lk:'',n:'Field Support Office (Corporate)',sh:'FSO',rev:null,loc:1,mp:35,iv:24,sv:0,svp:0,qa:282,pm:0,rem:{dep:3,rb:1,nn:3,gap:0},os:'Sep 16–17',find:'The corporate backbone, and the first to go live. NetSuite consolidation, enterprise reporting, SSO, and automated vendor qualification.'}
 ];
@@ -694,7 +732,7 @@ function raChart(){
  return `<div class="ra-chiprow">${chips}</div><div class="ra-bars" id="raBars">${raBars(RA_METRIC)}</div><div class="ra-note">Click any business for its full readiness profile. Survey and process-map waves ran across the businesses where those instruments were fielded.</div>`;
 }
 function openRadv(){
- const kpis=[['15','businesses + corporate, assessed on site'],['376','interviews'],['2,869','survey responses'],['256','process maps'],['8,739','coded Q&A pairs'],['11','remediation plans']]
+ const kpis=[['12','businesses + corporate, assessed on site'],['376','interviews'],['2,869','survey responses'],['256','process maps'],['8,739','coded Q&A pairs'],['11','remediation plans']]
   .map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
  const act=RA_ACT.map(a=>`<div class="ra-act"><span class="ra-av">${a[0]}</span><span class="ra-al">${a[1]}</span></div>`).join('');
  const fun=RA_FUN.map(f=>`<span class="ra-fun">${f}</span>`).join('');
@@ -743,9 +781,9 @@ function raPanelBlock(){
  const k=[['376','interviews'],['2,869','survey responses'],['256','process maps'],['11','remediation plans']].map(x=>`<div class="mk"><span class="mkv">${x[0]}</span><span class="mkl">${x[1]}</span></div>`).join('');
  return `<div class="rapanel"><div class="ppl-h">The readiness assessment, by the numbers</div>
   <div class="mkrow">${k}</div>
-  <div class="mbchart"><div class="mbh">Interviews by business · top 8 of 15</div>${raMiniBars()}</div>
+  <div class="mbchart"><div class="mbh">Interviews by business · top 8 of 12</div>${raMiniBars()}</div>
   <button class="ppl-more ppl-primary" data-radv="1">Open the full readiness assessment: charts &amp; per-business detail</button>
-  <button class="ppl-more" data-cmap="1">See the leaders across all 15 businesses &rarr;</button></div>`;}
+  <button class="ppl-more" data-cmap="1">See the leaders across the portfolio &rarr;</button></div>`;}
 /* ===== what the assessment found: operational barriers (from 3,504 coded process rows) ===== */
 const RA_PAIN={total:4468,
  dims:[['Process',1465],['Applications',1426],['Data & Reporting',1067],['Roles & org',291],['Culture',219]],
@@ -774,6 +812,45 @@ function raHeat(){let mx=0;RA_PAIN.hm.forEach(r=>r[1].forEach(v=>{if(v>mx)mx=v;}
  return `<div class="hm-scroll"><div class="hm">${head}${body}</div></div>`;}
 function raPainRows(k,dark){const p=RA_PAINBU[k];if(!p)return '';const c=dark?'rbp':'bp';const mx=p.top[0][1]||1;
  return `<div class="${dark?'rbpain':'bpain'}">${p.top.map(t=>`<div class="${c}"><span class="${c}-l">${t[0]}</span><span class="${c}-t"><span class="${c}-f" style="width:${Math.max(4,t[1]/mx*100)}%"></span></span><span class="${c}-v">${t[1]}</span></div>`).join('')}</div>`;}
+/* ===== forward value case: what I can build for RCA ===== */
+const FV_THESIS="RCA spent two years standardizing systems. The next frontier is standardizing performance. I have already built the forensic project analysis, financial benchmarking, and operational-assessment methodology that make an in-house data capability worth having, on $2B+ of construction across dozens of companies.";
+const FV_KPI=[["$2B+","construction analyzed"],["200+","consultants adopted the method"],["30+","operational assessments delivered"],["3","assessment methodologies built"]];
+const FV_PROOF=[["DN Tanks","$630M","367 completed projects, labor about 8% over estimate"],["RES Americas","$1.03B","39 EPC projects, a −68% to +28% per-project margin spread"],["Jackson & Blanc","$85.9M","126 projects, a 4.46-point margin fade, labor 25% over"]];
+const FV_TIERS=[["Flagship","Portfolio-wide, uniquely mine"],["High-ROI","Targeted margin plays"],["Enablers","Force-multipliers"]];
+const FV_OPPS=[
+ {tier:0,t:"Completed Contracts Analysis, portfolio-wide",src:"FMI method",idea:"Run the forensic project-profitability engine on every company’s finished jobs, then roll it up: margin fade by job, customer and service line, with cost overruns split into labor, materials, subs and equipment.",proof:"Built and ran this exact engine at FMI on prior clients DN Tanks ($630M), RES Americas ($1.03B) and Jackson & Blanc ($85.9M). None are RCA companies. The methodology was adopted firm-wide by 200+ consultants.",why:"Roofing is labor-intensive, so labor overrun is the biggest controllable margin lever, and this isolates it across 16 companies and $750M+ of revenue no one has looked at the same way.",impact:"Finds the margin leaks worth real money and tells leadership which companies estimate well and which fade at close-out.",rides:"The insourced Power BI reporting layer and harmonized job-cost structure coming out of OneRoof."},
+ {tier:0,t:"Acquisition diligence + 90-day integration playbook",src:"FMI · Automized · RCA",idea:"The repeatable kit RCA runs on every company it buys: a pre-LOI operational screen, then operational, financial and digital diligence, then a standard 90-day assess → migrate → enable → cut-over.",proof:"Built three assessment methodologies that stack into this: FMI’s Operational Needs Assessment (including a 230-slide diligence report), Automized’s Digital Operations Assessment across 30+ engagements, and the RCA readiness assessment itself.",why:"The roll-up buys several companies a year, each a black box of unknown margin, systems and process. One playbook shortens time-to-platform and prices risk before the check clears.",impact:"Faster, cheaper, lower-risk acquisitions, and a real view of a target’s operating health before close.",rides:"The readiness machinery and remediation-plan format already proven here, plus the OneRoof migration pattern as the template."},
+ {tier:0,t:"Financial-statement + DuPont benchmarking index",src:"FMI method",idea:"Decompose each company’s return on equity into margin, asset turnover and leverage, benchmark the 16 against each other and roofing peers, and run it as a recurring performance index instead of a one-time look.",proof:"Built FMI’s construction financial-statement benchmarking used across a general-contractor peer group and the productized DuPont analysis on CFMA/RMA peer sets. Prior-client work, not RCA.",why:"A roll-up’s core question is which company is performing and why. A peer-normalized index answers it every quarter in one framework the CIO and CFO can take to the board.",impact:"A standing performance scoreboard that points capital, attention and best-practice sharing at the right places.",rides:"The insourced reporting layer for the feed; the benchmarking discipline is portable and mine."},
+ {tier:1,t:"Field labor-productivity (work-sampling) studies",src:"FMI method",idea:"Sample the crews the way an industrial engineer would: code every observation into primary, secondary and recoverable-lost time, code the loss by cause, and tie recoverable labor to dollars.",proof:"Built the Alteryx-to-Tableau work-sampling pipeline for a prior client and ran the studies to a labor-productivity recommendation.",why:"About 1,650 field crew, and labor is the single biggest cost in roofing. This pairs directly with the Miter field-time rollout I already own: Miter gives the data, the study gives the reason the hours run hot.",impact:"A measured, dollarized view of recoverable field-labor loss and the fixes that recover it.",rides:"The Miter field time-capture area I lead and crew access from the field rollout."},
+ {tier:1,t:"Bid go/no-go selectivity + standard close-out",src:"FMI method",idea:"Standardize two low-tech, high-margin processes across 16 companies: a weighted bid-selectivity model at the front of the funnel, and a close-out that fires late in the job to stop end-of-job margin bleed.",proof:"Built both for a prior client: a 21-question selectivity model with decision bands and approval routing, and an exit-strategy close-out triggered at 80% of labor hours consumed.",why:"Exactly where specialty contractors quietly lose money, and almost no roofing company has either one formalized.",impact:"Fewer bad jobs taken, less margin lost at close-out, faster cash. Direct P&L, low build cost.",rides:"The process-harmonization and future-state design work already underway in OneRoof."},
+ {tier:1,t:"Equipment & fleet P&L across the portfolio",src:"Plante Moran · FMI",idea:"Standardize fleet economics: what each truck and machine costs to own and maintain versus what it earns, maintenance-to-value by category, utilization, and the sell / replace / rent-vs-buy and CapEx calls.",proof:"Built equipment P&L benchmarking at Plante Moran and FMI on a national fleet peer group, including a benchmark of $10.45M annual maintenance against $65M liquidation value, a 16.1% blended ratio read by category.",why:"Roofing companies run real fleets (Crowther’s heavy fleet, Deer Park’s trucks-as-warehouses). Fleet is a cost center roll-ups almost never benchmark across companies.",impact:"A defensible sell / replace / rent framework and CapEx prioritization across 16 companies.",rides:"The insourced reporting layer; the models are mine."},
+ {tier:2,t:"A governed AI program on the data layer",src:"RCA · Automized",idea:"Extend the shipped OneRoof Copilot agent into a governed, prioritized program: agents on the fact layer that draft proposals, qualify bids, reconcile financials and flag margin fade in-flight, under real governance instead of scattered pilots.",proof:"Shipped the OneRoof Copilot agent here at RCA and authored the AI-enablement and governance framework at Automized.",why:"RCA is already insourcing its reporting and data layer; governed AI on top is the natural next step, and it needs governance more than another pilot.",impact:"A prioritized, governed program that turns the data spine into decisions, with guardrails a CIO can defend.",rides:"The fact layer, the permission model and the agent already in production."},
+ {tier:2,t:"Procurement cost-out: rebate & discount capture",src:"RCA readiness",idea:"Standardize how the companies capture rebates and volume discounts and compare buyouts, and instrument the leakage across 16 companies.",proof:"The RCA readiness I ran already instrumented rebate and volume-discount tracking as scored capabilities across all 16 businesses, and surfaced the exact failure mode: a business applying volume discounts by hand and missing credits.",why:"The measurement layer already exists from my readiness work; this turns a diagnosis into a standing cost-out program on a category that moves margin.",impact:"Recovered rebate and discount dollars, portfolio-wide, on a category leadership rarely instruments.",rides:"The procurement process work and readiness findings already in hand."},
+ {tier:2,t:"Vendor & software selection as a shared service",src:"RCA · FMI",idea:"Own technology evaluation across the portfolio: evidence-weighted requirements, a traceability matrix, weighted scoring and commercial-terms diligence before anything is signed.",proof:"Already saved money here at RCA: a don’t-buy on a redundant $25K training tool, rate leverage on a learning platform ($1,500 vs $10,000 per portal), and the 6 → 2 → 1 field-time-capture selection.",why:"Sixteen companies buying software independently is a leakage and integration problem. One evidence-based evaluation owner stops both.",impact:"Lower software spend, fewer redundant tools, cleaner integration, commercial risk caught before contracting.",rides:"The evaluation work already happening inside OneRoof; formalize it as a portfolio function."}
+];
+function openFwd(){
+ const kpis=FV_KPI.map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
+ const proof=FV_PROOF.map(p=>`<div class="fw-proof"><div class="fw-pv">${p[1]}</div><div class="fw-pn">${p[0]}</div><div class="fw-pd">${p[2]}</div></div>`).join('');
+ const tiers=FV_TIERS.map((t,ti)=>{
+  const cards=FV_OPPS.map((o,i)=>[o,i]).filter(x=>x[0].tier===ti).map(([o,i])=>`<button class="fw-card" data-fwo="${i}"><span class="fw-cn">${('0'+(i+1)).slice(-2)}</span><div class="fw-cc"><div class="fw-ct">${o.t}</div><div class="fw-ci">${o.idea}</div></div><span class="fw-src">${o.src}</span></button>`).join('');
+  return `<div class="fw-tier"><div class="fw-th"><span class="fw-tt">${t[0]}</span><span class="fw-td">${t[1]}</span></div><div class="fw-cards">${cards}</div></div>`;}).join('');
+ $('#fwdBody').innerHTML=`
+  <div class="ra-hero"><div class="ra-herok">${kpis}</div><div class="ra-herox">${FV_THESIS}</div></div>
+  <div class="ra-sec"><div class="ra-sh">Proven at scale · on prior clients, not RCA companies</div><div class="fw-proofs">${proof}</div></div>
+  <div class="ra-sec"><div class="ra-sh">What I can build for RCA · 9 opportunities</div>${tiers}</div>
+  <div class="fw-close-line">The capability comes in-house either way. This is the intelligence that runs through it.</div>`;
+ $('#fwd').classList.add('on');}
+function closeFwd(){$('#fwd').classList.remove('on');closeFwo();}
+function fwdOpp(i){const o=FV_OPPS[i];if(!o)return;
+ $('#fwoDrawer').innerHTML=`<button class="rb-close" id="fwoClose">&#10005;</button>
+  <div class="fwo-tier">${FV_TIERS[o.tier][0]}</div><div class="fwo-t">${o.t}</div><div class="fwo-src">Proof: ${o.src}</div>
+  <div class="rb-h">The idea</div><div class="fwo-p">${o.idea}</div>
+  <div class="rb-h">The proof</div><div class="fwo-p">${o.proof}</div>
+  <div class="rb-h">Why RCA</div><div class="fwo-p">${o.why}</div>
+  <div class="rb-h">Impact</div><div class="fwo-p">${o.impact}</div>
+  <div class="rb-h">Rides on</div><div class="fwo-p fwo-rides">${o.rides}</div>`;
+ $('#fwoDrawer').classList.add('on');const c=$('#fwoClose');if(c)c.onclick=closeFwo;}
+function closeFwo(){const d=$('#fwoDrawer');if(d)d.classList.remove('on');}
 /* ================= GATE ================= */
 $('#enter').onclick=enter;$('#email').addEventListener('keydown',e=>{if(e.key==='Enter')enter();});
 if(LOGOS['_OOR'])$('#oormark').src=LOGOS['_OOR'];
@@ -811,11 +888,12 @@ $('#ticks').innerHTML=ACTS.map((a,i)=>`<div class="tick" data-i="${i}" style="le
 (function(){const tm=$('#toolmenu');if(tm)tm.innerHTML='<div class="tmh">Tools I built · view live</div>'+Object.entries(TOOLS).map(([k,t])=>`<button class="tmi" data-tool="${k}"><div class="n">${t.name}</div><div class="d">${t.menu}</div></button>`).join('');
  const tb=$('#tkbtn');if(tb)tb.onclick=e=>{e.stopPropagation();tm.classList.toggle('on');};
  const pb=$('#pplbtn');if(pb)pb.onclick=e=>{e.stopPropagation();openCmap();};
- document.addEventListener('click',e=>{const rv=e.target.closest('[data-radv]');if(rv){openRadv();return;} const rmet=e.target.closest('[data-ra-metric]');if(rmet){RA_METRIC=rmet.dataset.raMetric;document.querySelectorAll('.ra-chip').forEach(c=>c.classList.toggle('on',c.dataset.raMetric===RA_METRIC));const bb=$('#raBars');if(bb)bb.innerHTML=raBars(RA_METRIC);return;} const rb=e.target.closest('[data-bu]');if(rb){raBU(rb.dataset.bu);return;} const cm=e.target.closest('[data-cmap]');if(cm){openCmap();return;} const c=e.target.closest('[data-tool]');if(c){openTool(c.dataset.tool);tm&&tm.classList.remove('on');return;} if(tm&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkbtn'))tm.classList.remove('on');});
+ document.addEventListener('click',e=>{const rv=e.target.closest('[data-radv]');if(rv){openRadv();return;} const fw=e.target.closest('[data-fwd]');if(fw){openFwd();return;} const fwo=e.target.closest('[data-fwo]');if(fwo){fwdOpp(+fwo.dataset.fwo);return;} const rmet=e.target.closest('[data-ra-metric]');if(rmet){RA_METRIC=rmet.dataset.raMetric;document.querySelectorAll('.ra-chip').forEach(c=>c.classList.toggle('on',c.dataset.raMetric===RA_METRIC));const bb=$('#raBars');if(bb)bb.innerHTML=raBars(RA_METRIC);return;} const rb=e.target.closest('[data-bu]');if(rb){raBU(rb.dataset.bu);return;} const cm=e.target.closest('[data-cmap]');if(cm){openCmap();return;} const c=e.target.closest('[data-tool]');if(c){openTool(c.dataset.tool);tm&&tm.classList.remove('on');return;} if(tm&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkbtn'))tm.classList.remove('on');});
  const lc=$('#lbClose');if(lc)lc.onclick=closeTool;const lb=$('#lightbox');if(lb)lb.onclick=e=>{if(e.target.id==='lightbox')closeTool();};
  const cc=$('#cmClose');if(cc)cc.onclick=closeCmap;const cmo=$('#cmap');if(cmo)cmo.onclick=e=>{if(e.target.id==='cmap')closeCmap();};
  const rc=$('#radvClose');if(rc)rc.onclick=closeRadv;const rvo=$('#radv');if(rvo)rvo.onclick=e=>{if(e.target.id==='radv')closeRadv();else if(!e.target.closest('#raDrawer')&&!e.target.closest('[data-bu]'))closeRaBU();};
- addEventListener('keydown',e=>{if(e.key==='Escape'){closeTool();closeCmap();closeRadv();}});})();
+ const fc=$('#fwdClose');if(fc)fc.onclick=closeFwd;const fwo=$('#fwd');if(fwo)fwo.onclick=e=>{if(e.target.id==='fwd')closeFwd();else if(!e.target.closest('#fwoDrawer')&&!e.target.closest('[data-fwo]'))closeFwo();};
+ addEventListener('keydown',e=>{if(e.key==='Escape'){closeTool();closeCmap();closeRadv();closeFwd();}});})();
 /* ================= 3D ================= */
 let scene,cam,rn,ray,nodes=[],labels=[],rings=[],pulses=[],starLayers=[];
 let camTheta=0.55,camPhi=1.16,camR=150,curR=150,dragging=false,px,py,autorot=false,moved=false;
@@ -1041,6 +1119,7 @@ function itemHTML(x){return `<div class="pitem"><h3>${x.t}${chip(x.c,x.cl)}</h3>
 function panelAct(i){const a=ACTS[i];panel(`<div class="p-ey">${a.year} · Chapter ${i+1} of 4</div><h2>${a.title}</h2><div class="p-sub">${a.tag}</div>
  <div class="pitem" style="border-top:none;padding-top:2px"><div class="r">${a.story}</div></div>
  ${a.work.flatMap(w=>w.items).map(itemHTML).join('')}
+ ${a.id==='a4'?`<button class="ppl-more ppl-primary" data-fwd="1">Open the forward value case: 9 things I can build for RCA</button>`:''}
  ${a.rel&&a.rel.note?`<div class="pnote">${a.rel.note}</div>`:''}
  ${a.toNext?`<div class="pflow">-> ${a.toNext}</div>`:''}
  ${a.close?`<div class="pclz">${a.close}</div>`:''}`);}
