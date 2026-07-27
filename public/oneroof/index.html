@@ -250,6 +250,12 @@ body.explore.cur .cursor{display:block}
 .b-rb{background:#EAF1F8;border-color:#B3CBE2}
 .b-nn{background:#E9F3EC;border-color:#B3D6BE}
 .b-gap{background:#F0F3F6;border-color:var(--rule)}
+.bpain{margin:2px 0 4px}
+.bp{display:grid;grid-template-columns:116px 1fr 30px;align-items:center;gap:8px;padding:3px 0}
+.bp-l{font-size:11px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bp-t{height:10px;background:#F0E2E1;position:relative;overflow:hidden}
+.bp-f{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#9E3B34,#C86B63)}
+.bp-v{font-family:var(--mono);font-size:10.5px;color:#9E3B34;text-align:right}
 /* collaboration map overlay (dark, blueprint) */
 #cmap{position:fixed;inset:0;z-index:86;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,rgba(8,17,30,.86),rgba(4,10,19,.95));backdrop-filter:blur(7px)}
 #cmap.on{display:flex}
@@ -337,6 +343,29 @@ body.explore.cur .cursor{display:block}
 .ra-wb{font-size:11px;color:#C4D2E2;line-height:1.3}
 .ra-funs{display:flex;flex-wrap:wrap;gap:7px}
 .ra-fun{font-family:var(--mono);font-size:9.5px;letter-spacing:.2px;color:#B6C6D8;background:rgba(143,179,214,.06);border:1px solid rgba(143,179,214,.16);padding:5px 10px}
+/* what it found: barriers (dark) */
+.ra-found{font-size:14px;color:#E6D4D1;line-height:1.6;margin-bottom:18px;max-width:80ch}
+.ra-found b{color:#F1DEDB}
+.ra-sh2{font-family:var(--mono);font-size:9px;letter-spacing:1.3px;text-transform:uppercase;color:#C88C86;margin-bottom:11px}
+.pn-bar{display:grid;grid-template-columns:148px 1fr 46px;align-items:center;gap:11px;padding:4px 0}
+.pn-bl{font-size:12px;color:#E4D2CF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pn-bt{height:14px;background:rgba(198,86,78,.1);position:relative;overflow:hidden}
+.pn-bf{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#7A2E2A,#C6564E)}
+.pn-bv{font-family:var(--mono);font-size:11.5px;color:#F1DEDB;text-align:right}
+.hm-scroll{overflow-x:auto;margin-top:4px}
+.hm{min-width:640px}
+.hm-row{display:grid;grid-template-columns:130px repeat(8,1fr);gap:3px;margin-bottom:3px}
+.hm-head .hm-hc{font-family:var(--mono);font-size:8px;letter-spacing:.2px;text-transform:uppercase;color:#8FA3B8;text-align:center;align-self:end;padding-bottom:5px;line-height:1.25}
+.hm-rl{font-size:10.5px;color:#D4E0EE;display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hm-c{min-height:30px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:#fff;border:1px solid rgba(143,179,214,.05)}
+/* per-business pain rows (dark drawer) */
+.rb-hx{font-family:var(--mono);font-size:8px;letter-spacing:.3px;color:#7E93AB;text-transform:none;margin-left:6px}
+.rbpain{margin-bottom:16px}
+.rbp{display:grid;grid-template-columns:118px 1fr 30px;align-items:center;gap:8px;padding:3px 0}
+.rbp-l{font-size:11px;color:#E4D2CF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rbp-t{height:10px;background:rgba(198,86,78,.12);position:relative;overflow:hidden}
+.rbp-f{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#7A2E2A,#C6564E)}
+.rbp-v{font-family:var(--mono);font-size:10.5px;color:#F1DEDB;text-align:right}
 /* BU detail drawer */
 #raDrawer{position:absolute;top:0;right:0;bottom:0;width:400px;max-width:88vw;background:linear-gradient(180deg,#10233A,#0B1A2C);border-left:1px solid rgba(143,179,214,.3);box-shadow:-24px 0 60px rgba(0,0,0,.5);transform:translateX(102%);transition:.34s cubic-bezier(.16,1,.3,1);padding:22px 24px;overflow-y:auto;z-index:3}
 #raDrawer.on{transform:none}
@@ -674,6 +703,14 @@ function openRadv(){
    <div class="ra-herox">A structured read of how ${RA_ENT.businesses} operating businesses and corporate actually run, built on site between ${RA_ENT.window}. Every number here is a count from the assessment itself, not an estimate.</div></div>
   <div class="ra-sec"><div class="ra-sh">What the assessment produced</div><div class="ra-acts">${act}</div></div>
   <div class="ra-sec"><div class="ra-sh">Coverage by business</div>${raChart()}</div>
+  <div class="ra-sec ra-found-sec"><div class="ra-sh">What the assessment found</div>
+   <div class="ra-found"><b>4,468 barriers</b> to go-live, coded across five dimensions at every business. The pain concentrated in the work, the tools, and the data. Roles and culture were the smallest share, so this reads as a systems-and-process problem, not a people problem.</div>
+   <div class="ra-grid2">
+    <div><div class="ra-sh2">By type of barrier</div>${raPainBar(RA_PAIN.dims)}</div>
+    <div><div class="ra-sh2">Where it hurt most, by function</div>${raPainBar(RA_PAIN.funcs)}</div>
+   </div>
+   <div class="ra-sh2" style="margin-top:20px">Barriers by business and function</div>${raHeat()}
+  </div>
   <div class="ra-grid2">
    <div class="ra-sec"><div class="ra-sh">Process maps, from draft to signed</div><div class="ra-big">${RA_ENT.procSigned} of ${RA_ENT.procmaps} <span>signed off (63%)</span></div>${raFunnel()}</div>
    <div class="ra-sec"><div class="ra-sh">On-site waves</div>${raWaves()}</div>
@@ -694,6 +731,7 @@ function raBU(k){
   <div class="rb-head">${logo?`<img class="rb-logo" src="${logo}" alt="${b.sh}">`:`<span class="rb-fso">FSO</span>`}<div><div class="rb-n">${b.n}</div><div class="rb-sub">${b.rev!=null?'$'+b.rev+'M revenue · ':''}${b.loc} location${b.loc>1?'s':''} · ${b.mp} people${b.os?' · on site '+b.os:''}</div></div></div>
   <div class="rb-stats">${stat(b.iv,'Interviews')}${stat(b.sv,'Survey responses')}${stat(b.svp,'Respondents')}${stat(b.qa,'Coded Q&A')}${stat(b.pm,'Process maps')}</div>
   ${rem}
+  ${RA_PAINBU[b.k]?`<div class="rb-h">Where it hurt most <span class="rb-hx">barriers found</span></div>${raPainRows(b.k,true)}`:''}
   <div class="rb-h">What we found</div><div class="rb-find">${b.find}</div>`;
  $('#raDrawer').classList.add('on');
  const c=$('#rbClose');if(c)c.onclick=closeRaBU;
@@ -708,6 +746,34 @@ function raPanelBlock(){
   <div class="mbchart"><div class="mbh">Interviews by business · top 8 of 15</div>${raMiniBars()}</div>
   <button class="ppl-more ppl-primary" data-radv="1">Open the full readiness assessment: charts &amp; per-business detail</button>
   <button class="ppl-more" data-cmap="1">See the leaders across all 15 businesses &rarr;</button></div>`;}
+/* ===== what the assessment found: operational barriers (from 3,504 coded process rows) ===== */
+const RA_PAIN={total:4468,
+ dims:[['Process',1465],['Applications',1426],['Data & Reporting',1067],['Roles & org',291],['Culture',219]],
+ funcs:[['Service',764],['Payroll / HR',682],['Invoicing (AR)',611],['Commercial & Production',364],['Job Costing',350],['Estimating',261],['Inventory',216],['Field Operations',191]],
+ hmFuncs:['Service','Payroll','Invoicing','Comm / Prod','Job Cost','Estimating','Inventory','Field Ops'],
+ hm:[['Crowther',[167,199,69,93,54,93,54,85]],['Bone Dry',[134,63,218,44,59,33,25,46]],['Dynamic National',[159,25,52,83,28,22,36,13]],['Davco',[45,76,55,29,43,18,44,16]],['TORC',[71,71,12,6,54,8,8,0]],['AAA',[36,58,85,26,21,18,10,0]],['Front Range',[69,59,29,41,24,27,2,10]],['WeatherShield',[41,24,18,3,14,15,7,7]],['Springer-Peterson',[7,51,33,16,3,0,6,7]],['Deer Park',[23,38,31,12,15,15,7,1]],['Roof Tech',[8,18,0,11,21,12,17,6]],['Hamilton',[4,0,9,0,14,0,0,0]]]};
+const RA_PAINBU={
+ 'Crowther':{barr:969,top:[['Payroll / HR',199],['Service',167],['Commercial & Production',93]]},
+ 'TORC':{barr:403,top:[['Payroll / HR',71],['Service',71],['Job Costing',54]]},
+ 'AAA':{barr:323,top:[['Invoicing (AR)',85],['Payroll / HR',58],['Service',36]]},
+ 'Dynamic National':{barr:595,top:[['Service',159],['Commercial & Production',83],['Executive Leadership',61]]},
+ 'Deer Park':{barr:156,top:[['Payroll / HR',38],['Invoicing (AR)',31],['Service',23]]},
+ 'Bone Dry':{barr:739,top:[['Invoicing (AR)',218],['Service',134],['Payroll / HR',63]]},
+ 'WeatherShield':{barr:193,top:[['Service',41],['Payroll / HR',24],['Invoicing (AR)',18]]},
+ 'Front Range':{barr:296,top:[['Service',69],['Payroll / HR',59],['Commercial & Production',41]]},
+ 'Davco':{barr:419,top:[['Payroll / HR',76],['Invoicing (AR)',55],['Service',45]]},
+ 'Roof Tech':{barr:116,top:[['Job Costing',21],['Payroll / HR',18],['Inventory',17]]},
+ 'Springer-Peterson':{barr:174,top:[['Payroll / HR',51],['Invoicing (AR)',33],['Commercial & Production',16]]},
+ 'Hamilton':{barr:34,top:[['Job Costing',14],['Invoicing (AR)',9],['Analytics & Reporting',4]]},
+ 'FSO':{barr:51,top:[['Executive Leadership',48]]}};
+function raPainBar(data){const mx=Math.max.apply(null,data.map(d=>d[1]))||1;
+ return data.map(d=>`<div class="pn-bar"><span class="pn-bl">${d[0]}</span><span class="pn-bt"><span class="pn-bf" style="width:${Math.max(2,d[1]/mx*100)}%"></span></span><span class="pn-bv">${d[1].toLocaleString()}</span></div>`).join('');}
+function raHeat(){let mx=0;RA_PAIN.hm.forEach(r=>r[1].forEach(v=>{if(v>mx)mx=v;}));
+ const head=`<div class="hm-row hm-head"><span class="hm-rl"></span>${RA_PAIN.hmFuncs.map(f=>`<span class="hm-hc">${f}</span>`).join('')}</div>`;
+ const body=RA_PAIN.hm.map(r=>`<div class="hm-row"><span class="hm-rl">${r[0]}</span>${r[1].map(v=>{const a=v===0?0:0.12+0.82*(v/mx);return `<span class="hm-c" style="background:rgba(198,86,78,${a.toFixed(3)})">${v>0?v:''}</span>`;}).join('')}</div>`).join('');
+ return `<div class="hm-scroll"><div class="hm">${head}${body}</div></div>`;}
+function raPainRows(k,dark){const p=RA_PAINBU[k];if(!p)return '';const c=dark?'rbp':'bp';const mx=p.top[0][1]||1;
+ return `<div class="${dark?'rbpain':'bpain'}">${p.top.map(t=>`<div class="${c}"><span class="${c}-l">${t[0]}</span><span class="${c}-t"><span class="${c}-f" style="width:${Math.max(4,t[1]/mx*100)}%"></span></span><span class="${c}-v">${t[1]}</span></div>`).join('')}</div>`;}
 /* ================= GATE ================= */
 $('#enter').onclick=enter;$('#email').addEventListener('keydown',e=>{if(e.key==='Enter')enter();});
 if(LOGOS['_OOR'])$('#oormark').src=LOGOS['_OOR'];
@@ -991,6 +1057,7 @@ function panelBU(name){
   if(r.rem){const RL={dep:'to deprecate',rb:'to rebuild',nn:'net-new'};
    const chips=['dep','rb','nn','gap'].filter(k=>r.rem[k]>0).map(k=>`<span class="bchip b-${k}">${r.rem[k]} ${k==='gap'?(r.rem[k]>1?'gaps':'gap'):RL[k]}</span>`).join('');
    h+=`<div class="ppl-h" style="border-top:1px solid var(--rule);padding-top:13px">Technical remediation plan</div><div class="brems">${chips}</div>`;}
+  if(RA_PAINBU[r.k]){h+=`<div class="ppl-h" style="border-top:1px solid var(--rule);padding-top:13px">Where it hurt most · barriers found</div>${raPainRows(r.k,false)}`;}
   h+=`<div class="imp" style="margin-top:13px"><b>What we found.</b> ${r.find}</div>`;
  } else {
   h+=`<div class="p-sub">OneRoof portfolio</div><div class="pitem" style="border-top:none"><div class="r">Part of the OneRoof portfolio I supported through the program.</div></div>`;
