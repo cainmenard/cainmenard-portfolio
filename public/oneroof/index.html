@@ -223,8 +223,33 @@ body.explore.cur .cursor{display:block}
 .prole{font-family:var(--mono);font-size:8.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);background:#EEF2F6;padding:3px 8px;white-space:nowrap;flex:none}
 .ppl-more{display:block;width:100%;text-align:left;margin-top:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2px;color:var(--navy);background:none;border:none;border-top:1px dashed var(--rule);padding:10px 0 0;cursor:pointer}
 .ppl-more:hover{color:var(--dnavy);text-decoration:underline}
-.ppl-primary{border:1px solid var(--navy);background:var(--navy);color:#fff;padding:11px 14px;margin-top:12px;letter-spacing:.2px;transition:.16s}
+.ppl-primary{border:1px solid var(--navy);background:var(--navy);color:#fff;padding:12px 14px;margin-top:12px;letter-spacing:.2px;font-size:10px;transition:.16s;display:flex;align-items:center;gap:9px}
 .ppl-primary:hover{background:var(--dnavy);border-color:var(--dnavy);color:#fff;text-decoration:none}
+.ppl-primary::before{content:"";width:16px;height:12px;flex:none;background:linear-gradient(90deg,rgba(255,255,255,.35) 33%,transparent 33%),linear-gradient(90deg,transparent 33%,rgba(255,255,255,.6) 33%,rgba(255,255,255,.6) 66%,transparent 66%),linear-gradient(90deg,transparent 66%,rgba(255,255,255,.9) 66%);border-left:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.5);background-size:100% 40%,100% 70%,100% 100%;background-position:left bottom,center bottom,right bottom;background-repeat:no-repeat}
+/* readiness panel viz (light) */
+.rapanel{margin-top:14px;border-top:1px solid var(--rule);padding-top:13px}
+.mkrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 16px}
+.mk{display:flex;flex-direction:column}
+.mkv{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--navy);line-height:1}
+.mkl{font-family:var(--mono);font-size:7.5px;letter-spacing:.3px;text-transform:uppercase;color:var(--gray);margin-top:4px;line-height:1.3}
+.mbchart{margin-bottom:6px}
+.mbh{font-family:var(--mono);font-size:8.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--gray);margin-bottom:9px}
+.mbar{display:grid;grid-template-columns:94px 1fr 30px;align-items:center;gap:9px;padding:3px 0}
+.mbl{font-size:11px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mbt{height:11px;background:#EAEEF2;position:relative;overflow:hidden}
+.mbf{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#1B3A5C,#6E9BC4)}
+.mbv{font-family:var(--mono);font-size:11px;color:var(--navy);text-align:right}
+/* per-business panel (light) */
+.bstats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0 15px}
+.bstat{background:#F4F7FA;padding:11px 12px;display:flex;flex-direction:column;gap:2px}
+.bsv{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--navy);line-height:1}
+.bsl{font-family:var(--mono);font-size:8px;letter-spacing:.4px;text-transform:uppercase;color:var(--gray)}
+.brems{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.bchip{font-family:var(--mono);font-size:9px;letter-spacing:.2px;padding:4px 9px;color:var(--dnavy);border:1px solid var(--rule)}
+.b-dep{background:#F6ECEC;border-color:#D9B3B3}
+.b-rb{background:#EAF1F8;border-color:#B3CBE2}
+.b-nn{background:#E9F3EC;border-color:#B3D6BE}
+.b-gap{background:#F0F3F6;border-color:var(--rule)}
 /* collaboration map overlay (dark, blueprint) */
 #cmap{position:fixed;inset:0;z-index:86;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,rgba(8,17,30,.86),rgba(4,10,19,.95));backdrop-filter:blur(7px)}
 #cmap.on{display:flex}
@@ -583,8 +608,10 @@ const CMAP=[
  {bu:'A-1',people:[{n:'Greg Savran',t:'President',r:'exec'}]},
  {bu:'BDI',people:[{n:'Jim Burton',t:'President',r:'exec'}]}
 ];
-function pplCards(title){const a=PROJPPL[title];if(!a)return '';
- return `<div class="ppl"><div class="ppl-h">Worked with</div>${a.map(p=>`<div class="pcard"><span class="pdot r-${p.r}"></span><div class="pcx"><div class="pn">${p.n}</div><div class="pt">${p.t} · ${p.bu}</div></div><span class="prole">${ROLEK[p.r]}</span></div>`).join('')}${title==='Readiness assessment program'?`<button class="ppl-more ppl-primary" data-radv="1">Open the full readiness assessment &rarr; 376 interviews · 2,869 surveys · 256 process maps</button><button class="ppl-more" data-cmap="1">+ leadership across all 15 businesses &rarr; open the collaboration map</button>`:''}</div>`;}
+function pplCards(title){
+ if(title==='Readiness assessment program')return raPanelBlock();
+ const a=PROJPPL[title];if(!a)return '';
+ return `<div class="ppl"><div class="ppl-h">Worked with</div>${a.map(p=>`<div class="pcard"><span class="pdot r-${p.r}"></span><div class="pcx"><div class="pn">${p.n}</div><div class="pt">${p.t} · ${p.bu}</div></div><span class="prole">${ROLEK[p.r]}</span></div>`).join('')}</div>`;}
 function openCmap(){
  const total=CMAP.reduce((s,g)=>s+g.people.length,0);
  const legend=[['exec','Leadership'],['sponsor','Sponsor'],['sme','SME'],['partner','Partner']].map(l=>`<span class="cm-leg"><span class="pdot r-${l[0]}"></span>${l[1]}</span>`).join('');
@@ -672,6 +699,15 @@ function raBU(k){
  const c=$('#rbClose');if(c)c.onclick=closeRaBU;
 }
 function closeRaBU(){const d=$('#raDrawer');if(d)d.classList.remove('on');}
+function raMiniBars(){const rows=RA_BUS.filter(b=>b.iv>0).sort((a,b)=>b.iv-a.iv).slice(0,8);const mx=rows[0].iv;
+ return rows.map(b=>`<div class="mbar"><span class="mbl">${b.sh}</span><span class="mbt"><span class="mbf" style="width:${Math.max(3,b.iv/mx*100)}%"></span></span><span class="mbv">${b.iv}</span></div>`).join('');}
+function raPanelBlock(){
+ const k=[['376','interviews'],['2,869','survey responses'],['256','process maps'],['11','remediation plans']].map(x=>`<div class="mk"><span class="mkv">${x[0]}</span><span class="mkl">${x[1]}</span></div>`).join('');
+ return `<div class="rapanel"><div class="ppl-h">The readiness assessment, by the numbers</div>
+  <div class="mkrow">${k}</div>
+  <div class="mbchart"><div class="mbh">Interviews by business · top 8 of 15</div>${raMiniBars()}</div>
+  <button class="ppl-more ppl-primary" data-radv="1">Open the full readiness assessment: charts &amp; per-business detail</button>
+  <button class="ppl-more" data-cmap="1">See the leaders across all 15 businesses &rarr;</button></div>`;}
 /* ================= GATE ================= */
 $('#enter').onclick=enter;$('#email').addEventListener('keydown',e=>{if(e.key==='Enter')enter();});
 if(LOGOS['_OOR'])$('#oormark').src=LOGOS['_OOR'];
@@ -901,7 +937,7 @@ function onClick(e){if(moved)return;
  const vis=nodes.filter(n=>n.visible&&(n._t?n._t.ap>0.3:true));const hit=ray.intersectObjects(vis);
  if(!hit.length)return;const u=hit[0].object.userData;
  if(u.kind==='act'){goAct(u.act,true);panelAct(u.act);}
- if(u.kind==='work'){goAct(u.act);panelWork(u.data,u.act);}
+ if(u.kind==='work'){goAct(u.act);if(u.data&&/readiness/i.test(u.data.label||'')){openRadv();}else{panelWork(u.data,u.act);}}
  if(u.kind==='bu'){panelBU(u.name);}
 }
 function setActVisibility(i){const now=performance.now();
@@ -943,8 +979,25 @@ function panelAct(i){const a=ACTS[i];panel(`<div class="p-ey">${a.year} · Chapt
  ${a.toNext?`<div class="pflow">-> ${a.toNext}</div>`:''}
  ${a.close?`<div class="pclz">${a.close}</div>`:''}`);}
 function panelWork(w,i){panel(`<div class="p-ey">${ACTS[i].year} · ${ACTS[i].title}</div><h2>${w.label}</h2><div class="p-sub">${ACTS[i].tag}</div>${w.items.map(itemHTML).join('')}`);}
-function panelBU(name){const b=BUS[name]||{full:name,rel:'business leadership'};
- panel(`<div class="p-ey">Business</div>${LOGOS[name]?`<div class="p-logo"><img src="${LOGOS[name]}" alt="${b.full}"></div>`:''}<h2>${b.full}</h2><div class="p-sub">how we worked together</div>
- <div class="pitem"><div class="r">Engaged <b>${b.rel}</b>.</div></div>`);}
+function panelBU(name){
+ const r=RA_BUS.find(x=>x.lk===name||x.k===name);
+ const grp=CMAP.find(g=>g.bu===name);
+ const b=BUS[name]||{}; const title=(r&&r.n)||b.full||name;
+ let h=`<div class="p-ey">Business · readiness assessment</div>${LOGOS[name]?`<div class="p-logo"><img src="${LOGOS[name]}" alt="${title}"></div>`:''}<h2>${title}</h2>`;
+ if(r){
+  h+=`<div class="p-sub">${r.rev!=null?'$'+r.rev+'M revenue · ':''}${r.loc} location${r.loc>1?'s':''} · ${r.mp} people${r.os?' · on site '+r.os:''}</div>`;
+  const S=(v,l)=>`<div class="bstat"><span class="bsv">${(v==null)?'—':v.toLocaleString()}</span><span class="bsl">${l}</span></div>`;
+  h+=`<div class="bstats">${S(r.iv,'Interviews')}${S(r.sv,'Survey responses')}${S(r.qa,'Coded Q&A')}${S(r.pm,'Process maps')}</div>`;
+  if(r.rem){const RL={dep:'to deprecate',rb:'to rebuild',nn:'net-new'};
+   const chips=['dep','rb','nn','gap'].filter(k=>r.rem[k]>0).map(k=>`<span class="bchip b-${k}">${r.rem[k]} ${k==='gap'?(r.rem[k]>1?'gaps':'gap'):RL[k]}</span>`).join('');
+   h+=`<div class="ppl-h" style="border-top:1px solid var(--rule);padding-top:13px">Technical remediation plan</div><div class="brems">${chips}</div>`;}
+  h+=`<div class="imp" style="margin-top:13px"><b>What we found.</b> ${r.find}</div>`;
+ } else {
+  h+=`<div class="p-sub">OneRoof portfolio</div><div class="pitem" style="border-top:none"><div class="r">Part of the OneRoof portfolio I supported through the program.</div></div>`;
+ }
+ if(grp&&grp.people&&grp.people.length){
+  h+=`<div class="ppl"><div class="ppl-h">Leaders I worked with here</div>${grp.people.map(p=>`<div class="pcard"><span class="pdot r-${p.r}"></span><div class="pcx"><div class="pn">${p.n}</div><div class="pt">${p.t}</div></div><span class="prole">${ROLEK[p.r]}</span></div>`).join('')}</div>`;}
+ h+=`<button class="ppl-more ppl-primary" data-radv="1">Open the full readiness assessment: charts &amp; every business</button>`;
+ panel(h);}
 </script>
 </body></html>
