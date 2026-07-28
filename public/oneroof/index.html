@@ -420,6 +420,48 @@ body.explore.cur .cursor{display:block}
 .fwo-p{font-size:13px;color:#C8D6E6;line-height:1.6;margin-bottom:14px}
 .fwo-rides{color:#9FB4CC}
 @media(max-width:820px){.fw-proofs{grid-template-columns:1fr}.fw-cards{grid-template-columns:1fr}}
+/* ===== OneRoof build overlay (reuses .radv-card chrome) ===== */
+#oor{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.88),rgba(4,10,19,.96));backdrop-filter:blur(8px)}
+#oor.on{display:flex}
+#oor.on .radv-card{transform:none;opacity:1}
+#oorBody{padding:20px 24px 30px;overflow-y:auto;position:relative}
+.oo-tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.oo-tile{background:rgba(143,179,214,.05);border:1px solid rgba(143,179,214,.14);padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.oo-tv{font-family:var(--serif);font-size:24px;font-weight:600;color:#EEF4FB;line-height:1}
+.oo-tx{font-size:10.5px;color:#98AAC0;line-height:1.4}
+.oo-h2{font-family:var(--mono);font-size:9px;letter-spacing:1.3px;text-transform:uppercase;color:#8FB3D6;margin-bottom:11px}
+.oo-grow{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.oo-gv{font-family:var(--serif);font-size:27px;font-weight:600;color:#EEF4FB;line-height:1}
+.oo-ga{font-family:var(--mono);font-size:15px;color:#4E6884}
+.oo-gx{font-size:11.5px;color:#98AAC0;line-height:1.45;flex:1;min-width:170px}
+.oo-nb{display:grid;grid-template-columns:154px 1fr 38px;align-items:center;gap:11px;padding:4px 0}
+.oo-nl{font-size:12px;color:#D4E0EE;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oo-nt{height:14px;background:rgba(143,179,214,.09);position:relative;overflow:hidden}
+.oo-nf{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#2C567E,#8FB3D6)}
+.oo-nv{font-family:var(--mono);font-size:11.5px;color:#EEF4FB;text-align:right}
+.oo-tl{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;padding-top:6px}
+.oo-tl:before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:rgba(143,179,214,.2)}
+.oo-step{display:flex;flex-direction:column;align-items:flex-start;gap:5px;position:relative}
+.oo-sd{width:8px;height:8px;border-radius:50%;background:var(--lnavy);margin-bottom:3px;box-shadow:0 0 0 3px rgba(143,179,214,.15)}
+.oo-st{font-family:var(--mono);font-size:8.5px;letter-spacing:.4px;color:#8FB3D6;text-transform:uppercase}
+.oo-sb{font-size:11px;color:#C4D2E2;line-height:1.35}
+.oo-fixr{display:grid;grid-template-columns:172px 1fr 1fr;gap:18px;padding:13px 0;border-bottom:1px solid rgba(143,179,214,.1);align-items:start}
+.oo-fn{font-family:var(--sans);font-size:12.5px;font-weight:600;color:#D4E0EE;line-height:1.3}
+.oo-fb{font-size:11.5px;color:#9BAEC4;line-height:1.55}
+.oo-fa{font-size:11.5px;color:#B9D2C4;line-height:1.55}
+.oo-fh{font-family:var(--mono);font-size:7.5px;letter-spacing:1.2px;text-transform:uppercase;color:#66809E;margin-bottom:4px;display:block}
+.oo-note{font-family:var(--mono);font-size:9px;color:#5E748F;letter-spacing:.2px;margin-top:11px;line-height:1.55}
+.oo-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(143,179,214,.14);border:1px solid rgba(143,179,214,.14);margin-bottom:18px}
+.oo-stat{background:#0D1E32;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.oo-sv{font-family:var(--serif);font-size:18px;font-weight:600;color:#EEF4FB;line-height:1.05}
+.oo-sl{font-family:var(--mono);font-size:7.5px;letter-spacing:.4px;color:#7E93AB;text-transform:uppercase;line-height:1.35}
+#ooDrawer{position:absolute;top:0;right:0;bottom:0;width:464px;max-width:92vw;background:linear-gradient(180deg,#10233A,#0B1A2C);border-left:1px solid rgba(143,179,214,.3);box-shadow:-24px 0 60px rgba(0,0,0,.5);transform:translateX(102%);transition:.34s cubic-bezier(.16,1,.3,1);padding:24px 26px;overflow-y:auto;z-index:3}
+#ooDrawer.on{transform:none}
+.oo-bul{margin:0 0 16px;padding:0;list-style:none}
+.oo-bul li{position:relative;padding-left:15px;font-size:12.5px;color:#C8D6E6;line-height:1.55;margin-bottom:8px}
+.oo-bul li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;background:var(--lnavy)}
+@media(max-width:1060px){.oo-tiles{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.oo-tl{grid-template-columns:repeat(2,1fr);gap:16px 10px}.oo-tl:before{display:none}.oo-fixr{grid-template-columns:1fr;gap:7px}.oo-nb{grid-template-columns:112px 1fr 34px}}
 /* fallback (WebGL off) */
 #fallback{position:fixed;inset:0;z-index:40;display:none;overflow-y:auto;background:
   radial-gradient(70% 45% at 50% 0%,rgba(31,58,92,.4),transparent 60%),linear-gradient(180deg,#08131F,#060F1C)}
@@ -527,6 +569,14 @@ body.explore.cur .cursor{display:block}
   <div id="fwdBody"></div>
   <div id="fwoDrawer"></div>
  </div></div>
+ <div id="oor" class="hud"><div class="radv-card">
+  <div class="radv-head">
+   <div><div class="radv-tag">Contributions &amp; Forward Value · Operation OneRoof</div><div class="radv-title">The OneRoof build, in full</div></div>
+   <button class="radv-close" id="oorClose">&#10005;</button>
+  </div>
+  <div id="oorBody"></div>
+  <div id="ooDrawer"></div>
+ </div></div>
 </div>
 
 <script>/**
@@ -560,17 +610,24 @@ const ACTS=[
      {t:'Readiness assessment program',r:'Led 12 businesses and corporate on site. 376 interviews across 23 functions, thousands of survey responses, a complete systems inventory.',imp:'Produced the diagnostic map and 11 remediation plans the program now runs on, and quantified where the real operational pain was.',w:'a delivery team I led and each business’s leadership',c:'real',cl:'Realized'}]}],
   rel:{note:'',bus:['Crowther','WeatherShield','Bone Dry','Davco','Front Range','Deer Park','Springer-Peterson','Hamilton','Roof-Tech','TORC','AAA','Dynamic National']}},
  {id:'a3',x:78,year:'2026',title:'OneRoof',tag:'Operation OneRoof',
-  story:'OneRoof today. As Training & Adoption Lead I built the workforce data spine, shipped a governed AI assistant, stood up the Change Leader Network, and run the field rollout, coordinating across six towers.',
+  story:'OneRoof today. I own the workforce data layer the program runs on: 23 connected sheets across 17 companies, 2,283 people on one governed roster, 403 raw job titles standardized to 121, and six role networks with 139 named assignments. On top of it sit the Change Leader Network and the Field Trainer Network that carries the rollout to the field.',
   toNext:'the build sets up the seat',
   work:[
-   {label:'Data spine',items:[
-     {t:'Workforce single source of truth',r:'Built the trusted roster and reporting hierarchy, kept in sync by API.',imp:'One HR-confirmed spine feeding the core platforms, with hierarchy data errors cut sharply.',w:'HR and payroll leads',c:'real',cl:'Realized'}]},
-   {label:'AI assistant',items:[
-     {t:'Governed AI assistant',r:'A Copilot Studio assistant that answers only from approved content, with access controlled by existing permissions.',imp:'Answers in seconds instead of minutes of searching, and it self-governs on security.',w:'an IT partner',c:'enab',cl:'Enabled'}]},
-   {label:'Field & CLN',items:[
-     {t:'Field rollout',r:'Own the field time-capture rollout: crew onboarding and configuration for the field workforce.',imp:'Targeting 80% adoption inside the first 90 days.',w:'operations and field leadership',c:'targ',cl:'Target'},
-     {t:'Change Leader Network',r:'Stood up and coach the network end to end.',imp:'A group of change leaders who form the day-one support floor and keep help-desk tickets down.',w:'the readiness team',c:'enab',cl:'Enabled'}]}],
-  rel:{note:'The program’s business-readiness team, across six towers.',bus:['Crowther','FSO','Roof-Tech']}},
+   {label:'The workforce data spine',items:[
+     {t:'The workforce data spine',r:'One workspace across 17 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation.',imp:'The program can answer who works where, in which role, at which event, without asking a person. The engagement fact table grew from 38 columns to 53 as the questions got harder, and the number a human types stayed at about eight.',w:'the HR, payroll and tower leads',c:'real',cl:'Realized'},
+     {t:'Personas and job title standardization',r:'403 raw job titles across 17 companies collapsed into 121 master jobs, 10 job families and 34 personas for the three platforms.',imp:'Coverage went from 354 people carrying a proposed title to 1,815, which is 79.4%. What is left to ask the companies is 263 questions instead of a list of 777 people.',w:'HR and the functional leads',c:'real',cl:'Realized'},
+     {t:'Roster integrity and identity',r:'Found and fixed duplicate records, broken supervisor keys, a phantom date propagating from five unguarded lookups, and an identity gap that looked like 1,300 people.',imp:'Zero orphaned supervisor keys, 329 work emails loaded with a provenance column, and 116 office staff isolated as the real gaps. Guardrails built so it cannot drift back.',w:'IT and HR',c:'real',cl:'Realized'},
+     {t:'Crew intake and employee data',r:'Three collection instruments and one named data owner, so 17 companies send one file in one shape instead of 17 formats.',imp:'Running as a proof of concept at four companies, with 12 open items sorted by who is actually blocking them and 4 questions that unblock three companies at once.',w:'operations and company leadership',c:'enab',cl:'In flight'}]},
+   {label:'The networks',items:[
+     {t:'The network layer',r:'Six role networks on one assignment spine: change leaders, company subject matter experts, testers, trainers and project resources.',imp:'139 named assignments held by about 58 people, with per-company targets tracked. Eight companies currently read short on change leaders, which is a fact instead of a feeling.',w:'all seven towers',c:'real',cl:'Realized'},
+     {t:'Change Leader Network',r:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',imp:'Session two ran 60 minutes across 15 slides with 36 people in the room, every one of them linked to the record. This is the day-one support floor that keeps the help desk from being the answer.',w:'company presidents and the readiness team',c:'real',cl:'Realized'},
+     {t:'Field Trainer Network',r:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',imp:'Milestones count back from each company go-live at 42, 35, 21 and 4 days out, against one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Five decisions closed with a named owner on each.',w:'operations, HR and field leadership',c:'enab',cl:'In flight'}]},
+   {label:'Enablement and decisions',items:[
+     {t:'Training and enablement',r:'Ran the train-the-trainer week for the HR platform and turned it into the module source of truth: 29 seats tracked, 11 module and track rows, 25 hours.',imp:'Opened the training pillar of the spine. Curriculum now keys off persona and module instead of a best guess about who needs what.',w:'the training tower and 16 company trainees',c:'real',cl:'Realized'},
+     {t:'The Copilot agent family',r:'Not one assistant. Fourteen build specifications for governed agents that answer only from approved content and inherit the permissions a person already has.',imp:'Answers in seconds against minutes of searching, and it self-governs on security, which is the part that makes it defensible instead of a demo.',w:'an IT partner',c:'real',cl:'Realized'},
+     {t:'Technology evaluation',r:'Fifteen vendor working sessions across five platforms, with a price comparison, a capability and limitation matrix and a decision brief.',imp:'A don’t-buy on a $25,000 tool that duplicated what we owned, $1,500 per portal against a $10,000 ask on the learning platform, and the field time-capture selection narrowed from six candidates to one.',w:'IT and procurement',c:'real',cl:'Realized'},
+     {t:'Holding the thread',r:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',imp:'Eight milestone dates and eight named risks that somebody has to carry across seven towers. I own 15 of the 50 open actions by name.',w:'the program leadership team',c:'real',cl:'Realized'}]}],
+  rel:{note:'The program’s business-readiness team, across seven towers.',bus:['Crowther','Roof-Tech','FSO','WeatherShield','Springer-Peterson','Hamilton']}},
  {id:'a4',x:216,year:'2027',title:'Forward',tag:'The proposal',
   story:'Where it goes next. Own the reporting, data, and AI layer as it comes in-house, help lead the AI program, and build the repeatable 90-day playbook for new acquisitions.',
   toNext:null,
@@ -678,6 +735,7 @@ const CMAP=[
 ];
 function pplCards(title){
  if(title==='Readiness assessment program')return raPanelBlock();
+ if(title==='The workforce data spine')return oorPanelBlock();
  const a=PROJPPL[title];if(!a)return '';
  return `<div class="ppl"><div class="ppl-h">Worked with</div>${a.map(p=>`<div class="pcard"><span class="pdot r-${p.r}"></span><div class="pcx"><div class="pn">${p.n}</div><div class="pt">${p.t} · ${p.bu}</div></div><span class="prole">${ROLEK[p.r]}</span></div>`).join('')}</div>`;}
 function openCmap(){
@@ -851,6 +909,143 @@ function fwdOpp(i){const o=FV_OPPS[i];if(!o)return;
   <div class="rb-h">Rides on</div><div class="fwo-p fwo-rides">${o.rides}</div>`;
  $('#fwoDrawer').classList.add('on');const c=$('#fwoClose');if(c)c.onclick=closeFwo;}
 function closeFwo(){const d=$('#fwoDrawer');if(d)d.classList.remove('on');}
+/* ===== Operation OneRoof: the build (every count read out of the live build) ===== */
+const OOR_KPI=[['17','companies on one data model'],['2,283','people on one governed roster'],['139','role assignments across 6 networks'],['403 &rarr; 121','raw job titles standardized'],['23','connected sheets on the spine'],['11 + 3','live reports and dashboards']];
+const OOR_THESIS='After the assessment closed I stopped mapping and started building. The workforce data layer the program runs on is mine: one roster across 17 companies, six role networks with 139 named assignments, and the persona model that training and security both key off. On top of it sit the Change Leader Network and the Field Trainer Network that carries the rollout to the field. Every number below is a count out of the live build, not a plan.';
+const OOR_SPINE=[['9','pillar folders, foundation through archive'],['23','connected sheets'],['11','live reports'],['3','dashboards'],['1','published work app'],['3','automated data feeds']];
+const OOR_GROW=[['38','The first working engagement table. Who is assigned to what.'],['51','After the persona, network and session joins landed.'],['53','Today, with attendance state and a provenance column on every sourced field.']];
+const OOR_NET=[['Change Leader Network',36],['Business SMEs',34],['Project resources',31],['Testers',22],['Trainers',16]];
+const OOR_MAP=[['Matched to a master job',1482,'#3B7A5E'],['Proposed, awaiting confirm',333,'#3E77A8'],['Needs validation',444,'#6E9BC4'],['Not applicable',26,'#4A5A6E']];
+const OOR_TL=[['42 days out','Nominations open to the company'],['35 days out','Trainer names confirmed'],['21 days out','Trainer enablement session'],['4 days out','Final readiness check'],['Go-live','Crews on the field app']];
+const OOR_GRP=[['The data layer','What the program runs on'],['The people layer','Who carries it into 17 companies'],['Enablement and decisions','What the field actually gets']];
+const OOR_FIX=[
+ ['Roster key integrity','Four duplicate records, 22 rows sitting on the wrong company prefix, and 21 supervisor keys pointing at nothing.','Zero orphaned supervisor keys, and three guardrails (a display-name formula, a code prefix map and an audit column) so it cannot drift back.'],
+ ['Identity coverage','1,732 enabled accounts with no employee ID to join on, and what looked like 1,300 people missing an identity.','1,391 accounts matched to real people, 329 work emails loaded with a provenance column, and 116 office staff isolated as the genuine gaps.'],
+ ['Attendance truth','Attendance had no attended state, so a session showed far fewer people than were actually in the room.','32 unlinked rows assigned to the right session, one session resolved to 36 attendees, 100% linked.'],
+ ['Event pipeline','Events were seeded by hand, and a phantom date was propagating out of five unguarded lookups.','Events auto-build from the plan, the event field is feed-controlled so an invalid event cannot be typed, and the phantom date is gone.']];
+const OOR_ITEMS=[
+ {g:0,t:'The workforce data spine',src:'Smartsheet · live',
+  idea:'One workspace across 17 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation.',
+  stats:[['23','connected sheets'],['9','pillar folders'],['11 + 3','reports and dashboards'],['~8','fields a human types']],
+  what:'This is not one table. It is a workspace organized into nine pillars, foundation through archive, so a sheet has one job and one owner. Employee, company, job, persona, network, engagement, session, attendance and audit each live in their own place and join on keys that do not move.',
+  bul:['Nine pillar folders: foundation, workforce, roles and personas, networks, engagements, training, reporting, intake, archive.','Twenty-three connected sheets, cross-sheet referenced rather than copied, so a correction lands once.','Eleven live reports and three dashboards, plus a published work app so a company lead can enter data without touching the sheets.','Three automated feeds: roster sync, event build from the plan, and assignment roll-up.','A provenance column on every field that came from somewhere else, so nobody has to guess where a value came from.'],
+  impact:'The program can answer who works where, in which role, at which event, without asking a person. The engagement fact table grew from 38 columns to 53 as the questions got harder, and the number a human types stayed at about eight. Everything else is derived.'},
+ {g:0,t:'Personas and job title standardization',src:'17 companies · 403 titles',
+  idea:'403 raw job titles across 17 companies collapsed into 121 master jobs, 10 job families and 34 personas that training, security and reporting all key off.',
+  stats:[['403 &rarr; 121','raw titles to master jobs'],['34','personas across 3 platforms'],['79.4%','roster coverage'],['263','open questions, not 777']],
+  what:'Seventeen companies wrote job titles seventeen ways. A foreman is a foreman, a Foreman, a Crew Foreman and a Field Foreman II, and no system can tell they are the same person doing the same work. I ran a fuzzy match across the roster, reviewed every proposed pair by hand, and built the master job list underneath it.',
+  bul:['403 distinct raw titles reduced to 121 master jobs in 10 job families.','34 personas defined across the three platforms, which is what drives who gets which training and which permissions.','Coverage went from 354 people carrying a proposed title to 1,815 of the roster, which is 79.4%.','The remainder is 263 distinct questions to ask the companies, not a list of 777 individual people to chase.','The pass ran on 2,285 rows, which was the roster at the time. It is 2,283 after the de-duplication that followed.'],
+  impact:'Training curriculum, security roles and reporting all key off the same job model instead of three different guesses. When a company asks why their people got a particular course, there is an answer with a key on it.'},
+ {g:0,t:'Data governance and key integrity',src:'audit + guardrails',
+  idea:'Found and fixed duplicate records, broken supervisor keys, a phantom date propagating from five unguarded lookups, and an identity gap that looked like 1,300 missing people.',
+  stats:[['0','orphaned supervisor keys'],['1,391','accounts matched to people'],['329','emails loaded with provenance'],['116','real gaps, isolated']],
+  what:'Nobody assigned this work. I found it because the numbers stopped agreeing with each other, and a number that lies once will lie in a steering committee deck later.',
+  bul:['Four duplicate employee records and 22 rows sitting on the wrong company prefix, corrected at the source.','Twenty-one supervisor keys pointing at nothing, resolved to zero, with a code prefix map so a new company cannot reintroduce it.','1,732 enabled accounts with no employee ID to join on. 1,391 matched to real people, leaving 116 office staff as the genuine identity gaps instead of a scary 1,300.','A phantom date propagating out of five unguarded lookups, traced and killed, with the event field put under feed control so an invalid event cannot be typed.','Attendance had no attended state at all, so sessions read as half empty. 32 unlinked rows reassigned, one session resolved to its real 36 attendees, 100% linked.'],
+  impact:'The spine is trusted because it has been audited, and it stays trusted because the guardrails are formulas and feeds rather than a reminder to be careful.'},
+ {g:0,t:'Crew intake and employee data collection',src:'4 companies · proof of concept',
+  idea:'Three collection instruments and one named data owner, so 17 companies send one file in one shape instead of 17 formats.',
+  stats:[['3','collection instruments'],['4','companies in the pilot'],['12','open items, sorted by blocker'],['4','questions that unblock 3']],
+  what:'Every company had its own way of telling us who works there, which meant every file had to be reworked before it could be used. The fix is boring and it works: one shape, one owner, one place it lands.',
+  bul:['Three instruments covering crew composition, employee master data and the field department mapping.','One named data owner per company, so a question has a person attached to it instead of a distribution list.','Running as a proof of concept at four companies before it goes portfolio-wide.','Twelve open items sorted by who is actually blocking them, and four questions that unblock three companies at once.'],
+  impact:'The field data arrives usable. That is the difference between a go-live where crews exist in the system and one where somebody spends the weekend retyping a spreadsheet.'},
+ {g:1,t:'The network layer',src:'6 networks · 139 assignments',
+  idea:'Six role networks on one assignment spine: change leaders, company subject matter experts, testers, trainers and project resources, all pointing at the same people table.',
+  stats:[['139','named assignments'],['~58','people carrying them'],['6','networks on one spine'],['8','companies reading short']],
+  what:'Most programs build a change network, then a testing list, then a trainer list, and none of them know about each other. One person ends up on four lists and nobody can see it until they burn out. I built one assignment spine and hung all six networks off it.',
+  bul:['Change Leader Network, business subject matter experts, testers, trainers and project resources, all on the same assignment table.','139 named assignments held by roughly 58 people, which makes double-loading visible instead of a surprise.','Per-company targets tracked against actual named assignments.','Eight companies currently read short on change leaders. That is a fact with a company name on it, not a feeling in a status meeting.'],
+  impact:'Coverage gaps surface while they can still be fixed. When a company go-live is 42 days out and it has one change leader instead of three, somebody knows in time to do something about it.'},
+ {g:1,t:'Change Leader Network',src:'37 leaders · 15 companies',
+  idea:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',
+  stats:[['37','change leaders nominated'],['15','companies represented'],['36','in the room, session two'],['12 mo','curriculum through 2027']],
+  what:'The Change Leader Network is the day-one support floor. When a crew lead cannot clock in on a Monday morning, the answer needs to be the person two desks over, not a help desk ticket that takes three days.',
+  bul:['37 change leaders nominated across 15 companies, every one linked to the employee record rather than living in an email thread.','A 12-month curriculum running through the last go-live in 2027, sequenced against the wave plan.','Session two: 60 minutes, 15 slides, 36 people in the room, all 36 linked to attendance.','I write the content, build the deck and facilitate the session. A speaker script and a presenter guide exist so it does not depend on me being in the room.'],
+  impact:'A named person inside each company who knows what is coming before it arrives. That is what keeps the help desk from being the answer to every question in the first two weeks.'},
+ {g:1,t:'Field Trainer Network',src:'~1,637 in the field',
+  idea:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',
+  stats:[['~1,637','people in field departments'],['32','columns on the nomination sheet'],['4','countdown milestones'],['5','decisions closed with owners']],
+  what:'The Change Leader Network covers the office. The field is a different problem: roughly 1,637 people who do not sit at a desk, do not read email during the day, and will meet the new system on a phone in a parking lot at 6am.',
+  bul:['A two-step nomination model, company nominates and the program confirms, on a 32-column sheet that carries the department, the wave, the crew and the confirmation state.','Milestones count back from each company go-live at 42, 35, 21 and 4 days out, so every company runs the same countdown regardless of its wave.','One fixed point everything anchors to: September 21, 2026, the first Monday of the first pay cycle paid out of the new system.','Two audience versions of the deck, one for company leadership and one for the trainers themselves, through eight revisions.','Five open decisions closed, with a named owner on each one.'],
+  impact:'The field rollout has a repeatable shape instead of seventeen improvisations. Each company gets the same four checkpoints, and the pay cycle date makes the deadline non-negotiable in a way a project milestone never is.'},
+ {g:2,t:'Training and enablement',src:'29 seats · 25 hours',
+  idea:'Ran the train-the-trainer week for the HR platform and turned it into the module source of truth: 29 seats tracked, 11 module and track rows, 25 hours.',
+  stats:[['29','seats tracked'],['25','hours delivered'],['11','module and track rows'],['16','company trainees']],
+  what:'A train-the-trainer week usually produces a sign-in sheet and a memory. I ran it and turned it into structured data, because the module list that came out of it is what the whole curriculum keys off.',
+  bul:['29 seats tracked against named people and their companies, not a headcount.','25 hours across the week, mapped to 11 module and track rows.','16 company trainees, each linked to the roster and their persona.','The module list became the training pillar of the spine rather than a document in a folder.'],
+  impact:'Curriculum now keys off persona and module instead of a best guess about who needs what. When someone asks which of the 2,283 people need a specific course, that is a query now.'},
+ {g:2,t:'The Copilot agent family',src:'14 build specifications',
+  idea:'Not one assistant. Fourteen build specifications for governed agents that answer only from approved content and inherit the permissions a person already has.',
+  stats:[['14','agent build specifications'],['0','new permission models'],['seconds','against minutes of search'],['1','governance pattern']],
+  what:'The easy version of this is a chatbot that answers from whatever it can reach, which is exactly the version that leaks something and gets shut off. The hard part is the governance, so that is what I specified first.',
+  bul:['Fourteen build specifications, each scoped to a real question somebody actually asks, not a demo scenario.','Answers come only from approved content, so there is a defensible answer to where a response came from.','Permissions are inherited from what a person already has. No new access model to maintain and no way to see something you could not see anyway.','One governance pattern across all of them rather than fourteen one-off pilots.'],
+  impact:'Answers in seconds against minutes of searching, and it self-governs on security, which is the part that makes it defensible in front of IT instead of impressive in a demo.'},
+ {g:2,t:'Technology evaluation',src:'15 sessions · 5 platforms',
+  idea:'Fifteen vendor working sessions across five platforms, with a price comparison, a capability and limitation matrix and a decision brief.',
+  stats:[['15','vendor working sessions'],['5','platforms evaluated'],['$25,000','don&rsquo;t-buy'],['6 &rarr; 1','field app selection']],
+  what:'Sixteen companies buying software independently is a leakage problem and an integration problem at the same time. I ran the evaluations on evidence rather than demos, and wrote down what each tool could not do next to what it could.',
+  bul:['Fifteen working sessions across five platforms, with a capability and limitation matrix built from the sessions rather than the sales deck.','A don&rsquo;t-buy recommendation on a $25,000 tool that duplicated what we already owned.','$1,500 per portal negotiated against a $10,000 ask on the learning platform.','The field time-capture selection narrowed from six candidates to one, with the reasoning written down so the decision survives the people who made it.'],
+  impact:'Money not spent is the cleanest kind of savings, and the decision brief means the next person can see why, not just what.'},
+ {g:2,t:'Running the program',src:'50 actions · 8 themes',
+  idea:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',
+  stats:[['10','readiness presentations'],['50','tracked actions'],['15','I own by name'],['7','towers coordinated']],
+  what:'Somebody has to hold the thread across seven towers, which mostly means turning conversations into things with owners and dates on them.',
+  bul:['Ten business readiness presentations plus the HR and payroll roadmap.','Eleven internal sessions turned into 50 tracked actions across 8 themes, each with an owner.','Eight milestone dates and eight named risks carried across seven towers.','The tower coordinator role redlined and candidates interviewed, because the coordination gap was real and structural.','Fifteen of the 50 open actions are mine by name.'],
+  impact:'The program has a running record of what was decided and who owns it. That is unglamorous and it is the difference between seven towers moving together and seven towers each having a good quarter.'}];
+function oorTiles(){return OOR_SPINE.map(s=>`<div class="oo-tile"><span class="oo-tv">${s[0]}</span><span class="oo-tx">${s[1]}</span></div>`).join('');}
+function oorGrow(){return OOR_GROW.map((g,i)=>`<div class="oo-grow"><span class="oo-gv">${g[0]}</span><span class="oo-ga">${i?'&rarr;':'&bull;'}</span><span class="oo-gx">${g[1]}</span></div>`).join('');}
+function oorNetBars(){const mx=Math.max.apply(null,OOR_NET.map(n=>n[1]));
+ return OOR_NET.map(n=>`<div class="oo-nb"><span class="oo-nl">${n[0]}</span><span class="oo-nt"><span class="oo-nf" style="width:${Math.max(4,n[1]/mx*100)}%"></span></span><span class="oo-nv">${n[1]}</span></div>`).join('');}
+function oorFunnel(){const tot=OOR_MAP.reduce((s,x)=>s+x[1],0);
+ const seg=OOR_MAP.map(x=>`<span class="ra-fseg" style="width:${x[1]/tot*100}%;background:${x[2]}" title="${x[0]}: ${x[1]}"></span>`).join('');
+ const leg=OOR_MAP.map(x=>`<span class="ra-fleg"><span class="ra-fdot" style="background:${x[2]}"></span>${x[0]} <b>${x[1]}</b></span>`).join('');
+ return `<div class="ra-fbar">${seg}</div><div class="ra-flegs">${leg}</div>`;}
+function oorSteps(){return OOR_TL.map(s=>`<div class="oo-step"><span class="oo-sd"></span><span class="oo-st">${s[0]}</span><span class="oo-sb">${s[1]}</span></div>`).join('');}
+function oorFixes(){return OOR_FIX.map(f=>`<div class="oo-fixr"><div class="oo-fn">${f[0]}</div><div><span class="oo-fh">What was wrong</span><div class="oo-fb">${f[1]}</div></div><div><span class="oo-fh">What it is now</span><div class="oo-fa">${f[2]}</div></div></div>`).join('');}
+function openOor(){
+ const kpis=OOR_KPI.map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
+ const grps=OOR_GRP.map((g,gi)=>{
+  const cards=OOR_ITEMS.map((o,i)=>[o,i]).filter(x=>x[0].g===gi).map(([o,i])=>`<button class="fw-card" data-ooi="${i}"><span class="fw-cn">${('0'+(i+1)).slice(-2)}</span><div class="fw-cc"><div class="fw-ct">${o.t}</div><div class="fw-ci">${o.idea}</div></div><span class="fw-src">${o.src}</span></button>`).join('');
+  return `<div class="fw-tier"><div class="fw-th"><span class="fw-tt">${g[0]}</span><span class="fw-td">${g[1]}</span></div><div class="fw-cards">${cards}</div></div>`;}).join('');
+ $('#oorBody').innerHTML=`
+  <div class="ra-hero"><div class="ra-herok">${kpis}</div><div class="ra-herox">${OOR_THESIS}</div></div>
+  <div class="ra-sec"><div class="ra-sh">The spine, component by component</div>
+   <div class="oo-tiles">${oorTiles()}</div>
+   <div class="ra-grid2" style="margin-top:20px">
+    <div><div class="oo-h2">The engagement table, as the questions got harder</div>${oorGrow()}
+     <div class="oo-note">Columns on the engagement fact table across three versions. The number a human types stayed at about eight. Everything else is derived, referenced or fed.</div></div>
+    <div><div class="oo-h2">Role assignments by network &middot; 139 total</div>${oorNetBars()}
+     <div class="oo-note">Held by roughly 58 people. One assignment spine, so double-loading is visible instead of a surprise.</div></div>
+   </div></div>
+  <div class="ra-sec"><div class="ra-sh">Job titles, standardized across 17 companies</div>
+   <div class="ra-big">403 <span>raw titles</span> &rarr; 121 <span>master jobs in</span> 10 <span>families, 34 personas</span></div>
+   ${oorFunnel()}
+   <div class="ra-note">2,285 rows at the time of the pass, 2,283 after the de-duplication that followed. Coverage went from 354 people carrying a proposed title to 1,815, which is 79.4%. What is left is 263 questions to ask the companies, not 777 people to chase.</div></div>
+  <div class="ra-sec"><div class="ra-sh">How the field rollout is timed &middot; every company, same countdown</div>
+   <div class="oo-tl">${oorSteps()}</div>
+   <div class="oo-note">Anchored to one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Roughly 1,637 people sit in field departments across the portfolio.</div></div>
+  <div class="ra-sec"><div class="ra-sh">What I fixed that nobody asked me to</div>${oorFixes()}</div>
+  <div class="ra-sec"><div class="ra-sh">The work, in eleven pieces &middot; click any one</div>${grps}</div>
+  <div class="fw-close-line">None of this is a slide. It is a system that is running, and my name is on every key in it.</div>`;
+ $('#oor').classList.add('on');}
+function closeOor(){const o=$('#oor');if(o)o.classList.remove('on');closeOoi();}
+function oorItem(i){const o=OOR_ITEMS[i];if(!o)return;
+ const st=o.stats.map(s=>`<div class="oo-stat"><span class="oo-sv">${s[0]}</span><span class="oo-sl">${s[1]}</span></div>`).join('');
+ const bl=o.bul.map(b=>`<li>${b}</li>`).join('');
+ $('#ooDrawer').innerHTML=`<button class="rb-close" id="ooiClose">&#10005;</button>
+  <div class="fwo-tier">${OOR_GRP[o.g][0]}</div><div class="fwo-t">${o.t}</div><div class="fwo-src">${o.src}</div>
+  <div class="oo-stats">${st}</div>
+  <div class="rb-h">What it is</div><div class="fwo-p">${o.what}</div>
+  <div class="rb-h">What is in it</div><ul class="oo-bul">${bl}</ul>
+  <div class="rb-h">Why it matters</div><div class="fwo-p">${o.impact}</div>`;
+ $('#ooDrawer').classList.add('on');const c=$('#ooiClose');if(c)c.onclick=closeOoi;}
+function closeOoi(){const d=$('#ooDrawer');if(d)d.classList.remove('on');}
+function oorPanelBlock(){
+ const k=[['23','sheets on the spine'],['139','network assignments'],['2,283','on one roster'],['121','master jobs mapped']].map(x=>`<div class="mk"><span class="mkv">${x[0]}</span><span class="mkl">${x[1]}</span></div>`).join('');
+ const mx=Math.max.apply(null,OOR_NET.map(n=>n[1]));
+ const bars=OOR_NET.map(n=>`<div class="mbar"><span class="mbl">${n[0]}</span><span class="mbt"><span class="mbf" style="width:${Math.max(4,n[1]/mx*100)}%"></span></span><span class="mbv">${n[1]}</span></div>`).join('');
+ return `<div class="rapanel"><div class="ppl-h">The OneRoof build, by the numbers</div>
+  <div class="mkrow">${k}</div>
+  <div class="mbchart"><div class="mbh">Role assignments by network &middot; 139 total</div>${bars}</div>
+  <button class="ppl-more" data-oor="1">See all 23 components, the networks and the field timing &rarr;</button></div>`;}
 /* ================= GATE ================= */
 $('#enter').onclick=enter;$('#email').addEventListener('keydown',e=>{if(e.key==='Enter')enter();});
 if(LOGOS['_OOR'])$('#oormark').src=LOGOS['_OOR'];
@@ -888,12 +1083,13 @@ $('#ticks').innerHTML=ACTS.map((a,i)=>`<div class="tick" data-i="${i}" style="le
 (function(){const tm=$('#toolmenu');if(tm)tm.innerHTML='<div class="tmh">Tools I built · view live</div>'+Object.entries(TOOLS).map(([k,t])=>`<button class="tmi" data-tool="${k}"><div class="n">${t.name}</div><div class="d">${t.menu}</div></button>`).join('');
  const tb=$('#tkbtn');if(tb)tb.onclick=e=>{e.stopPropagation();tm.classList.toggle('on');};
  const pb=$('#pplbtn');if(pb)pb.onclick=e=>{e.stopPropagation();openCmap();};
- document.addEventListener('click',e=>{const rv=e.target.closest('[data-radv]');if(rv){openRadv();return;} const fw=e.target.closest('[data-fwd]');if(fw){openFwd();return;} const fwo=e.target.closest('[data-fwo]');if(fwo){fwdOpp(+fwo.dataset.fwo);return;} const rmet=e.target.closest('[data-ra-metric]');if(rmet){RA_METRIC=rmet.dataset.raMetric;document.querySelectorAll('.ra-chip').forEach(c=>c.classList.toggle('on',c.dataset.raMetric===RA_METRIC));const bb=$('#raBars');if(bb)bb.innerHTML=raBars(RA_METRIC);return;} const rb=e.target.closest('[data-bu]');if(rb){raBU(rb.dataset.bu);return;} const cm=e.target.closest('[data-cmap]');if(cm){openCmap();return;} const c=e.target.closest('[data-tool]');if(c){openTool(c.dataset.tool);tm&&tm.classList.remove('on');return;} if(tm&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkbtn'))tm.classList.remove('on');});
+ document.addEventListener('click',e=>{const rv=e.target.closest('[data-radv]');if(rv){openRadv();return;} const fw=e.target.closest('[data-fwd]');if(fw){openFwd();return;} const fwo=e.target.closest('[data-fwo]');if(fwo){fwdOpp(+fwo.dataset.fwo);return;} const rmet=e.target.closest('[data-ra-metric]');if(rmet){RA_METRIC=rmet.dataset.raMetric;document.querySelectorAll('.ra-chip').forEach(c=>c.classList.toggle('on',c.dataset.raMetric===RA_METRIC));const bb=$('#raBars');if(bb)bb.innerHTML=raBars(RA_METRIC);return;} const oo=e.target.closest('[data-oor]');if(oo){openOor();return;} const ooi=e.target.closest('[data-ooi]');if(ooi){oorItem(+ooi.dataset.ooi);return;} const rb=e.target.closest('[data-bu]');if(rb){raBU(rb.dataset.bu);return;} const cm=e.target.closest('[data-cmap]');if(cm){openCmap();return;} const c=e.target.closest('[data-tool]');if(c){openTool(c.dataset.tool);tm&&tm.classList.remove('on');return;} if(tm&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkbtn'))tm.classList.remove('on');});
  const lc=$('#lbClose');if(lc)lc.onclick=closeTool;const lb=$('#lightbox');if(lb)lb.onclick=e=>{if(e.target.id==='lightbox')closeTool();};
  const cc=$('#cmClose');if(cc)cc.onclick=closeCmap;const cmo=$('#cmap');if(cmo)cmo.onclick=e=>{if(e.target.id==='cmap')closeCmap();};
  const rc=$('#radvClose');if(rc)rc.onclick=closeRadv;const rvo=$('#radv');if(rvo)rvo.onclick=e=>{if(e.target.id==='radv')closeRadv();else if(!e.target.closest('#raDrawer')&&!e.target.closest('[data-bu]'))closeRaBU();};
  const fc=$('#fwdClose');if(fc)fc.onclick=closeFwd;const fwo=$('#fwd');if(fwo)fwo.onclick=e=>{if(e.target.id==='fwd')closeFwd();else if(!e.target.closest('#fwoDrawer')&&!e.target.closest('[data-fwo]'))closeFwo();};
- addEventListener('keydown',e=>{if(e.key==='Escape'){closeTool();closeCmap();closeRadv();closeFwd();}});})();
+ const oc=$('#oorClose');if(oc)oc.onclick=closeOor;const ooo=$('#oor');if(ooo)ooo.onclick=e=>{if(e.target.id==='oor')closeOor();else if(!e.target.closest('#ooDrawer')&&!e.target.closest('[data-ooi]'))closeOoi();};
+ addEventListener('keydown',e=>{if(e.key==='Escape'){closeTool();closeCmap();closeRadv();closeFwd();closeOor();}});})();
 /* ================= 3D ================= */
 let scene,cam,rn,ray,nodes=[],labels=[],rings=[],pulses=[],starLayers=[];
 let camTheta=0.55,camPhi=1.16,camR=150,curR=150,dragging=false,px,py,autorot=false,moved=false;
@@ -1118,12 +1314,13 @@ function chip(c,cl){return `<span class="chip c-${c}">${cl}</span>`;}
 function itemHTML(x){return `<div class="pitem"><h3>${x.t}${chip(x.c,x.cl)}</h3><div class="r">${x.r}</div><div class="imp"><b>Impact.</b> ${x.imp}</div>${(x.w&&x.w!=='—'&&!PROJPPL[x.t])?`<div class="with">With <b>${x.w}</b></div>`:''}${x.tools?`<div class="tchips">${x.tools.map(id=>`<button class="tchip" data-tool="${id}"><span class="g"></span>${TOOLS[id].linkOnly?'Open':'Launch'}: ${TOOLS[id].name}</button>`).join('')}</div>`:''}${pplCards(x.t)}</div>`;}
 function panelAct(i){const a=ACTS[i];panel(`<div class="p-ey">${a.year} · Chapter ${i+1} of 4</div><h2>${a.title}</h2><div class="p-sub">${a.tag}</div>
  <div class="pitem" style="border-top:none;padding-top:2px"><div class="r">${a.story}</div></div>
+ ${a.id==='a3'?`<button class="ppl-more ppl-primary" data-oor="1">Open the full OneRoof build: the data spine, the networks and every deliverable</button>`:''}
  ${a.work.flatMap(w=>w.items).map(itemHTML).join('')}
  ${a.id==='a4'?`<button class="ppl-more ppl-primary" data-fwd="1">Open the forward value case: 9 things I can build for RCA</button>`:''}
  ${a.rel&&a.rel.note?`<div class="pnote">${a.rel.note}</div>`:''}
  ${a.toNext?`<div class="pflow">-> ${a.toNext}</div>`:''}
  ${a.close?`<div class="pclz">${a.close}</div>`:''}`);}
-function panelWork(w,i){panel(`<div class="p-ey">${ACTS[i].year} · ${ACTS[i].title}</div><h2>${w.label}</h2><div class="p-sub">${ACTS[i].tag}</div>${w.items.map(itemHTML).join('')}`);}
+function panelWork(w,i){panel(`<div class="p-ey">${ACTS[i].year} · ${ACTS[i].title}</div><h2>${w.label}</h2><div class="p-sub">${ACTS[i].tag}</div>${w.items.map(itemHTML).join('')}${i===2?`<button class="ppl-more ppl-primary" data-oor="1">Open the full OneRoof build: charts, the spine and every deliverable</button>`:''}`);}
 function panelBU(name){
  const r=RA_BUS.find(x=>x.lk===name||x.k===name);
  const grp=CMAP.find(g=>g.bu===name);
