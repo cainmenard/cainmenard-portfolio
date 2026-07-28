@@ -609,15 +609,20 @@ const PRI=[
  {k:'deliv',n:'Delivery without disruption'}];
 const ACTS=[
  {id:'a1',x:-210,year:'2024',title:'Foundations',tag:'As RCA’s vendor, before OneRoof',
-  story:'Where it started, before OneRoof. I built RCA’s reporting and automation with a small team I led: the multi-business sales scorecard, the automation-platform migration, and financial data-flow tracing for SOX.',
+  story:'Where it started, before OneRoof. With a small team I led, I built RCA’s reporting and automation: the multi-business sales scorecard, the n8n migration and SOX data-flow tracing, back-office integrations at three businesses, and the PAGA compliance app at AAA Roofing.',
   toNext:'the foundation exposed the need',
   work:[
-   {label:'Reporting & BI',items:[
-     {t:'Multi-business sales scorecard',r:'Built in Power BI, with the data architecture behind it. The IP is RCA-owned.',imp:'In daily use since late 2024 across dozens of key accounts. The program is now rebuilding it in-house.',w:'sales leadership',pri:['grow','tech'],c:'real',cl:'Realized'},
+   {label:'Scorecards',items:[
+     {t:'Multi-business sales scorecard',r:'Built in Power BI, on Dataforma data pulled from nine separate instances. The IP is RCA-owned.',imp:'Launched November 2024 and in daily use since, across 30-plus premier accounts. The program is now rebuilding it in-house.',w:'sales leadership',pri:['grow','tech'],c:'real',cl:'Realized'},
      {t:'Cross-portfolio sales view',r:'A single view across accounts that span more than one business.',imp:'Visibility leadership did not have before.',w:'sales leadership',pri:['grow','reg'],c:'real',cl:'Realized'}]},
-   {label:'Automation',items:[
-     {t:'Automation-platform migration & SOX tracing',r:'Migrated the automation platform end to end, traced financial data flows for SOX, and stood up RPA at two businesses.',imp:'Standardized how automation runs and made compliance risk visible.',w:'a data engineer I directed',pri:['fin','tech'],c:'real',cl:'Realized'}]}],
-  rel:{note:'A small team I led, working as RCA’s vendor at the time.',bus:['WeatherShield','Front Range','Deer Park']}},
+   {label:'Automation and integration',items:[
+     {t:'n8n migration and SOX data-flow tracing',r:'Migrated the automation platform end to end onto n8n, traced financial data flows for SOX, and stood up RPA at WeatherShield and Front Range.',imp:'Standardized how automation runs and made compliance risk visible.',w:'a data engineer I directed',pri:['fin','tech'],c:'real',cl:'Realized'},
+     {t:'A/R automation at Front Range',r:'Two sprints. A Monday payments-received report and a Thursday collections report out of QuickBooks, pushed to project managers instead of pulled by them.',imp:'PMs could see their own receivables without asking accounting for a file.',w:'Front Range accounting',pri:['fin','deliv'],c:'real',cl:'Realized'},
+     {t:'Inventory and Dataforma integration at Deer Park',r:'Labor data wired in from Dataforma, plus the inventory work behind their trucks-as-warehouses model.',imp:'Inventory accuracy the team still points to two years later, in the readiness assessment.',w:'Deer Park operations',pri:['tech','deliv'],c:'real',cl:'Realized'},
+     {t:'Back-office integrations at AAA',r:'Two API integrations on n8n: WorkMax time into Foundation accounting, and Foundation into Certify for expenses.',imp:'Took the manual re-keying out of the path between time, payroll and expense.',w:'a data engineer I directed',pri:['fin','tech'],c:'real',cl:'Realized'}]},
+   {label:'Payroll compliance',items:[
+     {t:'PAGA compliance automation at AAA Roofing',r:'A Retool app on the WorkMax API, syncing both ways. It catches missed meal breaks and the 10 and 12 hour thresholds in real time, then applies premium-pay logic before payroll closes. Corrections run in the employee’s favor only.',imp:'Cut meal and rest penalty exposure by about 87%.',w:'a data engineer and a data analyst I led',pri:['reg','fin'],c:'real',cl:'Realized'}]}],
+  rel:{note:'A small team I led, working as RCA’s vendor at the time.',bus:['AAA','WeatherShield','Front Range','Deer Park']}},
  {id:'a2',x:-72,year:'2025-26',title:'The Map',tag:'Readiness program',
   story:'The map the whole program now runs on. I led readiness assessments across 12 businesses and corporate, on site: 376 interviews across every function, thousands of survey responses, and a complete systems inventory. That became the diagnostic map and the plans that followed.',
   toNext:'the map became the build',
@@ -1334,8 +1339,8 @@ function panel(html){const p=$('#panel');p.classList.remove('open');$('#pbody').
 function closePanel(){$('#panel').classList.remove('open');}
 function chip(c,cl){return `<span class="chip c-${c}">${cl}</span>`;}
 function itemHTML(x){return `<div class="pitem"><h3>${x.t}${chip(x.c,x.cl)}</h3><div class="r">${x.r}</div><div class="imp"><b>Impact.</b> ${x.imp}</div>${(x.w&&!PROJPPL[x.t])?`<div class="with">With <b>${x.w}</b></div>`:''}${x.tools?`<div class="tchips">${x.tools.map(id=>`<button class="tchip" data-tool="${id}"><span class="g"></span>${TOOLS[id].linkOnly?'Open':'Launch'}: ${TOOLS[id].name}</button>`).join('')}</div>`:''}${pplCards(x.t)}</div>`;}
-/* Group headers only on a chapter dense enough to need them. a3 is the only one with eleven items;
-   the others run three or fewer, where a header would just repeat the item title back. */
+/* Group headers only on a chapter dense enough to need them. a1 (seven items) and a3 (eleven) clear the
+   bar; a2 and a4 run three or fewer, where a header would just repeat the item title back. */
 function workHTML(a){const items=a.work.flatMap(w=>w.items);
  if(items.length<6||a.work.length<2)return items.map(itemHTML).join('');
  return a.work.map((w,gi)=>`<div class="pgh"><span class="pgn">${ROMAN[gi]}</span>${w.label}</div>${w.items.map(itemHTML).join('')}`).join('');}
