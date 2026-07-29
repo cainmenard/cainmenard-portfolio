@@ -1314,8 +1314,14 @@ function setActVisibility(i){const now=performance.now();
  });
 }
 function goAct(i,user){act=i;const a=ACTS[i];
- const nB=(a.rel&&a.rel.bus||[]).length;
- tgt.set(a.x,nB>6?20:2,0);camR=nB>6?178:118;camPhi=1.12;
+ const nB=(a.rel&&a.rel.bus||[]).length,nW=a.work.length;
+ /* Two framings stack here. A wide business board (more than six placards) needs distance and a high
+    look-at. Separately, three or more work groups spread the node row toward the camera, so at the
+    close framing the nearest node projects under the timeline track (which starts at y 860 in a 940px
+    viewport). Pull back to 170 and drop the look-at to -8 and the whole row clears it on a1, a3 and a4. */
+ let ty=nB>6?20:2,r=nB>6?178:118;
+ if(nW>2){ty=Math.min(ty,-8);r=Math.max(r,170);}
+ tgt.set(a.x,ty,0);camR=r;camPhi=1.12;
  setActVisibility(i);
  document.querySelectorAll('.tick').forEach((c,j)=>c.classList.toggle('on',j===i));
  $('#ind').style.opacity='1';$('#ind').style.left=(i/(ACTS.length-1))*100+'%';$('#tfill').style.width=(i/(ACTS.length-1))*100+'%';
