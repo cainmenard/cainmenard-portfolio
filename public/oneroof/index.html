@@ -487,7 +487,7 @@ body.explore.cur .cursor{display:block}
 /* render primitives, reusable across drill-downs */
 .rp-fun{margin:0 0 16px}
 #ooDrawer .oo-note{margin-bottom:20px}
-#ooDrawer .rp-mx:last-child,#ooDrawer .rp-sp:last-child,#ooDrawer .rp-art:last-child,#ooDrawer .rp-ln:last-child,#ooDrawer .rp-bars:last-child,#ooDrawer .rp-sh:last-child{margin-bottom:20px}
+#ooDrawer .rp-mx:last-child,#ooDrawer .rp-sp:last-child,#ooDrawer .rp-art:last-child,#ooDrawer .rp-ln:last-child,#ooDrawer .rp-bars:last-child,#ooDrawer .rp-sh:last-child,#ooDrawer .rp-gd:last-child,#ooDrawer .rp-gv:last-child{margin-bottom:20px}
 .rp-frow{margin-bottom:12px}
 .rp-fbar{height:30px;display:flex;align-items:center;padding:0 12px;background:linear-gradient(90deg,rgba(62,119,168,.5),rgba(62,119,168,.12));border-left:2px solid #6E9BC4;min-width:112px}
 .rp-fbar.z{background:none;border:1px dashed rgba(199,126,119,.5);border-left:2px solid #C77E77}
@@ -559,10 +559,39 @@ body.explore.cur .cursor{display:block}
 .rp-shr.s .rp-shn{font-weight:600;color:#E4EDF7}
 .rp-i1{padding-left:19px}.rp-i2{padding-left:32px}
 .rp-shk{color:#7FC0A0}
+/* wave-banded weekly allocation grid. Cells carry intensity, never currency. */
+.rp-gd{display:grid;grid-template-columns:116px 26px repeat(24,1fr);gap:2px 1px;margin:2px 0 10px}
+.rp-gdh{font-family:var(--mono);font-size:6px;letter-spacing:.5px;text-transform:uppercase;color:#7E93AB;align-self:end;padding-bottom:4px;white-space:nowrap}
+.rp-gdb{font-family:var(--mono);font-size:6px;letter-spacing:.5px;text-transform:uppercase;color:#8FB3D6;text-align:center;padding:0 0 3px;border-bottom:1px solid rgba(143,179,214,.24);align-self:end;white-space:nowrap;overflow:hidden}
+.rp-gdb.q{color:#6B7F96;border-bottom-color:rgba(143,179,214,.1)}
+.rp-gl{font-family:var(--sans);font-size:9.5px;color:#C6D5E6;line-height:13px;white-space:nowrap;overflow:hidden}
+.rp-gl.x{color:#7E7370;text-decoration:line-through;text-decoration-color:rgba(199,126,119,.7)}
+.rp-gl.t{font-family:var(--mono);font-size:7px;letter-spacing:.6px;text-transform:uppercase;color:#8FB3D6}
+.rp-gr{display:flex;gap:1px;align-items:center;height:13px}
+.rp-gb{flex:1;height:9px;background:rgba(139,124,182,.24);border-top:1px solid rgba(158,143,201,.55)}
+.rp-gb.m{background:rgba(139,124,182,.46);height:11px}
+.rp-gb.h{background:rgba(139,124,182,.74);height:13px}
+.rp-gr.x .rp-gb{background:rgba(126,115,112,.14);border-top-color:rgba(126,115,112,.34)}
+.rp-gc{height:13px;background:rgba(143,179,214,.05)}
+.rp-gc.l1{background:rgba(62,119,168,.28)}
+.rp-gc.l2{background:rgba(62,119,168,.54)}
+.rp-gc.l3{background:rgba(110,155,196,.85)}
+.rp-gc.b{background:rgba(59,122,94,.78)}
+.rp-gl.tt,.rp-gr.tt,.rp-gc.tt{margin-top:5px}
+.rp-gc.tt{border-top:1px solid rgba(143,179,214,.22)}
+.rp-gv{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(143,179,214,.14);border:1px solid rgba(143,179,214,.14);margin:0 0 8px}
+.rp-gvw{background:#0D1E32;padding:9px 10px}
+.rp-gvk{font-family:var(--mono);font-size:6.5px;letter-spacing:.7px;text-transform:uppercase;color:#8FB3D6;display:block}
+.rp-gvw.hot .rp-gvk{color:#7FC0A0}
+.rp-gvm{display:flex;gap:3px;margin:7px 0 6px;height:14px}
+.rp-gvf{width:5px;height:14px;background:rgba(110,155,196,.55)}
+.rp-gvw.hot .rp-gvf{background:#3B7A5E}
+.rp-gvn{font-size:9.5px;color:#93A8BF;line-height:1.45;display:block}
 @media(max-width:1060px){.oo-tiles{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:820px){.oo-tl{grid-template-columns:repeat(2,1fr);gap:16px 10px}.oo-tl:before{display:none}.oo-fixr{grid-template-columns:1fr;gap:7px}.oo-nb{grid-template-columns:112px 1fr 34px}
  .rp-sp,.rp-art{grid-template-columns:1fr}.rp-mr{grid-template-columns:1.15fr .72fr .72fr .72fr}.rp-mc{font-size:7px;padding:8px 5px;letter-spacing:.2px}.rp-ml{padding:8px 8px}.rp-mn{font-size:10.5px}
- .rp-ln{grid-template-columns:66px 1fr;gap:0 9px}.rp-shr{grid-template-columns:38px 1fr 38px 72px 50px}.rp-shc{font-size:7px;padding:6px 5px}.rp-shn{font-size:10px}.rp-bars{grid-template-columns:84px 1fr}}
+ .rp-ln{grid-template-columns:66px 1fr;gap:0 9px}.rp-shr{grid-template-columns:38px 1fr 38px 72px 50px}.rp-shc{font-size:7px;padding:6px 5px}.rp-shn{font-size:10px}.rp-bars{grid-template-columns:84px 1fr}
+ .rp-gd{grid-template-columns:78px 18px repeat(24,1fr)}.rp-gl{font-size:8px}.rp-gl.t{font-size:6px}.rp-gdb,.rp-gdh{font-size:5px;letter-spacing:.2px}.rp-gv{grid-template-columns:repeat(2,1fr)}}
 /* fallback (WebGL off) */
 #fallback{position:fixed;inset:0;z-index:40;display:none;overflow-y:auto;background:
   radial-gradient(70% 45% at 50% 0%,rgba(31,58,92,.4),transparent 60%),linear-gradient(180deg,#08131F,#060F1C)}
@@ -745,7 +774,8 @@ const ACTS=[
      ]},
    {label:'Running the tower',items:[
      {t:'Holding the thread',r:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',imp:'Eight milestone dates and eight named risks that somebody has to carry across seven towers. I own 15 of the 50 open actions by name.',w:'the program leadership team',pri:['deliv'],c:'real',cl:'Realized'},
-     {t:'The master plan and its nine rebuilds',r:'Nine versions of the business readiness master plan in seven months. 593 rows rebuilt to 263 and merged back to 297, carrying 47 integration points into six other towers.',imp:'Six of the nine rebuilds were set off by something other than the work changing. Other towers link into this plan by row ID, so every rebuild had to happen in place, row by row, without breaking their plans.',w:'the program office and six other towers',pri:['deliv','tech'],c:'real',cl:'Realized'}]}],
+     {t:'The master plan and its nine rebuilds',r:'Nine versions of the business readiness master plan in seven months. 593 rows rebuilt to 263 and merged back to 297, carrying 47 integration points into six other towers.',imp:'Six of the nine rebuilds were set off by something other than the work changing. Other towers link into this plan by row ID, so every rebuild had to happen in place, row by row, without breaking their plans.',w:'the program office and six other towers',pri:['deliv','tech'],c:'real',cl:'Realized'},
+     {t:'The staffing and budget model',r:'Built the business readiness staffing and budget model from zero in six days for a program review, then carried it through 12 versions in 16 weeks across three changes of tower leadership.',imp:'Three costed scenarios off one rate table, 35 published sources cited to the cell, and a parallel descoped version delivered the day after the program office asked for one. The review came back that there was nothing feasible left to cut.',w:'the program office and finance',pri:['fin','deliv'],c:'real',cl:'Realized'}]}],
   rel:{note:'The program’s business-readiness team, across seven towers.',bus:['Crowther','Roof-Tech','FSO','WeatherShield','Springer-Peterson','Hamilton']}},
  {id:'a4',x:216,year:'2027',title:'Forward',tag:'The proposal',
   story:'Where it goes next. Own the reporting, data, and AI layer as it comes in-house, help lead the AI program, and build the repeatable 90-day playbook for new acquisitions.',
@@ -1181,7 +1211,48 @@ const OOR_ITEMS=[
        ['This tower',['47 business readiness integration points, 18 of them complete when the plan changed hands.','Missing counterpart line items went from 18 to 3 in one week.','About 15 working sessions from March 16 to June 17 across all seven plan-bearing towers.']],
        ['The program around it',['Seven tower workbooks, 6,033 task rows, column counts running from 23 to 50.','Roughly 544 rows flagged as integration points, about 363 of them naming a counterpart.','So about a third of the flags point at nothing.']]]},
      {k:'note',d:'One integration register across all seven plans was recommended in June and has not been built. That is the real gap on this item, and it is the cheapest thing here to fix.'}]}],
-  impact:'Six other towers reach into this plan by row ID, so it is the structural record whether or not anyone is looking at it. Nine rebuilds in seven months is not a fact about the plan. It is a fact about how often the thing above the plan changed, and the dates still held.'}];
+  impact:'Six other towers reach into this plan by row ID, so it is the structural record whether or not anyone is looking at it. Nine rebuilds in seven months is not a fact about the plan. It is a fact about how often the thing above the plan changed, and the dates still held.'},
+ {g:3,t:'The staffing and budget model',src:'Excel · 12 versions',
+  idea:'A tower with no seated lead and no budget, days out from a program rollup. Built from zero in six days, then carried through 12 versions in 16 weeks and three changes of leadership.',
+  stats:[['12','versions in 16 weeks'],['6','days from zero to review'],['3','scenarios priced side by side'],['35','published sources cited']],
+  what:'A weekly staffing and cost model for the business readiness tower. Roles down the side, about eighty weeks across the top banded by deployment wave, and three costed scenarios running off one rate table. Every input cell carries the source it came from.',
+  blocks:[
+   {h:'Eighty weeks, one rate table, three scenarios',c:[
+     {k:'grid',d:{weeks:24,corner:'Role &middot; rate bands',
+       bands:[['Pre',3,1],['Wave 1',4,0],['Wave 2',4,0],['Wave 3',4,0],['Wave 4',3,0],['Wave 5',3,0],['Hyper',3,1]],
+       rows:[
+        ['Tower lead',1,'222333333333333333333222',0,0],
+        ['Readiness consultant',1,'333333333333333333333332',0,0],
+        ['Training lead',1,'033333333333333333333222',0,0],
+        ['Comms lead',1,'022222222222222222221110',0,0],
+        ['Comms support',1,'000122222222222222211000',0,0],
+        ['Content developer',1,'033333333333222211000000',0,0],
+        ['Trainer, primary',1,'000233333333333333332100',0,0],
+        ['Trainer, surge',1,'000440004400044000440000',0,0],
+        ['Change analyst',1,'000111222222222222222110',0,0],
+        ['Platform admin',1,'000000111111111111111100',0,0],
+        ['Finance seat &middot; cut',1,'000000000000000000000000',1,0],
+        ['Payroll seat &middot; cut',1,'000000000000000000000000',1,0],
+        ['Total allocation',0,'111222233333333222222111',0,1]],
+       vers:[
+        ['March 12 to 18',2,'Built from zero in six days for a program review. Tower budgets were due that Monday.',1],
+        ['March 25 to 26',4,'Four passes in two days as the rate bands and the role mix settled.',0],
+        ['April 1 to 7',5,'The program office ordered a rebuild. A baseline and a descoped version, both delivered.',0],
+        ['June',1,'One later pass, and the shape held.',0]]}},
+     {k:'note',d:'Purple cells are the adjustable inputs, low, medium and high. The grid holds allocation, not currency. One rate table drives three full scenarios across about eighty weeks, so changing a single band recomputes all three. Roles cut in review stayed in the sheet at zero instead of being deleted, so the delta stays visible.'}]},
+   {h:'What the program office said about it',c:[
+     {k:'quote',d:['Mine and Cain&rsquo;s use the same template.','The program office lead, in a program sync, March 2026']},
+     {k:'note',d:'That is the whole claim, said out loud in a program sync about two towers and one file shape. I have not tried to make it mean anything wider than that.'}]},
+   {h:'Where every assumption came from',c:[
+     {k:'art',d:[
+       ['Rate bands by role','Four public pay-data aggregators and a staffing industry index'],
+       ['How many change people a program this size needs','Prosci best practices, 12th edition'],
+       ['Trainer to learner ratios','Prosci staffing ratios and the Chapman Alliance study'],
+       ['Hours it takes to build an hour of training','Chapman Alliance and the ATD state of the industry'],
+       ['Hours a person needs on the platform','Oracle published training paths'],
+       ['Per diem, lodging and airfare','GSA fiscal 2026 rates and Bureau of Transportation Statistics']]},
+     {k:'note',d:'Thirty-five numbered sources, each mapped to the tab and cell range it feeds, with the citation sitting in a comment on the cell itself. Nobody had to take my word for a number.'}]}],
+  impact:'When the program office asked what could come out, the answer was a parallel descoped version delivered the next working day, and the review it triggered concluded there was nothing feasible left to cut. The model was not defended in a meeting. It was built so the answer was already sitting in it.'}];
 function oorTiles(){return OOR_SPINE.map(s=>`<div class="oo-tile"><span class="oo-tv">${s[0]}</span><span class="oo-tx">${s[1]}</span></div>`).join('');}
 function oorGrow(){return OOR_GROW.map((g,i)=>`<div class="oo-grow"><span class="oo-gv">${g[0]}</span><span class="oo-ga">${i?'&rarr;':'&bull;'}</span><span class="oo-gx">${g[1]}</span></div>`).join('');}
 function oorNetBars(){const mx=Math.max.apply(null,OOR_NET.map(n=>n[1]));
@@ -1215,7 +1286,7 @@ function openOor(){
    <div class="oo-tl">${oorSteps()}</div>
    <div class="oo-note">Anchored to one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Roughly 1,637 people sit in field departments across the portfolio.</div></div>
   <div class="ra-sec"><div class="ra-sh">What I fixed that nobody asked me to</div>${oorFixes()}</div>
-  <div class="ra-sec"><div class="ra-sh">The work, in eleven pieces &middot; click any one</div>${grps}</div>
+  <div class="ra-sec"><div class="ra-sh">The work, in thirteen pieces &middot; click any one</div>${grps}</div>
   <div class="fw-close-line">None of this is a slide. It is a system that is running, and my name is on every key in it.</div>`;
  $('#oor').classList.add('on');}
 function closeOor(){const o=$('#oor');if(o)o.classList.remove('on');closeOoi();}
@@ -1243,7 +1314,25 @@ function rpBars(d){const mx=Math.max.apply(null,d.map(r=>r[1]));
 function rpSheet(d){const hd=`<div class="rp-shr h">`+d.cols.map(c=>`<div class="rp-shc">${c}</div>`).join('')+'</div>';
  const rows=d.rows.map(r=>`<div class="rp-shr${r[0]===0?' s':''}"><div class="rp-shc">${r[1]}</div><div class="rp-shc rp-shn${r[0]?' rp-i'+r[0]:''}">${r[2]}</div><div class="rp-shc">${r[3]}</div><div class="rp-shc rp-shk">${r[4]}</div><div class="rp-shc">${r[5]}</div></div>`).join('');
  return `<div class="rp-sh">${hd}${rows}</div>`;}
+/* wave-banded weekly allocation grid, plus an optional version strip beneath it.
+   Every cell gets an explicit grid-column and grid-row. Sparse auto-placement would
+   otherwise walk the cursor forward past the band headers and drop the role rows into
+   implicit rows below them instead of under them. Same trap as the lineage rail. */
+function rpGrid(d){const NW=d.weeks;
+ let out='<div class="rp-gd">'+`<div class="rp-gdh" style="grid-column:1 / span 2;grid-row:1">${d.corner}</div>`;
+ let c=3;
+ d.bands.forEach(b=>{out+=`<div class="rp-gdb${b[2]?' q':''}" style="grid-column:${c} / span ${b[1]};grid-row:1">${b[0]}</div>`;c+=b[1];});
+ d.rows.forEach((r,i)=>{const gr=i+2,x=r[3]?' x':'',tt=r[4]?' tt':'';
+  out+=`<div class="rp-gl${x}${r[4]?' t':''}${tt}" style="grid-column:1;grid-row:${gr}">${r[0]}</div>`;
+  out+=`<div class="rp-gr${x}${tt}" style="grid-column:2;grid-row:${gr}">`
+      +(r[1]?'<span class="rp-gb"></span><span class="rp-gb m"></span><span class="rp-gb h"></span>':'')+'</div>';
+  for(let w=0;w<NW;w++){const v=+(r[2].charAt(w)||0);
+   out+=`<div class="rp-gc${v===4?' b':(v?' l'+v:'')}${tt}" style="grid-column:${3+w};grid-row:${gr}"></div>`;}});
+ out+='</div>';
+ if(d.vers)out+='<div class="rp-gv">'+d.vers.map(v=>`<div class="rp-gvw${v[3]?' hot':''}"><span class="rp-gvk">${v[0]}</span><div class="rp-gvm">${'<span class="rp-gvf"></span>'.repeat(v[1])}</div><span class="rp-gvn">${v[2]}</span></div>`).join('')+'</div>';
+ return out;}
 function rpBlock(b){if(b.k==='funnel')return rpFunnel(b.d);
+ if(b.k==='grid')return rpGrid(b.d);
  if(b.k==='lineage')return rpLineage(b.d);
  if(b.k==='bars')return rpBars(b.d);
  if(b.k==='sheet')return rpSheet(b.d);
@@ -1592,7 +1681,7 @@ function finale(){act=-2;setActVisibility(-2);
  $('#ind').style.opacity='1';$('#ind').style.left='100%';$('#tfill').style.width='100%';
  const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent='2024 to 2027';
  cap.querySelector('h3').textContent='The whole arc';
- cap.querySelector('p').textContent='Four chapters, 23 pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
+ cap.querySelector('p').textContent='Four chapters, 24 pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
  cap.querySelector('.clz').textContent='Three of these four chapters already happened. The fourth is the only one still open.';
  cap.classList.add('hasclz');
  cap.querySelector('.tag').textContent='Drag to orbit  ·  click any node  ·  the walk restarts at 2024';
