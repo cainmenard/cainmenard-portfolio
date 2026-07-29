@@ -463,13 +463,53 @@ body.explore.cur .cursor{display:block}
 .oo-stat{background:#0D1E32;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
 .oo-sv{font-family:var(--serif);font-size:18px;font-weight:600;color:#EEF4FB;line-height:1.05}
 .oo-sl{font-family:var(--mono);font-size:7.5px;letter-spacing:.4px;color:#7E93AB;text-transform:uppercase;line-height:1.35}
-#ooDrawer{position:absolute;top:0;right:0;bottom:0;width:464px;max-width:92vw;background:linear-gradient(180deg,#10233A,#0B1A2C);border-left:1px solid rgba(143,179,214,.3);box-shadow:-24px 0 60px rgba(0,0,0,.5);transform:translateX(102%);transition:.34s cubic-bezier(.16,1,.3,1);padding:24px 26px;overflow-y:auto;z-index:3}
+#ooDrawer{position:absolute;top:0;right:0;bottom:0;width:560px;max-width:92vw;background:linear-gradient(180deg,#10233A,#0B1A2C);border-left:1px solid rgba(143,179,214,.3);box-shadow:-24px 0 60px rgba(0,0,0,.5);transform:translateX(102%);transition:.34s cubic-bezier(.16,1,.3,1);padding:24px 26px;overflow-y:auto;z-index:3}
 #ooDrawer.on{transform:none}
 .oo-bul{margin:0 0 16px;padding:0;list-style:none}
 .oo-bul li{position:relative;padding-left:15px;font-size:12.5px;color:#C8D6E6;line-height:1.55;margin-bottom:8px}
 .oo-bul li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;background:var(--lnavy)}
+/* render primitives, reusable across drill-downs */
+.rp-fun{margin:0 0 16px}
+#ooDrawer .oo-note{margin-bottom:20px}
+#ooDrawer .rp-mx:last-child,#ooDrawer .rp-sp:last-child,#ooDrawer .rp-art:last-child{margin-bottom:20px}
+.rp-frow{margin-bottom:12px}
+.rp-fbar{height:30px;display:flex;align-items:center;padding:0 12px;background:linear-gradient(90deg,rgba(62,119,168,.5),rgba(62,119,168,.12));border-left:2px solid #6E9BC4;min-width:112px}
+.rp-fbar.z{background:none;border:1px dashed rgba(199,126,119,.5);border-left:2px solid #C77E77}
+.rp-fv{font-family:var(--serif);font-size:16px;font-weight:600;color:#EEF4FB;line-height:1;margin-right:9px}
+.rp-fk{font-family:var(--mono);font-size:8px;letter-spacing:.9px;text-transform:uppercase;color:#B6C6D8;white-space:nowrap}
+.rp-fbar.z .rp-fk{color:#C7A9A5}
+.rp-fn{font-size:11px;color:#93A8BF;line-height:1.5;margin-top:5px}
+.rp-mx{border:1px solid rgba(143,179,214,.16);margin-bottom:10px}
+.rp-mq{font-size:11.5px;color:#CBD9E8;line-height:1.45;padding:9px 11px;background:rgba(62,119,168,.15);border-bottom:1px solid rgba(143,179,214,.16)}
+.rp-mr{display:grid;grid-template-columns:1.35fr .8fr .8fr .8fr;border-bottom:1px solid rgba(143,179,214,.1)}
+.rp-mr:last-child{border-bottom:none}
+.rp-mh{background:rgba(255,255,255,.025)}
+.rp-mh .rp-ml,.rp-mh .rp-mc{font-family:var(--mono);font-size:7.5px;letter-spacing:.9px;text-transform:uppercase;color:#7E93AB;padding-top:7px;padding-bottom:7px}
+.rp-ml{padding:9px 10px;border-right:1px solid rgba(143,179,214,.12)}
+.rp-mn{font-family:var(--sans);font-size:11.5px;font-weight:600;color:#D4E0EE;line-height:1.25;display:block}
+.rp-ms{font-family:var(--mono);font-size:7px;letter-spacing:.4px;text-transform:uppercase;color:#66809E;margin-top:3px;display:block;line-height:1.35}
+.rp-mc{padding:9px 8px;font-family:var(--mono);font-size:8px;letter-spacing:.5px;text-transform:uppercase;line-height:1.4;color:#8095AB;border-right:1px solid rgba(143,179,214,.08)}
+.rp-mc:last-child{border-right:none}
+.rp-mc.n{color:#D09A94;background:rgba(199,126,119,.1)}
+.rp-mc.y{color:#7FC0A0;background:rgba(59,122,94,.15)}
+.rp-mc.o{color:#8095AB;background:rgba(74,90,110,.2)}
+.rp-q{border-left:2px solid #6E9BC4;padding:1px 0 1px 14px;margin:14px 0 4px}
+.rp-qt{font-family:var(--serif);font-size:13.5px;font-style:italic;color:#DCE7F4;line-height:1.5}
+.rp-qa{font-family:var(--mono);font-size:8px;letter-spacing:.9px;text-transform:uppercase;color:#7E93AB;margin-top:7px}
+.rp-sp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(143,179,214,.14);border:1px solid rgba(143,179,214,.14);margin-bottom:6px}
+.rp-spc{background:#0D1E32;padding:11px 12px}
+.rp-sph{font-family:var(--mono);font-size:7.5px;letter-spacing:.9px;text-transform:uppercase;color:#8FB3D6;line-height:1.4;margin-bottom:9px;display:block}
+.rp-spl{margin:0;padding:0;list-style:none}
+.rp-spl li{font-size:11px;color:#B4C6DA;line-height:1.45;margin-bottom:7px;padding-left:11px;position:relative}
+.rp-spl li:last-child{margin-bottom:0}
+.rp-spl li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:1px;background:#5E748F}
+.rp-art{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(143,179,214,.14);border:1px solid rgba(143,179,214,.14);margin-bottom:6px}
+.rp-ac{background:#0D1E32;padding:10px 12px}
+.rp-at{font-family:var(--sans);font-size:11.5px;font-weight:600;color:#D4E0EE;line-height:1.3}
+.rp-am{font-family:var(--mono);font-size:7.5px;letter-spacing:.4px;text-transform:uppercase;color:#66809E;margin-top:4px;display:block;line-height:1.35}
 @media(max-width:1060px){.oo-tiles{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:820px){.oo-tl{grid-template-columns:repeat(2,1fr);gap:16px 10px}.oo-tl:before{display:none}.oo-fixr{grid-template-columns:1fr;gap:7px}.oo-nb{grid-template-columns:112px 1fr 34px}}
+@media(max-width:820px){.oo-tl{grid-template-columns:repeat(2,1fr);gap:16px 10px}.oo-tl:before{display:none}.oo-fixr{grid-template-columns:1fr;gap:7px}.oo-nb{grid-template-columns:112px 1fr 34px}
+ .rp-sp,.rp-art{grid-template-columns:1fr}.rp-mr{grid-template-columns:1.15fr .72fr .72fr .72fr}.rp-mc{font-size:7px;padding:8px 5px;letter-spacing:.2px}.rp-ml{padding:8px 8px}.rp-mn{font-size:10.5px}}
 /* fallback (WebGL off) */
 #fallback{position:fixed;inset:0;z-index:40;display:none;overflow-y:auto;background:
   radial-gradient(70% 45% at 50% 0%,rgba(31,58,92,.4),transparent 60%),linear-gradient(180deg,#08131F,#060F1C)}
@@ -646,7 +686,7 @@ const ACTS=[
    {label:'Enablement and decisions',items:[
      {t:'Training and enablement',r:'IBM delivers the Oracle HCM train-the-trainer week. I built the structure it lands on and coordinate the roster: 29 seats, 11 module and track rows, 25 hours.',imp:'The training pillar of the spine is open before the week runs. Curriculum keys off persona and module instead of a best guess about who needs what.',w:'IBM and the training tower',pri:['tech','deliv'],c:'enab',cl:'In flight'},
      {t:'The Copilot agent family',r:'Not one assistant. Fourteen build specifications for governed agents that answer only from approved content and inherit the permissions a person already has.',imp:'Answers in seconds against minutes of searching, and it self-governs on security, which is the part that makes it defensible instead of a demo.',w:'an IT partner',pri:['tech'],c:'real',cl:'Realized'},
-     {t:'Technology evaluation',r:'Fifteen vendor working sessions across five platforms, with a price comparison, a capability and limitation matrix and a decision brief.',imp:'A don’t-buy on a $25,000 tool that duplicated what we owned, $1,500 per portal against a $10,000 ask on the learning platform, and a digital adoption platform evaluation that closed with no purchase and a written reason.',w:'IT and procurement',pri:['fin','tech'],c:'real',cl:'Realized'},
+     {t:'The adoption platform evaluation',r:'Fourteen digital adoption platforms named, eleven screened out on paper, three formally evaluated across six working sessions and 309 minutes. None bought.',imp:'A written no on a category everyone assumed we would buy. The ERP does not support JavaScript injection at all, no overlay reaches a native phone app, and the roughly 1,600 people who work from a phone were the ones a platform was supposed to help. The reasoning is documented, so the next evaluation starts where this one stopped.',w:'IT and procurement',pri:['fin','tech'],c:'real',cl:'Realized'},
      ]},
    {label:'Running the tower',items:[
      {t:'Holding the thread',r:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',imp:'Eight milestone dates and eight named risks that somebody has to carry across seven towers. I own 15 of the 50 open actions by name.',w:'the program leadership team',pri:['deliv'],c:'real',cl:'Realized'}]}],
@@ -1002,12 +1042,39 @@ const OOR_ITEMS=[
   what:'The easy version of this is a chatbot that answers from whatever it can reach, which is exactly the version that leaks something and gets shut off. The hard part is the governance, so that is what I specified first.',
   bul:['Fourteen build specifications, each scoped to a real question somebody actually asks, not a demo scenario.','Answers come only from approved content, so there is a defensible answer to where a response came from.','Permissions are inherited from what a person already has. No new access model to maintain and no way to see something you could not see anyway.','One governance pattern across all of them rather than fourteen one-off pilots.'],
   impact:'Answers in seconds against minutes of searching, and it self-governs on security, which is the part that makes it defensible in front of IT instead of impressive in a demo.'},
- {g:2,t:'Technology evaluation',src:'15 sessions · 5 platforms',
-  idea:'Fifteen vendor working sessions across five platforms, with a price comparison, a capability and limitation matrix and a decision brief.',
-  stats:[['15','vendor working sessions'],['5','platforms evaluated'],['$25,000','don&rsquo;t-buy'],['0','adoption tools bought']],
-  what:'Sixteen companies buying software independently is a leakage problem and an integration problem at the same time. I ran the evaluations on evidence rather than demos, and wrote down what each tool could not do next to what it could.',
-  bul:['Fifteen working sessions across five platforms, with a capability and limitation matrix built from the sessions rather than the sales deck.','A don&rsquo;t-buy recommendation on a $25,000 tool that duplicated what we already owned.','$1,500 per portal negotiated against a $10,000 ask on the learning platform.','Three digital adoption platforms formally evaluated and none bought, with the reasoning written down so the decision survives the people who made it.'],
-  impact:'Money not spent is the cleanest kind of savings, and the decision brief means the next person can see why, not just what.'},
+ {g:2,t:'The adoption platform evaluation',src:'14 named · 0 selected',
+  idea:'Fourteen digital adoption platforms named, three formally evaluated, none bought. The blocker was technical, not budgetary, and it was written down.',
+  stats:[['14','vendors in the sweep'],['3','demoed in five days'],['~1,600','field users on phones'],['0','bought']],
+  what:'An adoption platform overlays step-by-step guidance on software people already use. We wanted one for the ERP and HR rollout. Three vendors got working sessions. The evaluation turned on a question nobody asks in a demo: can this thing reach a roofer holding a phone?',
+  blocks:[
+   {h:'The sweep',c:[{k:'funnel',d:[
+     [14,'named','Everything that could plausibly put guidance on top of a screen, listed before anyone watched a demo.'],
+     [3,'formally evaluated','Eleven screened out on paper. The three that survived got six working sessions, 309 minutes, and all three demos landed inside five calendar days.'],
+     [2,'still in play','Tango drew a no-go the day after its own demo, on the technical read rather than the pitch. Chromium extension only, so it never reaches a phone.'],
+     [0,'selected','Price was not the blocker. The two systems carrying the most people could not be reached.']]}]},
+   {h:'Where it broke',c:[
+     {k:'matrix',d:{q:'One question, asked of every vendor: can the overlay reach a crew member on a phone?',corner:'System',cols:['WalkMe','Whatfix','Tango'],rows:[
+       ['NetSuite','ERP &middot; 20 user types',[['n','No'],['n','No'],['n','No']]],
+       ['Oracle HCM','HR and payroll &middot; mobile web',[['','Not tested'],['y','Yes'],['n','No']]],
+       ['Miter','Field time &middot; third party',[['o','Outside our control'],['o','Outside our control'],['o','Outside our control']]],
+       ['Native apps','iOS and Android',[['n','No'],['n','No'],['n','No']]]]}},
+     {k:'quote',d:['We created this space in 2011&hellip; If this was possible, we would have done it.','WalkMe principal &middot; April 17']},
+     {k:'note',d:'NetSuite does not support JavaScript injection at all, confirmed by a vendor engineering team on April 20 only after engineering was pushed on it. No demo disclosed it. Two direct competitors, interviewed separately a week apart, gave the same answer on mobile, which is what made the finding hold.'}]},
+   {h:'What we could already see without buying anything',c:[
+     {k:'split',d:[
+       ['Free in systems we already own',['NetSuite login audit trail, system notes and the performance app','Oracle HCM user activity report, sign-in API and the usage subject area','Who logged in, how often, in what role, and whether the compliance step got done']],
+       ['Only an overlay can see it',['Step-level drop-off inside one transaction','Click paths and where people double back','Which field stalls people','Session replay']]]},
+     {k:'note',d:'Splitting the question this way is what closed the purchase. Microsoft Clarity was the obvious cheap substitute, and it needs the same script embed, so it fails on NetSuite for exactly the same reason.'}]},
+   {h:'What it produced',c:[
+     {k:'art',d:[
+       ['Requirements workbook','Excel &middot; March 18'],
+       ['Decision brief','415 lines &middot; written in one day'],
+       ['Capabilities and limitations','247 lines &middot; vendor-checked'],
+       ['Comparison matrix','8 dimensions &middot; no score'],
+       ['Decision deck','2 outline versions'],
+       ['Meeting record','11 note files &middot; 13 sessions']]},
+     {k:'note',d:'No numeric score. The evaluation ran on yes, no or pending against eight dimensions plus a cost band, and inventing a weighted score would have made the answer look more objective than it was.'}]}],
+  impact:'Nothing was bought, and the reasoning outlives the people who made it. When someone proposes an adoption platform again, the brief already names which systems it cannot reach and why, so the next evaluation starts where this one stopped.'},
  {g:3,t:'Running the program',src:'50 actions · 8 themes',
   idea:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',
   stats:[['10','readiness presentations'],['50','tracked actions'],['15','I own by name'],['7','towers coordinated']],
@@ -1051,15 +1118,35 @@ function openOor(){
   <div class="fw-close-line">None of this is a slide. It is a system that is running, and my name is on every key in it.</div>`;
  $('#oor').classList.add('on');}
 function closeOor(){const o=$('#oor');if(o)o.classList.remove('on');closeOoi();}
+/* render primitives. Each returns a string. Reused by later drill-downs. */
+function rpFunnel(d){return '<div class="rp-fun">'+d.map(r=>{const w=(26+(r[0]/d[0][0])*74).toFixed(1);
+ return `<div class="rp-frow"><div class="rp-fbar${r[0]===0?' z':''}" style="width:${w}%"><span class="rp-fv">${r[0]}</span><span class="rp-fk">${r[1]}</span></div><div class="rp-fn">${r[2]}</div></div>`;}).join('')+'</div>';}
+function rpMatrix(m){const hd=`<div class="rp-mr rp-mh"><div class="rp-ml">${m.corner}</div>`+m.cols.map(c=>`<div class="rp-mc">${c}</div>`).join('')+'</div>';
+ const rows=m.rows.map(r=>`<div class="rp-mr"><div class="rp-ml"><span class="rp-mn">${r[0]}</span><span class="rp-ms">${r[1]}</span></div>`+r[2].map(c=>`<div class="rp-mc ${c[0]}">${c[1]}</div>`).join('')+'</div>').join('');
+ return `<div class="rp-mx"><div class="rp-mq">${m.q}</div>${hd}${rows}</div>`;}
+function rpSplit(d){return '<div class="rp-sp">'+d.map(c=>`<div class="rp-spc"><span class="rp-sph">${c[0]}</span><ul class="rp-spl">${c[1].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')+'</div>';}
+function rpArt(d){return '<div class="rp-art">'+d.map(x=>`<div class="rp-ac"><div class="rp-at">${x[0]}</div><span class="rp-am">${x[1]}</span></div>`).join('')+'</div>';}
+function rpQuote(d){return `<div class="rp-q"><div class="rp-qt">${d[0]}</div><div class="rp-qa">${d[1]}</div></div>`;}
+function rpBlock(b){if(b.k==='funnel')return rpFunnel(b.d);
+ if(b.k==='matrix')return rpMatrix(b.d);
+ if(b.k==='split')return rpSplit(b.d);
+ if(b.k==='art')return rpArt(b.d);
+ if(b.k==='quote')return rpQuote(b.d);
+ if(b.k==='note')return `<div class="oo-note">${b.d}</div>`;
+ if(b.k==='p')return `<div class="fwo-p">${b.d}</div>`;
+ return '';}
+function oorBlocks(bs){return bs.map(b=>`<div class="rb-h">${b.h}</div>`+b.c.map(rpBlock).join('')).join('');}
 function oorItem(i){const o=OOR_ITEMS[i];if(!o)return;
  const st=o.stats.map(s=>`<div class="oo-stat"><span class="oo-sv">${s[0]}</span><span class="oo-sl">${s[1]}</span></div>`).join('');
- const bl=o.bul.map(b=>`<li>${b}</li>`).join('');
+ const mid=o.blocks?oorBlocks(o.blocks)
+  :`<div class="rb-h">What is in it</div><ul class="oo-bul">${(o.bul||[]).map(b=>`<li>${b}</li>`).join('')}</ul>`;
  $('#ooDrawer').innerHTML=`<button class="rb-close" id="ooiClose">&#10005;</button>
   <div class="fwo-tier">${OOR_GRP[o.g][0]}</div><div class="fwo-t">${o.t}</div><div class="fwo-src">${o.src}</div>
   <div class="oo-stats">${st}</div>
   <div class="rb-h">What it is</div><div class="fwo-p">${o.what}</div>
-  <div class="rb-h">What is in it</div><ul class="oo-bul">${bl}</ul>
+  ${mid}
   <div class="rb-h">Why it matters</div><div class="fwo-p">${o.impact}</div>`;
+ $('#ooDrawer').scrollTop=0;
  $('#ooDrawer').classList.add('on');const c=$('#ooiClose');if(c)c.onclick=closeOoi;}
 function closeOoi(){const d=$('#ooDrawer');if(d)d.classList.remove('on');}
 function oorPanelBlock(){
