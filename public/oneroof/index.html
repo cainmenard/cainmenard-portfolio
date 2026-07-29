@@ -99,7 +99,23 @@ body.explore.cur .cursor{display:block}
 .play{position:relative;font-family:var(--mono);font-size:11px;color:#EEF4FB;background:rgba(143,179,214,.09);border:1px solid rgba(143,179,214,.4);width:44px;height:44px;border-radius:50%;cursor:pointer;transition:.2s;flex:none;display:flex;align-items:center;justify-content:center}
 .play:hover{background:rgba(143,179,214,.18);border-color:var(--lnavy)}
 .play svg{width:13px;height:13px;fill:#EEF4FB}
+/* countdown ring. The play button becomes the clock while autoplay runs: its own 1px border
+   hands off to the ring's track so nothing doubles up, and the bright arc drains once per chapter. */
+.play .pring{position:absolute;left:-1px;top:-1px;width:44px;height:44px;transform:rotate(-90deg);pointer-events:none;opacity:0;transition:opacity .3s}
+.play.run .pring{opacity:1}
+.play.run{border-color:transparent}
+.prbg{fill:none;stroke:rgba(143,179,214,.4);stroke-width:1}
+.prfg{fill:none;stroke:#EEF4FB;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:131.95;stroke-dashoffset:131.95;filter:drop-shadow(0 0 5px rgba(143,179,214,.85))}
+/* autoplay status line. Says out loud that the camera is moving on a timer, and that you can stop it. */
+#auto{position:absolute;left:50%;bottom:108px;transform:translateX(-50%);display:none;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:9px;letter-spacing:1.4px;text-transform:uppercase;pointer-events:none;white-space:nowrap;z-index:4}
+#auto.on{display:flex}
+#auto .ad{width:5px;height:5px;border-radius:50%;background:#8FB3D6;box-shadow:0 0 8px 2px rgba(143,179,214,.55);animation:adp 2.2s ease-in-out infinite}
+@keyframes adp{0%,100%{opacity:.3;transform:scale(.78)}50%{opacity:1;transform:scale(1.18)}}
+#autxt{color:#C4D2E2}
+#auhint{color:#546A85}
 #track{position:relative;width:min(560px,52vw);height:56px}
+#track.live .tfill,#track.live .ind{transition:none}
 .tline{position:absolute;left:0;right:0;top:14px;height:1px;background:rgba(143,179,214,.22)}
 .tfill{position:absolute;left:0;top:14px;height:1px;background:linear-gradient(90deg,rgba(143,179,214,.35),var(--lnavy));width:0;transition:width .6s cubic-bezier(.4,0,.2,1)}
 .tick{position:absolute;top:0;transform:translateX(-50%);cursor:pointer;text-align:center;width:96px}
@@ -528,7 +544,8 @@ body.explore.cur .cursor{display:block}
 .fbi .r{font-size:12.5px;color:#9FB2C8;line-height:1.5}
 .fbi .imp{font-size:12px;color:#C4D2E2;border-left:2px solid rgba(143,179,214,.4);padding-left:10px;margin-top:5px;line-height:1.5}
 .fb-foot{font-family:var(--mono);font-size:10px;color:#41597A;margin-top:44px;letter-spacing:.6px}
-@media(max-width:680px){#brand{max-width:22ch}#brand .t{font-size:15px}#cap{bottom:118px;width:74vw}#track{width:58vw}.tick .tt{font-size:0}#ctrls{bottom:118px;right:16px}#hint{display:none}}
+@media(max-width:680px){#brand{max-width:22ch}#brand .t{font-size:15px}#cap{bottom:118px;width:74vw}#track{width:58vw}.tick .tt{font-size:0}#ctrls{bottom:118px;right:16px}#hint{display:none}
+ #auto{bottom:100px;font-size:8px;letter-spacing:1px;gap:7px}#auhint{display:none}}
 @media (prefers-reduced-motion: reduce){#grain{display:none}
   .gcoord,.gframe h1 .ln,.gframe p,.gate-in,.gate-foot,.gate-note{animation-duration:.01ms;opacity:1;transform:none}}
 </style></head>
@@ -576,8 +593,9 @@ body.explore.cur .cursor{display:block}
   <button class="cbtn" id="zin" title="Zoom in">+</button>
   <button class="cbtn" id="zout" title="Zoom out">&#8722;</button>
  </div>
+ <div id="auto" class="hud"><span class="ad"></span><span id="autxt"></span><span id="auhint"></span></div>
  <div id="rail" class="hud">
-  <button class="play" id="play"><svg id="picon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  <button class="play" id="play"><svg class="pring" viewBox="0 0 44 44"><circle class="prbg" cx="22" cy="22" r="21"/><circle class="prfg" id="prfg" cx="22" cy="22" r="21"/></svg><svg id="picon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
   <button class="arw" id="prev">&#8249;</button>
   <div id="track"><div class="tline"></div><div class="tfill" id="tfill"></div><div class="ind" id="ind"></div><div id="ticks"></div></div>
   <button class="arw" id="next">&#8250;</button>
@@ -1204,8 +1222,21 @@ $('#ticks').innerHTML=ACTS.map((a,i)=>`<div class="tick" data-i="${i}" style="le
 /* ================= 3D ================= */
 let scene,cam,rn,ray,nodes=[],labels=[],rings=[],pulses=[],starLayers=[];
 let camTheta=0.55,camPhi=1.16,camR=150,curR=150,dragging=false,px,py,autorot=false,moved=false;
+/* Heading target. Chapter framing keeps whatever angle you left it on, but the finale needs a
+   specific one to fit a 426-unit arc into a 16:9 frame, so it sets thetaT and the camera swings. */
+let thetaT=null,phiT=null;
 let tgt=new THREE.Vector3(-210,0,0),curTgt=new THREE.Vector3(-210,0,0);
 let act=-1,playing=false,timer=null,hoverN=null,ndc={x:9,y:9},needHover=false;
+/* Autoplay runs off one rAF clock instead of setInterval, so the ring, the track sweep and the
+   chapter advance all read from the same elapsed time and cannot drift apart. act===-2 is the
+   finale sentinel: every node visible at once, camera pulled back and orbiting. */
+let pStart=0,pIdx=0,pFin=false,preT=null;const DWELL=7600,FIN_DWELL=12000,PRC=131.95;
+/* Finale camera. The arc is 426 units wide on one axis, so only a near head-on heading fits it in a
+   16:9 frame, and the safe band before 2027 walks off the right edge is roughly 0.05 to 0.32 radians.
+   The idle orbit rate of .0007 would cross that whole band in six seconds, which is what pushed 2027
+   off frame. FIN_ROT drifts across the band over the full 12 second dwell instead, and the clamp
+   means a long dwell can never walk past it. */
+const FIN_TH=0.10,FIN_PH=0.90,FIN_R=400,FIN_ROT=0.00028,FIN_TH_MAX=0.32;
 const ptrs=new Map();let pinchD=null;
 const THEME=(new URLSearchParams(location.search).get('t')||'build').toLowerCase();
 const CORE=0xF2F7FD,GLOWC=0x9CC0E6,NAVY=0x2E5075,SLATE=0x496A8E,PULSEC=0xCFE4F8,RINGC=0x5E86AE;
@@ -1319,7 +1350,7 @@ function start(){
  ray=new THREE.Raycaster();
  const dom=rn.domElement;
  dom.addEventListener('pointerdown',e=>{ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
-   if(ptrs.size===1){dragging=true;autorot=false;stopPlay();px=e.clientX;py=e.clientY;moved=false;}else{dragging=false;pinchD=null;}});
+   if(ptrs.size===1){dragging=true;autorot=false;thetaT=null;phiT=null;stopPlay();px=e.clientX;py=e.clientY;moved=false;}else{dragging=false;pinchD=null;}});
  addEventListener('pointerup',e=>{ptrs.delete(e.pointerId);if(ptrs.size<2)pinchD=null;if(ptrs.size===0)dragging=false;});
  addEventListener('pointercancel',e=>{ptrs.delete(e.pointerId);if(ptrs.size<2)pinchD=null;if(ptrs.size===0)dragging=false;});
  addEventListener('pointermove',e=>{
@@ -1337,7 +1368,12 @@ function start(){
  $('#ovw').onclick=()=>{stopPlay();overview();};$('#zin').onclick=()=>camR=Math.max(52,camR-42);$('#zout').onclick=()=>camR=Math.min(540,camR+42);
  addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();rn.setSize(innerWidth,innerHeight);});
  animate();
- setTimeout(()=>{overview();$('#hint').style.opacity='1';if(!REDUCED)setTimeout(()=>togglePlay(),1600);},500);
+ /* Pre-roll. The old build snapped into chapter one with no warning, which reads as the page
+    doing something to you. Announce it first, hold long enough to read, then start. */
+ setTimeout(()=>{overview();$('#hint').style.opacity='1';
+  if(!REDUCED){$('#auto').classList.add('on');$('#play').classList.add('run');
+   $('#autxt').textContent='Autoplay';$('#auhint').textContent='·  starting the walk  ·  click or drag to take over';
+   preT=setTimeout(()=>{preT=null;togglePlay();},2700);}},500);
 }
 function mkLabel(m,html,cls){const el=document.createElement('div');el.className='lab '+cls;el.innerHTML=html;$('#labels').appendChild(el);labels.push({el,m,meta:{kind:cls==='act'?'act':cls,act:m.userData.act}});m._lab=el;}
 const m_edges=[];
@@ -1345,7 +1381,24 @@ function edge(a,b,col,op,actI,detail){const g=new THREE.BufferGeometry().setFrom
 function project(v){const p=v.clone().project(cam);return{x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight,vis:p.z<1}}
 const easeOutCubic=t=>1-Math.pow(1-t,3);
 function animate(){requestAnimationFrame(animate);const now=performance.now();
- if(autorot&&!REDUCED)camTheta+=.0007;
+ if(playing){const dw=pFin?FIN_DWELL:DWELL;let p=(now-pStart)/dw;
+  if(p>=1){
+   if(pFin){pFin=false;pIdx=0;autorot=false;goAct(0);}
+   else if(pIdx>=ACTS.length-1){pFin=true;finale();}
+   else{pIdx++;goAct(pIdx);}
+   pStart=now;autoLabel();p=0;}
+  p=Math.max(0,Math.min(1,p));
+  $('#prfg').style.strokeDashoffset=(PRC*(1-p)).toFixed(2);
+  /* The dot glides station to station instead of jumping. It pins at 100% through the last
+     chapter, which is why the status line takes over the countdown story there. */
+  if(!pFin){const q=Math.min(1,(pIdx+p)/(ACTS.length-1))*100;
+   $('#tfill').style.width=q+'%';$('#ind').style.left=q+'%';}
+ }
+ /* Heading. When a target is set the camera swings to it instead of snapping, and the slow orbit
+    rides the target so the two do not fight over the same variable. */
+ if(thetaT!==null){if(autorot&&!REDUCED)thetaT=Math.min(thetaT+FIN_ROT,FIN_TH_MAX);camTheta+=(thetaT-camTheta)*.05;}
+ else if(autorot&&!REDUCED)camTheta+=.0007;
+ if(phiT!==null)camPhi+=(phiT-camPhi)*.05;
  curTgt.lerp(tgt,.055);curR+=(camR-curR)*.055;
  const cx=curR*Math.sin(camPhi)*Math.sin(camTheta),cy=curR*Math.cos(camPhi),cz=curR*Math.sin(camPhi)*Math.cos(camTheta);
  cam.position.set(curTgt.x+cx,cy,curTgt.z+cz);cam.lookAt(curTgt);
@@ -1367,7 +1420,7 @@ function animate(){requestAnimationFrame(animate);const now=performance.now();
    n.material.opacity=e;
   }
  });
- m_edges.forEach(ln=>{const u=ln.userData;const on=(u.actI===act);ln.material.opacity+=((on?(u.detail?u.base*0.7:u.base):0)-ln.material.opacity)*0.1;});
+ m_edges.forEach(ln=>{const u=ln.userData;const on=(act===-2)||(u.actI===act);ln.material.opacity+=((on?(u.detail?u.base*0.7:u.base):0)-ln.material.opacity)*0.1;});
  pulses.forEach(P=>{const active=(P.from<=act)||act<0;
   let tt=REDUCED?0.5:((now*0.00013)+P.off)%1;const pos=P.curve.getPointAt(tt);P.sp.position.copy(pos);
   const fade=Math.sin(Math.PI*tt);P.sp.material.opacity=fade*(active?0.6:0.16);P.sp.scale.setScalar(3+fade*2.3);});
@@ -1391,13 +1444,17 @@ function onClick(e){if(moved)return;
  const vis=nodes.filter(n=>n.visible&&(n._t?n._t.ap>0.3:true));const hit=ray.intersectObjects(vis);
  if(!hit.length)return;const u=hit[0].object.userData;
  if(u.kind==='act'){goAct(u.act,true);panelAct(u.act);}
- if(u.kind==='work'){goAct(u.act);if(u.data&&/readiness/i.test(u.data.label||'')){openRadv();}else{panelWork(u.data,u.act);}}
- if(u.kind==='bu'){panelBU(u.name);}
+ /* Any node click is the user taking over. Autoplay has to stop, or the camera yanks away
+    mid-sentence while they are reading the panel they just opened. */
+ if(u.kind==='work'){goAct(u.act,true);if(u.data&&/readiness/i.test(u.data.label||'')){openRadv();}else{panelWork(u.data,u.act);}}
+ if(u.kind==='bu'){stopPlay();panelBU(u.name);}
 }
 function setActVisibility(i){const now=performance.now();
  nodes.forEach(n=>{const u=n.userData,t=n._t;if(!t)return;
-  if(u.kind==='work'||u.kind==='bu'){const show=(u.act===i);
-   if(show){t.tgt=1;t.st=now+(t.delay||0);}else{t.tgt=0;t.st=0;}}
+  if(u.kind==='work'||u.kind==='bu'){const show=(i===-2)||(u.act===i);
+   /* i===-2 is the finale. Everything comes up, but staggered left to right by chapter so it
+      assembles in the order the story ran instead of flashing on all at once. */
+   if(show){t.tgt=1;t.st=now+(i===-2?u.act*300+(t.delay||0)*0.4:(t.delay||0));}else{t.tgt=0;t.st=0;}}
  });
 }
 function goAct(i,user){act=i;const a=ACTS[i];
@@ -1408,7 +1465,7 @@ function goAct(i,user){act=i;const a=ACTS[i];
     viewport). Pull back to 170 and drop the look-at to -8 and the whole row clears it on a1, a3 and a4. */
  let ty=nB>6?20:2,r=nB>6?178:118;
  if(nW>2){ty=Math.min(ty,-8);r=Math.max(r,170);}
- tgt.set(a.x,ty,0);camR=r;camPhi=1.12;
+ tgt.set(a.x,ty,0);camR=r;camPhi=1.12;thetaT=null;phiT=null;
  setActVisibility(i);
  document.querySelectorAll('.tick').forEach((c,j)=>c.classList.toggle('on',j===i));
  $('#ind').style.opacity='1';$('#ind').style.left=(i/(ACTS.length-1))*100+'%';$('#tfill').style.width=(i/(ACTS.length-1))*100+'%';
@@ -1419,15 +1476,39 @@ function goAct(i,user){act=i;const a=ACTS[i];
  $('#hint').style.opacity='0';
  if(user)stopPlay();
 }
-function overview(){act=-1;tgt.set(2,6,0);camR=350;camPhi=1.04;setActVisibility(-1);
+function overview(){act=-1;tgt.set(2,6,0);camR=350;camPhi=1.04;thetaT=null;phiT=null;setActVisibility(-1);
  document.querySelectorAll('.tick').forEach(c=>c.classList.remove('on'));$('#ind').style.opacity='0';$('#tfill').style.width='0';
  const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent='2024 to 2027';
  cap.querySelector('h3').textContent='A two-year arc';cap.querySelector('.clz').textContent='';cap.classList.remove('hasclz');
  cap.querySelector('p').textContent='Four chapters in the order they happened, each one setting up the next. Press play to walk through, or drag to explore and click any node.';
  cap.querySelector('.tag').textContent='';cap.classList.add('show');}
-function togglePlay(){if(playing){stopPlay();return;}playing=true;$('#picon').innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';autorot=false;
- let i=(act<0?0:act);goAct(i);timer=setInterval(()=>{i++;if(i>=ACTS.length){stopPlay();return;}goAct(i);},7000);}
-function stopPlay(){playing=false;$('#picon').innerHTML='<path d="M8 5v14l11-7z"/>';if(timer){clearInterval(timer);timer=null;}}
+function finale(){act=-2;setActVisibility(-2);
+ /* The arc is 426 units wide on the x axis, so the only heading that fits it in a 16:9 frame is
+    close to straight on. A small offset keeps the massing blocks reading as blocks instead of
+    flattening into a wall. The camera swings to it over about a second rather than cutting. */
+ tgt.set(2,2,0);camR=FIN_R;thetaT=FIN_TH;phiT=FIN_PH;autorot=true;
+ document.querySelectorAll('.tick').forEach(c=>c.classList.add('on'));
+ $('#ind').style.opacity='1';$('#ind').style.left='100%';$('#tfill').style.width='100%';
+ const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent='2024 to 2027';
+ cap.querySelector('h3').textContent='The whole arc';
+ cap.querySelector('p').textContent='Four chapters, 22 pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
+ cap.querySelector('.clz').textContent='Three of these four chapters already happened. The fourth is the only one still open.';
+ cap.classList.add('hasclz');
+ cap.querySelector('.tag').textContent='Drag to orbit  ·  click any node  ·  the walk restarts at 2024';
+ cap.classList.add('show');}
+function autoLabel(){const t=$('#autxt'),h=$('#auhint');if(!t)return;
+ if(pFin){t.textContent='The whole arc';h.textContent='·  returning to 2024';return;}
+ t.textContent='Autoplay  ·  0'+(pIdx+1)+' of 04';
+ h.textContent=(pIdx>=ACTS.length-1)?'·  the whole arc next':'·  click or drag to take over';}
+function togglePlay(){if(playing){stopPlay();return;}
+ playing=true;pFin=false;$('#picon').innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';autorot=false;
+ $('#play').classList.add('run');$('#track').classList.add('live');$('#auto').classList.add('on');
+ pIdx=(act<0?0:act);goAct(pIdx);pStart=performance.now();autoLabel();}
+function stopPlay(){playing=false;pFin=false;$('#picon').innerHTML='<path d="M8 5v14l11-7z"/>';
+ $('#play').classList.remove('run');$('#track').classList.remove('live');$('#auto').classList.remove('on');
+ const r=$('#prfg');if(r)r.style.strokeDashoffset=PRC;
+ if(preT){clearTimeout(preT);preT=null;}
+ if(timer){clearInterval(timer);timer=null;}}
 function panel(html){const p=$('#panel');p.classList.remove('open');$('#pbody').innerHTML=html;void p.offsetWidth;p.classList.add('open');}
 function closePanel(){$('#panel').classList.remove('open');}
 function chip(c,cl){return `<span class="chip c-${c}">${cl}</span>`;}
