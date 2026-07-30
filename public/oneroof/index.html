@@ -512,6 +512,9 @@ body.explore.cur .cursor{display:block}
 .rp-q{border-left:2px solid #6E9BC4;padding:1px 0 1px 14px;margin:14px 0 4px}
 .rp-qt{font-family:var(--serif);font-size:13.5px;font-style:italic;color:#DCE7F4;line-height:1.5}
 .rp-qa{font-family:var(--mono);font-size:8px;letter-spacing:.9px;text-transform:uppercase;color:#7E93AB;margin-top:7px}
+/* a quote that ends a block group sits 4px from the next heading, which reads as crowding.
+   Notes already carry 20px below them, so match that rhythm when a heading follows a quote. */
+.rp-q+.rb-h{margin-top:18px}
 .rp-sp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(143,179,214,.14);border:1px solid rgba(143,179,214,.14);margin-bottom:6px}
 .rp-spc{background:#0D1E32;padding:11px 12px}
 .rp-sph{font-family:var(--mono);font-size:7.5px;letter-spacing:.9px;text-transform:uppercase;color:#8FB3D6;line-height:1.4;margin-bottom:9px;display:block}
@@ -788,7 +791,7 @@ const ACTS=[
      {t:'Field Trainer Network',r:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',imp:'Milestones count back from each company go-live at 42, 35, 21 and 4 days out, against one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Five decisions closed with a named owner on each.',w:'operations, HR and field leadership',pri:['deliv'],c:'enab',cl:'In flight'}]},
    {label:'Enablement and decisions',items:[
      {t:'Training and enablement',r:'IBM delivers the Oracle HCM train-the-trainer week. I built the structure it lands on and coordinate the roster: 29 seats, 11 module and track rows, 25 hours.',imp:'The training pillar of the spine is open before the week runs. Curriculum keys off persona and module instead of a best guess about who needs what.',w:'IBM and the training tower',pri:['tech','deliv'],c:'enab',cl:'In flight'},
-     {t:'The Copilot agent family',r:'Not one assistant. Fourteen build specifications for governed agents that answer only from approved content and inherit the permissions a person already has.',imp:'Answers in seconds against minutes of searching, and it self-governs on security, which is the part that makes it defensible instead of a demo.',w:'an IT partner',pri:['tech'],c:'real',cl:'Realized'},
+     {t:'The Copilot agent family',r:'Published to Teams the night of July 8 and answering the team inline the next morning. Read only, every query running under the permissions the asker already has, with ten topics and five trap questions written before anyone had access.',imp:'It broke twice in the first two days and both fixes are written down: ten wiring rules out of the retrieval failure, two instruction patches out of the confidence failure. That is what the rest of the family inherits.',w:'an IT partner',pri:['tech'],c:'real',cl:'Realized'},
      {t:'The adoption platform evaluation',r:'Fourteen digital adoption platforms named, eleven screened out on paper, three formally evaluated across six working sessions and 309 minutes. None bought.',imp:'A written no on a category everyone assumed we would buy. The ERP does not support JavaScript injection at all, no overlay reaches a native phone app, and the roughly 1,600 people who work from a phone were the ones a platform was supposed to help. The reasoning is documented, so the next evaluation starts where this one stopped.',w:'IT and procurement',pri:['fin','tech'],c:'real',cl:'Realized'},
      ]},
    {label:'Running the tower',items:[
@@ -1142,12 +1145,36 @@ const OOR_ITEMS=[
   what:'A train-the-trainer week usually produces a sign-in sheet and a memory. IBM delivers the content for Oracle HCM. My job is that it lands on structured data instead, because the module list is what the whole curriculum keys off.',
   bul:['29 seats tracked against named people and their companies, not a headcount.','25 hours across the week, mapped to 11 module and track rows, built before the week runs.','16 company trainees, each linked to the roster and their persona.','IBM delivers the sessions. The module list is the training pillar of the spine rather than a document in a folder.'],
   impact:'Curriculum now keys off persona and module instead of a best guess about who needs what. When someone asks which of the 2,283 people need a specific course, that is a query now.'},
- {g:2,t:'The Copilot agent family',src:'14 build specifications',
-  idea:'Not one assistant. Fourteen build specifications for governed agents that answer only from approved content and inherit the permissions a person already has.',
-  stats:[['14','agent build specifications'],['0','new permission models'],['seconds','against minutes of search'],['1','governance pattern']],
-  what:'The easy version of this is a chatbot that answers from whatever it can reach, which is exactly the version that leaks something and gets shut off. The hard part is the governance, so that is what I specified first.',
-  bul:['Fourteen build specifications, each scoped to a real question somebody actually asks, not a demo scenario.','Answers come only from approved content, so there is a defensible answer to where a response came from.','Permissions are inherited from what a person already has. No new access model to maintain and no way to see something you could not see anyway.','One governance pattern across all of them rather than fourteen one-off pilots.'],
-  impact:'Answers in seconds against minutes of searching, and it self-governs on security, which is the part that makes it defensible in front of IT instead of impressive in a demo.'},
+ {g:2,t:'The Copilot agent family',src:'live in Teams · 4-person pilot',
+  idea:'Not a spec. A governed agent published to Teams the night of July 8, answering the team inline the next morning, and broken twice in front of them in the two days after.',
+  stats:[['10','topics it answers'],['5','trap questions, written first'],['0','new permission models'],['7','fields it will never surface']],
+  what:'The easy version is a chatbot that answers from whatever it can reach, which is the version that leaks something and gets shut off. So the governance went in before the pilot did. Every query runs under the asker&rsquo;s own permissions, writes are disabled at the connector, and seven fields stay buried inside the team.',
+  blocks:[
+   {h:'What shipped',c:[
+     {k:'art',d:[
+      ['A governed agent, live in Teams','published July 8 &middot; answers inline in a group thread'],
+      ['The instruction block','~5,900 characters &middot; against an 8,000 ceiling'],
+      ['A field guide for the team','how to mention it, why each person signs in once'],
+      ['Ten topics, five trap questions','written before anyone had access']]},
+     {k:'note',d:'Four people on the pilot, read only, each one signing in as themselves. Nobody sees a row their own access would not already show them.'}]},
+   {h:'Where it broke',c:[
+     {k:'split',d:[
+      ['July 9 &middot; the retrieval layer',[
+       'One system was wired three ways, so every prompt fired all three and the agent choked on volume.',
+       'The cleanup deleted the wrong one. What stayed behind was an index of a snapshot, not a live query.',
+       'Answers came back as fragments, and the agent said so instead of filling the gap.']],
+      ['July 10 &middot; the confidence layer',[
+       'A tester caught two answers stated with confidence and wrong. One denied a core system was in the program. One named two sheets that do not exist.',
+       'First patch: name the systems in scope, and never invent a source. If nothing is wired to a question, say that and name the closest real one.',
+       'Second patch, same day: print people&rsquo;s names, not the internal codes that join the tables.']]]},
+     {k:'quote',d:['Judgment layer good; retrieval layer misconfigured.','The build log &middot; July 9']}]},
+   {h:'The rule that came out of it',c:[
+     {k:'matrix',d:{q:'One system, one wiring. If a source appears twice in an agent&rsquo;s configuration, one of them is a bug.',corner:'Source',cols:['Wired as a tool','Wired as knowledge','Turned off'],rows:[
+      ['Smartsheet','the live numbers',[['y','Once, read only'],['n','Never'],['o','']]],
+      ['SharePoint and Teams','documents and threads',[['n','Never'],['y','Scoped to folders'],['o','']]],
+      ['Web and open knowledge','everything outside',[['o',''],['o',''],['y','Every agent']]]]}},
+     {k:'note',d:'Ten rules like that one, written the night it broke. They now govern the whole family: one hub, five children scoped to a topic each, and a separate agent wherever the audience or the write access changes.'}]}],
+  impact:'Anyone can stand up a chatbot. What transfers is what happens after it breaks: a rule written down the same night, a patch traced back to the answer that caused it, and a configuration the rest of the family inherits. That is the difference between a demo and something IT will let you keep.'},
  {g:2,t:'The adoption platform evaluation',src:'14 named · 0 selected',
   idea:'Fourteen digital adoption platforms named, three formally evaluated, none bought. The blocker was technical, not budgetary, and it was written down.',
   stats:[['14','vendors in the sweep'],['3','demoed in five days'],['~1,600','field users on phones'],['0','bought']],
