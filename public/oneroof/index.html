@@ -793,6 +793,7 @@ const ACTS=[
      {t:'Training and enablement',r:'IBM delivers the Oracle HCM train-the-trainer week. I built the structure it lands on and coordinate the roster: 29 seats, 11 module and track rows, 25 hours.',imp:'The training pillar of the spine is open before the week runs. Curriculum keys off persona and module instead of a best guess about who needs what.',w:'IBM and the training tower',pri:['tech','deliv'],c:'enab',cl:'In flight'},
      {t:'The Copilot agent family',r:'Published to Teams the night of July 8 and answering the team inline the next morning. Read only, every query running under the permissions the asker already has, with ten topics and five trap questions written before anyone had access.',imp:'It broke twice in the first two days and both fixes are written down: ten wiring rules out of the retrieval failure, two instruction patches out of the confidence failure. That is what the rest of the family inherits.',w:'an IT partner',pri:['tech'],c:'real',cl:'Realized'},
      {t:'The adoption platform evaluation',r:'Fourteen digital adoption platforms named, eleven screened out on paper, three formally evaluated across six working sessions and 309 minutes. None bought.',imp:'A written no on a category everyone assumed we would buy. The ERP does not support JavaScript injection at all, no overlay reaches a native phone app, and the roughly 1,600 people who work from a phone were the ones a platform was supposed to help. The reasoning is documented, so the next evaluation starts where this one stopped.',w:'IT and procurement',pri:['fin','tech'],c:'real',cl:'Realized'},
+     {t:'The steering deck agent',r:'A program leader named the recurring steering deck as the work product eating the most time. A first draft shipped the same day, assembled live out of the sheets, and came back approved the same day.',imp:'The rule it produced outlives the agent: the approved deck is the master, revise the recurring cells in place, never rebuild. Reading all seven tower plans to build it turned up one that had not moved in four months.',w:'the program office',pri:['tech','deliv'],c:'enab',cl:'In flight'},
      ]},
    {label:'Running the tower',items:[
      {t:'Holding the thread',r:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',imp:'Eight milestone dates and eight named risks that somebody has to carry across seven towers. I own 15 of the 50 open actions by name.',w:'the program leadership team',pri:['deliv'],c:'real',cl:'Realized'},
@@ -1173,7 +1174,7 @@ const OOR_ITEMS=[
       ['Smartsheet','the live numbers',[['y','Once, read only'],['n','Never'],['o','']]],
       ['SharePoint and Teams','documents and threads',[['n','Never'],['y','Scoped to folders'],['o','']]],
       ['Web and open knowledge','everything outside',[['o',''],['o',''],['y','Every agent']]]]}},
-     {k:'note',d:'Ten rules like that one, written the night it broke. They now govern the whole family: one hub, five children scoped to a topic each, and a separate agent wherever the audience or the write access changes.'}]}],
+     {k:'note',d:'Ten rules like that one, written the night it broke. They now govern the whole family: one hub, five children scoped to a topic each, and a separate agent wherever the audience or the write access changes. The steering deck agent is that exception, which is why it is counted as its own piece of work below rather than folded into this one.'}]}],
   impact:'Anyone can stand up a chatbot. What transfers is what happens after it breaks: a rule written down the same night, a patch traced back to the answer that caused it, and a configuration the rest of the family inherits. That is the difference between a demo and something IT will let you keep.'},
  {g:2,t:'The adoption platform evaluation',src:'14 named · 0 selected',
   idea:'Fourteen digital adoption platforms named, three formally evaluated, none bought. The blocker was technical, not budgetary, and it was written down.',
@@ -1208,6 +1209,24 @@ const OOR_ITEMS=[
        ['Meeting record','11 note files &middot; 13 sessions']]},
      {k:'note',d:'No numeric score. The evaluation ran on yes, no or pending against eight dimensions plus a cost band, and inventing a weighted score would have made the answer look more objective than it was.'}]}],
   impact:'Nothing was bought, and the reasoning outlives the people who made it. When someone proposes an adoption platform again, the brief already names which systems it cannot reach and why, so the next evaluation starts where this one stopped.'},
+ {g:2,t:'The steering deck agent',src:'v0 approved the day it shipped &middot; July 9',
+  idea:'A recurring executive deck that gets rebuilt every cycle. The rule that came out of the first draft is that it must never be rebuilt at all.',
+  stats:[['11','recurring slides, mapped'],['4','a sheet fills outright'],['7','master plans read'],['1','four months cold']],
+  what:'A program leader named this deck when asked which recurring work product ate the most time. A first draft shipped the same day, assembled live out of the sheets instead of written from scratch, and came back approved the same day. Whether a model could write it was never the interesting question.',
+  blocks:[
+   {h:'Which parts are data, and which are somebody&rsquo;s judgment',c:[
+     {k:'bars',d:[
+       ['A sheet fills it',4,'Wave dates, engagement totals, the open high risks, and the decisions closed since the last meeting. The data exists, it is clean, and it is already computing.',1],
+       ['A person decides',3,'Tower health, the management considerations, staffing. The agent proposes and a named owner confirms, because health is a judgment call and not a column.',0],
+       ['Nobody automates it',4,'Title, agenda, the cost model, the appendix. These ship as a header with an owner name and nothing invented underneath it.',0]]},
+     {k:'note',d:'Eleven recurring slides, each mapped to the sheet that actually feeds it. The map is the artifact. The agent only sits on top of it, and a trap question keeps it there: asked to redesign a slide, it has to refuse.'}]},
+   {h:'What reading seven plans turned up',c:[
+     {k:'funnel',d:[
+      [7,'read live','The deck reports on every tower, so every tower plan gets opened rather than quoted from memory.'],
+      [6,'moved this week','Touched inside the last three days. Those numbers can be stated as current, because they are.'],
+      [1,'four months cold','One plan had not moved since February. The agent has to say that date out loud instead of quoting the plan as current, which is the whole rule in one row.']]},
+     {k:'note',d:'Nobody asked for a freshness check. It fell out of opening every plan the deck reports on. The honest framing: this ran instead of five queued items rather than beside them, and it is one agent in the same family under the same wiring rules, picked and approved by an executive inside a single day.'}]}],
+  impact:'Ask a model for an executive deck and it hands you a beautiful new one, which is the wrong answer, because the committee reads the deck it already approved. The rule runs the other way: the approved deck is the master, revise the recurring cells in place, never rebuild, and every changed number carries the sheet behind it.'},
  {g:3,t:'Running the program',src:'50 actions · 8 themes',
   idea:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',
   stats:[['10','readiness presentations'],['50','tracked actions'],['15','I own by name'],['7','towers coordinated']],
@@ -1353,7 +1372,7 @@ function openOor(){
    <div class="oo-tl">${oorSteps()}</div>
    <div class="oo-note">Anchored to one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Roughly 1,637 people sit in field departments across the portfolio.</div></div>
   <div class="ra-sec"><div class="ra-sh">What I fixed that nobody asked me to</div>${oorFixes()}</div>
-  <div class="ra-sec"><div class="ra-sh">The work, in fourteen pieces &middot; click any one</div>${grps}</div>
+  <div class="ra-sec"><div class="ra-sh">The work, in fifteen pieces &middot; click any one</div>${grps}</div>
   <div class="fw-close-line">None of this is a slide. It is a system that is running, and my name is on every key in it.</div>`;
  $('#oor').classList.add('on');}
 function closeOor(){const o=$('#oor');if(o)o.classList.remove('on');closeOoi();}
@@ -1762,7 +1781,7 @@ function finale(){act=-2;setActVisibility(-2);
  $('#ind').style.opacity='1';$('#ind').style.left='100%';$('#tfill').style.width='100%';
  const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent='2024 to 2027';
  cap.querySelector('h3').textContent='The whole arc';
- cap.querySelector('p').textContent='Four chapters, 25 pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
+ cap.querySelector('p').textContent='Four chapters, 26 pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
  cap.querySelector('.clz').textContent='Three of these four chapters already happened. The fourth is the only one still open.';
  cap.classList.add('hasclz');
  cap.querySelector('.tag').textContent='Drag to orbit  ·  click any node  ·  the walk restarts at 2024';
