@@ -782,25 +782,17 @@ const ACTS=[
   toNext:'the build sets up the seat',
   work:[
    {label:'The data layer',items:[
-     {t:'The workforce data spine',r:'One workspace across 16 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation.',imp:'The program can answer who works where, in which role, at which event, without asking a person. The engagement fact table grew from 38 columns to 53 as the questions got harder, and the number a human types stayed at about eight.',w:'the HR, payroll and tower leads',pri:['tech','deliv'],c:'real',cl:'Realized'},
-     {t:'Personas and job title standardization',r:'403 raw job titles across 16 companies collapsed into 121 master jobs, 10 job families and 34 personas for the three platforms.',imp:'Coverage went from 354 people carrying a proposed title to 1,815, which is 79.4%. What is left to ask the companies is 263 questions instead of a list of 777 people.',w:'HR and the functional leads',pri:['tech','deliv'],c:'real',cl:'Realized'},
-     {t:'Roster integrity and identity',r:'Found and fixed duplicate records, broken supervisor keys, a phantom date propagating from five unguarded lookups, and an identity gap that looked like 1,300 people.',imp:'Zero orphaned supervisor keys, 329 work emails loaded with a provenance column, and 116 office staff isolated as the real gaps. Guardrails built so it cannot drift back.',w:'IT and HR',pri:['tech','deliv'],c:'real',cl:'Realized'},
-     {t:'Crew intake and employee data',r:'Three collection instruments and one named data owner, so 16 companies send one file in one shape instead of 16 formats.',imp:'Running as a proof of concept at four companies, with 12 open items sorted by who is actually blocking them and 4 questions that unblock three companies at once.',w:'operations and company leadership',pri:['acq','deliv'],c:'enab',cl:'In flight'}]},
+     {t:'The workforce data spine',r:'One workspace across 16 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation. Every role network, every integrity repair and every training seat hangs off it.',imp:'The program can answer who works where and in which role, without asking a person. The engagement fact table grew from 38 columns to 53, and the number a human types stayed at about eight. What is not done: crew intake is a proof of concept at four companies, not sixteen, and the train-the-trainer week has not run.',w:'the HR, payroll and tower leads',pri:['tech','deliv','acq'],c:'real',cl:'Realized'},
+     {t:'The job and persona model',r:'403 raw job titles across 16 companies collapsed into 121 master jobs, 10 job families and 34 personas for the three platforms.',imp:'Training, security and reporting key off one job model instead of three different guesses. Coverage went from 354 people carrying a proposed title to 1,815, which is 79.4%. What is not done: the last 20.6% is 263 distinct questions sitting with the companies.',w:'HR and the functional leads',pri:['tech','deliv'],c:'real',cl:'Realized'}]},
    {label:'The people layer',items:[
-     {t:'The network layer',r:'Five role networks on one assignment spine: change leaders, company subject matter experts, testers, trainers and project resources.',imp:'139 named assignments held by about 58 people, with per-company targets tracked. Seven companies currently read short on change leaders, which is a fact instead of a feeling.',w:'all seven towers',pri:['reg','deliv'],c:'real',cl:'Realized'},
-     {t:'Change Leader Network',r:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',imp:'Session two ran 60 minutes across 15 slides with 36 people in the room, every one of them linked to the record. This is the day-one support floor that keeps the help desk from being the answer.',w:'company presidents and the readiness team',pri:['reg','deliv'],c:'real',cl:'Realized'},
-     {t:'Field Trainer Network',r:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',imp:'Milestones count back from each company go-live at 42, 35, 21 and 4 days out, against one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Five decisions closed with a named owner on each.',w:'operations, HR and field leadership',pri:['deliv'],c:'enab',cl:'In flight'}]},
+     {t:'Change Leader Network',r:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',imp:'Session two ran 60 minutes across 15 slides with 36 people in the room, every one of them linked to the record. This is the day-one support floor that keeps the help desk from being the answer. What is not done: seven companies read short of their change leader target, and most of the curriculum is still ahead of us.',w:'company presidents and the readiness team',pri:['reg','deliv'],c:'real',cl:'Realized'},
+     {t:'Field Trainer Network',r:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',imp:'Milestones count back from each company go-live at 42, 35, 21 and 4 days out, against one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. What is not done: the structure is built and the network is not running yet.',w:'operations, HR and field leadership',pri:['deliv'],c:'enab',cl:'In flight'}]},
    {label:'Enablement and decisions',items:[
-     {t:'Training and enablement',r:'IBM delivers the Oracle HCM train-the-trainer week. I built the structure it lands on and coordinate the roster: 29 seats, 11 module and track rows, 25 hours.',imp:'The training pillar of the spine is open before the week runs. Curriculum keys off persona and module instead of a best guess about who needs what.',w:'IBM and the training tower',pri:['tech','deliv'],c:'enab',cl:'In flight'},
-     {t:'The Copilot agent family',r:'Published to Teams the night of July 8 and answering the team inline the next morning. Read only, every query running under the permissions the asker already has, with ten topics and five trap questions written before anyone had access.',imp:'It broke twice in the first two days and both fixes are written down: ten wiring rules out of the retrieval failure, two instruction patches out of the confidence failure. That is what the rest of the family inherits.',w:'an IT partner',pri:['tech'],c:'real',cl:'Realized'},
-     {t:'The adoption platform evaluation',r:'Fourteen digital adoption platforms named, eleven screened out on paper, three formally evaluated across six working sessions and 309 minutes. None bought.',imp:'A written no on a category everyone assumed we would buy. The ERP does not support JavaScript injection at all, no overlay reaches a native phone app, and the roughly 1,600 people who work from a phone were the ones a platform was supposed to help. The reasoning is documented, so the next evaluation starts where this one stopped.',w:'IT and procurement',pri:['fin','tech'],c:'real',cl:'Realized'},
-     {t:'The steering deck agent',r:'A program leader named the recurring steering deck as the work product eating the most time. A first draft shipped the same day, assembled live out of the sheets, and came back approved the same day.',imp:'The rule it produced outlives the agent: the approved deck is the master, revise the recurring cells in place, never rebuild. Reading all seven tower plans to build it turned up one that had not moved in four months.',w:'the program office',pri:['tech','deliv'],c:'enab',cl:'In flight'},
-     ]},
+     {t:'The adoption platform decision',r:'Fourteen digital adoption platforms named, eleven screened out on paper, three formally evaluated across six working sessions and 309 minutes. None bought.',imp:'A written no on a category everyone assumed we would buy. The ERP does not support JavaScript injection, no overlay reaches a phone app, and the 1,600 people who work from a phone were the ones it was supposed to help. What is not done: nothing replaced it, so the step-level questions it would have answered stay unanswered.',w:'IT and procurement',pri:['fin','tech'],c:'real',cl:'Realized'},
+     {t:'The agent family',r:'A governed agent published to Teams the night of July 8, answering the team inline the next morning and broken twice in front of them in the two days after. A second agent shipped and came back approved inside a single day, on the rules the first one produced.',imp:'Ten wiring rules out of the retrieval failure and two instruction patches out of the confidence failure, written the nights they were earned. That is what the rest of the family inherits. What is not done: the pilot is four people, and the deck agent has one approved draft behind it rather than a full cycle.',w:'an IT partner and the program office',pri:['tech','deliv'],c:'real',cl:'Realized'}]},
    {label:'Running the tower',items:[
-     {t:'Holding the thread',r:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',imp:'Eight milestone dates and eight named risks that somebody has to carry across seven towers. I own 15 of the 50 open actions by name.',w:'the program leadership team',pri:['deliv'],c:'real',cl:'Realized'},
-     {t:'The master plan and its nine rebuilds',r:'Nine versions of the business readiness master plan in seven months. 593 rows rebuilt to 263 and merged back to 297, carrying 47 integration points into six other towers.',imp:'Six of the nine rebuilds were set off by something other than the work changing. Other towers link into this plan by row ID, so every rebuild had to happen in place, row by row, without breaking their plans.',w:'the program office and six other towers',pri:['deliv','tech'],c:'real',cl:'Realized'},
-     {t:'The staffing and budget model',r:'Built the business readiness staffing and budget model from zero in six days for a program review, then carried it through 12 versions in 16 weeks across three changes of tower leadership.',imp:'Three costed scenarios off one rate table, 35 published sources cited to the cell, and a parallel descoped version delivered the day after the program office asked for one. The review came back that there was nothing feasible left to cut.',w:'the program office and finance',pri:['fin','deliv'],c:'real',cl:'Realized'},
-     {t:'Cross-tower integration',r:'Seven tower master plans linked to each other by row ID, 545 rows carrying an integration ID, and 17 working sessions from March to June to keep the links pointing at something real.',imp:'The links resolve identity correctly and status not at all, because the linked date and percent columns are hand-copied snapshots. One register across all seven plans was specified in June and has not been built.',w:'six other towers and the program office',pri:['deliv','tech'],c:'enab',cl:'In flight'}]}],
+     {t:'The master plan and the seven-tower wiring',r:'Nine versions of the business readiness master plan in seven months, 593 rows rebuilt to 263 and merged back to 297, wired to six other tower plans through 545 rows carrying an integration ID.',imp:'Six of the nine rebuilds were set off by something other than the work changing, and the dates still held. The links resolve identity correctly and status not at all. What is not done: one register across all seven plans was specified in June and never built, and that gap is mine.',w:'the program office and six other towers',pri:['deliv','tech'],c:'real',cl:'Realized'},
+     {t:'The staffing and budget model',r:'Built the business readiness staffing and budget model from zero in six days for a program review, then carried it through 12 versions in 16 weeks across three changes of tower leadership.',imp:'Three costed scenarios off one rate table, 35 published sources cited to the cell, and a parallel descoped version delivered the day after the program office asked for one. The review came back with nothing feasible left to cut. What is not done: the last pass was June, and the model prices three scenarios without deciding any of them.',w:'the program office and finance',pri:['fin','deliv'],c:'real',cl:'Realized'}]}],
   rel:{note:'The program’s business-readiness team, across seven towers.',bus:['Crowther','Roof-Tech','FSO','WeatherShield','Springer-Peterson','Hamilton']}},
  {id:'a4',x:216,year:'2027',title:'Forward',tag:'The proposal',
   story:'Where it goes next. Own the reporting, data, and AI layer as it comes in-house, help lead the AI program, and build the repeatable 90-day playbook for new acquisitions.',
@@ -1100,84 +1092,34 @@ const OOR_FIX=[
  ['Event pipeline','Events were seeded by hand, and a phantom date was propagating out of five unguarded lookups.','Events auto-build from the plan, the event field is feed-controlled so an invalid event cannot be typed, and the phantom date is gone.']];
 const OOR_ITEMS=[
  {g:0,t:'The workforce data spine',src:'Smartsheet · live',
-  idea:'One workspace across 16 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation.',
-  stats:[['23','connected sheets'],['9','pillar folders'],['11 + 3','reports and dashboards'],['~8','fields a human types']],
-  what:'This is not one table. It is a workspace organized into nine pillars, foundation through archive, so a sheet has one job and one owner. Employee, company, job, persona, network, engagement, session, attendance and audit each live in their own place and join on keys that do not move.',
-  bul:['Nine pillar folders: foundation, workforce, roles and personas, networks, engagements, training, reporting, intake, archive.','Twenty-three connected sheets, cross-sheet referenced rather than copied, so a correction lands once.','Eleven live reports and three dashboards, plus a published work app so a company lead can enter data without touching the sheets.','Three automated feeds: roster sync, event build from the plan, and assignment roll-up.','A provenance column on every field that came from somewhere else, so nobody has to guess where a value came from.'],
+  idea:'One workspace across 16 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation. Every role network, every integrity repair and every training seat hangs off it.',
+  stats:[['23','connected sheets'],['~8','fields a human types'],['0','orphaned supervisor keys'],['116','real gaps, not 1,300']],
+  what:'This is not one table. It is a workspace organized into nine pillars, foundation through archive, so a sheet has one job, one owner, and keys that do not move. Nobody assigned the audit work underneath it. I found it because the numbers stopped agreeing, and a number that lies once will lie in a steering committee deck later.',
+  bul:['Nine pillar folders, foundation through archive, and 23 connected sheets that are cross-sheet referenced rather than copied, so a correction lands once.','Eleven live reports and three dashboards, plus a published work app so a company lead can enter data without touching the sheets.','Three automated feeds, roster sync, event build from the plan and assignment roll-up, with a provenance column on every field that came from somewhere else.','One assignment table underneath all five role networks: 139 named assignments held by roughly 58 people, so double-loading is visible instead of a surprise.','The training pillar is structured before the train-the-trainer week runs: 29 seats against named people and their companies, 11 module and track rows, 25 hours.','Crew intake standardized to three collection instruments and one named data owner per company, so 16 companies send one file in one shape instead of 16 formats.','The four repairs in the fix list, keys, identity, attendance and the event pipeline, all landed here, and the guardrails holding them are formulas and feeds rather than a reminder to be careful.'],
+  open:'Crew intake is running as a proof of concept at four companies, not sixteen. Twelve open items are sorted by who is actually blocking them, and four questions unblock three companies at once. The train-the-trainer week has not run, so 11 module rows are a structure waiting on content.',
   impact:'The program can answer who works where, in which role, at which event, without asking a person. The engagement fact table grew from 38 columns to 53 as the questions got harder, and the number a human types stayed at about eight. Everything else is derived.'},
- {g:0,t:'Personas and job title standardization',src:'16 companies · 403 titles',
+ {g:0,t:'The job and persona model',src:'16 companies · 403 titles',
   idea:'403 raw job titles across 16 companies collapsed into 121 master jobs, 10 job families and 34 personas that training, security and reporting all key off.',
   stats:[['403 &rarr; 121','raw titles to master jobs'],['34','personas across 3 platforms'],['79.4%','roster coverage'],['263','open questions, not 777']],
   what:'Sixteen companies wrote job titles sixteen ways. A foreman is a foreman, a Foreman, a Crew Foreman and a Field Foreman II, and no system can tell they are the same person doing the same work. I ran a fuzzy match across the roster, reviewed every proposed pair by hand, and built the master job list underneath it.',
-  bul:['403 distinct raw titles reduced to 121 master jobs in 10 job families.','34 personas defined across the three platforms, which is what drives who gets which training and which permissions.','Coverage went from 354 people carrying a proposed title to 1,815 of the roster, which is 79.4%.','The remainder is 263 distinct questions to ask the companies, not a list of 777 individual people to chase.','The pass ran on 2,285 rows, which was the roster at the time. It is 2,283 after the de-duplication that followed.'],
+  bul:['403 distinct raw titles reduced to 121 master jobs in 10 job families.','34 personas defined across the three platforms, which is what drives who gets which training and which permissions.','Coverage went from 354 people carrying a proposed title to 1,815 of the roster, which is 79.4%.','The remainder is 263 distinct questions to ask the companies, not a list of 777 individual people to chase.','The pass ran on 2,285 rows, which was the roster at the time. It is 2,283 after the de-duplication that followed.','Curriculum keys off persona and module rather than a best guess about who needs what, so which of the 2,283 people need a specific course is a query.'],
+  open:'Coverage is 79.4%, not 100%. The last 263 questions sit with the companies and cannot be resolved from this end. The persona-to-course mapping is only as good as the module list, and that list finishes filling in when the train-the-trainer week runs.',
   impact:'Training curriculum, security roles and reporting all key off the same job model instead of three different guesses. When a company asks why their people got a particular course, there is an answer with a key on it.'},
- {g:0,t:'Data governance and key integrity',src:'audit + guardrails',
-  idea:'Found and fixed duplicate records, broken supervisor keys, a phantom date propagating from five unguarded lookups, and an identity gap that looked like 1,300 missing people.',
-  stats:[['0','orphaned supervisor keys'],['1,391','accounts matched to people'],['329','emails loaded with provenance'],['116','real gaps, isolated']],
-  what:'Nobody assigned this work. I found it because the numbers stopped agreeing with each other, and a number that lies once will lie in a steering committee deck later.',
-  bul:['Four duplicate employee records and 22 rows sitting on the wrong company prefix, corrected at the source.','Twenty-one supervisor keys pointing at nothing, resolved to zero, with a code prefix map so a new company cannot reintroduce it.','1,732 enabled accounts with no employee ID to join on. 1,391 matched to real people, leaving 116 office staff as the real identity gaps instead of a scary 1,300.','A phantom date propagating out of five unguarded lookups, traced and killed, with the event field put under feed control so an invalid event cannot be typed.','Attendance had no attended state at all, so sessions read as half empty. 32 unlinked rows reassigned, one session resolved to its real 36 attendees, 100% linked.'],
-  impact:'The spine is trusted because it has been audited, and it stays trusted because the guardrails are formulas and feeds rather than a reminder to be careful.'},
- {g:0,t:'Crew intake and employee data collection',src:'4 companies · proof of concept',
-  idea:'Three collection instruments and one named data owner, so 16 companies send one file in one shape instead of 16 formats.',
-  stats:[['3','collection instruments'],['4','companies in the pilot'],['12','open items, sorted by blocker'],['4','questions that unblock 3']],
-  what:'Every company had its own way of telling us who works there, which meant every file had to be reworked before it could be used. The fix is boring and it works: one shape, one owner, one place it lands.',
-  bul:['Three instruments covering crew composition, employee master data and the field department mapping.','One named data owner per company, so a question has a person attached to it instead of a distribution list.','Running as a proof of concept at four companies before it goes portfolio-wide.','Twelve open items sorted by who is actually blocking them, and four questions that unblock three companies at once.'],
-  impact:'The field data arrives usable. That is the difference between a go-live where crews exist in the system and one where somebody spends the weekend retyping a spreadsheet.'},
- {g:1,t:'The network layer',src:'5 networks · 139 assignments',
-  idea:'Five role networks on one assignment spine: change leaders, company subject matter experts, testers, trainers and project resources. All of them point at the same people table.',
-  stats:[['139','named assignments'],['~58','people carrying them'],['5','networks on one spine'],['7','companies reading short']],
-  what:'Most programs build a change network, then a testing list, then a trainer list, and none of them know about each other. One person ends up on four lists and nobody can see it until they burn out. I built one assignment spine and hung all five networks off it.',
-  bul:['Change Leader Network, business subject matter experts, testers, trainers and project resources, all on the same assignment table.','139 named assignments held by roughly 58 people, which makes double-loading visible instead of a surprise.','Per-company targets tracked against actual named assignments.','Seven companies currently read short on change leaders. That is a fact with a company name on it, not a feeling in a status meeting.'],
-  impact:'Coverage gaps surface while they can still be fixed. When a company go-live is 42 days out and it has one change leader instead of three, somebody knows in time to do something about it.'},
  {g:1,t:'Change Leader Network',src:'37 leaders · 15 companies',
   idea:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',
-  stats:[['37','change leaders nominated'],['15','companies represented'],['36','in the room, session two'],['12 mo','curriculum through 2027']],
+  stats:[['37','change leaders nominated'],['15','companies represented'],['36','in the room, session two'],['7','companies reading short']],
   what:'The Change Leader Network is the day-one support floor. When a crew lead cannot clock in on a Monday morning, the answer needs to be the person two desks over, not a help desk ticket that takes three days.',
-  bul:['37 change leaders nominated across 15 companies, every one linked to the employee record rather than living in an email thread.','A 12-month curriculum running through the last go-live in 2027, sequenced against the wave plan.','Session two: 60 minutes, 15 slides, 36 people in the room, all 36 linked to attendance.','I write the content, build the deck and facilitate the session. A speaker script and a presenter guide exist so it does not depend on me being in the room.'],
+  bul:['37 change leaders nominated across 15 companies, every one linked to the employee record rather than living in an email thread.','A 12-month curriculum running through the last go-live in 2027, sequenced against the wave plan.','Session two: 60 minutes, 15 slides, 36 people in the room, all 36 linked to attendance.','I write the content, build the deck and facilitate the session. A speaker script and a presenter guide exist so it does not depend on me being in the room.','Per-company targets tracked against actual named assignments off the one assignment table, so coverage is countable rather than asserted.'],
+  open:'Seven companies read short of their change leader target today. That is a fact with a company name on it and it is not fixed. Most of the 12-month curriculum is still ahead of us, and the network has not yet been tested against a live go-live.',
   impact:'A named person inside each company who knows what is coming before it arrives. That is what keeps the help desk from being the answer to every question in the first two weeks.'},
  {g:1,t:'Field Trainer Network',src:'~1,637 in the field',
   idea:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',
   stats:[['~1,637','people in field departments'],['32','columns on the nomination sheet'],['4','countdown milestones'],['5','decisions closed with owners']],
   what:'The Change Leader Network covers the office. The field is a different problem: roughly 1,637 people who do not sit at a desk, do not read email during the day, and will meet the new system on a phone in a parking lot at 6am.',
   bul:['A two-step nomination model, company nominates and the program confirms, on a 32-column sheet that carries the department, the wave, the crew and the confirmation state.','Milestones count back from each company go-live at 42, 35, 21 and 4 days out, so every company runs the same countdown regardless of its wave.','One fixed point everything anchors to: September 21, 2026, the first Monday of the first pay cycle paid out of the new system.','Two audience versions of the deck, one for company leadership and one for the trainers themselves, through eight revisions.','Five open decisions closed, with a named owner on each one.'],
+  open:'The structure is built and the network is not running. Nominations are still coming back from the companies, no field trainer session has been delivered, and the first countdown does not start until a company reaches 42 days out from its go-live.',
   impact:'The field rollout has a repeatable shape instead of sixteen improvisations. Each company gets the same four checkpoints, and the pay cycle date makes the deadline non-negotiable in a way a project milestone never is.'},
- {g:2,t:'Training and enablement',src:'Oracle HCM · IBM-led',
-  idea:'IBM delivers the Oracle HCM train-the-trainer week. I built the structure it lands on: 29 seats, 11 module and track rows, 25 hours, and the module list that becomes the source of truth.',
-  stats:[['29','seats tracked'],['25','hours scheduled'],['11','module and track rows'],['16','company trainees']],
-  what:'A train-the-trainer week usually produces a sign-in sheet and a memory. IBM delivers the content for Oracle HCM. My job is that it lands on structured data instead, because the module list is what the whole curriculum keys off.',
-  bul:['29 seats tracked against named people and their companies, not a headcount.','25 hours across the week, mapped to 11 module and track rows, built before the week runs.','16 company trainees, each linked to the roster and their persona.','IBM delivers the sessions. The module list is the training pillar of the spine rather than a document in a folder.'],
-  impact:'Curriculum now keys off persona and module instead of a best guess about who needs what. When someone asks which of the 2,283 people need a specific course, that is a query now.'},
- {g:2,t:'The Copilot agent family',src:'live in Teams · 4-person pilot',
-  idea:'Not a spec. A governed agent published to Teams the night of July 8, answering the team inline the next morning, and broken twice in front of them in the two days after.',
-  stats:[['10','topics it answers'],['5','trap questions, written first'],['0','new permission models'],['7','fields it will never surface']],
-  what:'The easy version is a chatbot that answers from whatever it can reach, which is the version that leaks something and gets shut off. So the governance went in before the pilot did. Every query runs under the asker&rsquo;s own permissions, writes are disabled at the connector, and seven fields stay buried inside the team.',
-  blocks:[
-   {h:'What shipped',c:[
-     {k:'art',d:[
-      ['A governed agent, live in Teams','published July 8 &middot; answers inline in a group thread'],
-      ['The instruction block','~5,900 characters &middot; against an 8,000 ceiling'],
-      ['A field guide for the team','how to mention it, why each person signs in once'],
-      ['Ten topics, five trap questions','written before anyone had access']]},
-     {k:'note',d:'Four people on the pilot, read only, each one signing in as themselves. Nobody sees a row their own access would not already show them.'}]},
-   {h:'Where it broke',c:[
-     {k:'split',d:[
-      ['July 9 &middot; the retrieval layer',[
-       'One system was wired three ways, so every prompt fired all three and the agent choked on volume.',
-       'The cleanup deleted the wrong one. What stayed behind was an index of a snapshot, not a live query.',
-       'Answers came back as fragments, and the agent said so instead of filling the gap.']],
-      ['July 10 &middot; the confidence layer',[
-       'A tester caught two answers stated with confidence and wrong. One denied a core system was in the program. One named two sheets that do not exist.',
-       'First patch: name the systems in scope, and never invent a source. If nothing is wired to a question, say that and name the closest real one.',
-       'Second patch, same day: print people&rsquo;s names, not the internal codes that join the tables.']]]},
-     {k:'quote',d:['Judgment layer good; retrieval layer misconfigured.','The build log &middot; July 9']}]},
-   {h:'The rule that came out of it',c:[
-     {k:'matrix',d:{q:'One system, one wiring. If a source appears twice in an agent&rsquo;s configuration, one of them is a bug.',corner:'Source',cols:['Wired as a tool','Wired as knowledge','Turned off'],rows:[
-      ['Smartsheet','the live numbers',[['y','Once, read only'],['n','Never'],['o','']]],
-      ['SharePoint and Teams','documents and threads',[['n','Never'],['y','Scoped to folders'],['o','']]],
-      ['Web and open knowledge','everything outside',[['o',''],['o',''],['y','Every agent']]]]}},
-     {k:'note',d:'Ten rules like that one, written the night it broke. They now govern the whole family: one hub, five children scoped to a topic each, and a separate agent wherever the audience or the write access changes. The steering deck agent is that exception, which is why it is counted as its own piece of work below.'}]}],
-  impact:'Anyone can stand up a chatbot. What transfers is what happens after it breaks: a rule written down the same night, a patch traced back to the answer that caused it, and a configuration the rest of the family inherits. That is the difference between a demo and something IT will let you keep.'},
- {g:2,t:'The adoption platform evaluation',src:'14 named · 0 selected',
+ {g:2,t:'The adoption platform decision',src:'14 named · 0 selected',
   idea:'Fourteen digital adoption platforms named, three formally evaluated, none bought. The blocker was technical, not budgetary, and it was written down.',
   stats:[['14','vendors in the sweep'],['3','demoed in five days'],['~1,600','field users on phones'],['0','bought']],
   what:'An adoption platform overlays step-by-step guidance on software people already use. We wanted one for the ERP and HR rollout. Three vendors got working sessions. The evaluation turned on a question nobody asks in a demo: can this thing reach a roofer holding a phone?',
@@ -1209,35 +1151,55 @@ const OOR_ITEMS=[
        ['Decision deck','2 outline versions'],
        ['Meeting record','11 note files &middot; 13 sessions']]},
      {k:'note',d:'No numeric score. The evaluation ran on yes, no or pending against eight dimensions plus a cost band, and inventing a weighted score would have made the answer look more objective than it was.'}]}],
+  open:'Nothing replaced it. The step-level questions an overlay would have answered, where people stall inside a transaction and where they double back, stay unanswered, and the phone problem for roughly 1,600 field users is still open. What exists is a reason, not a solution.',
   impact:'Nothing was bought, and the reasoning outlives the people who made it. When someone proposes an adoption platform again, the brief already names which systems it cannot reach and why, so the next evaluation starts where this one stopped.'},
- {g:2,t:'The steering deck agent',src:'v0 approved the day it shipped &middot; July 9',
-  idea:'A recurring executive deck that gets rebuilt every cycle. The rule that came out of the first draft is that it must never be rebuilt at all.',
-  stats:[['11','recurring slides, mapped'],['4','a sheet fills outright'],['7','master plans read'],['1','four months cold']],
-  what:'A program leader named this deck when asked which recurring work product ate the most time. A first draft shipped the same day, assembled live out of the sheets instead of written from scratch, and came back approved the same day. Whether a model could write it was never the interesting question.',
+ {g:2,t:'The agent family',src:'live in Teams · two agents in two days',
+  idea:'Not a spec. A governed agent published to Teams the night of July 8, broken twice in front of the team in the two days after, and a second agent shipped and approved inside a single day on the rules the first one produced.',
+  stats:[['5','trap questions, written first'],['0','new permission models'],['10','wiring rules out of one failure'],['11','recurring slides, mapped']],
+  what:'The easy version is a chatbot that answers from whatever it can reach, leaks something, and gets shut off. So the governance went in before the pilot did. Every query runs under the asker&rsquo;s own permissions, writes are disabled at the connector, and seven fields stay buried inside the team. Everything built after it inherits that wiring.',
   blocks:[
-   {h:'Which parts are data, and which are somebody&rsquo;s judgment',c:[
+   {h:'What shipped',c:[
+     {k:'art',d:[
+      ['A governed agent, live in Teams','published July 8 &middot; answers inline in a group thread'],
+      ['The instruction block','~5,900 characters &middot; against an 8,000 ceiling'],
+      ['A field guide for the team','how to mention it, why each person signs in once'],
+      ['Ten topics, five trap questions','written before anyone had access']]},
+     {k:'note',d:'Four people on the pilot, read only, each one signing in as themselves. Nobody sees a row their own access would not already show them.'}]},
+   {h:'Where it broke',c:[
+     {k:'split',d:[
+      ['July 9 &middot; the retrieval layer',[
+       'One system was wired three ways, so every prompt fired all three and the agent choked on volume.',
+       'The cleanup deleted the wrong one. What stayed behind was an index of a snapshot, not a live query.',
+       'Answers came back as fragments, and the agent said so instead of filling the gap.']],
+      ['July 10 &middot; the confidence layer',[
+       'A tester caught two answers stated with confidence and wrong. One denied a core system was in the program. One named two sheets that do not exist.',
+       'First patch: name the systems in scope, and never invent a source. If nothing is wired to a question, say that and name the closest real one.',
+       'Second patch, same day: print people&rsquo;s names, not the internal codes that join the tables.']]]},
+     {k:'quote',d:['Judgment layer good; retrieval layer misconfigured.','The build log &middot; July 9']}]},
+   {h:'The rule that came out of it',c:[
+     {k:'matrix',d:{q:'One system, one wiring. If a source appears twice in an agent&rsquo;s configuration, one of them is a bug.',corner:'Source',cols:['Wired as a tool','Wired as knowledge','Turned off'],rows:[
+      ['Smartsheet','the live numbers',[['y','Once, read only'],['n','Never'],['o','']]],
+      ['SharePoint and Teams','documents and threads',[['n','Never'],['y','Scoped to folders'],['o','']]],
+      ['Web and open knowledge','everything outside',[['o',''],['o',''],['y','Every agent']]]]}},
+     {k:'note',d:'Ten rules like that one, written the night it broke. They now govern the whole family: one hub, five children scoped to a topic each, and a separate agent wherever the audience or the write access changes. The deck agent further down this drawer is that exception, and it was built under the same ten.'}]},
+   {h:'The deck agent &middot; which parts are data, and which are judgment',c:[
      {k:'bars',d:[
        ['A sheet fills it',4,'Wave dates, engagement totals, the open high risks, and the decisions closed since the last meeting. The data exists, it is clean, and it is already computing.',1],
        ['A person decides',3,'Tower health, the management considerations, staffing. The agent proposes and a named owner confirms, because health is a judgment call and not a column.',0],
        ['Nobody automates it',4,'Title, agenda, the cost model, the appendix. These ship as a header with an owner name and nothing invented underneath it.',0]]},
-     {k:'note',d:'Eleven recurring slides, each mapped to the sheet that actually feeds it. The map is the artifact. The agent only sits on top of it, and a trap question keeps it there: asked to redesign a slide, it has to refuse.'}]},
-   {h:'What reading seven plans turned up',c:[
+     {k:'note',d:'Eleven recurring slides, each mapped to the sheet that actually feeds it. The map is the artifact. The approved deck is the master: it gets revised in place, never regenerated. The agent only sits on top of the map, and a trap question keeps it there: asked to redesign a slide, it has to refuse.'}]},
+   {h:'What reading seven tower plans turned up',c:[
      {k:'funnel',d:[
       [7,'read live','The deck reports on every tower, so every tower plan gets opened rather than quoted from memory.'],
       [6,'moved this week','Touched inside the last three days. Those numbers can be stated as current, because they are.'],
       [1,'four months cold','One plan had not moved since February. The agent has to say that date out loud instead of quoting the plan as current, which is the whole rule in one row.']]},
      {k:'note',d:'Nobody asked for a freshness check. It fell out of opening every plan the deck reports on. The honest framing: this ran instead of five queued items rather than beside them, and it is one agent in the same family under the same wiring rules, picked and approved by an executive inside a single day.'}]}],
-  impact:'Ask a model for an executive deck and it hands you a beautiful new one, which is the wrong answer, because the committee reads the deck it already approved. The rule runs the other way: the approved deck is the master, revise the recurring cells in place, never rebuild, and every changed number carries the sheet behind it.'},
- {g:3,t:'Running the program',src:'50 actions · 8 themes',
-  idea:'Ten business readiness presentations plus the HR and payroll roadmap, eleven internal sessions turned into 50 tracked actions across 8 themes, and the tower coordinator role redlined and interviewed.',
-  stats:[['10','readiness presentations'],['50','tracked actions'],['15','I own by name'],['7','towers coordinated']],
-  what:'Somebody has to hold the thread across seven towers, which mostly means turning conversations into things with owners and dates on them.',
-  bul:['Ten business readiness presentations plus the HR and payroll roadmap.','Eleven internal sessions turned into 50 tracked actions across 8 themes, each with an owner.','Eight milestone dates and eight named risks carried across seven towers.','The tower coordinator role redlined and candidates interviewed, because the coordination gap was real and structural.','Fifteen of the 50 open actions are mine by name.'],
-  impact:'The program has a running record of what was decided and who owns it. That is unglamorous and it is the difference between seven towers moving together and seven towers each having a good quarter.'},
- {g:3,t:'The master plan and its nine rebuilds',src:'Smartsheet · 9 versions',
-  idea:'Nine versions of the business readiness master plan in seven months. Six of the nine were set off by something other than the work changing.',
-  stats:[['9','versions in 7 months'],['3','stretches I held it'],['593 &rarr; 297','rows rebuilt and merged'],['47','integration points']],
-  what:'A master plan in Smartsheet carrying 542 named tasks and 117 milestones for seven towers. I rebuilt it nine times between January and June. Six of the nine rebuilds were set off by something other than the work changing.',
+  open:'The pilot is four people, not the team. Five topic children are scoped and not all published. The deck agent has one approved draft behind it rather than a full cycle, so the revise-in-place rule has been stated and not yet tested across two meetings.',
+  impact:'Anyone can stand up a chatbot. What transfers is what happens after it breaks: a rule written down the same night, a patch traced back to the answer that caused it, and a configuration the rest of the family inherits. That is the difference between a demo and something IT will let you keep.'},
+ {g:3,t:'The master plan and the seven-tower wiring',src:'Smartsheet · 9 versions · 7 towers',
+  idea:'Nine versions of the business readiness master plan in seven months, wired to six other tower plans by row ID. Six of the nine rebuilds were set off by something other than the work changing.',
+  stats:[['9','versions in 7 months'],['593 &rarr; 297','rows rebuilt and merged'],['545','rows carry an integration ID'],['0','integration registers built']],
+  what:'A master plan in Smartsheet carrying 542 named tasks and 117 milestones, rebuilt nine times between January and June, with eight milestone dates and eight named risks somebody has to carry across seven towers. The towers link into each other by row ID, which makes it infrastructure rather than a diagram: a delete in one breaks another.',
   blocks:[
    {h:'Nine versions, and what set each one off',c:[
      {k:'lineage',d:{
@@ -1259,7 +1221,7 @@ const OOR_ITEMS=[
        ['Legacy master',593,'Fifty columns, 542 named tasks, 117 milestones, five levels of indent. Also 47 blank rows, 10 tasks listed as their own predecessor, and a training chain that finished after the go-live it was supposed to enable.',0],
        ['Rebuilt',263,'Phase 1 rebuilt from 267 source rows into 8 sections and 13 milestones, with the column count cut from 50 to about 33 on measured fill rates rather than opinion.',1],
        ['Merged',297,'Then the completed history and the integration rows went back in, so the new plan carries the old one instead of replacing it.',0]]},
-     {k:'note',d:'The legacy sheet could not be deleted and re-uploaded. Other towers link into it through 545 rows carrying an integration ID and 31 rows carrying live linked dates. Every change had to happen in place, row by row. Renaming a task is safe. Deleting a linked row breaks somebody else’s plan.'}]},
+     {k:'note',d:'The legacy sheet could not be deleted and re-uploaded. Other towers link into it through 545 integration-ID rows and 31 rows carrying live linked dates. Every change had to happen in place, row by row. Missing counterparts went from 18 to 3 in one week. Renaming a task is safe. Deleting a linked row breaks somebody else’s plan.'}]},
    {h:'The shape that survived all nine',c:[
      {k:'sheet',d:{cols:['WBS','Task','Pred','Integration #','Tower'],rows:[
        [0,'4','HCM and payroll pilot','','',''],
@@ -1273,12 +1235,22 @@ const OOR_ITEMS=[
        [1,'4.4','Go-live and hypercare','','',''],
        [2,'4.4.1','Cutover readiness sign-off','4.3.1','BR-0163','Cutover']]}},
      {k:'note',d:'Ten generic rows, no real dates. Readiness, then communications, then training, then go-live repeats inside every system section, which is the one structural idea worth keeping out of all nine versions. Smartsheet silently ignores a predecessor on a summary row, so every dependency has to sit on a leaf task.'}]},
-   {h:'Where it touches the other six towers',c:[
+   {h:'Who the readiness tower actually talks to',c:[
+     {k:'hub',d:{center:['Business Readiness','where I sit'],spokes:[
+       ['Operations','field operations',4,1],
+       ['Process Transformation','harmonized process design',4,2],
+       ['Finance and Accounting','NetSuite and finance',3,1],
+       ['HR and Payroll','Oracle HCM and Miter',3,1],
+       ['Validation','test plans and evidence',2,0],
+       ['DIMBA','data, integrations and master data',1,0]]}},
+     {k:'note',d:'No plan holds a session count, so this is counted off meeting notes: 17 by strict count, 16 if two notes dated the same day are one meeting, a floor of 11 with a note file behind every one. Five were mandated by the program office in one week. The other twelve happened because somebody went and got them.'}]},
+   {h:'What the links carry, and what they only look like they carry',c:[
      {k:'split',d:[
-       ['This tower',['47 business readiness integration points, 18 of them complete when the plan changed hands.','Missing counterpart line items went from 18 to 3 in one week.']],
-       ['The program around it',['Seven tower workbooks, 6,033 task rows.','Column counts running from 23 to 50, and the integration block sitting in a different column position in every one.']]]},
-     {k:'note',d:'Every rebuild here had to hold those 47 links intact, because the row IDs on the other side of them belong to six other plans. What the links actually carry, and what they only look like they carry, is the next item over.'}]}],
-  impact:'Six other towers reach into this plan by row ID, so it is the structural record whether or not anyone is looking at it. Nine rebuilds in seven months is not a fact about the plan. It is a fact about how often the thing above the plan changed, and the dates still held.'},
+       ['What the links resolve',['Identity, through a stable auto-number, which is why reordering a plan is safe and deleting a row is not.','545 rows carry an integration ID and 107 carry a real predecessor, so neither column survives a rebuild that drops it.','This tower&rsquo;s own plan holds 33 rows carrying all nine integration fields.']],
+       ['What they only look like they resolve',['Status. The linked date and percent columns are hand-copied snapshots, so they age the moment the other plan moves.','A one-sided link is an edge one tower believes in and the other does not, testable by checking whether the counterpart row points back.','Neither test runs anywhere today, because nothing reads all seven plans at once.']]]},
+     {k:'note',d:'About a third of the 545 flags name no counterpart. Counterpart turnover is the other half of it. People moved on and off these links five separate times that I can name, and no plan carries an assignment history, so it cannot be measured.'}]}],
+  open:'One register across all seven plans was specified in June and never built, and that gap is mine. Nothing reads all seven plans at once, so neither the counterpart test nor the status test runs anywhere today. Both of them are checks I specified and did not build.',
+  impact:'Nine rebuilds in seven months is not a fact about the plan. It is a fact about how often the thing above the plan changed, and the dates still held. The identity half of the wiring holds and the status half drifts, which is a fact somebody has to own rather than discover during a cutover.'},
  {g:3,t:'The staffing and budget model',src:'Excel · 12 versions',
   idea:'A tower with no seated lead and no budget, days out from a program rollup. Built from zero in six days, then carried through 12 versions in 16 weeks and three changes of leadership.',
   stats:[['12','versions in 16 weeks'],['6','days from zero to review'],['3','scenarios priced side by side'],['35','published sources cited']],
@@ -1319,27 +1291,8 @@ const OOR_ITEMS=[
        ['Hours a person needs on the platform','Oracle published training paths'],
        ['Per diem, lodging and airfare','GSA fiscal 2026 rates and Bureau of Transportation Statistics']]},
      {k:'note',d:'Thirty-five numbered sources, each mapped to the tab and cell range it feeds, with the citation sitting in a comment on the cell itself. Nobody had to take my word for a number.'}]}],
-  impact:'When the program office asked what could come out, the answer was a parallel descoped version delivered the next working day, and the review it triggered concluded there was nothing feasible left to cut. The model was not defended in a meeting. It was built so the answer was already sitting in it.'},
- {g:3,t:'Cross-tower integration',src:'7 towers &middot; 17 sessions',
-  idea:'Seven tower plans wired to each other by row ID. The links resolve identity correctly and status not at all.',
-  stats:[['7','tower plans, one row-ID space'],['545','rows carry an integration ID'],['17','cross-tower sessions'],['0','integration registers built']],
-  what:'Seven towers each run their own master plan and they link into each other by row ID. That makes the wiring real infrastructure rather than a diagram, and it means a delete in one plan breaks another one, so every change happens in place, row by row.',
-  blocks:[
-   {h:'Who the readiness tower actually talks to',c:[
-     {k:'hub',d:{center:['Business Readiness','where I sit'],spokes:[
-       ['Operations','field operations',4,1],
-       ['Process Transformation','harmonized process design',4,2],
-       ['Finance and Accounting','NetSuite and finance',3,1],
-       ['HR and Payroll','Oracle HCM and Miter',3,1],
-       ['Validation','test plans and evidence',2,0],
-       ['DIMBA','data, integrations and master data',1,0]]}},
-     {k:'note',d:'No plan holds a session count, so this is counted off meeting notes: 17 by strict count, 16 if two notes dated the same day are one meeting, a floor of 11 with a note file behind every one. Five were mandated by the program office in one week. The other twelve happened because somebody went and got them.'}]},
-   {h:'What the links carry, and what they only look like they carry',c:[
-     {k:'split',d:[
-       ['What the links resolve',['Identity, through a stable auto-number, which is why reordering a plan is safe and deleting a row is not.','545 rows carry an integration ID and 107 carry a real predecessor, so neither column survives a rebuild that drops it.','This tower&rsquo;s own plan holds 33 rows carrying all nine integration fields.']],
-       ['What they only look like they resolve',['Status. The linked date and percent columns are hand-copied snapshots, so they age the moment the other plan moves.','A one-sided link is an edge one tower believes in and the other does not, testable by checking whether the counterpart row points back.','Neither test runs anywhere today, because nothing reads all seven plans at once.']]]},
-     {k:'note',d:'About a third of the 545 flags name no counterpart. One register across all seven plans was specified in June and never built, and that gap is mine. Counterpart turnover is the second. People moved on and off these links five separate times that I can name, and no plan carries an assignment history, so it cannot be measured.'}]}],
-  impact:'Seven plans that link to each other are either an asset or a liability depending on whether anyone is watching the links. Right now the identity half holds and the status half drifts, which is a fact somebody has to own rather than discover during a cutover.'}];
+  open:'The last pass was June. The model prices three scenarios and decides none of them, which is the correct division of labor and also means it settles nothing on its own. Two roles cut in review sit in the sheet at zero rather than deleted, so the delta stays visible instead of quietly disappearing.',
+  impact:'When the program office asked what could come out, the answer was a parallel descoped version delivered the next working day, and the review it triggered concluded there was nothing feasible left to cut. The model was not defended in a meeting. It was built so the answer was already sitting in it.'}];
 function oorTiles(){return OOR_SPINE.map(s=>`<div class="oo-tile"><span class="oo-tv">${s[0]}</span><span class="oo-tx">${s[1]}</span></div>`).join('');}
 function oorGrow(){return OOR_GROW.map((g,i)=>`<div class="oo-grow"><span class="oo-gv">${g[0]}</span><span class="oo-ga">${i?'&rarr;':'&bull;'}</span><span class="oo-gx">${g[1]}</span></div>`).join('');}
 function oorNetBars(){const mx=Math.max.apply(null,OOR_NET.map(n=>n[1]));
@@ -1373,8 +1326,8 @@ function openOor(){
    <div class="oo-tl">${oorSteps()}</div>
    <div class="oo-note">Anchored to one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Roughly 1,637 people sit in field departments across the portfolio.</div></div>
   <div class="ra-sec"><div class="ra-sh">What I fixed that nobody asked me to</div>${oorFixes()}</div>
-  <div class="ra-sec"><div class="ra-sh">The work, in fifteen pieces &middot; click any one</div>${grps}</div>
-  <div class="fw-close-line">None of this is a slide. It is a system that is running, and my name is on every key in it.</div>`;
+  <div class="ra-sec"><div class="ra-sh">The work, piece by piece &middot; click any one</div>${grps}</div>
+  <div class="fw-close-line">None of this is a slide. It is a system that is running, and my name is on every key in it. The role that would hold it together is redlined and interviewed, and nobody is in it.</div>`;
  $('#oor').classList.add('on');}
 function closeOor(){const o=$('#oor');if(o)o.classList.remove('on');closeOoi();}
 /* render primitives. Each returns a string. Reused by later drill-downs. */
@@ -1454,6 +1407,7 @@ function oorItem(i){const o=OOR_ITEMS[i];if(!o)return;
   <div class="oo-stats">${st}</div>
   <div class="rb-h">What it is</div><div class="fwo-p">${o.what}</div>
   ${mid}
+  ${o.open?`<div class="rb-h">What is not done</div><div class="fwo-p">${o.open}</div>`:''}
   <div class="rb-h">Why it matters</div><div class="fwo-p">${o.impact}</div>`;
  $('#ooDrawer').scrollTop=0;
  $('#ooDrawer').classList.add('on');const c=$('#ooiClose');if(c)c.onclick=closeOoi;}
@@ -1782,7 +1736,7 @@ function finale(){act=-2;setActVisibility(-2);
  $('#ind').style.opacity='1';$('#ind').style.left='100%';$('#tfill').style.width='100%';
  const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent='2024 to 2027';
  cap.querySelector('h3').textContent='The whole arc';
- cap.querySelector('p').textContent='Four chapters, 26 pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
+ cap.querySelector('p').textContent='Four chapters, '+ACTS.reduce((a,x)=>a+x.work.reduce((b,w)=>b+w.items.length,0),0)+' pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
  cap.querySelector('.clz').textContent='Three of these four chapters already happened. The fourth is the only one still open.';
  cap.classList.add('hasclz');
  cap.querySelector('.tag').textContent='Drag to orbit  ·  click any node  ·  the walk restarts at 2024';
