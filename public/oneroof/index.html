@@ -351,6 +351,15 @@ body.explore.cur .cursor{display:block}
 .ra-grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:26px}
 .ra-big{font-family:var(--serif);font-size:28px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1}
 .ra-big span{font-size:13px;color:#8FB3D6;font-weight:400}
+.aq-lead{font-family:var(--serif);font-size:19px;line-height:1.5;color:#DCE6F2;max-width:76ch;margin-bottom:18px}
+.aq-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(143,179,214,.14);border:1px solid rgba(143,179,214,.14)}
+.aq-col{background:#0D1E32;padding:15px 18px}
+.aq-h{font-family:var(--mono);font-size:8.5px;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:12px;display:block}
+.aq-col ul{margin:0;padding:0;list-style:none}
+.aq-col li{font-size:12px;color:#B4C6DA;line-height:1.5;margin-bottom:9px;padding-left:13px;position:relative}
+.aq-col li:last-child{margin-bottom:0}
+.aq-col li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:1px;background:#5E748F}
+.aq-col li b{color:#E4EDF6;font-weight:600}
 .ra-fbar{display:flex;height:26px;width:100%;overflow:hidden;border:1px solid rgba(143,179,214,.14)}
 .ra-fseg{height:100%;transition:.3s}
 .ra-flegs{display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:12px}
@@ -444,7 +453,7 @@ body.explore.cur .cursor{display:block}
 .fwo-src{font-family:var(--mono);font-size:9px;color:#7E93AB;letter-spacing:.2px;margin-bottom:16px}
 .fwo-p{font-size:13px;color:#C8D6E6;line-height:1.6;margin-bottom:14px}
 .fwo-rides{color:#9FB4CC}
-@media(max-width:820px){.fw-proofs{grid-template-columns:1fr}.fw-cards{grid-template-columns:1fr}}
+@media(max-width:820px){.fw-proofs{grid-template-columns:1fr}.fw-cards{grid-template-columns:1fr}.aq-cols{grid-template-columns:1fr}.aq-lead{font-size:16px}}
 /* ===== OneRoof build overlay (reuses .radv-card chrome) ===== */
 #oor{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.88),rgba(4,10,19,.96));backdrop-filter:blur(8px)}
 #oor.on{display:flex}
@@ -1303,6 +1312,22 @@ function oorFunnel(){const tot=OOR_MAP.reduce((s,x)=>s+x[1],0);
  return `<div class="ra-fbar">${seg}</div><div class="ra-flegs">${leg}</div>`;}
 function oorSteps(){return OOR_TL.map(s=>`<div class="oo-step"><span class="oo-sd"></span><span class="oo-st">${s[0]}</span><span class="oo-sb">${s[1]}</span></div>`).join('');}
 function oorFixes(){return OOR_FIX.map(f=>`<div class="oo-fixr"><div class="oo-fn">${f[0]}</div><div><span class="oo-fh">What was wrong</span><div class="oo-fb">${f[1]}</div></div><div><span class="oo-fh">What it is now</span><div class="oo-fa">${f[2]}</div></div></div>`).join('');}
+/* the acquisition claim. What a seventeenth company loads into, and what it still does not get. */
+const AQ_LEAD='Sixteen companies sit on one data model. There will be a seventeenth, because that is how this company grows, and the only question is when. The difference now is that its people data loads into a shape that already exists, instead of somebody deriving that shape again from whatever files the company happens to send.';
+const AQ_HAVE=[
+ 'One employee record shape, <b>33 fields</b>, keyed on a code that never changes. Every sheet and report downstream survives the load.',
+ '<b>403</b> raw job titles already collapsed to <b>121</b> master jobs in 10 families. A new company&rsquo;s titles get matched against that, not sorted out alongside it.',
+ '<b>34 personas</b> that decide what training a person gets, so the role answers the training question instead of a person guessing.',
+ 'Three collection instruments in one shape and one named data owner per company. The ask is identical every time.',
+ 'The change leader and field trainer networks, with their roles, selection rules and cadence already written. The seventeenth company fills seats instead of designing them.'];
+const AQ_HAND=[
+ 'Crew intake is a proof of concept at <b>four companies, not sixteen</b>. The seventeenth inherits a draft there, not a standard.',
+ 'Supervisor chains still come from whatever the company keeps. The model holds them, it does not produce them.',
+ 'Anything that company runs which the other sixteen do not, a trade line or a legacy system, is still a bespoke pass.',
+ 'No seventeenth company has been through this end to end. Sixteen were folded in while the model was still being built, which is a harder problem than loading one against a model that already exists.'];
+const AQ_NOTE='The cost of not having this is measured. One company sent three versions of its roster in one week, and its confirmed supervisor count moved from 19 to 117 of 191. A second company that same week classified its people by workers compensation class, which matched neither the first company nor the model. Both translations are written down now.';
+function aqCols(){const col=(h,c,xs)=>`<div class="aq-col"><span class="aq-h" style="color:${c}">${h}</span><ul>${xs.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+ return `<div class="aq-cols">${col('What already exists','#6FA98C',AQ_HAVE)}${col('What is still done by hand','#C77E77',AQ_HAND)}</div>`;}
 function openOor(){
  const kpis=OOR_KPI.map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
  const grps=OOR_GRP.map((g,gi)=>{
@@ -1327,6 +1352,10 @@ function openOor(){
    <div class="oo-note">Anchored to one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Roughly 1,637 people sit in field departments across the portfolio.</div></div>
   <div class="ra-sec"><div class="ra-sh">What I fixed that nobody asked me to</div>${oorFixes()}</div>
   <div class="ra-sec"><div class="ra-sh">The work, piece by piece &middot; click any one</div>${grps}</div>
+  <div class="ra-sec" id="aqSec"><div class="ra-sh">The seventeenth company &middot; what it loads into</div>
+   <div class="aq-lead">${AQ_LEAD}</div>
+   ${aqCols()}
+   <div class="ra-note">${AQ_NOTE}</div></div>
   <div class="fw-close-line">None of this is a slide. It is a system that is running, and my name is on every key in it. The role that would hold it together is redlined and interviewed, and nobody is in it.</div>`;
  $('#oor').classList.add('on');}
 function closeOor(){const o=$('#oor');if(o)o.classList.remove('on');closeOoi();}
