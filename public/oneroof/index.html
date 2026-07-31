@@ -57,7 +57,7 @@ body.explore.cur .cursor{display:block}
 #gerr{color:#E4A7A7;font-size:12px;margin-top:12px;min-height:16px;font-family:var(--mono);letter-spacing:.3px}
 .gate-foot{font-family:var(--mono);font-size:10px;margin-top:36px;letter-spacing:1px;color:#41597A;opacity:0;animation:rise .9s .7s forwards}
 .gate-foot b{color:#6E86A2;font-weight:400}
-.gate-note{font-family:var(--mono);font-size:9.5px;letter-spacing:.6px;color:#3D5674;margin-top:12px;opacity:0;animation:rise .9s .82s forwards;display:flex;align-items:center;gap:8px}
+.gate-note{font-family:var(--mono);font-size:12px;letter-spacing:.6px;color:#5E7896;margin-top:12px;opacity:0;animation:rise .9s .82s forwards;display:flex;align-items:center;gap:8px}
 .gate-note::before{content:"";width:5px;height:5px;border-radius:50%;background:#3B7A5E;box-shadow:0 0 8px 1px rgba(59,122,94,.8);flex:none}
 @keyframes rise{to{opacity:1;transform:none}}
 /* ================= WELCOME ================= */
@@ -90,7 +90,7 @@ body.explore.cur .cursor{display:block}
 #cap .yr .ix{color:#4E6E90}
 #cap h3{font-family:var(--serif);font-size:25px;font-weight:600;color:#fff;margin:9px 0 9px;letter-spacing:-.01em}
 #cap p{font-size:13.5px;color:#C4D2E2;line-height:1.55}
-#cap .tag{font-family:var(--mono);font-size:9px;color:#66809E;text-transform:uppercase;letter-spacing:.9px;margin-top:14px;padding-top:13px;border-top:1px solid rgba(143,179,214,.14);line-height:1.6}
+#cap .tag{font-family:var(--mono);font-size:10.5px;color:#7E97B4;text-transform:uppercase;letter-spacing:.9px;margin-top:14px;padding-top:13px;border-top:1px solid rgba(143,179,214,.14);line-height:1.6}
 #cap .clz{font-family:var(--serif);font-style:italic;font-size:14.5px;color:#DCEBF9;line-height:1.4;margin-top:14px;display:none}
 #cap.hasclz .clz{display:block}
 /* rail / progress meridian */
@@ -113,7 +113,7 @@ body.explore.cur .cursor{display:block}
 #auto .ad{width:5px;height:5px;border-radius:50%;background:#8FB3D6;box-shadow:0 0 8px 2px rgba(143,179,214,.55);animation:adp 2.2s ease-in-out infinite}
 @keyframes adp{0%,100%{opacity:.3;transform:scale(.78)}50%{opacity:1;transform:scale(1.18)}}
 #autxt{color:#C4D2E2}
-#auhint{color:#546A85}
+#auhint{color:#6E87A5}
 #track{position:relative;width:min(560px,52vw);height:56px}
 #track.live .tfill,#track.live .ind{transition:none}
 .tline{position:absolute;left:0;right:0;top:14px;height:1px;background:rgba(143,179,214,.22)}
@@ -140,8 +140,8 @@ body.explore.cur .cursor{display:block}
 .lab{position:absolute;transform:translate(-50%,-160%);font-family:var(--mono);font-size:10px;letter-spacing:.4px;color:#B6C6D8;white-space:nowrap;text-shadow:0 1px 10px rgba(0,0,0,.85);pointer-events:none;transition:opacity .4s,color .25s}
 .lab.act{transform:translate(-50%,-210%)}
 .lab.act .an{font-family:var(--serif);font-size:16px;color:#fff;letter-spacing:-.01em;font-weight:600;display:block}
-.lab.act .ay{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--lnavy);display:block;margin-bottom:3px}
-.lab.edge{color:#7FA7CE;font-size:9px;text-transform:uppercase;letter-spacing:1.3px;transform:translate(-50%,-50%);opacity:.85}
+.lab.act .ay{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--lnavy);display:block;margin-bottom:3px}
+.lab.edge{color:#9FBEDF;font-size:11px;text-transform:uppercase;letter-spacing:1.3px;transform:translate(-50%,-50%);opacity:.95}
 .lab.edge::before{content:"\21B3 "}
 .lab.bu{color:#A8BED6;font-size:9.5px;transform:translate(-50%,-230%);text-shadow:0 1px 3px rgba(4,10,19,.95),0 0 10px rgba(4,10,19,.9)}
 .lab.hot{color:#fff}
@@ -313,7 +313,7 @@ body.explore.cur .cursor{display:block}
 .bp-f{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#9E3B34,#C86B63)}
 .bp-v{font-family:var(--mono);font-size:10.5px;color:#9E3B34;text-align:right}
 /* collaboration map overlay (dark, blueprint) */
-#cmap{position:fixed;inset:0;z-index:86;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,rgba(8,17,30,.86),rgba(4,10,19,.95));backdrop-filter:blur(7px)}
+#cmap{position:fixed;inset:0;z-index:86;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,rgba(8,17,30,.97),rgba(4,10,19,.99));backdrop-filter:blur(7px)}
 #cmap.on{display:flex}
 .cmap-card{position:relative;width:95vw;height:92vh;max-width:1500px;max-height:960px;display:flex;flex-direction:column;background:linear-gradient(180deg,#0C1A2C,#0A1626);border:1px solid rgba(143,179,214,.28);box-shadow:0 40px 120px rgba(0,0,0,.6);
   background-image:linear-gradient(rgba(143,179,214,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(143,179,214,.035) 1px,transparent 1px);background-size:100% 100%,36px 36px,36px 36px;transform:translateY(14px) scale(.99);opacity:0;transition:.4s cubic-bezier(.16,1,.3,1)}
@@ -346,7 +346,7 @@ body.explore.cur .cursor{display:block}
 .cm-person .pt{font-family:var(--mono);font-size:8.5px;color:#7E93AB;letter-spacing:.2px}
 @media(max-width:820px){.cm-grid{grid-template-columns:repeat(2,1fr)}.cm-tile.wide{grid-column:span 2;grid-row:auto}}
 /* ===== readiness assessment deep-dive overlay ===== */
-#radv{position:fixed;inset:0;z-index:88;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.88),rgba(4,10,19,.96));backdrop-filter:blur(8px)}
+#radv{position:fixed;inset:0;z-index:88;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.97),rgba(4,10,19,.99));backdrop-filter:blur(8px)}
 #radv.on{display:flex}
 .radv-card{position:relative;width:96vw;height:93vh;max-width:1560px;max-height:1000px;display:flex;flex-direction:column;background:linear-gradient(180deg,#0C1A2C,#0A1626);border:1px solid rgba(143,179,214,.28);box-shadow:0 40px 120px rgba(0,0,0,.62);
   background-image:linear-gradient(rgba(143,179,214,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(143,179,214,.03) 1px,transparent 1px);background-size:100% 100%,38px 38px,38px 38px;transform:translateY(16px) scale(.99);opacity:0;transition:.42s cubic-bezier(.16,1,.3,1)}
@@ -362,7 +362,7 @@ body.explore.cur .cursor{display:block}
 .ra-herok.k2{grid-template-columns:repeat(2,1fr)}
 .ra-kpi{display:flex;flex-direction:column}
 .ra-kv{font-family:var(--serif);font-size:34px;font-weight:600;color:#fff;line-height:1}
-.ra-kl{font-family:var(--mono);font-size:8.5px;letter-spacing:.4px;color:#7E93AB;text-transform:uppercase;margin-top:5px;line-height:1.4}
+.ra-kl{font-family:var(--mono);font-size:10px;letter-spacing:.4px;color:#7E93AB;text-transform:uppercase;margin-top:5px;line-height:1.4}
 .ra-herox{font-size:13.5px;color:#C4D2E2;line-height:1.6}
 .ra-sec{margin-top:22px}
 .ra-sh{font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--lnavy);margin-bottom:13px;padding-bottom:8px;border-bottom:1px solid rgba(143,179,214,.12)}
@@ -382,7 +382,7 @@ body.explore.cur .cursor{display:block}
 .ra-bf{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#2C567E,#8FB3D6);transition:width .5s cubic-bezier(.16,1,.3,1)}
 .ra-bar:hover .ra-bf{background:linear-gradient(90deg,#3E77A8,#B9D3EC)}
 .ra-bv{font-family:var(--mono);font-size:12px;color:#EEF4FB;text-align:right;font-weight:500}
-.ra-note{font-family:var(--mono);font-size:9px;color:#5E748F;letter-spacing:.2px;margin-top:11px;line-height:1.5}
+.ra-note{font-family:var(--mono);font-size:11.5px;color:#7E93AB;letter-spacing:.2px;margin-top:11px;line-height:1.5}
 .ra-grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:26px}
 .ra-big{font-family:var(--serif);font-size:28px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1}
 .ra-big span{font-size:13px;color:#8FB3D6;font-weight:400}
@@ -456,7 +456,7 @@ body.explore.cur .cursor{display:block}
 .rb-find{font-size:13px;color:#C8D6E6;line-height:1.6}
 @media(max-width:900px){.ra-hero{grid-template-columns:1fr;gap:16px}.ra-herok{grid-template-columns:repeat(3,1fr)}.ra-acts{grid-template-columns:repeat(2,1fr)}.ra-grid2{grid-template-columns:1fr;gap:20px}.ra-tl{grid-template-columns:repeat(3,1fr);gap:14px 8px}.ra-tl:before{display:none}.ra-bar{grid-template-columns:104px 1fr 44px}}
 /* ===== forward value overlay (reuses .radv-card chrome) ===== */
-#fwd{position:fixed;inset:0;z-index:89;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.88),rgba(4,10,19,.96));backdrop-filter:blur(8px)}
+#fwd{position:fixed;inset:0;z-index:89;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.97),rgba(4,10,19,.99));backdrop-filter:blur(8px)}
 #fwd.on{display:flex}
 #fwd.on .radv-card{transform:none;opacity:1}
 #fwdBody{padding:20px 24px 30px;overflow-y:auto;position:relative}
@@ -490,7 +490,7 @@ body.explore.cur .cursor{display:block}
 .fwo-rides{color:#9FB4CC}
 @media(max-width:820px){.fw-proofs{grid-template-columns:1fr}.fw-cards{grid-template-columns:1fr}.aq-cols{grid-template-columns:1fr}.aq-lead{font-size:16px}}
 /* ===== OneRoof build overlay (reuses .radv-card chrome) ===== */
-#oor{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.88),rgba(4,10,19,.96));backdrop-filter:blur(8px)}
+#oor{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 36%,rgba(8,17,30,.97),rgba(4,10,19,.99));backdrop-filter:blur(8px)}
 #oor.on{display:flex}
 #oor.on .radv-card{transform:none;opacity:1}
 #oorBody{padding:20px 24px 30px;overflow-y:auto;position:relative}
@@ -519,11 +519,11 @@ body.explore.cur .cursor{display:block}
 .oo-fb{font-size:11.5px;color:#9BAEC4;line-height:1.55}
 .oo-fa{font-size:11.5px;color:#B9D2C4;line-height:1.55}
 .oo-fh{font-family:var(--mono);font-size:7.5px;letter-spacing:1.2px;text-transform:uppercase;color:#66809E;margin-bottom:4px;display:block}
-.oo-note{font-family:var(--mono);font-size:9px;color:#5E748F;letter-spacing:.2px;margin-top:11px;line-height:1.55}
+.oo-note{font-family:var(--mono);font-size:11.5px;color:#7E93AB;letter-spacing:.2px;margin-top:11px;line-height:1.55}
 .oo-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(143,179,214,.14);border:1px solid rgba(143,179,214,.14);margin-bottom:18px}
 .oo-stat{background:#0D1E32;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
 .oo-sv{font-family:var(--serif);font-size:18px;font-weight:600;color:#EEF4FB;line-height:1.05}
-.oo-sl{font-family:var(--mono);font-size:7.5px;letter-spacing:.4px;color:#7E93AB;text-transform:uppercase;line-height:1.35}
+.oo-sl{font-family:var(--mono);font-size:9px;letter-spacing:.4px;color:#7E93AB;text-transform:uppercase;line-height:1.35}
 #ooDrawer{position:absolute;top:0;right:0;bottom:0;width:560px;max-width:92vw;background:linear-gradient(180deg,#10233A,#0B1A2C);border-left:1px solid rgba(143,179,214,.3);box-shadow:-24px 0 60px rgba(0,0,0,.5);transform:translateX(102%);transition:.34s cubic-bezier(.16,1,.3,1);padding:24px 26px;overflow-y:auto;z-index:3}
 #ooDrawer.on{transform:none}
 .oo-bul{margin:0 0 16px;padding:0;list-style:none}
@@ -680,6 +680,14 @@ body.explore.cur .cursor{display:block}
 @media(max-width:680px){#brand{max-width:22ch}#brand .t{font-size:15px}#cap{bottom:118px;width:74vw}#track{width:58vw}.tick .tt{font-size:0}#ctrls{bottom:118px;right:16px}#hint{display:none}
  #auto{bottom:100px;font-size:8px;letter-spacing:1px;gap:7px}#auhint{display:none}
  #topbar{background:linear-gradient(180deg,rgba(4,10,19,.94) 0%,rgba(4,10,19,.78) 55%,rgba(4,10,19,0) 100%)}.tkbtn{background:rgba(9,18,32,.93);white-space:nowrap}}
+/* D11: guidance layer */
+.lab.act .ah{font-family:var(--serif);font-size:21px;font-weight:600;color:#DCEBF9;display:none;margin-top:7px}body.wide .lab.act .ah{display:block}
+.lab.act .ahl{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:#8FA6BF;display:none;margin-top:2px}body.wide .lab.act .ahl{display:block}
+.wdur{font-family:var(--mono);font-size:12px;letter-spacing:.8px;color:#8FA6BF;margin-top:16px}
+.radv-close,.cm-close{width:auto;border-radius:17px;padding:0 14px;display:inline-flex;align-items:center;gap:8px}
+.radv-close .xw,.cm-close .xw{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase}
+#rail{transition:padding .45s cubic-bezier(.16,1,.3,1)}
+@media(max-width:1660px){body.pnl #rail{padding-right:436px}body.pnl #auto{left:calc(50% - 218px)}body.pnl #ctrls{right:462px}}
 @media (prefers-reduced-motion: reduce){#grain{display:none}
   .gcoord,.gframe h1 .ln,.gframe p,.gate-in,.gate-foot,.gate-note{animation-duration:.01ms;opacity:1;transform:none}}
 </style></head>
@@ -709,6 +717,7 @@ body.explore.cur .cursor{display:block}
  <h2>Five chapters, 2024 to today. The work, in the order it happened, and where it goes next.</h2>
  <div class="wline" id="wline"></div>
  <div class="wstat" id="wstat"></div>
+  <div class="wdur">The walk runs about a minute. Click anything to go deeper; it pauses the moment you do.</div>
 </div>
 
 <div id="fallback"><div class="fbin" id="fbbody"></div></div>
@@ -749,14 +758,14 @@ body.explore.cur .cursor{display:block}
  <div id="cmap" class="hud"><div class="cmap-card">
   <div class="cm-head">
    <div><div class="cm-tag">Contributions &amp; Forward Value · the people</div><div class="cm-title">Collaboration across the portfolio</div></div>
-   <button class="cm-close" id="cmClose">&#10005;</button>
+   <button class="cm-close" id="cmClose">&#10005;<span class="xw">Close</span></button>
   </div>
   <div id="cmapBody"></div>
  </div></div>
  <div id="radv" class="hud"><div class="radv-card">
   <div class="radv-head">
    <div><div class="radv-tag">Contributions &amp; Forward Value · the readiness assessment</div><div class="radv-title">The readiness assessment, in full</div></div>
-   <button class="radv-close" id="radvClose">&#10005;</button>
+   <button class="radv-close" id="radvClose">&#10005;<span class="xw">Close</span></button>
   </div>
   <div id="radvBody"></div>
   <div id="raDrawer"></div>
@@ -764,7 +773,7 @@ body.explore.cur .cursor{display:block}
  <div id="fwd" class="hud"><div class="radv-card">
   <div class="radv-head">
    <div><div class="radv-tag">Contributions &amp; Forward Value · the case</div><div class="radv-title">What I can build for RCA</div></div>
-   <button class="radv-close" id="fwdClose">&#10005;</button>
+   <button class="radv-close" id="fwdClose">&#10005;<span class="xw">Close</span></button>
   </div>
   <div id="fwdBody"></div>
   <div id="fwoDrawer"></div>
@@ -772,7 +781,7 @@ body.explore.cur .cursor{display:block}
  <div id="oor" class="hud"><div class="radv-card">
   <div class="radv-head">
    <div><div class="radv-tag">Contributions &amp; Forward Value · Operation OneRoof</div><div class="radv-title">The OneRoof build, in full</div></div>
-   <button class="radv-close" id="oorClose">&#10005;</button>
+   <button class="radv-close" id="oorClose">&#10005;<span class="xw">Close</span></button>
   </div>
   <div id="oorBody"></div>
   <div id="ooDrawer"></div>
@@ -800,7 +809,7 @@ const PRI=[
  {k:'tech',n:'Enterprise technology and AI'},
  {k:'deliv',n:'Delivery without disruption'}];
 const ACTS=[
- {id:'a1',x:-210,year:'2024',title:'Foundations',tag:'As RCA’s vendor, before OneRoof',
+ {id:'a1',x:-210,year:'2024',title:'Foundations',tag:'As RCA’s vendor, before OneRoof',hn:['87%','PAGA exposure cut at AAA'],
   story:'Where it started, before OneRoof. A small team of us built RCA’s reporting and automation: the multi-business sales scorecard, the n8n migration and SOX data-flow tracing, back-office integrations at three businesses, and the PAGA compliance app at AAA Roofing.',
   toNext:'the foundation exposed the need',
   work:[
@@ -815,14 +824,14 @@ const ACTS=[
    {label:'Payroll compliance',items:[
      {t:'PAGA compliance automation at AAA Roofing',r:'A Retool app on the WorkMax API, syncing both ways. It catches missed meal breaks and the 10 and 12 hour thresholds in real time, then applies premium-pay logic before payroll closes. Corrections run in the employee’s favor only.',imp:'Cut meal and rest penalty exposure by about 87%.',w:'a data engineer and a data analyst I led',pri:['reg','fin'],c:'real',cl:'Realized'}]}],
   rel:{note:'A small team I led, working as RCA’s vendor at the time.',bus:['AAA','WeatherShield','Front Range','Deer Park']}},
- {id:'a2',x:-72,year:'2025-26',title:'The Map',tag:'Readiness program',
+ {id:'a2',x:-72,year:'2025-26',title:'The Map',tag:'Readiness program',hn:['372','interviews on site'],
   story:'The map the whole program now runs on. I led readiness assessments across 12 businesses and corporate, on site: 372 interviews across every function, thousands of survey responses, and a complete systems inventory. That became the diagnostic map and the plans that followed.',
   toNext:'the map became the build',
   work:[
    {label:'Readiness assessments',items:[
      {t:'Readiness assessment program',r:'Led 12 businesses and corporate on site. 372 interviews across 23 functions, thousands of survey responses, a complete systems inventory.',imp:'Produced the diagnostic map and 11 remediation plans the program now runs on, and quantified where the real operational pain was.',w:'a delivery team I led and each business’s leadership',pri:['acq','reg','tech','deliv'],c:'real',cl:'Realized'}]}],
   rel:{note:'',bus:['Crowther','WeatherShield','Bone Dry','Davco','Front Range','Deer Park','Springer-Peterson','Hamilton','Roof-Tech','TORC','AAA','Dynamic National']}},
- {id:'a3',x:78,year:'2026',title:'OneRoof',tag:'Operation OneRoof',
+ {id:'a3',x:78,year:'2026',title:'OneRoof',tag:'Operation OneRoof',hn:['2,287','people on one roster'],
   story:'OneRoof today. The workforce data layer the program runs on is the piece I carry: 23 connected sheets across 16 companies, 2,287 people on one governed roster, 403 raw job titles standardized to 121, and five role networks with 139 named assignments. On top of it sit the Change Leader Network and the Field Trainer Network that carries the rollout to the field.',
   toNext:'the build sets up the seat',
   work:[
@@ -839,7 +848,7 @@ const ACTS=[
      {t:'The master plan and the seven-tower wiring',r:'Nine versions of the business readiness master plan in seven months, 593 rows rebuilt to 263 and merged back to 297, wired to six other tower plans through 545 rows carrying an integration ID.',imp:'Six of the nine rebuilds were set off by something other than the work changing, and the dates still held. The links resolve identity correctly and status not at all. What is not done: one register across all seven plans was specified in June and never built, and that gap is mine.',w:'the program office and six other towers',pri:['deliv','tech'],c:'real',cl:'Realized'},
      {t:'The staffing and budget model',r:'Built the business readiness staffing and budget model from zero in six days for a program review, then carried it through 12 versions in 16 weeks across three changes of tower leadership.',imp:'Three costed scenarios off one rate table, 35 published sources cited to the cell, and a parallel descoped version delivered the day after the program office asked for one. The review came back with nothing feasible left to cut. What is not done: the last pass was June, and the model prices three scenarios without deciding any of them.',w:'the program office and finance',pri:['fin','deliv'],c:'real',cl:'Realized'}]}],
   rel:{note:'The program’s business-readiness team, across seven towers.',bus:['Crowther','Roof-Tech','FSO','WeatherShield','Springer-Peterson','Hamilton']}},
- {id:'a4',x:216,year:'2027-28',title:'Forward',tag:'A point of view, not a record',
+ {id:'a4',x:216,year:'2027-28',title:'Forward',tag:'A point of view, not a record',hn:['6 of 11','ninety-day pieces built'],
   story:'December 31, 2028. Two years past the last cutover. The first three chapters are a record and every number in them can be checked. This one cannot, because the two years it describes have not happened yet. It is a point of view about what the next two years ask for, written the way I would write it if I already worked here.',
   toNext:'the point of view needs a market',
   close:'The capability comes in-house either way. The open question is who carries the part that already exists.',
@@ -857,7 +866,7 @@ const ACTS=[
     not pulled yet; this chapter is the pull, run between writing that sentence and anyone reading it.
     Public sources only: BLS, Census, AIA, Dodge, Freddie Mac. Nothing from a purchased forecast, no
     vendor deck, no reproduced table. Every item is Realized because the pull is a thing that got done. */
- {id:'a5',x:354,year:'Now',title:'The Market',tag:'The one thing the forward chapter said was not built yet',
+ {id:'a5',x:354,year:'Now',title:'The Market',tag:'The one thing the forward chapter said was not built yet',hn:['5','public series, pulled'],
   story:'Five public series, pulled and read. The chapter before this one ends on a promise: the market numbers are public, none of them were pulled, and pulling them was the next thing I said I would build. This is that. No purchased forecast, no vendor deck, nothing reproduced from anyone else.',
   toNext:null,
   close:'The market read is the easy half and it is done. The hard half is our own completed jobs sitting beside it, read by the same engine. That is not a deliverable somebody drops off at the end. It needs somebody inside.',
@@ -969,7 +978,7 @@ function pplCards(title){
  if(title==='The workforce data spine')return oorPanelBlock();
  const a=PROJPPL[title];if(!a)return '';
  return `<div class="ppl"><div class="ppl-h">Worked with</div>${a.map(p=>`<div class="pcard"><span class="pdot r-${p.r}"></span><div class="pcx"><div class="pn">${p.n}</div><div class="pt">${p.t} · ${p.bu}</div></div><span class="prole">${ROLEK[p.r]}</span></div>`).join('')}</div>`;}
-function openCmap(){
+function openCmap(){closePanel();
  const total=CMAP.reduce((s,g)=>s+g.people.length,0);
  const legend=[['exec','Leadership'],['sponsor','Sponsor'],['sme','SME'],['partner','Partner']].map(l=>`<span class="cm-leg"><span class="pdot r-${l[0]}"></span>${l[1]}</span>`).join('');
  const tiles=CMAP.map(g=>{const logo=LOGOS[g.bu];
@@ -1020,7 +1029,7 @@ function raChart(){
  const chips=RA_METRICS.map(m=>`<button class="ra-chip${m[0]===RA_METRIC?' on':''}" data-ra-metric="${m[0]}">${m[1]}</button>`).join('');
  return `<div class="ra-chiprow">${chips}</div><div class="ra-bars" id="raBars">${raBars(RA_METRIC)}</div><div class="ra-note">Click any business for its full readiness profile. Survey and process-map waves ran across the businesses where those instruments were fielded.</div>`;
 }
-function openRadv(){
+function openRadv(){closePanel();
  const kpis=[['12','businesses + corporate, assessed on site'],['372','interviews'],['2,869','survey responses'],['256','process maps'],['7,834','coded Q&A pairs'],['11','remediation plans']]
   .map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
  const act=RA_ACT.map(a=>`<div class="ra-act"><span class="ra-av">${a[0]}</span><span class="ra-al">${a[1]}</span></div>`).join('');
@@ -1117,7 +1126,7 @@ const FV_OPPS=[
  {tier:2,t:"Procurement cost-out: rebate & discount capture",src:"RCA readiness",idea:"Standardize how the companies capture rebates and volume discounts and compare buyouts, and instrument the leakage across 16 companies.",proof:"The RCA readiness assessment already instrumented rebate and volume-discount tracking as scored capabilities across all 16 businesses, and surfaced the exact failure mode: a business applying volume discounts by hand and missing credits.",why:"The measurement layer already exists from the readiness work, so this turns a diagnosis into a standing cost-out program on a category that moves margin.",impact:"Recovered rebate and discount dollars, portfolio-wide, on a category leadership rarely instruments.",rides:"The procurement process work and readiness findings already in hand."},
  {tier:2,t:"Vendor & software selection as a shared service",src:"RCA · FMI",idea:"Own technology evaluation across the portfolio: evidence-weighted requirements, a traceability matrix, weighted scoring and commercial-terms diligence before anything is signed.",proof:"Three of these have already run inside OneRoof: a don’t-buy on a redundant training tool, a learning platform renegotiated well below the opening ask, and a digital adoption platform evaluation that closed with no purchase.",why:"Sixteen companies buying software independently is a leakage and integration problem. One evidence-based evaluation owner stops both.",impact:"Lower software spend, fewer redundant tools, cleaner integration, commercial risk caught before contracting.",rides:"The evaluation work already happening inside OneRoof; formalize it as a portfolio function."}
 ];
-function openFwd(){
+function openFwd(){closePanel();
  const kpis=FV_KPI.map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
  const proof=FV_PROOF.map(p=>`<div class="fw-proof"><div class="fw-pv">${p[1]}</div><div class="fw-pn">${p[0]}</div><div class="fw-pd">${p[2]}</div></div>`).join('');
  const tiers=FV_TIERS.map((t,ti)=>{
@@ -1384,7 +1393,7 @@ const AQ_HAND=[
 const AQ_NOTE='The cost of not having this is measured. One company sent three versions of its roster in one week, and its confirmed supervisor count moved from 19 to 117 of 191. A second company that same week classified its people by workers compensation class, which matched neither the first company nor the model. Both translations are written down now.';
 function aqCols(){const col=(h,c,xs)=>`<div class="aq-col"><span class="aq-h" style="color:${c}">${h}</span><ul>${xs.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
  return `<div class="aq-cols">${col('What already exists','#6FA98C',AQ_HAVE)}${col('What is still done by hand','#C77E77',AQ_HAND)}</div>`;}
-function openOor(){
+function openOor(){closePanel();
  const kpis=OOR_KPI.map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
  const grps=OOR_GRP.map((g,gi)=>{
   const cards=OOR_ITEMS.map((o,i)=>[o,i]).filter(x=>x[0].g===gi).map(([o,i])=>`<button class="fw-card" data-ooi="${i}"><span class="fw-cn">${('0'+(i+1)).slice(-2)}</span><div class="fw-cc"><div class="fw-ct">${o.t}</div><div class="fw-ci">${o.idea}</div></div><span class="fw-src">${o.src}</span></button>`).join('');
@@ -1553,13 +1562,13 @@ $('#ticks').innerHTML=ACTS.map((a,i)=>`<div class="tick" data-i="${i}" style="le
 (function(){const tm=$('#toolmenu');if(tm)tm.innerHTML='<div class="tmh">Tools I built · view live</div>'+Object.entries(TOOLS).map(([k,t])=>`<button class="tmi" data-tool="${k}"><div class="n">${t.name}</div><div class="d">${t.menu}</div></button>`).join('');
  const tb=$('#tkbtn');if(tb)tb.onclick=e=>{e.stopPropagation();tm.classList.toggle('on');};
  const pb=$('#pplbtn');if(pb)pb.onclick=e=>{e.stopPropagation();openCmap();};
- document.addEventListener('click',e=>{const rv=e.target.closest('[data-radv]');if(rv){openRadv();return;} const fw=e.target.closest('[data-fwd]');if(fw){openFwd();return;} const fwo=e.target.closest('[data-fwo]');if(fwo){fwdOpp(+fwo.dataset.fwo);return;} const rmet=e.target.closest('[data-ra-metric]');if(rmet){RA_METRIC=rmet.dataset.raMetric;document.querySelectorAll('.ra-chip').forEach(c=>c.classList.toggle('on',c.dataset.raMetric===RA_METRIC));const bb=$('#raBars');if(bb)bb.innerHTML=raBars(RA_METRIC);return;} const oo=e.target.closest('[data-oor]');if(oo){openOor();return;} const ooi=e.target.closest('[data-ooi]');if(ooi){oorItem(+ooi.dataset.ooi);return;} const rb=e.target.closest('[data-bu]');if(rb){raBU(rb.dataset.bu);return;} const cm=e.target.closest('[data-cmap]');if(cm){openCmap();return;} const c=e.target.closest('[data-tool]');if(c){openTool(c.dataset.tool);tm&&tm.classList.remove('on');return;} if(tm&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkbtn'))tm.classList.remove('on');});
+ document.addEventListener('click',e=>{const tmo=$('#toolmenu');if(tmo&&tmo.classList.contains('on')&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkbtn'))tmo.classList.remove('on');const rv=e.target.closest('[data-radv]');if(rv){openRadv();return;} const fw=e.target.closest('[data-fwd]');if(fw){openFwd();return;} const fwo=e.target.closest('[data-fwo]');if(fwo){fwdOpp(+fwo.dataset.fwo);return;} const rmet=e.target.closest('[data-ra-metric]');if(rmet){RA_METRIC=rmet.dataset.raMetric;document.querySelectorAll('.ra-chip').forEach(c=>c.classList.toggle('on',c.dataset.raMetric===RA_METRIC));const bb=$('#raBars');if(bb)bb.innerHTML=raBars(RA_METRIC);return;} const oo=e.target.closest('[data-oor]');if(oo){openOor();return;} const ooi=e.target.closest('[data-ooi]');if(ooi){oorItem(+ooi.dataset.ooi);return;} const rb=e.target.closest('[data-bu]');if(rb){raBU(rb.dataset.bu);return;} const cm=e.target.closest('[data-cmap]');if(cm){openCmap();return;} const c=e.target.closest('[data-tool]');if(c){openTool(c.dataset.tool);tm&&tm.classList.remove('on');return;} if(tm&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkbtn'))tm.classList.remove('on');});
  const lc=$('#lbClose');if(lc)lc.onclick=closeTool;const lb=$('#lightbox');if(lb)lb.onclick=e=>{if(e.target.id==='lightbox')closeTool();};
  const cc=$('#cmClose');if(cc)cc.onclick=closeCmap;const cmo=$('#cmap');if(cmo)cmo.onclick=e=>{if(e.target.id==='cmap')closeCmap();};
  const rc=$('#radvClose');if(rc)rc.onclick=closeRadv;const rvo=$('#radv');if(rvo)rvo.onclick=e=>{if(e.target.id==='radv')closeRadv();else if(!e.target.closest('#raDrawer')&&!e.target.closest('[data-bu]'))closeRaBU();};
  const fc=$('#fwdClose');if(fc)fc.onclick=closeFwd;const fwo=$('#fwd');if(fwo)fwo.onclick=e=>{if(e.target.id==='fwd')closeFwd();else if(!e.target.closest('#fwoDrawer')&&!e.target.closest('[data-fwo]'))closeFwo();};
  const oc=$('#oorClose');if(oc)oc.onclick=closeOor;const ooo=$('#oor');if(ooo)ooo.onclick=e=>{if(e.target.id==='oor')closeOor();else if(!e.target.closest('#ooDrawer')&&!e.target.closest('[data-ooi]'))closeOoi();};
- addEventListener('keydown',e=>{if(e.key==='Escape'){closeTool();closeCmap();closeRadv();closeFwd();closeOor();}});})();
+ addEventListener('keydown',e=>{if(e.key==='Escape'){closeTool();closeCmap();closeRadv();closeFwd();closeOor();const tmx=$('#toolmenu');if(tmx)tmx.classList.remove('on');}});})();
 /* ================= 3D ================= */
 let scene,cam,rn,ray,nodes=[],labels=[],rings=[],pulses=[],starLayers=[];
 let camTheta=0.55,camPhi=1.16,camR=150,curR=150,dragging=false,px,py,autorot=false,moved=false;
@@ -1645,7 +1654,7 @@ function start(){
    const ring=new THREE.Mesh(new THREE.TorusGeometry(11,0.3,8,56),new THREE.MeshBasicMaterial({color:RINGC,transparent:true,opacity:.5,fog:true}));ring.position.set(a.x,0,0);ring.rotation.x=Math.PI/2;scene.add(ring);rings.push(ring);core._ring=ring;
   }
   core._t={ap:1,tgt:1,st:0,base:1,hov:0};
-  mkLabel(core,`<span class="ay">${a.year}</span><span class="an">${a.title}</span>`,'act');
+  mkLabel(core,`<span class="ay">${a.year}</span><span class="an">${a.title}</span>${a.hn?`<span class="ah">${a.hn[0]}</span><span class="ahl">${a.hn[1]}</span>`:''}`,'act');
   a.work.forEach((wnode,j)=>{
    /* Hold the same footprint no matter how many groups a chapter carries. Without the scalar,
       a fourth group pushes the outer two nodes past the bottom of the viewport. */
@@ -1713,7 +1722,7 @@ function start(){
     doing something to you. Announce it first, hold long enough to read, then start. */
  setTimeout(()=>{overview();$('#hint').style.opacity='1';
   if(!REDUCED){$('#auto').classList.add('on');$('#play').classList.add('run');
-   $('#autxt').textContent='Autoplay';$('#auhint').textContent='·  starting the walk  ·  click or drag to take over';
+   $('#autxt').textContent='Autoplay';$('#auhint').textContent='·  starting the walk  ·  about a minute  ·  click or drag to take over';
    preT=setTimeout(()=>{preT=null;togglePlay();},2700);}},500);
 }
 function mkLabel(m,html,cls){const el=document.createElement('div');el.className='lab '+cls;el.innerHTML=html;$('#labels').appendChild(el);labels.push({el,m,meta:{kind:cls==='act'?'act':cls,act:m.userData.act}});m._lab=el;}
@@ -1798,7 +1807,7 @@ function setActVisibility(i){const now=performance.now();
    if(show){t.tgt=1;t.st=now+(i===-2?u.act*300+(t.delay||0)*0.4:(t.delay||0));}else{t.tgt=0;t.st=0;}}
  });
 }
-function goAct(i,user){act=i;const a=ACTS[i];
+function goAct(i,user){act=i;document.body.classList.remove('wide');const a=ACTS[i];
  const nB=(a.rel&&a.rel.bus||[]).length,nW=a.work.length;
  /* Two framings stack here. A wide business board (more than six placards) needs distance and a high
     look-at. Separately, three or more work groups spread the node row toward the camera, so at the
@@ -1814,18 +1823,19 @@ function goAct(i,user){act=i;const a=ACTS[i];
  cap.querySelector('h3').textContent=a.title;cap.querySelector('p').textContent=a.story;
  cap.querySelector('.clz').textContent=a.close||'';cap.classList.toggle('hasclz',!!a.close);
  cap.querySelector('.tag').textContent=a.tag+(a.rel&&a.rel.note?'  ·  '+a.rel.note:'');cap.classList.add('show');
+ const pnl=$('#panel');if(pnl.classList.contains('open')){if(panelCtx==='act')panelAct(i);else closePanel();}
  $('#hint').style.opacity='0';
  if(user)stopPlay();
 }
 /* The arc runs from -210 to 354 on the x axis, so its midpoint is 72 and the distance that framed the
    old four-chapter arc scales with the width. Both numbers moved when chapter five was appended. */
-function overview(){act=-1;tgt.set(72,6,0);camR=460;camPhi=1.04;thetaT=null;phiT=null;setActVisibility(-1);
+function overview(){act=-1;document.body.classList.add('wide');tgt.set(72,6,0);camR=460;camPhi=1.04;thetaT=null;phiT=null;setActVisibility(-1);
  document.querySelectorAll('.tick').forEach(c=>c.classList.remove('on'));$('#ind').style.opacity='0';$('#tfill').style.width='0';
  const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent=ARCSPAN;
  cap.querySelector('h3').textContent='A two-year arc';cap.querySelector('.clz').textContent='';cap.classList.remove('hasclz');
- cap.querySelector('p').textContent=numCap(ACTS.length)+' chapters in the order they happened, each one setting up the next. Press play to walk through, or drag to explore and click any node.';
+ cap.querySelector('p').textContent=numCap(ACTS.length)+' chapters in the order they happened, each one setting up the next. Press play to walk through in about a minute, or drag to explore and click any node.';
  cap.querySelector('.tag').textContent='';cap.classList.add('show');}
-function finale(){act=-2;setActVisibility(-2);
+function finale(){act=-2;document.body.classList.add('wide');setActVisibility(-2);
  /* The arc is 564 units wide on the x axis, so the only heading that fits it in a 16:9 frame is
     close to straight on. A small offset keeps the massing blocks reading as blocks instead of
     flattening into a wall. The camera swings to it over about a second rather than cutting. */
@@ -1854,8 +1864,9 @@ function stopPlay(){playing=false;pFin=false;$('#picon').innerHTML='<path d="M8 
  const r=$('#prfg');if(r)r.style.strokeDashoffset=PRC;
  if(preT){clearTimeout(preT);preT=null;}
  if(timer){clearInterval(timer);timer=null;}}
-function panel(html){const p=$('#panel');p.classList.remove('open');$('#pbody').innerHTML=html;void p.offsetWidth;p.classList.add('open');}
-function closePanel(){$('#panel').classList.remove('open');}
+let panelCtx=null;
+function panel(html){const p=$('#panel');p.classList.remove('open');$('#pbody').innerHTML=html;p.scrollTop=0;void p.offsetWidth;p.classList.add('open');document.body.classList.add('pnl');}
+function closePanel(){$('#panel').classList.remove('open');panelCtx=null;document.body.classList.remove('pnl');}
 function chip(c,cl){return `<span class="chip c-${c}">${cl}</span>`;}
 /* The ninety-day clock. Four phases, eleven pieces, and the built count is derived from this array
    rather than typed twice, so the header and the prose cannot drift apart. 1 = the piece exists. */
@@ -1891,16 +1902,15 @@ function itemHTML(x){return `<div class="pitem"><h3>${x.t}${chip(x.c,x.cl)}</h3>
 function workHTML(a){const items=a.work.flatMap(w=>w.items);
  if(items.length<6||a.work.length<2)return items.map(itemHTML).join('');
  return a.work.map((w,gi)=>`<div class="pgh"><span class="pgn">${ROMAN[gi]}</span>${w.label}</div>${w.items.map(itemHTML).join('')}`).join('');}
-function panelAct(i){const a=ACTS[i];panel(`<div class="p-ey">${a.year} · Chapter ${i+1} of ${ACTS.length}</div><h2>${a.title}</h2><div class="p-sub">${a.tag}</div>
- <div class="pitem" style="border-top:none;padding-top:2px"><div class="r">${a.story}</div></div>
+function panelAct(i){panelCtx='act';const a=ACTS[i];panel(`<div class="p-ey">${a.year} · Chapter ${i+1} of ${ACTS.length}</div><h2>${a.title}</h2><div class="p-sub">${a.tag}</div>
  ${a.id==='a3'?`<button class="ppl-more ppl-primary" data-oor="1">Open the full OneRoof build: the data spine, the networks and every deliverable</button>`:''}
  ${workHTML(a)}
  ${a.id==='a4'?`<button class="ppl-more ppl-primary" data-fwd="1">Open the forward value case: 9 things I can build for RCA</button>`:''}
  ${a.rel&&a.rel.note?`<div class="pnote">${a.rel.note}</div>`:''}
  ${a.toNext?`<div class="pflow">-> ${a.toNext}</div>`:''}
  ${a.close?`<div class="pclz">${a.close}</div>`:''}`);}
-function panelWork(w,i){panel(`<div class="p-ey">${ACTS[i].year} · ${ACTS[i].title}</div><h2>${w.label}</h2><div class="p-sub">${ACTS[i].tag}</div>${w.items.map(itemHTML).join('')}${i===2?`<button class="ppl-more ppl-primary" data-oor="1">Open the full OneRoof build: charts, the spine and every deliverable</button>`:''}`);}
-function panelBU(name){
+function panelWork(w,i){panelCtx='work';panel(`<div class="p-ey">${ACTS[i].year} · ${ACTS[i].title}</div><h2>${w.label}</h2><div class="p-sub">${ACTS[i].tag}</div>${w.items.map(itemHTML).join('')}${i===2?`<button class="ppl-more ppl-primary" data-oor="1">Open the full OneRoof build: charts, the spine and every deliverable</button>`:''}`);}
+function panelBU(name){panelCtx='bu';
  const r=RA_BUS.find(x=>x.lk===name||x.k===name);
  const grp=CMAP.find(g=>g.bu===name);
  const b=BUS[name]||{}; const title=(r&&r.n)||b.full||name;
