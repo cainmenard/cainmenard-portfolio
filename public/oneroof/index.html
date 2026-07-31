@@ -200,6 +200,22 @@ body.explore.cur .cursor{display:block}
 .n90-k .n90-i{padding:0;align-items:center}
 .n90-k .n90-m{margin-top:0}
 .n90-k .n90-l{font-family:var(--mono);font-size:8.5px;letter-spacing:1.2px;text-transform:uppercase}
+/* the market mix bars. One row per category, centered on a zero line, so the single category that grew
+   reads against the six that shrank without needing a legend. Blue and clay are both already in the
+   palette. Green is deliberately not used here: on this page green means mine, and this is the market. */
+.mkt{margin-top:11px;border:1px solid var(--rule);background:#FFFFFF;padding:12px 13px 11px}
+.mkt-h{font-family:var(--mono);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+.mkt-h b{color:var(--navy);font-weight:500}
+.mkt-r{display:flex;align-items:center;gap:8px;padding:3px 0}
+.mkt-n{width:90px;flex:none;font-size:11px;line-height:1.3;color:#3A3934}
+.mkt-t{flex:1;position:relative;height:13px}
+.mkt-z{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#D8DCE1}
+.mkt-b{position:absolute;top:2px;height:9px}
+.mkt-b.up{background:#3E77A8}
+.mkt-b.dn{background:#C77E77}
+.mkt-v{width:44px;flex:none;text-align:right;font-family:var(--mono);font-size:9.5px;color:var(--gray)}
+.mkt-r.up .mkt-v{color:#2C567E}
+.mkt-s{font-size:10.5px;line-height:1.45;color:var(--gray);margin-top:12px;padding-top:9px;border-top:1px solid #ECEDEA}
 /* panel tool chips */
 .tchips{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
 .tchip{font-family:var(--mono);font-size:9.5px;letter-spacing:.4px;color:var(--navy);background:#EEF2F6;border:1px solid #D8DCE1;padding:6px 10px 6px 8px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.18s;text-align:left;line-height:1.2}
@@ -677,7 +693,7 @@ body.explore.cur .cursor{display:block}
  <canvas id="gatebg"></canvas>
  <div class="gwrap"><div class="gframe">
   <img id="oormark" class="oor" alt="Operation OneRoof"/>
-  <div class="gcoord">Private<span class="dim"> · </span>By invitation<span class="dim"> · </span>2024 to 2027</div>
+  <div class="gcoord">Private<span class="dim"> · </span>By invitation<span class="dim"> · </span>2024 to today</div>
   <h1><span class="ln">Two years.</span><span class="ln"><em>One arc.</em></span></h1>
   <p>An interactive look at the work behind RCA’s ERP program, in the order it happened, and where it goes next. Built to explore in a few minutes.</p>
   <div class="gate-in"><input id="email" type="email" placeholder="you@roofingcorp.com" autocomplete="off" spellcheck="false"/><button id="enter">Enter</button></div>
@@ -689,7 +705,7 @@ body.explore.cur .cursor{display:block}
 
 <div id="welcome">
  <div class="wk">A two-year arc</div>
- <h2>Four chapters, 2024 to 2027. The work, in the order it happened, and where it goes next.</h2>
+ <h2>Five chapters, 2024 to today. The work, in the order it happened, and where it goes next.</h2>
  <div class="wline" id="wline"></div>
  <div class="wstat" id="wstat"></div>
 </div>
@@ -824,7 +840,7 @@ const ACTS=[
   rel:{note:'The program’s business-readiness team, across seven towers.',bus:['Crowther','Roof-Tech','FSO','WeatherShield','Springer-Peterson','Hamilton']}},
  {id:'a4',x:216,year:'2027-28',title:'Forward',tag:'A point of view, not a record',
   story:'December 31, 2028. Two years past the last cutover. The first three chapters are a record and every number in them can be checked. This one cannot, because none of it has happened. It is a point of view about what the next two years ask for, written the way I would write it if I already worked here.',
-  toNext:null,
+  toNext:'the point of view needs a market',
   close:'The capability comes in-house either way. The open question is who carries the part that already exists.',
   work:[
    {label:'The next one',items:[
@@ -834,8 +850,26 @@ const ACTS=[
    {label:'The AI charter',items:[
      {t:'The AI charter, operationalized',r:'A charter is a document until something runs under it. The OneRoof assistant is the working example: it answers program questions from the same records the team uses, under a permission model that does not let it read what the asker cannot. That is one agent. The charter is what makes the next ten safe.',imp:'Prioritization, least-privilege access and a review path, so agents ship against a queue instead of appearing one at a time. What this depends on: the assistant is live and the guardrails around it are written, but nothing yet says who approves the second agent or who turns one off.',w:'',pri:['tech','grow'],c:'targ',cl:'Proposed'}]},
    {label:'The market ahead',items:[
-     {t:'The market ahead',r:'Everything above assumes the work keeps coming. Roofing is not insulated: material prices, construction spending put in place, the billings index that leads contractor work by a couple of quarters, and rates all move before the backlog does. The series are public. None of them are pulled yet. Pulling them is the next thing I build.',imp:'A read on whether the portfolio is holding against the market or just against last year, which is the difference between a good quarter and a good company. What this depends on: public series only, no purchased forecast, and it is worth nothing unless the same engine reads our own completed jobs beside it.',w:'',pri:['grow','fin'],c:'targ',cl:'Proposed',tools:['ppa','bench']}]}],
-  rel:{}}
+     {t:'The market ahead',r:'Everything above assumes the work keeps coming. Roofing is not insulated: material prices, construction spending put in place, the billings index that leads contractor work by a couple of quarters, and rates all move before the backlog does. The series are public. Chapter five is the pull, run and read.',imp:'A read on whether the portfolio is holding against the market or just against last year, which is the difference between a good quarter and a good company. What this depends on: public series only, no purchased forecast, and it is worth nothing unless the same engine reads our own completed jobs beside it.',w:'',pri:['grow','fin'],c:'targ',cl:'Proposed',tools:['ppa','bench']}]}],
+  rel:{}},
+ /* a5 is the forward chapter keeping its own promise. Chapter four says the market series are public and
+    not pulled yet; this chapter is the pull, run between writing that sentence and anyone reading it.
+    Public sources only: BLS, Census, AIA, Dodge, Freddie Mac. Nothing from a purchased forecast, no
+    vendor deck, no reproduced table. Every item is Realized because the pull is a thing that got done. */
+ {id:'a5',x:354,year:'Now',title:'The Market',tag:'The one thing the forward chapter said was not built yet',
+  story:'Five public series, pulled and read. The chapter before this one ends on a promise: the market numbers are public, none of them were pulled, and pulling them was the next thing I said I would build. This is that. No purchased forecast, no vendor deck, nothing reproduced from anyone else.',
+  toNext:null,
+  close:'The market read is the easy half and it is done. The hard half is our own completed jobs sitting beside it, read by the same engine. That is not a deliverable somebody drops off at the end. It needs somebody inside.',
+  work:[
+   {label:'What it costs',items:[
+     {t:'The increase is labor, not materials',r:'Roofing contractor prices rose 5.5% over the year to June. Wages at specialty trade contractors rose 5.6%. Asphalt shingle and coating materials rose 2.7%, and through May that index was negative. The price increase and the wage increase are the same number.',imp:'A roofing company raising prices 5.5% this year gained nothing. It handed the increase to the crews. Roofing headcount fell 2.1% over the same year while total construction employment set a record. What this does not tell us: whether any company held the line, because that is job cost, and job cost is not public.',w:'',pri:['fin','grow'],c:'real',cl:'Realized'}]},
+   {label:'Where the work is',items:[
+     {t:'Data centers are the only thing growing',r:'Private nonresidential construction fell 6.6% over the year to May. Warehouse fell 8.5% and sits 36.3% below its April 2023 peak. General office fell 11.9%. Manufacturing fell 22.0%. Data centers rose 23.0% to an all time high, and in September 2025 they passed general office for the first time on record.',imp:'Warehouse, office and factory are where low slope roof deck lives. A data center is mostly power, cooling and slab, and the roof is the smallest line on it. What this does not tell us: how much of that mix RCA actually bids, because our own segment split is not public either.',w:'',pri:['grow','acq'],c:'real',cl:'Realized',pviz:'mix'}]},
+   {label:'What leads',items:[
+     {t:'Two leading indicators, opposite directions',r:'The architecture billings index reads 47.3, below the break even 50, and has now run 41 months without a majority of firms reporting billings growth. It leads construction spending by nine to twelve months. The Dodge planning index reads up 21.8% over the year and leads by twelve to eighteen.',imp:'Dodge publishes the reconciliation itself: remove data centers and the commercial segment is up 7.6%, against a headline of 21.8%. Architecture firms do not draw data centers, which is most of the gap. What this does not tell us: which of the two panels looks like our backlog, because nobody has scored our bid list against either.',w:'',pri:['grow','fin'],c:'real',cl:'Realized'}]},
+   {label:'What rates say',items:[
+     {t:'Rates held still and demand fell anyway',r:'The thirty year mortgage averaged 6.66% the week of July 30, 2026. A year earlier it averaged 6.72%. Six basis points of movement in twelve months. Over those same twelve months private nonresidential construction spending fell 6.6% and private residential rose 1.8%.',imp:'The soft half of the market did not get soft because money got expensive. Money cost the same. Demand moved on its own, so a rate cut does not bring the warehouse back. What this does not tell us: what RCA actually pays to borrow, since the mortgage survey covers houses and commercial credit is priced somewhere else.',w:'',pri:['fin','grow'],c:'real',cl:'Realized'}]}],
+  rel:{note:'Five public series: BLS, Census, AIA, Dodge and Freddie Mac. No purchased forecast, no vendor deck.'}}
 ];
 const RD='readiness assessment on site, across every function';
 const BUS={
@@ -1496,11 +1530,22 @@ function showFallback(){
    ${a.close?`<div class="imp" style="font-style:italic;margin-top:14px;color:#DCEBF9">${a.close}</div>`:''}</div>`).join('');
  $('#fbbody').innerHTML=`<div class="fb-ey">RCA · Contributions &amp; Forward Value</div>
   <h1>Two years of the work here, and the case for what comes next.</h1>
-  <div class="fsub">Four chapters, 2024 to 2027, in the order they happened. (Your browser has 3D turned off, so here is the same walk-through as a quiet read.)</div>
+  <div class="fsub">${numCap(ACTS.length)} chapters, ${ARCSPAN}, in the order they happened. (Your browser has 3D turned off, so here is the same walk-through as a quiet read.)</div>
   <div class="fb-note">Runs entirely in your browser. Nothing is stored, sent, or tracked.</div>
   ${chapters}<div class="fb-foot">Prepared by Cain Menard · cainmenard.com</div>`;
  $('#fallback').style.display='block';
 }
+/* The chapter count is spelled out in five places and the span of the arc in four. Both are written from
+   ACTS here rather than typed, so adding a chapter can never leave a stale "four" behind in the gate, the
+   welcome card, the fallback read or the caption. The static HTML carries the same words so nothing
+   flashes on first paint; this pass is what keeps them honest. */
+const NUMW=['','one','two','three','four','five','six','seven'];
+const numCap=n=>{const s=NUMW[n]||String(n);return s.charAt(0).toUpperCase()+s.slice(1);};
+const ARCSPAN='2024 to today';
+(function(){const h=document.querySelector('#welcome h2');
+ if(h)h.textContent=numCap(ACTS.length)+' chapters, '+ARCSPAN+'. The work, in the order it happened, and where it goes next.';
+ const gc=document.querySelector('.gcoord');
+ if(gc)gc.innerHTML='Private<span class="dim"> · </span>By invitation<span class="dim"> · </span>'+ARCSPAN;})();
 /* chapter rail ticks */
 $('#ticks').innerHTML=ACTS.map((a,i)=>`<div class="tick" data-i="${i}" style="left:${(i/(ACTS.length-1))*100}%"><div class="dot"></div><div class="ty">${a.year}</div><div class="tt">${a.title}</div></div>`).join('');
 /* toolkit menu + lightbox wiring */
@@ -1518,7 +1563,7 @@ $('#ticks').innerHTML=ACTS.map((a,i)=>`<div class="tick" data-i="${i}" style="le
 let scene,cam,rn,ray,nodes=[],labels=[],rings=[],pulses=[],starLayers=[];
 let camTheta=0.55,camPhi=1.16,camR=150,curR=150,dragging=false,px,py,autorot=false,moved=false;
 /* Heading target. Chapter framing keeps whatever angle you left it on, but the finale needs a
-   specific one to fit a 426-unit arc into a 16:9 frame, so it sets thetaT and the camera swings. */
+   specific one to fit a 564-unit arc into a 16:9 frame, so it sets thetaT and the camera swings. */
 let thetaT=null,phiT=null;
 let tgt=new THREE.Vector3(-210,0,0),curTgt=new THREE.Vector3(-210,0,0);
 let act=-1,playing=false,timer=null,hoverN=null,ndc={x:9,y:9},needHover=false;
@@ -1526,12 +1571,12 @@ let act=-1,playing=false,timer=null,hoverN=null,ndc={x:9,y:9},needHover=false;
    chapter advance all read from the same elapsed time and cannot drift apart. act===-2 is the
    finale sentinel: every node visible at once, camera pulled back and orbiting. */
 let pStart=0,pIdx=0,pFin=false,preT=null;const DWELL=7600,FIN_DWELL=12000,PRC=131.95;
-/* Finale camera. The arc is 426 units wide on one axis, so only a near head-on heading fits it in a
-   16:9 frame, and the safe band before 2027 walks off the right edge is roughly 0.05 to 0.32 radians.
-   The idle orbit rate of .0007 would cross that whole band in six seconds, which is what pushed 2027
-   off frame. FIN_ROT drifts across the band over the full 12 second dwell instead, and the clamp
-   means a long dwell can never walk past it. */
-const FIN_TH=0.10,FIN_PH=0.90,FIN_R=400,FIN_ROT=0.00028,FIN_TH_MAX=0.32;
+/* Finale camera. The arc is 564 units wide on one axis, so only a near head-on heading fits it in a
+   16:9 frame, and the safe band before the last chapter walks off the right edge is roughly 0.05 to 0.32
+   radians. The idle orbit rate of .0007 would cross that whole band in six seconds, which is what pushed
+   the right end off frame. FIN_ROT drifts across the band over the full 12 second dwell instead, and the
+   clamp means a long dwell can never walk past it. FIN_R scales with the arc width: 400 framed 426. */
+const FIN_TH=0.10,FIN_PH=0.90,FIN_R=530,FIN_ROT=0.00028,FIN_TH_MAX=0.32;
 const ptrs=new Map();let pinchD=null;
 const THEME=(new URLSearchParams(location.search).get('t')||'build').toLowerCase();
 const CORE=0xF2F7FD,GLOWC=0x9CC0E6,NAVY=0x2E5075,SLATE=0x496A8E,PULSEC=0xCFE4F8,RINGC=0x5E86AE;
@@ -1764,36 +1809,40 @@ function goAct(i,user){act=i;const a=ACTS[i];
  setActVisibility(i);
  document.querySelectorAll('.tick').forEach((c,j)=>c.classList.toggle('on',j===i));
  $('#ind').style.opacity='1';$('#ind').style.left=(i/(ACTS.length-1))*100+'%';$('#tfill').style.width=(i/(ACTS.length-1))*100+'%';
- const cap=$('#cap');cap.querySelector('.ix').textContent='0'+(i+1)+' / 04';cap.querySelector('.yt').textContent=a.year;
+ const cap=$('#cap');cap.querySelector('.ix').textContent='0'+(i+1)+' / '+String(ACTS.length).padStart(2,'0');cap.querySelector('.yt').textContent=a.year;
  cap.querySelector('h3').textContent=a.title;cap.querySelector('p').textContent=a.story;
  cap.querySelector('.clz').textContent=a.close||'';cap.classList.toggle('hasclz',!!a.close);
  cap.querySelector('.tag').textContent=a.tag+(a.rel&&a.rel.note?'  ·  '+a.rel.note:'');cap.classList.add('show');
  $('#hint').style.opacity='0';
  if(user)stopPlay();
 }
-function overview(){act=-1;tgt.set(2,6,0);camR=350;camPhi=1.04;thetaT=null;phiT=null;setActVisibility(-1);
+/* The arc runs from -210 to 354 on the x axis, so its midpoint is 72 and the distance that framed the
+   old four-chapter arc scales with the width. Both numbers moved when chapter five was appended. */
+function overview(){act=-1;tgt.set(72,6,0);camR=460;camPhi=1.04;thetaT=null;phiT=null;setActVisibility(-1);
  document.querySelectorAll('.tick').forEach(c=>c.classList.remove('on'));$('#ind').style.opacity='0';$('#tfill').style.width='0';
- const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent='2024 to 2027';
+ const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent=ARCSPAN;
  cap.querySelector('h3').textContent='A two-year arc';cap.querySelector('.clz').textContent='';cap.classList.remove('hasclz');
- cap.querySelector('p').textContent='Four chapters in the order they happened, each one setting up the next. Press play to walk through, or drag to explore and click any node.';
+ cap.querySelector('p').textContent=numCap(ACTS.length)+' chapters in the order they happened, each one setting up the next. Press play to walk through, or drag to explore and click any node.';
  cap.querySelector('.tag').textContent='';cap.classList.add('show');}
 function finale(){act=-2;setActVisibility(-2);
- /* The arc is 426 units wide on the x axis, so the only heading that fits it in a 16:9 frame is
+ /* The arc is 564 units wide on the x axis, so the only heading that fits it in a 16:9 frame is
     close to straight on. A small offset keeps the massing blocks reading as blocks instead of
     flattening into a wall. The camera swings to it over about a second rather than cutting. */
- tgt.set(2,2,0);camR=FIN_R;thetaT=FIN_TH;phiT=FIN_PH;autorot=true;
+ tgt.set(72,2,0);camR=FIN_R;thetaT=FIN_TH;phiT=FIN_PH;autorot=true;
  document.querySelectorAll('.tick').forEach(c=>c.classList.add('on'));
  $('#ind').style.opacity='1';$('#ind').style.left='100%';$('#tfill').style.width='100%';
- const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent='2024 to 2027';
+ const cap=$('#cap');cap.querySelector('.ix').textContent='';cap.querySelector('.yt').textContent=ARCSPAN;
  cap.querySelector('h3').textContent='The whole arc';
- cap.querySelector('p').textContent='Four chapters, '+ACTS.reduce((a,x)=>a+x.work.reduce((b,w)=>b+w.items.length,0),0)+' pieces of work, 2024 through 2027, on screen at once and wired in the order it happened.';
- cap.querySelector('.clz').textContent='Three of these four chapters already happened. The fourth is the only one still open.';
+ cap.querySelector('p').textContent=numCap(ACTS.length)+' chapters, '+ACTS.reduce((a,x)=>a+x.work.reduce((b,w)=>b+w.items.length,0),0)+' pieces of work, '+ARCSPAN+', on screen at once and wired in the order it happened.';
+ /* Which chapters are a record and which are a projection is read off the status of their own items
+    rather than counted by hand, so the sentence stays true if a proposal ever becomes realized. */
+ cap.querySelector('.clz').textContent=numCap(ACTS.filter(a=>a.work.every(w=>w.items.every(it=>it.c!=='targ'))).length)+' of these '+NUMW[ACTS.length]+' chapters already happened. The forward one is the only projection.';
  cap.classList.add('hasclz');
  cap.querySelector('.tag').textContent='Drag to orbit  ·  click any node  ·  the walk restarts at 2024';
  cap.classList.add('show');}
 function autoLabel(){const t=$('#autxt'),h=$('#auhint');if(!t)return;
  if(pFin){t.textContent='The whole arc';h.textContent='·  returning to 2024';return;}
- t.textContent='Autoplay  ·  0'+(pIdx+1)+' of 04';
+ t.textContent='Autoplay  ·  0'+(pIdx+1)+' of '+String(ACTS.length).padStart(2,'0');
  h.textContent=(pIdx>=ACTS.length-1)?'·  the whole arc next':'·  click or drag to take over';}
 function togglePlay(){if(playing){stopPlay();return;}
  playing=true;pFin=false;$('#picon').innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';autorot=false;
@@ -1820,15 +1869,28 @@ function n90Clock(){
   p[2].map(x=>`<div class="n90-i${x[1]?' on':''}"><span class="n90-m"></span><span class="n90-l">${x[0]}</span></div>`).join('')).join('');
  return `<div class="n90"><div class="n90-h">The ninety-day clock &middot; <b>${built} of ${all.length}</b> already built</div>${rows}
   <div class="n90-k"><span class="n90-i on"><span class="n90-m"></span><span class="n90-l">built</span></span><span class="n90-i"><span class="n90-m"></span><span class="n90-l">gap</span></span></div></div>`;}
-/* One entry. The drawer primitives stop at ten and this is not one of them, it is panel-side. */
-const PVIZ={n90:n90Clock};
+/* Private nonresidential construction put in place, change over the year to May 2026, from the Census
+   C30 seasonally adjusted annual rate series. The count in the header and the scale of the bars are both
+   derived from this array rather than typed, so the sentence, the bars and the prose cannot drift apart.
+   Nominal dollars, which is why the footer says a flat bar is already a real decline. */
+const MIX=[
+ ['Data centers',23.0],['Commercial',-5.5],['Health care',-5.9],['Warehouse',-8.5],
+ ['Lodging',-10.5],['General office',-11.9],['Manufacturing',-22.0]];
+function mixChart(){
+ const mx=Math.max(...MIX.map(x=>Math.abs(x[1]))),up=MIX.filter(x=>x[1]>0).length;
+ const rows=MIX.map(x=>{const p=x[1]>0,w=(Math.abs(x[1])/mx*50).toFixed(1);
+  return `<div class="mkt-r${p?' up':''}"><div class="mkt-n">${x[0]}</div><div class="mkt-t"><span class="mkt-z"></span><span class="mkt-b ${p?'up':'dn'}" style="${p?'left':'right'}:50%;width:${w}%"></span></div><div class="mkt-v">${p?'+':'-'}${Math.abs(x[1]).toFixed(1)}%</div></div>`;}).join('');
+ return `<div class="mkt"><div class="mkt-h">Change over the year to May 2026 &middot; <b>${up} of ${MIX.length}</b> grew</div>${rows}
+  <div class="mkt-s">Census C30, private nonresidential, seasonally adjusted annual rate, nominal dollars. A flat bar is already a real decline.</div></div>`;}
+/* Two entries. The drawer primitives stop at ten and neither of these is one of them, they are panel-side. */
+const PVIZ={n90:n90Clock,mix:mixChart};
 function itemHTML(x){return `<div class="pitem"><h3>${x.t}${chip(x.c,x.cl)}</h3><div class="r">${x.r}</div><div class="imp"><b>Impact.</b> ${x.imp}</div>${(x.pviz&&PVIZ[x.pviz])?PVIZ[x.pviz]():''}${(x.w&&!PROJPPL[x.t])?`<div class="with">With <b>${x.w}</b></div>`:''}${x.tools?`<div class="tchips">${x.tools.map(id=>`<button class="tchip" data-tool="${id}"><span class="g"></span>${TOOLS[id].linkOnly?'Open':'Launch'}: ${TOOLS[id].name}</button>`).join('')}</div>`:''}${pplCards(x.t)}</div>`;}
 /* Group headers only on a chapter dense enough to need them. a1 (seven items) and a3 (eleven) clear the
    bar; a2 and a4 run four or fewer, where a header would just repeat the item title back. */
 function workHTML(a){const items=a.work.flatMap(w=>w.items);
  if(items.length<6||a.work.length<2)return items.map(itemHTML).join('');
  return a.work.map((w,gi)=>`<div class="pgh"><span class="pgn">${ROMAN[gi]}</span>${w.label}</div>${w.items.map(itemHTML).join('')}`).join('');}
-function panelAct(i){const a=ACTS[i];panel(`<div class="p-ey">${a.year} · Chapter ${i+1} of 4</div><h2>${a.title}</h2><div class="p-sub">${a.tag}</div>
+function panelAct(i){const a=ACTS[i];panel(`<div class="p-ey">${a.year} · Chapter ${i+1} of ${ACTS.length}</div><h2>${a.title}</h2><div class="p-sub">${a.tag}</div>
  <div class="pitem" style="border-top:none;padding-top:2px"><div class="r">${a.story}</div></div>
  ${a.id==='a3'?`<button class="ppl-more ppl-primary" data-oor="1">Open the full OneRoof build: the data spine, the networks and every deliverable</button>`:''}
  ${workHTML(a)}
