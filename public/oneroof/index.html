@@ -181,6 +181,25 @@ body.explore.cur .cursor{display:block}
 .pnote{font-size:12.5px;color:var(--gray);margin-top:14px;line-height:1.55}
 .pflow{font-family:var(--mono);font-size:10.5px;color:var(--navy);margin-top:16px;letter-spacing:.3px;padding-top:14px;border-top:1px solid var(--rule)}
 .pclz{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--dnavy);margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);line-height:1.4}
+/* the ninety-day clock. Panel-scoped, so it is sized for 436px rather than the 508px drawer.
+   Solid marker = the piece exists, hollow ring = the piece is a gap. Same green as everywhere
+   else on the light side, no new color introduced. */
+.n90{margin-top:11px;border:1px solid var(--rule);background:#FFFFFF;padding:12px 13px 11px}
+.n90-h{font-family:var(--mono);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:11px}
+.n90-h b{color:#3B7A5E;font-weight:500}
+.n90-ph{display:flex;align-items:baseline;gap:8px;margin:12px 0 6px;padding-top:9px;border-top:1px solid #ECEDEA}
+.n90-h+.n90-ph{margin-top:0;padding-top:0;border-top:none}
+.n90-d{font-family:var(--mono);font-size:8.5px;letter-spacing:1px;color:var(--navy);width:54px;flex:none}
+.n90-pn{font-family:var(--serif);font-size:13px;color:var(--ink)}
+.n90-i{display:flex;align-items:flex-start;gap:9px;padding:3px 0 3px 54px}
+.n90-m{width:7px;height:7px;border-radius:50%;flex:none;margin-top:4px;border:1px solid var(--gray);background:transparent}
+.n90-i.on .n90-m{background:#3B7A5E;border-color:#3B7A5E}
+.n90-l{font-size:11.5px;line-height:1.42;color:var(--gray)}
+.n90-i.on .n90-l{color:#3A3934}
+.n90-k{display:flex;gap:18px;margin-top:12px;padding-top:9px;border-top:1px solid #ECEDEA}
+.n90-k .n90-i{padding:0;align-items:center}
+.n90-k .n90-m{margin-top:0}
+.n90-k .n90-l{font-family:var(--mono);font-size:8.5px;letter-spacing:1.2px;text-transform:uppercase}
 /* panel tool chips */
 .tchips{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
 .tchip{font-family:var(--mono);font-size:9.5px;letter-spacing:.4px;color:var(--navy);background:#EEF2F6;border:1px solid #D8DCE1;padding:6px 10px 6px 8px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.18s;text-align:left;line-height:1.2}
@@ -803,17 +822,19 @@ const ACTS=[
      {t:'The master plan and the seven-tower wiring',r:'Nine versions of the business readiness master plan in seven months, 593 rows rebuilt to 263 and merged back to 297, wired to six other tower plans through 545 rows carrying an integration ID.',imp:'Six of the nine rebuilds were set off by something other than the work changing, and the dates still held. The links resolve identity correctly and status not at all. What is not done: one register across all seven plans was specified in June and never built, and that gap is mine.',w:'the program office and six other towers',pri:['deliv','tech'],c:'real',cl:'Realized'},
      {t:'The staffing and budget model',r:'Built the business readiness staffing and budget model from zero in six days for a program review, then carried it through 12 versions in 16 weeks across three changes of tower leadership.',imp:'Three costed scenarios off one rate table, 35 published sources cited to the cell, and a parallel descoped version delivered the day after the program office asked for one. The review came back with nothing feasible left to cut. What is not done: the last pass was June, and the model prices three scenarios without deciding any of them.',w:'the program office and finance',pri:['fin','deliv'],c:'real',cl:'Realized'}]}],
   rel:{note:'The program’s business-readiness team, across seven towers.',bus:['Crowther','Roof-Tech','FSO','WeatherShield','Springer-Peterson','Hamilton']}},
- {id:'a4',x:216,year:'2027',title:'Forward',tag:'The proposal',
-  story:'Where it goes next. Own the reporting, data, and AI layer as it comes in-house, help lead the AI program, and build the repeatable 90-day playbook for new acquisitions.',
+ {id:'a4',x:216,year:'2027-28',title:'Forward',tag:'A point of view, not a record',
+  story:'December 31, 2028. Two years past the last cutover. The first three chapters are a record and every number in them can be checked. This one cannot, because none of it has happened. It is a point of view about what the next two years ask for, written the way I would write it if I already worked here.',
   toNext:null,
   close:'The capability comes in-house either way. The open question is who carries the part that already exists.',
   work:[
-   {label:'Own the data/AI layer',items:[
-     {t:'Reporting, data & AI owner',r:'One accountable owner for the reporting and data layer, which is the layer I have worked in since 2024.',imp:'One owner instead of a managed-service arrangement.',w:'',pri:['fin','grow','tech'],c:'targ',cl:'Proposed',tools:['ppa','bench']}]},
-   {label:'AI program',items:[
-     {t:'Help lead the AI program',r:'Prioritization, governance, and least-privilege guardrails, plus an end-user training assistant.',imp:'A governed, prioritized program instead of scattered pilots. The assistant is already shipped and in use.',w:'',pri:['tech'],c:'targ',cl:'Proposed'}]},
-   {label:'Acquisition playbook',items:[
-     {t:'90-day acquisition onboarding',r:'Assess, migrate, enable, cut over. Repeatable for several acquisitions a year.',imp:'Faster time to platform, backed by forensic operational diligence on billion-dollar construction programs.',w:'',pri:['acq','deliv'],c:'targ',cl:'Proposed',tools:['field']}]}],
+   {label:'The next one',items:[
+     {t:'The next company, in ninety days',r:'Four moves from close to platform. Assess what the company actually runs, migrate its people and job-cost data, enable the crews and the office, cut over and stay through the first close. Six of the eleven pieces that sequence needs are already built. The other five are named below, not glossed.',imp:'Ninety days instead of a rediscovery each time, and a gap list somebody can work rather than a claim that it is handled. What this depends on: three of the five gaps sit at cutover or after it, which is exactly where the program stops and no one is named yet.',w:'',pri:['acq','deliv'],c:'targ',cl:'Proposed',pviz:'n90',tools:['field']}]},
+   {label:'After the last wave',items:[
+     {t:'The year after go-live',r:'The program ends at the last wave. Adoption does not. The digital adoption platform evaluation closed with nothing bought, and the reason was technical: NetSuite takes no in-app guidance at all. That was the right call and it left the problem standing. Somebody has to answer it after IBM goes home.',imp:'Support and adoption become a function with an owner instead of a ticket queue, and the thing that was going to be bought gets built where it can reach: inside the training paths, not injected over a screen. What this depends on: no measurement exists past week one, so the first job is instrumenting it.',w:'',pri:['tech','deliv'],c:'targ',cl:'Proposed'}]},
+   {label:'The AI charter',items:[
+     {t:'The AI charter, operationalized',r:'A charter is a document until something runs under it. The OneRoof assistant is the working example: it answers program questions from the same records the team uses, under a permission model that does not let it read what the asker cannot. That is one agent. The charter is what makes the next ten safe.',imp:'Prioritization, least-privilege access and a review path, so agents ship against a queue instead of appearing one at a time. What this depends on: the assistant is live and the guardrails around it are written, but nothing yet says who approves the second agent or who turns one off.',w:'',pri:['tech','grow'],c:'targ',cl:'Proposed'}]},
+   {label:'The market ahead',items:[
+     {t:'The market ahead',r:'Everything above assumes the work keeps coming. Roofing is not insulated: material prices, construction spending put in place, the billings index that leads contractor work by a couple of quarters, and rates all move before the backlog does. The series are public. None of them are pulled yet. Pulling them is the next thing I build.',imp:'A read on whether the portfolio is holding against the market or just against last year, which is the difference between a good quarter and a good company. What this depends on: public series only, no purchased forecast, and it is worth nothing unless the same engine reads our own completed jobs beside it.',w:'',pri:['grow','fin'],c:'targ',cl:'Proposed',tools:['ppa','bench']}]}],
   rel:{}}
 ];
 const RD='readiness assessment on site, across every function';
@@ -1786,9 +1807,24 @@ function stopPlay(){playing=false;pFin=false;$('#picon').innerHTML='<path d="M8 
 function panel(html){const p=$('#panel');p.classList.remove('open');$('#pbody').innerHTML=html;void p.offsetWidth;p.classList.add('open');}
 function closePanel(){$('#panel').classList.remove('open');}
 function chip(c,cl){return `<span class="chip c-${c}">${cl}</span>`;}
-function itemHTML(x){return `<div class="pitem"><h3>${x.t}${chip(x.c,x.cl)}</h3><div class="r">${x.r}</div><div class="imp"><b>Impact.</b> ${x.imp}</div>${(x.w&&!PROJPPL[x.t])?`<div class="with">With <b>${x.w}</b></div>`:''}${x.tools?`<div class="tchips">${x.tools.map(id=>`<button class="tchip" data-tool="${id}"><span class="g"></span>${TOOLS[id].linkOnly?'Open':'Launch'}: ${TOOLS[id].name}</button>`).join('')}</div>`:''}${pplCards(x.t)}</div>`;}
+/* The ninety-day clock. Four phases, eleven pieces, and the built count is derived from this array
+   rather than typed twice, so the header and the prose cannot drift apart. 1 = the piece exists. */
+const N90=[
+ ['0-15','Assess',[['Scored on-site operational assessment',1],['Systems and integrations inventory',1],['Pre-close operational screen',0]]],
+ ['15-45','Migrate',[['Collection instruments and one named data owner',1],['Title and persona mapping pass',1],['Historical data cutoff rule',0]]],
+ ['45-60','Enable',[['Change leader and field trainer networks',1],['Role-based training paths',1],['Adoption measured past week one',0]]],
+ ['60-90','Cut over',[['Cutover command structure and checklist',0],['First-close support model',0]]]];
+function n90Clock(){
+ const all=N90.flatMap(p=>p[2]),built=all.filter(x=>x[1]).length;
+ const rows=N90.map(p=>`<div class="n90-ph"><span class="n90-d">Day ${p[0]}</span><span class="n90-pn">${p[1]}</span></div>`+
+  p[2].map(x=>`<div class="n90-i${x[1]?' on':''}"><span class="n90-m"></span><span class="n90-l">${x[0]}</span></div>`).join('')).join('');
+ return `<div class="n90"><div class="n90-h">The ninety-day clock &middot; <b>${built} of ${all.length}</b> already built</div>${rows}
+  <div class="n90-k"><span class="n90-i on"><span class="n90-m"></span><span class="n90-l">built</span></span><span class="n90-i"><span class="n90-m"></span><span class="n90-l">gap</span></span></div></div>`;}
+/* One entry. The drawer primitives stop at ten and this is not one of them, it is panel-side. */
+const PVIZ={n90:n90Clock};
+function itemHTML(x){return `<div class="pitem"><h3>${x.t}${chip(x.c,x.cl)}</h3><div class="r">${x.r}</div><div class="imp"><b>Impact.</b> ${x.imp}</div>${(x.pviz&&PVIZ[x.pviz])?PVIZ[x.pviz]():''}${(x.w&&!PROJPPL[x.t])?`<div class="with">With <b>${x.w}</b></div>`:''}${x.tools?`<div class="tchips">${x.tools.map(id=>`<button class="tchip" data-tool="${id}"><span class="g"></span>${TOOLS[id].linkOnly?'Open':'Launch'}: ${TOOLS[id].name}</button>`).join('')}</div>`:''}${pplCards(x.t)}</div>`;}
 /* Group headers only on a chapter dense enough to need them. a1 (seven items) and a3 (eleven) clear the
-   bar; a2 and a4 run three or fewer, where a header would just repeat the item title back. */
+   bar; a2 and a4 run four or fewer, where a header would just repeat the item title back. */
 function workHTML(a){const items=a.work.flatMap(w=>w.items);
  if(items.length<6||a.work.length<2)return items.map(itemHTML).join('');
  return a.work.map((w,gi)=>`<div class="pgh"><span class="pgn">${ROMAN[gi]}</span>${w.label}</div>${w.items.map(itemHTML).join('')}`).join('');}
