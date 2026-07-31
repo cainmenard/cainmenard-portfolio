@@ -678,7 +678,8 @@ body.explore.cur .cursor{display:block}
 .fbi .imp{font-size:12px;color:#C4D2E2;border-left:2px solid rgba(143,179,214,.4);padding-left:10px;margin-top:5px;line-height:1.5}
 .fb-foot{font-family:var(--mono);font-size:10px;color:#41597A;margin-top:44px;letter-spacing:.6px}
 @media(max-width:680px){#brand{max-width:22ch}#brand .t{font-size:15px}#cap{bottom:118px;width:74vw}#track{width:58vw}.tick .tt{font-size:0}#ctrls{bottom:118px;right:16px}#hint{display:none}
- #auto{bottom:100px;font-size:8px;letter-spacing:1px;gap:7px}#auhint{display:none}}
+ #auto{bottom:100px;font-size:8px;letter-spacing:1px;gap:7px}#auhint{display:none}
+ #topbar{background:linear-gradient(180deg,rgba(4,10,19,.94) 0%,rgba(4,10,19,.78) 55%,rgba(4,10,19,0) 100%)}.tkbtn{background:rgba(9,18,32,.93);white-space:nowrap}}
 @media (prefers-reduced-motion: reduce){#grain{display:none}
   .gcoord,.gframe h1 .ln,.gframe p,.gate-in,.gate-foot,.gate-note{animation-duration:.01ms;opacity:1;transform:none}}
 </style></head>
@@ -815,19 +816,19 @@ const ACTS=[
      {t:'PAGA compliance automation at AAA Roofing',r:'A Retool app on the WorkMax API, syncing both ways. It catches missed meal breaks and the 10 and 12 hour thresholds in real time, then applies premium-pay logic before payroll closes. Corrections run in the employee’s favor only.',imp:'Cut meal and rest penalty exposure by about 87%.',w:'a data engineer and a data analyst I led',pri:['reg','fin'],c:'real',cl:'Realized'}]}],
   rel:{note:'A small team I led, working as RCA’s vendor at the time.',bus:['AAA','WeatherShield','Front Range','Deer Park']}},
  {id:'a2',x:-72,year:'2025-26',title:'The Map',tag:'Readiness program',
-  story:'The map the whole program now runs on. I led readiness assessments across 12 businesses and corporate, on site: 376 interviews across every function, thousands of survey responses, and a complete systems inventory. That became the diagnostic map and the plans that followed.',
+  story:'The map the whole program now runs on. I led readiness assessments across 12 businesses and corporate, on site: 372 interviews across every function, thousands of survey responses, and a complete systems inventory. That became the diagnostic map and the plans that followed.',
   toNext:'the map became the build',
   work:[
    {label:'Readiness assessments',items:[
-     {t:'Readiness assessment program',r:'Led 12 businesses and corporate on site. 376 interviews across 23 functions, thousands of survey responses, a complete systems inventory.',imp:'Produced the diagnostic map and 11 remediation plans the program now runs on, and quantified where the real operational pain was.',w:'a delivery team I led and each business’s leadership',pri:['acq','reg','tech','deliv'],c:'real',cl:'Realized'}]}],
+     {t:'Readiness assessment program',r:'Led 12 businesses and corporate on site. 372 interviews across 23 functions, thousands of survey responses, a complete systems inventory.',imp:'Produced the diagnostic map and 11 remediation plans the program now runs on, and quantified where the real operational pain was.',w:'a delivery team I led and each business’s leadership',pri:['acq','reg','tech','deliv'],c:'real',cl:'Realized'}]}],
   rel:{note:'',bus:['Crowther','WeatherShield','Bone Dry','Davco','Front Range','Deer Park','Springer-Peterson','Hamilton','Roof-Tech','TORC','AAA','Dynamic National']}},
  {id:'a3',x:78,year:'2026',title:'OneRoof',tag:'Operation OneRoof',
-  story:'OneRoof today. The workforce data layer the program runs on is the piece I carry: 23 connected sheets across 16 companies, 2,283 people on one governed roster, 403 raw job titles standardized to 121, and five role networks with 139 named assignments. On top of it sit the Change Leader Network and the Field Trainer Network that carries the rollout to the field.',
+  story:'OneRoof today. The workforce data layer the program runs on is the piece I carry: 23 connected sheets across 16 companies, 2,287 people on one governed roster, 403 raw job titles standardized to 121, and five role networks with 139 named assignments. On top of it sit the Change Leader Network and the Field Trainer Network that carries the rollout to the field.',
   toNext:'the build sets up the seat',
   work:[
    {label:'The data layer',items:[
      {t:'The workforce data spine',r:'One workspace across 16 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation. Every role network, every integrity repair and every training seat hangs off it.',imp:'The program can answer who works where and in which role, without asking a person. The engagement fact table grew from 38 columns to 53, and the number a human types stayed at about eight. What is not done: crew intake is a proof of concept at four companies, not sixteen, and the train-the-trainer week has not run.',w:'the HR, payroll and tower leads',pri:['tech','deliv','acq'],c:'real',cl:'Realized'},
-     {t:'The job and persona model',r:'403 raw job titles across 16 companies collapsed into 121 master jobs, 10 job families and 34 personas for the three platforms.',imp:'Training, security and reporting key off one job model instead of three different guesses. Coverage went from 354 people carrying a proposed title to 1,815, which is 79.4%. What is not done: the last 20.6% is 263 distinct questions sitting with the companies.',w:'HR and the functional leads',pri:['tech','deliv'],c:'real',cl:'Realized'}]},
+     {t:'The job and persona model',r:'403 raw job titles across 16 companies collapsed into 121 master jobs, 10 job families and 34 personas for the three platforms.',imp:'Training, security and reporting key off one job model instead of three different guesses. Coverage is 2,249 of 2,287 people, which is 98.3%. What is not done: 633 of those carry proposed titles awaiting company confirmation, which is 220 distinct questions, not 633 people to chase.',w:'HR and the functional leads',pri:['tech','deliv'],c:'real',cl:'Realized'}]},
    {label:'The people layer',items:[
      {t:'Change Leader Network',r:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',imp:'Session two ran 60 minutes across 15 slides with 36 people in the room, every one of them linked to the record. This is the day-one support floor that keeps the help desk from being the answer. What is not done: seven companies read short of their change leader target, and most of the curriculum is still ahead of us.',w:'company presidents and the readiness team',pri:['reg','deliv'],c:'real',cl:'Realized'},
      {t:'Field Trainer Network',r:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',imp:'Milestones count back from each company go-live at 42, 35, 21 and 4 days out, against one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. What is not done: the structure is built and the network is not running yet.',w:'operations, HR and field leadership',pri:['deliv'],c:'enab',cl:'In flight'}]},
@@ -839,7 +840,7 @@ const ACTS=[
      {t:'The staffing and budget model',r:'Built the business readiness staffing and budget model from zero in six days for a program review, then carried it through 12 versions in 16 weeks across three changes of tower leadership.',imp:'Three costed scenarios off one rate table, 35 published sources cited to the cell, and a parallel descoped version delivered the day after the program office asked for one. The review came back with nothing feasible left to cut. What is not done: the last pass was June, and the model prices three scenarios without deciding any of them.',w:'the program office and finance',pri:['fin','deliv'],c:'real',cl:'Realized'}]}],
   rel:{note:'The program’s business-readiness team, across seven towers.',bus:['Crowther','Roof-Tech','FSO','WeatherShield','Springer-Peterson','Hamilton']}},
  {id:'a4',x:216,year:'2027-28',title:'Forward',tag:'A point of view, not a record',
-  story:'December 31, 2028. Two years past the last cutover. The first three chapters are a record and every number in them can be checked. This one cannot, because none of it has happened. It is a point of view about what the next two years ask for, written the way I would write it if I already worked here.',
+  story:'December 31, 2028. Two years past the last cutover. The first three chapters are a record and every number in them can be checked. This one cannot, because the two years it describes have not happened yet. It is a point of view about what the next two years ask for, written the way I would write it if I already worked here.',
   toNext:'the point of view needs a market',
   close:'The capability comes in-house either way. The open question is who carries the part that already exists.',
   work:[
@@ -862,11 +863,11 @@ const ACTS=[
   close:'The market read is the easy half and it is done. The hard half is our own completed jobs sitting beside it, read by the same engine. That is not a deliverable somebody drops off at the end. It needs somebody inside.',
   work:[
    {label:'What it costs',items:[
-     {t:'The increase is labor, not materials',r:'Roofing contractor prices rose 5.5% over the year to June. Wages at specialty trade contractors rose 5.6%. Asphalt shingle and coating materials rose 2.7%, and through May that index was negative. The price increase and the wage increase are the same number.',imp:'A roofing company raising prices 5.5% this year gained nothing. It handed the increase to the crews. Roofing headcount fell 2.1% over the same year while total construction employment set a record. What this does not tell us: whether any company held the line, because that is job cost, and job cost is not public.',w:'',pri:['fin','grow'],c:'real',cl:'Realized'}]},
+     {t:'The increase is labor, not materials',r:'Roofing contractor prices rose 5.5% over the year to June. Wages at specialty trade contractors rose 5.6%. Asphalt shingle and coating materials rose 2.7%, and through May that index was negative. The wage increase is a tenth of a point ahead of the price increase.',imp:'A roofing company raising prices 5.5% this year went backwards by a tenth. It handed the increase to the crews. Roofing headcount fell 2.1% over the same year while total construction employment set a record. What this does not tell us: whether any company held the line, because that is job cost, and job cost is not public.',w:'',pri:['fin','grow'],c:'real',cl:'Realized'}]},
    {label:'Where the work is',items:[
      {t:'Data centers are the only thing growing',r:'Private nonresidential construction fell 6.6% over the year to May. Warehouse fell 8.5% and sits 36.3% below its April 2023 peak. General office fell 11.9%. Manufacturing fell 22.0%. Data centers rose 23.0% to an all time high, and in September 2025 they passed general office for the first time on record.',imp:'Warehouse, office and factory are where low slope roof deck lives. A data center is mostly power, cooling and slab, and the roof is the smallest line on it. What this does not tell us: how much of that mix RCA actually bids, because our own segment split is not public either.',w:'',pri:['grow','acq'],c:'real',cl:'Realized',pviz:'mix'}]},
    {label:'What leads',items:[
-     {t:'Two leading indicators, opposite directions',r:'The architecture billings index reads 47.3, below the break even 50, and has now run 41 months without a majority of firms reporting billings growth. It leads construction spending by nine to twelve months. The Dodge planning index reads up 21.8% over the year and leads by twelve to eighteen.',imp:'Dodge publishes the reconciliation itself: remove data centers and the commercial segment is up 7.6%, against a headline of 21.8%. Architecture firms do not draw data centers, which is most of the gap. What this does not tell us: which of the two panels looks like our backlog, because nobody has scored our bid list against either.',w:'',pri:['grow','fin'],c:'real',cl:'Realized'}]},
+     {t:'Two leading indicators, opposite directions',r:'The architecture billings index reads 47.3, below the break even 50, and has now run 41 months without a majority of firms reporting billings growth. It leads construction spending by nine to twelve months. The Dodge Momentum Index reads up 21.8% over the year and leads by about a year.',imp:'Dodge publishes the reconciliation itself: remove data centers and the commercial segment is up 7.6%, against a headline of 21.8%. Architecture firms do not draw data centers, which is most of the gap. What this does not tell us: which of the two panels looks like our backlog, because nobody has scored our bid list against either.',w:'',pri:['grow','fin'],c:'real',cl:'Realized'}]},
    {label:'What rates say',items:[
      {t:'Rates held still and demand fell anyway',r:'The thirty year mortgage averaged 6.66% the week of July 30, 2026. A year earlier it averaged 6.72%. Six basis points of movement in twelve months. Over those same twelve months private nonresidential construction spending fell 6.6% and private residential rose 1.8%.',imp:'The soft half of the market did not get soft because money got expensive. Money cost the same. Demand moved on its own, so a rate cut does not bring the warehouse back. What this does not tell us: what RCA actually pays to borrow, since the mortgage survey covers houses and commercial credit is priced somewhere else.',w:'',pri:['fin','grow'],c:'real',cl:'Realized'}]}],
   rel:{note:'Five public series: BLS, Census, AIA, Dodge and Freddie Mac. No purchased forecast, no vendor deck.'}}
@@ -979,7 +980,7 @@ function openCmap(){
  $('#cmap').classList.add('on');}
 function closeCmap(){$('#cmap').classList.remove('on');}
 /* ===== readiness assessment deep-dive (all figures from the OneRoof readiness dataset) ===== */
-const RA_ENT={businesses:12,interviews:376,interviewees:278,qa:8739,surveys:2869,respondents:177,procmaps:256,procSigned:162,processes:51,functions:23,window:'Jul – Nov 2025'};
+const RA_ENT={businesses:12,interviews:372,interviewees:278,qa:7834,surveys:2869,respondents:177,procmaps:256,procSigned:162,processes:51,functions:23,window:'Jul – Nov 2025'};
 const RA_FUN=['Estimating','Job Costing','Invoicing (AR)','Payroll / HR','Purchasing to Pay','Inventory','Scheduling','Service','Contracts','Field Operations','Project Financial Reporting','Service Financial Reporting','Analytics & Reporting','Forecasting / Budgeting','General Ledger','Asset Tracking','Fleet Management','Commercial & Production','Commission Reporting','WIP Reporting','Job Setup & Config','Draws & Recoveries','Lien & Compliance'];
 const RA_STATUS=[['Signed off',162,'#3B7A5E'],['Ready to sign',39,'#3E77A8'],['In QC / review',14,'#6E9BC4'],['Planned / draft',21,'#8FB3D6'],['Canceled',20,'#4A5A6E']];
 const RA_WAVES=[['Late Jul',['TORC']],['Mid Aug',['Bone Dry','WeatherShield']],['Early–mid Sep',['Dynamic National','FSO']],['Late Sep',['AAA','Front Range']],['Late Oct',['Roof Tech','Deer Park']],['Mid Nov',['Davco','Crowther']]];
@@ -999,7 +1000,7 @@ const RA_BUS=[
  {k:'Hamilton',lk:'Hamilton',n:'Hamilton Roofing',sh:'Hamilton',rev:15,loc:1,mp:51,iv:1,sv:0,svp:0,qa:109,pm:0,rem:null,os:'',find:'Lightweight footprint; core operating coverage captured.'},
  {k:'FSO',lk:'',n:'Field Support Office (Corporate)',sh:'FSO',rev:null,loc:1,mp:35,iv:24,sv:0,svp:0,qa:282,pm:0,rem:{dep:3,rb:1,nn:3,gap:0},os:'Sep 16–17',find:'The corporate backbone, and the first to go live. NetSuite consolidation, enterprise reporting, SSO, and automated vendor qualification.'}
 ];
-const RA_ACT=[['376','interviews on site, most about an hour'],['2,869','survey responses from 177 people'],['8,739','question-and-answer pairs, thematically coded'],['256','process maps drawn, reviewed and signed'],['51','processes mapped across 23 functional areas'],['11','per-business technical remediation plans']];
+const RA_ACT=[['372','interviews on site, most about an hour'],['2,869','survey responses from 177 people'],['7,834','question-and-answer pairs, thematically coded'],['256','process maps drawn, 162 signed off'],['51','processes mapped across 23 functional areas'],['11','per-business technical remediation plans']];
 function raBars(metric){
  const rows=RA_BUS.filter(b=>b[metric]>0).sort((a,b)=>b[metric]-a[metric]);
  const max=Math.max.apply(null,rows.map(b=>b[metric]))||1;
@@ -1007,8 +1008,8 @@ function raBars(metric){
 }
 function raFunnel(){
  const tot=RA_STATUS.reduce((s,x)=>s+x[1],0);
- const seg=RA_STATUS.map(x=>`<span class="ra-fseg" style="width:${x[1]/tot*100}%;background:${x[2]}" title="${x[0]}: ${x[1]}"></span>`).join('');
- const leg=RA_STATUS.map(x=>`<span class="ra-fleg"><span class="ra-fdot" style="background:${x[2]}"></span>${x[0]} <b>${x[1]}</b></span>`).join('');
+ const seg=RA_STATUS.map(x=>`<span class="ra-fseg" style="width:${x[1]/tot*100}%;background:${x[2]}" title="${x[0]}: ${x[1].toLocaleString('en-US')}"></span>`).join('');
+ const leg=RA_STATUS.map(x=>`<span class="ra-fleg"><span class="ra-fdot" style="background:${x[2]}"></span>${x[0]} <b>${x[1].toLocaleString('en-US')}</b></span>`).join('');
  return `<div class="ra-fbar">${seg}</div><div class="ra-flegs">${leg}</div>`;
 }
 function raWaves(){
@@ -1020,7 +1021,7 @@ function raChart(){
  return `<div class="ra-chiprow">${chips}</div><div class="ra-bars" id="raBars">${raBars(RA_METRIC)}</div><div class="ra-note">Click any business for its full readiness profile. Survey and process-map waves ran across the businesses where those instruments were fielded.</div>`;
 }
 function openRadv(){
- const kpis=[['12','businesses + corporate, assessed on site'],['376','interviews'],['2,869','survey responses'],['256','process maps'],['8,739','coded Q&A pairs'],['11','remediation plans']]
+ const kpis=[['12','businesses + corporate, assessed on site'],['372','interviews'],['2,869','survey responses'],['256','process maps'],['7,834','coded Q&A pairs'],['11','remediation plans']]
   .map(k=>`<div class="ra-kpi"><span class="ra-kv">${k[0]}</span><span class="ra-kl">${k[1]}</span></div>`).join('');
  const act=RA_ACT.map(a=>`<div class="ra-act"><span class="ra-av">${a[0]}</span><span class="ra-al">${a[1]}</span></div>`).join('');
  const fun=RA_FUN.map(f=>`<span class="ra-fun">${f}</span>`).join('');
@@ -1035,7 +1036,7 @@ function openRadv(){
     <div><div class="ra-sh2">By type of barrier</div>${raPainBar(RA_PAIN.dims)}</div>
     <div><div class="ra-sh2">Where it hurt most, by function</div>${raPainBar(RA_PAIN.funcs)}</div>
    </div>
-   <div class="ra-sh2" style="margin-top:20px">Barriers by business and function</div>${raHeat()}
+   <div class="ra-sh2" style="margin-top:20px">Barriers by business and function</div>${raHeat()}<div class="ra-note" style="margin-top:10px">The five dimension bars sum to the 4,468 total. The function bars and the heatmap sum to 3,439, because 1,029 barriers are coded to a dimension only, not to a single function.</div>
   </div>
   <div class="ra-grid2">
    <div class="ra-sec"><div class="ra-sh">Process maps, from draft to signed</div><div class="ra-big">${RA_ENT.procSigned} of ${RA_ENT.procmaps} <span>signed off (63%)</span></div>${raFunnel()}</div>
@@ -1066,7 +1067,7 @@ function closeRaBU(){const d=$('#raDrawer');if(d)d.classList.remove('on');}
 function raMiniBars(){const rows=RA_BUS.filter(b=>b.iv>0).sort((a,b)=>b.iv-a.iv).slice(0,8);const mx=rows[0].iv;
  return rows.map(b=>`<div class="mbar"><span class="mbl">${b.sh}</span><span class="mbt"><span class="mbf" style="width:${Math.max(3,b.iv/mx*100)}%"></span></span><span class="mbv">${b.iv}</span></div>`).join('');}
 function raPanelBlock(){
- const k=[['376','interviews'],['2,869','survey responses'],['256','process maps'],['11','remediation plans']].map(x=>`<div class="mk"><span class="mkv">${x[0]}</span><span class="mkl">${x[1]}</span></div>`).join('');
+ const k=[['372','interviews'],['2,869','survey responses'],['256','process maps'],['11','remediation plans']].map(x=>`<div class="mk"><span class="mkv">${x[0]}</span><span class="mkl">${x[1]}</span></div>`).join('');
  return `<div class="rapanel"><div class="ppl-h">The readiness assessment, by the numbers</div>
   <div class="mkrow">${k}</div>
   <div class="mbchart"><div class="mbh">Interviews by business · top 8 of 12</div>${raMiniBars()}</div>
@@ -1140,12 +1141,12 @@ function fwdOpp(i){const o=FV_OPPS[i];if(!o)return;
  $('#fwoDrawer').classList.add('on');const c=$('#fwoClose');if(c)c.onclick=closeFwo;}
 function closeFwo(){const d=$('#fwoDrawer');if(d)d.classList.remove('on');}
 /* ===== Operation OneRoof: the build (every count read out of the live build) ===== */
-const OOR_KPI=[['16','companies on one data model'],['2,283','people on one governed roster'],['139','role assignments across 5 networks'],['403 &rarr; 121','raw job titles standardized'],['23','connected sheets on the spine'],['11 + 3','live reports and dashboards']];
-const OOR_THESIS='After the assessment closed I stopped mapping and started building. The workforce data layer the program runs on is the part I am responsible for: one roster across 16 companies, five role networks with 139 named assignments, and the persona model that training and security both key off. On top of it sit the Change Leader Network and the Field Trainer Network that carries the rollout to the field. Every count below comes out of the live build, not a plan. The dates and the countdown are the program&rsquo;s schedule, not mine.';
+const OOR_KPI=[['16','companies on one data model'],['2,287','people on one governed roster'],['139','role assignments across 5 networks'],['403 &rarr; 121','raw job titles standardized'],['23','connected sheets on the spine'],['11 + 3','live reports and dashboards']];
+const OOR_THESIS='After the assessment closed I stopped mapping and started building. The workforce data layer the program runs on is the part I am responsible for: one roster across 16 companies, five role networks with 139 named assignments, and the persona model that training and security both key off. On top of it sit the Change Leader Network and the Field Trainer Network that carries the rollout to the field. Every count below comes out of the live build, not a plan, read in July 2026. The dates and the countdown are the program&rsquo;s schedule, not mine.';
 const OOR_SPINE=[['9','pillar folders, foundation through archive'],['23','connected sheets'],['11','live reports'],['3','dashboards'],['1','published work app'],['3','automated data feeds']];
 const OOR_GROW=[['38','The first working engagement table. Who is assigned to what.'],['51','After the persona, network and session joins landed.'],['53','Today, with attendance state and a provenance column on every sourced field.']];
 const OOR_NET=[['Change Leader Network',36],['Business SMEs',34],['Project resources',31],['Testers',22],['Trainers',16]];
-const OOR_MAP=[['Matched to a master job',1482,'#3B7A5E'],['Proposed, awaiting confirm',333,'#3E77A8'],['Needs validation',444,'#6E9BC4'],['Not applicable',26,'#4A5A6E']];
+const OOR_MAP=[['Matched to a master job',1616,'#3B7A5E'],['Proposed, awaiting confirm',633,'#3E77A8'],['Needs validation',12,'#6E9BC4'],['Not applicable',26,'#4A5A6E']];
 const OOR_TL=[['42 days out','Nominations open to the company'],['35 days out','Trainer names confirmed'],['21 days out','Trainer enablement session'],['4 days out','Final readiness check'],['Go-live','Crews on the field app']];
 const ROMAN=['I','II','III','IV','V','VI'];
 const OOR_GRP=[['The data layer','What the program runs on'],['The people layer','Who carries it into 16 companies'],['Enablement and decisions','What the field actually gets'],['Running the tower','What it took to keep it moving']];
@@ -1164,10 +1165,10 @@ const OOR_ITEMS=[
   impact:'The program can answer who works where, in which role, at which event, without asking a person. The engagement fact table grew from 38 columns to 53 as the questions got harder, and the number a human types stayed at about eight. Everything else is derived.'},
  {g:0,t:'The job and persona model',src:'16 companies · 403 titles',
   idea:'403 raw job titles across 16 companies collapsed into 121 master jobs, 10 job families and 34 personas that training, security and reporting all key off.',
-  stats:[['403 &rarr; 121','raw titles to master jobs'],['34','personas across 3 platforms'],['79.4%','roster coverage'],['263','open questions, not 777']],
+  stats:[['403 &rarr; 121','raw titles to master jobs'],['34','personas across 3 platforms'],['98.3%','roster coverage'],['220','open questions, not 633']],
   what:'Sixteen companies wrote job titles sixteen ways. A foreman is a foreman, a Foreman, a Crew Foreman and a Field Foreman II, and no system can tell they are the same person doing the same work. I ran a fuzzy match across the roster, reviewed every proposed pair by hand, and built the master job list underneath it.',
-  bul:['403 distinct raw titles reduced to 121 master jobs in 10 job families.','34 personas defined across the three platforms, which is what drives who gets which training and which permissions.','Coverage went from 354 people carrying a proposed title to 1,815 of the roster, which is 79.4%.','The remainder is 263 distinct questions to ask the companies, not a list of 777 individual people to chase.','The pass ran on 2,285 rows, which was the roster at the time. It is 2,283 after the de-duplication that followed.','Curriculum keys off persona and module rather than a best guess about who needs what, so which of the 2,283 people need a specific course is a query.'],
-  open:'Coverage is 79.4%, not 100%. The last 263 questions sit with the companies and cannot be resolved from this end. The persona-to-course mapping is only as good as the module list, and that list finishes filling in when the train-the-trainer week runs.',
+  bul:['403 distinct raw titles reduced to 121 master jobs in 10 job families.','34 personas defined across the three platforms, which is what drives who gets which training and which permissions.','Coverage went from 354 people carrying a proposed title before the pass to 2,249 of 2,287 today, which is 98.3%.','The remainder is 220 distinct questions to ask the companies, not a list of 633 individual people to chase.','Counts read off the live roster on July 31, 2026, and they move as companies confirm.','Curriculum keys off persona and module rather than a best guess about who needs what, so which of the 2,287 people need a specific course is a query.'],
+  open:'Coverage is 98.3%, not 100%. The last 220 questions and a dozen rows still needing validation sit with the companies, and cannot be resolved from this end. The persona-to-course mapping is only as good as the module list, and that list finishes filling in when the train-the-trainer week runs.',
   impact:'Training curriculum, security roles and reporting all key off the same job model instead of three different guesses. When a company asks why their people got a particular course, there is an answer with a key on it.'},
  {g:1,t:'Change Leader Network',src:'37 leaders · 15 companies',
   idea:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',
@@ -1362,8 +1363,8 @@ function oorGrow(){return OOR_GROW.map((g,i)=>`<div class="oo-grow"><span class=
 function oorNetBars(){const mx=Math.max.apply(null,OOR_NET.map(n=>n[1]));
  return OOR_NET.map(n=>`<div class="oo-nb"><span class="oo-nl">${n[0]}</span><span class="oo-nt"><span class="oo-nf" style="width:${Math.max(4,n[1]/mx*100)}%"></span></span><span class="oo-nv">${n[1]}</span></div>`).join('');}
 function oorFunnel(){const tot=OOR_MAP.reduce((s,x)=>s+x[1],0);
- const seg=OOR_MAP.map(x=>`<span class="ra-fseg" style="width:${x[1]/tot*100}%;background:${x[2]}" title="${x[0]}: ${x[1]}"></span>`).join('');
- const leg=OOR_MAP.map(x=>`<span class="ra-fleg"><span class="ra-fdot" style="background:${x[2]}"></span>${x[0]} <b>${x[1]}</b></span>`).join('');
+ const seg=OOR_MAP.map(x=>`<span class="ra-fseg" style="width:${x[1]/tot*100}%;background:${x[2]}" title="${x[0]}: ${x[1].toLocaleString('en-US')}"></span>`).join('');
+ const leg=OOR_MAP.map(x=>`<span class="ra-fleg"><span class="ra-fdot" style="background:${x[2]}"></span>${x[0]} <b>${x[1].toLocaleString('en-US')}</b></span>`).join('');
  return `<div class="ra-fbar">${seg}</div><div class="ra-flegs">${leg}</div>`;}
 function oorSteps(){return OOR_TL.map(s=>`<div class="oo-step"><span class="oo-sd"></span><span class="oo-st">${s[0]}</span><span class="oo-sb">${s[1]}</span></div>`).join('');}
 function oorFixes(){return OOR_FIX.map(f=>`<div class="oo-fixr"><div class="oo-fn">${f[0]}</div><div><span class="oo-fh">What was wrong</span><div class="oo-fb">${f[1]}</div></div><div><span class="oo-fh">What it is now</span><div class="oo-fa">${f[2]}</div></div></div>`).join('');}
@@ -1401,7 +1402,7 @@ function openOor(){
   <div class="ra-sec"><div class="ra-sh">Job titles, standardized across 16 companies</div>
    <div class="ra-big">403 <span>raw titles</span> &rarr; 121 <span>master jobs in</span> 10 <span>families, 34 personas</span></div>
    ${oorFunnel()}
-   <div class="ra-note">2,285 rows at the time of the pass, 2,283 after the de-duplication that followed. Coverage went from 354 people carrying a proposed title to 1,815, which is 79.4%. What is left is 263 questions to ask the companies, not 777 people to chase.</div></div>
+   <div class="ra-note">Counts read off the live roster, July 31, 2026: 2,287 rows, 2,249 carrying a matched or proposed title, which is 98.3%. What is left is 220 questions to ask the companies, not 633 people to chase.</div></div>
   <div class="ra-sec"><div class="ra-sh">How the field rollout is timed &middot; every company, same countdown</div>
    <div class="oo-tl">${oorSteps()}</div>
    <div class="oo-note">Anchored to one fixed point: September 21, 2026, the first Monday of the first pay cycle paid out of the new system. Roughly 1,637 people sit in field departments across the portfolio.</div></div>
@@ -1497,7 +1498,7 @@ function oorItem(i){const o=OOR_ITEMS[i];if(!o)return;
  $('#ooDrawer').classList.add('on');const c=$('#ooiClose');if(c)c.onclick=closeOoi;}
 function closeOoi(){const d=$('#ooDrawer');if(d)d.classList.remove('on');}
 function oorPanelBlock(){
- const k=[['23','sheets on the spine'],['139','network assignments'],['2,283','on one roster'],['121','master jobs mapped']].map(x=>`<div class="mk"><span class="mkv">${x[0]}</span><span class="mkl">${x[1]}</span></div>`).join('');
+ const k=[['23','sheets on the spine'],['139','network assignments'],['2,287','on one roster'],['121','master jobs mapped']].map(x=>`<div class="mk"><span class="mkv">${x[0]}</span><span class="mkl">${x[1]}</span></div>`).join('');
  const mx=Math.max.apply(null,OOR_NET.map(n=>n[1]));
  const bars=OOR_NET.map(n=>`<div class="mbar"><span class="mbl">${n[0]}</span><span class="mbt"><span class="mbf" style="width:${Math.max(4,n[1]/mx*100)}%"></span></span><span class="mbv">${n[1]}</span></div>`).join('');
  return `<div class="rapanel"><div class="ppl-h">The OneRoof build, by the numbers</div>
