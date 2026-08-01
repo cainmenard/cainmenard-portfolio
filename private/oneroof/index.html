@@ -30,35 +30,6 @@ body.explore{cursor:none}
 .cursor.hot{width:52px;height:52px;border-color:rgba(238,244,251,.9);background:rgba(143,179,214,.06)}
 .cursor.hot::after{width:5px;height:5px}
 body.explore.cur .cursor{display:block}
-/* ================= GATE ================= */
-#gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;background:
-  linear-gradient(rgba(143,179,214,.045) 1px,transparent 1px) 0 0/46px 46px,
-  linear-gradient(90deg,rgba(143,179,214,.045) 1px,transparent 1px) 0 0/46px 46px,
-  radial-gradient(ellipse at 50% 38%,#132D48 0%,#081321 68%)}
-#gatebg{position:absolute;inset:0;z-index:0}
-.gwrap{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:0 8vw}
-.gframe{position:relative;max-width:540px}
-.gframe::before{content:"";position:absolute;left:-30px;top:6px;bottom:8px;width:1px;background:linear-gradient(180deg,transparent,rgba(143,179,214,.5) 22%,rgba(143,179,214,.5) 78%,transparent)}
-.oor{height:34px;width:auto;display:none;margin-bottom:26px;opacity:0;animation:rise .8s .05s forwards}
-.oor[src]{display:block}
-.gcoord{font-family:var(--mono);font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--lnavy);opacity:0;transform:translateY(8px);animation:rise .8s .1s forwards}
-.gcoord .dim{color:#4E6E90}
-.gframe h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,4.6vw,60px);line-height:1.02;letter-spacing:-.015em;margin:20px 0 16px;color:#fff}
-.gframe h1 .ln{display:block;opacity:0;transform:translateY(14px);animation:rise .9s forwards}
-.gframe h1 .ln:nth-child(1){animation-delay:.16s}.gframe h1 .ln:nth-child(2){animation-delay:.28s}
-.gframe h1 em{font-style:italic;color:var(--lnavy);font-weight:500}
-.gframe p{color:#AEBFD2;font-size:15px;max-width:42ch;margin-bottom:30px;line-height:1.55;opacity:0;animation:rise .9s .42s forwards}
-.gate-in{display:flex;gap:0;max-width:440px;border:1px solid rgba(143,179,214,.32);border-radius:2px;background:rgba(9,20,34,.5);overflow:hidden;opacity:0;animation:rise .9s .54s forwards;transition:border-color .25s}
-.gate-in:focus-within{border-color:rgba(143,179,214,.75)}
-#email{flex:1;background:transparent;border:none;color:#fff;font-family:var(--sans);font-size:15px;padding:15px 18px;outline:none}
-#email::placeholder{color:#5E748F}
-#enter{font-family:var(--mono);text-transform:uppercase;letter-spacing:1.6px;font-size:11.5px;background:#EEF4FB;color:#0C2136;border:none;padding:0 26px;cursor:pointer;font-weight:600;transition:background .2s}
-#enter:hover{background:#fff}
-#gerr{color:#E4A7A7;font-size:12px;margin-top:12px;min-height:16px;font-family:var(--mono);letter-spacing:.3px}
-.gate-foot{font-family:var(--mono);font-size:10px;margin-top:36px;letter-spacing:1px;color:#41597A;opacity:0;animation:rise .9s .7s forwards}
-.gate-foot b{color:#6E86A2;font-weight:400}
-.gate-note{font-family:var(--mono);font-size:12px;letter-spacing:.6px;color:#5E7896;margin-top:12px;opacity:0;animation:rise .9s .82s forwards;display:flex;align-items:center;gap:8px}
-.gate-note::before{content:"";width:5px;height:5px;border-radius:50%;background:#3B7A5E;box-shadow:0 0 8px 1px rgba(59,122,94,.8);flex:none}
 @keyframes rise{to{opacity:1;transform:none}}
 /* ================= WELCOME ================= */
 #welcome{position:fixed;inset:0;z-index:45;display:none;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 46%,#0F2740 0%,#060F1C 74%);opacity:0;transition:opacity .8s}
@@ -688,8 +659,7 @@ body.explore.cur .cursor{display:block}
 .radv-close .xw,.cm-close .xw{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase}
 #rail{transition:padding .45s cubic-bezier(.16,1,.3,1)}
 @media(max-width:1660px){body.pnl #rail{padding-right:436px}body.pnl #auto{left:calc(50% - 218px)}body.pnl #ctrls{right:462px}}
-@media (prefers-reduced-motion: reduce){#grain{display:none}
-  .gcoord,.gframe h1 .ln,.gframe p,.gate-in,.gate-foot,.gate-note{animation-duration:.01ms;opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){#grain{display:none}}
 </style></head>
 <body>
 <div id="aura"></div>
@@ -697,20 +667,6 @@ body.explore.cur .cursor{display:block}
 <div id="vig"></div>
 <div id="grain"></div>
 <div class="cursor" id="cursor"></div>
-
-<div id="gate">
- <canvas id="gatebg"></canvas>
- <div class="gwrap"><div class="gframe">
-  <img id="oormark" class="oor" alt="Operation OneRoof"/>
-  <div class="gcoord">Private<span class="dim"> · </span>By invitation<span class="dim"> · </span>2024 to today</div>
-  <h1><span class="ln">Two years.</span><span class="ln"><em>One arc.</em></span></h1>
-  <p>An interactive look at the work behind RCA’s ERP program, in the order it happened, and where it goes next. Built to explore in a few minutes.</p>
-  <div class="gate-in"><input id="email" type="email" placeholder="you@roofingcorp.com" autocomplete="off" spellcheck="false"/><button id="enter">Enter</button></div>
-  <div id="gerr"></div>
-  <div class="gate-foot">Prepared by <b>Cain Menard</b> · cainmenard.com</div>
-  <div class="gate-note">Private and unlisted. Your email isn&rsquo;t stored or tracked. The embedded tools load from Tableau and Vercel when you open them.</div>
- </div></div>
-</div>
 
 <div id="welcome">
  <div class="wk">A two-year arc</div>
@@ -1514,25 +1470,23 @@ function oorPanelBlock(){
   <div class="mkrow">${k}</div>
   <div class="mbchart"><div class="mbh">Role assignments by network &middot; 139 total</div>${bars}</div>
   <button class="ppl-more" data-oor="1">See all 23 components, the networks and the field timing &rarr;</button></div>`;}
-/* ================= GATE ================= */
-$('#enter').onclick=enter;$('#email').addEventListener('keydown',e=>{if(e.key==='Enter')enter();});
-if(LOGOS['_OOR'])$('#oormark').src=LOGOS['_OOR'];
-(function gateStars(){const c=$('#gatebg'),x=c.getContext('2d');let W,H,st=[];
- function rs(){W=c.width=innerWidth;H=c.height=innerHeight;st=[];for(let i=0;i<46;i++)st.push({x:Math.random()*W,y:Math.random()*H,z:Math.random(),p:Math.random()*6.28});}
- rs();addEventListener('resize',rs);let raf;
- function tick(t){x.clearRect(0,0,W,H);for(const s of st){const a=(0.10+0.24*(0.5+0.5*Math.sin(t*0.0011+s.p)))*(0.35+s.z*0.5);x.beginPath();x.arc(s.x,s.y,s.z*1.1+0.25,0,6.28);x.fillStyle='rgba(150,175,205,'+a.toFixed(3)+')';x.fill();s.x+=(0.03+s.z*0.04);if(s.x>W)s.x=0;}raf=requestAnimationFrame(tick);}
- if(!REDUCED)raf=requestAnimationFrame(tick);window._stopGate=()=>cancelAnimationFrame(raf);
-})();
+/* ================= BOOT ================= */
+/* There is no email gate here any more, and that is the point. The one that
+   used to sit at this spot was a regex in the browser, checked after the whole
+   file had already been handed over. Access is now settled server-side before
+   a single byte of this page is sent (src/app/oneroof/route.js), and the
+   sign-in screen lives at /oneroof/enter. Anyone running this script is
+   already signed in, so the page opens straight on the welcome card. */
 function webglOK(){try{const c=document.createElement('canvas');return !!(window.WebGLRenderingContext&&(c.getContext('webgl')||c.getContext('experimental-webgl')));}catch(e){return false;}}
-function enter(){const v=$('#email').value.trim().toLowerCase();
- if(!/^[^@]+@roofingcorp\.com$/.test(v)){$('#gerr').textContent='Please use your @roofingcorp.com email.';return;}
- if(window._stopGate)window._stopGate();
- $('#gate').style.display='none';const w=$('#welcome');w.style.display='flex';requestAnimationFrame(()=>w.style.opacity='1');
+function begin(){
+ if(window.__oneroofBegun)return;window.__oneroofBegun=true;
+ const w=$('#welcome');w.style.display='flex';requestAnimationFrame(()=>w.style.opacity='1');
  setTimeout(()=>{$('#wline').style.transition='width 1s cubic-bezier(.4,0,.2,1)';$('#wline').style.width='220px';
    $('#wstat').innerHTML=KPIS.map(k=>'<b>'+k[0]+'</b> '+k[1]).join('&nbsp;&nbsp;·&nbsp;&nbsp;');},420);
  setTimeout(()=>{w.style.opacity='0';setTimeout(()=>{w.style.display='none';
    if(!webglOK()){showFallback();return;}
    $('#app').style.display='block';document.body.classList.add('explore');start();},800);},2500);}
+if(document.readyState==='complete')begin();else window.addEventListener('load',begin);
 /* ---- WebGL-off fallback: a clean static read ---- */
 function showFallback(){
  const chapters=ACTS.map(a=>`<div class="fbch"><div class="fy">${a.year}</div><h2>${a.title}</h2><div class="fst">${a.story}</div>
@@ -1554,8 +1508,10 @@ const numCap=n=>{const s=NUMW[n]||String(n);return s.charAt(0).toUpperCase()+s.s
 const ARCSPAN='2024 to today';
 (function(){const h=document.querySelector('#welcome h2');
  if(h)h.textContent=numCap(ACTS.length)+' chapters, '+ARCSPAN+'. The work, in the order it happened, and where it goes next.';
- const gc=document.querySelector('.gcoord');
- if(gc)gc.innerHTML='Private<span class="dim"> · </span>By invitation<span class="dim"> · </span>'+ARCSPAN;})();
+ })();
+/* The gate eyebrow used to be written from ARCSPAN here too. It now lives on
+   the sign-in screen at /oneroof/enter, outside this file, where it is typed
+   by hand. If the span ever changes, change it there as well. */
 /* chapter rail ticks */
 $('#ticks').innerHTML=ACTS.map((a,i)=>`<div class="tick" data-i="${i}" style="left:${(i/(ACTS.length-1))*100}%"><div class="dot"></div><div class="ty">${a.year}</div><div class="tt">${a.title}</div></div>`).join('');
 /* toolkit menu + lightbox wiring */

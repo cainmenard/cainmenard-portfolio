@@ -65,6 +65,13 @@ src/
 
 `public/` contains static assets: images, resume PDF, favicon, robots.txt, sitemap.xml, and OG image.
 
+`private/` is NOT served. It holds `oneroof/index.html`, the 1.5MB self-contained
+Operation OneRoof walk-through, which is readable only through
+`src/app/oneroof/route.js` after a session check. Do not move it into `public/`
+and do not add a rewrite that reaches it. That is the whole security boundary.
+`next.config.js` has an `outputFileTracingIncludes` entry so the file ships with
+that function; deleting it builds fine and 500s in production.
+
 ## Routing
 
 All routes use the Next.js App Router (`src/app/`):
@@ -75,6 +82,9 @@ All routes use the Next.js App Router (`src/app/`):
 | `/ai-evolution`    | `src/app/ai-evolution/page.js`| Featured case study article    |
 | `/honeymoon-demo`  | `src/app/honeymoon-demo/page.js` | Trip planner demo           |
 | `/lagniappe`       | `src/app/lagniappe/page.js`   | Personal interests + recipes   |
+| `/oneroof`         | `src/app/oneroof/route.js`    | Operation OneRoof walk-through, invite-only. Serves `private/oneroof/index.html` to a valid session, otherwise 307 to the sign-in screen |
+| `/oneroof/enter`   | `src/app/oneroof/enter/page.js` | Magic-link sign-in screen    |
+| `/oneroof/admin`   | `src/app/oneroof/admin/page.js` | Invite list and live sessions. Owner only, 404 for everyone else |
 
 Within-page navigation uses anchor-based smooth scrolling (`#about`, `#projects`, etc.).
 
@@ -144,9 +154,35 @@ Configured in `next.config.js` to use AVIF and WebP formats. Use Next.js `<Image
 - **Vercel Analytics** — page view tracking
 - **Credly** — certification badge links
 
+## /oneroof authentication
+
+Invite-only, magic link, no auth vendor. `src/lib/oneroof/` holds all of it:
+`redis.js` (Upstash, with a dev-only in-memory fallback when the Upstash vars
+are unset), `auth.js` (sessions, invite list, one-time tokens, rate limiting),
+`mail.js` (Resend, prints to console in dev), `guard.js` (owner check).
+
+How it hangs together: `/oneroof/enter` posts an address to
+`/api/oneroof/auth/request`, which answers identically whether or not the
+address is invited, so the form cannot be used to probe the list. An invited
+address gets a link whose SHA-256 hash is stored with a 15 minute TTL and
+consumed with GETDEL, making it single use. `/api/oneroof/auth/callback` trades
+it for a 90-day `oneroof_session` cookie shaped `<sid>.<hmac>`. The HMAC is a
+cheap pre-filter; the Redis lookup is the real check, which is what makes a
+session revocable from `/oneroof/admin`. Sessions renew on use, so an invited
+reader signs in once and stays in.
+
+Required env vars in production (see `.env.local.example`):
+`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `ONEROOF_SESSION_SECRET`,
+`ONEROOF_OWNER_EMAIL`, `RESEND_API_KEY`, `ONEROOF_MAIL_FROM`,
+`NEXT_PUBLIC_SITE_URL`. Rotating `ONEROOF_SESSION_SECRET` logs everyone out.
+
+The artifact's own email gate was removed when auth went in; the build source
+and the `patch_gate.py` that removed it live in the vault under
+`Website Updates/RCA-OneRoof-Experience/_source/`.
+
 ## Things to Know
 
-- No `.env` variables are required for local development
+- `/oneroof` needs env vars in production; the rest of the site still needs none locally
 - No test suite exists — verify changes by running `npm run build` to catch build errors
 - The `portfolio/` directory at the root appears to be an older/alternate build — the active source is in `src/`
 - Pages can be large single files (the AI evolution case study is ~1250 lines) — this is intentional for self-contained articles
