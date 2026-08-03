@@ -184,6 +184,46 @@ html,body{margin:0;padding:0;background:var(--bg);overflow:hidden;font-family:va
 .drs{font-family:var(--mono);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:#7E93AB}
 body.drw #rail{padding-right:520px}
 
+/* ---- v2-c-2: people + toolkit ---- */
+.util{display:flex;gap:9px;margin-bottom:2px}
+.ubtn{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#B6C6D8;background:rgba(10,22,38,.55);border:1px solid rgba(116,179,198,.3);padding:7px 12px;cursor:pointer;transition:.18s}
+.ubtn:hover{border-color:var(--amber);color:#fff}
+#toolmenu{position:fixed;top:130px;right:46px;width:270px;z-index:11;background:linear-gradient(180deg,rgba(9,18,32,.98),rgba(6,13,24,.99));border:1px solid rgba(116,179,198,.28);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.22s}
+#toolmenu.on{transform:none;opacity:1;pointer-events:auto}
+.tmh{font-family:var(--mono);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#74B3C6;padding:14px 16px 9px}
+.tmi{display:block;width:100%;text-align:left;background:none;border:none;border-top:1px solid rgba(116,179,198,.12);padding:12px 16px;cursor:pointer;font-family:inherit}
+.tmi:hover{background:rgba(184,115,51,.14)}
+.tmi .n{font-family:var(--serif);font-size:15px;color:#fff}
+.tmi .d{font-family:var(--mono);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:#7E93AB;margin-top:3px}
+#people{position:fixed;inset:0;z-index:12;display:none;background:radial-gradient(ellipse at 50% 30%,rgba(8,17,30,.98),rgba(4,9,16,.995));overflow-y:auto;padding:56px 6vw 60px}
+#people.on{display:block}
+.pplX{position:fixed;top:34px;right:46px;font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(116,179,198,.5);background:none;padding:7px 13px;cursor:pointer;z-index:2}
+.pplX:hover{border-color:var(--amber);color:#fff}
+.pplH{font-family:var(--mono);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.pplT{font-family:var(--serif);font-size:32px;margin:0 0 6px}
+.pplS{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:20px;max-width:60ch}
+.pplLeg{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:26px}
+.pplLeg span{font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:7px}
+.pplLeg i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.pplGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.pplC{border:1px solid rgba(163,197,240,.16);padding:16px 18px}
+.pplCn{font-family:var(--serif);font-size:18px;color:#fff;margin-bottom:2px}
+.pplCl{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:#7E93AB;margin-bottom:12px}
+.prow2{display:flex;align-items:baseline;gap:9px;padding:6px 0;border-top:1px solid rgba(163,197,240,.09)}
+.prow2 i{width:8px;height:8px;border-radius:50%;flex:none;position:relative;top:1px}
+.prow2 .pn{font-size:14px;color:#EEF4FB}
+.prow2 .pt{font-size:12.5px;color:rgba(255,255,255,.6)}
+#lightbox{position:fixed;inset:0;z-index:14;display:none;flex-direction:column;background:rgba(4,9,16,.98)}
+#lightbox.on{display:flex}
+.lbBar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid rgba(116,179,198,.2)}
+.lbTitle{font-family:var(--serif);font-size:18px;color:#fff}
+.lbNote{font-family:var(--mono);font-size:11px;color:#7E93AB;margin-top:3px;max-width:70ch}
+.lbActions{display:flex;gap:10px;align-items:center}
+.lbA{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#B6C6D8;border:1px solid rgba(116,179,198,.4);padding:7px 13px;cursor:pointer;text-decoration:none}
+.lbA:hover{border-color:var(--amber);color:#fff}
+#lbFrame{flex:1;width:100%;border:0;background:#0B1626}
+.lbLoad{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:12px;letter-spacing:1px;color:#7E93AB}
+
 /* ---- rail ---- */
 #rail{position:fixed;left:0;right:0;bottom:36px;z-index:7;display:flex;justify-content:center;transition:padding .45s cubic-bezier(.16,1,.3,1)}
 body.pnl #rail{padding-right:440px}
@@ -225,6 +265,7 @@ body.pnl #rail{padding-right:440px}
  <div class="byline">Cain Menard &middot; RCA &middot; 66 members &middot; four stages &middot; one still to fix</div>
 </div>
 <div id="hdrR">
+ <div class="util"><button id="tkBtn" class="ubtn">The toolkit</button><button id="pplBtn" class="ubtn">The people</button></div>
  <div class="hints"><div>drag to nudge &middot; orbit locked</div><div>&larr; &rarr; stages &middot; enter opens &middot; s for section &middot; esc closes</div></div>
  <button id="secBtn">section</button>
 </div>
@@ -273,6 +314,9 @@ body.pnl #rail{padding-right:440px}
  <div id="pnd"></div>
 </div>
 
+<div id="toolmenu"><div class="tmh">Tools I built &middot; view live</div><div id="tmItems"></div></div>
+<div id="people"><button class="pplX" id="pplX">Close</button><div class="pplH">The people</div><h2 class="pplT">Who carried it, by company</h2><div class="pplS" id="pplSub"></div><div class="pplLeg" id="pplLeg"></div><div class="pplGrid" id="pplGrid"></div></div>
+<div id="lightbox"><div class="lbBar"><div><div class="lbTitle" id="lbTitle"></div><div class="lbNote" id="lbNote"></div></div><div class="lbActions"><a class="lbA" id="lbOpen" target="_blank" rel="noopener">Open in new tab</a><button class="lbA" id="lbClose">Close</button></div></div><div style="position:relative;flex:1"><div class="lbLoad" id="lbLoad">Loading the live tool&hellip;</div><iframe id="lbFrame" title="live tool"></iframe></div></div>
 <div id="drawer"><button id="drawerClose">Close</button><div id="drawerBody"></div></div>
 
 <div id="rail"><div class="railin">
@@ -537,6 +581,38 @@ const RA_PAIN={total:4468,
  hmFuncs:['Service','Payroll','Invoicing','Comm / Prod','Job Cost','Estimating','Inventory','Field Ops'],
  hm:[['Crowther',[167,199,69,93,54,93,54,85]],['Bone Dry',[134,63,218,44,59,33,25,46]],['Dynamic National',[159,25,52,83,28,22,36,13]],['Davco',[45,76,55,29,43,18,44,16]],['TORC',[71,71,12,6,54,8,8,0]],['AAA',[36,58,85,26,21,18,10,0]],['Front Range',[69,59,29,41,24,27,2,10]],['WeatherShield',[41,24,18,3,14,15,7,7]],['Springer-Peterson',[7,51,33,16,3,0,6,7]],['Deer Park',[23,38,31,12,15,15,7,1]],['Roof Tech',[8,18,0,11,21,12,17,6]],['Hamilton',[4,0,9,0,14,0,0,0]]]};
 
+/* v2-c-2: people + toolkit, verbatim from the live build */
+const CMAP=[
+ {bu:'FSO',label:'Corporate · Shared Services',people:[
+  {n:'Randall Korach',t:'CEO',r:'exec'},{n:'Rob Allen',t:'Director, Service & Maintenance Programs',r:'sponsor'},{n:'Robert Ricken',t:'VP, Premier Accounts',r:'sponsor'},{n:'Ashley Aldridge',t:'HR Director',r:'partner'},{n:'Lisa Pye',t:'HR Regional Manager',r:'partner'},{n:'Robert Campbell',t:'IT Director',r:'partner'},{n:'Nathan Good',t:'Business Applications Manager',r:'partner'},{n:'Sandi Roth',t:'Corporate Controller',r:'partner'},{n:'Alexandra Hollen',t:'Process Transformation Lead',r:'partner'},{n:'Michael Glameyer',t:'Strategic Finance Manager',r:'partner'}]},
+ {bu:'Crowther',people:[{n:'Kevin Callans',t:'President',r:'exec'},{n:'Daniel Mazon',t:'CFO',r:'partner'}]},
+ {bu:'WeatherShield',people:[{n:'Brandon Flowers',t:'Owner / President',r:'exec'},{n:'Garrett Becker',t:'CFO',r:'partner'},{n:'Kristine Murchison',t:'Project Coordinator',r:'partner'},{n:'Cody Molock',t:'Business Development Manager',r:'sme'}]},
+ {bu:'TORC',people:[{n:'Michael Coddington',t:'President',r:'exec'},{n:'Toni Hanson',t:'VP, Finance & Admin',r:'partner'}]},
+ {bu:'Bone Dry',people:[{n:'Matthew Atkinson',t:'President',r:'exec'},{n:'Andi Davila',t:'Controller',r:'partner'}]},
+ {bu:'Hamilton',people:[{n:'Virginia Barnard',t:'President',r:'exec'}]},
+ {bu:'AAA',people:[{n:'Tyler Vaske',t:'President',r:'exec'}]},
+ {bu:'Dynamic National',people:[{n:'Seth Bedell',t:'President',r:'exec'}]},
+ {bu:'Front Range',people:[{n:'Nicholas Coufal',t:'President',r:'exec'}]},
+ {bu:'Deer Park',people:[{n:'Anthony Kahny',t:'President',r:'exec'}]},
+ {bu:'Davco',people:[{n:'Christopher Gore',t:'President',r:'exec'}]},
+ {bu:'Springer-Peterson',people:[{n:'Daniel Boatwright',t:'President',r:'exec'}]},
+ {bu:'Roof-Tech',people:[{n:'Robert Wooderson',t:'CEO',r:'exec'}]},
+ {bu:'Pittman Waller',people:[{n:'John Garrett Pearson',t:'President',r:'exec'}]},
+ {bu:'A-1',people:[{n:'Greg Savran',t:'President',r:'exec'}]},
+ {bu:'BDI',people:[{n:'Jim Burton',t:'President',r:'exec'}]}
+];
+const TOOLS={
+ ppa:{name:'Project Performance Analysis',tag:'Completed Contracts Analysis · forensic margin',menu:'Live tool · margin fade & cost overrun',
+  source:'Vercel · React',embed:'https://project-performance-analysis.vercel.app/?embed=1',live:'https://project-performance-analysis.vercel.app',
+  note:'My live React tool, rebuilt from the original Tableau build. Realistic dummy data I created for demonstration. Best on a larger screen.'},
+ bench:{name:'Financial Benchmarking Analysis',tag:'DuPont ROE · peer benchmarking',menu:'Live tool · company vs peer benchmarking',
+  source:'Tableau Public',embed:'https://public.tableau.com/views/FinancialBenchmarkingAnalysis/ControlPanel?:embed=y&:showVizHome=no&:display_count=no&:toolbar=no',live:'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
+  note:'Live interactive dashboard on Tableau Public. Realistic dummy data I created for demonstration.'},
+ field:{name:'Field Intelligence',tag:'Labor hours → income statement',menu:'Interactive case study · opens in a new tab',
+  source:'cainmenard.com',live:'https://www.cainmenard.com/field-intelligence',linkOnly:true}
+};
+const ROLEK={sponsor:'Sponsor',sme:'SME',partner:'Partner',exec:'Leadership'};
+
 const STAGES=[
  {yr:'2024',nm:'The foundation',hero:'87%',hl:'PAGA penalty exposure cut at AAA',
   st:'Six footings and a slab. Below grade, load-bearing, and the reason anything above it stands.',
@@ -775,6 +851,49 @@ document.addEventListener('click',e=>{
  const fv=e.target.closest('[data-fv]');if(fv){openFvDrawer(+fv.dataset.fv);return;}
 });
 
+/* ============ v2-c-2: people + toolkit ============ */
+const ROLECOL={exec:'var(--amber)',sponsor:'#A3C5F0',sme:'#7FA7CE',partner:'#6E87A5'};
+function openPeople(){
+ const total=CMAP.reduce((s,g)=>s+g.people.length,0);
+ $('#pplSub').textContent=total+' named people across '+CMAP.length+' companies and corporate. Sponsors, business experts and the functional partners who carried the work. Titles as they sit on the roster.';
+ $('#pplLeg').innerHTML=Object.entries(ROLEK).map(([k,v])=>`<span><i style="background:${ROLECOL[k]}"></i>${v}</span>`).join('');
+ $('#pplGrid').innerHTML=CMAP.map(g=>{
+  const rows=g.people.map(p=>`<div class="prow2"><i style="background:${ROLECOL[p.r]||'#6E87A5'}"></i><div><div class="pn">${p.n}</div><div class="pt">${p.t}</div></div></div>`).join('');
+  const bu=BUSNAME(g.bu),lbl=g.label||'Operating company';
+  return `<div class="pplC"><div class="pplCn">${bu}</div><div class="pplCl">${lbl}</div>${rows}</div>`;
+ }).join('');
+ halt();$('#people').classList.add('on');
+}
+function BUSNAME(k){const m={'FSO':'FSO','WeatherShield':'WeatherShield','Roof-Tech':'Roof-Tech','Springer-Peterson':'Springer-Peterson','Dynamic National':'Dynamic National','Front Range':'Front Range','Deer Park':'Deer Park','Bone Dry':'Bone Dry','Pittman Waller':'Pittman Waller'};return m[k]||k;}
+function closePeople(){$('#people').classList.remove('on');}
+$('#pplBtn').onclick=e=>{e.stopPropagation();closeTool();openPeople();};
+$('#pplX').onclick=closePeople;
+
+function renderToolMenu(){
+ $('#tmItems').innerHTML=Object.entries(TOOLS).map(([k,t])=>`<button class="tmi" data-tool="${k}"><div class="n">${t.name}</div><div class="d">${t.menu}</div></button>`).join('');
+}
+renderToolMenu();
+function toggleTool(){$('#toolmenu').classList.toggle('on');}
+function closeTool(){$('#toolmenu').classList.remove('on');}
+$('#tkBtn').onclick=e=>{e.stopPropagation();toggleTool();};
+function openTool(k){
+ const t=TOOLS[k];if(!t)return;closeTool();
+ if(t.linkOnly){window.open(t.live,'_blank','noopener');return;}
+ $('#lbTitle').textContent=t.name;$('#lbNote').textContent=t.note||'';
+ $('#lbOpen').href=t.live;
+ const fr=$('#lbFrame');$('#lbLoad').style.display='block';fr.style.opacity='0';
+ fr.onload=()=>{$('#lbLoad').style.display='none';fr.style.opacity='1';};
+ fr.src=t.embed;
+ $('#lightbox').classList.add('on');
+}
+function closeLb(){$('#lightbox').classList.remove('on');const fr=$('#lbFrame');setTimeout(()=>{fr.src='about:blank';},300);}
+$('#lbClose').onclick=closeLb;
+document.addEventListener('click',e=>{
+ const tm=e.target.closest('[data-tool]');if(tm){openTool(tm.dataset.tool);return;}
+ const menu=$('#toolmenu');
+ if(menu.classList.contains('on')&&!e.target.closest('#toolmenu')&&!e.target.closest('#tkBtn'))closeTool();
+});
+
 /* section */
 function setSection(v){
  halt();$('#section').classList.toggle('on',v);$('#secBtn').classList.toggle('on',v);
@@ -810,7 +929,7 @@ window.addEventListener('keydown',e=>{
  if(e.key==='ArrowRight')go(act+1);
  else if(e.key==='ArrowLeft')go(act-1);
  else if(e.key==='Enter'){halt();openPanel();}
- else if(e.key==='Escape'){if($('#drawer').classList.contains('on'))closeDrawer();else if($('#section').classList.contains('on'))setSection(false);else closePanel();}
+ else if(e.key==='Escape'){closeTool();if($('#lightbox').classList.contains('on'))closeLb();else if($('#people').classList.contains('on'))closePeople();else if($('#drawer').classList.contains('on'))closeDrawer();else if($('#section').classList.contains('on'))setSection(false);else closePanel();}
  else if(e.key==='s'||e.key==='S')setSection(!$('#section').classList.contains('on'));
 });
 
