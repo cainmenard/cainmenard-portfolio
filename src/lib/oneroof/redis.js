@@ -13,10 +13,24 @@ import { Redis } from '@upstash/redis'
  * every cold start logged everyone out, so that case throws instead.
  */
 
+/**
+ * Vercel's Upstash integration has injected these credentials under two
+ * different names over time: KV_REST_API_URL / KV_REST_API_TOKEN, and
+ * UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN. Which pair you get
+ * depends on when and how the integration was installed.
+ *
+ * Reading both means provisioning cannot fail on a name mismatch, which would
+ * otherwise surface as a working build and a dead auth layer.
+ */
+function credentials() {
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN
+  return url && token ? { url, token } : null
+}
+
 function hasUpstash() {
-  return (
-    !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN
-  )
+  return credentials() !== null
 }
 
 /* ------------------------------------------------------------------ */
@@ -134,11 +148,9 @@ let resolved = null
 function client() {
   if (resolved) return resolved
 
-  if (hasUpstash()) {
-    resolved = new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    })
+  const creds = credentials()
+  if (creds) {
+    resolved = new Redis(creds)
     return resolved
   }
 
@@ -146,8 +158,9 @@ function client() {
   // per-instance and sessions would die on every cold start. Fail loudly.
   if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PHASE) {
     throw new Error(
-      'UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN are required in production. ' +
-        'Provision Upstash Redis from the Vercel dashboard under Storage.'
+      'Upstash Redis credentials are required in production. Provision Upstash ' +
+        'Redis from the Vercel dashboard under Storage, which sets either ' +
+        'UPSTASH_REDIS_REST_URL/_TOKEN or KV_REST_API_URL/_TOKEN. Either pair works.'
     )
   }
 

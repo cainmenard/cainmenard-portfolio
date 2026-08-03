@@ -171,10 +171,12 @@ cheap pre-filter; the Redis lookup is the real check, which is what makes a
 session revocable from `/oneroof/admin`. Sessions renew on use, so an invited
 reader signs in once and stays in.
 
-Required env vars in production (see `.env.local.example`):
-`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `ONEROOF_SESSION_SECRET`,
-`ONEROOF_OWNER_EMAIL`, `RESEND_API_KEY`, `ONEROOF_MAIL_FROM`,
-`NEXT_PUBLIC_SITE_URL`. Rotating `ONEROOF_SESSION_SECRET` logs everyone out.
+Required env vars in production (see `.env.local.example`): the Upstash pair,
+`ONEROOF_SESSION_SECRET`, `ONEROOF_OWNER_EMAIL`, `RESEND_API_KEY`,
+`ONEROOF_MAIL_FROM`, `NEXT_PUBLIC_SITE_URL`. The Upstash pair is read as either
+`UPSTASH_REDIS_REST_URL`/`_TOKEN` or `KV_REST_API_URL`/`_TOKEN`, because Vercel's
+integration has used both names; whichever it injects works. Rotating
+`ONEROOF_SESSION_SECRET` logs everyone out.
 
 The artifact's own email gate was removed when auth went in; the build source
 and the `patch_gate.py` that removed it live in the vault under
