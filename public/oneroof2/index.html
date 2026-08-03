@@ -144,6 +144,46 @@ html,body{margin:0;padding:0;background:var(--bg);overflow:hidden;font-family:va
 .mnote{font-size:14px;line-height:1.55;color:rgba(255,255,255,.7)}
 #pnd{margin-top:26px;padding:18px 20px;background:rgba(97,150,214,.12);border-left:2px solid rgba(240,168,108,.9);font-size:14px;line-height:1.6;color:rgba(255,255,255,.82)}
 
+/* ---- v2-c drawer (deep receipts) + panel deep-content ---- */
+#drawer{position:fixed;right:0;top:0;bottom:0;width:520px;max-width:52vw;z-index:9;box-sizing:border-box;background:rgba(4,9,16,.99);border-left:1px solid rgba(240,168,108,.3);box-shadow:-40px 0 80px rgba(0,0,0,.6);overflow-y:auto;padding:30px 34px 46px;transform:translateX(103%);transition:transform .38s cubic-bezier(.16,1,.3,1)}
+#drawer.on{transform:none}
+#drawerClose{position:absolute;right:24px;top:26px;font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(116,179,198,.5);background:none;padding:6px 12px;cursor:pointer;z-index:2}
+#drawerClose:hover{border-color:var(--amber);color:#fff}
+.dtag{font-family:var(--mono);font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--amber);margin-bottom:8px;max-width:34ch}
+.dtitle{font-family:var(--serif);font-size:26px;line-height:1.18;margin-bottom:12px;max-width:24ch}
+.didea{font-family:var(--serif);font-size:16.5px;line-height:1.55;color:#DCEBF9;margin-bottom:20px}
+.dstats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.dst{border:1px solid rgba(163,197,240,.22);padding:10px 14px;min-width:92px}
+.dsv{font-family:var(--serif);font-size:23px;color:#fff;display:block}
+.dsl{font-family:var(--mono);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:#7E93AB;margin-top:4px;display:block}
+.dh{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);padding-bottom:8px;border-bottom:1px solid rgba(116,179,198,.22);margin:22px 0 12px}
+.dp{font-size:14px;line-height:1.62;color:rgba(255,255,255,.82)}
+.dul{margin:0;padding-left:18px}
+.dul li{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.8);margin-bottom:9px}
+.dnd{margin-top:22px;padding:16px 18px;background:rgba(97,150,214,.12);border-left:2px solid rgba(240,168,108,.9);font-size:14px;line-height:1.6;color:rgba(255,255,255,.85)}
+.dnd b{color:var(--amber)}
+#pdeep{margin-top:4px}
+.deeplead{font-size:14px;line-height:1.6;color:rgba(255,255,255,.8);margin:10px 0 16px}
+.deeplead b{color:#fff}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:flex;align-items:center;gap:10px}
+.barl{font-size:12.5px;color:rgba(255,255,255,.75);width:118px;flex:none}
+.bart{flex:1;height:8px;background:rgba(163,197,240,.12)}
+.barf{display:block;height:8px;background:var(--copper)}
+.barv{font-family:var(--serif);font-size:14px;color:var(--amber);width:52px;text-align:right;flex:none}
+.kprow{display:flex;gap:10px;margin-bottom:18px}
+.kpc{border:1px solid rgba(163,197,240,.2);padding:9px 12px;flex:1}
+.kpv{font-family:var(--serif);font-size:20px;color:#fff;display:block}
+.kpl{font-family:var(--mono);font-size:9.5px;letter-spacing:.4px;text-transform:uppercase;color:#7E93AB;margin-top:3px;display:block;line-height:1.3}
+.dgrp{margin-bottom:16px}
+.dgh{font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(116,179,198,.9);margin-bottom:8px}
+.dgh span{color:rgba(255,255,255,.45);text-transform:none;letter-spacing:.3px;margin-left:8px}
+.drow{display:flex;flex-direction:column;gap:3px;width:100%;box-sizing:border-box;text-align:left;background:none;border:1px solid rgba(163,197,240,.2);border-left:2px solid rgba(240,168,108,.55);padding:11px 14px;margin-bottom:7px;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s}
+.drow:hover{background:rgba(184,115,51,.12);border-left-color:var(--amber)}
+.drt{font-family:var(--serif);font-size:16px;color:#fff}
+.drs{font-family:var(--mono);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:#7E93AB}
+body.drw #rail{padding-right:520px}
+
 /* ---- rail ---- */
 #rail{position:fixed;left:0;right:0;bottom:36px;z-index:7;display:flex;justify-content:center;transition:padding .45s cubic-bezier(.16,1,.3,1)}
 body.pnl #rail{padding-right:440px}
@@ -229,8 +269,11 @@ body.pnl #rail{padding-right:440px}
  <div id="pt"></div><div id="psub"></div>
  <div class="psh">what this stage carries</div>
  <div id="pmembers"></div>
+ <div id="pdeep"></div>
  <div id="pnd"></div>
 </div>
+
+<div id="drawer"><button id="drawerClose">Close</button><div id="drawerBody"></div></div>
 
 <div id="rail"><div class="railin">
  <button id="play" aria-label="Play or pause the walk">&#9654;</button>
@@ -262,6 +305,238 @@ body.pnl #rail{padding-right:440px}
 const $=s=>document.querySelector(s);
 
 const IV=372, ROSTER=2287, N90B=[6,11], SERIES=5;
+/* ============ v2-c: the receipts, verbatim from the live v1 build ============
+   These are the exact constants the v1 harnesses protect. Rise is the scene;
+   the drawers below carry the evidence, entered from the stages. ============ */
+const OOR_ITEMS=[
+ {g:0,t:'The workforce data spine',src:'Smartsheet · live',
+  idea:'One workspace across 16 companies: 9 pillar folders, 23 connected sheets, 11 reports, 3 dashboards and a published work app, joined on stable keys and fed by automation. Every role network, every integrity repair and every training seat hangs off it.',
+  stats:[['23','connected sheets'],['~8','fields a human types'],['0','orphaned supervisor keys'],['116','real gaps, not 1,300']],
+  what:'This is not one table. It is a workspace organized into nine pillars, foundation through archive, so a sheet has one job, one owner, and keys that do not move. Nobody assigned the audit work underneath it. I found it because the numbers stopped agreeing, and a number that lies once will lie in a steering committee deck later.',
+  bul:['Nine pillar folders, foundation through archive, and 23 connected sheets that are cross-sheet referenced rather than copied, so a correction lands once.','Eleven live reports and three dashboards, plus a published work app so a company lead can enter data without touching the sheets.','Three automated feeds, roster sync, event build from the plan and assignment roll-up, with a provenance column on every field that came from somewhere else.','One assignment table underneath all five role networks: 139 named assignments held by roughly 58 people, so double-loading is visible instead of a surprise.','The training pillar is structured before the train-the-trainer week runs: 29 seats against named people and their companies, 11 module and track rows, 25 hours.','Crew intake standardized to three collection instruments and one named data owner per company, so 16 companies send one file in one shape instead of 16 formats.','The four repairs in the fix list, keys, identity, attendance and the event pipeline, all landed here, and the guardrails holding them are formulas and feeds rather than a reminder to be careful.'],
+  open:'Crew intake is running as a proof of concept at four companies, not sixteen. Twelve open items are sorted by who is actually blocking them, and four questions unblock three companies at once. The train-the-trainer week has not run, so 11 module rows are a structure waiting on content.',
+  impact:'The program can answer who works where, in which role, at which event, without asking a person. The engagement fact table grew from 38 columns to 53 as the questions got harder, and the number a human types stayed at about eight. Everything else is derived.'},
+ {g:0,t:'The job and persona model',src:'16 companies · 403 titles',
+  idea:'403 raw job titles across 16 companies collapsed into 121 master jobs, 10 job families and 34 personas that training, security and reporting all key off.',
+  stats:[['403 &rarr; 121','raw titles to master jobs'],['34','personas across 3 platforms'],['98.3%','roster coverage'],['220','open questions, not 633']],
+  what:'Sixteen companies wrote job titles sixteen ways. A foreman is a foreman, a Foreman, a Crew Foreman and a Field Foreman II, and no system can tell they are the same person doing the same work. I ran a fuzzy match across the roster, reviewed every proposed pair by hand, and built the master job list underneath it.',
+  bul:['403 distinct raw titles reduced to 121 master jobs in 10 job families.','34 personas defined across the three platforms, which is what drives who gets which training and which permissions.','Coverage went from 354 people carrying a proposed title before the pass to 2,249 of 2,287 today, which is 98.3%.','The remainder is 220 distinct questions to ask the companies, not a list of 633 individual people to chase.','Counts read off the live roster on July 31, 2026, and they move as companies confirm.','Curriculum keys off persona and module rather than a best guess about who needs what, so which of the 2,287 people need a specific course is a query.'],
+  open:'Coverage is 98.3%, not 100%. The last 220 questions and a dozen rows still needing validation sit with the companies, and cannot be resolved from this end. The persona-to-course mapping is only as good as the module list, and that list finishes filling in when the train-the-trainer week runs.',
+  impact:'Training curriculum, security roles and reporting all key off the same job model instead of three different guesses. When a company asks why their people got a particular course, there is an answer with a key on it.'},
+ {g:1,t:'Change Leader Network',src:'37 leaders · 15 companies',
+  idea:'Stood it up from nothing and run it: 37 change leaders nominated across 15 companies, a 12-month curriculum through the last go-live in 2027, and sessions I write and facilitate.',
+  stats:[['37','change leaders nominated'],['15','companies represented'],['36','in the room, session two'],['7','companies reading short']],
+  what:'The Change Leader Network is the day-one support floor. When a crew lead cannot clock in on a Monday morning, the answer needs to be the person two desks over, not a help desk ticket that takes three days.',
+  bul:['37 change leaders nominated across 15 companies, every one linked to the employee record rather than living in an email thread.','A 12-month curriculum running through the last go-live in 2027, sequenced against the wave plan.','Session two: 60 minutes, 15 slides, 36 people in the room, all 36 linked to attendance.','I write the content, build the deck and facilitate the session. A speaker script and a presenter guide exist so it does not depend on me being in the room.','Per-company targets tracked against actual named assignments off the one assignment table, so coverage is countable rather than asserted.'],
+  open:'Seven companies read short of their change leader target today. That is a fact with a company name on it and it is not fixed. Most of the 12-month curriculum is still ahead of us, and the network has not yet been tested against a live go-live.',
+  impact:'A named person inside each company who knows what is coming before it arrives. That is what keeps the help desk from being the answer to every question in the first two weeks.'},
+ {g:1,t:'Field Trainer Network',src:'~1,637 in the field',
+  idea:'Built end to end for the roughly 1,637 people in field departments: a two-step nomination model on a 32-column sheet, wave anchoring, and two audience versions of the deck through eight revisions.',
+  stats:[['~1,637','people in field departments'],['32','columns on the nomination sheet'],['4','countdown milestones'],['5','decisions closed with owners']],
+  what:'The Change Leader Network covers the office. The field is a different problem: roughly 1,637 people who do not sit at a desk, do not read email during the day, and will meet the new system on a phone in a parking lot at 6am.',
+  bul:['A two-step nomination model, company nominates and the program confirms, on a 32-column sheet that carries the department, the wave, the crew and the confirmation state.','Milestones count back from each company go-live at 42, 35, 21 and 4 days out, so every company runs the same countdown regardless of its wave.','One fixed point everything anchors to: September 21, 2026, the first Monday of the first pay cycle paid out of the new system.','Two audience versions of the deck, one for company leadership and one for the trainers themselves, through eight revisions.','Five open decisions closed, with a named owner on each one.'],
+  open:'The structure is built and the network is not running. Nominations are still coming back from the companies, no field trainer session has been delivered, and the first countdown does not start until a company reaches 42 days out from its go-live.',
+  impact:'The field rollout has a repeatable shape instead of sixteen improvisations. Each company gets the same four checkpoints, and the pay cycle date makes the deadline non-negotiable in a way a project milestone never is.'},
+ {g:2,t:'The adoption platform decision',src:'14 named · 0 selected',
+  idea:'Fourteen digital adoption platforms named, three formally evaluated, none bought. The blocker was technical, not budgetary, and it was written down.',
+  stats:[['14','vendors in the sweep'],['3','demoed in five days'],['~1,600','field users on phones'],['0','bought']],
+  what:'An adoption platform overlays step-by-step guidance on software people already use. We wanted one for the ERP and HR rollout. Three vendors got working sessions. The evaluation turned on a question nobody asks in a demo: can this thing reach a roofer holding a phone?',
+  blocks:[
+   {h:'The sweep',c:[{k:'funnel',d:[
+     [14,'named','Everything that could plausibly put guidance on top of a screen, listed before anyone watched a demo.'],
+     [3,'formally evaluated','Eleven screened out on paper. The three that survived got six working sessions, 309 minutes, and all three demos landed inside five calendar days.'],
+     [2,'still in play','Tango drew a no-go the day after its own demo, on the technical read rather than the pitch. Chromium extension only, so it never reaches a phone.'],
+     [0,'selected','Price was not the blocker. The two systems carrying the most people could not be reached.']]}]},
+   {h:'Where it broke',c:[
+     {k:'matrix',d:{q:'One question, asked of every vendor: can the overlay reach a crew member on a phone?',corner:'System',cols:['WalkMe','Whatfix','Tango'],rows:[
+       ['NetSuite','ERP &middot; 20 user types',[['n','No'],['n','No'],['n','No']]],
+       ['Oracle HCM','HR and payroll &middot; mobile web',[['','Not tested'],['y','Yes'],['n','No']]],
+       ['Miter','Field time &middot; third party',[['o','Outside our control'],['o','Outside our control'],['o','Outside our control']]],
+       ['Native apps','iOS and Android',[['n','No'],['n','No'],['n','No']]]]}},
+     {k:'quote',d:['We created this space in 2011&hellip; If this was possible, we would have done it.','WalkMe principal &middot; April 17']},
+     {k:'note',d:'NetSuite does not support JavaScript injection at all, confirmed by a vendor engineering team on April 20 only after engineering was pushed on it. No demo disclosed it. Two direct competitors, interviewed separately a week apart, gave the same answer on mobile, which is what made the finding hold.'}]},
+   {h:'What we could already see without buying anything',c:[
+     {k:'split',d:[
+       ['Free in systems we already own',['NetSuite login audit trail, system notes and the performance app','Oracle HCM user activity report, sign-in API and the usage subject area','Who logged in, how often, in what role, and whether the compliance step got done']],
+       ['Only an overlay can see it',['Step-level drop-off inside one transaction','Click paths and where people double back','Which field stalls people','Session replay']]]},
+     {k:'note',d:'Splitting the question this way is what closed the purchase. Microsoft Clarity was the obvious cheap substitute, and it needs the same script embed, so it fails on NetSuite for exactly the same reason.'}]},
+   {h:'What it produced',c:[
+     {k:'art',d:[
+       ['Requirements workbook','Excel &middot; March 18'],
+       ['Decision brief','415 lines &middot; written in one day'],
+       ['Capabilities and limitations','247 lines &middot; vendor-checked'],
+       ['Comparison matrix','8 dimensions &middot; no score'],
+       ['Decision deck','2 outline versions'],
+       ['Meeting record','11 note files &middot; 13 sessions']]},
+     {k:'note',d:'No numeric score. The evaluation ran on yes, no or pending against eight dimensions plus a cost band, and inventing a weighted score would have made the answer look more objective than it was.'}]}],
+  open:'Nothing replaced it. The step-level questions an overlay would have answered, where people stall inside a transaction and where they double back, stay unanswered, and the phone problem for roughly 1,600 field users is still open. What exists is a reason, not a solution.',
+  impact:'Nothing was bought, and the reasoning outlives the people who made it. When someone proposes an adoption platform again, the brief already names which systems it cannot reach and why, so the next evaluation starts where this one stopped.'},
+ {g:2,t:'The agent family',src:'live in Teams · two agents in two days',
+  idea:'Not a spec. A governed agent published to Teams the night of July 8, broken twice in front of the team in the two days after, and a second agent shipped and approved inside a single day on the rules the first one produced.',
+  stats:[['5','trap questions, written first'],['0','new permission models'],['10','wiring rules out of one failure'],['11','recurring slides, mapped']],
+  what:'The easy version is a chatbot that answers from whatever it can reach, leaks something, and gets shut off. So the governance went in before the pilot did. Every query runs under the asker&rsquo;s own permissions, writes are disabled at the connector, and seven fields stay buried inside the team. Everything built after it inherits that wiring.',
+  blocks:[
+   {h:'What shipped',c:[
+     {k:'art',d:[
+      ['A governed agent, live in Teams','published July 8 &middot; answers inline in a group thread'],
+      ['The instruction block','~5,900 characters &middot; against an 8,000 ceiling'],
+      ['A field guide for the team','how to mention it, why each person signs in once'],
+      ['Ten topics, five trap questions','written before anyone had access']]},
+     {k:'note',d:'Four people on the pilot, read only, each one signing in as themselves. Nobody sees a row their own access would not already show them.'}]},
+   {h:'Where it broke',c:[
+     {k:'split',d:[
+      ['July 9 &middot; the retrieval layer',[
+       'One system was wired three ways, so every prompt fired all three and the agent choked on volume.',
+       'The cleanup deleted the wrong one. What stayed behind was an index of a snapshot, not a live query.',
+       'Answers came back as fragments, and the agent said so instead of filling the gap.']],
+      ['July 10 &middot; the confidence layer',[
+       'A tester caught two answers stated with confidence and wrong. One denied a core system was in the program. One named two sheets that do not exist.',
+       'First patch: name the systems in scope, and never invent a source. If nothing is wired to a question, say that and name the closest real one.',
+       'Second patch, same day: print people&rsquo;s names, not the internal codes that join the tables.']]]},
+     {k:'quote',d:['Judgment layer good; retrieval layer misconfigured.','The build log &middot; July 9']}]},
+   {h:'The rule that came out of it',c:[
+     {k:'matrix',d:{q:'One system, one wiring. If a source appears twice in an agent&rsquo;s configuration, one of them is a bug.',corner:'Source',cols:['Wired as a tool','Wired as knowledge','Turned off'],rows:[
+      ['Smartsheet','the live numbers',[['y','Once, read only'],['n','Never'],['o','']]],
+      ['SharePoint and Teams','documents and threads',[['n','Never'],['y','Scoped to folders'],['o','']]],
+      ['Web and open knowledge','everything outside',[['o',''],['o',''],['y','Every agent']]]]}},
+     {k:'note',d:'Ten rules like that one, written the night it broke. They now govern the whole family: one hub, five children scoped to a topic each, and a separate agent wherever the audience or the write access changes. The deck agent further down this drawer is that exception, and it was built under the same ten.'}]},
+   {h:'The deck agent &middot; which parts are data, and which are judgment',c:[
+     {k:'bars',d:[
+       ['A sheet fills it',4,'Wave dates, engagement totals, the open high risks, and the decisions closed since the last meeting. The data exists, it is clean, and it is already computing.',1],
+       ['A person decides',3,'Tower health, the management considerations, staffing. The agent proposes and a named owner confirms, because health is a judgment call and not a column.',0],
+       ['Nobody automates it',4,'Title, agenda, the cost model, the appendix. These ship as a header with an owner name and nothing invented underneath it.',0]]},
+     {k:'note',d:'Eleven recurring slides, each mapped to the sheet that actually feeds it. The map is the artifact. The approved deck is the master: it gets revised in place, never regenerated. The agent only sits on top of the map, and a trap question keeps it there: asked to redesign a slide, it has to refuse.'}]},
+   {h:'What reading seven tower plans turned up',c:[
+     {k:'funnel',d:[
+      [7,'read live','The deck reports on every tower, so every tower plan gets opened rather than quoted from memory.'],
+      [6,'moved this week','Touched inside the last three days. Those numbers can be stated as current, because they are.'],
+      [1,'four months cold','One plan had not moved since February. The agent has to say that date out loud instead of quoting the plan as current, which is the whole rule in one row.']]},
+     {k:'note',d:'Nobody asked for a freshness check. It fell out of opening every plan the deck reports on. The honest framing: this ran instead of five queued items rather than beside them, and it is one agent in the same family under the same wiring rules, picked and approved by an executive inside a single day.'}]}],
+  open:'The pilot is four people, not the team. Five topic children are scoped and not all published. The deck agent has one approved draft behind it rather than a full cycle, so the revise-in-place rule has been stated and not yet tested across two meetings.',
+  impact:'Anyone can stand up a chatbot. What transfers is what happens after it breaks: a rule written down the same night, a patch traced back to the answer that caused it, and a configuration the rest of the family inherits. That is the difference between a demo and something IT will let you keep.'},
+ {g:3,t:'The master plan and the seven-tower wiring',src:'Smartsheet · 9 versions · 7 towers',
+  idea:'Nine versions of the business readiness master plan in seven months, wired to six other tower plans by row ID. Six of the nine rebuilds were set off by something other than the work changing.',
+  stats:[['9','versions in 7 months'],['593 &rarr; 297','rows rebuilt and merged'],['545','rows carry an integration ID'],['0','integration registers built']],
+  what:'A master plan in Smartsheet carrying 542 named tasks and 117 milestones, rebuilt nine times between January and June, with eight milestone dates and eight named risks somebody has to carry across seven towers. The towers link into each other by row ID, which makes it infrastructure rather than a diagram: a delete in one breaks another.',
+  blocks:[
+   {h:'Nine versions, and what set each one off',c:[
+     {k:'lineage',d:{
+       rib:[['me',1,'Interim &middot; me','Dec to Feb'],['s',1,'Seated lead','Feb to Mar 12'],['me',1,'Interim &middot; me','19 days'],
+            ['s',3,'Seated lead','Mar 31 to May 13'],['me',1,'Interim &middot; me','From May 14'],['s',2,'Seated lead','From late May']],
+       ver:[
+        ['v1','Before Feb','Initial build','The first full plan for the tower, cut out of the program schedule.',0,'w','Original build'],
+        ['v2','Mar 11','Company breakout','Leadership wanted the plan read company by company instead of as one block.',0,'','New organizing ask'],
+        ['v3','Mar 13 to 16','Axis flip','Wave-based structure flipped to company-based with three functional tracks, turned around in one business day.',1,'','New organizing axis'],
+        ['v4','Mar 31','Reset for a new lead','Same work, re-cut to match how the tower was going to be run.',0,'','Change in the chair'],
+        ['v5','Apr 8','Simplified plan','The program office asked for a shorter plan, then declared it baselined.',0,'','Program office'],
+        ['v6','Apr 21 to May 1','Cross-tower re-baseline','FSO split from WeatherShield, Oracle HCM split from Miter, and the whole T-90 to T-1 comms chain rebuilt underneath.',1,'w','Scope actually split'],
+        ['v7','May 15','Operating model change','Another reset above the plan, another pass through every row in it.',0,'','Change in the chair'],
+        ['v8','Jun 11','Phase 1 rebuild','Rebuilt from nothing for a new delivery partner. 263 rows, 8 sections, 13 milestones.',1,'','New delivery partner'],
+        ['v9','Jun 12','Legacy merge','43 completed rows and 33 integration rows merged back in, because six other plans link to those row IDs.',0,'w','Link dependency']]}},
+     {k:'note',d:'Grey tags are the three where the work itself moved. The other six are not. Three of those changes fell inside one ten-week window. The word re-baseline appears three times in the entire record and the word replan appears zero times, which means the rework was real and was never tracked as rework.'}]},
+   {h:'What the rebuild did to the sheet',c:[
+     {k:'bars',d:[
+       ['Legacy master',593,'Fifty columns, 542 named tasks, 117 milestones, five levels of indent. Also 47 blank rows, 10 tasks listed as their own predecessor, and a training chain that finished after the go-live it was supposed to enable.',0],
+       ['Rebuilt',263,'Phase 1 rebuilt from 267 source rows into 8 sections and 13 milestones, with the column count cut from 50 to about 33 on measured fill rates rather than opinion.',1],
+       ['Merged',297,'Then the completed history and the integration rows went back in, so the new plan carries the old one instead of replacing it.',0]]},
+     {k:'note',d:'The legacy sheet could not be deleted and re-uploaded. Other towers link into it through 545 integration-ID rows and 31 rows carrying live linked dates. Every change had to happen in place, row by row. Missing counterparts went from 18 to 3 in one week. Renaming a task is safe. Deleting a linked row breaks somebody else’s plan.'}]},
+   {h:'The shape that survived all nine',c:[
+     {k:'sheet',d:{cols:['WBS','Task','Pred','Integration #','Tower'],rows:[
+       [0,'4','HCM and payroll pilot','','',''],
+       [1,'4.1','Engagement and readiness','','',''],
+       [2,'4.1.1','Company readiness confirmation','','BR-0142','BR'],
+       [1,'4.2','Communications','','',''],
+       [2,'4.2.1','Announcement, T-90','4.1.1','BR-0143','Comms'],
+       [2,'4.2.2','Reminder, T-30','4.2.1','BR-0147','Comms'],
+       [1,'4.3','Training','','',''],
+       [2,'4.3.1','Trainer enablement','4.2.1','BR-0151','Training'],
+       [1,'4.4','Go-live and hypercare','','',''],
+       [2,'4.4.1','Cutover readiness sign-off','4.3.1','BR-0163','Cutover']]}},
+     {k:'note',d:'Ten generic rows, no real dates. Readiness, then communications, then training, then go-live repeats inside every system section, which is the one structural idea worth keeping out of all nine versions. Smartsheet silently ignores a predecessor on a summary row, so every dependency has to sit on a leaf task.'}]},
+   {h:'Who the readiness tower actually talks to',c:[
+     {k:'hub',d:{center:['Business Readiness','where I sit'],spokes:[
+       ['Operations','field operations',4,1],
+       ['Process Transformation','harmonized process design',4,2],
+       ['Finance and Accounting','NetSuite and finance',3,1],
+       ['HR and Payroll','Oracle HCM and Miter',3,1],
+       ['Validation','test plans and evidence',2,0],
+       ['DIMBA','data, integrations and master data',1,0]]}},
+     {k:'note',d:'No plan holds a session count, so this is counted off meeting notes: 17 by strict count, 16 if two notes dated the same day are one meeting, a floor of 11 with a note file behind every one. Five were mandated by the program office in one week. The other twelve happened because somebody went and got them.'}]},
+   {h:'What the links carry, and what they only look like they carry',c:[
+     {k:'split',d:[
+       ['What the links resolve',['Identity, through a stable auto-number, which is why reordering a plan is safe and deleting a row is not.','545 rows carry an integration ID and 107 carry a real predecessor, so neither column survives a rebuild that drops it.','This tower&rsquo;s own plan holds 33 rows carrying all nine integration fields.']],
+       ['What they only look like they resolve',['Status. The linked date and percent columns are hand-copied snapshots, so they age the moment the other plan moves.','A one-sided link is an edge one tower believes in and the other does not, testable by checking whether the counterpart row points back.','Neither test runs anywhere today, because nothing reads all seven plans at once.']]]},
+     {k:'note',d:'About a third of the 545 flags name no counterpart. Counterpart turnover is the other half of it. People moved on and off these links five separate times that I can name, and no plan carries an assignment history, so it cannot be measured.'}]}],
+  open:'One register across all seven plans was specified in June and never built, and that gap is mine. Nothing reads all seven plans at once, so neither the counterpart test nor the status test runs anywhere today. Both of them are checks I specified and did not build.',
+  impact:'Nine rebuilds in seven months is not a fact about the plan. It is a fact about how often the thing above the plan changed, and the dates still held. The identity half of the wiring holds and the status half drifts, which is a fact somebody has to own rather than discover during a cutover.'},
+ {g:3,t:'The staffing and budget model',src:'Excel · 12 versions',
+  idea:'A tower with no seated lead and no budget, days out from a program rollup. Built from zero in six days, then carried through 12 versions in 16 weeks and three changes of leadership.',
+  stats:[['12','versions in 16 weeks'],['6','days from zero to review'],['3','scenarios priced side by side'],['35','published sources cited']],
+  what:'A weekly staffing and cost model for the business readiness tower. Roles down the side, about eighty weeks across the top banded by deployment wave, and three costed scenarios running off one rate table. Every input cell carries the source it came from.',
+  blocks:[
+   {h:'Eighty weeks, one rate table, three scenarios',c:[
+     {k:'grid',d:{weeks:24,corner:'Role &middot; rate bands',
+       bands:[['Pre',3,1],['Wave 1',4,0],['Wave 2',4,0],['Wave 3',4,0],['Wave 4',3,0],['Wave 5',3,0],['Hyper',3,1]],
+       rows:[
+        ['Tower lead',1,'222333333333333333333222',0,0],
+        ['Readiness consultant',1,'333333333333333333333332',0,0],
+        ['Training lead',1,'033333333333333333333222',0,0],
+        ['Comms lead',1,'022222222222222222221110',0,0],
+        ['Comms support',1,'000122222222222222211000',0,0],
+        ['Content developer',1,'033333333333222211000000',0,0],
+        ['Trainer, primary',1,'000233333333333333332100',0,0],
+        ['Trainer, surge',1,'000440004400044000440000',0,0],
+        ['Change analyst',1,'000111222222222222222110',0,0],
+        ['Platform admin',1,'000000111111111111111100',0,0],
+        ['Finance seat &middot; cut',1,'000000000000000000000000',1,0],
+        ['Payroll seat &middot; cut',1,'000000000000000000000000',1,0],
+        ['Total allocation',0,'111222233333333222222111',0,1]],
+       vers:[
+        ['March 12 to 18',2,'Built from zero in six days for a program review. Tower budgets were due that Monday.',1],
+        ['March 25 to 26',4,'Four passes in two days as the rate bands and the role mix settled.',0],
+        ['April 1 to 7',5,'The program office ordered a rebuild. A baseline and a descoped version, both delivered.',0],
+        ['June',1,'One later pass, and the shape held.',0]]}},
+     {k:'note',d:'Purple cells are the adjustable inputs, low, medium and high. The grid holds allocation, not currency. One rate table drives three full scenarios across about eighty weeks, so changing a single band recomputes all three. Roles cut in review stayed in the sheet at zero instead of being deleted, so the delta stays visible.'}]},
+   {h:'What the program office said about it',c:[
+     {k:'quote',d:['Mine and Cain&rsquo;s use the same template.','The program office lead, in a program sync, March 2026']},
+     {k:'note',d:'That is the whole claim, said out loud in a program sync about two towers and one file shape. I have not tried to make it mean anything wider than that.'}]},
+   {h:'Where every assumption came from',c:[
+     {k:'art',d:[
+       ['Rate bands by role','Four public pay-data aggregators and a staffing industry index'],
+       ['How many change people a program this size needs','Prosci best practices, 12th edition'],
+       ['Trainer to learner ratios','Prosci staffing ratios and the Chapman Alliance study'],
+       ['Hours it takes to build an hour of training','Chapman Alliance and the ATD state of the industry'],
+       ['Hours a person needs on the platform','Oracle published training paths'],
+       ['Per diem, lodging and airfare','GSA fiscal 2026 rates and Bureau of Transportation Statistics']]},
+     {k:'note',d:'Thirty-five numbered sources, each mapped to the tab and cell range it feeds, with the citation sitting in a comment on the cell itself. Nobody had to take my word for a number.'}]}],
+  open:'The last pass was June. The model prices three scenarios and decides none of them, which is the correct division of labor and also means it settles nothing on its own. Two roles cut in review sit in the sheet at zero rather than deleted, so the delta stays visible instead of quietly disappearing.',
+  impact:'When the program office asked what could come out, the answer was a parallel descoped version delivered the next working day, and the review it triggered concluded there was nothing feasible left to cut. The model was not defended in a meeting. It was built so the answer was already sitting in it.'}];
+const OOR_GRP=[['The data layer','What the program runs on'],['The people layer','Who carries it into 16 companies'],['Enablement and decisions','What the field actually gets'],['Running the tower','What it took to keep it moving']];
+const OOR_KPI=[['16','companies on one data model'],['2,287','people on one governed roster'],['139','role assignments across 5 networks'],['403 &rarr; 121','raw job titles standardized'],['23','connected sheets on the spine'],['11 + 3','live reports and dashboards']];
+const OOR_FIX=[
+ ['Roster key integrity','Four duplicate records, 22 rows sitting on the wrong company prefix, and 21 supervisor keys pointing at nothing.','Zero orphaned supervisor keys, and three guardrails (a display-name formula, a code prefix map and an audit column) so it cannot drift back.'],
+ ['Identity coverage','1,732 enabled accounts with no employee ID to join on, and what looked like 1,300 people missing an identity.','1,391 accounts matched to real people, 329 work emails loaded with a provenance column, and 116 office staff isolated as the real gaps.'],
+ ['Attendance truth','Attendance had no attended state, so a session showed far fewer people than were actually in the room.','32 unlinked rows assigned to the right session, one session resolved to 36 attendees, 100% linked.'],
+ ['Event pipeline','Events were seeded by hand, and a phantom date was propagating out of five unguarded lookups.','Events auto-build from the plan, the event field is feed-controlled so an invalid event cannot be typed, and the phantom date is gone.']];
+const OOR_NET=[['Change Leader Network',36],['Business SMEs',34],['Project resources',31],['Testers',22],['Trainers',16]];
+const FV_OPPS=[
+ {tier:0,t:"Completed Contracts Analysis, portfolio-wide",src:"FMI method",idea:"Run the forensic project-profitability engine on every company’s finished jobs, then roll it up: margin fade by job, customer and service line, with cost overruns split into labor, materials, subs and equipment.",proof:"Built and ran this exact engine at FMI on prior clients DN Tanks ($630M), RES Americas ($1.03B) and Jackson & Blanc ($85.9M). None are RCA companies. It went firm-wide at FMI, to 200+ consultants.",why:"Roofing is labor-intensive, so labor overrun is the biggest controllable margin lever, and this isolates it across 16 companies and $750M+ of revenue no one has looked at the same way.",impact:"Finds the margin leaks worth real money and tells leadership which companies estimate well and which fade at close-out.",rides:"The insourced Power BI reporting layer and harmonized job-cost structure coming out of OneRoof."},
+ {tier:0,t:"Acquisition diligence + 90-day integration playbook",src:"FMI · Automized · RCA",idea:"The repeatable kit RCA runs on every company it buys: a pre-LOI operational screen, then operational, financial and digital diligence, then a standard 90-day assess → migrate → enable → cut-over.",proof:"Built three assessment methodologies that stack into this: FMI’s Operational Needs Assessment (including a 230-slide diligence report), Automized’s Digital Operations Assessment across 30+ engagements, and the RCA readiness assessment itself.",why:"The roll-up buys several companies a year, each a black box of unknown margin, systems and process. One playbook shortens time-to-platform and prices risk before the check clears.",impact:"Faster, cheaper, lower-risk acquisitions, and a real view of a target’s operating health before close.",rides:"The readiness machinery and remediation-plan format already running here, plus the OneRoof migration pattern as the template."},
+ {tier:0,t:"Financial-statement + DuPont benchmarking index",src:"FMI method",idea:"Decompose each company’s return on equity into margin, asset turnover and leverage, benchmark the 16 against each other and roofing peers, and run it as a recurring performance index instead of a one-time look.",proof:"Built FMI’s construction financial-statement benchmarking used across a general-contractor peer group and the productized DuPont analysis on CFMA/RMA peer sets. Prior-client work, not RCA.",why:"A roll-up’s core question is which company is performing and why. A peer-normalized index answers it every quarter in one framework the CIO and CFO can take to the board.",impact:"A standing performance scoreboard that points capital, attention and best-practice sharing at the right places.",rides:"The insourced reporting layer for the feed. The benchmarking discipline is portable, and I have built it twice."},
+ {tier:1,t:"Field labor-productivity (work-sampling) studies",src:"FMI method",idea:"Sample the crews the way an industrial engineer would: code every observation into primary, secondary and recoverable-lost time, code the loss by cause, and tie recoverable labor to dollars.",proof:"Built the Alteryx-to-Tableau work-sampling pipeline for a prior client and ran the studies to a labor-productivity recommendation.",why:"About 1,650 field crew, and labor is the single biggest cost in roofing. This pairs directly with the Miter field-time rollout: Miter gives the data, the study gives the reason the hours run hot.",impact:"A measured, dollarized view of recoverable field-labor loss and the fixes that recover it.",rides:"The Miter field time-capture work and crew access from the field rollout."},
+ {tier:1,t:"Bid go/no-go selectivity + standard close-out",src:"FMI method",idea:"Standardize two low-tech, high-margin processes across 16 companies: a weighted bid-selectivity model at the front of the funnel, and a close-out that fires late in the job to stop end-of-job margin bleed.",proof:"Built both for a prior client: a 21-question selectivity model with decision bands and approval routing, and an exit-strategy close-out triggered at 80% of labor hours consumed.",why:"Exactly where specialty contractors quietly lose money, and almost no roofing company has either one formalized.",impact:"Fewer bad jobs taken, less margin lost at close-out, faster cash. Direct P&L, low build cost.",rides:"The process-harmonization and future-state design work already underway in OneRoof."},
+ {tier:1,t:"Equipment & fleet P&L across the portfolio",src:"Plante Moran · FMI",idea:"Standardize fleet economics: what each truck and machine costs to own and maintain versus what it earns, maintenance-to-value by category, utilization, and the sell / replace / rent-vs-buy and CapEx calls.",proof:"Built equipment P&L benchmarking at Plante Moran and FMI on a national fleet peer group, including a benchmark of $10.45M annual maintenance against $65M liquidation value, a 16.1% blended ratio read by category.",why:"Roofing companies run real fleets (Crowther’s heavy fleet, Deer Park’s trucks-as-warehouses). Fleet is a cost center roll-ups almost never benchmark across companies.",impact:"A defensible sell / replace / rent framework and CapEx prioritization across 16 companies.",rides:"The insourced reporting layer. I have built the models twice and they port."},
+ {tier:2,t:"A governed AI program on the data layer",src:"RCA · Automized",idea:"Extend the shipped OneRoof Copilot agent into a governed, prioritized program: agents on the fact layer that draft proposals, qualify bids, reconcile financials and flag margin fade in-flight, under real governance instead of scattered pilots.",proof:"Shipped the OneRoof Copilot agent here at RCA and authored the AI-enablement and governance framework at Automized.",why:"RCA is already insourcing its reporting and data layer; governed AI on top is the natural next step, and it needs governance more than another pilot.",impact:"A prioritized, governed program that turns the data spine into decisions, with guardrails a CIO can defend.",rides:"The fact layer, the permission model and the agent already in production."},
+ {tier:2,t:"Procurement cost-out: rebate & discount capture",src:"RCA readiness",idea:"Standardize how the companies capture rebates and volume discounts and compare buyouts, and instrument the leakage across 16 companies.",proof:"The RCA readiness assessment already instrumented rebate and volume-discount tracking as scored capabilities across all 16 businesses, and surfaced the exact failure mode: a business applying volume discounts by hand and missing credits.",why:"The measurement layer already exists from the readiness work, so this turns a diagnosis into a standing cost-out program on a category that moves margin.",impact:"Recovered rebate and discount dollars, portfolio-wide, on a category leadership rarely instruments.",rides:"The procurement process work and readiness findings already in hand."},
+ {tier:2,t:"Vendor & software selection as a shared service",src:"RCA · FMI",idea:"Own technology evaluation across the portfolio: evidence-weighted requirements, a traceability matrix, weighted scoring and commercial-terms diligence before anything is signed.",proof:"Three of these have already run inside OneRoof: a don’t-buy on a redundant training tool, a learning platform renegotiated well below the opening ask, and a digital adoption platform evaluation that closed with no purchase.",why:"Sixteen companies buying software independently is a leakage and integration problem. One evidence-based evaluation owner stops both.",impact:"Lower software spend, fewer redundant tools, cleaner integration, commercial risk caught before contracting.",rides:"The evaluation work already happening inside OneRoof; formalize it as a portfolio function."}
+];
+const FV_TIERS=[["Flagship","Portfolio-wide, and I have run these before"],["High-ROI","Targeted margin plays"],["Enablers","Force-multipliers"]];
+const RA_PAIN={total:4468,
+ dims:[['Process',1465],['Applications',1426],['Data & Reporting',1067],['Roles & org',291],['Culture',219]],
+ funcs:[['Service',764],['Payroll / HR',682],['Invoicing (AR)',611],['Commercial & Production',364],['Job Costing',350],['Estimating',261],['Inventory',216],['Field Operations',191]],
+ hmFuncs:['Service','Payroll','Invoicing','Comm / Prod','Job Cost','Estimating','Inventory','Field Ops'],
+ hm:[['Crowther',[167,199,69,93,54,93,54,85]],['Bone Dry',[134,63,218,44,59,33,25,46]],['Dynamic National',[159,25,52,83,28,22,36,13]],['Davco',[45,76,55,29,43,18,44,16]],['TORC',[71,71,12,6,54,8,8,0]],['AAA',[36,58,85,26,21,18,10,0]],['Front Range',[69,59,29,41,24,27,2,10]],['WeatherShield',[41,24,18,3,14,15,7,7]],['Springer-Peterson',[7,51,33,16,3,0,6,7]],['Deer Park',[23,38,31,12,15,15,7,1]],['Roof Tech',[8,18,0,11,21,12,17,6]],['Hamilton',[4,0,9,0,14,0,0,0]]]};
+
 const STAGES=[
  {yr:'2024',nm:'The foundation',hero:'87%',hl:'PAGA penalty exposure cut at AAA',
   st:'Six footings and a slab. Below grade, load-bearing, and the reason anything above it stands.',
@@ -289,7 +564,7 @@ const STAGES=[
   st:'One member left. It is the only thing on this drawing with nothing under it.',
   pk:'2027–28 · stage 4 of 4',pt:'The one member not installed',
   ps:'The roof is dimensioned and sitting above the plate. Fixing it down is the ask, and it is asked out loud.',
-  nd:'The ask: own the workforce data layer, answer adoption after IBM goes home, scale the networks past the pilot.',
+  nd:'The capability comes in-house either way. I am asking to be the one who carries it.',
   mem:[['01','Own the workforce data layer','The spine becomes a governed product with a named owner, instead of a person who happens to hold it.'],
        ['02','Answer adoption after IBM goes home','Built inside the training paths, owned for the year after go-live.'],
        ['03','Scale the networks past the pilot','Change leaders and field trainers to every company, on the rules already written.']]},
@@ -432,11 +707,73 @@ function openPanel(){
  const s=STAGES[act];
  $('#pk').textContent=s.pk;$('#pt').textContent=s.pt;$('#psub').textContent=s.ps;
  $('#pmembers').innerHTML=s.mem.map(m=>`<div class="mrow"><div class="mn">${m[0]}</div><div><div class="mk">${m[1]}</div><div class="mnote">${m[2]}</div></div></div>`).join('');
+ $('#pdeep').innerHTML=stageDeep(act);
  $('#pnd').textContent=s.nd;
  $('#panel').classList.add('on');document.body.classList.add('pnl');finale();
 }
-function closePanel(){$('#panel').classList.remove('on');document.body.classList.remove('pnl');finale();}
+function closePanel(){closeDrawer();$('#panel').classList.remove('on');document.body.classList.remove('pnl');finale();}
 $('#pclose').onclick=closePanel;
+
+/* ============ v2-c: deep content + drawers ============ */
+function stageDeep(a){
+ if(a===1)return barriersBlock();
+ if(a===2)return deliverablesBlock();
+ if(a===3)return oppsBlock();
+ return '';
+}
+function barriersBlock(){
+ const p=RA_PAIN,max=Math.max.apply(null,p.dims.map(d=>d[1]));
+ const bars=p.dims.map(d=>`<div class="bar"><span class="barl">${d[0]}</span><span class="bart"><span class="barf" style="width:${(d[1]/max*100).toFixed(1)}%"></span></span><span class="barv">${d[1].toLocaleString('en-US')}</span></div>`).join('');
+ return `<div class="psh" style="margin-top:30px">what the assessment found</div>`
+  +`<div class="deeplead"><b>${p.total.toLocaleString('en-US')} barriers</b> to go-live, coded across five dimensions at every business. The pain concentrated in the work, the tools and the data, not the people.</div>`
+  +`<div class="bars">${bars}</div>`;
+}
+function deliverablesBlock(){
+ const kpi=OOR_KPI.slice(0,3).map(k=>`<div class="kpc"><span class="kpv">${k[0]}</span><span class="kpl">${k[1]}</span></div>`).join('');
+ const rows=OOR_GRP.map((g,gi)=>{
+  const list=OOR_ITEMS.map((o,oi)=>[o,oi]).filter(x=>x[0].g===gi)
+   .map(x=>`<button class="drow" data-oor="${x[1]}"><span class="drt">${x[0].t}</span><span class="drs">${x[0].src}</span></button>`).join('');
+  return `<div class="dgrp"><div class="dgh">${g[0]}<span>${g[1]}</span></div>${list}</div>`;
+ }).join('');
+ return `<div class="psh" style="margin-top:30px">the eight deliverables &middot; click any one</div><div class="kprow">${kpi}</div>${rows}`;
+}
+function oppsBlock(){
+ const rows=FV_TIERS.map((t,ti)=>{
+  const list=FV_OPPS.map((o,oi)=>[o,oi]).filter(x=>x[0].tier===ti)
+   .map(x=>`<button class="drow" data-fv="${x[1]}"><span class="drt">${x[0].t}</span><span class="drs">${x[0].src}</span></button>`).join('');
+  return `<div class="dgrp"><div class="dgh">${t[0]}<span>${t[1]}</span></div>${list}</div>`;
+ }).join('');
+ return `<div class="psh" style="margin-top:30px">what I would point it at &middot; nine opportunities</div>${rows}`;
+}
+function openOorDrawer(i){
+ const o=OOR_ITEMS[i];if(!o)return;
+ const stats=(o.stats||[]).map(x=>`<div class="dst"><span class="dsv">${x[0]}</span><span class="dsl">${x[1]}</span></div>`).join('');
+ const bul=(o.bul||[]).map(x=>`<li>${x}</li>`).join('');
+ $('#drawerBody').innerHTML=`<div class="dtag">${OOR_GRP[o.g][0]} &middot; ${o.src}</div><div class="dtitle">${o.t}</div>`
+  +`<div class="didea">${o.idea}</div><div class="dstats">${stats}</div>`
+  +`<div class="dh">what it is</div><div class="dp">${o.what}</div>`
+  +`<div class="dh">what is in it</div><ul class="dul">${bul}</ul>`
+  +(o.open?`<div class="dnd"><b>What is not done.</b> ${o.open}</div>`:'')
+  +`<div class="dh">impact</div><div class="dp">${o.impact}</div>`;
+ openDrawer();
+}
+function openFvDrawer(i){
+ const o=FV_OPPS[i];if(!o)return;
+ $('#drawerBody').innerHTML=`<div class="dtag">${FV_TIERS[o.tier][0]} &middot; ${o.src}</div><div class="dtitle">${o.t}</div>`
+  +`<div class="didea">${o.idea}</div>`
+  +`<div class="dh">the proof</div><div class="dp">${o.proof}</div>`
+  +`<div class="dh">why RCA</div><div class="dp">${o.why}</div>`
+  +`<div class="dh">impact</div><div class="dp">${o.impact}</div>`
+  +`<div class="dnd"><b>Rides on.</b> ${o.rides}</div>`;
+ openDrawer();
+}
+function openDrawer(){$('#drawer').classList.add('on');document.body.classList.add('drw');$('#drawer').scrollTop=0;}
+function closeDrawer(){$('#drawer').classList.remove('on');document.body.classList.remove('drw');}
+$('#drawerClose').onclick=closeDrawer;
+document.addEventListener('click',e=>{
+ const oo=e.target.closest('[data-oor]');if(oo){openOorDrawer(+oo.dataset.oor);return;}
+ const fv=e.target.closest('[data-fv]');if(fv){openFvDrawer(+fv.dataset.fv);return;}
+});
 
 /* section */
 function setSection(v){
@@ -473,7 +810,7 @@ window.addEventListener('keydown',e=>{
  if(e.key==='ArrowRight')go(act+1);
  else if(e.key==='ArrowLeft')go(act-1);
  else if(e.key==='Enter'){halt();openPanel();}
- else if(e.key==='Escape'){if($('#section').classList.contains('on'))setSection(false);else closePanel();}
+ else if(e.key==='Escape'){if($('#drawer').classList.contains('on'))closeDrawer();else if($('#section').classList.contains('on'))setSection(false);else closePanel();}
  else if(e.key==='s'||e.key==='S')setSection(!$('#section').classList.contains('on'));
 });
 
