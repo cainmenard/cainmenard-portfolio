@@ -241,6 +241,10 @@ body.pnl #rail{padding-right:440px}
 .cell .nm2{font-family:var(--serif);font-size:15px;color:rgba(255,255,255,.6);transition:color .4s;white-space:nowrap}
 .cell.on .nm2{color:#fff}
 #cells{display:flex;align-items:stretch}
+.raildiv{width:1px;align-self:center;height:40px;background:rgba(116,179,198,.3);margin:0 3px}
+.cell.wsky .dot{background:transparent;border:1px solid rgba(240,168,108,.9)}
+.cell.wsky.on .dot{background:var(--amber)}
+.cell.wsky .nm2{font-style:italic;color:rgba(240,168,108,.82)}
 .railsep{width:1px;height:44px;background:rgba(116,179,198,.28)}
 #prog{display:flex;flex-direction:column;gap:7px;width:190px}
 #prTxt{font-family:var(--mono);font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.72)}
@@ -975,7 +979,8 @@ function tick(){
 $('#play').onclick=()=>{playing?halt():start();};
 
 /* rail cells */
-$('#cells').innerHTML=STAGES.map((s,i)=>`<button class="cell" data-i="${i}"><span class="dot"></span><span class="yr">${s.yr}</span><span class="nm2">${['Foundation','Structure','Floor plate','The roof','The weather'][i]}</span></button>`).join('');
+const RAILNM=['Foundation','Structure','Floor plate','The roof','The weather'];
+$('#cells').innerHTML=STAGES.map((s,i)=>(i===4?'<span class="raildiv" title="the four stages, then the sky"></span>':'')+'<button class="cell'+(i===4?' wsky':'')+'" data-i="'+i+'"><span class="dot"></span><span class="yr">'+s.yr+'</span><span class="nm2">'+RAILNM[i]+'</span></button>').join('');
 document.querySelectorAll('.cell').forEach(c=>c.onclick=()=>go(+c.dataset.i));
 
 /* keyboard */
