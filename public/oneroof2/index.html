@@ -11,7 +11,8 @@
 html,body{margin:0;padding:0;background:var(--bg);overflow:hidden;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
 ::selection{background:rgba(184,115,51,.3)}
 ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:rgba(163,197,240,.22)}
-#stage3d{position:fixed;inset:0;background:radial-gradient(150% 120% at 62% 10%,#21364F 0%,#142338 38%,#0A1420 68%,#050B14 100%);cursor:grab;user-select:none}
+#stage3d{position:fixed;inset:0;overflow:hidden;background:radial-gradient(125% 95% at 58% 4%,#294763 0%,#18293F 32%,#0B1626 63%,#04090F 100%),radial-gradient(70% 34% at 50% 99%,rgba(184,115,51,.11),transparent 72%);cursor:grab;user-select:none}
+#stage3d::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 105% at 50% 42%,transparent 52%,rgba(2,6,12,.6) 100%)}
 #stage3d.drag{cursor:grabbing}
 
 /* ---- gate ---- */
@@ -53,7 +54,7 @@ html,body{margin:0;padding:0;background:var(--bg);overflow:hidden;font-family:va
 #secBtn.on{color:var(--amber);border-color:var(--amber)}
 
 /* ---- scene ---- */
-#world{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1900px;transition:opacity .5s}
+#world{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1380px;transition:opacity .5s}
 #world.hide{opacity:0}
 #lift{transition:transform 1.5s cubic-bezier(.32,.72,.16,1)}
 #model{position:relative;width:380px;height:250px;transform-style:preserve-3d;transition:transform 1.5s cubic-bezier(.32,.72,.16,1)}
@@ -344,6 +345,9 @@ body.pnl #rail{padding-right:440px}
 .fw{border-left:2px solid rgba(116,179,198,.4);padding:2px 0 2px 12px}
 .fwt{font-family:var(--serif);font-size:15px;color:#fff}
 .fwd{font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.66);margin-top:2px}
+/* v2-k: the halo crown */
+.halo{border:1.5px solid rgba(240,168,108,.34);background:radial-gradient(closest-side,transparent 60%,rgba(240,168,108,.05) 84%,transparent 100%);animation:halopulse 6.5s ease-in-out infinite}
+@keyframes halopulse{0%,100%{box-shadow:0 0 55px 3px rgba(240,168,108,.16),inset 0 0 42px rgba(240,168,108,.05)}50%{box-shadow:0 0 90px 10px rgba(240,168,108,.32),inset 0 0 48px rgba(240,168,108,.11)}}
 </style>
 </head>
 <body>
@@ -761,7 +765,7 @@ const STAGES=[
 const PARTS=[['Footing',6,0],['Slab',1,0],['Column',13,1],['Beam',4,1],['Floor panel',25,2],['Room',16,2],['Roof',1,3]];
 const TOTAL=PARTS.reduce((s,p)=>s+p[1],0);            /* 66 */
 const INSTALLABLE=TOTAL-1;                             /* 65: the roof is not */
-const CAMS=[{rx:74,rz:-30,ty:62,sc:1.02},{rx:66,rz:-30,ty:26,sc:0.88},{rx:58,rz:-30,ty:-6,sc:0.74},{rx:76,rz:-30,ty:-16,sc:0.78},{rx:70,rz:-24,ty:8,sc:0.66}];
+const CAMS=[{rx:72,rz:-30,ty:78,sc:1.34},{rx:64,rz:-30,ty:34,sc:1.16},{rx:56,rz:-30,ty:-2,sc:0.99},{rx:73,rz:-30,ty:-18,sc:1.04},{rx:67,rz:-24,ty:10,sc:0.88}];
 const BEAT=6000, PREROLL=2500;
 
 /* ---------- build the model ---------- */
@@ -815,6 +819,8 @@ rchild('right:14px;bottom:14px;width:9px;height:9px;border-right:1px solid rgba(
 roof.id='roofM';
 const risers=[[16,-96],[362,-96],[16,232],[362,232]].map(p=>{const r=div('left:'+p[0]+'px;top:'+p[1]+'px;width:2px;height:96px;transform:translateZ(144px) rotateX(-90deg);background:repeating-linear-gradient(to bottom,rgba(240,168,108,.9) 0 6px,transparent 6px 12px)');r.style.transformOrigin='bottom center';return r;});
 
+const halo=div('left:-130px;top:-96px;width:640px;height:442px;border-radius:50%;pointer-events:none','halo');
+halo.style.transform='translateZ(166px)';halo.style.opacity='0';
 [...footEls,slab].forEach(e=>e.onclick=()=>pick(0));
 [...colEls,...beamEls].forEach(e=>e.onclick=()=>pick(1));
 [plate,panelGrid,roomsWrap].forEach(e=>e.onclick=()=>pick(2));
@@ -861,6 +867,7 @@ function setOps(){
  plateEdge.style.opacity=b(2);plateEdge.style.transform=`translateZ(${act>=2?148:168}px) rotateX(90deg)`;
  roomsWrap.style.opacity=b(2);roomsWrap.style.transform=`translateZ(${act>=2?150:170}px)`;
  crewEls.forEach(e=>e.style.opacity=act>=2?1:0);
+ halo.style.opacity=act>=2?(act>=3?1:.6):0;
  roof.style.opacity=act>=3?1:0.12;roof.style.transform=`translateZ(${act>=3?244:262}px)`;
  risers.forEach(e=>e.style.opacity=act>=3?1:0);
  const wx=act>=4;
