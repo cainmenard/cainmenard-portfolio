@@ -222,9 +222,10 @@ body.drw #rail{padding-right:520px}
 .lbTitle{font-family:var(--serif);font-size:18px;color:#fff}
 .lbNote{font-family:var(--mono);font-size:11px;color:#7E93AB;margin-top:3px;max-width:70ch}
 .lbActions{display:flex;gap:10px;align-items:center}
-.lbA{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#B6C6D8;border:1px solid rgba(116,179,198,.4);padding:7px 13px;cursor:pointer;text-decoration:none}
+.lbA{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#DCEAF7;background:transparent;-webkit-appearance:none;appearance:none;border:1px solid rgba(116,179,198,.5);padding:7px 13px;cursor:pointer;text-decoration:none;line-height:1}
+.lbA:hover{background:rgba(116,179,198,.18);color:#fff;border-color:rgba(116,179,198,.8)}
 .lbA:hover{border-color:var(--amber);color:#fff}
-#lbFrame{flex:1;width:100%;border:0;background:#0B1626}
+#lbFrame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0B1626}
 .lbLoad{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:12px;letter-spacing:1px;color:#7E93AB}
 
 /* ---- rail ---- */
@@ -331,6 +332,18 @@ body.pnl #rail{padding-right:440px}
 .proofn{font-family:var(--serif);font-size:15px;color:#fff}
 .proofv{font-family:var(--serif);font-size:17px;color:var(--amber)}
 .proofd{font-size:12px;line-height:1.5;color:rgba(255,255,255,.62);margin-top:3px}
+/* v2-j: tool launch, reads, foundation */
+.fvtool{margin:8px 0 6px;display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#0C1420;background:var(--copper);border:none;padding:10px 16px;cursor:pointer;border-radius:2px}
+.fvtool:hover{background:var(--amber)}
+.reads{display:flex;flex-direction:column;gap:8px}
+.readcard{display:block;border:1px solid rgba(163,197,240,.22);padding:11px 13px;text-decoration:none;transition:border-color .2s ease,background .2s ease}
+.readcard:hover{border-color:rgba(240,168,108,.6);background:rgba(240,168,108,.06)}
+.readcard .rt{display:block;font-family:var(--serif);font-size:16px;color:#fff}
+.readcard .rs{display:block;font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.62);margin-top:3px}
+.fws{display:flex;flex-direction:column;gap:9px}
+.fw{border-left:2px solid rgba(116,179,198,.4);padding:2px 0 2px 12px}
+.fwt{font-family:var(--serif);font-size:15px;color:#fff}
+.fwd{font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.66);margin-top:2px}
 </style>
 </head>
 <body>
@@ -654,13 +667,13 @@ const OOR_FIX=[
  ['Event pipeline','Events were seeded by hand, and a phantom date was propagating out of five unguarded lookups.','Events auto-build from the plan, the event field is feed-controlled so an invalid event cannot be typed, and the phantom date is gone.']];
 const OOR_NET=[['Change Leader Network',36],['Business SMEs',34],['Project resources',31],['Testers',22],['Trainers',16]];
 const FV_OPPS=[
- {tier:0,t:"Completed Contracts Analysis, portfolio-wide",src:"FMI method",idea:"Run the forensic project-profitability engine on every company’s finished jobs, then roll it up: margin fade by job, customer and service line, with cost overruns split into labor, materials, subs and equipment.",proof:"Built and ran this exact engine at FMI on prior clients DN Tanks ($630M), RES Americas ($1.03B) and Jackson & Blanc ($85.9M). None are RCA companies. It went firm-wide at FMI, to 200+ consultants.",why:"Roofing is labor-intensive, so labor overrun is the biggest controllable margin lever, and this isolates it across 16 companies and $750M+ of revenue no one has looked at the same way.",impact:"Finds the margin leaks worth real money and tells leadership which companies estimate well and which fade at close-out.",rides:"The insourced Power BI reporting layer and harmonized job-cost structure coming out of OneRoof."},
- {tier:0,t:"Acquisition diligence + 90-day integration playbook",src:"FMI · Automized · RCA",idea:"The repeatable kit RCA runs on every company it buys: a pre-LOI operational screen, then operational, financial and digital diligence, then a standard 90-day assess → migrate → enable → cut-over.",proof:"Built three assessment methodologies that stack into this: FMI’s Operational Needs Assessment (including a 230-slide diligence report), Automized’s Digital Operations Assessment across 30+ engagements, and the RCA readiness assessment itself.",why:"The roll-up buys several companies a year, each a black box of unknown margin, systems and process. One playbook shortens time-to-platform and prices risk before the check clears.",impact:"Faster, cheaper, lower-risk acquisitions, and a real view of a target’s operating health before close.",rides:"The readiness machinery and remediation-plan format already running here, plus the OneRoof migration pattern as the template."},
- {tier:0,t:"Financial-statement + DuPont benchmarking index",src:"FMI method",idea:"Decompose each company’s return on equity into margin, asset turnover and leverage, benchmark the 16 against each other and roofing peers, and run it as a recurring performance index instead of a one-time look.",proof:"Built FMI’s construction financial-statement benchmarking used across a general-contractor peer group and the productized DuPont analysis on CFMA/RMA peer sets. Prior-client work, not RCA.",why:"A roll-up’s core question is which company is performing and why. A peer-normalized index answers it every quarter in one framework the CIO and CFO can take to the board.",impact:"A standing performance scoreboard that points capital, attention and best-practice sharing at the right places.",rides:"The insourced reporting layer for the feed. The benchmarking discipline is portable, and I have built it twice."},
+ {tier:0,t:"Completed Contracts Analysis, portfolio-wide",src:"FMI method",tool:"ppa",idea:"Run the forensic project-profitability engine on every company’s finished jobs, then roll it up: margin fade by job, customer and service line, with cost overruns split into labor, materials, subs and equipment.",proof:"Built and ran this exact engine at FMI on prior clients DN Tanks ($630M), RES Americas ($1.03B) and Jackson & Blanc ($85.9M). None are RCA companies. It went firm-wide at FMI, to 200+ consultants.",why:"Roofing is labor-intensive, so labor overrun is the biggest controllable margin lever, and this isolates it across 16 companies and $750M+ of revenue no one has looked at the same way.",impact:"Finds the margin leaks worth real money and tells leadership which companies estimate well and which fade at close-out.",rides:"The insourced Power BI reporting layer and harmonized job-cost structure coming out of OneRoof."},
+ {tier:0,t:"Acquisition diligence + 90-day integration playbook",src:"FMI · RCA",idea:"The repeatable kit RCA runs on every company it buys: a pre-LOI operational screen, then operational, financial and digital diligence, then a standard 90-day assess → migrate → enable → cut-over.",proof:"Built three assessment methodologies that stack into this: FMI’s Operational Needs Assessment (including a 230-slide diligence report), a digital operations assessment method I have run across 30+ engagements, and the RCA readiness assessment itself.",why:"The roll-up buys several companies a year, each a black box of unknown margin, systems and process. One playbook shortens time-to-platform and prices risk before the check clears.",impact:"Faster, cheaper, lower-risk acquisitions, and a real view of a target’s operating health before close.",rides:"The readiness machinery and remediation-plan format already running here, plus the OneRoof migration pattern as the template."},
+ {tier:0,t:"Financial-statement + DuPont benchmarking index",src:"FMI method",tool:"bench",idea:"Decompose each company’s return on equity into margin, asset turnover and leverage, benchmark the 16 against each other and roofing peers, and run it as a recurring performance index instead of a one-time look.",proof:"Built FMI’s construction financial-statement benchmarking used across a general-contractor peer group and the productized DuPont analysis on CFMA/RMA peer sets. Prior-client work, not RCA.",why:"A roll-up’s core question is which company is performing and why. A peer-normalized index answers it every quarter in one framework the CIO and CFO can take to the board.",impact:"A standing performance scoreboard that points capital, attention and best-practice sharing at the right places.",rides:"The insourced reporting layer for the feed. The benchmarking discipline is portable, and I have built it twice."},
  {tier:1,t:"Field labor-productivity (work-sampling) studies",src:"FMI method",idea:"Sample the crews the way an industrial engineer would: code every observation into primary, secondary and recoverable-lost time, code the loss by cause, and tie recoverable labor to dollars.",proof:"Built the Alteryx-to-Tableau work-sampling pipeline for a prior client and ran the studies to a labor-productivity recommendation.",why:"About 1,650 field crew, and labor is the single biggest cost in roofing. This pairs directly with the Miter field-time rollout: Miter gives the data, the study gives the reason the hours run hot.",impact:"A measured, dollarized view of recoverable field-labor loss and the fixes that recover it.",rides:"The Miter field time-capture work and crew access from the field rollout."},
  {tier:1,t:"Bid go/no-go selectivity + standard close-out",src:"FMI method",idea:"Standardize two low-tech, high-margin processes across 16 companies: a weighted bid-selectivity model at the front of the funnel, and a close-out that fires late in the job to stop end-of-job margin bleed.",proof:"Built both for a prior client: a 21-question selectivity model with decision bands and approval routing, and an exit-strategy close-out triggered at 80% of labor hours consumed.",why:"Exactly where specialty contractors quietly lose money, and almost no roofing company has either one formalized.",impact:"Fewer bad jobs taken, less margin lost at close-out, faster cash. Direct P&L, low build cost.",rides:"The process-harmonization and future-state design work already underway in OneRoof."},
  {tier:1,t:"Equipment & fleet P&L across the portfolio",src:"Plante Moran · FMI",idea:"Standardize fleet economics: what each truck and machine costs to own and maintain versus what it earns, maintenance-to-value by category, utilization, and the sell / replace / rent-vs-buy and CapEx calls.",proof:"Built equipment P&L benchmarking at Plante Moran and FMI on a national fleet peer group, including a benchmark of $10.45M annual maintenance against $65M liquidation value, a 16.1% blended ratio read by category.",why:"Roofing companies run real fleets (Crowther’s heavy fleet, Deer Park’s trucks-as-warehouses). Fleet is a cost center roll-ups almost never benchmark across companies.",impact:"A defensible sell / replace / rent framework and CapEx prioritization across 16 companies.",rides:"The insourced reporting layer. I have built the models twice and they port."},
- {tier:2,t:"A governed AI program on the data layer",src:"RCA · Automized",idea:"Extend the shipped OneRoof Copilot agent into a governed, prioritized program: agents on the fact layer that draft proposals, qualify bids, reconcile financials and flag margin fade in-flight, under real governance instead of scattered pilots.",proof:"Shipped the OneRoof Copilot agent here at RCA and authored the AI-enablement and governance framework at Automized.",why:"RCA is already insourcing its reporting and data layer; governed AI on top is the natural next step, and it needs governance more than another pilot.",impact:"A prioritized, governed program that turns the data spine into decisions, with guardrails a CIO can defend.",rides:"The fact layer, the permission model and the agent already in production."},
+ {tier:2,t:"A governed AI program on the data layer",src:"RCA",idea:"Extend the shipped OneRoof Copilot agent into a governed, prioritized program: agents on the fact layer that draft proposals, qualify bids, reconcile financials and flag margin fade in-flight, under real governance instead of scattered pilots.",proof:"Shipped the OneRoof Copilot agent here at RCA and authored an AI-enablement and governance framework in a prior enterprise role.",why:"RCA is already insourcing its reporting and data layer; governed AI on top is the natural next step, and it needs governance more than another pilot.",impact:"A prioritized, governed program that turns the data spine into decisions, with guardrails a CIO can defend.",rides:"The fact layer, the permission model and the agent already in production."},
  {tier:2,t:"Procurement cost-out: rebate & discount capture",src:"RCA readiness",idea:"Standardize how the companies capture rebates and volume discounts and compare buyouts, and instrument the leakage across 16 companies.",proof:"The RCA readiness assessment already instrumented rebate and volume-discount tracking as scored capabilities across all 16 businesses, and surfaced the exact failure mode: a business applying volume discounts by hand and missing credits.",why:"The measurement layer already exists from the readiness work, so this turns a diagnosis into a standing cost-out program on a category that moves margin.",impact:"Recovered rebate and discount dollars, portfolio-wide, on a category leadership rarely instruments.",rides:"The procurement process work and readiness findings already in hand."},
  {tier:2,t:"Vendor & software selection as a shared service",src:"RCA · FMI",idea:"Own technology evaluation across the portfolio: evidence-weighted requirements, a traceability matrix, weighted scoring and commercial-terms diligence before anything is signed.",proof:"Three of these have already run inside OneRoof: a don’t-buy on a redundant training tool, a learning platform renegotiated well below the opening ask, and a digital adoption platform evaluation that closed with no purchase.",why:"Sixteen companies buying software independently is a leakage and integration problem. One evidence-based evaluation owner stops both.",impact:"Lower software spend, fewer redundant tools, cleaner integration, commercial risk caught before contracting.",rides:"The evaluation work already happening inside OneRoof; formalize it as a portfolio function."}
 ];
@@ -699,7 +712,8 @@ const TOOLS={
   source:'Tableau Public',embed:'https://public.tableau.com/views/FinancialBenchmarkingAnalysis/ControlPanel?:embed=y&:showVizHome=no&:display_count=no&:toolbar=no',live:'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
   note:'Live interactive dashboard on Tableau Public. Realistic dummy data I created for demonstration.'},
  field:{name:'Field Intelligence',tag:'Labor hours → income statement',menu:'Interactive case study · opens in a new tab',
-  source:'cainmenard.com',live:'https://www.cainmenard.com/field-intelligence',linkOnly:true}
+  source:'cainmenard.com',live:'https://www.cainmenard.com/field-intelligence',linkOnly:true},
+ story:{name:"The Tool Changed. The Expertise Didn't.",tag:'AI + domain expertise',menu:'Case study · opens in a new tab',source:'cainmenard.com',live:'https://www.cainmenard.com/ai-evolution',linkOnly:true}
 };
 const ROLEK={sponsor:'Sponsor',sme:'SME',partner:'Partner',exec:'Leadership'};
 
@@ -952,7 +966,24 @@ function waveLine(){
 }
 function tiles(rows){return '<div class="kprow">'+rows.map(k=>`<div class="kpc"><span class="kpv">${k[0]}</span><span class="kpl">${k[1]}</span></div>`).join('')+'</div>';}
 
+function foundationBlock(){
+ const wins=[
+  ["The slab","Multi-business sales scorecard, the first reporting standard. Power BI on Dataforma pulled from nine separate instances. RCA-owned."],
+  ["Cross-portfolio sales view","One read across the operating companies, before any of them shared a data model."],
+  ["n8n migration + SOX tracing","Moved an integration off a brittle path and made the money movements traceable for audit."],
+  ["A/R automation at Front Range","Cash application that had been manual, run on a schedule instead of by hand."],
+  ["Deer Park inventory","The inventory count brought onto a system instead of a spreadsheet."],
+  ["AAA back-office integrations","The back office wired together so the same number stopped being keyed twice."],
+  ["PAGA compliance app","The custom utility that cut AAA's PAGA penalty exposure by 87%, the number on this stage."]
+ ];
+ const rows=wins.map(w=>`<div class="fw"><div class="fwt">${w[0]}</div><div class="fwd">${w[1]}</div></div>`).join('');
+ return `<div class="psh" style="margin-top:30px">what 2024 shipped</div>`
+  +`<div class="deeplead"><b>87%</b> of AAA's PAGA penalty exposure, cut by a custom app. That was the year of point solutions: seven of them, each solving a real problem where it stood, none of them joined to the others yet.</div>`
+  +`<div class="fws">${rows}</div>`
+  +`<div class="deeplead" style="margin-top:14px">Everything here was local, and nothing was governed centrally. Finding out what that cost is what the assessment in stage 2 went looking for.</div>`;
+}
 function stageDeep(a){
+ if(a===0)return foundationBlock();
  if(a===1)return barriersBlock();
  if(a===2)return deliverablesBlock();
  if(a===3)return oppsBlock();
@@ -993,12 +1024,13 @@ function oppsBlock(){
  const proof=FV_PROOF.map(pr=>`<div class="proof"><div class="proofh"><span class="proofn">${pr[0]}</span><span class="proofv">${pr[1]}</span></div><div class="proofd">${pr[2]}</div></div>`).join('');
  const rows=FV_TIERS.map((t,ti)=>{
   const list=FV_OPPS.map((o,oi)=>[o,oi]).filter(x=>x[0].tier===ti)
-   .map(x=>`<button class="drow" data-fv="${x[1]}"><span class="drt">${x[0].t}</span><span class="drs">${x[0].src}</span></button>`).join('');
+   .map(x=>`<button class="drow" data-fv="${x[1]}"><span class="drt">${x[0].t}</span><span class="drs">${x[0].src}${x[0].tool?' &middot; live tool':''}</span></button>`).join('');
   return `<div class="dgrp"><div class="dgh">${t[0]}<span>${t[1]}</span></div>${list}</div>`;
  }).join('');
  return `<div class="psh" style="margin-top:30px">the method, and the receipts</div>`+tiles(FV_KPI)
   +`<div class="psh" style="margin-top:14px">where it has already run &middot; none an RCA company</div><div class="proofs">${proof}</div>`
-  +`<div class="psh" style="margin-top:22px">what I would point it at &middot; nine opportunities</div>${rows}`;
+  +`<div class="psh" style="margin-top:22px">what I would point it at &middot; nine opportunities</div>${rows}`
+  +`<div class="psh" style="margin-top:26px">the story, in two reads</div><div class="reads"><a class="readcard" href="https://www.cainmenard.com/ai-evolution" target="_blank" rel="noopener"><span class="rt">The Tool Changed. The Expertise Didn't.</span><span class="rs">How the Tableau build became a live React app in hours. Domain expertise, plus AI.</span></a><a class="readcard" href="https://www.cainmenard.com/field-intelligence" target="_blank" rel="noopener"><span class="rt">A Day of Field Intelligence</span><span class="rs">What the field already knows, and what it is worth on the income statement.</span></a></div>`;
 }
 function openOorDrawer(i){
  const o=OOR_ITEMS[i];if(!o)return;
@@ -1016,6 +1048,7 @@ function openFvDrawer(i){
  const o=FV_OPPS[i];if(!o)return;
  $('#drawerBody').innerHTML=`<div class="dtag">${FV_TIERS[o.tier][0]} &middot; ${o.src}</div><div class="dtitle">${o.t}</div>`
   +`<div class="didea">${o.idea}</div>`
+  +(o.tool?`<button class="fvtool" data-tool="${o.tool}">Open the live tool</button>`:'')
   +`<div class="dh">the proof</div><div class="dp">${o.proof}</div>`
   +`<div class="dh">why RCA</div><div class="dp">${o.why}</div>`
   +`<div class="dh">impact</div><div class="dp">${o.impact}</div>`
