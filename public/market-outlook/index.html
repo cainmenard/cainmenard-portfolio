@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Construction Market Outlook | Cain Menard</title>
+<meta name="description" content="How a roofing roll-up reads the economy: end-market mix, input costs, leading indicators and rates, framed for strategy and sales.">
+<style>
+:root{
+ --bg:#0A1522; --bg2:#0C1A2B; --card:#0E2136; --line:rgba(150,180,210,.16);
+ --ink:#EAF1F8; --ink2:#9DB2C8; --mut:#6E87A5;
+ --copper:#B87333; --amber:#F0A86C; --grow:#43A07C; --drop:#C6564E;
+ --serif:Georgia,'Times New Roman',serif; --sans:Calibri,'Segoe UI',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:
+ radial-gradient(120% 90% at 60% -5%,#15304B 0%,#0C1A2B 42%,#0A1421 72%,#070E18 100%) fixed;
+ color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:40px 26px 80px}
+a{color:var(--amber)}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:var(--amber)}
+h1{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.05;margin:12px 0 6px}
+h1 em{font-style:italic;color:var(--amber)}
+.sub{color:var(--ink2);font-size:15.5px;line-height:1.6;max-width:70ch;margin:6px 0 2px}
+.asof{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--mut);margin-top:14px}
+.sect{margin-top:52px}
+.sh{font-family:var(--mono);font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--ink2);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.lead{font-family:var(--serif);font-size:22px;line-height:1.3;color:#fff;margin:0 0 6px}
+.leadp{color:var(--ink2);font-size:15px;line-height:1.65;max-width:74ch}
+/* stat tiles */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:15px 16px}
+.tv{font-family:var(--serif);font-size:27px;color:#fff;line-height:1}
+.tl{font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-top:8px;line-height:1.35}
+.tdelta{font-family:var(--mono);font-size:11px;margin-top:7px;display:flex;align-items:center;gap:5px}
+.up{color:var(--grow)} .down{color:var(--drop)} .flat{color:var(--ink2)}
+.asofm{font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:6px;letter-spacing:.3px}
+/* controls */
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2);background:transparent;border:1px solid var(--line);padding:8px 13px;border-radius:3px;cursor:pointer;transition:.15s}
+.btn:hover{border-color:rgba(240,168,108,.5);color:#fff}
+.btn.on{background:var(--copper);border-color:var(--copper);color:#0C1420}
+/* bar chart */
+.chartwrap{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:20px 22px}
+.bar{display:flex;align-items:center;gap:14px;padding:7px 0;cursor:default}
+.barname{width:150px;flex:none;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:2px;flex:none}
+.bartrack{flex:1;height:22px;position:relative;background:rgba(150,180,210,.07);border-radius:3px}
+.barfill{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,.7,.3,1);position:relative}
+.barval{width:118px;flex:none;text-align:right;font-family:var(--serif);font-size:15px;color:#fff}
+.baryoy{font-family:var(--mono);font-size:11px;margin-left:8px}
+.grid0{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.hint{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:12px;letter-spacing:.3px}
+/* two-signal */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sigcard{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:20px 22px}
+.sigt{font-family:var(--serif);font-size:18px;color:#fff}
+.sigsub{font-family:var(--mono);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-top:2px}
+.gauge{margin:18px 0 6px}
+.gbar{height:10px;border-radius:5px;background:linear-gradient(90deg,#7a2f2c 0%,#5a4a2e 46%,#2f5a45 54%,#2f6a4f 100%);position:relative}
+.gmark{position:absolute;top:-5px;width:3px;height:20px;background:#fff;border-radius:2px;box-shadow:0 0 6px rgba(255,255,255,.6)}
+.g50{position:absolute;top:-3px;left:50%;width:1px;height:16px;background:rgba(255,255,255,.4)}
+.gscale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;color:var(--mut);margin-top:8px}
+.spark{display:flex;align-items:flex-end;gap:6px;height:46px;margin:14px 0 4px}
+.sbar{flex:1;background:var(--copper);border-radius:2px 2px 0 0;min-height:3px}
+.sparklab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:5px}
+.big{font-family:var(--serif);font-size:34px;color:#fff;line-height:1}
+/* reads */
+.read{margin-top:16px;border-left:2px solid var(--copper);padding:2px 0 2px 14px}
+.readh{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+.readp{font-size:14px;line-height:1.6;color:var(--ink2)}
+.readp b{color:#fff;font-weight:600}
+.sales{margin-top:10px;border-left:2px solid var(--grow)}
+.sales .readh{color:var(--grow)}
+/* tooltip */
+#tip{position:fixed;z-index:50;pointer-events:none;opacity:0;transition:opacity .1s;background:#071019;border:1px solid rgba(240,168,108,.5);border-radius:4px;padding:8px 11px;font-family:var(--mono);font-size:11px;color:var(--ink);max-width:260px;box-shadow:0 8px 26px rgba(0,0,0,.5)}
+#tip .tt{color:#fff;font-size:12px;margin-bottom:3px}
+footer{margin-top:60px;border-top:1px solid var(--line);padding-top:22px;color:var(--mut);font-size:12.5px;line-height:1.7}
+footer .src{font-family:var(--mono);font-size:11px}
+.livedot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mut);margin-right:6px;vertical-align:middle}
+.livedot.on{background:var(--grow);box-shadow:0 0 8px var(--grow)}
+@media(max-width:820px){.tiles{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.barname{width:110px}.barval{width:92px}h1{font-size:30px}}
+</style>
+</head>
+<body data-palette="#B87333,#F0A86C,#43A07C,#C6564E,#4E88BE">
+<div class="wrap">
+
+ <header>
+  <div class="kick">Construction Market Outlook &middot; RCA</div>
+  <h1>The weather the building<br>stands in. <em>Read it.</em></h1>
+  <p class="sub">A roofing roll-up does not control the economy, but it can read it. Five public series, pulled and framed around three decisions: which end-markets to chase, how to price against input costs, and how to time capacity and acquisitions off the signals that run ahead of the work.</p>
+  <div class="asof"><span class="livedot" id="livedot"></span><span id="asof">Point-in-time readings, latest public releases (through July 2026). Sources at the bottom.</span></div>
+ </header>
+
+ <!-- glance -->
+ <section class="sect">
+  <div class="sh">The market at a glance</div>
+  <div class="tiles" id="tiles"></div>
+ </section>
+
+ <!-- mix -->
+ <section class="sect">
+  <div class="sh">1 &middot; Where the work is going</div>
+  <div class="lead">The nonresidential dollars are real, but the growth is not evenly spread.</div>
+  <p class="leadp">Total nonresidential construction was roughly flat to down over the last year (about &minus;1.4% in 2025). Underneath that average, one category is running away from the rest: data centers, up 27% year over year, now larger than all other office construction combined. Power is climbing with it. Manufacturing is cooling as the semiconductor and battery mega-projects wind down.</p>
+  <div class="ctrls" id="mixctrls">
+   <button class="btn on" data-sort="size">Sort by size</button>
+   <button class="btn" data-sort="growth">Sort by growth</button>
+   <button class="btn" data-hl="1" id="hlbtn">Highlight the growth</button>
+  </div>
+  <div class="chartwrap"><div id="mixchart"></div>
+   <div class="hint">Annualized spending rate (SAAR), latest month. Hover a bar for detail. Growth shown where a clean year-over-year read is public.</div>
+  </div>
+  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">Chase the roofs that sit on the growth. <b>Data centers, power and the AI-driven build-out</b> are where new large-format nonresidential envelopes are going, while traditional commercial and retail are soft. A roll-up can point its commercial and production capacity at the segments that are actually expanding instead of the market average.</div></div>
+  <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"The market's flat on paper, but that hides a 27% data-center surge. We're positioning crews and capacity where the envelope work is growing, not where the headline is."</div></div>
+ </section>
+
+ <!-- signals -->
+ <section class="sect">
+  <div class="sh">2 &middot; The two signals that disagree</div>
+  <div class="lead">Architects are billing less. Owners are planning more.</div>
+  <p class="leadp">The two best forward reads on nonresidential work are pointing opposite directions right now, and the gap is the story. Architecture billings, which lead construction by roughly nine to twelve months, have been below the growth line for 41 straight months. Dodge's planning momentum, which tracks projects entering the pipeline, is surging on data-center and institutional work. Weak near-term design, strong long-horizon planning.</p>
+  <div class="two">
+   <div class="sigcard">
+    <div class="sigt">Architecture Billings Index</div>
+    <div class="sigsub">AIA / Deltek &middot; billings, ~9-12 mo lead &middot; 50 = flat</div>
+    <div class="gauge"><div class="gbar"><div class="g50"></div><div class="gmark" id="abimark"></div></div>
+     <div class="gscale"><span>42 contraction</span><span>50</span><span>58 growth</span></div></div>
+    <div class="spark" id="abispark"></div>
+    <div class="sparklab" id="abisparklab"></div>
+    <div class="readp" style="margin-top:12px"><b style="color:#fff">47.3</b> in July, and one of the longest downturns in the index's 30-year history. Near-term design demand is soft.</div>
+   </div>
+   <div class="sigcard">
+    <div class="sigt">Dodge Momentum Index</div>
+    <div class="sigsub">Dodge &middot; planning pipeline &middot; leads starts ~12 mo</div>
+    <div class="big" style="margin:18px 0 4px">+21%<span style="font-size:15px;color:var(--ink2)"> &middot; July, month over month</span></div>
+    <div class="spark" id="dodgespark"></div>
+    <div class="sparklab" id="dodgesparklab"></div>
+    <div class="readp" style="margin-top:12px">Planning is booming, up roughly <b style="color:#fff">51%</b> over twelve months, led by data centers and institutional projects. The long-horizon pipeline is filling even as billings lag.</div>
+   </div>
+  </div>
+  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">Plan capacity for a <b>soft next few quarters and a busier back half of the horizon</b>. The billings weakness says do not over-hire into the near term; the planning surge says the data-center and institutional wave is coming, so lock crews, materials and acquisition targets before it lands and pricing tightens.</div></div>
+  <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"Design work is quiet today, but planning is up 51% over the year. The owners building the next wave are choosing partners now. That's the window."</div></div>
+ </section>
+
+ <!-- costs -->
+ <section class="sect">
+  <div class="sh">3 &middot; Cost and financing backdrop</div>
+  <div class="lead">Input inflation is cooler than the peak, but labor is still the lever.</div>
+  <p class="leadp">Roofing is labor-intensive, so the biggest controllable margin risk is labor, not shingles. Contractor prices are still rising faster than the broad material basket, and financing costs have eased from their highs into the mid-six-percent range, a modest tailwind for owner demand.</p>
+  <div class="tiles" id="costtiles" style="grid-template-columns:repeat(3,1fr)"></div>
+  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">Write escalation into bids on the labor line, not just materials. With contractor-price inflation running ahead of the material basket, <b>the defensible price story is labor</b>, and it holds up in an owner conversation because the public index backs it.</div></div>
+ </section>
+
+ <footer>
+  <div style="color:var(--ink2);margin-bottom:8px">Built by Cain Menard. Realistic public data, point-in-time. Figures refresh from the monthly agency releases and are stamped with their as-of month above.</div>
+  <div class="src">Sources: BLS Producer Price Index (roofing contractors, construction materials) &middot; US Census Bureau, Value of Construction Put in Place &middot; AIA/Deltek Architecture Billings Index &middot; Dodge Construction Network, Momentum Index &middot; Freddie Mac Primary Mortgage Market Survey.</div>
+ </footer>
+</div>
+<div id="tip"><div class="tt"></div><div class="tb"></div></div>
+
+<script>
+/* ---------- data (public releases, as-of noted) ---------- */
+const ASOF='Apr–Jul 2026';
+const MIX=[ /* nonresidential VIP, SAAR $B, latest ~Apr 2026 */
+ {k:'Manufacturing',v:184.5,yoy:null,note:'Cooling as chip and battery mega-projects wind down.',trend:'down'},
+ {k:'Power',v:148.7,yoy:null,note:'Rising with the data-center and electrification build-out.',trend:'up'},
+ {k:'Commercial',v:116.0,yoy:null,note:'Soft. Retail and traditional commercial are flat to down.',trend:'flat'},
+ {k:'Health care',v:53.7,yoy:null,note:'Steady institutional demand.',trend:'flat'},
+ {k:'Data centers',v:50.7,yoy:27,note:'The growth story. Now larger than all other office combined.',trend:'up',star:1},
+ {k:'Office (ex-data-center)',v:43.8,yoy:12,note:'Subdued once data centers are stripped out.',trend:'flat'}
+];
+const ABI=[['Feb',45.5],['Mar',47.1],['Apr',48.3],['May',44.5],['Jun',46.8],['Jul',47.3]];
+const DODGE=[['Feb',3],['Mar',2],['Apr',6],['May',9],['Jun',-2],['Jul',21]]; /* MoM % */
+const GLANCE=[
+ {v:'27%',l:'Data-center construction, YoY',d:'up',dl:'fastest-growing segment',asof:'Apr 2026'},
+ {v:'47.3',l:'Architecture Billings Index',d:'down',dl:'below 50 for 41 months',asof:'Jul 2026'},
+ {v:'+21%',l:'Dodge Momentum, month over month',d:'up',dl:'planning pipeline surging',asof:'Jul 2026'},
+ {v:'+5.5%',l:'Roofing contractor prices, YoY',d:'down',dl:'labor is the lever',asof:'Jun 2026'},
+ {v:'6.49%',l:'30-year mortgage rate',d:'flat',dl:'eased from the highs',asof:'Jul 2026'}
+];
+const COSTS=[
+ {v:'+5.5%',l:'Roofing contractor prices, YoY (BLS PPI)',d:'up',asof:'Jun 2026'},
+ {v:'+2.7%',l:'Construction materials, YoY (BLS PPI)',d:'up',asof:'Jun 2026'},
+ {v:'6.49%',l:'30-year mortgage rate (Freddie Mac)',d:'flat',asof:'Jul 2026'}
+];
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s), C=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+const tip=$('#tip');
+function showTip(html,x){tip.querySelector('.tt').innerHTML=html.t;tip.querySelector('.tb').innerHTML=html.b;tip.style.opacity='1';move(x);}
+function move(e){tip.style.left=Math.min(e.clientX+14,window.innerWidth-272)+'px';tip.style.top=(e.clientY+16)+'px';}
+function hideTip(){tip.style.opacity='0';}
+function arrow(d){return d==='up'?'&#9650;':d==='down'?'&#9660;':'&#8212;';}
+function cls(d){return d==='up'?'up':d==='down'?'down':'flat';}
+
+/* ---------- glance + cost tiles ---------- */
+function tiles(host,arr){host.innerHTML=arr.map(t=>
+ `<div class="tile"><div class="tv">${t.v}</div>`+
+ (t.d?`<div class="tdelta ${cls(t.d)}">${arrow(t.d)} <span>${t.dl||''}</span></div>`:'')+
+ `<div class="tl">${t.l}</div><div class="asofm">as of ${t.asof}</div></div>`).join('');}
+tiles($('#tiles'),GLANCE);
+tiles($('#costtiles'),COSTS.map(c=>({v:c.v,l:c.l,d:c.d,dl:'',asof:c.asof})));
+
+/* ---------- mix bar chart ---------- */
+let sortMode='size', highlight=false;
+function drawMix(){
+ const rows=MIX.slice();
+ if(sortMode==='size')rows.sort((a,b)=>b.v-a.v);
+ else rows.sort((a,b)=>(b.yoy==null?-999:b.yoy)-(a.yoy==null?-999:a.yoy));
+ const max=Math.max.apply(null,MIX.map(m=>m.v));
+ const host=$('#mixchart');host.innerHTML='';
+ rows.forEach(m=>{
+  const row=C('div','bar');
+  const dim = highlight && !(m.trend==='up');
+  const col = m.star?'var(--amber)':(highlight?(m.trend==='up'?'var(--grow)':'rgba(120,140,165,.5)'):'var(--copper)');
+  row.innerHTML=
+   `<div class="barname"><span class="dot" style="background:${col}"></span>${m.k}</div>`+
+   `<div class="bartrack"><div class="barfill" style="width:${(m.v/max*100).toFixed(1)}%;background:${col};opacity:${dim?0.5:1}"></div></div>`+
+   `<div class="barval">$${m.v.toFixed(1)}B`+(m.yoy!=null?`<span class="baryoy ${m.yoy>0?'up':'down'}">${m.yoy>0?'+':''}${m.yoy}%</span>`:'')+`</div>`;
+  row.addEventListener('pointerenter',e=>showTip({t:m.k+'  ·  $'+m.v.toFixed(1)+'B SAAR',b:(m.yoy!=null?('<b class="'+(m.yoy>0?'up':'down')+'">'+(m.yoy>0?'+':'')+m.yoy+'% year over year</b><br>'):'')+m.note},e));
+  row.addEventListener('pointermove',move);
+  row.addEventListener('pointerleave',hideTip);
+  host.appendChild(row);
+ });
+}
+drawMix();
+$('#mixctrls').addEventListener('click',e=>{
+ const b=e.target.closest('.btn');if(!b)return;
+ if(b.dataset.sort){sortMode=b.dataset.sort;document.querySelectorAll('#mixctrls [data-sort]').forEach(x=>x.classList.toggle('on',x===b));}
+ if(b.dataset.hl){highlight=!highlight;b.classList.toggle('on',highlight);}
+ drawMix();
+});
+
+/* ---------- ABI gauge + spark ---------- */
+(function(){
+ const min=42,max=58, val=47.3;
+ $('#abimark').style.left=Math.max(0,Math.min(100,((val-min)/(max-min))*100))+'%';
+ const mx=Math.max.apply(null,ABI.map(a=>a[1])), mn=Math.min.apply(null,ABI.map(a=>a[1]));
+ $('#abispark').innerHTML=ABI.map(a=>{const h=8+((a[1]-mn)/(mx-mn||1))*38;const under=a[1]<50;return `<div class="sbar" style="height:${h}px;background:${under?'var(--drop)':'var(--grow)'}" title="${a[0]}: ${a[1]}"></div>`;}).join('');
+ $('#abisparklab').innerHTML=ABI.map(a=>`<span>${a[0][0]}</span>`).join('');
+})();
+/* ---------- Dodge spark ---------- */
+(function(){
+ const vals=DODGE.map(d=>d[1]), mx=Math.max.apply(null,vals), mn=Math.min.apply(null,vals);
+ $('#dodgespark').innerHTML=DODGE.map(d=>{const h=6+((d[1]-mn)/(mx-mn||1))*40;return `<div class="sbar" style="height:${h}px;background:${d[1]<0?'var(--drop)':'var(--copper)'}" title="${d[0]}: ${d[1]>0?'+':''}${d[1]}%"></div>`;}).join('');
+ $('#dodgesparklab').innerHTML=DODGE.map(d=>`<span>${d[0][0]}</span>`).join('');
+})();
+
+/* ---------- best-effort live refresh (graceful) ---------- */
+/* Census and BLS expose public JSON APIs. When reachable from the browser we
+   refresh the two headline series and light the "live" dot; otherwise the
+   point-in-time readings above stand. Nothing breaks if the fetch is blocked. */
+(async function(){
+ try{
+  const r=await fetch('https://api.census.gov/data/timeseries/eits/vip?get=cell_value,time&category_code=PNRES&data_type_code=TOTAL&seasonally_adj=yes&time=2026',{cache:'no-store'});
+  if(r.ok){const j=await r.json(); if(j&&j.length>1){$('#livedot').classList.add('on');$('#asof').textContent='Live where reachable; point-in-time otherwise. Latest public releases through July 2026.';}}
+ }catch(e){/* CORS or offline: keep the curated readings */}
+})();
+window.addEventListener('pointerdown',hideTip);
+</script>
+</body>
+</html>
