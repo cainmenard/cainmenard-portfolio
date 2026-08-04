@@ -728,7 +728,8 @@ const TOOLS={
   note:'Live interactive dashboard on Tableau Public. Realistic dummy data I created for demonstration.'},
  field:{name:'Field Intelligence',tag:'Labor hours → income statement',menu:'Interactive case study · opens in a new tab',
   source:'cainmenard.com',live:'https://www.cainmenard.com/field-intelligence',linkOnly:true},
- story:{name:"The Tool Changed. The Expertise Didn't.",tag:'AI + domain expertise',menu:'Case study · opens in a new tab',source:'cainmenard.com',live:'https://www.cainmenard.com/ai-evolution',linkOnly:true}
+ story:{name:"The Tool Changed. The Expertise Didn't.",tag:'AI + domain expertise',menu:'Case study · opens in a new tab',source:'cainmenard.com',live:'https://www.cainmenard.com/ai-evolution',linkOnly:true},
+ market:{name:'Construction Market Outlook',tag:'Economic signal for strategy &amp; sales',menu:'Live dashboard · end-markets, indicators, rates',source:'cainmenard.com · public data',embed:'https://www.cainmenard.com/market-outlook',live:'https://www.cainmenard.com/market-outlook',note:'The five public series, framed for how a roll-up reads the market. Best on a larger screen.'}
 };
 const ROLEK={sponsor:'Sponsor',sme:'SME',partner:'Partner',exec:'Leadership'};
 
@@ -1000,8 +1001,15 @@ function foundationBlock(){
   +`<div class="fws">${rows}</div>`
   +`<div class="deeplead" style="margin-top:14px">Everything here was local, and nothing was governed centrally. Finding out what that cost is what the assessment in stage 2 went looking for.</div>`;
 }
+function weatherBlock(){
+ return `<div class="psh" style="margin-top:30px">read the market like weather</div>`
+  +`<div class="deeplead">Five public series, framed for the three calls a roll-up actually makes: which end-markets to chase, how to price against input costs, and how to time capacity off the signals that run ahead of the work.</div>`
+  +`<button class="fvtool" data-tool="market">Open the market dashboard</button>`
+  +`<div class="reads" style="margin-top:8px"><a class="readcard" href="https://www.cainmenard.com/market-outlook" target="_blank" rel="noopener"><span class="rt">Construction Market Outlook</span><span class="rs">The end-market mix, the billings-versus-planning divergence, costs and rates. Live at cainmenard.com/market-outlook.</span></a></div>`;
+}
 function stageDeep(a){
  if(a===0)return foundationBlock();
+ if(a===4)return weatherBlock();
  if(a===1)return barriersBlock();
  if(a===2)return deliverablesBlock();
  if(a===3)return oppsBlock();
@@ -1196,8 +1204,7 @@ function buildMobile(){
  const cards=STAGES.map((s,i)=>{
   const kick=i<4?(s.yr+' \u00b7 stage '+(i+1)+' of 4'):'now \u00b7 the sky';
   const mem=s.mem.map(m=>'<div class="mmem"><span class="mmn">'+m[0]+'</span><div><div class="mmk">'+m[1]+'</div><div class="mmnote">'+m[2]+'</div></div></div>').join('');
-  let deep='';
-  if(i===1)deep=barriersBlock();else if(i===2)deep=deliverablesBlock();else if(i===3)deep=oppsBlock();
+  let deep=stageDeep(i);
   return '<div class="mcard"><div class="mmk2">'+kick+'</div><div class="mtt">'+s.nm+'</div>'
    +'<div class="mhero">'+s.hero+'</div><div class="mhl">'+s.hl+'</div>'
    +'<div class="mpp">'+s.ps+'</div>'
