@@ -54,7 +54,7 @@ html,body{margin:0;padding:0;background:var(--bg);overflow:hidden;font-family:va
 #secBtn.on{color:var(--amber);border-color:var(--amber)}
 
 /* ---- scene ---- */
-#world{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1380px;transition:opacity .5s}
+#world{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1380px;transition:opacity .5s,perspective 1.4s cubic-bezier(.32,.72,.16,1)}
 #world.hide{opacity:0}
 #lift{transition:transform 1.5s cubic-bezier(.32,.72,.16,1)}
 #model{position:relative;width:380px;height:250px;transform-style:preserve-3d;transition:transform 1.5s cubic-bezier(.32,.72,.16,1)}
@@ -781,7 +781,10 @@ const STAGES=[
 const PARTS=[['Footing',6,0],['Slab',1,0],['Column',13,1],['Beam',4,1],['Floor panel',25,2],['Room',16,2],['Roof',1,3]];
 const TOTAL=PARTS.reduce((s,p)=>s+p[1],0);            /* 66 */
 const INSTALLABLE=TOTAL-1;                             /* 65: the roof is not */
-const CAMS=[{rx:72,rz:-30,ty:78,sc:1.34},{rx:64,rz:-30,ty:34,sc:1.16},{rx:56,rz:-30,ty:-2,sc:0.99},{rx:73,rz:-30,ty:-18,sc:1.04},{rx:67,rz:-24,ty:10,sc:0.88}];
+/* Camera per stage. The building GROWS as the story proceeds: a small footprint
+ at foundation, swelling to a monumental scale by the roof and the weather, with
+ the perspective tightening so the near corner looms. Base model is 380x250. */
+const CAMS=[{rx:70,rz:-30,ty:150,sc:0.74,pv:1600},{rx:66,rz:-30,ty:70,sc:1.06,pv:1470},{rx:60,rz:-30,ty:2,sc:1.42,pv:1340},{rx:62,rz:-28,ty:-6,sc:1.78,pv:1210},{rx:64,rz:-26,ty:46,sc:1.96,pv:1250}];
 const BEAT=6000, PREROLL=2500;
 
 /* ---------- build the model ---------- */
@@ -899,6 +902,7 @@ function setLights(){
 function setCam(){
  const c=CAMS[act];
  $('#lift').style.transform=`translateY(${c.ty}px) scale(${c.sc})`;
+ if(c.pv)$('#world').style.perspective=c.pv+'px';
  rx=c.rx;rz=c.rz;
  M.style.transform=`rotateX(${rx}deg) rotateZ(${rz}deg)`;
 }
