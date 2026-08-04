@@ -460,11 +460,6 @@ body.pnl #rail{padding-right:440px}
  <div id="sky"></div>
 </div>
 
-<div id="finale" class="hide"><div class="finin">
- <div class="finT">Sixty-five members are in. One is not.</div>
- <div class="finK">the roof is the seat</div>
-</div></div>
-
 <div id="section"><div class="secW">
  <div class="sr sky2"><span>NOW &middot; THE WEATHER &middot; five public series</span><span>read, not part of the building</span></div>
  <div class="sr roof2"><span>2027&ndash;28 &middot; ROOF</span><span>drawn, not fixed</span></div>
@@ -848,7 +843,7 @@ const INSTALLABLE=TOTAL-1;                             /* 65: the roof is not */
 /* Camera per stage. The building GROWS as the story proceeds: a small footprint
  at foundation, swelling to a monumental scale by the roof and the weather, with
  the perspective tightening so the near corner looms. Base model is 380x250. */
-const CAMS=[{rx:70,rz:-30,ty:150,sc:0.74,pv:1600},{rx:66,rz:-30,ty:70,sc:1.06,pv:1470},{rx:60,rz:-30,ty:2,sc:1.42,pv:1340},{rx:62,rz:-28,ty:-6,sc:1.78,pv:1210},{rx:64,rz:-26,ty:46,sc:1.96,pv:1250}];
+const CAMS=[{rx:70,rz:-30,ty:150,sc:0.74,pv:1600},{rx:66,rz:-30,ty:72,sc:1.04,pv:1490},{rx:60,rz:-30,ty:6,sc:1.30,pv:1380},{rx:62,rz:-28,ty:10,sc:1.50,pv:1360},{rx:64,rz:-26,ty:40,sc:1.58,pv:1360}];
 const BEAT=6000, PREROLL=2500;
 
 /* ---------- build the model ---------- */
@@ -1006,7 +1001,7 @@ function stageCard(){
  const c=$('#card');c.classList.add('on');
  clearTimeout(cardT);cardT=setTimeout(()=>c.classList.remove('on'),2300);
 }
-function finale(){$('#finale').classList.toggle('hide',!(act>=3&&!$('#panel').classList.contains('on')&&!$('#section').classList.contains('on')));}
+function finale(){}
 function render(){setOps();setLights();setCam();counts();readout();cells();finale();wxToggle();}
 
 function enterStage(i,silent){act=i;render();if(!silent)stageCard();}
@@ -1328,8 +1323,7 @@ function buildMobile(){
   +'<h1 class="mh1">Built from the ground up.</h1>'
   +'<div class="mby">Cain Menard \u00b7 66 members \u00b7 four stages \u00b7 one still to fix</div>'
   +'<div class="mutil"><button class="ubtn" id="mMkt">Market Dashboard</button><button class="ubtn" id="mTk">Live Tools</button><button class="ubtn" id="mNet">The Network</button><button class="ubtn" id="mPpl">The People</button></div></div>'
-  +cards
-  +'<div class="mfin"><div class="mfinT">Sixty-five members are in. One is not.</div><div class="mfinK">the roof is the seat</div></div>';
+  +cards;
  const t=$('#mTk'),pp=$('#mPpl'),mk=$('#mMkt'),nt=$('#mNet');
  if(t)t.onclick=e=>{e.stopPropagation();$('#toolmenu').classList.add('on');};
  if(pp)pp.onclick=openPeople;
