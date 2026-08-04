@@ -74,6 +74,14 @@ h1 em{font-style:italic;color:var(--amber)}
 .sales{margin-top:10px;border-left:2px solid var(--grow)}
 .sales .readh{color:var(--grow)}
 /* tooltip */
+.mapgrid{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:5px;max-width:760px;margin:2px auto 0}
+.st{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.9);position:relative;border:1px solid rgba(0,0,0,.25);transition:transform .12s,box-shadow .12s}
+.st:hover{transform:scale(1.12);z-index:3;box-shadow:0 0 0 1px rgba(240,168,108,.7)}
+.st.rca{outline:2px solid var(--amber);outline-offset:1px;box-shadow:0 0 14px rgba(240,168,108,.6)}
+.st .hq{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:8px;letter-spacing:.5px;color:var(--amber);white-space:nowrap}
+.maplegend{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--mut);justify-content:center}
+.legramp{display:inline-flex;gap:2px}
+.legramp span{width:22px;height:10px;border-radius:1px}
 #tip{position:fixed;z-index:50;pointer-events:none;opacity:0;transition:opacity .1s;background:#071019;border:1px solid rgba(240,168,108,.5);border-radius:4px;padding:8px 11px;font-family:var(--mono);font-size:11px;color:var(--ink);max-width:260px;box-shadow:0 8px 26px rgba(0,0,0,.5)}
 #tip .tt{color:#fff;font-size:12px;margin-bottom:3px}
 footer{margin-top:60px;border-top:1px solid var(--line);padding-top:22px;color:var(--mut);font-size:12.5px;line-height:1.7}
@@ -114,6 +122,23 @@ footer .src{font-family:var(--mono);font-size:11px}
   </div>
   <div class="read"><div class="readh">What this means for RCA</div><div class="readp">Chase the roofs that sit on the growth. <b>Data centers, power and the AI-driven build-out</b> are where new large-format nonresidential envelopes are going, while traditional commercial and retail are soft. A roll-up can point its commercial and production capacity at the segments that are actually expanding instead of the market average.</div></div>
   <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"The market's flat on paper, but that hides a 27% data-center surge. We're positioning crews and capacity where the envelope work is growing, not where the headline is."</div></div>
+ </section>
+
+ <!-- map -->
+ <section class="sect">
+  <div class="sh">1b &middot; Where the build-out is happening</div>
+  <div class="lead">The growth has an address. It is a Sun Belt and Mid-Atlantic story.</div>
+  <p class="leadp">Data-center pipeline by state (operational, under construction and announced). Texas and Virginia are in a class of their own, Georgia is third, and RCA is headquartered in the middle of it. Hover a state for its pipeline.</p>
+  <div class="ctrls" id="mapctrls">
+   <button class="btn" data-rca="1" id="rcabtn">Mark RCA's home</button>
+  </div>
+  <div class="chartwrap">
+   <div class="mapgrid" id="mapgrid"></div>
+   <div class="maplegend" id="maplegend"><span>fewer</span><span class="legramp" id="legramp"></span><span>more data centers</span></div>
+   <div class="hint">Total data centers in the pipeline, by state. Grey states sit outside the national top 15. Source: industry pipeline data, 2026.</div>
+  </div>
+  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">The large-format envelope work is concentrated where the data centers are going: <b>Texas, Virginia, Georgia, Arizona and the Sun Belt</b>. RCA is headquartered in Atlanta, in the number-three state, with companies across the Sun Belt, exactly where the wave is landing. That is a footprint advantage worth pressing.</div></div>
+  <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"We're already on the ground where the build-out is heaviest. When the envelope work comes, we're not chasing it into a new market, we're standing in it."</div></div>
  </section>
 
  <!-- signals -->
@@ -213,8 +238,9 @@ function drawMix(){
  const host=$('#mixchart');host.innerHTML='';
  rows.forEach(m=>{
   const row=C('div','bar');
-  const dim = highlight && !(m.trend==='up');
-  const col = m.star?'var(--amber)':(highlight?(m.trend==='up'?'var(--grow)':'rgba(120,140,165,.5)'):'var(--copper)');
+  const isGrowth = m.trend==='up' || (m.yoy!=null && m.yoy>0);
+  const dim = highlight && !isGrowth;
+  const col = m.star?'var(--amber)':(highlight?(isGrowth?'var(--grow)':'rgba(120,140,165,.5)'):'var(--copper)');
   row.innerHTML=
    `<div class="barname"><span class="dot" style="background:${col}"></span>${m.k}</div>`+
    `<div class="bartrack"><div class="barfill" style="width:${(m.v/max*100).toFixed(1)}%;background:${col};opacity:${dim?0.5:1}"></div></div>`+
@@ -247,6 +273,45 @@ $('#mixctrls').addEventListener('click',e=>{
  $('#dodgespark').innerHTML=DODGE.map(d=>{const h=6+((d[1]-mn)/(mx-mn||1))*40;return `<div class="sbar" style="height:${h}px;background:${d[1]<0?'var(--drop)':'var(--copper)'}" title="${d[0]}: ${d[1]>0?'+':''}${d[1]}%"></div>`;}).join('');
  $('#dodgesparklab').innerHTML=DODGE.map(d=>`<span>${d[0][0]}</span>`).join('');
 })();
+
+/* ---------- state tile map: data-center pipeline ---------- */
+const RANK={TX:1,VA:2,GA:3,PA:4,AZ:5,OH:6,IL:7,CA:8,UT:9,OR:10,NV:11,NY:12,IN:13,IA:14,WA:15};
+const STNAME={TX:'Texas',VA:'Virginia',GA:'Georgia',PA:'Pennsylvania',AZ:'Arizona',OH:'Ohio',IL:'Illinois',CA:'California',UT:'Utah',OR:'Oregon',NV:'Nevada',NY:'New York',IN:'Indiana',IA:'Iowa',WA:'Washington'};
+const STGRID={ /* [gridColumn, gridRow, dcPipelineTotal?] */
+ AK:[1,1],ME:[11,1],VT:[10,2],NH:[11,2],
+ WA:[1,3,100],ID:[2,3],MT:[3,3],ND:[4,3],MN:[5,3],WI:[6,3],MI:[7,3],NY:[9,3,125],MA:[10,3],RI:[11,3],
+ OR:[1,4,144],NV:[2,4,134],WY:[3,4],SD:[4,4],IA:[5,4,111],IL:[6,4,250],IN:[7,4,120],OH:[8,4,250],PA:[9,4,257],NJ:[10,4],CT:[11,4],
+ CA:[1,5,212],UT:[2,5,156],CO:[3,5],NE:[4,5],MO:[5,5],KY:[6,5],WV:[7,5],VA:[8,5,954],MD:[9,5],DE:[10,5],
+ AZ:[2,6,254],NM:[3,6],KS:[4,6],AR:[5,6],TN:[6,6],NC:[7,6],SC:[8,6],DC:[9,6],
+ OK:[4,7],LA:[5,7],MS:[6,7],AL:[7,7],GA:[8,7,458],
+ HI:[1,8],TX:[4,8,962],FL:[9,8]
+};
+const DCMAX=962;
+(function(){
+ const host=$('#mapgrid');
+ Object.keys(STGRID).forEach(code=>{
+  const g=STGRID[code], v=g[2]||null;
+  const cell=C('div','st');cell.textContent=code;cell.dataset.code=code;
+  cell.style.gridColumn=g[0];cell.style.gridRow=g[1];
+  cell.style.background = v ? 'rgba(184,115,51,'+(0.14+0.86*(v/DCMAX)).toFixed(3)+')' : 'rgba(120,140,165,.12)';
+  cell.addEventListener('pointerenter',e=>{
+   const nm=STNAME[code]||code;
+   const body=v?('<b class="up">'+v+'</b> data centers in the pipeline'+(RANK[code]?'<br>rank #'+RANK[code]+' nationally':'')):'Smaller pipeline, outside the national top 15';
+   showTip({t:nm+(code==='GA'?'  ·  RCA home base':''),b:body},e);
+  });
+  cell.addEventListener('pointermove',move);
+  cell.addEventListener('pointerleave',hideTip);
+  host.appendChild(cell);
+ });
+ const lr=$('#legramp');[0.14,0.30,0.46,0.62,0.78,1].forEach(t=>{const s=document.createElement('span');s.style.background='rgba(184,115,51,'+t+')';lr.appendChild(s);});
+})();
+$('#mapctrls').addEventListener('click',e=>{
+ const b=e.target.closest('[data-rca]');if(!b)return;
+ const on=!b.classList.contains('on');b.classList.toggle('on',on);
+ const ga=document.querySelector('.st[data-code="GA"]');ga.classList.toggle('rca',on);
+ const ex=ga.querySelector('.hq');if(ex)ex.remove();
+ if(on){const h=document.createElement('span');h.className='hq';h.textContent='RCA HQ';ga.appendChild(h);}
+});
 
 /* ---------- best-effort live refresh (graceful) ---------- */
 /* Census and BLS expose public JSON APIs. When reachable from the browser we
