@@ -1279,16 +1279,32 @@ window.addEventListener('keydown',e=>{
  else if(e.key==='s'||e.key==='S')setSection(!$('#section').classList.contains('on'));
 });
 
-/* drag to nudge, orbit locked */
+/* drag to orbit, smooth. The model carries a 1.5s ease for stage changes; turn
+   it off while dragging so it tracks the cursor 1:1 instead of rubber-banding,
+   then restore it. Pointer capture keeps fast drags from dropping, and the
+   click that ends a real drag is swallowed so a nudge never opens a panel. */
 const st3=$('#stage3d');
-st3.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,rx,rz};st3.classList.add('drag');if(playing)halt();});
+let dragMoved=false;
+st3.addEventListener('pointerdown',e=>{
+ if(e.button&&e.button!==0)return;
+ drag={x:e.clientX,y:e.clientY,rx,rz};dragMoved=false;
+ st3.classList.add('drag');M.style.transition='none';
+ if(playing)halt();
+});
 window.addEventListener('pointermove',e=>{
  if(!drag)return;
- rz=Math.max(-48,Math.min(-12,drag.rz+(e.clientX-drag.x)*0.12));
- rx=Math.max(48,Math.min(88,drag.rx-(e.clientY-drag.y)*0.1));
+ const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
+ if(!dragMoved&&(dx*dx+dy*dy)>16)dragMoved=true;
+ rz=Math.max(-48,Math.min(-12,drag.rz+dx*0.12));
+ rx=Math.max(48,Math.min(88,drag.rx-dy*0.1));
  M.style.transform=`rotateX(${rx}deg) rotateZ(${rz}deg)`;
 });
-window.addEventListener('pointerup',()=>{drag=null;st3.classList.remove('drag');});
+window.addEventListener('pointerup',()=>{
+ if(!drag)return;
+ drag=null;st3.classList.remove('drag');M.style.transition='';
+ if(dragMoved){const swallow=ev=>{ev.stopPropagation();window.removeEventListener('click',swallow,true);};
+  window.addEventListener('click',swallow,true);setTimeout(()=>window.removeEventListener('click',swallow,true),0);}
+});
 
 /* gate */
 function tryEnter(){
