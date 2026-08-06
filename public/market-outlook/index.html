@@ -4,210 +4,258 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Construction Outlook, live | Cain Menard</title>
-<meta name="description" content="A live read on the US construction economy: put-in-place by segment, a transparent forecast, leading indicators and rates. Public data, pulled live and updated monthly.">
+<title>The Construction Read | Cain Menard</title>
+<meta name="description" content="A live monthly read on the US construction economy. Public data, pulled live, with a forecast that shows its work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
- --bg:#0A1522; --bg2:#0C1A2B; --card:#0E2136; --line:rgba(150,180,210,.16);
- --ink:#EAF1F8; --ink2:#9DB2C8; --mut:#6E87A5;
- --copper:#B87333; --amber:#F0A86C; --grow:#43A07C; --drop:#C6564E; --steel:#4E88BE;
- --serif:Georgia,'Times New Roman',serif; --sans:Calibri,'Segoe UI',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+ --paper:#FAF8F5; --paper2:#F4EFE7; --card:#FFFDFA; --ink:#1E2A38; --ink2:#3C4859; --mut:#8B8578;
+ --copper:#B87333; --copper2:#9A571F; --line:#E6DFD3; --line2:#D8CFBF;
+ --up:#3F7A57; --down:#B0483B; --steel:#4E6E8E;
+ --serif:'Newsreader',Georgia,'Times New Roman',serif;
+ --sans:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+ --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:
- radial-gradient(120% 90% at 60% -5%,#15304B 0%,#0C1A2B 42%,#0A1421 72%,#070E18 100%) fixed;
- color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-.wrap{max-width:1180px;margin:0 auto;padding:38px 26px 90px}
-a{color:var(--amber)}
-.kick{font-family:var(--mono);font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:var(--amber)}
-h1{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.04;margin:12px 0 8px}
-h1 em{font-style:italic;color:var(--amber)}
-.sub{color:var(--ink2);font-size:15.5px;line-height:1.6;max-width:74ch;margin:6px 0 2px}
-.asof{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--mut);margin-top:14px}
-.livedot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mut);margin-right:6px;vertical-align:middle}
-.livedot.on{background:var(--grow);box-shadow:0 0 8px var(--grow)}
-.sect{margin-top:56px}
-.sh{font-family:var(--mono);font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--ink2);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:22px}
-.lead{font-family:var(--serif);font-size:22px;line-height:1.3;color:#fff;margin:0 0 6px}
-.leadp{color:var(--ink2);font-size:15px;line-height:1.65;max-width:76ch}
-.hint{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:12px;letter-spacing:.3px}
-/* top line */
-.topgrid{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:14px;align-items:stretch}
-.tl0{background:linear-gradient(160deg,rgba(184,115,51,.14),rgba(14,33,54,.5));border:1px solid rgba(240,168,108,.3);border-radius:6px;padding:20px 22px}
-.tlbig{font-family:var(--serif);font-size:44px;color:#fff;line-height:1}
-.tlbig .u{font-size:20px;color:var(--amber)}
-.tlk{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
-.tlsub{font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:8px;letter-spacing:.3px}
-.tlg{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 18px}
-.tlgv{font-family:var(--serif);font-size:28px;color:#fff;line-height:1}
-.tlgl{font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-top:8px;line-height:1.4}
-.tlgd{font-family:var(--mono);font-size:11px;margin-top:8px}
-.up{color:var(--grow)} .down{color:var(--drop)} .flat{color:var(--ink2)} .amb{color:var(--amber)}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;
+ background:radial-gradient(120% 70% at 50% -10%, #FFFFFF 0%, var(--paper) 46%, var(--paper2) 100%) fixed;
+ -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(184,115,51,.2)}
+a{color:var(--copper2);text-decoration:none;border-bottom:1px solid rgba(154,87,31,.35)}
+a:hover{border-color:var(--copper2)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 30px 100px;position:relative}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--copper2)}
+.up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--mut)}
+/* reveal */
+.rv{opacity:0;transform:translateY(14px)}
+.rv.in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+/* masthead */
+.mast{display:flex;align-items:center;justify-content:space-between;padding:26px 0 16px;border-bottom:1px solid var(--line)}
+.brandmark{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.2px;color:var(--ink)}
+.brandmark .dot{color:var(--copper)}
+.mastr{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut)}
+.pulse{display:inline-flex;align-items:center;gap:7px;color:var(--ink2)}
+.pulse i{width:7px;height:7px;border-radius:50%;background:var(--mut)}
+.pulse.on i{background:var(--up);box-shadow:0 0 0 0 rgba(63,122,87,.5);animation:pl 2.4s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(63,122,87,.45)}70%{box-shadow:0 0 0 7px rgba(63,122,87,0)}100%{box-shadow:0 0 0 0 rgba(63,122,87,0)}}
+/* hero */
+.hero{display:grid;grid-template-columns:1.55fr .95fr;gap:48px;align-items:end;padding:60px 0 38px;border-bottom:1px solid var(--line)}
+.hlead{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-.01em;color:var(--ink);margin:14px 0 0}
+.hlead em{font-style:italic;color:var(--copper2)}
+.hdeck{font-size:18px;line-height:1.6;color:var(--ink2);margin:20px 0 0;max-width:52ch}
+.hdeck b{color:var(--ink);font-weight:600}
+.hfig{border-left:1px solid var(--line);padding-left:30px}
+.hfignum{font-family:var(--serif);font-weight:500;font-size:clamp(52px,6.4vw,84px);line-height:.92;color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.hfignum .u{font-size:.42em;color:var(--copper);vertical-align:.28em;margin-left:2px}
+.hfigl{font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);margin-top:14px;line-height:1.5}
+.hfigl b{color:var(--ink2)}
+/* stat strip */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--line)}
+.stripc{padding:22px 0 22px 26px;border-left:1px solid var(--line)}
+.stripc:first-child{padding-left:0;border-left:none}
+.stripv{font-family:var(--serif);font-size:30px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.stripl{font-family:var(--mono);font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--mut);margin-top:9px}
+.stripd{font-family:var(--mono);font-size:12px;margin-top:5px}
+/* section */
+.sec{padding:64px 0 0}
+.sechead{max-width:64ch}
+.sectitle{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3vw,36px);line-height:1.1;color:var(--ink);margin:12px 0 0;letter-spacing:-.01em}
+.secdeck{font-size:16.5px;line-height:1.65;color:var(--ink2);margin:14px 0 0;max-width:66ch}
+.note{font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:14px;letter-spacing:.2px}
 /* scorecard */
-.scorewrap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.scol{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 0 8px}
-.scolh{display:flex;align-items:baseline;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid var(--line)}
-.scolt{font-family:var(--serif);font-size:19px}
-.scolc{font-family:var(--mono);font-size:11px;color:var(--mut)}
-.up .scolt,.scol.up .scolt{color:var(--grow)} .scol.stable .scolt{color:var(--amber)} .scol.down .scolt{color:var(--drop)}
-.srow{display:flex;align-items:center;gap:10px;padding:8px 18px;cursor:pointer;transition:background .12s;background:transparent;border:none;border-bottom:1px solid rgba(150,180,210,.06);width:100%;text-align:left;color:inherit;font-family:inherit}
-.srow:hover{background:rgba(184,115,51,.1)}
-.srdot{width:7px;height:7px;border-radius:2px;flex:none}
-.srn{flex:1;font-size:13.5px;color:var(--ink)}
-.srv{font-family:var(--serif);font-size:15px;color:#fff}
-.srg{font-family:var(--mono);font-size:11px;width:52px;text-align:right}
+.score{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px}
+.scol{}
+.scolh{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.scolh.up{border-color:var(--up)} .scolh.stable{border-color:var(--copper)} .scolh.down{border-color:var(--down)}
+.scolt{font-family:var(--serif);font-size:20px;color:var(--ink)}
+.scolh.up .scolt{color:var(--up)} .scolh.stable .scolt{color:var(--copper2)} .scolh.down .scolt{color:var(--down)}
+.scolc{font-family:var(--mono);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut)}
+.srow{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:11px 2px;cursor:pointer;font-family:inherit;color:inherit;transition:padding-left .15s,background .15s}
+.srow:hover{background:rgba(184,115,51,.06);padding-left:8px}
+.srn{font-size:14.5px;color:var(--ink);display:flex;align-items:center;gap:9px}
+.srn i{width:6px;height:6px;border-radius:50%;flex:none}
+.srv{font-family:var(--serif);font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+.srg{font-family:var(--mono);font-size:12px;width:56px;text-align:right;font-variant-numeric:tabular-nums}
+.srow .arr{opacity:0;color:var(--copper);font-family:var(--mono);margin-left:-4px;transition:opacity .15s}
+.srow:hover .arr{opacity:1}
+/* area chart */
+.arcwrap{margin-top:28px;border:1px solid var(--line);border-radius:2px;background:var(--card);padding:24px 26px 14px}
+.arc{width:100%;height:230px;display:block;overflow:visible}
+.arclab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.4px;color:var(--mut);margin-top:8px}
+.arckey{display:flex;gap:20px;font-family:var(--mono);font-size:11px;color:var(--ink2);margin-bottom:16px}
+.arckey i{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:7px}
 /* quadrant */
-.qwrap{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px 12px}
-.qplot{position:relative;width:100%;height:460px;margin-top:6px}
-.qgrid{position:absolute;inset:0}
-.qaxL{position:absolute;left:0;top:0;bottom:26px;width:1px;background:var(--line)}
-.qaxB{position:absolute;left:0;right:0;bottom:26px;height:1px;background:var(--line)}
-.qref{position:absolute;left:0;right:0;height:1px;background:rgba(240,168,108,.35);border-top:1px dashed rgba(240,168,108,.5)}
-.qreflab{position:absolute;right:0;font-family:var(--mono);font-size:9.5px;color:var(--amber);transform:translateY(-12px)}
-.qbub{position:absolute;border-radius:50%;transform:translate(-50%,-50%);cursor:pointer;transition:box-shadow .15s,outline .12s;display:flex;align-items:center;justify-content:center}
-.qbub:hover{outline:2px solid var(--amber);z-index:5}
-.qbub.rca{outline:2px solid rgba(240,168,108,.55)}
-.qlab{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9px;color:var(--ink2);pointer-events:none;white-space:nowrap;text-shadow:0 1px 3px #060d18}
-.qtk{position:absolute;font-family:var(--mono);font-size:9px;color:var(--mut)}
-.qleg{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:10px}
-.qleg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
-/* detail panel */
-.detail{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px;margin-top:16px;display:none}
-.detail.on{display:block}
-.dh{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.dt{font-family:var(--serif);font-size:24px;color:#fff}
-.dtag{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mut)}
-.dcurve{width:100%;height:150px;margin:16px 0 4px;display:block}
-.dtable{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
-.dcell{border:1px solid var(--line);border-radius:4px;padding:10px 8px;text-align:center}
-.dcy{font-family:var(--mono);font-size:9.5px;color:var(--mut)}
-.dcv{font-family:var(--serif);font-size:17px;color:#fff;margin-top:3px}
-.dcg{font-family:var(--mono);font-size:11px;margin-top:2px}
-.ddrv{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:14px;letter-spacing:.3px}
+.qwrap{margin-top:30px;border:1px solid var(--line);border-radius:2px;background:var(--card);padding:22px 26px 14px;position:relative}
+.qplot{position:relative;width:100%;height:480px}
+.qaxL{position:absolute;left:0;top:0;bottom:28px;width:1px;background:var(--line2)}
+.qaxB{position:absolute;left:0;right:0;bottom:28px;height:1px;background:var(--line2)}
+.qref{position:absolute;left:0;right:0;height:1px;border-top:1px dashed var(--line2)}
+.qreflab{position:absolute;right:2px;font-family:var(--mono);font-size:10px;color:var(--mut);transform:translateY(-13px)}
+.qcorn{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--line2);pointer-events:none}
+.qbub{position:absolute;border-radius:50%;transform:translate(-50%,-50%);cursor:pointer;transition:transform .15s;border:1.5px solid}
+.qbub:hover{transform:translate(-50%,-50%) scale(1.06);z-index:6}
+.qbub.rca{box-shadow:0 0 0 3px rgba(184,115,51,.16)}
+.qlab{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9.5px;color:var(--ink2);pointer-events:none;white-space:nowrap}
+.qtk{position:absolute;font-family:var(--mono);font-size:9.5px;color:var(--mut)}
+.qaxt{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mut)}
+.qleg{display:flex;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:11px;color:var(--ink2);margin-top:12px}
+.qleg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+/* segment detail */
+.detail{border:1px solid var(--copper);border-radius:2px;background:var(--card);padding:24px 26px;margin-top:20px;display:none}
+.detail.on{display:block;animation:dfade .4s ease}
+@keyframes dfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.dh{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.dt{font-family:var(--serif);font-size:26px;color:var(--ink);line-height:1.1}
+.dtag{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--copper2);margin-bottom:4px}
+.dnar{font-size:16px;line-height:1.6;color:var(--ink2);margin:14px 0 0;max-width:70ch}
+.dnar b{color:var(--ink);font-weight:600}
+.dcurve{width:100%;height:150px;display:block;margin:18px 0 6px}
+.dtable{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:8px;border:1px solid var(--line)}
+.dcell{padding:12px 10px;text-align:center;border-left:1px solid var(--line)}
+.dcell:first-child{border-left:none;background:rgba(184,115,51,.05)}
+.dcy{font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut)}
+.dcv{font-family:var(--serif);font-size:19px;color:var(--ink);margin-top:4px;font-variant-numeric:tabular-nums}
+.dcg{font-family:var(--mono);font-size:11.5px;margin-top:2px}
+.ddrv{font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:14px;letter-spacing:.2px}
+.dclose{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);background:none;border:1px solid var(--line2);border-radius:2px;padding:7px 12px;cursor:pointer}
+.dclose:hover{color:var(--ink);border-color:var(--ink2)}
 /* indicators */
-.indgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.ind{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
-.indt{font-family:var(--serif);font-size:17px;color:#fff}
+.indrow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px;border:1px solid var(--line);border-bottom:none;border-radius:2px 2px 0 0;background:var(--card)}
+.indrow4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:0 0 2px 2px;background:var(--card)}
+.ind{padding:22px 24px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
+.indrow .ind:nth-child(-n+3){border-top:none}
+.indrow .ind:nth-child(3n+1){border-left:none}
+.indrow4 .ind:nth-child(4n+1){border-left:none}
+.indt{font-family:var(--serif);font-size:17px;color:var(--ink)}
 .indsub{font-family:var(--mono);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:var(--mut);margin-top:2px}
-.indv{font-family:var(--serif);font-size:30px;color:#fff;margin:12px 0 2px;line-height:1}
-.indd{font-family:var(--mono);font-size:11px}
-.gauge{margin:14px 0 4px}
-.gbar{height:9px;border-radius:5px;background:linear-gradient(90deg,#7a2f2c,#5a4a2e 46%,#2f5a45 54%,#2f6a4f);position:relative}
-.gmark{position:absolute;top:-5px;width:3px;height:19px;background:#fff;border-radius:2px;box-shadow:0 0 6px rgba(255,255,255,.6)}
-.g50{position:absolute;top:-3px;left:50%;width:1px;height:15px;background:rgba(255,255,255,.4)}
+.indv{font-family:var(--serif);font-size:30px;color:var(--ink);margin:12px 0 2px;line-height:1;font-variant-numeric:tabular-nums}
+.indd{font-size:13.5px;color:var(--ink2);margin-top:6px;line-height:1.5}
+.gauge{margin:14px 0 2px}
+.gbar{height:7px;border-radius:4px;background:linear-gradient(90deg,#c58a80,#d9c9a6 46%,#a9c6b3 54%,#7fae93);position:relative}
+.gmark{position:absolute;top:-4px;width:2.5px;height:15px;background:var(--ink);border-radius:2px}
+.g50{position:absolute;top:-2px;left:50%;width:1px;height:11px;background:rgba(30,42,56,.35)}
 .gscale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:7px}
-.spark{display:flex;align-items:flex-end;gap:5px;height:42px;margin:12px 0 4px}
-.sbar{flex:1;background:var(--copper);border-radius:2px 2px 0 0;min-height:3px}
+.spark{display:flex;align-items:flex-end;gap:5px;height:38px;margin:12px 0 2px}
+.sbar{flex:1;border-radius:2px 2px 0 0;min-height:3px}
 .asofm{font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:8px;letter-spacing:.3px}
-/* method + scenario */
-.method{background:linear-gradient(160deg,rgba(78,136,190,.1),rgba(14,33,54,.4));border:1px solid var(--line);border-radius:6px;padding:20px 22px}
-.mrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
-.scbtn{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2);background:transparent;border:1px solid var(--line);padding:8px 14px;border-radius:3px;cursor:pointer;transition:.15s}
-.scbtn:hover{border-color:rgba(240,168,108,.5);color:#fff}
-.scbtn.on{background:var(--copper);border-color:var(--copper);color:#0C1420}
-.step{counter-increment:s;font-size:14px;line-height:1.6;color:var(--ink2);margin:8px 0;padding-left:30px;position:relative}
-.step:before{content:counter(s);position:absolute;left:0;top:0;font-family:var(--mono);font-size:11px;color:var(--amber);border:1px solid rgba(240,168,108,.4);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center}
-.steps{counter-reset:s;margin-top:10px}
-.step b{color:#fff}
-/* time machine (scrubber) */
-.chartwrap{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
-.bar{display:flex;align-items:center;gap:12px;padding:5px 0}
-.barname{width:150px;flex:none;font-size:13px;color:var(--ink)}
-.bartrack{flex:1;height:20px;background:rgba(150,180,210,.07);border-radius:3px;position:relative;overflow:hidden}
-.barfill{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,.7,.3,1)}
-.barval{width:64px;flex:none;text-align:right;font-family:var(--serif);font-size:15px;color:#fff}
+/* method */
+.method{margin-top:30px;display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:start;border:1px solid var(--line);border-radius:2px;background:var(--card);padding:28px 30px}
+.steps{counter-reset:s}
+.step{counter-increment:s;position:relative;padding-left:38px;margin:14px 0;font-size:15px;line-height:1.6;color:var(--ink2)}
+.step b{color:var(--ink)}
+.step:before{content:counter(s);position:absolute;left:0;top:-1px;font-family:var(--mono);font-size:12px;color:var(--copper2);width:24px;height:24px;border:1px solid var(--line2);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.scen{margin-top:6px}
+.scenh{font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.scbtn{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:14px;color:var(--ink2);background:none;border:1px solid var(--line);border-radius:2px;padding:12px 14px;cursor:pointer;margin-bottom:8px;transition:.15s}
+.scbtn:hover{border-color:var(--copper)}
+.scbtn.on{border-color:var(--copper);background:rgba(184,115,51,.07);color:var(--ink)}
+.scbtn b{font-family:var(--serif);font-size:15px}
+.scbtn .sd{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:3px}
+/* scrubber */
+.chartwrap{margin-top:28px;border:1px solid var(--line);border-radius:2px;background:var(--card);padding:24px 26px}
+.bar{display:flex;align-items:center;gap:14px;padding:5px 0}
+.barname{width:150px;flex:none;font-size:13.5px;color:var(--ink)}
+.bartrack{flex:1;height:18px;background:var(--paper2);border-radius:2px;position:relative;overflow:hidden}
+.barfill{height:100%;border-radius:2px;transition:width .5s cubic-bezier(.4,.7,.3,1)}
+.barval{width:60px;flex:none;text-align:right;font-family:var(--serif);font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
 .tmhead{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;flex-wrap:wrap}
-.tmdate{font-family:var(--serif);font-size:34px;color:#fff;line-height:1;min-width:120px}
-.tmlead{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--ink2)}
-.tmlead b{color:var(--amber)}
+.tmdate{font-family:var(--serif);font-size:32px;color:var(--ink);line-height:1;min-width:120px;font-variant-numeric:tabular-nums}
+.tmlead{font-family:var(--mono);font-size:11px;letter-spacing:.3px;color:var(--ink2)}
+.tmlead b{color:var(--copper2)}
 .tmbar{display:flex;align-items:center;gap:14px;margin-top:16px}
-.tmplay{font-family:var(--mono);font-size:12px;width:40px;height:34px;flex:none;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:3px;cursor:pointer}
-.tmplay:hover{border-color:rgba(240,168,108,.5);color:#fff}
-.tmplay.on{background:var(--copper);border-color:var(--copper);color:#0C1420}
-#tmrange{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--copper) 0%,var(--copper) var(--p,100%),rgba(150,180,210,.16) var(--p,100%));outline:none;cursor:pointer}
-#tmrange::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--amber);border:2px solid #0C1420;box-shadow:0 0 8px rgba(240,168,108,.6);cursor:grab}
-#tmrange::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--amber);border:2px solid #0C1420;cursor:grab}
-/* state map */
-.mapgrid{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:5px;max-width:760px;margin:2px auto 0}
-.st{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.9);position:relative;border:1px solid rgba(0,0,0,.25);transition:transform .12s,box-shadow .12s}
-.st:hover{transform:scale(1.12);z-index:3;box-shadow:0 0 0 1px rgba(240,168,108,.7)}
+.tmplay{font-family:var(--mono);font-size:12px;width:40px;height:34px;flex:none;color:var(--ink2);background:none;border:1px solid var(--line2);border-radius:2px;cursor:pointer}
+.tmplay:hover{border-color:var(--copper)}
+.tmplay.on{background:var(--copper);border-color:var(--copper);color:#fff}
+#tmrange{flex:1;-webkit-appearance:none;appearance:none;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--copper) 0%,var(--copper) var(--p,100%),var(--line2) var(--p,100%));outline:none;cursor:pointer}
+#tmrange::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--copper);border:2px solid var(--paper);cursor:grab}
+#tmrange::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--copper);border:2px solid var(--paper);cursor:grab}
+/* map */
+.mapgrid{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:5px;max-width:720px;margin:4px auto 0}
+.st{aspect-ratio:1;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9.5px;color:var(--ink);position:relative;border:1px solid var(--line);transition:transform .12s}
+.st:hover{transform:scale(1.12);z-index:3;box-shadow:0 0 0 1px var(--copper)}
 .maplegend{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--mut);justify-content:center}
 .legramp{display:inline-flex;gap:2px}
-.legramp span{width:22px;height:10px;border-radius:1px}
-/* read cards */
-.read{margin-top:16px;border-left:2px solid var(--copper);padding:2px 0 2px 14px}
-.readh{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
-.readp{font-size:14px;line-height:1.6;color:var(--ink2)}
-.readp b{color:#fff;font-weight:600}
+.legramp span{width:22px;height:9px;border-radius:1px}
+/* read callout */
+.read{margin-top:20px;border-left:2px solid var(--copper);padding:2px 0 2px 16px}
+.readh{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--copper2);margin-bottom:5px}
+.readp{font-size:15px;line-height:1.6;color:var(--ink2)}
+.readp b{color:var(--ink);font-weight:600}
 /* tooltip */
-#tip{position:fixed;z-index:50;pointer-events:none;opacity:0;transition:opacity .1s;background:#071019;border:1px solid rgba(240,168,108,.5);border-radius:4px;padding:9px 12px;font-family:var(--mono);font-size:11px;color:var(--ink);max-width:270px;box-shadow:0 8px 26px rgba(0,0,0,.5)}
-#tip .tt{color:#fff;font-size:12px;margin-bottom:3px}
-footer{margin-top:64px;border-top:1px solid var(--line);padding-top:22px;color:var(--mut);font-size:12.5px;line-height:1.7}
-footer .src{font-family:var(--mono);font-size:11px}
-@media(max-width:900px){.topgrid{grid-template-columns:1fr 1fr}.scorewrap{grid-template-columns:1fr}.indgrid{grid-template-columns:1fr}h1{font-size:32px}.qplot{height:380px}.barname{width:110px}}
+#tip{position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--ink);color:#F5F1EA;border-radius:3px;padding:9px 12px;font-family:var(--mono);font-size:11px;max-width:260px;box-shadow:0 10px 30px rgba(30,42,56,.22)}
+#tip .tt{color:#fff;font-size:12px;margin-bottom:3px;font-family:var(--sans);font-weight:600}
+#tip b.up{color:#8FD3AC}#tip b.down{color:#E7A79C}
+/* footer */
+footer{margin-top:80px;border-top:1px solid var(--line);padding-top:26px;color:var(--mut);font-size:13px;line-height:1.7}
+footer .fbrand{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:6px}
+footer .src{font-family:var(--mono);font-size:11px;line-height:1.8;margin-top:8px}
+@media(max-width:860px){
+ .wrap{padding:0 20px 80px}
+ .hero{grid-template-columns:1fr;gap:26px;align-items:start}
+ .hfig{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:22px}
+ .strip{grid-template-columns:1fr}.stripc{border-left:none;border-top:1px solid var(--line);padding-left:0}.stripc:first-child{border-top:none}
+ .score{grid-template-columns:1fr;gap:20px}
+ .indrow,.indrow4{grid-template-columns:1fr}.ind{border-left:none;border-top:1px solid var(--line)}.indrow .ind:first-child{border-top:none}
+ .method{grid-template-columns:1fr;gap:24px}
+ .qplot{height:400px}.barname{width:108px}
+}
 </style>
 </head>
-<body data-palette="#B87333,#F0A86C,#43A07C,#C6564E,#4E88BE">
+<body>
 <div class="wrap" id="wrap"></div>
 <div id="tip"><div class="tt"></div><div class="tb"></div></div>
 <script>
-/* ============================================================
-   Construction Outlook, live. Public data (Census put-in-place
-   via FRED, plus BLS, Freddie Mac, AIA, Dodge), pulled live and
-   updated monthly. The forecast is a transparent, reproducible
-   projection, not a survey and not a black box. Method at the
-   bottom of the page.
-   ============================================================ */
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const C=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
-const B=x=>'$'+x.toFixed(x>=100?0:1)+'B';
+const B=x=>'$'+(x>=100?x.toFixed(0):x.toFixed(1))+'B';
 const PCT=x=>(x>0?'+':'')+(x*100).toFixed(x>-0.1&&x<0.1?1:0)+'%';
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const avg=a=>a.reduce((s,x)=>s+x,0)/a.length;
 
-/* ---- segments: live nonresidential + nonbuilding (Census put-in-place via FRED) ----
-   lvl = $B annualized (SAAR), yoy = trailing 12 months, tr = 10-year CAGR.
-   Seeds are mid-2026 FRED reads; the live refresh overwrites them each visit. */
+/* ---- segments (Census put-in-place via FRED). lvl $B SAAR, yoy trailing 12mo, tr 10yr CAGR ---- */
 let SEG=[
- {k:"Manufacturing",fred:"TLMFGCONS",grp:"nrb",lvl:172.7,yoy:-0.214,tr:0.076,rca:1,drv:"ISM PMI, industrial production, capacity utilization, durable-goods orders"},
+ {k:"Manufacturing",fred:"TLMFGCONS",grp:"nrb",lvl:172.7,yoy:-0.214,tr:0.076,rca:1,drv:"ISM PMI, industrial production, capacity utilization"},
  {k:"Office",fred:"TLOFCONS",grp:"nrb",lvl:132.8,yoy:0.125,tr:0.069,rca:1,drv:"office vacancy, unemployment. Data centers sit inside this line"},
- {k:"Commercial",fred:"TLCOMCONS",grp:"nrb",lvl:121.2,yoy:-0.059,tr:0.047,rca:1,drv:"retail sales, income, CPI. Warehouse is about half of it"},
+ {k:"Commercial",fred:"TLCOMCONS",grp:"nrb",lvl:121.2,yoy:-0.059,tr:0.047,rca:1,drv:"retail sales, income. Warehouse is about half of it"},
  {k:"Educational",fred:"TLEDUCONS",grp:"nrb",lvl:137.7,yoy:-0.006,tr:0.038,rca:1,drv:"school-age population, government spending, bond passage"},
  {k:"Health care",fred:"TLHLTHCONS",grp:"nrb",lvl:74.8,yoy:-0.015,tr:0.064,rca:1,drv:"population 75+, uninsured rate, government spending"},
  {k:"Lodging",fred:"TLLODGCONS",grp:"nrb",lvl:24.5,yoy:-0.091,tr:-0.012,rca:1,drv:"occupancy, RevPAR, room starts"},
  {k:"Amusement & rec",fred:"TLAMUSCONS",grp:"nrb",lvl:49.1,yoy:0.029,tr:0.072,rca:1,drv:"income, savings rate, employment"},
  {k:"Religious",fred:"TLRELCONS",grp:"nrb",lvl:6.5,yoy:0.282,tr:0.051,rca:0,drv:"GDP, population, income"},
  {k:"Public safety",fred:"TLPSCONS",grp:"nrb",lvl:21.2,yoy:-0.072,tr:0.102,rca:0,drv:"population, government spending, incarceration"},
- {k:"Communication",fred:"TLCMUCONS",grp:"nrb",lvl:29.4,yoy:0.023,tr:0.032,rca:0,drv:"AI network demand, private investment, BEAD buildout"},
- {k:"Power",fred:"TLPWRCONS",grp:"nb",lvl:177.6,yoy:0.035,tr:0.056,rca:0,drv:"utility capex, load growth, turbine and transformer lead times"},
+ {k:"Communication",fred:"TLCMUCONS",grp:"nrb",lvl:29.4,yoy:0.023,tr:0.032,rca:0,drv:"AI network demand, private investment, BEAD"},
+ {k:"Power",fred:"TLPWRCONS",grp:"nb",lvl:177.6,yoy:0.035,tr:0.056,rca:0,drv:"utility capex, load growth, turbine lead times"},
  {k:"Highway & street",fred:"TLHWYCONS",grp:"nb",lvl:152.1,yoy:0.029,tr:0.052,rca:0,drv:"IIJA funding, government spending, population"},
  {k:"Transportation",fred:"TLTRANSCONS",grp:"nb",lvl:72.5,yoy:0.022,tr:0.045,rca:0,drv:"airport capex, government spending, transit funding"},
  {k:"Sewage & waste",fred:"TLSWDCONS",grp:"nb",lvl:52.9,yoy:-0.020,tr:0.085,rca:0,drv:"population, government spending, PFAS rules"},
  {k:"Water supply",fred:"TLWSCONS",grp:"nb",lvl:35.7,yoy:0.009,tr:0.093,rca:0,drv:"population, government spending, lead-line funding"},
  {k:"Conservation",fred:"TLCADCONS",grp:"nb",lvl:16.6,yoy:0.318,tr:0.074,rca:0,drv:"US Army Corps appropriations, population"},
 ];
-/* residential: the group total is live (TLRESCONS); the sub-split is the latest Census release */
 let RES=[
  {k:"Improvements",grp:"res",lvl:404,yoy:0.05,tr:0.045,rca:0,drv:"home equity, HELOC balances, home prices"},
- {k:"Single-family",grp:"res",lvl:409,yoy:-0.04,tr:0.03,rca:1,drv:"mortgage rates, income, starts, permits, NAHB sentiment"},
+ {k:"Single-family",grp:"res",lvl:409,yoy:-0.04,tr:0.03,rca:1,drv:"mortgage rates, income, starts, permits"},
  {k:"Multifamily",grp:"res",lvl:127,yoy:-0.01,tr:0.055,rca:0,drv:"vacancy, absorption, lending, starts"},
 ];
 const GLBL={nrb:"Nonres buildings",nb:"Nonbuilding",res:"Residential"};
-const GCOL={nrb:"var(--copper)",nb:"var(--steel)",res:"var(--amber)"};
-let AGG={total:2166.5,res:889.4,nrb:770.5,nb:507.4,asof:"Jun 2026"};
-
-/* leading indicators (public). Rate/PPI/starts refresh live; ABI, Dodge, PMI are the latest release. */
+const GCOL={nrb:"#B87333",nb:"#4E6E8E",res:"#C98A4B"};
+let AGG={total:2166.5,res:889.4,nrb:770.5,nb:507.4,asof:"June 2026",totYoY:-0.012,totTr:0.055};
 let IND={
  abi:{v:47.3,asof:"Jul 2026",series:[45.5,47.1,48.3,44.5,46.8,47.3]},
  dodge:{v:0.218,asof:"Jul 2026",series:[3,2,6,9,-2,21.8]},
  pmi:{v:49.0,asof:"Jun 2026"},
- rate:{v:6.66,asof:"Jul 2026",fred:"MORTGAGE30US"},
- ppi:{v:0.076,asof:"Jun 2026",fred:"WPUSI012011"},
- starts:{v:1.24,asof:"Jun 2026",fred:"HOUST"},
+ rate:{v:6.66,asof:"Jul 2026"}, ppi:{v:0.076,asof:"Jun 2026"}, starts:{v:1.24,asof:"Jun 2026"},
 };
+let ARCFB=[[2007,1150],[2008,1075],[2009,905],[2010,800],[2011,790],[2012,860],[2013,930],[2014,1000],[2015,1090],[2016,1170],[2017,1250],[2018,1310],[2019,1370],[2020,1450],[2021,1650],[2022,1900],[2023,2075],[2024,2130],[2025,2166]];
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-/* ---- the forecast: recent momentum easing to the segment's 10-year trend. One knob. ---- */
-let W=0.60, LIVE=false, SERIES={};
+/* ---- forecast: recent momentum easing to trend. one knob ---- */
+let W=0.60, LIVE=false, SERIES={}, booted=false;
 const SCEN={base:0.60,momentum:0.85,trend:0.35};
 function forecast(yoy,tr,w){
  const gm=clamp(yoy,-0.20,0.22);
@@ -222,248 +270,272 @@ const fc=s=>forecast(s.yoy,s.tr,W);
 const cls=y=>y>=0.05?"up":(y<0?"down":"stable");
 const ALL=()=>SEG.concat(RES);
 
+/* ---- narrative, written from the live numbers ---- */
+function monthlyRead(){
+ const a=ALL();
+ const g=a.filter(s=>cls(s.yoy)==='up').length, st=a.filter(s=>cls(s.yoy)==='stable').length;
+ const up=a.slice().sort((x,y)=>y.yoy-x.yoy)[0], dn=a.slice().sort((x,y)=>x.yoy-y.yoy)[0];
+ const t=AGG.total/1000;
+ const dir=AGG.totYoY>0.015?'growing':(AGG.totYoY<-0.015?'easing':'about flat');
+ const reason={Manufacturing:'as the semiconductor and battery build-out moves past its heavy-spend phase',Office:'on data centers',Power:'on grid and data-center load',Conservation:'on US Army Corps civil works',Religious:'on a handful of large campus projects','Health care':'as work shifts into existing buildings',Lodging:'as new hotel starts stay thin'};
+ const dnR=reason[dn.k]?(' '+reason[dn.k]):'', upR=reason[up.k]?(', '+reason[up.k].replace(/^as /,'')):'';
+ const headline=AGG.totYoY>0.015?'Growing on top.<br>Uneven underneath.':(AGG.totYoY<-0.015?'Easing on top.<br>Splitting underneath.':'Flat on top.<br><em>Splitting underneath.</em>');
+ const deck=`US construction is running at a <b>$${t.toFixed(2)} trillion</b> annual pace, ${dir} over the past year. ${g+st} of ${a.length} segments are growing or holding. <b>${dn.k}</b> is the drag, down ${Math.abs(dn.yoy*100).toFixed(0)}%${dnR}. <b>${up.k}</b> leads at ${PCT(up.yoy)}${upR}.`;
+ return {headline,deck};
+}
+function segNarr(s){
+ const f=fc(s);
+ const now=s.yoy>=0.05?`Running hot, up ${(s.yoy*100).toFixed(0)}% over the year`:(s.yoy<0?`Cooling, down ${Math.abs(s.yoy*100).toFixed(0)}% over the year`:`Holding, ${PCT(s.yoy)} over the year`);
+ const fwd=f.cagr>0.06?`the trend points to a strong five years, near ${(f.cagr*100).toFixed(0)}% a year`:(f.cagr<0.015?`the projection stays soft, near ${(f.cagr*100).toFixed(0)}% a year`:`the projection eases to about ${(f.cagr*100).toFixed(0)}% a year`);
+ return `${now}. From here, ${fwd}.`;
+}
+
 /* ---- tooltip ---- */
 const tip=$('#tip');
 function showTip(h,e){tip.querySelector('.tt').innerHTML=h.t;tip.querySelector('.tb').innerHTML=h.b;tip.style.opacity='1';move(e);}
-function move(e){tip.style.left=Math.min(e.clientX+14,innerWidth-282)+'px';tip.style.top=(e.clientY+16)+'px';}
+function move(e){tip.style.left=Math.min(e.clientX+14,innerWidth-272)+'px';tip.style.top=(e.clientY+16)+'px';}
 function hideTip(){tip.style.opacity='0';}
 addEventListener('pointerdown',hideTip);
 
 /* ================= render ================= */
 function render(){
- $('#wrap').innerHTML = headerH()+toplineH()+scorecardH()+quadrantH()+detailH()+indicatorsH()+methodH()+scrubberH()+mapH()+footerH();
- layoutQuadrant(); wireRows(); wireScenario(); initScrubber(); initMap();
+ const wrap=$('#wrap');
+ wrap.innerHTML=mastheadH()+heroH()+stripH()+arcSec()+scoreSec()+quadSec()+indSec()+scrubSec()+mapSec()+methodSec()+footerH();
+ layoutQuadrant(); drawArc(); wireRows(); wireScenario(); initScrubber(); initMap();
+ if(!booted){booted=true; motionIn(); countUp();}
+ else{$$('.rv').forEach(e=>e.classList.add('in')); const hn=$('#heroNum'); if(hn)hn.innerHTML=heroNumHTML();}
 }
-function headerH(){
- return `<header>
-  <div class="kick">Construction Outlook &middot; live</div>
-  <h1>The construction economy,<br><em>live.</em></h1>
-  <p class="sub">The same public data the quarterly outlooks run on, pulled live and updated every month: put-in-place by segment, a transparent forecast, the indicators that run ahead of the work, and rates. The forecast shows its math. Nothing here is a survey or a black box.</p>
-  <div class="asof"><span class="livedot" id="livedot"></span><span id="asof">Latest Census put-in-place through ${AGG.asof}. Sources at the bottom.</span></div>
- </header>`;
+function mastheadH(){
+ return `<div class="mast rv"><div class="brandmark">The Construction Read<span class="dot">.</span></div>
+  <div class="mastr"><span>${AGG.asof}</span><span class="pulse" id="pulse"><i></i>Live</span></div></div>`;
 }
-function toplineH(){
- const tiles=[["res","Residential",AGG.res],["nrb","Nonres buildings",AGG.nrb],["nb","Nonbuilding",AGG.nb]]
-  .map(g=>`<div class="tlg"><div class="tlgv">$${(g[2]/1000).toFixed(2)}T</div><div class="tlgl">${g[1]}</div></div>`).join('');
- return `<section class="sect"><div class="sh">The top line</div>
-  <div class="topgrid">
-   <div class="tl0"><div class="tlk">Total put in place &middot; annualized</div><div class="tlbig">$${(AGG.total/1000).toFixed(2)}<span class="u">T</span></div><div class="tlsub">SAAR, latest month. Census, live via FRED.</div></div>
-   ${tiles}
-  </div>
-  <div class="hint">Annualized rate, not a full-year total. Residential is the live group total; the segment view below breaks out the rest.</div>
+function heroNumHTML(){return `$${(AGG.total/1000).toFixed(2)}<span class="u">T</span>`;}
+function heroH(){
+ const r=monthlyRead();
+ return `<section class="hero rv">
+  <div><div class="eyebrow">US construction economy &middot; monthly</div>
+   <h1 class="hlead">${r.headline}</h1>
+   <p class="hdeck">${r.deck}</p></div>
+  <div class="hfig"><div class="hfignum" id="heroNum" data-val="${AGG.total/1000}">${heroNumHTML()}</div>
+   <div class="hfigl">Total put in place, <b>annualized</b><br>Census, live via FRED &middot; as of ${AGG.asof}</div></div>
  </section>`;
 }
-function scorecardH(){
- const cols=[["up","Growing","5% or more"],["stable","Stable","0 to 5%"],["down","Cooling","below 0%"]];
+function stripH(){
+ const cells=[["res","Residential",AGG.res],["nrb","Nonres buildings",AGG.nrb],["nb","Nonbuilding",AGG.nb]]
+  .map(g=>`<div class="stripc"><div class="stripv">$${(g[2]/1000).toFixed(2)}T</div><div class="stripl">${g[1]}</div></div>`).join('');
+ return `<div class="strip rv">${cells}</div>`;
+}
+function secHead(eyebrow,title,deck){
+ return `<div class="sechead"><div class="eyebrow">${eyebrow}</div><h2 class="sectitle">${title}</h2>${deck?`<p class="secdeck">${deck}</p>`:''}</div>`;
+}
+function arcSec(){
+ return `<section class="sec rv">${secHead('The arc','A $2.2 trillion market, and where it is headed','Total construction put in place since 2007, with this page\'s projection to 2030. The gain of the last few years is real, but a lot of it is price, not volume.')}
+  <div class="arcwrap"><div class="arckey"><span><i style="background:var(--ink)"></i>actual</span><span><i style="background:var(--copper);opacity:.6"></i>projection</span></div>
+   <svg class="arc" id="arc" viewBox="0 0 1080 230" preserveAspectRatio="none"></svg>
+   <div class="arclab" id="arclab"></div></div>
+ </section>`;
+}
+function scoreSec(){
+ const cols=[["up","Growing","5%+"],["stable","Holding","0 to 5%"],["down","Cooling","below 0%"]];
  const body=cols.map(([c,t,r])=>{
-  const rows=ALL().filter(s=>cls(s.yoy)===c).sort((a,b)=>b.yoy-a.yoy).map(s=>rowH(s)).join('');
-  const n=ALL().filter(s=>cls(s.yoy)===c).length;
-  return `<div class="scol ${c}"><div class="scolh"><span class="scolt">${t}</span><span class="scolc">${n} &middot; ${r} YoY</span></div>${rows}</div>`;
+  const list=ALL().filter(s=>cls(s.yoy)===c).sort((a,b)=>b.yoy-a.yoy);
+  const rows=list.map(s=>`<button class="srow" data-seg="${s.k}"><span class="srn"><i style="background:${GCOL[s.grp]}"></i>${s.k}<span class="arr">&rarr;</span></span><span class="srv">${B(s.lvl)}</span><span class="srg ${s.yoy>0?'up':(s.yoy<0?'down':'flat')}">${PCT(s.yoy)}</span></button>`).join('');
+  return `<div class="scol"><div class="scolh ${c}"><span class="scolt">${t}</span><span class="scolc">${list.length} &middot; ${r} YoY</span></div>${rows}</div>`;
  }).join('');
- return `<section class="sect"><div class="sh">Where every segment sits &middot; live</div>
-  <div class="lead">Nineteen segments, sorted by where they are right now.</div>
-  <p class="leadp">Year-over-year change in put-in-place, straight off the latest Census release. Click any segment for its forecast.</p>
-  <div class="scorewrap" style="margin-top:18px">${body}</div>
+ return `<section class="sec rv">${secHead('The state of play','Every segment, sorted by where it sits today','Year-over-year change in put-in-place, straight off the latest Census release. Click any segment for its forecast.')}
+  <div class="score">${body}</div></section>`;
+}
+function quadSec(){
+ return `<section class="sec rv">${secHead('Where to build','Big and climbing, or big and cooling','Every nonresidential and infrastructure segment, placed by current size and projected five-year growth. Bubble size is spend. Hover for detail, click to open the forecast.')}
+  <div class="qwrap"><div class="qplot" id="qplot"></div><div class="qleg" id="qleg"></div></div>
+  <div class="detail" id="detail"></div>
+  <div class="note">Growth is this page&rsquo;s transparent projection, not a published forecast. Method and the scenario knob are near the bottom.</div>
  </section>`;
 }
-function rowH(s){
- const col=GCOL[s.grp];
- return `<button class="srow" data-seg="${s.k}"><span class="srdot" style="background:${col}"></span><span class="srn">${s.k}</span><span class="srv">${B(s.lvl)}</span><span class="srg ${s.yoy>0?'up':(s.yoy<0?'down':'flat')}">${PCT(s.yoy)}</span></button>`;
-}
-function quadrantH(){
- return `<section class="sect"><div class="sh">Where the growth is going</div>
-  <div class="lead">Big and climbing, top right. Big and flat, bottom right.</div>
-  <p class="leadp">Every nonresidential and infrastructure segment placed by current size (across) and projected five-year growth (up). Bubble size is current spend. The dashed line is the nonres average. Hover for detail, click to open the forecast.</p>
-  <div class="qwrap" style="margin-top:18px"><div class="qplot" id="qplot"></div>
-   <div class="qleg" id="qleg"></div></div>
-  <div class="hint">Growth is this page's transparent projection, not a published forecast. Method and the scenario knob are at the bottom.</div>
- </section>`;
-}
-function detailH(){return `<div class="detail" id="detail"></div>`;}
-function indicatorsH(){
- const abi=IND.abi, mn=42,mx=58, pos=clamp((abi.v-mn)/(mx-mn)*100,0,100);
- const dg=IND.dodge.series, dmx=Math.max(...dg.map(Math.abs))||1;
- const dspark=dg.map(v=>`<div class="sbar" style="height:${6+Math.abs(v)/dmx*34}px;background:${v<0?'var(--drop)':'var(--copper)'}"></div>`).join('');
- const abispark=abi.series.map(a=>`<div class="sbar" style="height:${8+((a-42)/16)*32}px;background:${a<50?'var(--drop)':'var(--grow)'}"></div>`).join('');
- const tiles=[
-  ["PMI, manufacturing",IND.pmi.v.toFixed(1),IND.pmi.v<50?"down":"up",IND.pmi.v<50?"below 50, contracting":"above 50",IND.pmi.asof],
-  ["30-year mortgage",IND.rate.v.toFixed(2)+"%","flat","demand lever for residential",IND.rate.asof],
-  ["Materials PPI, YoY","+"+(IND.ppi.v*100).toFixed(1)+"%","up","input-cost pressure",IND.ppi.asof],
-  ["Housing starts",IND.starts.v.toFixed(2)+"M","flat","SAAR, single + multi",IND.starts.asof],
- ].map(t=>`<div class="ind"><div class="indv ${t[2]}">${t[1]}</div><div class="indt" style="font-size:14px">${t[0]}</div><div class="indsub">${t[3]}</div><div class="asofm">as of ${t[4]}</div></div>`).join('');
- return `<section class="sect"><div class="sh">The signals that run ahead of the work</div>
-  <div class="lead">Design and planning lead the spending by nine to twelve months.</div>
-  <p class="leadp">When architects bill less, nonresidential spending softens three to four quarters later. When owners put more into planning, the pipeline fills. Right now those two disagree, and the gap is the story.</p>
-  <div class="indgrid" style="margin-top:18px">
+function indSec(){
+ const abi=IND.abi,pos=clamp((abi.v-42)/16*100,0,100);
+ const dmx=Math.max(...IND.dodge.series.map(Math.abs))||1;
+ const dsp=IND.dodge.series.map(v=>`<div class="sbar" style="height:${6+Math.abs(v)/dmx*30}px;background:${v<0?'var(--down)':'var(--copper)'}"></div>`).join('');
+ const asp=abi.series.map(a=>`<div class="sbar" style="height:${8+((a-42)/16)*28}px;background:${a<50?'var(--down)':'var(--up)'}"></div>`).join('');
+ const t=[["PMI, manufacturing",IND.pmi.v.toFixed(1),IND.pmi.v<50?"down":"up",IND.pmi.v<50?"below 50, contracting":"expanding",IND.pmi.asof],
+   ["30-year mortgage",IND.rate.v.toFixed(2)+"%","flat","demand lever for housing",IND.rate.asof],
+   ["Materials PPI","+"+(IND.ppi.v*100).toFixed(1)+"%","up","input costs, year over year",IND.ppi.asof],
+   ["Housing starts",IND.starts.v.toFixed(2)+"M","flat","annualized, single + multi",IND.starts.asof]]
+  .map(x=>`<div class="ind"><div class="indv ${x[2]}">${x[1]}</div><div class="indt" style="font-size:15px">${x[0]}</div><div class="indsub">${x[3]}</div><div class="asofm">as of ${x[4]}</div></div>`).join('');
+ return `<section class="sec rv">${secHead('The signals ahead','Design and planning lead the work by nine to twelve months','When architects bill less, spending softens three or four quarters later. When owners plan more, the pipeline fills. Right now they disagree, and the gap is the story.')}
+  <div class="indrow">
    <div class="ind"><div class="indt">Architecture Billings</div><div class="indsub">AIA / Deltek &middot; ~9-12 mo lead &middot; 50 = flat</div>
     <div class="gauge"><div class="gbar"><div class="g50"></div><div class="gmark" style="left:${pos}%"></div></div><div class="gscale"><span>42</span><span>50</span><span>58</span></div></div>
-    <div class="spark">${abispark}</div><div class="indd"><b class="down">${abi.v}</b> in July, 41 months below 50.<div class="asofm">as of ${abi.asof}</div></div></div>
+    <div class="spark">${asp}</div><div class="indd"><b class="down">${abi.v}</b> in July, 41 months below 50.</div><div class="asofm">as of ${abi.asof}</div></div>
    <div class="ind"><div class="indt">Dodge Momentum</div><div class="indsub">planning pipeline &middot; leads starts ~12 mo</div>
     <div class="indv up">+${(IND.dodge.v*100).toFixed(0)}%</div><div class="indsub">month over month</div>
-    <div class="spark">${dspark}</div><div class="indd">Planning is booming, up ~51% over the year.<div class="asofm">as of ${IND.dodge.asof}</div></div></div>
+    <div class="spark">${dsp}</div><div class="indd">Planning is booming, up about 51% over the year.</div><div class="asofm">as of ${IND.dodge.asof}</div></div>
    <div class="ind"><div class="indt">The read</div><div class="indsub">near term vs long horizon</div>
-    <div class="readp" style="margin-top:12px"><b>Soft next few quarters, busier back half.</b> Billings say do not over-hire into the near term. Planning says the data-center and institutional wave is coming. That split is baked into the forecast: current momentum first, easing toward trend as the pipeline lands.</div></div>
-   ${tiles}
+    <div class="indd" style="margin-top:12px"><b style="color:var(--ink)">Soft next few quarters, busier back half.</b> Billings say do not over-hire into the near term. Planning says the data-center and institutional wave is coming. The forecast bakes that in: momentum first, easing toward trend as the pipeline lands.</div></div>
   </div>
+  <div class="indrow4">${t}</div>
  </section>`;
 }
-function methodH(){
- const sc=Object.keys(SCEN).map(k=>`<button class="scbtn ${SCEN[k]===W?'on':''}" data-scen="${k}">${k}</button>`).join('');
- return `<section class="sect"><div class="sh">How the forecast works</div>
-  <div class="lead">No black box. Recent momentum, easing to the long-run trend.</div>
-  <div class="method" style="margin-top:16px">
-   <div class="steps">
-    <div class="step">Pull the live Census put-in-place series for each segment. <b>Public, monthly, via FRED.</b></div>
-    <div class="step">Read two numbers off it: recent <b>momentum</b> (the trailing year) and the segment's own <b>10-year trend</b>.</div>
-    <div class="step">Year one blends the two. Later years <b>ease toward trend</b>, because no segment grows at its momentum forever.</div>
-    <div class="step">Turn one knob below and watch every projection move. That is the whole model. <b>The same knob the quarterly outlooks turn, made visible.</b></div>
-   </div>
-   <div class="mrow"><span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mut)">Scenario</span>${sc}
-    <span class="hint" style="margin:0 0 0 6px">base = balanced &middot; momentum = trust the recent trend &middot; trend = trust the long run</span></div>
-  </div>
- </section>`;
-}
-function scrubberH(){
- return `<section class="sect"><div class="sh">How the mix got here</div>
-  <div class="lead">Drag through fifteen years and watch manufacturing take over.</div>
-  <p class="leadp">Nonresidential and infrastructure spending by segment, annualized, month by month. Live from FRED.</p>
-  <div class="chartwrap" style="margin-top:18px">
-   <div class="tmhead"><div class="tmdate" id="tmdate">&nbsp;</div><div class="tmlead" id="tmlead">&nbsp;</div></div>
+function scrubSec(){
+ return `<section class="sec rv">${secHead('How the mix got here','Drag through fifteen years and watch manufacturing take over','Nonresidential and infrastructure spending by segment, annualized, month by month. Live from FRED.')}
+  <div class="chartwrap"><div class="tmhead"><div class="tmdate" id="tmdate">&nbsp;</div><div class="tmlead" id="tmlead">&nbsp;</div></div>
    <div id="tmchart"></div>
    <div class="tmbar"><button class="tmplay" id="tmplay">&#9654;</button><input type="range" id="tmrange" min="0" max="15" value="15" step="1"></div>
-   <div class="hint" id="tmhint">Connecting to live monthly history&hellip;</div>
-  </div>
+   <div class="note" id="tmhint">Connecting to live monthly history&hellip;</div></div>
  </section>`;
 }
-function mapH(){
- return `<section class="sect"><div class="sh">Where the build-out is happening</div>
-  <div class="lead">The growth has an address. Sun Belt and Mid-Atlantic.</div>
-  <p class="leadp">Data-center pipeline by state, the clearest current signal of where large-format envelope work is going.</p>
-  <div class="chartwrap" style="margin-top:18px"><div class="mapgrid" id="mapgrid"></div>
+function mapSec(){
+ return `<section class="sec rv">${secHead('Where it is being built','The growth has an address: Sun Belt and Mid-Atlantic','Data-center pipeline by state, the clearest current signal of where large-format envelope work is going.')}
+  <div class="chartwrap"><div class="mapgrid" id="mapgrid"></div>
    <div class="maplegend"><span>fewer</span><span class="legramp" id="legramp"></span><span>more data centers</span></div>
-   <div class="hint">Total data centers in the pipeline by state. Grey states sit outside the top 15. Industry pipeline data, 2026.</div></div>
+   <div class="note">Total data centers in the pipeline by state. Grey states sit outside the top 15. Industry pipeline data, 2026.</div></div>
+ </section>`;
+}
+function methodSec(){
+ const sc=[["base","Base","balanced"],["momentum","Momentum","trust the recent trend"],["trend","Trend","trust the long run"]]
+  .map(x=>`<button class="scbtn ${SCEN[x[0]]===W?'on':''}" data-scen="${x[0]}"><b>${x[1]}</b><div class="sd">${x[2]}</div></button>`).join('');
+ return `<section class="sec rv">${secHead('How the forecast works','No black box. Momentum, easing to trend','')}
+  <div class="method"><div class="steps">
+    <div class="step">Pull the live Census put-in-place series for each segment. <b>Public, monthly, via FRED.</b></div>
+    <div class="step">Read two numbers: recent <b>momentum</b> (the trailing year) and the segment&rsquo;s own <b>10-year trend</b>.</div>
+    <div class="step">Year one blends them. Later years <b>ease toward trend</b>, because no segment grows at its momentum forever.</div>
+    <div class="step">Turn one knob and every projection moves. <b>The same knob the quarterly outlooks turn, made visible.</b></div>
+   </div>
+   <div class="scen"><div class="scenh">Scenario</div>${sc}</div></div>
  </section>`;
 }
 function footerH(){
- return `<footer>
-  <div style="color:var(--ink2);margin-bottom:8px">Built by Cain Menard. Public data, pulled live and updated monthly. The forecast is a transparent, reproducible projection, not investment advice and not a substitute for judgment about specific projects.</div>
-  <div class="src">Sources: US Census Bureau, Value of Construction Put in Place (via FRED) &middot; BLS Producer Price Index &middot; Freddie Mac &middot; AIA / Deltek Architecture Billings Index &middot; Dodge Construction Network &middot; ISM.</div>
+ return `<footer class="rv"><div class="fbrand">The Construction Read<span style="color:var(--copper)">.</span></div>
+  <div>Built by Cain Menard. Public data, pulled live and updated monthly. The forecast is a transparent, reproducible projection, not investment advice and not a substitute for judgment about specific projects.</div>
+  <div class="src">Sources: US Census Bureau, Value of Construction Put in Place (via FRED) &middot; BLS Producer Price Index &middot; Freddie Mac &middot; AIA / Deltek Architecture Billings Index &middot; Dodge Construction Network &middot; ISM &middot; cainmenard.com</div>
  </footer>`;
 }
 
-/* ---- scorecard rows + segment detail ---- */
+/* ---- segment detail ---- */
 function wireRows(){ $$('.srow').forEach(b=>b.onclick=()=>openDetail(b.dataset.seg)); }
 function openDetail(key){
  const s=ALL().find(x=>x.k===key); if(!s)return;
- const f=fc(s), years=[2027,2028,2029,2030];
- let lvl=s.lvl; const path=[{y:2026,g:s.yoy,l:s.lvl}];
- f.g.forEach((g,i)=>{lvl=lvl*(1+g);path.push({y:years[i],g,l:lvl});});
+ const f=fc(s), years=[2027,2028,2029,2030]; let lvl=s.lvl;
+ const path=[{y:2026,g:s.yoy,l:s.lvl}]; f.g.forEach((g,i)=>{lvl*=1+g;path.push({y:years[i],g,l:lvl});});
  const cells=path.map(p=>`<div class="dcell"><div class="dcy">${p.y}${p.y===2026?' now':''}</div><div class="dcv">$${p.l.toFixed(0)}B</div><div class="dcg ${p.g>0?'up':(p.g<0?'down':'flat')}">${PCT(p.g)}</div></div>`).join('');
  const d=$('#detail');
- d.innerHTML=`<div class="dh"><div><div class="dtag">${GLBL[s.grp]} &middot; ${(f.cagr*100>=0?'+':'')}${(f.cagr*100).toFixed(1)}% projected CAGR</div><div class="dt">${s.k}</div></div><button class="scbtn" id="dclose">Close</button></div>`
-  +drawCurve(s,path)
-  +`<div class="dtable">${cells}</div>`
-  +`<div class="ddrv">Drivers: ${s.drv}.</div>`;
- d.classList.add('on');
- $('#dclose').onclick=()=>d.classList.remove('on');
+ d.innerHTML=`<div class="dh"><div><div class="dtag">${GLBL[s.grp]} &middot; ${PCT(f.cagr)} projected CAGR</div><div class="dt">${s.k}</div></div><button class="dclose" id="dclose">Close</button></div>`
+  +`<div class="dnar">${segNarr(s)}</div>`+drawCurve(s,path)
+  +`<div class="dtable">${cells}</div><div class="ddrv">Drivers: ${s.drv}.</div>`;
+ d.classList.add('on'); $('#dclose').onclick=()=>d.classList.remove('on');
  d.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function drawCurve(s,path){
- const W2=1080,H=150,pad=8; const hist=SERIES[s.fred];
- let pts=[], vals=[];
- if(hist&&hist.length){const h=hist.slice(-120); pts=h.map(p=>p[1]/1000); }
- const fwd=path.map(p=>p.l);
- const all=pts.concat(fwd); const mn=Math.min(...all)*0.9, mx=Math.max(...all)*1.05;
+ const W2=1040,H=150,pad=8, hist=SERIES[s.fred];
+ let pts=hist&&hist.length?hist.slice(-120).map(p=>p[1]/1000):[];
+ const fwd=path.map(p=>p.l), all=pts.concat(fwd), mn=Math.min(...all)*0.9, mx=Math.max(...all)*1.06;
  const X=i=>pad+i/(all.length-1)*(W2-2*pad), Y=v=>H-pad-((v-mn)/(mx-mn))*(H-2*pad);
- let dh='',df='';
- pts.forEach((v,i)=>dh+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ');
- const off=pts.length;
- fwd.forEach((v,i)=>df+=(i?'L':'M')+X(off-1+i).toFixed(1)+' '+Y(v).toFixed(1)+' ');
- if(pts.length)df='M'+X(off-1).toFixed(1)+' '+Y(pts[pts.length-1]).toFixed(1)+' '+df.replace(/^M[^L]*/,'');
+ let dh=''; pts.forEach((v,i)=>dh+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ');
+ const off=pts.length; let df='M'+X(Math.max(0,off-1)).toFixed(1)+' '+Y(pts.length?pts[off-1]:fwd[0]).toFixed(1)+' ';
+ fwd.forEach((v,i)=>df+='L'+X(off-1+i+(pts.length?0:0)).toFixed(1)+' '+Y(v).toFixed(1)+' ');
  return `<svg class="dcurve" viewBox="0 0 ${W2} ${H}" preserveAspectRatio="none">
-   ${pts.length?`<path d="${dh}" fill="none" stroke="var(--ink2)" stroke-width="2"/>`:''}
-   <path d="${df}" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-dasharray="2 5"/>
-  </svg>`+(pts.length?'':`<div class="hint" style="margin-top:0">Live history loads with the page; the dashed line is the projection.</div>`);
+   ${pts.length?`<path d="${dh}" fill="none" stroke="var(--ink)" stroke-width="2"/>`:''}
+   <path d="${df}" fill="none" stroke="var(--copper)" stroke-width="2.5" stroke-dasharray="1 5" stroke-linecap="round"/></svg>`
+  +(pts.length?'':`<div class="note" style="margin-top:2px">Live history loads with the page; the dashed line is the projection.</div>`);
 }
 
-/* ---- quadrant layout ---- */
+/* ---- the arc (total put in place) ---- */
+function drawArc(){
+ const svg=$('#arc'); if(!svg)return;
+ const W2=1080,H=230,pad=6;
+ const s=SERIES['TTLCONS'];
+ let hist = s&&s.length ? s.filter((_,i)=>i%3===0||i===s.length-1).map(p=>({t:+p[0].slice(0,4)+(+p[0].slice(5,7)-1)/12, v:p[1]/1000})) : ARCFB.map(p=>({t:p[0],v:p[1]/1000}));
+ const last=hist[hist.length-1];
+ const f=forecast(AGG.totYoY,AGG.totTr,W); let lv=last.v; const fwd=[{t:last.t,v:last.v}];
+ f.g.forEach((g,i)=>{lv*=1+g;fwd.push({t:Math.round(last.t)+i+1,v:lv});});
+ const all=hist.concat(fwd), t0=all[0].t, t1=all[all.length-1].t, vmax=Math.max(...all.map(a=>a.v))*1.05;
+ const X=t=>pad+(t-t0)/(t1-t0)*(W2-2*pad), Y=v=>H-16-(v/vmax)*(H-26);
+ const line=arr=>arr.map((a,i)=>(i?'L':'M')+X(a.t).toFixed(1)+' '+Y(a.v).toFixed(1)).join(' ');
+ const areaH=line(hist)+` L${X(last.t).toFixed(1)} ${(H-16).toFixed(1)} L${X(hist[0].t).toFixed(1)} ${(H-16).toFixed(1)} Z`;
+ const areaF=line(fwd)+` L${X(fwd[fwd.length-1].t).toFixed(1)} ${(H-16).toFixed(1)} L${X(last.t).toFixed(1)} ${(H-16).toFixed(1)} Z`;
+ svg.innerHTML=`<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E2A38" stop-opacity=".14"/><stop offset="1" stop-color="#1E2A38" stop-opacity="0"/></linearGradient>
+   <linearGradient id="af" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B87333" stop-opacity=".16"/><stop offset="1" stop-color="#B87333" stop-opacity="0"/></linearGradient></defs>
+  <path d="${areaF}" fill="url(#af)"/><path d="${areaH}" fill="url(#ag)"/>
+  <path d="${line(fwd)}" fill="none" stroke="#B87333" stroke-width="2.5" stroke-dasharray="1 5" stroke-linecap="round" opacity=".85"/>
+  <path d="${line(hist)}" fill="none" stroke="#1E2A38" stroke-width="2.5"/>`;
+ $('#arclab').innerHTML=`<span>${Math.round(t0)}</span><span>2020</span><span>${Math.round(last.t)} &middot; now</span><span>2030 proj</span>`;
+}
+
+/* ---- quadrant ---- */
 function layoutQuadrant(){
  const plot=$('#qplot'); if(!plot)return; plot.innerHTML='';
- const w=plot.clientWidth||900, h=plot.clientHeight||460, padL=6, padB=26;
- const xmax=200, ymin=-0.03, ymax=0.13;
- const X=v=>padL+ (Math.min(v,xmax)/xmax)*(w-padL-10);
- const Y=g=>{const t=(g-ymin)/(ymax-ymin); return (1-t)*(h-padB);};
- // axis + grid
- plot.appendChild(Object.assign(C('div','qaxL'),{}));
- plot.appendChild(Object.assign(C('div','qaxB'),{}));
+ const w=plot.clientWidth||900,h=plot.clientHeight||480,padL=6,padB=28,xmax=200,ymin=-0.03,ymax=0.13;
+ const X=v=>padL+(Math.min(v,xmax)/xmax)*(w-padL-12), Y=g=>{const t=(g-ymin)/(ymax-ymin);return (1-t)*(h-padB);};
+ plot.appendChild(C('div','qaxL')); plot.appendChild(C('div','qaxB'));
  const ref=C('div','qref'); ref.style.top=Y(0.045)+'px'; plot.appendChild(ref);
  const rl=C('div','qreflab'); rl.textContent='4.5% avg'; rl.style.top=Y(0.045)+'px'; plot.appendChild(rl);
- [0,50,100,150,200].forEach(v=>{const t=C('div','qtk');t.textContent='$'+v+'B';t.style.left=X(v)+'px';t.style.bottom='6px';plot.appendChild(t);});
+ // corner labels
+ const c1=C('div','qcorn');c1.textContent='big & climbing';c1.style.right='8px';c1.style.top='6px';plot.appendChild(c1);
+ const c2=C('div','qcorn');c2.textContent='big & cooling';c2.style.right='8px';c2.style.bottom='34px';plot.appendChild(c2);
+ const c3=C('div','qcorn');c3.textContent='small & fast';c3.style.left='10px';c3.style.top='6px';plot.appendChild(c3);
+ [0,50,100,150,200].forEach(v=>{const t=C('div','qtk');t.textContent='$'+v+'B';t.style.left=X(v)+'px';t.style.bottom='8px';plot.appendChild(t);});
  [0,0.04,0.08,0.12].forEach(g=>{const t=C('div','qtk');t.textContent=(g*100).toFixed(0)+'%';t.style.left='0';t.style.top=(Y(g)-6)+'px';plot.appendChild(t);});
+ const ax=C('div','qaxt');ax.textContent='current spend';ax.style.right='8px';ax.style.bottom='8px';plot.appendChild(ax);
  SEG.map(s=>({s,f:fc(s)})).sort((a,b)=>b.s.lvl-a.s.lvl).forEach(({s,f})=>{
-  const r=clamp(Math.sqrt(s.lvl)*3.0,14,58);
+  const r=clamp(Math.sqrt(s.lvl)*2.9,13,54);
   const b=C('div','qbub'+(s.rca?' rca':'')); b.style.width=b.style.height=r*2+'px';
   b.style.left=X(s.lvl)+'px'; b.style.top=Y(f.cagr)+'px';
-  b.style.background=(GCOL[s.grp]).replace('var(--copper)','rgba(184,115,51,.34)').replace('var(--steel)','rgba(78,136,190,.34)');
-  b.style.border='1px solid '+GCOL[s.grp];
-  b.dataset.seg=s.k;
+  b.style.background=s.grp==='nb'?'rgba(78,110,142,.20)':'rgba(184,115,51,.22)'; b.style.borderColor=GCOL[s.grp];
   b.onpointerenter=e=>showTip({t:s.k+'  ·  '+B(s.lvl),b:'Projected <b class="'+(f.cagr>0?'up':'down')+'">'+PCT(f.cagr)+' a year</b> to 2030<br>Now <b class="'+(s.yoy>0?'up':'down')+'">'+PCT(s.yoy)+'</b> year over year'},e);
-  b.onpointermove=move; b.onpointerleave=hideTip; b.onclick=()=>openDetail(s.k);
+  b.onpointermove=move;b.onpointerleave=hideTip;b.onclick=()=>openDetail(s.k);
   plot.appendChild(b);
-  if(r>=18){const lab=C('div','qlab');lab.textContent=s.k;lab.style.left=X(s.lvl)+'px';lab.style.top=(Y(f.cagr)+r+9)+'px';plot.appendChild(lab);}
+  if(r>=17){const lab=C('div','qlab');lab.textContent=s.k;lab.style.left=X(s.lvl)+'px';lab.style.top=(Y(f.cagr)+r+9)+'px';plot.appendChild(lab);}
  });
- $('#qleg').innerHTML=[["nrb","Nonres buildings"],["nb","Nonbuilding"]].map(g=>`<span><i style="background:${GCOL[g[0]]}"></i>${g[1]}</span>`).join('')+`<span><i style="background:transparent;border:1px solid var(--amber)"></i>big-roof segment</span>`;
+ $('#qleg').innerHTML=`<span><i style="background:${GCOL.nrb}"></i>Nonres buildings</span><span><i style="background:${GCOL.nb}"></i>Nonbuilding</span><span><i style="background:#fff;box-shadow:0 0 0 3px rgba(184,115,51,.16),0 0 0 1.5px ${GCOL.nrb}"></i>big-roof segment</span>`;
 }
-
-/* ---- scenario knob ---- */
 function wireScenario(){ $$('.scbtn[data-scen]').forEach(b=>b.onclick=()=>{W=SCEN[b.dataset.scen];render();}); }
 
-/* ---- scrubber (live history) ---- */
+/* ---- scrubber ---- */
 function initScrubber(){
- const order=SEG.map(s=>s.k);
- const el=id=>document.getElementById(id);
- let dates=[],data={},MAX=1,idx=0,playing=false,timer=null;
- function build(){
-  const withS=SEG.filter(s=>SERIES[s.fred]&&SERIES[s.fred].length);
-  if(!withS.length){el('tmhint').textContent='Live monthly history was not reachable. The rest of the page still reflects the latest release.';return false;}
-  const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const base=withS[0].fred; dates=SERIES[base].map(p=>{const d=p[0].split('-');return MON[+d[1]-1]+' '+d[0];});
-  data={}; withS.forEach(s=>{const m={};SERIES[s.fred].forEach((p,i)=>m[i]=p[1]/1000);data[s.k]=dates.map((_,i)=>m[i]!=null?m[i]:null);});
-  MAX=1; Object.values(data).forEach(a=>a.forEach(v=>{if(v>MAX)MAX=v;}));
-  return true;
- }
+ const el=id=>document.getElementById(id); let dates=[],data={},MAX=1,idx=0,playing=false,timer=null;
+ const withS=SEG.filter(s=>SERIES[s.fred]&&SERIES[s.fred].length);
+ if(!withS.length){el('tmhint').textContent='Live monthly history was not reachable. The rest of the page still reflects the latest release.';return;}
+ const base=withS[0].fred; dates=SERIES[base].map(p=>{const d=p[0].split('-');return MON[+d[1]-1]+' '+d[0];});
+ withS.forEach(s=>{const m={};SERIES[s.fred].forEach((p,i)=>m[i]=p[1]/1000);data[s.k]=dates.map((_,i)=>m[i]!=null?m[i]:null);});
+ Object.values(data).forEach(a=>a.forEach(v=>{if(v>MAX)MAX=v;}));
  function draw(){
-  const segs=SEG.filter(s=>data[s.k]);
-  const cur=segs.map(s=>({k:s.k,v:data[s.k][idx]}));
-  let lead={k:'',v:-1}; cur.forEach(o=>{if(o.v>lead.v)lead=o;});
+  const cur=withS.map(s=>({k:s.k,v:data[s.k][idx]})); let lead={k:'',v:-1}; cur.forEach(o=>{if(o.v>lead.v)lead=o;});
   el('tmdate').textContent=dates[idx]||''; el('tmlead').innerHTML=lead.v>0?('Leading &middot; <b>'+lead.k+'</b> $'+lead.v.toFixed(0)+'B a year'):'';
-  el('tmchart').innerHTML=cur.sort((a,b)=>b.v-a.v).slice(0,10).map(o=>{
-   const col=o.k===lead.k?'var(--amber)':'var(--copper)';
-   return '<div class="bar"><div class="barname">'+o.k+'</div><div class="bartrack"><div class="barfill" style="width:'+(o.v/MAX*100).toFixed(1)+'%;background:'+col+'"></div></div><div class="barval">$'+(o.v!=null?o.v.toFixed(0):'-')+'B</div></div>';
-  }).join('');
+  el('tmchart').innerHTML=cur.sort((a,b)=>b.v-a.v).slice(0,10).map(o=>{const col=o.k===lead.k?'var(--copper)':'#C9A784';
+   return '<div class="bar"><div class="barname">'+o.k+'</div><div class="bartrack"><div class="barfill" style="width:'+(o.v/MAX*100).toFixed(1)+'%;background:'+col+'"></div></div><div class="barval">$'+(o.v!=null?o.v.toFixed(0):'-')+'B</div></div>';}).join('');
   el('tmrange').style.setProperty('--p',(dates.length>1?idx/(dates.length-1)*100:100)+'%');
  }
  function setIdx(i){idx=clamp(i,0,dates.length-1);el('tmrange').value=idx;draw();}
  function stop(){playing=false;clearInterval(timer);const b=el('tmplay');b.classList.remove('on');b.innerHTML='&#9654;';}
  function play(){if(playing){stop();return;}playing=true;const b=el('tmplay');b.classList.add('on');b.innerHTML='&#10073;&#10073;';if(idx>=dates.length-1)setIdx(0);timer=setInterval(()=>{if(idx>=dates.length-1){stop();return;}setIdx(idx+1);},90);}
- if(!build())return;
  el('tmrange').max=dates.length-1; el('tmrange').oninput=function(){stop();setIdx(+this.value);}; el('tmplay').onclick=play;
- el('tmhint').innerHTML='<span class="livedot on"></span>Live monthly data via FRED. Drag the handle or press play.';
- setIdx(dates.length-1);
+ el('tmhint').innerHTML='Live monthly data via FRED. Drag the handle or press play.'; setIdx(dates.length-1);
 }
 
-/* ---- state map (data-center pipeline) ---- */
+/* ---- state map ---- */
 const STGRID={AK:[1,1],ME:[11,1],VT:[10,2],NH:[11,2],WA:[1,3,100],ID:[2,3],MT:[3,3],ND:[4,3],MN:[5,3],WI:[6,3],MI:[7,3],NY:[9,3,125],MA:[10,3],RI:[11,3],OR:[1,4,144],NV:[2,4,134],WY:[3,4],SD:[4,4],IA:[5,4,111],IL:[6,4,250],IN:[7,4,120],OH:[8,4,250],PA:[9,4,257],NJ:[10,4],CT:[11,4],CA:[1,5,212],UT:[2,5,156],CO:[3,5],NE:[4,5],MO:[5,5],KY:[6,5],WV:[7,5],VA:[8,5,954],MD:[9,5],DE:[10,5],AZ:[2,6,254],NM:[3,6],KS:[4,6],AR:[5,6],TN:[6,6],NC:[7,6],SC:[8,6],DC:[9,6],OK:[4,7],LA:[5,7],MS:[6,7],AL:[7,7],GA:[8,7,458],HI:[1,8],TX:[4,8,962],FL:[9,8]};
 const DCMAX=962, STNAME={TX:'Texas',VA:'Virginia',GA:'Georgia',AZ:'Arizona',PA:'Pennsylvania',OH:'Ohio',IL:'Illinois',CA:'California',UT:'Utah',OR:'Oregon',NV:'Nevada',NY:'New York',IN:'Indiana',IA:'Iowa',WA:'Washington'};
 function initMap(){
  const host=$('#mapgrid'); if(!host)return; host.innerHTML='';
  Object.keys(STGRID).forEach(code=>{
   const g=STGRID[code],v=g[2]||null,cell=C('div','st');cell.textContent=code;cell.style.gridColumn=g[0];cell.style.gridRow=g[1];
-  cell.style.background=v?'rgba(184,115,51,'+(0.14+0.86*(v/DCMAX)).toFixed(3)+')':'rgba(120,140,165,.12)';
+  cell.style.background=v?'rgba(184,115,51,'+(0.1+0.9*(v/DCMAX)).toFixed(3)+')':'#EFE9DF';
+  if(v&&v/DCMAX>0.5)cell.style.color='#FBF6EE';
   cell.onpointerenter=e=>showTip({t:(STNAME[code]||code),b:v?('<b class="up">'+v+'</b> data centers in the pipeline'):'Smaller pipeline, outside the top 15'},e);
   cell.onpointermove=move;cell.onpointerleave=hideTip;host.appendChild(cell);
  });
- $('#legramp').innerHTML=[0.14,0.3,0.46,0.62,0.78,1].map(t=>`<span style="background:rgba(184,115,51,${t})"></span>`).join('');
+ $('#legramp').innerHTML=[0.12,0.3,0.48,0.66,0.84,1].map(t=>`<span style="background:rgba(184,115,51,${t})"></span>`).join('');
+}
+
+/* ---- motion ---- */
+function motionIn(){
+ const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+ $$('.rv').forEach((e,i)=>{const top=e.getBoundingClientRect().top; if(top<innerHeight){e.style.transitionDelay=(Math.min(i,6)*70)+'ms'; requestAnimationFrame(()=>e.classList.add('in'));} else io.observe(e);});
+}
+function countUp(){
+ const el=$('#heroNum'); if(!el)return; const target=+el.dataset.val; const t0=performance.now(), dur=1100;
+ function tick(t){const p=clamp((t-t0)/dur,0,1); const e=1-Math.pow(1-p,3); el.innerHTML=`$${(target*e).toFixed(2)}<span class="u">T</span>`; if(p<1)requestAnimationFrame(tick); else el.innerHTML=heroNumHTML();}
+ requestAnimationFrame(tick);
 }
 
 /* ---- live refresh ---- */
@@ -471,33 +543,23 @@ async function fetchLive(){
  try{
   const ids=SEG.map(s=>s.fred).concat(['TTLCONS','TLRESCONS','TLNRESCONS']).join(',');
   const r=await fetch('/api/fred?series='+ids+'&start=2007-01-01&freq=m',{cache:'no-store'});
-  if(!r.ok)throw 0; const j=await r.json(); if(!j.ok||!j.series)throw 0;
-  SERIES=j.series;
+  if(!r.ok)throw 0; const j=await r.json(); if(!j.ok||!j.series)throw 0; SERIES=j.series;
   SEG.forEach(s=>{const a=SERIES[s.fred]; if(a&&a.length>13){const x=a.map(p=>p[1]);s.lvl=+(x[x.length-1]/1000).toFixed(1);s.yoy=+(x[x.length-1]/x[x.length-13]-1).toFixed(4);const k=Math.min(121,x.length);s.tr=+(Math.pow(x[x.length-1]/x[x.length-k],12/(k-1))-1).toFixed(4);}});
-  const tot=SERIES['TTLCONS'],res=SERIES['TLRESCONS'],nres=SERIES['TLNRESCONS'];
-  if(tot&&tot.length)AGG.total=+(tot[tot.length-1][1]/1000).toFixed(1);
+  const tot=SERIES['TTLCONS'],res=SERIES['TLRESCONS'];
+  if(tot&&tot.length>13){AGG.total=+(tot[tot.length-1][1]/1000).toFixed(1);AGG.totYoY=+(tot[tot.length-1][1]/tot[tot.length-13][1]-1).toFixed(4);const k=Math.min(121,tot.length);AGG.totTr=+(Math.pow(tot[tot.length-1][1]/tot[tot.length-k][1],12/(k-1))-1).toFixed(4);const d=tot[tot.length-1][0].split('-');AGG.asof=MON[+d[1]-1]+' '+d[0];}
   if(res&&res.length)AGG.res=+(res[res.length-1][1]/1000).toFixed(1);
-  AGG.nrb=SEG.filter(s=>s.grp==='nrb').reduce((s,x)=>s+x.lvl,0);
-  AGG.nb=SEG.filter(s=>s.grp==='nb').reduce((s,x)=>s+x.lvl,0);
-  if(tot&&tot.length){const d=tot[tot.length-1][0].split('-');AGG.asof=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+d[1]-1]+' '+d[0];}
-  LIVE=true; render();
-  const ld=$('#livedot'); if(ld)ld.classList.add('on');
-  const as=$('#asof'); if(as)as.textContent='Live via FRED. Latest Census put-in-place through '+AGG.asof+'. Sources at the bottom.';
- }catch(e){/* keep the seeded read */}
- // rates / PPI / starts, best effort
+  AGG.nrb=SEG.filter(s=>s.grp==='nrb').reduce((a,x)=>a+x.lvl,0);
+  AGG.nb=SEG.filter(s=>s.grp==='nb').reduce((a,x)=>a+x.lvl,0);
+  LIVE=true; render(); const pl=$('#pulse'); if(pl)pl.classList.add('on');
+ }catch(e){}
  try{
   const r=await fetch('/api/fred?series=MORTGAGE30US,WPUSI012011,HOUST&start=2024-01-01&freq=m',{cache:'no-store'});
-  if(r.ok){const j=await r.json(); if(j.ok){
-   const g=(id,f)=>{const a=j.series[id];if(a&&a.length)f(a);};
-   g('MORTGAGE30US',a=>IND.rate.v=a[a.length-1][1]);
-   g('WPUSI012011',a=>{if(a.length>12)IND.ppi.v=+(a[a.length-1][1]/a[a.length-13][1]-1).toFixed(3);});
-   g('HOUST',a=>IND.starts.v=+(a[a.length-1][1]/1000).toFixed(2));
-   render();
-  }}
+  if(r.ok){const j=await r.json(); if(j.ok){const gg=(id,f)=>{const a=j.series[id];if(a&&a.length)f(a);};
+   gg('MORTGAGE30US',a=>IND.rate.v=a[a.length-1][1]); gg('WPUSI012011',a=>{if(a.length>12)IND.ppi.v=+(a[a.length-1][1]/a[a.length-13][1]-1).toFixed(3);}); gg('HOUST',a=>IND.starts.v=+(a[a.length-1][1]/1000).toFixed(2)); render();}}
  }catch(e){}
 }
 render(); fetchLive();
-addEventListener('resize',()=>{clearTimeout(window._rz);window._rz=setTimeout(layoutQuadrant,150);});
+addEventListener('resize',()=>{clearTimeout(window._rz);window._rz=setTimeout(()=>{layoutQuadrant();drawArc();},160);});
 </script>
 </body>
 </html>
