@@ -331,7 +331,7 @@ let MSERIES={}, METRO_ASOF="June 2026";
 const sumA=a=>a.reduce((s,v)=>s+v,0);
 
 /* ---- forecast: recent momentum easing to trend. one knob ---- */
-let W=0.60, LIVE=false, SERIES={}, booted=false;
+let W=0.60, LIVE=false, SERIES={}, booted=false, openKey=null;
 const SCEN={base:0.60,momentum:0.85,trend:0.35};
 function forecast(yoy,tr,w){
  const gm=clamp(yoy,-0.20,0.22);
@@ -539,8 +539,8 @@ function footerH(){
 
 /* ---- segment detail ---- */
 function wireRows(){ $$('.srow').forEach(b=>b.onclick=()=>openDetail(b.dataset.seg)); }
-function openDetail(key){
- const s=ALL().find(x=>x.k===key); if(!s)return;
+function openDetail(key,keepScroll){
+ const s=ALL().find(x=>x.k===key); if(!s)return; openKey=key;
  const f=fc(s), years=[2027,2028,2029,2030]; let lvl=s.lvl;
  const path=[{y:2026,g:s.yoy,l:s.lvl}]; f.g.forEach((g,i)=>{lvl*=1+g;path.push({y:years[i],g,l:lvl});});
  const cells=path.map(p=>`<div class="dcell"><div class="dcy">${p.y}${p.y===2026?' now':''}</div><div class="dcv">$${p.l.toFixed(0)}B</div><div class="dcg ${p.g>0?'up':(p.g<0?'down':'flat')}">${PCT(p.g)}</div></div>`).join('');
@@ -548,8 +548,8 @@ function openDetail(key){
  d.innerHTML=`<div class="dh"><div><div class="dtag">${GLBL[s.grp]} &middot; ${PCT(f.cagr)} projected CAGR</div><div class="dt">${s.k}</div></div><button class="dclose" id="dclose">Close</button></div>`
   +`<div class="dnar">${segNarr(s)}</div>`+drawCurve(s,path)
   +`<div class="dtable">${cells}</div><div class="ddrv">Drivers: ${s.drv}.</div>`;
- d.classList.add('on'); $('#dclose').onclick=()=>d.classList.remove('on');
- d.scrollIntoView({behavior:'smooth',block:'nearest'});
+ d.classList.add('on'); $('#dclose').onclick=()=>{d.classList.remove('on');openKey=null;};
+ if(!keepScroll)d.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function drawCurve(s,path){
  const W2=1040,H=150,pad=8, hist=SERIES[s.fred];
@@ -614,7 +614,12 @@ function layoutQuadrant(){
  });
  $('#qleg').innerHTML=`<span><i style="background:${GCOL.nrb}"></i>Nonres buildings</span><span><i style="background:${GCOL.nb}"></i>Nonbuilding</span><span><i style="background:#fff;box-shadow:0 0 0 3px rgba(184,115,51,.16),0 0 0 1.5px ${GCOL.nrb}"></i>big-roof segment</span>`;
 }
-function wireScenario(){ $$('.scbtn[data-scen]').forEach(b=>b.onclick=()=>{W=SCEN[b.dataset.scen];render();}); }
+function wireScenario(){ $$('.scbtn[data-scen]').forEach(b=>b.onclick=()=>{
+ W=SCEN[b.dataset.scen];
+ $$('.scbtn[data-scen]').forEach(x=>x.classList.toggle('on',SCEN[x.dataset.scen]===W));
+ layoutQuadrant(); drawArc();
+ if(openKey&&$('#detail')&&$('#detail').classList.contains('on'))openDetail(openKey,true);
+}); }
 
 /* ---- scrubber ---- */
 function initScrubber(){
