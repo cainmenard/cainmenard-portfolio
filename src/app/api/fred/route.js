@@ -20,6 +20,15 @@ const ALLOW = new Set([
   'LASV832BPPRIV', 'SAND706BPPRIV', 'SACR906BPPRIV', 'BOST625BPPRIV', 'SANA748BPPRIV',
   'PORT941BPPRIV', 'DETR826BPPRIV', 'SANJ906BPPRIV', 'SANF806BPPRIV', 'SALT649BPPRIV',
   'BALT524BPPRIV',
+  // state building permits, private housing units authorized (Census BPS, via FRED)
+  'ALBPPRIV', 'AKBPPRIV', 'AZBPPRIV', 'ARBPPRIV', 'CABPPRIV', 'COBPPRIV', 'CTBPPRIV',
+  'DEBPPRIV', 'FLBPPRIV', 'GABPPRIV', 'HIBPPRIV', 'IDBPPRIV', 'ILBPPRIV', 'INBPPRIV',
+  'IABPPRIV', 'KSBPPRIV', 'KYBPPRIV', 'LABPPRIV', 'MEBPPRIV', 'MDBPPRIV', 'MABPPRIV',
+  'MIBPPRIV', 'MNBPPRIV', 'MSBPPRIV', 'MOBPPRIV', 'MTBPPRIV', 'NEBPPRIV', 'NVBPPRIV',
+  'NHBPPRIV', 'NJBPPRIV', 'NMBPPRIV', 'NYBPPRIV', 'NCBPPRIV', 'NDBPPRIV', 'OHBPPRIV',
+  'OKBPPRIV', 'ORBPPRIV', 'PABPPRIV', 'RIBPPRIV', 'SCBPPRIV', 'SDBPPRIV', 'TNBPPRIV',
+  'TXBPPRIV', 'UTBPPRIV', 'VTBPPRIV', 'VABPPRIV', 'WABPPRIV', 'WVBPPRIV', 'WIBPPRIV',
+  'WYBPPRIV', 'DCBPPRIV',
 ])
 const BASE = 'https://api.stlouisfed.org/fred/series/observations'
 
@@ -36,7 +45,7 @@ export async function GET(request) {
     .split(',')
     .map((s) => s.trim().toUpperCase())
     .filter((s) => ALLOW.has(s))
-    .slice(0, 48)
+    .slice(0, 64)
   if (!ids.length) {
     return Response.json(
       { ok: false, error: 'no valid series requested' },
