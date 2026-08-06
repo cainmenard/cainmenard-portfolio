@@ -4,424 +4,500 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Construction Market Outlook | Cain Menard</title>
-<meta name="description" content="How a roofing roll-up reads the economy: end-market mix, input costs, leading indicators and rates, framed for strategy and sales.">
+<title>Construction Outlook, live | Cain Menard</title>
+<meta name="description" content="A live read on the US construction economy: put-in-place by segment, a transparent forecast, leading indicators and rates. Public data, pulled live and updated monthly.">
 <style>
 :root{
  --bg:#0A1522; --bg2:#0C1A2B; --card:#0E2136; --line:rgba(150,180,210,.16);
  --ink:#EAF1F8; --ink2:#9DB2C8; --mut:#6E87A5;
- --copper:#B87333; --amber:#F0A86C; --grow:#43A07C; --drop:#C6564E;
+ --copper:#B87333; --amber:#F0A86C; --grow:#43A07C; --drop:#C6564E; --steel:#4E88BE;
  --serif:Georgia,'Times New Roman',serif; --sans:Calibri,'Segoe UI',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:
  radial-gradient(120% 90% at 60% -5%,#15304B 0%,#0C1A2B 42%,#0A1421 72%,#070E18 100%) fixed;
  color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-.wrap{max-width:1100px;margin:0 auto;padding:40px 26px 80px}
+.wrap{max-width:1180px;margin:0 auto;padding:38px 26px 90px}
 a{color:var(--amber)}
 .kick{font-family:var(--mono);font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:var(--amber)}
-h1{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.05;margin:12px 0 6px}
+h1{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.04;margin:12px 0 8px}
 h1 em{font-style:italic;color:var(--amber)}
-.sub{color:var(--ink2);font-size:15.5px;line-height:1.6;max-width:70ch;margin:6px 0 2px}
+.sub{color:var(--ink2);font-size:15.5px;line-height:1.6;max-width:74ch;margin:6px 0 2px}
 .asof{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--mut);margin-top:14px}
-.sect{margin-top:52px}
-.sh{font-family:var(--mono);font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--ink2);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:22px}
-.lead{font-family:var(--serif);font-size:22px;line-height:1.3;color:#fff;margin:0 0 6px}
-.leadp{color:var(--ink2);font-size:15px;line-height:1.65;max-width:74ch}
-/* stat tiles */
-.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
-.tile{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:15px 16px}
-.tv{font-family:var(--serif);font-size:27px;color:#fff;line-height:1}
-.tl{font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-top:8px;line-height:1.35}
-.tdelta{font-family:var(--mono);font-size:11px;margin-top:7px;display:flex;align-items:center;gap:5px}
-.up{color:var(--grow)} .down{color:var(--drop)} .flat{color:var(--ink2)}
-.asofm{font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:6px;letter-spacing:.3px}
-/* controls */
-.ctrls{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
-.btn{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2);background:transparent;border:1px solid var(--line);padding:8px 13px;border-radius:3px;cursor:pointer;transition:.15s}
-.btn:hover{border-color:rgba(240,168,108,.5);color:#fff}
-.btn.on{background:var(--copper);border-color:var(--copper);color:#0C1420}
-/* bar chart */
-.chartwrap{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:20px 22px}
-.bar{display:flex;align-items:center;gap:14px;padding:7px 0;cursor:default}
-.barname{width:150px;flex:none;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:8px}
-.dot{width:8px;height:8px;border-radius:2px;flex:none}
-.bartrack{flex:1;height:22px;position:relative;background:rgba(150,180,210,.07);border-radius:3px}
-.barfill{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,.7,.3,1);position:relative}
-.barval{width:118px;flex:none;text-align:right;font-family:var(--serif);font-size:15px;color:#fff}
-.baryoy{font-family:var(--mono);font-size:11px;margin-left:8px}
-.grid0{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
-.hint{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:12px;letter-spacing:.3px}
-/* two-signal */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.sigcard{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:20px 22px}
-.sigt{font-family:var(--serif);font-size:18px;color:#fff}
-.sigsub{font-family:var(--mono);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-top:2px}
-.gauge{margin:18px 0 6px}
-.gbar{height:10px;border-radius:5px;background:linear-gradient(90deg,#7a2f2c 0%,#5a4a2e 46%,#2f5a45 54%,#2f6a4f 100%);position:relative}
-.gmark{position:absolute;top:-5px;width:3px;height:20px;background:#fff;border-radius:2px;box-shadow:0 0 6px rgba(255,255,255,.6)}
-.g50{position:absolute;top:-3px;left:50%;width:1px;height:16px;background:rgba(255,255,255,.4)}
-.gscale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;color:var(--mut);margin-top:8px}
-.spark{display:flex;align-items:flex-end;gap:6px;height:46px;margin:14px 0 4px}
-.sbar{flex:1;background:var(--copper);border-radius:2px 2px 0 0;min-height:3px}
-.sparklab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:5px}
-.big{font-family:var(--serif);font-size:34px;color:#fff;line-height:1}
-/* reads */
-.read{margin-top:16px;border-left:2px solid var(--copper);padding:2px 0 2px 14px}
-.readh{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
-.readp{font-size:14px;line-height:1.6;color:var(--ink2)}
-.readp b{color:#fff;font-weight:600}
-.sales{margin-top:10px;border-left:2px solid var(--grow)}
-.sales .readh{color:var(--grow)}
-/* tooltip */
-.mapgrid{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:5px;max-width:760px;margin:2px auto 0}
-.st{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.9);position:relative;border:1px solid rgba(0,0,0,.25);transition:transform .12s,box-shadow .12s}
-.st:hover{transform:scale(1.12);z-index:3;box-shadow:0 0 0 1px rgba(240,168,108,.7)}
-.st.rca{outline:2px solid var(--amber);outline-offset:1px;box-shadow:0 0 14px rgba(240,168,108,.6)}
-.st .hq{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:8px;letter-spacing:.5px;color:var(--amber);white-space:nowrap}
-.maplegend{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--mut);justify-content:center}
-.legramp{display:inline-flex;gap:2px}
-.legramp span{width:22px;height:10px;border-radius:1px}
-#tip{position:fixed;z-index:50;pointer-events:none;opacity:0;transition:opacity .1s;background:#071019;border:1px solid rgba(240,168,108,.5);border-radius:4px;padding:8px 11px;font-family:var(--mono);font-size:11px;color:var(--ink);max-width:260px;box-shadow:0 8px 26px rgba(0,0,0,.5)}
-#tip .tt{color:#fff;font-size:12px;margin-bottom:3px}
-footer{margin-top:60px;border-top:1px solid var(--line);padding-top:22px;color:var(--mut);font-size:12.5px;line-height:1.7}
-footer .src{font-family:var(--mono);font-size:11px}
 .livedot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mut);margin-right:6px;vertical-align:middle}
 .livedot.on{background:var(--grow);box-shadow:0 0 8px var(--grow)}
-/* time machine (live FRED scrubber) */
+.sect{margin-top:56px}
+.sh{font-family:var(--mono);font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--ink2);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.lead{font-family:var(--serif);font-size:22px;line-height:1.3;color:#fff;margin:0 0 6px}
+.leadp{color:var(--ink2);font-size:15px;line-height:1.65;max-width:76ch}
+.hint{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:12px;letter-spacing:.3px}
+/* top line */
+.topgrid{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:14px;align-items:stretch}
+.tl0{background:linear-gradient(160deg,rgba(184,115,51,.14),rgba(14,33,54,.5));border:1px solid rgba(240,168,108,.3);border-radius:6px;padding:20px 22px}
+.tlbig{font-family:var(--serif);font-size:44px;color:#fff;line-height:1}
+.tlbig .u{font-size:20px;color:var(--amber)}
+.tlk{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.tlsub{font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:8px;letter-spacing:.3px}
+.tlg{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 18px}
+.tlgv{font-family:var(--serif);font-size:28px;color:#fff;line-height:1}
+.tlgl{font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-top:8px;line-height:1.4}
+.tlgd{font-family:var(--mono);font-size:11px;margin-top:8px}
+.up{color:var(--grow)} .down{color:var(--drop)} .flat{color:var(--ink2)} .amb{color:var(--amber)}
+/* scorecard */
+.scorewrap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scol{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 0 8px}
+.scolh{display:flex;align-items:baseline;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid var(--line)}
+.scolt{font-family:var(--serif);font-size:19px}
+.scolc{font-family:var(--mono);font-size:11px;color:var(--mut)}
+.up .scolt,.scol.up .scolt{color:var(--grow)} .scol.stable .scolt{color:var(--amber)} .scol.down .scolt{color:var(--drop)}
+.srow{display:flex;align-items:center;gap:10px;padding:8px 18px;cursor:pointer;transition:background .12s;background:transparent;border:none;border-bottom:1px solid rgba(150,180,210,.06);width:100%;text-align:left;color:inherit;font-family:inherit}
+.srow:hover{background:rgba(184,115,51,.1)}
+.srdot{width:7px;height:7px;border-radius:2px;flex:none}
+.srn{flex:1;font-size:13.5px;color:var(--ink)}
+.srv{font-family:var(--serif);font-size:15px;color:#fff}
+.srg{font-family:var(--mono);font-size:11px;width:52px;text-align:right}
+/* quadrant */
+.qwrap{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px 12px}
+.qplot{position:relative;width:100%;height:460px;margin-top:6px}
+.qgrid{position:absolute;inset:0}
+.qaxL{position:absolute;left:0;top:0;bottom:26px;width:1px;background:var(--line)}
+.qaxB{position:absolute;left:0;right:0;bottom:26px;height:1px;background:var(--line)}
+.qref{position:absolute;left:0;right:0;height:1px;background:rgba(240,168,108,.35);border-top:1px dashed rgba(240,168,108,.5)}
+.qreflab{position:absolute;right:0;font-family:var(--mono);font-size:9.5px;color:var(--amber);transform:translateY(-12px)}
+.qbub{position:absolute;border-radius:50%;transform:translate(-50%,-50%);cursor:pointer;transition:box-shadow .15s,outline .12s;display:flex;align-items:center;justify-content:center}
+.qbub:hover{outline:2px solid var(--amber);z-index:5}
+.qbub.rca{outline:2px solid rgba(240,168,108,.55)}
+.qlab{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9px;color:var(--ink2);pointer-events:none;white-space:nowrap;text-shadow:0 1px 3px #060d18}
+.qtk{position:absolute;font-family:var(--mono);font-size:9px;color:var(--mut)}
+.qleg{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:10px}
+.qleg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+/* detail panel */
+.detail{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px;margin-top:16px;display:none}
+.detail.on{display:block}
+.dh{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.dt{font-family:var(--serif);font-size:24px;color:#fff}
+.dtag{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mut)}
+.dcurve{width:100%;height:150px;margin:16px 0 4px;display:block}
+.dtable{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.dcell{border:1px solid var(--line);border-radius:4px;padding:10px 8px;text-align:center}
+.dcy{font-family:var(--mono);font-size:9.5px;color:var(--mut)}
+.dcv{font-family:var(--serif);font-size:17px;color:#fff;margin-top:3px}
+.dcg{font-family:var(--mono);font-size:11px;margin-top:2px}
+.ddrv{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:14px;letter-spacing:.3px}
+/* indicators */
+.indgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ind{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.indt{font-family:var(--serif);font-size:17px;color:#fff}
+.indsub{font-family:var(--mono);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:var(--mut);margin-top:2px}
+.indv{font-family:var(--serif);font-size:30px;color:#fff;margin:12px 0 2px;line-height:1}
+.indd{font-family:var(--mono);font-size:11px}
+.gauge{margin:14px 0 4px}
+.gbar{height:9px;border-radius:5px;background:linear-gradient(90deg,#7a2f2c,#5a4a2e 46%,#2f5a45 54%,#2f6a4f);position:relative}
+.gmark{position:absolute;top:-5px;width:3px;height:19px;background:#fff;border-radius:2px;box-shadow:0 0 6px rgba(255,255,255,.6)}
+.g50{position:absolute;top:-3px;left:50%;width:1px;height:15px;background:rgba(255,255,255,.4)}
+.gscale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:7px}
+.spark{display:flex;align-items:flex-end;gap:5px;height:42px;margin:12px 0 4px}
+.sbar{flex:1;background:var(--copper);border-radius:2px 2px 0 0;min-height:3px}
+.asofm{font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:8px;letter-spacing:.3px}
+/* method + scenario */
+.method{background:linear-gradient(160deg,rgba(78,136,190,.1),rgba(14,33,54,.4));border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+.mrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.scbtn{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2);background:transparent;border:1px solid var(--line);padding:8px 14px;border-radius:3px;cursor:pointer;transition:.15s}
+.scbtn:hover{border-color:rgba(240,168,108,.5);color:#fff}
+.scbtn.on{background:var(--copper);border-color:var(--copper);color:#0C1420}
+.step{counter-increment:s;font-size:14px;line-height:1.6;color:var(--ink2);margin:8px 0;padding-left:30px;position:relative}
+.step:before{content:counter(s);position:absolute;left:0;top:0;font-family:var(--mono);font-size:11px;color:var(--amber);border:1px solid rgba(240,168,108,.4);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center}
+.steps{counter-reset:s;margin-top:10px}
+.step b{color:#fff}
+/* time machine (scrubber) */
+.chartwrap{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+.bar{display:flex;align-items:center;gap:12px;padding:5px 0}
+.barname{width:150px;flex:none;font-size:13px;color:var(--ink)}
+.bartrack{flex:1;height:20px;background:rgba(150,180,210,.07);border-radius:3px;position:relative;overflow:hidden}
+.barfill{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,.7,.3,1)}
+.barval{width:64px;flex:none;text-align:right;font-family:var(--serif);font-size:15px;color:#fff}
 .tmhead{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;flex-wrap:wrap}
-.tmdate{font-family:var(--serif);font-size:36px;color:#fff;line-height:1;min-width:120px}
+.tmdate{font-family:var(--serif);font-size:34px;color:#fff;line-height:1;min-width:120px}
 .tmlead{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--ink2)}
 .tmlead b{color:var(--amber)}
-.tmbar{display:flex;align-items:center;gap:14px;margin-top:18px}
-.tmplay{font-family:var(--mono);font-size:12px;width:40px;height:34px;flex:none;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:3px;cursor:pointer;transition:.15s}
+.tmbar{display:flex;align-items:center;gap:14px;margin-top:16px}
+.tmplay{font-family:var(--mono);font-size:12px;width:40px;height:34px;flex:none;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:3px;cursor:pointer}
 .tmplay:hover{border-color:rgba(240,168,108,.5);color:#fff}
 .tmplay.on{background:var(--copper);border-color:var(--copper);color:#0C1420}
 #tmrange{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--copper) 0%,var(--copper) var(--p,100%),rgba(150,180,210,.16) var(--p,100%));outline:none;cursor:pointer}
 #tmrange::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--amber);border:2px solid #0C1420;box-shadow:0 0 8px rgba(240,168,108,.6);cursor:grab}
 #tmrange::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--amber);border:2px solid #0C1420;cursor:grab}
-.tmrows .bar{padding:5px 0}
-@media(max-width:820px){.tiles{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.barname{width:110px}.barval{width:92px}h1{font-size:30px}.tmdate{font-size:28px}}
+/* state map */
+.mapgrid{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:5px;max-width:760px;margin:2px auto 0}
+.st{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.9);position:relative;border:1px solid rgba(0,0,0,.25);transition:transform .12s,box-shadow .12s}
+.st:hover{transform:scale(1.12);z-index:3;box-shadow:0 0 0 1px rgba(240,168,108,.7)}
+.maplegend{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--mut);justify-content:center}
+.legramp{display:inline-flex;gap:2px}
+.legramp span{width:22px;height:10px;border-radius:1px}
+/* read cards */
+.read{margin-top:16px;border-left:2px solid var(--copper);padding:2px 0 2px 14px}
+.readh{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+.readp{font-size:14px;line-height:1.6;color:var(--ink2)}
+.readp b{color:#fff;font-weight:600}
+/* tooltip */
+#tip{position:fixed;z-index:50;pointer-events:none;opacity:0;transition:opacity .1s;background:#071019;border:1px solid rgba(240,168,108,.5);border-radius:4px;padding:9px 12px;font-family:var(--mono);font-size:11px;color:var(--ink);max-width:270px;box-shadow:0 8px 26px rgba(0,0,0,.5)}
+#tip .tt{color:#fff;font-size:12px;margin-bottom:3px}
+footer{margin-top:64px;border-top:1px solid var(--line);padding-top:22px;color:var(--mut);font-size:12.5px;line-height:1.7}
+footer .src{font-family:var(--mono);font-size:11px}
+@media(max-width:900px){.topgrid{grid-template-columns:1fr 1fr}.scorewrap{grid-template-columns:1fr}.indgrid{grid-template-columns:1fr}h1{font-size:32px}.qplot{height:380px}.barname{width:110px}}
 </style>
 </head>
 <body data-palette="#B87333,#F0A86C,#43A07C,#C6564E,#4E88BE">
-<div class="wrap">
-
- <header>
-  <div class="kick">Construction Market Outlook &middot; RCA</div>
-  <h1>The weather the building<br>stands in. <em>Read it.</em></h1>
-  <p class="sub">A roofing roll-up does not control the economy, but it can read it. Five public series, pulled and framed around three decisions: which end-markets to chase, how to price against input costs, and how to time capacity and acquisitions off the signals that run ahead of the work.</p>
-  <div class="asof"><span class="livedot" id="livedot"></span><span id="asof">Point-in-time readings, latest public releases (through July 2026). Sources at the bottom.</span></div>
- </header>
-
- <!-- glance -->
- <section class="sect">
-  <div class="sh">The market at a glance</div>
-  <div class="tiles" id="tiles"></div>
- </section>
-
- <!-- mix -->
- <section class="sect">
-  <div class="sh">1 &middot; Where the work is going</div>
-  <div class="lead">The nonresidential dollars are real, but the growth is not evenly spread.</div>
-  <p class="leadp">Total nonresidential construction was roughly flat to down over the last year (about &minus;1.4% in 2025). Underneath that average, one category is running away from the rest: data centers, up 27% year over year, now larger than all other office construction combined. Power is climbing with it. Manufacturing is cooling as the semiconductor and battery mega-projects wind down.</p>
-  <div class="ctrls" id="mixctrls">
-   <button class="btn on" data-sort="size">Sort by size</button>
-   <button class="btn" data-sort="growth">Sort by growth</button>
-   <button class="btn" data-hl="1" id="hlbtn">Highlight the growth</button>
-  </div>
-  <div class="chartwrap"><div id="mixchart"></div>
-   <div class="hint">Annualized spending rate (SAAR), latest month. Hover a bar for detail. Growth shown where a clean year-over-year read is public.</div>
-  </div>
-  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">Chase the roofs that sit on the growth. <b>Data centers, power and the AI-driven build-out</b> are where new large-format nonresidential envelopes are going, while traditional commercial and retail are soft. A roll-up can point its commercial and production capacity at the segments that are actually expanding instead of the market average.</div></div>
-  <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"The market's flat on paper, but that hides a 27% data-center surge. We're positioning crews and capacity where the envelope work is growing, not where the headline is."</div></div>
- </section>
-
- <!-- map -->
- <section class="sect">
-  <div class="sh">1b &middot; Where the build-out is happening</div>
-  <div class="lead">The growth has an address. It is a Sun Belt and Mid-Atlantic story.</div>
-  <p class="leadp">Data-center pipeline by state (operational, under construction and announced). Texas and Virginia are in a class of their own, Georgia is third, and RCA is headquartered in the middle of it. Hover a state for its pipeline.</p>
-  <div class="ctrls" id="mapctrls">
-   <button class="btn" data-rca="1" id="rcabtn">Mark RCA's home</button>
-  </div>
-  <div class="chartwrap">
-   <div class="mapgrid" id="mapgrid"></div>
-   <div class="maplegend" id="maplegend"><span>fewer</span><span class="legramp" id="legramp"></span><span>more data centers</span></div>
-   <div class="hint">Total data centers in the pipeline, by state. Grey states sit outside the national top 15. Source: industry pipeline data, 2026.</div>
-  </div>
-  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">The large-format envelope work is concentrated where the data centers are going: <b>Texas, Virginia, Georgia, Arizona and the Sun Belt</b>. RCA is headquartered in Atlanta, in the number-three state, with companies across the Sun Belt, exactly where the wave is landing. That is a footprint advantage worth pressing.</div></div>
-  <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"We're already on the ground where the build-out is heaviest. When the envelope work comes, we're not chasing it into a new market, we're standing in it."</div></div>
- </section>
-
- <!-- time machine -->
- <section class="sect">
-  <div class="sh">1c &middot; How the mix got here</div>
-  <div class="lead">Drag through fifteen years and watch manufacturing take over.</div>
-  <p class="leadp">Nonresidential construction spending by segment, annualized, month by month. In 2010 schools and power led the market and factories were an afterthought at $41B a year. Then the reshoring and semiconductor wave landed: manufacturing ran to $244B before easing. Pull the handle, or press play, and watch the crown move.</p>
-  <div class="chartwrap">
-   <div class="tmhead">
-    <div class="tmdate" id="tmdate">&nbsp;</div>
-    <div class="tmlead" id="tmlead">&nbsp;</div>
-   </div>
-   <div class="tmrows" id="tmchart"></div>
-   <div class="tmbar">
-    <button class="tmplay" id="tmplay" aria-label="Play the timeline">&#9654;</button>
-    <input type="range" id="tmrange" min="0" max="15" value="15" step="1" aria-label="Scrub through time">
-   </div>
-   <div class="hint" id="tmhint">Annualized spending rate (SAAR), by segment. Connecting to live monthly data&hellip;</div>
-  </div>
-  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">The wave RCA is chasing is fifteen years in the making. <b>Manufacturing, power and the segments feeding the AI build-out</b> have pulled far ahead of the schools and offices that led a decade ago, and the curve is still bending up. Point commercial and production capacity at the segments with the slope, not the ones that led last cycle.</div></div>
-  <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"Fifteen years ago schools and power were the market. Today it's factories, power and the data-center build-out, and it's not close. We staff and bid for where the line is going, not where it's been."</div></div>
- </section>
-
- <!-- signals -->
- <section class="sect">
-  <div class="sh">2 &middot; The two signals that disagree</div>
-  <div class="lead">Architects are billing less. Owners are planning more.</div>
-  <p class="leadp">The two best forward reads on nonresidential work are pointing opposite directions right now, and the gap is the story. Architecture billings, which lead construction by roughly nine to twelve months, have been below the growth line for 41 straight months. Dodge's planning momentum, which tracks projects entering the pipeline, is surging on data-center and institutional work. Weak near-term design, strong long-horizon planning.</p>
-  <div class="two">
-   <div class="sigcard">
-    <div class="sigt">Architecture Billings Index</div>
-    <div class="sigsub">AIA / Deltek &middot; billings, ~9-12 mo lead &middot; 50 = flat</div>
-    <div class="gauge"><div class="gbar"><div class="g50"></div><div class="gmark" id="abimark"></div></div>
-     <div class="gscale"><span>42 contraction</span><span>50</span><span>58 growth</span></div></div>
-    <div class="spark" id="abispark"></div>
-    <div class="sparklab" id="abisparklab"></div>
-    <div class="readp" style="margin-top:12px"><b style="color:#fff">47.3</b> in July, and one of the longest downturns in the index's 30-year history. Near-term design demand is soft.</div>
-   </div>
-   <div class="sigcard">
-    <div class="sigt">Dodge Momentum Index</div>
-    <div class="sigsub">Dodge &middot; planning pipeline &middot; leads starts ~12 mo</div>
-    <div class="big" style="margin:18px 0 4px">+21%<span style="font-size:15px;color:var(--ink2)"> &middot; July, month over month</span></div>
-    <div class="spark" id="dodgespark"></div>
-    <div class="sparklab" id="dodgesparklab"></div>
-    <div class="readp" style="margin-top:12px">Planning is booming, up roughly <b style="color:#fff">51%</b> over twelve months, led by data centers and institutional projects. The long-horizon pipeline is filling even as billings lag.</div>
-   </div>
-  </div>
-  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">Plan capacity for a <b>soft next few quarters and a busier back half of the horizon</b>. The billings weakness says do not over-hire into the near term; the planning surge says the data-center and institutional wave is coming, so lock crews, materials and acquisition targets before it lands and pricing tightens.</div></div>
-  <div class="read sales"><div class="readh">In a sales conversation</div><div class="readp">"Design work is quiet today, but planning is up 51% over the year. The owners building the next wave are choosing partners now. That's the window."</div></div>
- </section>
-
- <!-- costs -->
- <section class="sect">
-  <div class="sh">3 &middot; Cost and financing backdrop</div>
-  <div class="lead">Input inflation is cooler than the peak, but labor is still the lever.</div>
-  <p class="leadp">Roofing is labor-intensive, so the biggest controllable margin risk is labor, not shingles. Contractor prices are still rising faster than the broad material basket, and financing costs have eased from their highs into the mid-six-percent range, a modest tailwind for owner demand.</p>
-  <div class="tiles" id="costtiles" style="grid-template-columns:repeat(3,1fr)"></div>
-  <div class="read"><div class="readh">What this means for RCA</div><div class="readp">Write escalation into bids on the labor line, not just materials. With contractor-price inflation running ahead of the material basket, <b>the defensible price story is labor</b>, and it holds up in an owner conversation because the public index backs it.</div></div>
- </section>
-
- <footer>
-  <div style="color:var(--ink2);margin-bottom:8px">Built by Cain Menard. Realistic public data, point-in-time. Figures refresh from the monthly agency releases and are stamped with their as-of month above.</div>
-  <div class="src">Sources: BLS Producer Price Index (roofing contractors, construction materials) &middot; US Census Bureau, Value of Construction Put in Place &middot; AIA/Deltek Architecture Billings Index &middot; Dodge Construction Network, Momentum Index &middot; Freddie Mac Primary Mortgage Market Survey.</div>
- </footer>
-</div>
+<div class="wrap" id="wrap"></div>
 <div id="tip"><div class="tt"></div><div class="tb"></div></div>
-
 <script>
-/* ---------- data (public releases, as-of noted) ---------- */
-const ASOF='Apr to Jul 2026';
-const MIX=[ /* nonresidential VIP, SAAR $B, latest ~Apr 2026 */
- {k:'Manufacturing',v:184.5,yoy:null,note:'Cooling as chip and battery mega-projects wind down.',trend:'down'},
- {k:'Power',v:148.7,yoy:null,note:'Rising with the data-center and electrification build-out.',trend:'up'},
- {k:'Commercial',v:116.0,yoy:null,note:'Soft. Retail and traditional commercial are flat to down.',trend:'flat'},
- {k:'Health care',v:53.7,yoy:null,note:'Steady institutional demand.',trend:'flat'},
- {k:'Data centers',v:50.7,yoy:27,note:'The growth story. Now larger than all other office combined.',trend:'up',star:1},
- {k:'Office (ex-data-center)',v:43.8,yoy:12,note:'Subdued once data centers are stripped out.',trend:'flat'}
+/* ============================================================
+   Construction Outlook, live. Public data (Census put-in-place
+   via FRED, plus BLS, Freddie Mac, AIA, Dodge), pulled live and
+   updated monthly. The forecast is a transparent, reproducible
+   projection, not a survey and not a black box. Method at the
+   bottom of the page.
+   ============================================================ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const C=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+const B=x=>'$'+x.toFixed(x>=100?0:1)+'B';
+const PCT=x=>(x>0?'+':'')+(x*100).toFixed(x>-0.1&&x<0.1?1:0)+'%';
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const avg=a=>a.reduce((s,x)=>s+x,0)/a.length;
+
+/* ---- segments: live nonresidential + nonbuilding (Census put-in-place via FRED) ----
+   lvl = $B annualized (SAAR), yoy = trailing 12 months, tr = 10-year CAGR.
+   Seeds are mid-2026 FRED reads; the live refresh overwrites them each visit. */
+let SEG=[
+ {k:"Manufacturing",fred:"TLMFGCONS",grp:"nrb",lvl:172.7,yoy:-0.214,tr:0.076,rca:1,drv:"ISM PMI, industrial production, capacity utilization, durable-goods orders"},
+ {k:"Office",fred:"TLOFCONS",grp:"nrb",lvl:132.8,yoy:0.125,tr:0.069,rca:1,drv:"office vacancy, unemployment. Data centers sit inside this line"},
+ {k:"Commercial",fred:"TLCOMCONS",grp:"nrb",lvl:121.2,yoy:-0.059,tr:0.047,rca:1,drv:"retail sales, income, CPI. Warehouse is about half of it"},
+ {k:"Educational",fred:"TLEDUCONS",grp:"nrb",lvl:137.7,yoy:-0.006,tr:0.038,rca:1,drv:"school-age population, government spending, bond passage"},
+ {k:"Health care",fred:"TLHLTHCONS",grp:"nrb",lvl:74.8,yoy:-0.015,tr:0.064,rca:1,drv:"population 75+, uninsured rate, government spending"},
+ {k:"Lodging",fred:"TLLODGCONS",grp:"nrb",lvl:24.5,yoy:-0.091,tr:-0.012,rca:1,drv:"occupancy, RevPAR, room starts"},
+ {k:"Amusement & rec",fred:"TLAMUSCONS",grp:"nrb",lvl:49.1,yoy:0.029,tr:0.072,rca:1,drv:"income, savings rate, employment"},
+ {k:"Religious",fred:"TLRELCONS",grp:"nrb",lvl:6.5,yoy:0.282,tr:0.051,rca:0,drv:"GDP, population, income"},
+ {k:"Public safety",fred:"TLPSCONS",grp:"nrb",lvl:21.2,yoy:-0.072,tr:0.102,rca:0,drv:"population, government spending, incarceration"},
+ {k:"Communication",fred:"TLCMUCONS",grp:"nrb",lvl:29.4,yoy:0.023,tr:0.032,rca:0,drv:"AI network demand, private investment, BEAD buildout"},
+ {k:"Power",fred:"TLPWRCONS",grp:"nb",lvl:177.6,yoy:0.035,tr:0.056,rca:0,drv:"utility capex, load growth, turbine and transformer lead times"},
+ {k:"Highway & street",fred:"TLHWYCONS",grp:"nb",lvl:152.1,yoy:0.029,tr:0.052,rca:0,drv:"IIJA funding, government spending, population"},
+ {k:"Transportation",fred:"TLTRANSCONS",grp:"nb",lvl:72.5,yoy:0.022,tr:0.045,rca:0,drv:"airport capex, government spending, transit funding"},
+ {k:"Sewage & waste",fred:"TLSWDCONS",grp:"nb",lvl:52.9,yoy:-0.020,tr:0.085,rca:0,drv:"population, government spending, PFAS rules"},
+ {k:"Water supply",fred:"TLWSCONS",grp:"nb",lvl:35.7,yoy:0.009,tr:0.093,rca:0,drv:"population, government spending, lead-line funding"},
+ {k:"Conservation",fred:"TLCADCONS",grp:"nb",lvl:16.6,yoy:0.318,tr:0.074,rca:0,drv:"US Army Corps appropriations, population"},
 ];
-const ABI=[['Feb',45.5],['Mar',47.1],['Apr',48.3],['May',44.5],['Jun',46.8],['Jul',47.3]];
-const DODGE=[['Feb',3],['Mar',2],['Apr',6],['May',9],['Jun',-2],['Jul',21]]; /* MoM % */
-const GLANCE=[
- {v:'27%',l:'Data-center construction, YoY',d:'up',dl:'fastest-growing segment',asof:'Apr 2026'},
- {v:'47.3',l:'Architecture Billings Index',d:'down',dl:'below 50 for 41 months',asof:'Jul 2026'},
- {v:'+21%',l:'Dodge Momentum, month over month',d:'up',dl:'planning pipeline surging',asof:'Jul 2026'},
- {v:'+5.5%',l:'Roofing contractor prices, YoY',d:'down',dl:'labor is the lever',asof:'Jun 2026'},
- {v:'6.49%',l:'30-year mortgage rate',d:'flat',dl:'eased from the highs',asof:'Jul 2026'}
+/* residential: the group total is live (TLRESCONS); the sub-split is the latest Census release */
+let RES=[
+ {k:"Improvements",grp:"res",lvl:404,yoy:0.05,tr:0.045,rca:0,drv:"home equity, HELOC balances, home prices"},
+ {k:"Single-family",grp:"res",lvl:409,yoy:-0.04,tr:0.03,rca:1,drv:"mortgage rates, income, starts, permits, NAHB sentiment"},
+ {k:"Multifamily",grp:"res",lvl:127,yoy:-0.01,tr:0.055,rca:0,drv:"vacancy, absorption, lending, starts"},
 ];
-const COSTS=[
- {v:'+5.5%',l:'Roofing contractor prices, YoY (BLS PPI)',d:'up',asof:'Jun 2026'},
- {v:'+2.7%',l:'Construction materials, YoY (BLS PPI)',d:'up',asof:'Jun 2026'},
- {v:'6.49%',l:'30-year mortgage rate (Freddie Mac)',d:'flat',asof:'Jul 2026'}
-];
+const GLBL={nrb:"Nonres buildings",nb:"Nonbuilding",res:"Residential"};
+const GCOL={nrb:"var(--copper)",nb:"var(--steel)",res:"var(--amber)"};
+let AGG={total:2166.5,res:889.4,nrb:770.5,nb:507.4,asof:"Jun 2026"};
 
-/* ---------- helpers ---------- */
-const $=s=>document.querySelector(s), C=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
-const tip=$('#tip');
-function showTip(html,x){tip.querySelector('.tt').innerHTML=html.t;tip.querySelector('.tb').innerHTML=html.b;tip.style.opacity='1';move(x);}
-function move(e){tip.style.left=Math.min(e.clientX+14,window.innerWidth-272)+'px';tip.style.top=(e.clientY+16)+'px';}
-function hideTip(){tip.style.opacity='0';}
-function arrow(d){return d==='up'?'&#9650;':d==='down'?'&#9660;':'&#8212;';}
-function cls(d){return d==='up'?'up':d==='down'?'down':'flat';}
-
-/* ---------- glance + cost tiles ---------- */
-function tiles(host,arr){host.innerHTML=arr.map(t=>
- `<div class="tile"><div class="tv">${t.v}</div>`+
- (t.d?`<div class="tdelta ${cls(t.d)}">${arrow(t.d)} <span>${t.dl||''}</span></div>`:'')+
- `<div class="tl">${t.l}</div><div class="asofm">as of ${t.asof}</div></div>`).join('');}
-tiles($('#tiles'),GLANCE);
-tiles($('#costtiles'),COSTS.map(c=>({v:c.v,l:c.l,d:c.d,dl:'',asof:c.asof})));
-
-/* ---------- mix bar chart ---------- */
-let sortMode='size', highlight=false;
-function drawMix(){
- const rows=MIX.slice();
- if(sortMode==='size')rows.sort((a,b)=>b.v-a.v);
- else rows.sort((a,b)=>(b.yoy==null?-999:b.yoy)-(a.yoy==null?-999:a.yoy));
- const max=Math.max.apply(null,MIX.map(m=>m.v));
- const host=$('#mixchart');host.innerHTML='';
- rows.forEach(m=>{
-  const row=C('div','bar');
-  const isGrowth = m.trend==='up' || (m.yoy!=null && m.yoy>0);
-  const dim = highlight && !isGrowth;
-  const col = m.star?'var(--amber)':(highlight?(isGrowth?'var(--grow)':'rgba(120,140,165,.5)'):'var(--copper)');
-  row.innerHTML=
-   `<div class="barname"><span class="dot" style="background:${col}"></span>${m.k}</div>`+
-   `<div class="bartrack"><div class="barfill" style="width:${(m.v/max*100).toFixed(1)}%;background:${col};opacity:${dim?0.5:1}"></div></div>`+
-   `<div class="barval">$${m.v.toFixed(1)}B`+(m.yoy!=null?`<span class="baryoy ${m.yoy>0?'up':'down'}">${m.yoy>0?'+':''}${m.yoy}%</span>`:'')+`</div>`;
-  row.addEventListener('pointerenter',e=>showTip({t:m.k+'  ·  $'+m.v.toFixed(1)+'B SAAR',b:(m.yoy!=null?('<b class="'+(m.yoy>0?'up':'down')+'">'+(m.yoy>0?'+':'')+m.yoy+'% year over year</b><br>'):'')+m.note},e));
-  row.addEventListener('pointermove',move);
-  row.addEventListener('pointerleave',hideTip);
-  host.appendChild(row);
- });
-}
-drawMix();
-$('#mixctrls').addEventListener('click',e=>{
- const b=e.target.closest('.btn');if(!b)return;
- if(b.dataset.sort){sortMode=b.dataset.sort;document.querySelectorAll('#mixctrls [data-sort]').forEach(x=>x.classList.toggle('on',x===b));}
- if(b.dataset.hl){highlight=!highlight;b.classList.toggle('on',highlight);}
- drawMix();
-});
-
-/* ---------- ABI gauge + spark ---------- */
-(function(){
- const min=42,max=58, val=47.3;
- $('#abimark').style.left=Math.max(0,Math.min(100,((val-min)/(max-min))*100))+'%';
- const mx=Math.max.apply(null,ABI.map(a=>a[1])), mn=Math.min.apply(null,ABI.map(a=>a[1]));
- $('#abispark').innerHTML=ABI.map(a=>{const h=8+((a[1]-mn)/(mx-mn||1))*38;const under=a[1]<50;return `<div class="sbar" style="height:${h}px;background:${under?'var(--drop)':'var(--grow)'}" title="${a[0]}: ${a[1]}"></div>`;}).join('');
- $('#abisparklab').innerHTML=ABI.map(a=>`<span>${a[0][0]}</span>`).join('');
-})();
-/* ---------- Dodge spark ---------- */
-(function(){
- const vals=DODGE.map(d=>d[1]), mx=Math.max.apply(null,vals), mn=Math.min.apply(null,vals);
- $('#dodgespark').innerHTML=DODGE.map(d=>{const h=6+((d[1]-mn)/(mx-mn||1))*40;return `<div class="sbar" style="height:${h}px;background:${d[1]<0?'var(--drop)':'var(--copper)'}" title="${d[0]}: ${d[1]>0?'+':''}${d[1]}%"></div>`;}).join('');
- $('#dodgesparklab').innerHTML=DODGE.map(d=>`<span>${d[0][0]}</span>`).join('');
-})();
-
-/* ---------- state tile map: data-center pipeline ---------- */
-const RANK={TX:1,VA:2,GA:3,PA:4,AZ:5,OH:6,IL:7,CA:8,UT:9,OR:10,NV:11,NY:12,IN:13,IA:14,WA:15};
-const STNAME={TX:'Texas',VA:'Virginia',GA:'Georgia',PA:'Pennsylvania',AZ:'Arizona',OH:'Ohio',IL:'Illinois',CA:'California',UT:'Utah',OR:'Oregon',NV:'Nevada',NY:'New York',IN:'Indiana',IA:'Iowa',WA:'Washington'};
-const STGRID={ /* [gridColumn, gridRow, dcPipelineTotal?] */
- AK:[1,1],ME:[11,1],VT:[10,2],NH:[11,2],
- WA:[1,3,100],ID:[2,3],MT:[3,3],ND:[4,3],MN:[5,3],WI:[6,3],MI:[7,3],NY:[9,3,125],MA:[10,3],RI:[11,3],
- OR:[1,4,144],NV:[2,4,134],WY:[3,4],SD:[4,4],IA:[5,4,111],IL:[6,4,250],IN:[7,4,120],OH:[8,4,250],PA:[9,4,257],NJ:[10,4],CT:[11,4],
- CA:[1,5,212],UT:[2,5,156],CO:[3,5],NE:[4,5],MO:[5,5],KY:[6,5],WV:[7,5],VA:[8,5,954],MD:[9,5],DE:[10,5],
- AZ:[2,6,254],NM:[3,6],KS:[4,6],AR:[5,6],TN:[6,6],NC:[7,6],SC:[8,6],DC:[9,6],
- OK:[4,7],LA:[5,7],MS:[6,7],AL:[7,7],GA:[8,7,458],
- HI:[1,8],TX:[4,8,962],FL:[9,8]
+/* leading indicators (public). Rate/PPI/starts refresh live; ABI, Dodge, PMI are the latest release. */
+let IND={
+ abi:{v:47.3,asof:"Jul 2026",series:[45.5,47.1,48.3,44.5,46.8,47.3]},
+ dodge:{v:0.218,asof:"Jul 2026",series:[3,2,6,9,-2,21.8]},
+ pmi:{v:49.0,asof:"Jun 2026"},
+ rate:{v:6.66,asof:"Jul 2026",fred:"MORTGAGE30US"},
+ ppi:{v:0.076,asof:"Jun 2026",fred:"WPUSI012011"},
+ starts:{v:1.24,asof:"Jun 2026",fred:"HOUST"},
 };
-const DCMAX=962;
-(function(){
- const host=$('#mapgrid');
- Object.keys(STGRID).forEach(code=>{
-  const g=STGRID[code], v=g[2]||null;
-  const cell=C('div','st');cell.textContent=code;cell.dataset.code=code;
-  cell.style.gridColumn=g[0];cell.style.gridRow=g[1];
-  cell.style.background = v ? 'rgba(184,115,51,'+(0.14+0.86*(v/DCMAX)).toFixed(3)+')' : 'rgba(120,140,165,.12)';
-  cell.addEventListener('pointerenter',e=>{
-   const nm=STNAME[code]||code;
-   const body=v?('<b class="up">'+v+'</b> data centers in the pipeline'+(RANK[code]?'<br>rank #'+RANK[code]+' nationally':'')):'Smaller pipeline, outside the national top 15';
-   showTip({t:nm+(code==='GA'?'  ·  RCA home base':''),b:body},e);
-  });
-  cell.addEventListener('pointermove',move);
-  cell.addEventListener('pointerleave',hideTip);
-  host.appendChild(cell);
+
+/* ---- the forecast: recent momentum easing to the segment's 10-year trend. One knob. ---- */
+let W=0.60, LIVE=false, SERIES={};
+const SCEN={base:0.60,momentum:0.85,trend:0.35};
+function forecast(yoy,tr,w){
+ const gm=clamp(yoy,-0.20,0.22);
+ let y1=clamp(w*gm+(1-w)*tr,-0.22,0.22);
+ const anchor=clamp(0.5*tr+0.5*0.045,-0.01,0.09);
+ const g=[]; let cur=y1;
+ for(let i=0;i<4;i++){g.push(cur);cur=cur+(anchor-cur)*0.5;}
+ let lvl=1; g.forEach(x=>lvl*=1+x);
+ return {g,cagr:Math.pow(lvl,1/4)-1};
+}
+const fc=s=>forecast(s.yoy,s.tr,W);
+const cls=y=>y>=0.05?"up":(y<0?"down":"stable");
+const ALL=()=>SEG.concat(RES);
+
+/* ---- tooltip ---- */
+const tip=$('#tip');
+function showTip(h,e){tip.querySelector('.tt').innerHTML=h.t;tip.querySelector('.tb').innerHTML=h.b;tip.style.opacity='1';move(e);}
+function move(e){tip.style.left=Math.min(e.clientX+14,innerWidth-282)+'px';tip.style.top=(e.clientY+16)+'px';}
+function hideTip(){tip.style.opacity='0';}
+addEventListener('pointerdown',hideTip);
+
+/* ================= render ================= */
+function render(){
+ $('#wrap').innerHTML = headerH()+toplineH()+scorecardH()+quadrantH()+detailH()+indicatorsH()+methodH()+scrubberH()+mapH()+footerH();
+ layoutQuadrant(); wireRows(); wireScenario(); initScrubber(); initMap();
+}
+function headerH(){
+ return `<header>
+  <div class="kick">Construction Outlook &middot; live</div>
+  <h1>The construction economy,<br><em>live.</em></h1>
+  <p class="sub">The same public data the quarterly outlooks run on, pulled live and updated every month: put-in-place by segment, a transparent forecast, the indicators that run ahead of the work, and rates. The forecast shows its math. Nothing here is a survey or a black box.</p>
+  <div class="asof"><span class="livedot" id="livedot"></span><span id="asof">Latest Census put-in-place through ${AGG.asof}. Sources at the bottom.</span></div>
+ </header>`;
+}
+function toplineH(){
+ const tiles=[["res","Residential",AGG.res],["nrb","Nonres buildings",AGG.nrb],["nb","Nonbuilding",AGG.nb]]
+  .map(g=>`<div class="tlg"><div class="tlgv">$${(g[2]/1000).toFixed(2)}T</div><div class="tlgl">${g[1]}</div></div>`).join('');
+ return `<section class="sect"><div class="sh">The top line</div>
+  <div class="topgrid">
+   <div class="tl0"><div class="tlk">Total put in place &middot; annualized</div><div class="tlbig">$${(AGG.total/1000).toFixed(2)}<span class="u">T</span></div><div class="tlsub">SAAR, latest month. Census, live via FRED.</div></div>
+   ${tiles}
+  </div>
+  <div class="hint">Annualized rate, not a full-year total. Residential is the live group total; the segment view below breaks out the rest.</div>
+ </section>`;
+}
+function scorecardH(){
+ const cols=[["up","Growing","5% or more"],["stable","Stable","0 to 5%"],["down","Cooling","below 0%"]];
+ const body=cols.map(([c,t,r])=>{
+  const rows=ALL().filter(s=>cls(s.yoy)===c).sort((a,b)=>b.yoy-a.yoy).map(s=>rowH(s)).join('');
+  const n=ALL().filter(s=>cls(s.yoy)===c).length;
+  return `<div class="scol ${c}"><div class="scolh"><span class="scolt">${t}</span><span class="scolc">${n} &middot; ${r} YoY</span></div>${rows}</div>`;
+ }).join('');
+ return `<section class="sect"><div class="sh">Where every segment sits &middot; live</div>
+  <div class="lead">Nineteen segments, sorted by where they are right now.</div>
+  <p class="leadp">Year-over-year change in put-in-place, straight off the latest Census release. Click any segment for its forecast.</p>
+  <div class="scorewrap" style="margin-top:18px">${body}</div>
+ </section>`;
+}
+function rowH(s){
+ const col=GCOL[s.grp];
+ return `<button class="srow" data-seg="${s.k}"><span class="srdot" style="background:${col}"></span><span class="srn">${s.k}</span><span class="srv">${B(s.lvl)}</span><span class="srg ${s.yoy>0?'up':(s.yoy<0?'down':'flat')}">${PCT(s.yoy)}</span></button>`;
+}
+function quadrantH(){
+ return `<section class="sect"><div class="sh">Where the growth is going</div>
+  <div class="lead">Big and climbing, top right. Big and flat, bottom right.</div>
+  <p class="leadp">Every nonresidential and infrastructure segment placed by current size (across) and projected five-year growth (up). Bubble size is current spend. The dashed line is the nonres average. Hover for detail, click to open the forecast.</p>
+  <div class="qwrap" style="margin-top:18px"><div class="qplot" id="qplot"></div>
+   <div class="qleg" id="qleg"></div></div>
+  <div class="hint">Growth is this page's transparent projection, not a published forecast. Method and the scenario knob are at the bottom.</div>
+ </section>`;
+}
+function detailH(){return `<div class="detail" id="detail"></div>`;}
+function indicatorsH(){
+ const abi=IND.abi, mn=42,mx=58, pos=clamp((abi.v-mn)/(mx-mn)*100,0,100);
+ const dg=IND.dodge.series, dmx=Math.max(...dg.map(Math.abs))||1;
+ const dspark=dg.map(v=>`<div class="sbar" style="height:${6+Math.abs(v)/dmx*34}px;background:${v<0?'var(--drop)':'var(--copper)'}"></div>`).join('');
+ const abispark=abi.series.map(a=>`<div class="sbar" style="height:${8+((a-42)/16)*32}px;background:${a<50?'var(--drop)':'var(--grow)'}"></div>`).join('');
+ const tiles=[
+  ["PMI, manufacturing",IND.pmi.v.toFixed(1),IND.pmi.v<50?"down":"up",IND.pmi.v<50?"below 50, contracting":"above 50",IND.pmi.asof],
+  ["30-year mortgage",IND.rate.v.toFixed(2)+"%","flat","demand lever for residential",IND.rate.asof],
+  ["Materials PPI, YoY","+"+(IND.ppi.v*100).toFixed(1)+"%","up","input-cost pressure",IND.ppi.asof],
+  ["Housing starts",IND.starts.v.toFixed(2)+"M","flat","SAAR, single + multi",IND.starts.asof],
+ ].map(t=>`<div class="ind"><div class="indv ${t[2]}">${t[1]}</div><div class="indt" style="font-size:14px">${t[0]}</div><div class="indsub">${t[3]}</div><div class="asofm">as of ${t[4]}</div></div>`).join('');
+ return `<section class="sect"><div class="sh">The signals that run ahead of the work</div>
+  <div class="lead">Design and planning lead the spending by nine to twelve months.</div>
+  <p class="leadp">When architects bill less, nonresidential spending softens three to four quarters later. When owners put more into planning, the pipeline fills. Right now those two disagree, and the gap is the story.</p>
+  <div class="indgrid" style="margin-top:18px">
+   <div class="ind"><div class="indt">Architecture Billings</div><div class="indsub">AIA / Deltek &middot; ~9-12 mo lead &middot; 50 = flat</div>
+    <div class="gauge"><div class="gbar"><div class="g50"></div><div class="gmark" style="left:${pos}%"></div></div><div class="gscale"><span>42</span><span>50</span><span>58</span></div></div>
+    <div class="spark">${abispark}</div><div class="indd"><b class="down">${abi.v}</b> in July, 41 months below 50.<div class="asofm">as of ${abi.asof}</div></div></div>
+   <div class="ind"><div class="indt">Dodge Momentum</div><div class="indsub">planning pipeline &middot; leads starts ~12 mo</div>
+    <div class="indv up">+${(IND.dodge.v*100).toFixed(0)}%</div><div class="indsub">month over month</div>
+    <div class="spark">${dspark}</div><div class="indd">Planning is booming, up ~51% over the year.<div class="asofm">as of ${IND.dodge.asof}</div></div></div>
+   <div class="ind"><div class="indt">The read</div><div class="indsub">near term vs long horizon</div>
+    <div class="readp" style="margin-top:12px"><b>Soft next few quarters, busier back half.</b> Billings say do not over-hire into the near term. Planning says the data-center and institutional wave is coming. That split is baked into the forecast: current momentum first, easing toward trend as the pipeline lands.</div></div>
+   ${tiles}
+  </div>
+ </section>`;
+}
+function methodH(){
+ const sc=Object.keys(SCEN).map(k=>`<button class="scbtn ${SCEN[k]===W?'on':''}" data-scen="${k}">${k}</button>`).join('');
+ return `<section class="sect"><div class="sh">How the forecast works</div>
+  <div class="lead">No black box. Recent momentum, easing to the long-run trend.</div>
+  <div class="method" style="margin-top:16px">
+   <div class="steps">
+    <div class="step">Pull the live Census put-in-place series for each segment. <b>Public, monthly, via FRED.</b></div>
+    <div class="step">Read two numbers off it: recent <b>momentum</b> (the trailing year) and the segment's own <b>10-year trend</b>.</div>
+    <div class="step">Year one blends the two. Later years <b>ease toward trend</b>, because no segment grows at its momentum forever.</div>
+    <div class="step">Turn one knob below and watch every projection move. That is the whole model. <b>The same knob the quarterly outlooks turn, made visible.</b></div>
+   </div>
+   <div class="mrow"><span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mut)">Scenario</span>${sc}
+    <span class="hint" style="margin:0 0 0 6px">base = balanced &middot; momentum = trust the recent trend &middot; trend = trust the long run</span></div>
+  </div>
+ </section>`;
+}
+function scrubberH(){
+ return `<section class="sect"><div class="sh">How the mix got here</div>
+  <div class="lead">Drag through fifteen years and watch manufacturing take over.</div>
+  <p class="leadp">Nonresidential and infrastructure spending by segment, annualized, month by month. Live from FRED.</p>
+  <div class="chartwrap" style="margin-top:18px">
+   <div class="tmhead"><div class="tmdate" id="tmdate">&nbsp;</div><div class="tmlead" id="tmlead">&nbsp;</div></div>
+   <div id="tmchart"></div>
+   <div class="tmbar"><button class="tmplay" id="tmplay">&#9654;</button><input type="range" id="tmrange" min="0" max="15" value="15" step="1"></div>
+   <div class="hint" id="tmhint">Connecting to live monthly history&hellip;</div>
+  </div>
+ </section>`;
+}
+function mapH(){
+ return `<section class="sect"><div class="sh">Where the build-out is happening</div>
+  <div class="lead">The growth has an address. Sun Belt and Mid-Atlantic.</div>
+  <p class="leadp">Data-center pipeline by state, the clearest current signal of where large-format envelope work is going.</p>
+  <div class="chartwrap" style="margin-top:18px"><div class="mapgrid" id="mapgrid"></div>
+   <div class="maplegend"><span>fewer</span><span class="legramp" id="legramp"></span><span>more data centers</span></div>
+   <div class="hint">Total data centers in the pipeline by state. Grey states sit outside the top 15. Industry pipeline data, 2026.</div></div>
+ </section>`;
+}
+function footerH(){
+ return `<footer>
+  <div style="color:var(--ink2);margin-bottom:8px">Built by Cain Menard. Public data, pulled live and updated monthly. The forecast is a transparent, reproducible projection, not investment advice and not a substitute for judgment about specific projects.</div>
+  <div class="src">Sources: US Census Bureau, Value of Construction Put in Place (via FRED) &middot; BLS Producer Price Index &middot; Freddie Mac &middot; AIA / Deltek Architecture Billings Index &middot; Dodge Construction Network &middot; ISM.</div>
+ </footer>`;
+}
+
+/* ---- scorecard rows + segment detail ---- */
+function wireRows(){ $$('.srow').forEach(b=>b.onclick=()=>openDetail(b.dataset.seg)); }
+function openDetail(key){
+ const s=ALL().find(x=>x.k===key); if(!s)return;
+ const f=fc(s), years=[2027,2028,2029,2030];
+ let lvl=s.lvl; const path=[{y:2026,g:s.yoy,l:s.lvl}];
+ f.g.forEach((g,i)=>{lvl=lvl*(1+g);path.push({y:years[i],g,l:lvl});});
+ const cells=path.map(p=>`<div class="dcell"><div class="dcy">${p.y}${p.y===2026?' now':''}</div><div class="dcv">$${p.l.toFixed(0)}B</div><div class="dcg ${p.g>0?'up':(p.g<0?'down':'flat')}">${PCT(p.g)}</div></div>`).join('');
+ const d=$('#detail');
+ d.innerHTML=`<div class="dh"><div><div class="dtag">${GLBL[s.grp]} &middot; ${(f.cagr*100>=0?'+':'')}${(f.cagr*100).toFixed(1)}% projected CAGR</div><div class="dt">${s.k}</div></div><button class="scbtn" id="dclose">Close</button></div>`
+  +drawCurve(s,path)
+  +`<div class="dtable">${cells}</div>`
+  +`<div class="ddrv">Drivers: ${s.drv}.</div>`;
+ d.classList.add('on');
+ $('#dclose').onclick=()=>d.classList.remove('on');
+ d.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function drawCurve(s,path){
+ const W2=1080,H=150,pad=8; const hist=SERIES[s.fred];
+ let pts=[], vals=[];
+ if(hist&&hist.length){const h=hist.slice(-120); pts=h.map(p=>p[1]/1000); }
+ const fwd=path.map(p=>p.l);
+ const all=pts.concat(fwd); const mn=Math.min(...all)*0.9, mx=Math.max(...all)*1.05;
+ const X=i=>pad+i/(all.length-1)*(W2-2*pad), Y=v=>H-pad-((v-mn)/(mx-mn))*(H-2*pad);
+ let dh='',df='';
+ pts.forEach((v,i)=>dh+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ');
+ const off=pts.length;
+ fwd.forEach((v,i)=>df+=(i?'L':'M')+X(off-1+i).toFixed(1)+' '+Y(v).toFixed(1)+' ');
+ if(pts.length)df='M'+X(off-1).toFixed(1)+' '+Y(pts[pts.length-1]).toFixed(1)+' '+df.replace(/^M[^L]*/,'');
+ return `<svg class="dcurve" viewBox="0 0 ${W2} ${H}" preserveAspectRatio="none">
+   ${pts.length?`<path d="${dh}" fill="none" stroke="var(--ink2)" stroke-width="2"/>`:''}
+   <path d="${df}" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-dasharray="2 5"/>
+  </svg>`+(pts.length?'':`<div class="hint" style="margin-top:0">Live history loads with the page; the dashed line is the projection.</div>`);
+}
+
+/* ---- quadrant layout ---- */
+function layoutQuadrant(){
+ const plot=$('#qplot'); if(!plot)return; plot.innerHTML='';
+ const w=plot.clientWidth||900, h=plot.clientHeight||460, padL=6, padB=26;
+ const xmax=200, ymin=-0.03, ymax=0.13;
+ const X=v=>padL+ (Math.min(v,xmax)/xmax)*(w-padL-10);
+ const Y=g=>{const t=(g-ymin)/(ymax-ymin); return (1-t)*(h-padB);};
+ // axis + grid
+ plot.appendChild(Object.assign(C('div','qaxL'),{}));
+ plot.appendChild(Object.assign(C('div','qaxB'),{}));
+ const ref=C('div','qref'); ref.style.top=Y(0.045)+'px'; plot.appendChild(ref);
+ const rl=C('div','qreflab'); rl.textContent='4.5% avg'; rl.style.top=Y(0.045)+'px'; plot.appendChild(rl);
+ [0,50,100,150,200].forEach(v=>{const t=C('div','qtk');t.textContent='$'+v+'B';t.style.left=X(v)+'px';t.style.bottom='6px';plot.appendChild(t);});
+ [0,0.04,0.08,0.12].forEach(g=>{const t=C('div','qtk');t.textContent=(g*100).toFixed(0)+'%';t.style.left='0';t.style.top=(Y(g)-6)+'px';plot.appendChild(t);});
+ SEG.map(s=>({s,f:fc(s)})).sort((a,b)=>b.s.lvl-a.s.lvl).forEach(({s,f})=>{
+  const r=clamp(Math.sqrt(s.lvl)*3.0,14,58);
+  const b=C('div','qbub'+(s.rca?' rca':'')); b.style.width=b.style.height=r*2+'px';
+  b.style.left=X(s.lvl)+'px'; b.style.top=Y(f.cagr)+'px';
+  b.style.background=(GCOL[s.grp]).replace('var(--copper)','rgba(184,115,51,.34)').replace('var(--steel)','rgba(78,136,190,.34)');
+  b.style.border='1px solid '+GCOL[s.grp];
+  b.dataset.seg=s.k;
+  b.onpointerenter=e=>showTip({t:s.k+'  ·  '+B(s.lvl),b:'Projected <b class="'+(f.cagr>0?'up':'down')+'">'+PCT(f.cagr)+' a year</b> to 2030<br>Now <b class="'+(s.yoy>0?'up':'down')+'">'+PCT(s.yoy)+'</b> year over year'},e);
+  b.onpointermove=move; b.onpointerleave=hideTip; b.onclick=()=>openDetail(s.k);
+  plot.appendChild(b);
+  if(r>=18){const lab=C('div','qlab');lab.textContent=s.k;lab.style.left=X(s.lvl)+'px';lab.style.top=(Y(f.cagr)+r+9)+'px';plot.appendChild(lab);}
  });
- const lr=$('#legramp');[0.14,0.30,0.46,0.62,0.78,1].forEach(t=>{const s=document.createElement('span');s.style.background='rgba(184,115,51,'+t+')';lr.appendChild(s);});
-})();
-$('#mapctrls').addEventListener('click',e=>{
- const b=e.target.closest('[data-rca]');if(!b)return;
- const on=!b.classList.contains('on');b.classList.toggle('on',on);
- const ga=document.querySelector('.st[data-code="GA"]');ga.classList.toggle('rca',on);
- const ex=ga.querySelector('.hq');if(ex)ex.remove();
- if(on){const h=document.createElement('span');h.className='hq';h.textContent='RCA HQ';ga.appendChild(h);}
-});
+ $('#qleg').innerHTML=[["nrb","Nonres buildings"],["nb","Nonbuilding"]].map(g=>`<span><i style="background:${GCOL[g[0]]}"></i>${g[1]}</span>`).join('')+`<span><i style="background:transparent;border:1px solid var(--amber)"></i>big-roof segment</span>`;
+}
 
-/* ---------- time machine: live FRED build-out over time ---------- */
-(function(){
- const ORDER=['Manufacturing','Power','Educational','Commercial','Office','Health care','Transportation','Lodging'];
- const FID={Manufacturing:'TLMFGCONS',Power:'TLPWRCONS',Commercial:'TLCOMCONS',Office:'TLOFCONS',Educational:'TLEDUCONS','Health care':'TLHLTHCONS',Transportation:'TLTRANSCONS',Lodging:'TLLODGCONS'};
- const FB={
-  'Manufacturing':[[2010,41.4],[2011,40.3],[2012,47.6],[2013,52.4],[2014,60.5],[2015,83.2],[2016,79.6],[2017,70.8],[2018,72.5],[2019,81.0],[2020,75.5],[2021,81.9],[2022,124.6],[2023,202.2],[2024,244.1],[2025,215.4]],
-  'Power':[[2010,76.2],[2011,74.8],[2012,98.5],[2013,92.0],[2014,111.2],[2015,103.7],[2016,101.6],[2017,96.2],[2018,99.8],[2019,117.7],[2020,118.2],[2021,119.2],[2022,121.6],[2023,151.0],[2024,167.8],[2025,172.2]],
-  'Educational':[[2010,88.4],[2011,85.0],[2012,84.6],[2013,79.0],[2014,79.5],[2015,84.9],[2016,91.5],[2017,96.7],[2018,101.3],[2019,108.8],[2020,110.7],[2021,101.2],[2022,104.1],[2023,122.7],[2024,140.1],[2025,141.5]],
-  'Commercial':[[2010,40.1],[2011,42.6],[2012,47.2],[2013,53.2],[2014,62.6],[2015,66.9],[2016,78.6],[2017,87.6],[2018,86.6],[2019,84.3],[2020,89.7],[2021,97.4],[2022,131.2],[2023,151.5],[2024,136.6],[2025,129.3]],
-  'Office':[[2010,37.9],[2011,36.0],[2012,37.8],[2013,37.9],[2014,46.5],[2015,55.9],[2016,67.8],[2017,68.8],[2018,76.6],[2019,88.6],[2020,92.9],[2021,89.9],[2022,95.3],[2023,103.1],[2024,108.4],[2025,121.4]],
-  'Health care':[[2010,39.3],[2011,40.2],[2012,42.5],[2013,40.7],[2014,38.7],[2015,39.7],[2016,40.5],[2017,43.1],[2018,43.5],[2019,46.3],[2020,48.5],[2021,50.3],[2022,58.1],[2023,66.7],[2024,70.2],[2025,76.8]],
-  'Transportation':[[2010,38.3],[2011,34.9],[2012,37.6],[2013,39.5],[2014,41.9],[2015,45.1],[2016,43.4],[2017,46.1],[2018,53.2],[2019,57.4],[2020,60.7],[2021,59.2],[2022,60.9],[2023,65.0],[2024,67.0],[2025,71.5]],
-  'Lodging':[[2010,11.7],[2011,9.1],[2012,10.8],[2013,13.5],[2014,16.7],[2015,22.0],[2016,27.1],[2017,28.7],[2018,31.5],[2019,33.5],[2020,28.5],[2021,19.1],[2022,20.2],[2023,25.9],[2024,26.2],[2025,26.9]]
- };
- const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
- let dates=[], data={}, MAX=1, idx=0, playing=false, timer=null, live=false;
+/* ---- scenario knob ---- */
+function wireScenario(){ $$('.scbtn[data-scen]').forEach(b=>b.onclick=()=>{W=SCEN[b.dataset.scen];render();}); }
+
+/* ---- scrubber (live history) ---- */
+function initScrubber(){
+ const order=SEG.map(s=>s.k);
  const el=id=>document.getElementById(id);
- function buildFrom(s2p){
-  const base=ORDER.find(s=>s2p[s]&&s2p[s].length)||ORDER[0];
-  dates=(s2p[base]||[]).map(p=>p[0]);
-  data={};
-  ORDER.forEach(s=>{const m={};(s2p[s]||[]).forEach(p=>m[p[0]]=p[1]);data[s]=dates.map(d=>m[d]!=null?m[d]:null);});
-  MAX=1;ORDER.forEach(s=>data[s].forEach(v=>{if(v!=null&&v>MAX)MAX=v;}));
+ let dates=[],data={},MAX=1,idx=0,playing=false,timer=null;
+ function build(){
+  const withS=SEG.filter(s=>SERIES[s.fred]&&SERIES[s.fred].length);
+  if(!withS.length){el('tmhint').textContent='Live monthly history was not reachable. The rest of the page still reflects the latest release.';return false;}
+  const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const base=withS[0].fred; dates=SERIES[base].map(p=>{const d=p[0].split('-');return MON[+d[1]-1]+' '+d[0];});
+  data={}; withS.forEach(s=>{const m={};SERIES[s.fred].forEach((p,i)=>m[i]=p[1]/1000);data[s.k]=dates.map((_,i)=>m[i]!=null?m[i]:null);});
+  MAX=1; Object.values(data).forEach(a=>a.forEach(v=>{if(v>MAX)MAX=v;}));
+  return true;
  }
- function render(){
-  const cur=ORDER.map(s=>({k:s,v:data[s][idx]}));
-  let lead={k:'',v:null};cur.forEach(o=>{if(o.v!=null&&(lead.v==null||o.v>lead.v))lead=o;});
-  el('tmdate').textContent=dates[idx]!=null?dates[idx]:'';
-  el('tmlead').innerHTML=lead.v!=null?('Leading segment &middot; <b>'+lead.k+'</b>, $'+lead.v.toFixed(1)+'B a year'):'';
-  el('tmchart').innerHTML=cur.map(o=>{
-   const w=o.v!=null?(o.v/MAX*100):0;
-   const col=(o.k===lead.k&&o.v!=null)?'var(--amber)':'var(--copper)';
-   return '<div class="bar"><div class="barname">'+o.k+'</div><div class="bartrack"><div class="barfill" style="width:'+w.toFixed(1)+'%;background:'+col+'"></div></div><div class="barval">'+(o.v!=null?('$'+o.v.toFixed(1)+'B'):'n/a')+'</div></div>';
+ function draw(){
+  const segs=SEG.filter(s=>data[s.k]);
+  const cur=segs.map(s=>({k:s.k,v:data[s.k][idx]}));
+  let lead={k:'',v:-1}; cur.forEach(o=>{if(o.v>lead.v)lead=o;});
+  el('tmdate').textContent=dates[idx]||''; el('tmlead').innerHTML=lead.v>0?('Leading &middot; <b>'+lead.k+'</b> $'+lead.v.toFixed(0)+'B a year'):'';
+  el('tmchart').innerHTML=cur.sort((a,b)=>b.v-a.v).slice(0,10).map(o=>{
+   const col=o.k===lead.k?'var(--amber)':'var(--copper)';
+   return '<div class="bar"><div class="barname">'+o.k+'</div><div class="bartrack"><div class="barfill" style="width:'+(o.v/MAX*100).toFixed(1)+'%;background:'+col+'"></div></div><div class="barval">$'+(o.v!=null?o.v.toFixed(0):'-')+'B</div></div>';
   }).join('');
-  el('tmrange').style.setProperty('--p',(dates.length>1?(idx/(dates.length-1)*100):100)+'%');
+  el('tmrange').style.setProperty('--p',(dates.length>1?idx/(dates.length-1)*100:100)+'%');
  }
- function setIdx(i){idx=Math.max(0,Math.min(dates.length-1,i));el('tmrange').value=idx;render();}
+ function setIdx(i){idx=clamp(i,0,dates.length-1);el('tmrange').value=idx;draw();}
  function stop(){playing=false;clearInterval(timer);const b=el('tmplay');b.classList.remove('on');b.innerHTML='&#9654;';}
- function play(){
-  if(playing){stop();return;}
-  playing=true;const b=el('tmplay');b.classList.add('on');b.innerHTML='&#10073;&#10073;';
-  if(idx>=dates.length-1)setIdx(0);
-  timer=setInterval(()=>{if(idx>=dates.length-1){stop();return;}setIdx(idx+1);},live?90:430);
- }
- el('tmrange').addEventListener('input',function(){stop();setIdx(+this.value);});
- el('tmplay').addEventListener('click',play);
- (function(){const s2p={};ORDER.forEach(s=>{s2p[s]=(FB[s]||[]).map(p=>[String(p[0]),p[1]]);});buildFrom(s2p);el('tmrange').max=dates.length-1;setIdx(dates.length-1);})();
- (async function(){
-  try{
-   const ids=ORDER.map(s=>FID[s]).join(',');
-   const r=await fetch('/api/fred?series='+ids+'&start=2010-01-01&freq=m',{cache:'no-store'});
-   if(!r.ok)throw 0;
-   const j=await r.json();if(!j||!j.ok||!j.series)throw 0;
-   const s2p={};
-   ORDER.forEach(s=>{const arr=j.series[FID[s]]||[];s2p[s]=arr.map(p=>{const d=p[0].split('-');return [MON[(+d[1])-1]+' '+d[0], +(p[1]/1000).toFixed(1)];});});
-   if(!(s2p['Manufacturing']&&s2p['Manufacturing'].length))throw 0;
-   buildFrom(s2p);el('tmrange').max=dates.length-1;setIdx(dates.length-1);live=true;
-   el('tmhint').innerHTML='<span class="livedot on"></span>Live monthly data via FRED (Census Value of Construction Put in Place, annualized SAAR). Drag the handle or press play.';
-  }catch(e){
-   el('tmhint').textContent='Annual snapshot, 2010 to 2025 (Census / FRED). Drag the handle or press play. Live monthly refresh was not reachable.';
-  }
- })();
-})();
+ function play(){if(playing){stop();return;}playing=true;const b=el('tmplay');b.classList.add('on');b.innerHTML='&#10073;&#10073;';if(idx>=dates.length-1)setIdx(0);timer=setInterval(()=>{if(idx>=dates.length-1){stop();return;}setIdx(idx+1);},90);}
+ if(!build())return;
+ el('tmrange').max=dates.length-1; el('tmrange').oninput=function(){stop();setIdx(+this.value);}; el('tmplay').onclick=play;
+ el('tmhint').innerHTML='<span class="livedot on"></span>Live monthly data via FRED. Drag the handle or press play.';
+ setIdx(dates.length-1);
+}
 
-/* ---------- best-effort live refresh (graceful) ---------- */
-/* Census and BLS expose public JSON APIs. When reachable from the browser we
-   refresh the two headline series and light the "live" dot; otherwise the
-   point-in-time readings above stand. Nothing breaks if the fetch is blocked. */
-(async function(){
+/* ---- state map (data-center pipeline) ---- */
+const STGRID={AK:[1,1],ME:[11,1],VT:[10,2],NH:[11,2],WA:[1,3,100],ID:[2,3],MT:[3,3],ND:[4,3],MN:[5,3],WI:[6,3],MI:[7,3],NY:[9,3,125],MA:[10,3],RI:[11,3],OR:[1,4,144],NV:[2,4,134],WY:[3,4],SD:[4,4],IA:[5,4,111],IL:[6,4,250],IN:[7,4,120],OH:[8,4,250],PA:[9,4,257],NJ:[10,4],CT:[11,4],CA:[1,5,212],UT:[2,5,156],CO:[3,5],NE:[4,5],MO:[5,5],KY:[6,5],WV:[7,5],VA:[8,5,954],MD:[9,5],DE:[10,5],AZ:[2,6,254],NM:[3,6],KS:[4,6],AR:[5,6],TN:[6,6],NC:[7,6],SC:[8,6],DC:[9,6],OK:[4,7],LA:[5,7],MS:[6,7],AL:[7,7],GA:[8,7,458],HI:[1,8],TX:[4,8,962],FL:[9,8]};
+const DCMAX=962, STNAME={TX:'Texas',VA:'Virginia',GA:'Georgia',AZ:'Arizona',PA:'Pennsylvania',OH:'Ohio',IL:'Illinois',CA:'California',UT:'Utah',OR:'Oregon',NV:'Nevada',NY:'New York',IN:'Indiana',IA:'Iowa',WA:'Washington'};
+function initMap(){
+ const host=$('#mapgrid'); if(!host)return; host.innerHTML='';
+ Object.keys(STGRID).forEach(code=>{
+  const g=STGRID[code],v=g[2]||null,cell=C('div','st');cell.textContent=code;cell.style.gridColumn=g[0];cell.style.gridRow=g[1];
+  cell.style.background=v?'rgba(184,115,51,'+(0.14+0.86*(v/DCMAX)).toFixed(3)+')':'rgba(120,140,165,.12)';
+  cell.onpointerenter=e=>showTip({t:(STNAME[code]||code),b:v?('<b class="up">'+v+'</b> data centers in the pipeline'):'Smaller pipeline, outside the top 15'},e);
+  cell.onpointermove=move;cell.onpointerleave=hideTip;host.appendChild(cell);
+ });
+ $('#legramp').innerHTML=[0.14,0.3,0.46,0.62,0.78,1].map(t=>`<span style="background:rgba(184,115,51,${t})"></span>`).join('');
+}
+
+/* ---- live refresh ---- */
+async function fetchLive(){
  try{
-  const r=await fetch('https://api.census.gov/data/timeseries/eits/vip?get=cell_value,time&category_code=PNRES&data_type_code=TOTAL&seasonally_adj=yes&time=2026',{cache:'no-store'});
-  if(r.ok){const j=await r.json(); if(j&&j.length>1){$('#livedot').classList.add('on');$('#asof').textContent='Live where reachable; point-in-time otherwise. Latest public releases through July 2026.';}}
- }catch(e){/* CORS or offline: keep the curated readings */}
-})();
-window.addEventListener('pointerdown',hideTip);
+  const ids=SEG.map(s=>s.fred).concat(['TTLCONS','TLRESCONS','TLNRESCONS']).join(',');
+  const r=await fetch('/api/fred?series='+ids+'&start=2007-01-01&freq=m',{cache:'no-store'});
+  if(!r.ok)throw 0; const j=await r.json(); if(!j.ok||!j.series)throw 0;
+  SERIES=j.series;
+  SEG.forEach(s=>{const a=SERIES[s.fred]; if(a&&a.length>13){const x=a.map(p=>p[1]);s.lvl=+(x[x.length-1]/1000).toFixed(1);s.yoy=+(x[x.length-1]/x[x.length-13]-1).toFixed(4);const k=Math.min(121,x.length);s.tr=+(Math.pow(x[x.length-1]/x[x.length-k],12/(k-1))-1).toFixed(4);}});
+  const tot=SERIES['TTLCONS'],res=SERIES['TLRESCONS'],nres=SERIES['TLNRESCONS'];
+  if(tot&&tot.length)AGG.total=+(tot[tot.length-1][1]/1000).toFixed(1);
+  if(res&&res.length)AGG.res=+(res[res.length-1][1]/1000).toFixed(1);
+  AGG.nrb=SEG.filter(s=>s.grp==='nrb').reduce((s,x)=>s+x.lvl,0);
+  AGG.nb=SEG.filter(s=>s.grp==='nb').reduce((s,x)=>s+x.lvl,0);
+  if(tot&&tot.length){const d=tot[tot.length-1][0].split('-');AGG.asof=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+d[1]-1]+' '+d[0];}
+  LIVE=true; render();
+  const ld=$('#livedot'); if(ld)ld.classList.add('on');
+  const as=$('#asof'); if(as)as.textContent='Live via FRED. Latest Census put-in-place through '+AGG.asof+'. Sources at the bottom.';
+ }catch(e){/* keep the seeded read */}
+ // rates / PPI / starts, best effort
+ try{
+  const r=await fetch('/api/fred?series=MORTGAGE30US,WPUSI012011,HOUST&start=2024-01-01&freq=m',{cache:'no-store'});
+  if(r.ok){const j=await r.json(); if(j.ok){
+   const g=(id,f)=>{const a=j.series[id];if(a&&a.length)f(a);};
+   g('MORTGAGE30US',a=>IND.rate.v=a[a.length-1][1]);
+   g('WPUSI012011',a=>{if(a.length>12)IND.ppi.v=+(a[a.length-1][1]/a[a.length-13][1]-1).toFixed(3);});
+   g('HOUST',a=>IND.starts.v=+(a[a.length-1][1]/1000).toFixed(2));
+   render();
+  }}
+ }catch(e){}
+}
+render(); fetchLive();
+addEventListener('resize',()=>{clearTimeout(window._rz);window._rz=setTimeout(layoutQuadrant,150);});
 </script>
 </body>
 </html>

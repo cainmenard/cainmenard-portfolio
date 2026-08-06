@@ -4,9 +4,14 @@ export const runtime = 'nodejs'
 // endpoint from acting as an open proxy that would burn the key on arbitrary
 // requests, and this file is the only place the API key ever appears.
 const ALLOW = new Set([
-  'TLMFGCONS', 'TLPWRCONS', 'TLCOMCONS', 'TLOFCONS', 'TLEDUCONS',
-  'TLHLTHCONS', 'TLTRANSCONS', 'TLLODGCONS', 'TLNRESCONS',
-  'MORTGAGE30US', 'WPUSI012011',
+  // construction put in place, by segment (Census, via FRED)
+  'TLMFGCONS', 'TLPWRCONS', 'TLCOMCONS', 'TLOFCONS', 'TLEDUCONS', 'TLHLTHCONS',
+  'TLTRANSCONS', 'TLLODGCONS', 'TLAMUSCONS', 'TLCMUCONS', 'TLRELCONS', 'TLPSCONS',
+  'TLHWYCONS', 'TLSWDCONS', 'TLWSCONS', 'TLCADCONS',
+  // aggregates
+  'TLNRESCONS', 'TTLCONS', 'TLRESCONS', 'PNRESCONS', 'TLPBLCONS',
+  // indicators
+  'MORTGAGE30US', 'WPUSI012011', 'HOUST',
 ])
 const BASE = 'https://api.stlouisfed.org/fred/series/observations'
 
@@ -23,7 +28,7 @@ export async function GET(request) {
     .split(',')
     .map((s) => s.trim().toUpperCase())
     .filter((s) => ALLOW.has(s))
-    .slice(0, 12)
+    .slice(0, 24)
   if (!ids.length) {
     return Response.json(
       { ok: false, error: 'no valid series requested' },
