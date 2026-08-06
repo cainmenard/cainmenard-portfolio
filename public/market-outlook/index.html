@@ -26,6 +26,7 @@
  --paper:#FAF8F5; --paper2:#F4EFE7; --card:#FFFDFA; --ink:#1E2A38; --ink2:#3C4859; --mut:#8B8578;
  --copper:#B87333; --copper2:#9A571F; --line:#E6DFD3; --line2:#D8CFBF;
  --up:#3F7A57; --down:#B0483B; --steel:#4E6E8E;
+ --blue:#2A6FB0; --blue2:#184F95; --teal:#1F9B78;
  --serif:'Newsreader',Georgia,'Times New Roman',serif;
  --sans:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
@@ -175,7 +176,7 @@ a:hover{border-color:var(--copper2)}
 .mrank{font-family:var(--mono);font-size:11px;color:var(--mut);width:18px;text-align:right;flex:0 0 18px}
 .mname{font-family:var(--serif);font-size:16px;color:var(--ink);width:118px;flex:0 0 118px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mtrack{flex:1;height:8px;background:var(--paper2);border-radius:5px;overflow:hidden}
-.mfill{display:block;height:100%;background:var(--copper);border-radius:5px}
+.mfill{display:block;height:100%;background:var(--blue);border-radius:5px}
 .mval{font-family:var(--mono);font-size:12px;color:var(--ink2);width:40px;text-align:right;flex:0 0 40px;font-variant-numeric:tabular-nums}
 .mchip{font-family:var(--mono);font-size:11px;width:50px;text-align:right;flex:0 0 50px;font-variant-numeric:tabular-nums}
 .mchip.up{color:var(--up)}.mchip.down{color:var(--down)}
@@ -225,12 +226,13 @@ a:hover{border-color:var(--copper2)}
 .mback.on{opacity:1;pointer-events:auto}.mback:hover{border-color:var(--copper);color:var(--copper)}
 .mapstage{margin-top:16px;border:1px solid var(--line);border-radius:2px;background:var(--card);padding:14px}
 #usmap{width:100%;height:auto;display:block;aspect-ratio:1015/594}
-.stpath{stroke:#FAF8F5;stroke-width:1;cursor:pointer;transition:fill .3s,opacity .2s}
-.stpath:hover{opacity:.8}
-.stpath.sel{stroke:var(--ink);stroke-width:1.6}
-.maplegend{display:flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--mut);justify-content:center}
-.legramp{display:inline-flex;gap:2px}
-.legramp span{width:22px;height:9px;border-radius:1px}
+.stpath{stroke:#FAF8F5;stroke-width:1;cursor:pointer;transition:fill .3s,opacity .15s}
+.stpath:hover{opacity:.82;stroke:var(--copper);stroke-width:1.4}
+.stpath.sel{stroke:var(--copper);stroke-width:2}
+.maplegend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:14px;font-family:var(--mono);font-size:10px;color:var(--mut);justify-content:center}
+.legsw{display:inline-flex;align-items:center;gap:5px}
+.legsw i{width:17px;height:11px;border-radius:1px;display:inline-block}
+.legunit{color:var(--ink2);text-transform:uppercase;letter-spacing:.5px;margin-left:4px}
 .statepanel{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .3s;margin-top:0}
 .statepanel.on{max-height:1600px;opacity:1;margin-top:22px}
 .sph{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px}
@@ -309,7 +311,7 @@ let RES=[
  {k:"Multifamily",grp:"res",lvl:127,yoy:-0.01,tr:0.055,rca:0,drv:"vacancy, absorption, lending, starts"},
 ];
 const GLBL={nrb:"Nonres buildings",nb:"Nonbuilding",res:"Residential"};
-const GCOL={nrb:"#B87333",nb:"#4E6E8E",res:"#C98A4B"};
+const GCOL={nrb:"#B87333",nb:"#2A6FB0",res:"#1F9B78"};
 let AGG={total:2166.5,res:889.4,nrb:770.5,nb:507.4,asof:"June 2026",totYoY:-0.012,totTr:0.055};
 let IND={
  abi:{v:47.3,asof:"Jul 2026",series:[45.5,47.1,48.3,44.5,46.8,47.3]},
@@ -546,7 +548,7 @@ function mapSec(){
  return `<section class="sec rv">${secHead('Where it is being built','Two layers, fifty states, one click to drill in','Housing permits are live from the Census Building Permits Survey via FRED. The data-center pipeline is industry-tracked, a proxy for where the largest-format roofs are landing. Click any state to zoom in and read its metros.')}
   <div class="maptop"><div class="mlyrs"><button class="mlyr on" data-layer="permits">Housing permits<span>live</span></button><button class="mlyr" data-layer="dc">Data centers<span>pipeline</span></button></div><button class="mback" id="mapback">&larr; Back to the US</button></div>
   <div class="mapstage"><svg id="usmap" viewBox="-58 13 1015 594" preserveAspectRatio="xMidYMid meet" aria-label="US state map"></svg>
-   <div class="maplegend"><span id="legttl">fewer</span><span class="legramp" id="legramp"></span><span id="legmax">more</span></div></div>
+   <div class="maplegend" id="maplegend"></div></div>
   <div class="statepanel" id="statepanel"></div>
  </section>`;
 }
@@ -639,7 +641,7 @@ function layoutQuadrant(){
   const r=clamp(Math.sqrt(s.lvl)*2.9,13,54);
   const b=C('div','qbub'+(s.rca?' rca':'')); b.style.width=b.style.height=r*2+'px';
   b.style.left=X(s.lvl)+'px'; b.style.top=Y(f.cagr)+'px';
-  b.style.background=s.grp==='nb'?'rgba(78,110,142,.20)':'rgba(184,115,51,.22)'; b.style.borderColor=GCOL[s.grp];
+  b.style.background=s.grp==='nb'?'rgba(42,111,176,.17)':'rgba(184,115,51,.20)'; b.style.borderColor=GCOL[s.grp];
   b.onpointerenter=e=>showTip({t:s.k+'  ·  '+B(s.lvl),b:'Projected <b class="'+(f.cagr>0?'up':'down')+'">'+PCT(f.cagr)+' a year</b> to 2030<br>Now <b class="'+(s.yoy>0?'up':'down')+'">'+PCT(s.yoy)+'</b> year over year'},e);
   b.onpointermove=move;b.onpointerleave=hideTip;b.onclick=()=>openDetail(s.k);
   plot.appendChild(b);
@@ -680,7 +682,14 @@ function initScrubber(){
 const SDC={WA:100,NY:125,OR:144,NV:134,IA:111,IL:250,IN:120,OH:250,PA:257,CA:212,UT:156,VA:954,AZ:254,GA:458,TX:962};
 const NATVB={x:-58,y:13,w:1015,h:594};
 function mapVals(){ if(MAP.layer==='dc')return SDC; const o={}; Object.keys(SPERM).forEach(c=>o[c]=SPERM[c][0]); return o; }
-function copperRamp(t){ t=Math.max(0,Math.min(1,t)); const a=[237,230,214],b=[138,74,21]; const c=a.map((v,i)=>Math.round(v+(b[i]-v)*Math.pow(t,0.72))); return `rgb(${c[0]},${c[1]},${c[2]})`; }
+// magnitude reads as a cool sequential ramp (never a warm hue that looks like "bad"),
+// binned into labeled classes so each shade maps to a real range.
+const BLUE5=['#D6E4F2','#A9C6E4','#6E9BCB','#3C74AC','#22507B'];
+const NODATA='#EAE4D8';
+const BINS={permits:[5000,15000,35000,75000], dc:[50,150,300,500]};
+const BINLBL={permits:['<5k','5-15k','15-35k','35-75k','75k+'], dc:['<50','50-150','150-300','300-500','500+']};
+function binIdx(v){ const br=BINS[MAP.layer]; let i=0; while(i<br.length&&v>=br[i])i++; return i; }
+function fillFor(v){ return v?BLUE5[binIdx(v)]:NODATA; }
 function mapTip(code,v){ const nm=SGEO[code]?SGEO[code].n:code;
  if(MAP.layer==='dc')return {t:nm,b:v?`<b class="up">${v}</b> data centers in the pipeline`:'Outside the tracked top 15'};
  const yo=SPERM[code]?SPERM[code][1]:0; return {t:nm,b:`<b>${(v||0).toLocaleString()}</b> housing permits, last 12 months<br><b class="${yo>=0?'up':'down'}">${yo>=0?'+':''}${(yo*100).toFixed(0)}%</b> year over year`}; }
@@ -697,13 +706,13 @@ function initMap(){
  Object.keys(SGEO).forEach(code=>{
   const v=vals[code]||0, p=document.createElementNS('http://www.w3.org/2000/svg','path');
   p.setAttribute('d',SGEO[code].d); p.setAttribute('class','stpath'); p.setAttribute('vector-effect','non-scaling-stroke'); p.dataset.code=code;
-  p.setAttribute('fill', v?copperRamp(v/max):'#ECE5D8');
+  p.setAttribute('fill', fillFor(v));
   p.onpointerenter=e=>showTip(mapTip(code,v),e); p.onpointermove=move; p.onpointerleave=hideTip; p.onclick=()=>drillState(code);
   svg.appendChild(p);
  });
- const unit=MAP.layer==='dc'?'data centers':'permits, 12 mo';
- $('#legttl').textContent='fewer'; $('#legmax').textContent='more '+unit;
- $('#legramp').innerHTML=[0.08,0.28,0.48,0.68,0.86,1].map(t=>`<span style="background:${copperRamp(t)}"></span>`).join('');
+ const unit=MAP.layer==='dc'?'data centers, pipeline':'permits, last 12 mo';
+ const lg=$('.maplegend'), lbls=BINLBL[MAP.layer];
+ if(lg)lg.innerHTML=`<span class="legsw"><i style="background:${NODATA}"></i>none</span>`+BLUE5.map((c,i)=>`<span class="legsw"><i style="background:${c}"></i>${lbls[i]}</span>`).join('')+`<span class="legunit">${unit}</span>`;
  $$('.mlyr').forEach(b=>b.onclick=()=>{MAP.layer=b.dataset.layer;$$('.mlyr').forEach(x=>x.classList.toggle('on',x===b));initMap();});
  $('#mapback').onclick=resetZoom; $('#mapback').classList.toggle('on',!!MAP.zoom);
  if(MAP.zoom){const o=fitVB(SGEO[MAP.zoom].b);svg.setAttribute('viewBox',`${o.x} ${o.y} ${o.w} ${o.h}`);reselect();}
@@ -715,7 +724,7 @@ function stateTrend(arr){
  const X=i=>pad+i/(n-1)*(W2-2*pad), Y=v=>H-pad-((v-mn)/((mx-mn)||1))*(H-2*pad);
  const d=xs.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');
  const area=d+` L${X(n-1).toFixed(1)} ${H-pad} L${X(0).toFixed(1)} ${H-pad} Z`;
- return `<svg class="sptr" viewBox="0 0 ${W2} ${H}" preserveAspectRatio="none"><path d="${area}" fill="rgba(184,115,51,.10)"/><path d="${d}" fill="none" stroke="var(--copper)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
+ return `<svg class="sptr" viewBox="0 0 ${W2} ${H}" preserveAspectRatio="none"><path d="${area}" fill="rgba(42,111,176,.10)"/><path d="${d}" fill="none" stroke="var(--blue)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
 }
 function renderStatePanel(code){
  const sp=$('#statepanel'); if(!sp)return; const nm=SGEO[code].n;
