@@ -32,7 +32,7 @@
  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;
  background:radial-gradient(120% 70% at 50% -10%, #FFFFFF 0%, var(--paper) 46%, var(--paper2) 100%) fixed;
  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -40,6 +40,21 @@ body{margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-heigh
 a{color:var(--copper2);text-decoration:none;border-bottom:1px solid rgba(154,87,31,.35)}
 a:hover{border-color:var(--copper2)}
 .wrap{max-width:1120px;margin:0 auto;padding:0 30px 100px;position:relative}
+/* sticky wayfinding nav */
+#topnav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:18px;padding:10px 30px;background:rgba(250,248,245,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transform:translateY(-100%);transition:transform .32s cubic-bezier(.22,.61,.36,1)}
+#topnav.show{transform:translateY(0)}
+.navbrand{font-family:var(--serif);font-size:17px;color:var(--ink);border:none;white-space:nowrap}
+.navbrand span{color:var(--copper)}
+.navstat{font-family:var(--mono);font-size:11px;color:var(--ink2);letter-spacing:.3px;white-space:nowrap;border-left:1px solid var(--line2);padding-left:16px}
+.navstat b{color:var(--ink);font-weight:500}
+.navstat .up{color:var(--up)}.navstat .down{color:var(--down)}
+.navlinks{display:flex;gap:17px;margin-left:auto}
+.navlinks a{font-family:var(--mono);font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--mut);border:none;padding:4px 0;position:relative;white-space:nowrap;transition:color .15s}
+.navlinks a:hover{color:var(--ink2)}
+.navlinks a.active{color:var(--copper2)}
+.navlinks a.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--copper)}
+.navright{display:flex;align-items:center;gap:12px}
+@media(max-width:900px){.navlinks,.navstat{display:none}.navright{margin-left:auto}}
 .serif{font-family:var(--serif)}
 .mono{font-family:var(--mono)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--copper2)}
@@ -62,6 +77,7 @@ a:hover{border-color:var(--copper2)}
 .hlead{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-.01em;color:var(--ink);margin:14px 0 0}
 .hlead em{font-style:italic;color:var(--copper2)}
 .hdeck{font-size:18px;line-height:1.6;color:var(--ink2);margin:20px 0 0;max-width:52ch}
+.hmeta{font-family:var(--mono);font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-top:20px}
 .hdeck b{color:var(--ink);font-weight:600}
 .hfig{border-left:1px solid var(--line);padding-left:30px}
 .hfignum{font-family:var(--serif);font-weight:500;font-size:clamp(52px,6.4vw,84px);line-height:.92;color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
@@ -276,6 +292,15 @@ footer .src{font-family:var(--mono);font-size:11px;line-height:1.8;margin-top:8p
 </style>
 </head>
 <body>
+<a id="top"></a>
+<nav id="topnav">
+ <a class="navbrand" href="#top">The Construction Read<span>.</span></a>
+ <div class="navstat" id="navstat"></div>
+ <div class="navlinks">
+  <a href="#s-arc">Arc</a><a href="#s-score">Segments</a><a href="#s-quad">Where to build</a><a href="#s-signals">Signals</a><a href="#s-map">Map</a><a href="#s-metro">Metros</a><a href="#s-method">Method</a>
+ </div>
+ <div class="navright"><span class="pulse" id="navpulse"><i></i>Live</span><button class="sharebtn" id="navShare">Save card</button></div>
+</nav>
 <div class="wrap" id="wrap"></div>
 <div id="tip"><div class="tt"></div><div class="tb"></div></div>
 <script>
@@ -443,7 +468,7 @@ function metroSec(){
  const pool=METRO.slice(0,12).filter(m=>m.yo!=null&&Math.abs(m.yo)<0.6);
  const up=pool.slice().sort((a,b)=>b.yo-a.yo)[0], dn=pool.slice().sort((a,b)=>a.yo-b.yo)[0];
  const note=up&&dn?`${dn.k} is pulling back the hardest of the big metros, down ${Math.abs(dn.yo*100).toFixed(0)}% over the year, while ${up.k} is turning back up, ${(up.yo*100).toFixed(0)}% higher. As of ${METRO_ASOF}.`:`As of ${METRO_ASOF}.`;
- return `<section class="sec rv">${secHead('Where the housing is going','Permits by metro, trailing twelve months','Private housing units authorized by building permits, summed over the last twelve months. Census Building Permits Survey, live via FRED. Residential only, so it reads where the rooftops are headed, not the big nonresidential jobs.')}
+ return `<section class="sec rv" id="s-metro">${secHead('Where the housing is going','Permits by metro, trailing twelve months','Private housing units authorized by building permits, summed over the last twelve months. Census Building Permits Survey, live via FRED. Residential only, so it reads where the rooftops are headed, not the big nonresidential jobs.')}
   <div class="metrowrap"><div class="metrogrid">${rows}</div>
    <div class="note">${note}</div></div>
  </section>`;
@@ -462,6 +487,7 @@ function render(){
  wrap.innerHTML=mastheadH()+heroH()+stripH()+arcSec()+whatChangedSec()+scoreSec()+quadSec()+indSec()+scrubSec()+mapSec()+metroSec()+methodSec()+footerH();
  layoutQuadrant(); drawArc(); wireRows(); wireScenario(); initScrubber(); initMap();
  const sb=$('#shareBtn'); if(sb)sb.onclick=downloadCard;
+ updateNav();
  if(!booted){booted=true; motionIn(); countUp();}
  else{$$('.rv').forEach(e=>e.classList.add('in')); const hn=$('#heroNum'); if(hn)hn.innerHTML=heroNumHTML();}
 }
@@ -475,7 +501,8 @@ function heroH(){
  return `<section class="hero rv">
   <div><div class="eyebrow">US construction economy &middot; monthly</div>
    <h1 class="hlead">${r.headline}</h1>
-   <p class="hdeck">${r.deck}</p></div>
+   <p class="hdeck">${r.deck}</p>
+   <div class="hmeta">By Cain Menard &middot; A live read on public data &middot; Updated ${AGG.asof}</div></div>
   <div class="hfig"><div class="hfignum" id="heroNum" data-val="${AGG.total/1000}">${heroNumHTML()}</div>
    <div class="hfigl">Total put in place, <b>annualized</b><br>Census, live via FRED &middot; as of ${AGG.asof}</div></div>
  </section>`;
@@ -489,7 +516,7 @@ function secHead(eyebrow,title,deck){
  return `<div class="sechead"><div class="eyebrow">${eyebrow}</div><h2 class="sectitle">${title}</h2>${deck?`<p class="secdeck">${deck}</p>`:''}</div>`;
 }
 function arcSec(){
- return `<section class="sec rv">${secHead('The arc','A $2.2 trillion market, and where it is headed','Total construction put in place since 2007, with this page\'s projection to 2030. The gain of the last few years is real, but a lot of it is price, not volume.')}
+ return `<section class="sec rv" id="s-arc">${secHead('The arc','A $2.2 trillion market, and where it is headed','Total construction put in place since 2007, with this page\'s projection to 2030. The gain of the last few years is real, but a lot of it is price, not volume.')}
   <div class="arcwrap"><div class="arckey"><span><i style="background:var(--ink)"></i>actual</span><span><i style="background:var(--copper);opacity:.6"></i>projection</span></div>
    <svg class="arc" id="arc" viewBox="0 0 1080 230" preserveAspectRatio="none"></svg>
    <div class="arclab" id="arclab"></div></div>
@@ -502,11 +529,11 @@ function scoreSec(){
   const rows=list.map(s=>`<button class="srow" data-seg="${s.k}"><span class="srn"><i style="background:${GCOL[s.grp]}"></i>${s.k}<span class="arr">&rarr;</span></span><span class="srv">${B(s.lvl)}</span><span class="srg ${s.yoy>0?'up':(s.yoy<0?'down':'flat')}">${PCT(s.yoy)}</span></button>`).join('');
   return `<div class="scol"><div class="scolh ${c}"><span class="scolt">${t}</span><span class="scolc">${list.length} &middot; ${r} YoY</span></div>${rows}</div>`;
  }).join('');
- return `<section class="sec rv">${secHead('The state of play','Every segment, sorted by where it sits today','Year-over-year change in put-in-place, straight off the latest Census release. Click any segment for its forecast.')}
+ return `<section class="sec rv" id="s-score">${secHead('The state of play','Every segment, sorted by where it sits today','Year-over-year change in put-in-place, straight off the latest Census release. Click any segment for its forecast.')}
   <div class="score">${body}</div></section>`;
 }
 function quadSec(){
- return `<section class="sec rv">${secHead('Where to build','Big and climbing, or big and cooling','Every nonresidential and infrastructure segment, placed by current size and projected five-year growth. Bubble size is spend. Hover for detail, click to open the forecast.')}
+ return `<section class="sec rv" id="s-quad">${secHead('Where to build','Big and climbing, or big and cooling','Every nonresidential and infrastructure segment, placed by current size and projected five-year growth. Bubble size is spend. Hover for detail, click to open the forecast.')}
   <div class="qwrap"><div class="qplot" id="qplot"></div><div class="qleg" id="qleg"></div></div>
   <div class="detail" id="detail"></div>
   <div class="note">Growth is this page&rsquo;s transparent projection, not a published forecast. Method and the scenario knob are near the bottom.</div>
@@ -522,7 +549,7 @@ function indSec(){
    ["Materials PPI","+"+(IND.ppi.v*100).toFixed(1)+"%","up","input costs, year over year",IND.ppi.asof],
    ["Housing starts",IND.starts.v.toFixed(2)+"M","flat","annualized, single + multi",IND.starts.asof]]
   .map(x=>`<div class="ind"><div class="indv ${x[2]}">${x[1]}</div><div class="indt" style="font-size:15px">${x[0]}</div><div class="indsub">${x[3]}</div><div class="asofm">as of ${x[4]}</div></div>`).join('');
- return `<section class="sec rv">${secHead('The signals ahead','Design and planning lead the work by nine to twelve months','When architects bill less, spending softens three or four quarters later. When owners plan more, the pipeline fills. Right now they disagree, and the gap is the story.')}
+ return `<section class="sec rv" id="s-signals">${secHead('The signals ahead','Design and planning lead the work by nine to twelve months','When architects bill less, spending softens three or four quarters later. When owners plan more, the pipeline fills. Right now they disagree, and the gap is the story.')}
   <div class="indrow">
    <div class="ind"><div class="indt">Architecture Billings</div><div class="indsub">AIA / Deltek &middot; ~9-12 mo lead &middot; 50 = flat</div>
     <div class="gauge"><div class="gbar"><div class="g50"></div><div class="gmark" style="left:${pos}%"></div></div><div class="gscale"><span>42</span><span>50</span><span>58</span></div></div>
@@ -545,7 +572,7 @@ function scrubSec(){
  </section>`;
 }
 function mapSec(){
- return `<section class="sec rv">${secHead('Where it is being built','Two layers, fifty states, one click to drill in','Housing permits are live from the Census Building Permits Survey via FRED. The data-center pipeline is industry-tracked, a proxy for where the largest-format roofs are landing. Click any state to zoom in and read its metros.')}
+ return `<section class="sec rv" id="s-map">${secHead('Where it is being built','Two layers, fifty states, one click to drill in','Housing permits are live from the Census Building Permits Survey via FRED. The data-center pipeline is industry-tracked, a proxy for where the largest-format roofs are landing. Click any state to zoom in and read its metros.')}
   <div class="maptop"><div class="mlyrs"><button class="mlyr on" data-layer="permits">Housing permits<span>live</span></button><button class="mlyr" data-layer="dc">Data centers<span>pipeline</span></button></div><button class="mback" id="mapback">&larr; Back to the US</button></div>
   <div class="mapstage"><svg id="usmap" viewBox="-58 13 1015 594" preserveAspectRatio="xMidYMid meet" aria-label="US state map"></svg>
    <div class="maplegend" id="maplegend"></div></div>
@@ -555,7 +582,7 @@ function mapSec(){
 function methodSec(){
  const sc=[["base","Base","balanced"],["momentum","Momentum","trust the recent trend"],["trend","Trend","trust the long run"]]
   .map(x=>`<button class="scbtn ${SCEN[x[0]]===W?'on':''}" data-scen="${x[0]}"><b>${x[1]}</b><div class="sd">${x[2]}</div></button>`).join('');
- return `<section class="sec rv">${secHead('How the forecast works','No black box. Momentum, easing to trend','')}
+ return `<section class="sec rv" id="s-method">${secHead('How the forecast works','No black box. Momentum, easing to trend','')}
   <div class="method"><div class="steps">
     <div class="step">Pull the live Census put-in-place series for each segment. <b>Public, monthly, via FRED.</b></div>
     <div class="step">Read two numbers: recent <b>momentum</b> (the trailing year) and the segment&rsquo;s own <b>10-year trend</b>.</div>
@@ -637,6 +664,7 @@ function layoutQuadrant(){
  [0,50,100,150,200].forEach(v=>{const t=C('div','qtk');t.textContent='$'+v+'B';t.style.left=X(v)+'px';t.style.bottom='8px';plot.appendChild(t);});
  [0,0.04,0.08,0.12].forEach(g=>{const t=C('div','qtk');t.textContent=(g*100).toFixed(0)+'%';t.style.left='0';t.style.top=(Y(g)-6)+'px';plot.appendChild(t);});
  const ax=C('div','qaxt');ax.textContent='current spend';ax.style.right='8px';ax.style.bottom='8px';plot.appendChild(ax);
+ const labs=[];
  SEG.map(s=>({s,f:fc(s)})).sort((a,b)=>b.s.lvl-a.s.lvl).forEach(({s,f})=>{
   const r=clamp(Math.sqrt(s.lvl)*2.9,13,54);
   const b=C('div','qbub'+(s.rca?' rca':'')); b.style.width=b.style.height=r*2+'px';
@@ -645,7 +673,15 @@ function layoutQuadrant(){
   b.onpointerenter=e=>showTip({t:s.k+'  ·  '+B(s.lvl),b:'Projected <b class="'+(f.cagr>0?'up':'down')+'">'+PCT(f.cagr)+' a year</b> to 2030<br>Now <b class="'+(s.yoy>0?'up':'down')+'">'+PCT(s.yoy)+'</b> year over year'},e);
   b.onpointermove=move;b.onpointerleave=hideTip;b.onclick=()=>openDetail(s.k);
   plot.appendChild(b);
-  if(r>=17){const lab=C('div','qlab');lab.textContent=s.k;lab.style.left=X(s.lvl)+'px';lab.style.top=(Y(f.cagr)+r+9)+'px';plot.appendChild(lab);}
+  if(r>=17){const lab=C('div','qlab');lab.textContent=s.k;lab.style.left=X(s.lvl)+'px';plot.appendChild(lab);labs.push({el:lab,cx:X(s.lvl),y:Y(f.cagr)+r+9});}
+ });
+ // de-collide labels with a greedy vertical dodge so names never overlap
+ const placed=[];
+ labs.sort((a,b)=>a.y-b.y).forEach(L=>{
+  const wpx=(L.el.offsetWidth||L.el.textContent.length*5.6)+6, hpx=15; let y=L.y, tries=0;
+  const hit=yy=>placed.some(p=>Math.abs(p.cx-L.cx)<(p.w+wpx)/2 && Math.abs(p.y-yy)<hpx);
+  while(tries<40 && hit(y)){ y+=hpx; tries++; }
+  L.el.style.top=y+'px'; placed.push({cx:L.cx,y,w:wpx});
  });
  $('#qleg').innerHTML=`<span><i style="background:${GCOL.nrb}"></i>Nonres buildings</span><span><i style="background:${GCOL.nb}"></i>Nonbuilding</span><span><i style="background:#fff;box-shadow:0 0 0 3px rgba(184,115,51,.16),0 0 0 1.5px ${GCOL.nrb}"></i>big-roof segment</span>`;
 }
@@ -809,7 +845,7 @@ async function fetchLive(){
    const rs=RES.reduce((a,x)=>a+x.lvl,0); if(rs>0)RES.forEach(x=>x.lvl=+(x.lvl/rs*AGG.res).toFixed(0));}
   AGG.nrb=SEG.filter(s=>s.grp==='nrb').reduce((a,x)=>a+x.lvl,0);
   AGG.nb=SEG.filter(s=>s.grp==='nb').reduce((a,x)=>a+x.lvl,0);
-  LIVE=true; render(); const pl=$('#pulse'); if(pl)pl.classList.add('on');
+  LIVE=true; render(); const pl=$('#pulse'); if(pl)pl.classList.add('on'); const np=document.getElementById('navpulse'); if(np)np.classList.add('on');
  }catch(e){}
  try{
   const r=await fetch('/api/fred?series=MORTGAGE30US,WPUSI012011,HOUST&start=2024-01-01&freq=m',{cache:'no-store'});
@@ -836,7 +872,26 @@ async function fetchLive(){
    if(!MAP.zoom)render();}}
  }catch(e){}
 }
-render(); fetchLive();
+/* ---- sticky wayfinding nav ---- */
+function navStatHTML(){const y=AGG.totYoY; return `<b>$${(AGG.total/1000).toFixed(2)}T</b> put in place &middot; <span class="${y>=0?'up':'down'}">${y>=0?'+':''}${(y*100).toFixed(1)}% YoY</span>`;}
+function updateNav(){const n=document.getElementById('navstat'); if(n)n.innerHTML=navStatHTML();}
+function wireNav(){
+ const nav=document.getElementById('topnav'); if(!nav)return;
+ const links=[...nav.querySelectorAll('.navlinks a')];
+ let ticking=false;
+ function onScroll(){
+  const y=window.scrollY||document.documentElement.scrollTop||0;
+  nav.classList.toggle('show', y>430);
+  let active=null;
+  links.forEach(a=>{const s=document.querySelector(a.getAttribute('href')); if(s&&s.getBoundingClientRect().top<150)active=a;});
+  links.forEach(a=>a.classList.toggle('active',a===active));
+  ticking=false;
+ }
+ addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+ const nb=document.getElementById('navShare'); if(nb)nb.onclick=downloadCard;
+ updateNav(); onScroll();
+}
+render(); fetchLive(); wireNav();
 addEventListener('resize',()=>{clearTimeout(window._rz);window._rz=setTimeout(()=>{layoutQuadrant();drawArc();},160);});
 </script>
 </body>
