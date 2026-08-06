@@ -90,6 +90,24 @@ a:hover{border-color:var(--copper2)}
 .bpprog{margin-top:14px;height:3px;background:rgba(127,166,196,.18);border-radius:2px;overflow:hidden}
 .bpprog i{display:block;height:100%;background:var(--copper);border-radius:2px;transition:width .5s ease}
 .bpnote{font-family:var(--mono);font-size:9.5px;color:#6E8CA8;margin-top:10px;line-height:1.5}
+/* the real 3D building, re-homed into the companion stage */
+.bpstage{position:relative;height:430px;border-radius:3px;overflow:hidden;margin-bottom:14px;background:radial-gradient(125% 95% at 58% 4%,#294763 0%,#18293F 32%,#0B1626 63%,#04090F 100%),radial-gradient(70% 34% at 50% 99%,rgba(184,115,51,.11),transparent 72%);cursor:grab;user-select:none;touch-action:none}
+.bpstage.drag{cursor:grabbing}
+.bpstage::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 105% at 50% 42%,transparent 54%,rgba(2,6,12,.5) 100%)}
+#world{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1380px;transition:perspective 1.4s cubic-bezier(.32,.72,.16,1)}
+#lift{transition:transform 1.5s cubic-bezier(.32,.72,.16,1)}
+#model{position:relative;width:380px;height:250px;transform-style:preserve-3d;transition:transform 1.5s cubic-bezier(.32,.72,.16,1)}
+#model *{transform-style:preserve-3d}
+.m{position:absolute;transition:opacity .9s ease,transform 1.1s cubic-bezier(.32,.72,.16,1),background .5s ease}
+#sun{position:absolute;left:58%;top:8%;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;pointer-events:none;transition:opacity 1.4s ease,top 1.6s cubic-bezier(.32,.72,.16,1);background:radial-gradient(circle,rgba(255,214,170,.20) 0%,rgba(217,145,90,.10) 32%,rgba(217,145,90,0) 68%)}
+#horizon{position:absolute;left:0;right:0;top:30%;height:40%;opacity:0;transition:opacity 1.6s ease;pointer-events:none;background:linear-gradient(90deg,rgba(97,150,214,.12) 0%,rgba(97,150,214,.03) 38%,transparent 60%,rgba(217,145,90,.10) 100%),linear-gradient(to top,rgba(217,145,90,.10),rgba(217,145,90,.02) 46%,transparent)}
+#horizon::after{content:'';position:absolute;left:8%;right:8%;top:52%;height:1px;background:linear-gradient(90deg,transparent,rgba(163,197,240,.35) 20%,rgba(240,168,108,.4) 80%,transparent)}
+.halo{border:1.5px solid rgba(240,168,108,.34);background:radial-gradient(closest-side,transparent 60%,rgba(240,168,108,.05) 84%,transparent 100%);animation:halopulse 6.5s ease-in-out infinite}
+@keyframes halopulse{0%,100%{box-shadow:0 0 40px 3px rgba(240,168,108,.14),inset 0 0 32px rgba(240,168,108,.05)}50%{box-shadow:0 0 64px 8px rgba(240,168,108,.28),inset 0 0 38px rgba(240,168,108,.10)}}
+#memchip{position:fixed;z-index:60;pointer-events:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.2px;color:#EAF1F8;background:rgba(8,16,27,.95);border:1px solid rgba(116,179,198,.4);border-radius:3px;padding:6px 9px;max-width:230px;opacity:0;transition:opacity .15s;transform:translateY(-2px)}
+#memchip.on{opacity:1}
+.mem.hot{outline:1px solid rgba(240,168,108,.9);outline-offset:1px}
+.bphint{font-family:var(--mono);font-size:9px;letter-spacing:.4px;color:#5E7C97;text-align:center;margin-top:-4px;margin-bottom:8px}
 
 /* generic section */
 .sec{padding:70px 0 0}
@@ -198,7 +216,7 @@ const STAGES=[
   ps:'One member left, and it is the only thing here with nothing under it. Dimensioned, sitting above the plate. The capability comes in-house either way. Fixing it down is the ask.',
   mem:[['01','Own the workforce data layer','A governed product with a named owner, not a person who holds it in their head.'],['02','Answer adoption after IBM','Built into the training paths, owned the year after go-live.'],['03','Scale the networks','Change leaders and field trainers to every company.']],
   nd:'The seat again. I am asking to carry it.', done:0, roof:1},
- {n:'—',yr:'Now',pk:'The weather',title:'The weather it stands in',hero:'5',herol:'public series, pulled and read, no purchased forecast',
+ {n:'W',yr:'Now',pk:'The weather',title:'The weather it stands in',hero:'5',herol:'public series, pulled and read, no purchased forecast',
   ps:'Not part of the building, the weather it stands in. BLS, Census, AIA, Dodge, Freddie Mac, read against the portfolio. The full live dashboard is one of the tools below.',
   mem:[['+5.5%','Contractor prices','Year over year to June. Materials +2.7%.'],['-6.6%','Nonresidential spending','Private nonresidential. Data centers the only category up.'],['47.3','Billings index','41 months below 50. Dodge Momentum +21.8%.'],['6.66%','Rates','Six basis points in twelve months.']],
   nd:'Somebody inside, reading the company against the weather.', done:0, weather:1}
@@ -270,28 +288,90 @@ function buildingH(){
  return `<div class="buildco"><div class="bpcard">
   <div class="bphead"><span class="bpk">The structure</span><span class="bpc" id="bpc">7 / 66 members</span></div>
   <div class="bpt" id="bpt">Footings and the slab</div>
-  <div class="section" id="bsection"></div>
-  <div class="grade"></div><div class="gradel">grade</div>
+  <div class="bpstage" id="bpstage"><div id="sun" style="opacity:0"></div><div id="horizon"></div><div id="world"><div id="lift"><div id="model"></div></div></div></div>
+  <div class="bphint">Drag to orbit &middot; click a part to jump to its stage</div>
   <div class="bpprog"><i id="bpfill" style="width:14%"></i></div>
   <div class="bpnote" id="bpnote">Members install as each stage completes.</div>
  </div></div>`;
 }
-function buildSectionH(active){
- return LAYERS.map(l=>{
-  const done=active>=l.st, now=l.st===Math.min(active,3);
-  return `<div class="layer${done?' done':''}${now?' now':''}${l.roof?' roofL':''}"><span class="lm">${l.m}</span><span class="lc">${l.c}</span></div>`;
- }).join('');
+/* ---- the real 3D building, ported from the OneRoof experience ---- */
+const CAMS=[{rx:70,rz:-30,ty:64,sc:0.52,pv:1600},{rx:66,rz:-30,ty:34,sc:0.66,pv:1490},{rx:60,rz:-30,ty:8,sc:0.8,pv:1380},{rx:62,rz:-28,ty:8,sc:0.9,pv:1360},{rx:64,rz:-26,ty:26,sc:0.94,pv:1360}];
+const PARTS=[['Footing',6,0],['Slab',1,0],['Column',13,1],['Beam',4,1],['Floor panel',25,2],['Room',16,2],['Roof',1,3]];
+const TOTAL=66;
+let M,site,shadow,footEls,slab,slabEdge,colEls,beamEls,plate,panelGrid,plateEdge,roomsWrap,roomEls,crewEls,roof,risers,halo,memChip;
+let act=0, entered=true, rx=70, rz=-30, drag=null, litT=null, built=false;
+function mkdiv(css,cls){const d=document.createElement('div');d.className='m'+(cls?' '+cls:'');d.style.cssText=css;M.appendChild(d);return d;}
+function buildModel(){
+ M=$('#model'); if(!M||built)return; built=true;
+ site=mkdiv('left:-800px;top:-620px;width:2400px;height:1600px;background-image:linear-gradient(rgba(116,179,198,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(116,179,198,.08) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(closest-side,#000 30%,transparent 84%);mask-image:radial-gradient(closest-side,#000 30%,transparent 84%)');
+ mkdiv('left:-34px;top:-24px;width:448px;height:298px;border:1px dashed rgba(116,179,198,.4);transform:translateZ(-22px)');
+ shadow=mkdiv('left:44px;top:52px;width:380px;height:250px;background:rgba(0,0,0,.55);filter:blur(26px);transform:translateZ(1px)');
+ const FOOT=[[6,6],[326,6],[6,196],[326,196],[166,6],[166,196]];
+ footEls=FOOT.map(p=>mkdiv(`left:${p[0]}px;top:${p[1]}px;width:48px;height:48px;background:rgba(97,150,214,.5);border:1px solid rgba(163,197,240,.75)`));
+ slab=mkdiv('left:0;top:0;width:380px;height:250px;background:rgba(97,150,214,.24);background-image:linear-gradient(118deg,rgba(255,255,255,.12),rgba(255,255,255,0) 60%);border:1px solid rgba(198,222,252,.6);transform:translateZ(16px)');
+ slabEdge=mkdiv('left:0;top:238px;width:380px;height:12px;transform:translateZ(16px) rotateX(90deg);background:rgba(46,80,130,.95)');slabEdge.style.transformOrigin='top center';
+ colEls=[];for(let i=0;i<13;i++){let x,y;if(i<5){x=16+i*82.5;y=-2;}else if(i<10){x=16+(i-5)*82.5;y=236;}else{x=(i===10?16:(i===11?362:189));y=117;}const c=mkdiv(`left:${x}px;top:${y-124}px;width:9px;height:124px;transform:translateZ(16px) rotateX(-90deg);background:linear-gradient(to top,rgba(214,232,255,.95),rgba(163,197,240,.5))`);c.style.transformOrigin='bottom center';colEls.push(c);}
+ beamEls=[['left:0;top:6px;width:380px;height:9px'],['left:0;top:235px;width:380px;height:9px'],['left:6px;top:0;width:9px;height:250px'],['left:365px;top:0;width:9px;height:250px']].map(s=>mkdiv(s[0]+';background:rgba(214,232,255,.55)'));
+ plate=mkdiv('left:0;top:0;width:380px;height:250px;background:rgba(97,150,214,.3);background-image:linear-gradient(118deg,rgba(255,255,255,.14),rgba(255,255,255,0) 58%);border:1px solid rgba(214,232,255,.68)');
+ panelGrid=mkdiv('left:0;top:0;width:380px;height:250px;background-image:repeating-linear-gradient(to right,rgba(198,222,252,.42) 0 1px,transparent 1px 76px),repeating-linear-gradient(to bottom,rgba(198,222,252,.42) 0 1px,transparent 1px 50px)');
+ plateEdge=mkdiv('left:0;top:238px;width:380px;height:12px;transform-origin:top center;background:rgba(46,80,130,.95)');
+ roomsWrap=mkdiv('left:20px;top:14px;width:340px;height:222px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:10px');
+ roomEls=[];for(let i=0;i<16;i++){const r=document.createElement('div');r.style.cssText='border:1px solid rgba(116,179,198,.55);background:rgba(255,214,170,.05);transition:background .5s ease';roomsWrap.appendChild(r);roomEls.push(r);}
+ crewEls=[[74,230],[88,236],[286,214],[196,-6],[140,120]].map(p=>{const c=mkdiv(`left:${p[0]}px;top:${p[1]-17}px;width:5px;height:17px;transform:translateZ(16px) rotateX(-90deg);background:rgba(255,214,170,.7)`);c.style.transformOrigin='bottom center';return c;});
+ roof=mkdiv('left:-22px;top:-16px;width:424px;height:282px;border:1px dashed rgba(240,168,108,.95);background:linear-gradient(135deg,rgba(184,115,51,.17),rgba(184,115,51,.05))');
+ const rchild=css=>{const d=document.createElement('div');d.style.cssText='position:absolute;'+css;roof.appendChild(d);return d;};
+ for(let i=1;i<9;i++)rchild('left:0;top:'+(i/9*100).toFixed(2)+'%;width:100%;height:1px;background:repeating-linear-gradient(to right,rgba(240,168,108,.5) 0 7px,transparent 7px 13px)');
+ rchild('left:50%;top:8px;width:1px;height:266px;background:rgba(255,214,170,.85)');rchild('left:6px;top:6px;right:6px;bottom:6px;border:1px solid rgba(240,168,108,.5)');
+ risers=[[16,-96],[362,-96],[16,232],[362,232]].map(p=>{const r=mkdiv('left:'+p[0]+'px;top:'+p[1]+'px;width:2px;height:96px;transform:translateZ(144px) rotateX(-90deg);background:repeating-linear-gradient(to bottom,rgba(240,168,108,.9) 0 6px,transparent 6px 12px)');r.style.transformOrigin='bottom center';return r;});
+ halo=mkdiv('left:-130px;top:-96px;width:640px;height:442px;border-radius:50%;pointer-events:none','halo');halo.style.transform='translateZ(166px)';halo.style.opacity='0';
+ [...footEls,slab].forEach(e=>e.onclick=()=>jumpStage(0));[...colEls,...beamEls].forEach(e=>e.onclick=()=>jumpStage(1));[plate,panelGrid,roomsWrap].forEach(e=>e.onclick=()=>jumpStage(2));roof.onclick=()=>jumpStage(3);
+ memChip=document.createElement('div');memChip.id='memchip';document.body.appendChild(memChip);
+ const lab=(els,fn)=>els.forEach((e,i)=>{e.classList.add('mem');e.dataset.ml=fn(i);e.style.cursor='pointer';});
+ lab(footEls,i=>'Footing '+(i+1)+' of 6 · below grade, load-bearing');lab([slab],()=>'The slab · the first reporting standard');
+ lab(colEls,i=>'Column '+(i+1)+' of 13 · one per business assessed');lab(beamEls,i=>'Beam '+(i+1)+' of 4 · one per instrument');
+ lab([plate,panelGrid],()=>'Floor panel · 25 down on the plate');lab(roomEls,i=>'Room '+(i+1)+' of 16 · one operating company');lab([roof],()=>'The roof · the one member not installed');
+ M.addEventListener('pointermove',e=>{const st=$('#bpstage');if(st&&st.classList.contains('drag')){memChip.classList.remove('on');return;}const t=e.target.closest('.mem');$$('.mem.hot').forEach(x=>x.classList.remove('hot'));if(!t){memChip.classList.remove('on');return;}t.classList.add('hot');memChip.textContent=t.dataset.ml;memChip.style.left=Math.min(e.clientX+16,innerWidth-244)+'px';memChip.style.top=(e.clientY+18)+'px';memChip.classList.add('on');});
+ M.addEventListener('pointerleave',()=>{$$('.mem.hot').forEach(x=>x.classList.remove('hot'));memChip.classList.remove('on');});
+ wireDrag();
 }
-const MEMCOUNT=['7 / 66 members','24 / 66 members','65 / 66 members','66 / 66 members','66 / 66 members'];
+function setOps(){
+ const b=s=>act>=s?1:0.14;
+ site.style.opacity=1;shadow.style.opacity=b(0);
+ footEls.forEach(e=>e.style.opacity=b(0));slab.style.opacity=b(0);slabEdge.style.opacity=b(0);
+ colEls.forEach(e=>e.style.opacity=b(1));
+ beamEls.forEach(e=>{e.style.opacity=b(1);e.style.transform=`translateZ(${act>=1?140:156}px)`;});
+ [plate,panelGrid].forEach(e=>{e.style.opacity=b(2);e.style.transform=`translateZ(${act>=2?148:168}px)`;});
+ plateEdge.style.opacity=b(2);plateEdge.style.transform=`translateZ(${act>=2?148:168}px) rotateX(90deg)`;
+ roomsWrap.style.opacity=b(2);roomsWrap.style.transform=`translateZ(${act>=2?150:170}px)`;
+ crewEls.forEach(e=>e.style.opacity=act>=2?1:0);
+ halo.style.opacity=act>=2?(act>=3?1:.6):0;
+ roof.style.opacity=act>=3?1:0.12;roof.style.transform=`translateZ(${act>=3?244:262}px)`;
+ risers.forEach(e=>e.style.opacity=act>=3?1:0);
+ const wx=act>=4, sun=$('#sun'), hz=$('#horizon');
+ if(sun){sun.style.opacity=entered?(wx?1:(act>=2?.7:.4)):0;sun.style.top=wx?'-4%':'8%';}
+ if(hz)hz.style.opacity=(entered&&wx)?1:0;
+}
+function setLights(){
+ clearInterval(litT);
+ if(act>=2){let n=0;litT=setInterval(()=>{n++;roomEls.forEach((r,i)=>r.style.background=`rgba(255,214,170,${i<n?.34:.05})`);if(n>=16)clearInterval(litT);},80);}
+ else roomEls.forEach(r=>r.style.background='rgba(255,214,170,.05)');
+}
+function setCam(){const c=CAMS[act];$('#lift').style.transform=`translateY(${c.ty}px) scale(${c.sc})`;if(c.pv)$('#world').style.perspective=c.pv+'px';rx=c.rx;rz=c.rz;M.style.transform=`rotateX(${rx}deg) rotateZ(${rz}deg)`;}
+function wireDrag(){
+ const st=$('#bpstage'); if(!st)return; let moved=false;
+ st.addEventListener('pointerdown',e=>{if(e.button&&e.button!==0)return;drag={x:e.clientX,y:e.clientY,rx,rz};moved=false;st.classList.add('drag');M.style.transition='none';});
+ window.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(!moved&&dx*dx+dy*dy>16)moved=true;rz=Math.max(-48,Math.min(-12,drag.rz+dx*0.12));rx=Math.max(48,Math.min(88,drag.rx-dy*0.1));M.style.transform=`rotateX(${rx}deg) rotateZ(${rz}deg)`;});
+ window.addEventListener('pointerup',()=>{if(!drag)return;drag=null;st.classList.remove('drag');M.style.transition='';});
+}
 const PROG=['14%','40%','98%','100%','100%'];
+const MEMCOUNT=['7 / 66','24 / 66','65 / 66','66 / 66','66 / 66'];
+function jumpStage(i){const el=$('#stg-'+i); if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
 function setBuilding(active){
- const sec=$('#bsection'); if(!sec)return;
- sec.innerHTML=buildSectionH(active);
+ act=active; if(!built)return; setOps(); setLights(); setCam();
  const s=STAGES[active];
- $('#bpt').textContent=s.title;
- $('#bpc').textContent=MEMCOUNT[active];
+ $('#bpt').textContent=s.title; $('#bpc').textContent=MEMCOUNT[active]+' members';
  $('#bpfill').style.width=PROG[active];
- $('#bpnote').textContent=active>=3?'One member left. It is the roof, and it is the ask.':'Members install as each stage completes.';
+ $('#bpnote').textContent=active>=4?'The weather it stands in. Sun up, horizon on.':(active>=3?'One member left. It is the roof, and it is the ask.':'Members install as each stage completes.');
 }
 function builtH(){
  return `<section class="sec" id="s-built">${secHead('What got built','The portfolio behind the frame','Eight things that shipped or run today, grouped by layer. Each one is real, with the numbers that make it checkable.')}
@@ -341,6 +421,7 @@ function render(){
   +`<section class="sec" id="s-build">${secHead('The build','Stage by stage, footings to roof','Scroll the story. The structure on the right assembles as each stage lands.')}
      <div class="build"><div class="stages">${STAGES.map((s,i)=>stageH(s,i)).join('')}</div>${buildingH()}</div></section>`
   +builtH()+networkH()+forwardH()+toolsH()+askH()+footerH();
+ buildModel();
  setBuilding(0);
  wireScroll();
  wireNav();
