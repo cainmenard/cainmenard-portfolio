@@ -6,6 +6,18 @@
 <meta name="robots" content="noindex">
 <title>The Construction Read | Cain Menard</title>
 <meta name="description" content="A live monthly read on the US construction economy. Public data, pulled live, with a forecast that shows its work.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cain Menard">
+<meta property="og:title" content="The Construction Read: a live read on the US construction economy">
+<meta property="og:description" content="A $2.2T market, read live from public data every month, with a forecast that shows its work. Segments, metros, and the leading signals.">
+<meta property="og:url" content="https://www.cainmenard.com/market-outlook">
+<meta property="og:image" content="https://www.cainmenard.com/market-outlook/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Construction Read">
+<meta name="twitter:description" content="A live monthly read on the US construction economy. Public data, a forecast that shows its work.">
+<meta name="twitter:image" content="https://www.cainmenard.com/market-outlook/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -144,6 +156,32 @@ a:hover{border-color:var(--copper2)}
 .spark{display:flex;align-items:flex-end;gap:5px;height:38px;margin:12px 0 2px}
 .sbar{flex:1;border-radius:2px 2px 0 0;min-height:3px}
 .asofm{font-family:var(--mono);font-size:9px;color:var(--mut);margin-top:8px;letter-spacing:.3px}
+/* what changed */
+.chwrap{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:26px;border:1px solid var(--line);border-radius:2px;background:var(--card)}
+.chcol{padding:20px 26px}
+.chcol:first-child{border-right:1px solid var(--line)}
+.chh{font-family:var(--mono);font-size:10px;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px}
+.chh.up{color:var(--up)}.chh.down{color:var(--down)}
+.chrow{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-top:1px solid var(--line)}
+.chk{font-family:var(--serif);font-size:18px;color:var(--ink)}
+.chv{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+.chv.up{color:var(--up)}.chv.down{color:var(--down)}
+.chflip{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.2px;color:var(--ink2)}
+.chflip b{color:var(--ink);font-weight:500}
+/* metro permits */
+.metrowrap{margin-top:26px}
+.metrogrid{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.mrow{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--line)}
+.mrank{font-family:var(--mono);font-size:11px;color:var(--mut);width:18px;text-align:right;flex:0 0 18px}
+.mname{font-family:var(--serif);font-size:16px;color:var(--ink);width:118px;flex:0 0 118px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtrack{flex:1;height:8px;background:var(--paper2);border-radius:5px;overflow:hidden}
+.mfill{display:block;height:100%;background:var(--copper);border-radius:5px}
+.mval{font-family:var(--mono);font-size:12px;color:var(--ink2);width:40px;text-align:right;flex:0 0 40px;font-variant-numeric:tabular-nums}
+.mchip{font-family:var(--mono);font-size:11px;width:50px;text-align:right;flex:0 0 50px;font-variant-numeric:tabular-nums}
+.mchip.up{color:var(--up)}.mchip.down{color:var(--down)}
+/* share card button */
+.sharebtn{font-family:var(--mono);font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--copper2);background:transparent;border:1px solid var(--line2);border-radius:2px;padding:5px 11px;cursor:pointer;margin-left:16px;transition:.15s}
+.sharebtn:hover{border-color:var(--copper);color:var(--copper)}
 /* method */
 .method{margin-top:30px;display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:start;border:1px solid var(--line);border-radius:2px;background:var(--card);padding:28px 30px}
 .steps{counter-reset:s}
@@ -204,6 +242,8 @@ footer .src{font-family:var(--mono);font-size:11px;line-height:1.8;margin-top:8p
  .indrow,.indrow4{grid-template-columns:1fr}.ind{border-left:none;border-top:1px solid var(--line)}.indrow .ind:first-child{border-top:none}
  .method{grid-template-columns:1fr;gap:24px}
  .qplot{height:400px}.barname{width:108px}
+ .chwrap{grid-template-columns:1fr}.chcol:first-child{border-right:none;border-bottom:1px solid var(--line)}
+ .metrogrid{grid-template-columns:1fr;gap:0}
 }
 </style>
 </head>
@@ -253,6 +293,42 @@ let IND={
 };
 let ARCFB=[[2007,1150],[2008,1075],[2009,905],[2010,800],[2011,790],[2012,860],[2013,930],[2014,1000],[2015,1090],[2016,1170],[2017,1250],[2018,1310],[2019,1370],[2020,1450],[2021,1650],[2022,1900],[2023,2075],[2024,2130],[2025,2166]];
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+/* ---- metro building permits: private housing units authorized, trailing 12mo (Census BPS via FRED). seeded, refreshed live ---- */
+let METRO=[
+ {k:"Dallas",f:"DALL148BPPRIV",v:61973,yo:-0.118},
+ {k:"Houston",f:"HOUS448BPPRIV",v:59212,yo:-0.123},
+ {k:"New York",f:"NEWY636BPPRIV",v:56401,yo:0.148},
+ {k:"Phoenix",f:"PHOE004BPPRIV",v:36414,yo:-0.100},
+ {k:"Los Angeles",f:"LOSA106BPPRIV",v:33614,yo:0.250},
+ {k:"Atlanta",f:"ATLA013BPPRIV",v:33518,yo:-0.057},
+ {k:"Austin",f:"AUST448BPPRIV",v:23368,yo:-0.257},
+ {k:"Tampa",f:"TAMP312BPPRIV",v:21666,yo:0.072},
+ {k:"Washington",f:"WASH911BPPRIV",v:21588,yo:0.157},
+ {k:"Orlando",f:"ORLA712BPPRIV",v:21240,yo:-0.213},
+ {k:"Seattle",f:"SEAT653BPPRIV",v:20018,yo:0.287},
+ {k:"Charlotte",f:"CHAR737BPPRIV",v:19866,yo:-0.193},
+ {k:"Miami",f:"MIAM112BPPRIV",v:19145,yo:0.011},
+ {k:"Raleigh",f:"RALE537BPPRIV",v:19018,yo:0.003},
+ {k:"Nashville",f:"NASH947BPPRIV",v:17510,yo:-0.091},
+ {k:"Denver",f:"DENV708BPPRIV",v:15506,yo:-0.031},
+ {k:"Chicago",f:"CHIC917BPPRIV",v:15460,yo:-0.127},
+ {k:"Minneapolis",f:"MINN427BPPRIV",v:14222,yo:-0.040},
+ {k:"Philadelphia",f:"PHIL942BPPRIV",v:14036,yo:0.041},
+ {k:"Riverside",f:"RIVE106BPPRIV",v:13843,yo:-0.088},
+ {k:"Las Vegas",f:"LASV832BPPRIV",v:11111,yo:-0.159},
+ {k:"San Diego",f:"SAND706BPPRIV",v:10989,yo:-0.101},
+ {k:"Sacramento",f:"SACR906BPPRIV",v:10479,yo:-0.040},
+ {k:"Boston",f:"BOST625BPPRIV",v:10458,yo:0.103},
+ {k:"San Antonio",f:"SANA748BPPRIV",v:9883,yo:-0.264},
+ {k:"Portland",f:"PORT941BPPRIV",v:8859,yo:-0.045},
+ {k:"Detroit",f:"DETR826BPPRIV",v:8589,yo:0.023},
+ {k:"San Jose",f:"SANJ906BPPRIV",v:8097,yo:0.30},
+ {k:"San Francisco",f:"SANF806BPPRIV",v:7430,yo:0.038},
+ {k:"Salt Lake City",f:"SALT649BPPRIV",v:7065,yo:0.149},
+ {k:"Baltimore",f:"BALT524BPPRIV",v:5534,yo:-0.216},
+];
+let MSERIES={}, METRO_ASOF="June 2026";
+const sumA=a=>a.reduce((s,v)=>s+v,0);
 
 /* ---- forecast: recent momentum easing to trend. one knob ---- */
 let W=0.60, LIVE=false, SERIES={}, booted=false;
@@ -290,6 +366,55 @@ function segNarr(s){
  return `${now}. From here, ${fwd}.`;
 }
 
+/* ---- what changed this month ---- */
+function changesData(){
+ const live=SEG.some(s=>SERIES[s.fred]&&SERIES[s.fred].length>1);
+ if(live){
+  const rows=SEG.map(s=>{const a=SERIES[s.fred]; if(!a||a.length<2)return null; const x=a.map(p=>p[1]);
+    return {k:s.k,d:+((x[x.length-1]-x[x.length-2])/1000).toFixed(1)};}).filter(Boolean);
+  const flips=[]; const LBL={up:'Growing',stable:'Holding',down:'Cooling'};
+  SEG.forEach(s=>{const a=SERIES[s.fred]; if(!a||a.length<14)return; const x=a.map(p=>p[1]);
+    const cn=cls(x[x.length-1]/x[x.length-13]-1), cp=cls(x[x.length-2]/x[x.length-14]-1);
+    if(cn!==cp)flips.push(`<b>${s.k}</b> moved from ${LBL[cp]} to ${LBL[cn]}`);});
+  return {mode:'mom',asof:AGG.asof,
+    gain:rows.slice().sort((a,b)=>b.d-a.d).slice(0,3),
+    give:rows.slice().sort((a,b)=>a.d-b.d).slice(0,3), flips};
+ }
+ return {mode:'yoy',asof:AGG.asof,
+   gain:SEG.slice().sort((a,b)=>b.yoy-a.yoy).slice(0,3).map(s=>({k:s.k,p:s.yoy})),
+   give:SEG.slice().sort((a,b)=>a.yoy-b.yoy).slice(0,3).map(s=>({k:s.k,p:s.yoy})), flips:[]};
+}
+function whatChangedSec(){
+ const c=changesData();
+ const row=o=>{const neg=o.d!=null?o.d<0:o.p<0; const val=o.d!=null?((o.d>=0?'+':'-')+'$'+Math.abs(o.d).toFixed(1)+'B'):PCT(o.p);
+   return `<div class="chrow"><span class="chk">${o.k}</span><span class="chv ${neg?'down':'up'}">${val}</span></div>`;};
+ const lead=c.mode==='mom'?`Dollar change from the prior month, off the ${c.asof} Census release.`:`Change over the past year. Live monthly deltas load with the data.`;
+ const flip=c.flips.length?`<div class="chflip">${c.flips.map(f=>`<span>&#8646;&nbsp; ${f}</span>`).join('')}</div>`:`<div class="chflip"><span>No segment changed camp this month.</span></div>`;
+ return `<section class="sec rv">${secHead('What changed','The month, at a glance',lead)}
+  <div class="chwrap">
+   <div class="chcol"><div class="chh up">Added the most spend</div>${c.gain.map(row).join('')}</div>
+   <div class="chcol"><div class="chh down">Gave back the most</div>${c.give.map(row).join('')}</div>
+  </div>${flip}
+ </section>`;
+}
+
+/* ---- metro permits ---- */
+function metroSec(){
+ const top=METRO.slice(0,20), max=Math.max(...top.map(m=>m.v));
+ const rows=top.map((m,i)=>{
+   const w=(m.v/max*100).toFixed(1);
+   const chip=m.yo!=null?`<span class="mchip ${m.yo>=0?'up':'down'}">${m.yo>=0?'+':''}${(m.yo*100).toFixed(0)}%</span>`:'<span class="mchip"></span>';
+   return `<div class="mrow"><span class="mrank">${i+1}</span><span class="mname">${m.k}</span><span class="mtrack"><span class="mfill" style="width:${w}%"></span></span><span class="mval">${(m.v/1000).toFixed(1)}k</span>${chip}</div>`;
+ }).join('');
+ const pool=METRO.slice(0,12).filter(m=>m.yo!=null&&Math.abs(m.yo)<0.6);
+ const up=pool.slice().sort((a,b)=>b.yo-a.yo)[0], dn=pool.slice().sort((a,b)=>a.yo-b.yo)[0];
+ const note=up&&dn?`${dn.k} is pulling back the hardest of the big metros, down ${Math.abs(dn.yo*100).toFixed(0)}% over the year, while ${up.k} is turning back up, ${(up.yo*100).toFixed(0)}% higher. As of ${METRO_ASOF}.`:`As of ${METRO_ASOF}.`;
+ return `<section class="sec rv">${secHead('Where the housing is going','Permits by metro, trailing twelve months','Private housing units authorized by building permits, summed over the last twelve months. Census Building Permits Survey, live via FRED. Residential only, so it reads where the rooftops are headed, not the big nonresidential jobs.')}
+  <div class="metrowrap"><div class="metrogrid">${rows}</div>
+   <div class="note">${note}</div></div>
+ </section>`;
+}
+
 /* ---- tooltip ---- */
 const tip=$('#tip');
 function showTip(h,e){tip.querySelector('.tt').innerHTML=h.t;tip.querySelector('.tb').innerHTML=h.b;tip.style.opacity='1';move(e);}
@@ -300,14 +425,15 @@ addEventListener('pointerdown',hideTip);
 /* ================= render ================= */
 function render(){
  const wrap=$('#wrap');
- wrap.innerHTML=mastheadH()+heroH()+stripH()+arcSec()+scoreSec()+quadSec()+indSec()+scrubSec()+mapSec()+methodSec()+footerH();
+ wrap.innerHTML=mastheadH()+heroH()+stripH()+arcSec()+whatChangedSec()+scoreSec()+quadSec()+indSec()+scrubSec()+mapSec()+metroSec()+methodSec()+footerH();
  layoutQuadrant(); drawArc(); wireRows(); wireScenario(); initScrubber(); initMap();
+ const sb=$('#shareBtn'); if(sb)sb.onclick=downloadCard;
  if(!booted){booted=true; motionIn(); countUp();}
  else{$$('.rv').forEach(e=>e.classList.add('in')); const hn=$('#heroNum'); if(hn)hn.innerHTML=heroNumHTML();}
 }
 function mastheadH(){
  return `<div class="mast rv"><div class="brandmark">The Construction Read<span class="dot">.</span></div>
-  <div class="mastr"><span>${AGG.asof}</span><span class="pulse" id="pulse"><i></i>Live</span></div></div>`;
+  <div class="mastr"><span>${AGG.asof}</span><span class="pulse" id="pulse"><i></i>Live</span><button class="sharebtn" id="shareBtn" title="Download a share card for LinkedIn">Save card</button></div></div>`;
 }
 function heroNumHTML(){return `$${(AGG.total/1000).toFixed(2)}<span class="u">T</span>`;}
 function heroH(){
@@ -538,6 +664,43 @@ function countUp(){
  requestAnimationFrame(tick);
 }
 
+/* ---- shareable card (LinkedIn), drawn client-side ---- */
+function wrapText(x,txt,left,top,maxw,lh){
+ const words=txt.split(' '); let line='',y=top;
+ for(const w of words){const test=line?line+' '+w:w;
+   if(x.measureText(test).width>maxw&&line){x.fillText(line,left,y);line=w;y+=lh;}else line=test;}
+ if(line)x.fillText(line,left,y); return y;
+}
+function downloadCard(){
+ const cv=document.createElement('canvas'); cv.width=1200; cv.height=630;
+ const x=cv.getContext('2d');
+ x.fillStyle='#FAF8F5'; x.fillRect(0,0,1200,630);
+ x.fillStyle='#F4EFE7'; x.fillRect(0,0,1200,8);
+ const r=monthlyRead(), a=ALL();
+ const gcnt=a.filter(s=>cls(s.yoy)==='up').length+a.filter(s=>cls(s.yoy)==='stable').length;
+ const up=a.slice().sort((p,q)=>q.yoy-p.yoy)[0], dn=a.slice().sort((p,q)=>p.yoy-q.yoy)[0];
+ x.fillStyle='#1E2A38'; x.font='600 28px Georgia,"Times New Roman",serif'; x.textBaseline='alphabetic';
+ x.fillText('The Construction Read',74,92);
+ x.fillStyle='#B87333'; x.fillText('.',74+x.measureText('The Construction Read').width,92);
+ x.fillStyle='#B87333'; x.fillRect(74,116,132,4);
+ const hl=r.headline.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+ x.fillStyle='#1E2A38'; x.font='500 62px Georgia,"Times New Roman",serif';
+ wrapText(x,hl,74,196,900,68);
+ x.font='600 116px Georgia,"Times New Roman",serif'; x.fillStyle='#1E2A38';
+ x.fillText('$'+(AGG.total/1000).toFixed(2)+'T',74,430);
+ x.font='500 22px Helvetica,Arial,sans-serif'; x.fillStyle='#8B8578';
+ x.fillText('US construction put in place, annualized  ·  '+AGG.asof,78,466);
+ x.font='500 24px Helvetica,Arial,sans-serif';
+ x.fillStyle='#3F7A57'; x.fillText('▲ '+up.k+'  '+PCT(up.yoy),74,528);
+ x.fillStyle='#B0483B'; x.fillText('▼ '+dn.k+'  '+PCT(dn.yoy),74+430,528);
+ x.fillStyle='#3C4859'; x.font='500 22px Helvetica,Arial,sans-serif';
+ x.fillText(gcnt+' of '+a.length+' segments growing or holding',74,566);
+ x.fillStyle='#8B8578'; x.font='500 22px Helvetica,Arial,sans-serif';
+ x.fillText('cainmenard.com/market-outlook',74,600);
+ const aname='construction-read-'+AGG.asof.replace(' ','-').toLowerCase()+'.png';
+ cv.toBlob(b=>{const u=URL.createObjectURL(b);const el=document.createElement('a');el.href=u;el.download=aname;el.click();setTimeout(()=>URL.revokeObjectURL(u),4000);});
+}
+
 /* ---- live refresh ---- */
 async function fetchLive(){
  try{
@@ -547,7 +710,8 @@ async function fetchLive(){
   SEG.forEach(s=>{const a=SERIES[s.fred]; if(a&&a.length>13){const x=a.map(p=>p[1]);s.lvl=+(x[x.length-1]/1000).toFixed(1);s.yoy=+(x[x.length-1]/x[x.length-13]-1).toFixed(4);const k=Math.min(121,x.length);s.tr=+(Math.pow(x[x.length-1]/x[x.length-k],12/(k-1))-1).toFixed(4);}});
   const tot=SERIES['TTLCONS'],res=SERIES['TLRESCONS'];
   if(tot&&tot.length>13){AGG.total=+(tot[tot.length-1][1]/1000).toFixed(1);AGG.totYoY=+(tot[tot.length-1][1]/tot[tot.length-13][1]-1).toFixed(4);const k=Math.min(121,tot.length);AGG.totTr=+(Math.pow(tot[tot.length-1][1]/tot[tot.length-k][1],12/(k-1))-1).toFixed(4);const d=tot[tot.length-1][0].split('-');AGG.asof=MON[+d[1]-1]+' '+d[0];}
-  if(res&&res.length)AGG.res=+(res[res.length-1][1]/1000).toFixed(1);
+  if(res&&res.length){AGG.res=+(res[res.length-1][1]/1000).toFixed(1);
+   const rs=RES.reduce((a,x)=>a+x.lvl,0); if(rs>0)RES.forEach(x=>x.lvl=+(x.lvl/rs*AGG.res).toFixed(0));}
   AGG.nrb=SEG.filter(s=>s.grp==='nrb').reduce((a,x)=>a+x.lvl,0);
   AGG.nb=SEG.filter(s=>s.grp==='nb').reduce((a,x)=>a+x.lvl,0);
   LIVE=true; render(); const pl=$('#pulse'); if(pl)pl.classList.add('on');
@@ -556,6 +720,16 @@ async function fetchLive(){
   const r=await fetch('/api/fred?series=MORTGAGE30US,WPUSI012011,HOUST&start=2024-01-01&freq=m',{cache:'no-store'});
   if(r.ok){const j=await r.json(); if(j.ok){const gg=(id,f)=>{const a=j.series[id];if(a&&a.length)f(a);};
    gg('MORTGAGE30US',a=>IND.rate.v=a[a.length-1][1]); gg('WPUSI012011',a=>{if(a.length>12)IND.ppi.v=+(a[a.length-1][1]/a[a.length-13][1]-1).toFixed(3);}); gg('HOUST',a=>IND.starts.v=+(a[a.length-1][1]/1000).toFixed(2)); render();}}
+ }catch(e){}
+ try{
+  const mids=METRO.map(m=>m.f).join(',');
+  const r=await fetch('/api/fred?series='+mids+'&start=2023-01-01&freq=m',{cache:'no-store'});
+  if(r.ok){const j=await r.json(); if(j.ok&&j.series){MSERIES=j.series; let asof='';
+   METRO.forEach(m=>{const a=MSERIES[m.f]; if(a&&a.length>=24){const x=a.map(p=>p[1]);
+     const ttm=sumA(x.slice(-12)), prev=sumA(x.slice(-24,-12));
+     m.v=Math.round(ttm); if(prev)m.yo=+(ttm/prev-1).toFixed(3); asof=a[a.length-1][0];}});
+   if(asof){const d=asof.split('-');METRO_ASOF=MON[+d[1]-1]+' '+d[0];}
+   METRO.sort((a,b)=>b.v-a.v); render();}}
  }catch(e){}
 }
 render(); fetchLive();

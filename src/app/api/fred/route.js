@@ -12,6 +12,14 @@ const ALLOW = new Set([
   'TLNRESCONS', 'TTLCONS', 'TLRESCONS', 'PNRESCONS', 'TLPBLCONS',
   // indicators
   'MORTGAGE30US', 'WPUSI012011', 'HOUST',
+  // metro building permits, private housing units authorized (Census BPS, via FRED)
+  'DALL148BPPRIV', 'HOUS448BPPRIV', 'NEWY636BPPRIV', 'PHOE004BPPRIV', 'LOSA106BPPRIV',
+  'ATLA013BPPRIV', 'AUST448BPPRIV', 'TAMP312BPPRIV', 'WASH911BPPRIV', 'ORLA712BPPRIV',
+  'SEAT653BPPRIV', 'CHAR737BPPRIV', 'MIAM112BPPRIV', 'RALE537BPPRIV', 'NASH947BPPRIV',
+  'DENV708BPPRIV', 'CHIC917BPPRIV', 'MINN427BPPRIV', 'PHIL942BPPRIV', 'RIVE106BPPRIV',
+  'LASV832BPPRIV', 'SAND706BPPRIV', 'SACR906BPPRIV', 'BOST625BPPRIV', 'SANA748BPPRIV',
+  'PORT941BPPRIV', 'DETR826BPPRIV', 'SANJ906BPPRIV', 'SANF806BPPRIV', 'SALT649BPPRIV',
+  'BALT524BPPRIV',
 ])
 const BASE = 'https://api.stlouisfed.org/fred/series/observations'
 
@@ -28,7 +36,7 @@ export async function GET(request) {
     .split(',')
     .map((s) => s.trim().toUpperCase())
     .filter((s) => ALLOW.has(s))
-    .slice(0, 24)
+    .slice(0, 48)
   if (!ids.length) {
     return Response.json(
       { ok: false, error: 'no valid series requested' },
