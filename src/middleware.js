@@ -32,5 +32,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/oneroof2', '/oneroof2/:path*'],
+  matcher: ['/oneroof2', '/oneroof2/:path*', '/oneroof2-classic', '/oneroof2-classic/:path*'],
 }

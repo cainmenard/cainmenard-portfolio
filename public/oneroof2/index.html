@@ -29,20 +29,6 @@ a:hover{border-color:var(--copper2)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 34px 120px;position:relative}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--copper2)}
 
-/* gate */
-#gate{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:30px;background:radial-gradient(120% 120% at 50% -5%,#FFFFFF,var(--paper) 52%,var(--paper2));transition:opacity .5s ease}
-#gate.hide{opacity:0;pointer-events:none}
-.gatebox{max-width:560px;width:100%}
-.gh1{font-family:var(--serif);font-weight:500;font-size:clamp(32px,5.4vw,54px);line-height:1.04;letter-spacing:-.015em;margin:14px 0 0}
-.gh1 em{font-style:italic;color:var(--copper2)}
-.gp{font-size:17px;line-height:1.6;color:var(--ink2);margin:20px 0 26px;max-width:52ch}
-.gatein{display:flex;gap:10px;max-width:470px}
-#gemail{flex:1;font-family:var(--mono);font-size:13px;padding:13px 15px;border:1px solid var(--line2);border-radius:2px;background:var(--card);color:var(--ink);outline:none}
-#gemail:focus{border-color:var(--copper)}
-#genter{font-family:var(--mono);font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:#fff;background:var(--copper);border:none;border-radius:2px;padding:13px 24px;cursor:pointer;white-space:nowrap}
-#genter:hover{background:var(--copper2)}
-.gerr{font-family:var(--mono);font-size:12px;color:var(--down);margin-top:12px;min-height:15px}
-.gfoot{font-family:var(--mono);font-size:11px;letter-spacing:.3px;color:var(--mut);margin-top:34px}
 .bpimmersive{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:#8FB1CC;border:none;text-align:center;margin-top:10px;border-top:1px solid rgba(127,166,196,.18);padding-top:11px}
 .bpimmersive:hover{color:#EAF1F8}
 /* nav */
@@ -235,16 +221,6 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding-top:26px;font-fa
 </style>
 </head>
 <body>
-<div id="gate">
- <div class="gatebox">
-  <div class="eyebrow">Operation OneRoof &middot; Business Readiness</div>
-  <h1 class="gh1">The readiness story, <em>stage by stage.</em></h1>
-  <p class="gp">An internal RCA walkthrough of the business-readiness work behind the roll-up: what each stage delivered, where the pain sits, and the ask. Enter your RCA email to continue.</p>
-  <div class="gatein"><input id="gemail" type="email" placeholder="you@roofingcorp.com" autocomplete="email" spellcheck="false"><button id="genter">Enter</button></div>
-  <div class="gerr" id="gerr"></div>
-  <div class="gfoot">Built by Cain Menard &middot; Internal &middot; Not for distribution</div>
- </div>
-</div>
 <a id="top"></a>
 <nav id="topnav">
  <a class="nbrand" href="#top">Operation OneRoof<b>.</b></a>
@@ -543,16 +519,6 @@ function wireNav(){
  onScroll();
 }
 render();
-
-/* gate: roofingcorp.com email (same as the live app) */
-function tryEnter(){
- const v=(document.getElementById('gemail').value||'').trim().toLowerCase();
- if(/^[a-z0-9._%+-]+@roofingcorp\.com$/.test(v)||v==='cainmenard@gmail.com'){
-  const g=document.getElementById('gate'); g.classList.add('hide'); setTimeout(()=>{g.style.display='none';},550);
- } else { document.getElementById('gerr').textContent='Use your roofingcorp.com email address.'; }
-}
-document.getElementById('genter').onclick=tryEnter;
-document.getElementById('gemail').addEventListener('keydown',e=>{if(e.key==='Enter')tryEnter();});
 </script>
 </body>
 </html>
