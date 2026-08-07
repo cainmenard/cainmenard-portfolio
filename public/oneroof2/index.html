@@ -258,7 +258,7 @@ const STAGES=[
   mem:[['01','Own the workforce data layer','A governed product with a named owner, not a person who holds it in their head.'],['02','Answer adoption after IBM','Built into the training paths, owned the year after go-live.'],['03','Scale the networks','Change leaders and field trainers to every company.']],
   nd:'The seat again. I am asking to carry it.', done:0, roof:1},
  {n:'W',yr:'Now',pk:'The weather',title:'The weather it stands in',hero:'5',herol:'public series, pulled and read, no purchased forecast',
-  ps:'Not part of the building, the weather it stands in. BLS, Census, AIA, Dodge, Freddie Mac, read against the portfolio. The full live dashboard is one of the tools below.',
+  ps:'Five public series, read against the portfolio: BLS, Census, AIA, Dodge, Freddie Mac. The weather the building stands in, not a piece of it. The full live dashboard is one of the tools below.',
   mem:[['+5.5%','Contractor prices','Year over year to June. Materials +2.7%.'],['-6.6%','Nonresidential spending','Private nonresidential. Data centers the only category up.'],['47.3','Billings index','41 months below 50. Dodge Momentum +21.8%.'],['6.66%','Rates','Six basis points in twelve months.']],
   nd:'Somebody inside, reading the company against the weather.', done:0, weather:1}
 ];
@@ -277,7 +277,7 @@ const BUILT=[
  {tag:'People layer',t:'Field Trainer Network',idea:'Built end to end for ~1,637 field people: a two-step nomination on a 32-column sheet, anchored to the first pay cycle.',stats:[['~1,637','in the field'],['4','countdown milestones'],['Sep 21','the deadline']],imp:'One repeatable shape instead of sixteen improvisations. The pay date makes it non-negotiable.'},
  {tag:'Enablement',t:'The adoption platform decision',idea:'Fourteen platforms named, three evaluated, none bought. The blocker was technical, not budget: no overlay reaches a roofer on a phone.',stats:[['14','vendors'],['3','demoed in 5 days'],['0','bought']],imp:'When someone proposes a platform again, the brief already names what it cannot reach and why.'},
  {tag:'Enablement',t:'The agent family',idea:'A governed agent live in Teams July 8, broken twice in two days, a second shipped in one day on the rules the first produced.',stats:[['5','trap questions first'],['10','wiring rules from one failure'],['0','new permission models']],imp:'What transfers is what happens after it breaks: a rule written the same night, and a config the family inherits.'},
- {tag:'Running it',t:'The master plan and seven-tower wiring',idea:'Nine versions in seven months, wired to six other tower plans by row ID. Six rebuilds were not the work changing.',stats:[['9','versions in 7 months'],['545','rows carry an integration ID'],['593→297','rows rebuilt and merged']],imp:'Nine rebuilds is a fact about how often the thing above the plan changed, and the dates still held.'},
+ {tag:'Running it',t:'The master plan and seven-tower wiring',idea:'Nine versions in seven months, wired to six other tower plans by row ID. The rebuilds were not the work changing.',stats:[['9','versions in 7 months'],['545','rows carry an integration ID'],['593→297','rows rebuilt and merged']],imp:'Nine rebuilds is a fact about how often the thing above the plan changed, and the dates still held.'},
  {tag:'Running it',t:'The staffing and budget model',idea:'No lead, no budget, days from a program rollup. Built from zero in six days, 12 versions in 16 weeks, every input cites its source.',stats:[['12','versions in 16 weeks'],['3','scenarios priced'],['35','sources cited']],imp:'Asked what could come out, the answer was a descoped version the next day.'}
 ];
 const CLN={nominated:41,businesses:16,goal:2,
@@ -315,7 +315,7 @@ function heroH(){
   <div class="eyebrow">${HERO.eyebrow}</div>
   <h1 class="h1">${HERO.h1}</h1>
   <p class="hlede">${HERO.lede}</p>
-  <div class="hmeta">A readiness story, not a status deck · Public and internal data, sources named</div>
+  <div class="hmeta">A readiness story, told stage by stage · Public and internal data, sources named</div>
   <div class="hkpi">${HERO.kpi.map(k=>`<div class="k"><div class="kv">${k[0]}</div><div class="kl">${k[1]}</div></div>`).join('')}</div>
  </section>`;
 }
@@ -459,7 +459,7 @@ function networkH(){
  </section>`;
 }
 function forwardH(){
- return `<section class="sec" id="s-forward">${secHead('Forward value','What the same machinery unlocks next','Nine plays the OneRoof data layer makes possible, most of them built and run before on other clients. Tiered by reach and readiness.')}
+ return `<section class="sec" id="s-forward">${secHead('Forward value','Where the same machinery goes next','Nine plays the OneRoof data layer makes possible, most of them built and run before on other clients. Tiered by reach and readiness.')}
   ${FV.map(g=>`<div class="fvtier">${g.tier}</div>${g.items.map(it=>`<div class="fvrow"><div><div class="fvt">${it.t}</div><div class="fvi">${it.idea}</div></div><div class="fvimp">${it.imp}</div></div>`).join('')}`).join('')}
  </section>`;
 }
@@ -482,7 +482,7 @@ function secHead(eyebrow,title,deck){
 }
 function footerH(){
  return `<footer><div class="fbrand">Operation OneRoof<span style="color:var(--copper)">.</span></div>
-  Business Readiness, built and told by Cain Menard. RCA and its sixteen operating companies. The numbers are drawn from the live program data and named public series; figures are current to the latest release and shown for what they are.</footer>`;
+  Business Readiness, built and told by Cain Menard. RCA and its sixteen operating companies. The numbers are drawn from the live program data and named public series; figures are current to the latest release.</footer>`;
 }
 function render(){
  $('#wrap').innerHTML=
