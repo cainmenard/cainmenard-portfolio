@@ -140,6 +140,38 @@ a:hover{border-color:var(--copper2)}
 .nkpi .k:nth-child(odd){border-left:none}
 .nkpi .kv{font-family:var(--serif);font-size:26px;color:var(--ink);line-height:1}
 .nkpi .kl{font-family:var(--mono);font-size:9px;letter-spacing:.3px;text-transform:uppercase;color:var(--mut);margin-top:5px;line-height:1.4}
+.nkpi.wide{grid-template-columns:repeat(4,1fr)}
+.nkpi.wide .k:nth-child(-n+2){border-top:none}
+.nkpi.wide .k:nth-child(2),.nkpi.wide .k:nth-child(3),.nkpi.wide .k:nth-child(4){border-left:1px solid var(--line)}
+.nkpi.wide .k{border-top:none}
+.subh{font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin-bottom:14px}
+.clngrid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:32px}
+.clnbar{display:flex;align-items:center;gap:12px;padding:7px 0}
+.clnbn{font-family:var(--serif);font-size:15px;color:var(--ink);width:158px;flex:0 0 158px}
+.clnbt{flex:1;height:9px;background:var(--paper2);border-radius:5px;overflow:hidden}
+.clnbf{display:block;height:100%;border-radius:5px}
+.clnbv{font-family:var(--mono);font-size:12px;color:var(--ink2);width:22px;text-align:right}
+.clntiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.clntile{border:1px solid var(--line);border-radius:2px;padding:11px 13px;background:var(--card)}
+.clntile.meet{border-color:rgba(63,122,87,.42)}
+.clntile.tbd{opacity:.62}
+.clndots{display:flex;align-items:center;gap:5px;margin-bottom:8px}
+.clndots i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.clnplus{font-family:var(--mono);font-size:9px;color:var(--up)}
+.clntn{font-family:var(--serif);font-size:15.5px;color:var(--ink);line-height:1.1}
+.clntk{font-family:var(--mono);font-size:8.5px;letter-spacing:.3px;text-transform:uppercase;color:var(--mut);margin-top:4px}
+/* readiness heatmap */
+.heatwrap{margin-top:26px;overflow-x:auto}
+.heat{border-collapse:collapse;font-family:var(--mono);font-size:11px;width:100%}
+.heat th,.heat td{padding:7px 6px;text-align:center;border:2px solid var(--paper)}
+.heat .hcorner{background:transparent;border:none}
+.heat .hf{color:var(--mut);font-weight:500;font-size:9px;letter-spacing:.2px;text-transform:uppercase;background:transparent;border:none;vertical-align:bottom}
+.heat .hr{color:var(--ink);text-align:left;font-family:var(--serif);font-size:14px;white-space:nowrap;background:transparent;border:none;padding-right:14px}
+.heat td{font-variant-numeric:tabular-nums;color:#3C4859;min-width:40px}
+.heat .hz{background:var(--paper2)}
+.heat .htot{background:transparent;color:var(--ink);font-weight:600;border:none;font-family:var(--serif);font-size:14px}
+.heatleg{display:flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--mut);justify-content:flex-end}
+.hramp{width:130px;height:10px;border-radius:2px;background:linear-gradient(90deg,#EAF0F6,#6E9BCB,#22507B)}
 
 /* forward value */
 .fvtier{font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--copper2);margin:26px 0 4px}
@@ -174,7 +206,9 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding-top:26px;font-fa
  .buildco{position:static;order:-1;margin-top:20px}
  .bpcard{max-width:440px}
  .hkpi{grid-template-columns:repeat(2,1fr)}.hkpi .k:nth-child(3),.hkpi .k:nth-child(4){border-top:1px solid var(--line)}.hkpi .k:nth-child(odd){border-left:none}
- .cards,.tools,.netgrid{grid-template-columns:1fr}
+ .cards,.tools,.netgrid,.clngrid{grid-template-columns:1fr}
+ .clntiles{grid-template-columns:repeat(2,1fr)}
+ .nkpi.wide{grid-template-columns:repeat(2,1fr)}.nkpi.wide .k:nth-child(3),.nkpi.wide .k:nth-child(4){border-top:1px solid var(--line)}.nkpi.wide .k:nth-child(odd){border-left:none}
  .nlinks{display:none}
 }
 </style>
@@ -184,7 +218,7 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding-top:26px;font-fa
 <nav id="topnav">
  <a class="nbrand" href="#top">Operation OneRoof<b>.</b></a>
  <div class="nlinks">
-  <a href="#s-build">The build</a><a href="#s-built">What got built</a><a href="#s-network">The network</a><a href="#s-forward">Forward value</a><a href="#s-tools">Live tools</a><a href="#s-ask">The ask</a>
+  <a href="#s-build">The build</a><a href="#s-built">What got built</a><a href="#s-readiness">Readiness</a><a href="#s-network">The network</a><a href="#s-forward">Forward value</a><a href="#s-tools">Live tools</a><a href="#s-ask">The ask</a>
  </div>
 </nav>
 <div class="wrap" id="wrap"></div>
@@ -239,9 +273,13 @@ const BUILT=[
  {tag:'Running it',t:'The master plan and seven-tower wiring',idea:'Nine versions in seven months, wired to six other tower plans by row ID. Six rebuilds were not the work changing.',stats:[['9','versions in 7 months'],['545','rows carry an integration ID'],['593→297','rows rebuilt and merged']],imp:'Nine rebuilds is a fact about how often the thing above the plan changed, and the dates still held.'},
  {tag:'Running it',t:'The staffing and budget model',idea:'No lead, no budget, days from a program rollup. Built from zero in six days, 12 versions in 16 weeks, every input cites its source.',stats:[['12','versions in 16 weeks'],['3','scenarios priced'],['35','sources cited']],imp:'Asked what could come out, the answer was a descoped version the next day.'}
 ];
-const NET={
- kpi:[['37','change leaders nominated'],['15','of 16 companies with a seat'],['36','in the room, session two'],['139','role assignments']],
- comp:[['Change Leader Network',36],['Business SMEs',34],['Project resources',31],['Testers',22],['Trainers',16]]
+const CLN={nominated:41,businesses:16,goal:2,
+ func:[['Finance / Accounting',16],['Operations / In-office',8],['HR',8],['PM / Estimating',5],['Sales / Service',3],['Field / Trade',1]],
+ bu:[['Crowther',6],['Davco',4],['Dynamic National',4],['Springer-Peterson',4],['TORC',3],['AAA',3],['Roof-Tech',3],['Front Range',2],['Deer Park',2],['WeatherShield',2],['Pittman Waller',2],['BDI',2],['FSO',2],['Bone Dry',1],['Hamilton',1],['A-1 All American',0]]
+};
+const HEAT={total:4468,
+ funcs:['Service','Payroll','Invoicing','Comm / Prod','Job Cost','Estimating','Inventory','Field Ops'],
+ rows:[['Crowther',[167,199,69,93,54,93,54,85]],['Bone Dry',[134,63,218,44,59,33,25,46]],['Dynamic National',[159,25,52,83,28,22,36,13]],['Davco',[45,76,55,29,43,18,44,16]],['TORC',[71,71,12,6,54,8,8,0]],['AAA',[36,58,85,26,21,18,10,0]],['Front Range',[69,59,29,41,24,27,2,10]],['WeatherShield',[41,24,18,3,14,15,7,7]],['Springer-Peterson',[7,51,33,16,3,0,6,7]],['Deer Park',[23,38,31,12,15,15,7,1]],['Roof Tech',[8,18,0,11,21,12,17,6]],['Hamilton',[4,0,9,0,14,0,0,0]]]
 };
 const FV=[
  {tier:'Flagship · portfolio-wide, and I have run these before',items:[
@@ -380,12 +418,35 @@ function builtH(){
    <div class="pcimp"><b>So what:</b> ${b.imp}</div></div>`).join('')}</div>
  </section>`;
 }
+function heatBlue(t){t=Math.max(0,Math.min(1,t));const a=[234,240,246],b=[34,80,123];const c=a.map((v,i)=>Math.round(v+(b[i]-v)*Math.pow(t,0.8)));return `rgb(${c[0]},${c[1]},${c[2]})`;}
+function readinessH(){
+ let mx=0; HEAT.rows.forEach(r=>r[1].forEach(v=>{if(v>mx)mx=v;}));
+ const head=`<tr><th class="hcorner"></th>${HEAT.funcs.map(f=>`<th class="hf">${f}</th>`).join('')}<th class="hf">Total</th></tr>`;
+ const body=HEAT.rows.map(r=>{
+  const tot=r[1].reduce((a,b)=>a+b,0);
+  const cells=r[1].map(v=>{ if(!v)return `<td class="hz"></td>`; const t=v/mx; return `<td style="background:${heatBlue(t)};color:${t>0.52?'#EAF1F8':'#3C4859'}">${v}</td>`; }).join('');
+  return `<tr><th class="hr">${r[0]}</th>${cells}<td class="htot">${tot.toLocaleString()}</td></tr>`;
+ }).join('');
+ return `<section class="sec" id="s-readiness">${secHead('The readiness read','Where the pain actually is','4,468 pain points, coded from 372 interviews and 2,869 surveys across twelve businesses. Darker is more. The heat sits in Service, Payroll and Invoicing, not out in the field.')}
+  <div class="heatwrap"><table class="heat">${head}${body}</table></div>
+  <div class="heatleg"><span>fewer</span><span class="hramp"></span><span>more pain points</span></div>
+ </section>`;
+}
 function networkH(){
- const max=Math.max(...NET.comp.map(c=>c[1]));
- return `<section class="sec" id="s-network">${secHead('The Change Leader Network','A named person inside every company','The day-one support floor. When a crew lead cannot clock in Monday, the answer is two desks over, not a ticket.')}
-  <div class="netgrid">
-   <div>${NET.comp.map(c=>`<div class="nrow"><span class="nrn">${c[0]}</span><span class="ntrack"><span class="nfill" style="width:${(c[1]/max*100).toFixed(0)}%"></span></span><span class="nv">${c[1]}</span></div>`).join('')}</div>
-   <div class="nkpi">${NET.kpi.map(k=>`<div class="k"><div class="kv">${k[0]}</div><div class="kl">${k[1]}</div></div>`).join('')}</div>
+ const goal=CLN.goal, fmax=Math.max(...CLN.func.map(f=>f[1]));
+ const seated=CLN.bu.filter(b=>b[1]>0).length, atGoal=CLN.bu.filter(b=>b[1]>=goal).length;
+ const stats=[[CLN.nominated,'change leaders nominated'],[seated+' of '+CLN.businesses,'businesses with a seat'],[atGoal,'businesses at the 2+ goal'],['6','functional areas covered']];
+ const fbars=CLN.func.map((f,i)=>`<div class="clnbar"><span class="clnbn">${f[0]}</span><span class="clnbt"><span class="clnbf" style="width:${(f[1]/fmax*100).toFixed(0)}%;background:${i===0?'var(--amber)':'var(--copper)'}"></span></span><span class="clnbv">${f[1]}</span></div>`).join('');
+ const tiles=CLN.bu.slice().sort((a,b)=>b[1]-a[1]).map(b=>{
+  const n=b[1], state=n>=goal?'meet':(n===1?'short':'tbd'), kick=n>=goal?'meets the goal':(n===1?'one to go':'no seat yet');
+  const dots=[0,1].map(d=>{const on=d<n;const c=on?(n>=goal?'var(--up)':'var(--amber)'):'rgba(140,133,120,.28)';return `<i style="background:${c}"></i>`;}).join('')+(n>2?`<span class="clnplus">+${n-2}</span>`:'');
+  return `<div class="clntile ${state}"><div class="clndots">${dots}</div><div class="clntn">${b[0]}</div><div class="clntk">${kick}</div></div>`;
+ }).join('');
+ return `<section class="sec" id="s-network">${secHead('The Change Leader Network','A named person inside every company','The day-one support floor: when a crew lead cannot clock in Monday, the answer is two desks over, not a ticket. The target is two per business.')}
+  <div class="nkpi wide">${stats.map(s=>`<div class="k"><div class="kv">${s[0]}</div><div class="kl">${s[1]}</div></div>`).join('')}</div>
+  <div class="clngrid">
+   <div><div class="subh">Coverage by function</div>${fbars}</div>
+   <div><div class="subh">Seats by business &middot; two dots is the goal</div><div class="clntiles">${tiles}</div></div>
   </div>
  </section>`;
 }
@@ -420,7 +481,7 @@ function render(){
   heroH()
   +`<section class="sec" id="s-build">${secHead('The build','Stage by stage, footings to roof','Scroll the story. The structure on the right assembles as each stage lands.')}
      <div class="build"><div class="stages">${STAGES.map((s,i)=>stageH(s,i)).join('')}</div>${buildingH()}</div></section>`
-  +builtH()+networkH()+forwardH()+toolsH()+askH()+footerH();
+  +builtH()+readinessH()+networkH()+forwardH()+toolsH()+askH()+footerH();
  buildModel();
  setBuilding(0);
  wireScroll();
