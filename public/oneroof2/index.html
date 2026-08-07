@@ -53,6 +53,14 @@ a:hover{border-color:var(--copper2)}
 .hkpi .k:first-child{border-left:none}
 .hkpi .kv{font-family:var(--serif);font-size:30px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
 .hkpi .kl{font-family:var(--mono);font-size:9.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--mut);margin-top:8px;line-height:1.4}
+.herotools{display:flex;flex-wrap:wrap;align-items:center;gap:9px 11px;margin-top:24px}
+.herotools .htl{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut)}
+.htool{font-family:var(--mono);font-size:11px;letter-spacing:.3px;color:var(--copper2);border:1px solid var(--line2);border-radius:2px;padding:6px 11px;background:var(--card);white-space:nowrap;transition:border-color .15s,color .15s}
+.htool:hover{border-color:var(--copper);color:var(--copper)}
+.htool i{font-style:normal;color:var(--up);font-size:8px;text-transform:uppercase;letter-spacing:.5px;margin-left:4px}
+.toolsfab{position:fixed;right:20px;bottom:20px;z-index:70;font-family:var(--mono);font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:var(--copper2);border:none;border-radius:3px;padding:11px 15px;box-shadow:0 8px 22px rgba(154,87,31,.30)}
+.toolsfab:hover{background:var(--copper)}
+@media(max-width:920px){.toolsfab{right:13px;bottom:13px;font-size:10px;padding:10px 13px}}
 
 /* the build: two-column, sticky companion */
 .build{display:grid;grid-template-columns:1fr 400px;gap:56px;align-items:start;margin-top:20px}
@@ -231,6 +239,7 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding-top:26px;font-fa
  </div>
 </nav>
 <div class="wrap" id="wrap"></div>
+<a class="toolsfab" href="#s-tools" aria-label="Jump to the live tools">Live tools &rarr;</a>
 
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -319,6 +328,7 @@ function heroH(){
   <p class="hlede">${HERO.lede}</p>
   <div class="hmeta">A readiness story, told stage by stage · Public and internal data, sources named</div>
   <div class="hkpi">${HERO.kpi.map(k=>`<div class="k"><div class="kv">${k[0]}</div><div class="kl">${k[1]}</div></div>`).join('')}</div>
+  <div class="herotools"><span class="htl">Jump to the live tools</span>${TOOLS.map(t=>`<a class="htool" href="${t.url}" target="_blank" rel="noopener">${t.t.replace('Construction ','').replace(' Analysis','')}${t.live?' <i>live</i>':''}</a>`).join('')}</div>
  </section>`;
 }
 function stageH(s,i){
@@ -556,7 +566,7 @@ function wireNav(){
  let ticking=false;
  function onScroll(){
   const y=window.scrollY||document.documentElement.scrollTop||0;
-  nav.classList.toggle('show', y>520);
+  nav.classList.toggle('show', y>150);
   let active=null;
   links.forEach(a=>{const t=$(a.getAttribute('href')); if(t&&t.getBoundingClientRect().top<160)active=a;});
   links.forEach(a=>a.classList.toggle('on',a===active));
