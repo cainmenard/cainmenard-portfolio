@@ -1,6 +1,17 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  async headers() {
+    const revalidate = [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }]
+    return [
+      { source: '/oneroof2', headers: revalidate },
+      { source: '/oneroof2/:path*', headers: revalidate },
+      { source: '/oneroof2-classic', headers: revalidate },
+      { source: '/oneroof2-classic/:path*', headers: revalidate },
+      { source: '/market-outlook', headers: revalidate },
+      { source: '/market-outlook/:path*', headers: revalidate },
+    ]
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
   },
