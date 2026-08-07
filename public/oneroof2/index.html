@@ -41,6 +41,10 @@ a:hover{border-color:var(--copper2)}
 .nlinks a:hover{color:var(--ink2)}
 .nlinks a.on{color:var(--copper2)}
 .nlinks a.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--copper)}
+.nlinks a.nlive{color:#fff;background:var(--copper2);border-radius:2px;padding:4px 12px;letter-spacing:.7px}
+.nlinks a.nlive:hover{background:var(--copper);color:#fff}
+.nlinks a.nlive.on{color:#fff}
+.nlinks a.nlive.on:after{display:none}
 
 /* hero */
 .hero{padding:96px 0 40px;border-bottom:1px solid var(--line)}
@@ -235,7 +239,7 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding-top:26px;font-fa
 <nav id="topnav">
  <a class="nbrand" href="#top">Operation OneRoof<b>.</b></a>
  <div class="nlinks">
-  <a href="#s-build">The build</a><a href="#s-2024">2024 wins</a><a href="#s-built">What got built</a><a href="#s-tools">Live tools</a><a href="#s-readiness">Readiness</a><a href="#s-network">The network</a><a href="#s-forward">Forward value</a>
+  <a href="#s-build">The build</a><a href="#s-2024">2024 wins</a><a href="#s-built">What got built</a><a href="#s-tools" class="nlive">Live tools</a><a href="#s-readiness">Readiness</a><a href="#s-network">The network</a><a href="#s-forward">Forward value</a>
  </div>
 </nav>
 <div class="wrap" id="wrap"></div>
