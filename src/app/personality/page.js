@@ -2,7 +2,7 @@ import PersonalityExplorer from './PersonalityExplorer'
 
 export const metadata = {
   title: 'Personality Profile | Cain Menard',
-  description: 'Six personality assessments mapped into one interactive profile — from leadership style and communication to decision-making and what happens under pressure.',
+  description: 'Six personality assessments mapped into one interactive profile, from leadership style and communication to decision-making and what happens under pressure.',
   openGraph: {
     title: 'How I Operate | Cain Menard',
     description: 'Six personality assessments mapped into one interactive profile.',

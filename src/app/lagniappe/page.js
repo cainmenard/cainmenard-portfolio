@@ -71,7 +71,7 @@ export default function Lagniappe() {
             <div className="max-w-4xl mx-auto px-6 pb-10 w-full">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-display)' }}>Lagniappe</h1>
               <p className="text-white/70 text-lg italic">
-                (lan-yap) — Cajun French for &quot;a little something extra.&quot;
+                (lan-yap), Cajun French for &quot;a little something extra.&quot;
               </p>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function Lagniappe() {
 
             <div className="text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl space-y-5">
               <p>
-                I grew up in Lafayette, Louisiana — the heart of Cajun country — where I picked up
+                I grew up in Lafayette, Louisiana (the heart of Cajun country), where I picked up
                 a deep appreciation for good food, good stories, and figuring things out with whatever
                 you&apos;ve got on hand. That last part hasn&apos;t changed much.
               </p>
@@ -96,7 +96,7 @@ export default function Lagniappe() {
               </p>
               <p>
                 I love to travel. My senior year at UL Lafayette, I was approved to graduate several
-                weeks early — so instead of walking at Commencement, I boarded a flight to India.
+                weeks early, so instead of walking at Commencement, I boarded a flight to India.
                 I spent time in Kolkata volunteering with the Missionaries of Charity, working in
                 homes for the homeless, disabled, and dying, and spending Christmas with children
                 living in the streets. From there, I trekked to Mount Everest Base Camp, where I
@@ -109,11 +109,10 @@ export default function Lagniappe() {
                   className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition"
                 >
                   a local news station in Lafayette
-                </a>{' '}
-                — my five minutes of fame.
+                </a>, my five minutes of fame.
               </p>
               <p>
-                Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe — I&apos;m building
+                Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe. I&apos;m building
                 a{' '}
                 <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">
                   recipe collection
@@ -121,7 +120,7 @@ export default function Lagniappe() {
                 below to document the journey. I&apos;m a certified YouTube mechanic, usually found under
                 the hood of my 3rd gen Toyota Tacoma or Audi Q5. I&apos;ve been playing drums for 20
                 years, with the hearing damage to prove it. And I try to get outside as much as
-                possible — hiking in the mountains with Samantha, paddling open canoes down
+                possible, hiking in the mountains with Samantha, paddling open canoes down
                 whitewater, kayak fishing in a salt marsh, or taking the Tacoma off-road.
               </p>
               <p>

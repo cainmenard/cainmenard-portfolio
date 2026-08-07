@@ -74,7 +74,7 @@ export default function Home() {
             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-xl">
               I started working on a $1B E&amp;I project in a South Texas refinery. Since then, I&apos;ve spent
               my career helping companies across construction, energy, and infrastructure modernize
-              how they operate — through consulting, data analytics, and technology.
+              how they operate, through consulting, data analytics, and technology.
             </p>
             <div className="flex flex-wrap gap-4 mb-12">
               <a href="#projects" className="btn-primary">View My Work ↓</a>
@@ -89,7 +89,7 @@ export default function Home() {
               <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
                 <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>02</p>
                 <p className="text-sm md:text-base font-bold mb-1" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>Advised On It</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Strategy and operations consultant for $30M–$6B contractors</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Strategy and operations consultant for $30M to $6B contractors</p>
               </div>
               <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
                 <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>03</p>
@@ -120,7 +120,7 @@ export default function Home() {
             <div className="md:col-span-2 text-slate-600 dark:text-slate-300 leading-relaxed">
               <div className="pb-6 mb-6 border-b border-slate-100 dark:border-slate-800">
                 <p>
-                  My career started in the field — managing project controls on a $1B industrial refinery
+                  My career started in the field, managing project controls on a $1B industrial refinery
                   in South Texas, then running commercial construction projects as a GC project manager
                   across K-12 education, food &amp; beverage, and industrial warehouses. At every stop, I saw
                   the same thing: contractors running complex, high-stakes operations on manual processes,
@@ -131,7 +131,7 @@ export default function Home() {
                 <p>
                   That pattern led me to consulting at a 70-year-old boutique construction consultancy with
                   a gold-standard reputation in the industry. I spent three years advising contractors from
-                  $30M to $1.5B in revenue — improving profitability through operational assessments,
+                  $30M to $1.5B in revenue, improving profitability through operational assessments,
                   financial benchmarking, and productivity improvement programs. I also built something the firm
                   had never done before: a full software and data analytics implementation, from scoping and
                   selling the engagement to building an AWS-hosted data pipeline and training users on-site
@@ -142,8 +142,8 @@ export default function Home() {
                 <p>
                   Today I&apos;m a Management Consultant at CEI, leading change management and business
                   readiness for a multi-year Oracle ERP implementation across 15 business units. My work
-                  starts before anyone touches the new system — readiness assessments, stakeholder
-                  interviews, process mapping, change impact analysis — and carries through communication
+                  starts before anyone touches the new system (readiness assessments, stakeholder
+                  interviews, process mapping, change impact analysis) and carries through communication
                   strategy, training plans, and adoption tracking to go-live. Before CEI, I built a digital
                   operations consulting practice at Automized, helping specialty trade contractors bring
                   the best out of their digital systems. The through-line across my career has always been
@@ -190,7 +190,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Projects</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Work Samples</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements — plus featured case studies on turning field work into decisions and rebuilding analytics with AI. Explore the immersive stories or the Tableau originals.</p>
+          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements, plus featured case studies on turning field work into decisions and rebuilding analytics with AI. Explore the immersive stories or the Tableau originals.</p>
 
           {/* ─── FEATURED: Field Intelligence Interactive Case Study ─── */}
           <a href="/field-intelligence" className="featured-project-card featured-project-card--rich block mb-10 stagger-child group text-inherit no-underline">
@@ -207,14 +207,14 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Field Intelligence</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
-                  Follow one labor hour through a construction business &mdash; from the jobsite to the income statement and back.
+                  Follow one labor hour through a construction business, from the jobsite to the income statement and back.
                   A cinematic, single-page walk through five interactive stations, ending with a grounded AI agent that turns
                   the field&rsquo;s raw signal into a decision.
                 </p>
               </div>
             </div>
 
-            {/* Animated "Golden Hour" preview — a miniature of the day-arc story */}
+            {/* Animated "Golden Hour" preview, a miniature of the day-arc story */}
             <FieldIntelligencePreview />
 
             <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider transition-all group-hover:gap-3" style={{ color: 'var(--accent)' }}>
@@ -228,7 +228,7 @@ export default function Home() {
 
           {/* ─── FEATURED: AI Evolution Case Study ─── */}
           <div className="featured-project-card featured-project-card--rich block mb-10 stagger-child group">
-            {/* Top section — links to article */}
+            {/* Top section, links to article */}
             <a href="/ai-evolution" className="block text-inherit no-underline">
               <div className="flex flex-wrap items-center gap-2 mb-4">
                 <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white" style={{ background: 'var(--accent)' }}>Featured</span>
@@ -244,14 +244,14 @@ export default function Home() {
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">The Tool Changed. The Expertise Didn&apos;t.</h3>
                   <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
                     The construction industry has spent decades waiting for technology to catch up to the people
-                    who actually build things. It finally did &mdash; just not the way anyone expected. A deep dive into
+                    who actually build things. It finally did, just not the way anyone expected. A close look at
                     AI, domain expertise, and why construction professionals may be sitting on the biggest opportunity in the room.
                   </p>
                 </div>
               </div>
             </a>
 
-            {/* Live before/after embed comparison — stays interactive */}
+            {/* Live before/after embed comparison, stays interactive */}
             <div className="mt-4 mb-5">
               <ComparisonEmbed
                 tableauUrl="https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no"
@@ -259,7 +259,7 @@ export default function Home() {
               />
             </div>
 
-            {/* Bottom section — links to article */}
+            {/* Bottom section, links to article */}
             <a href="/ai-evolution" className="block text-inherit no-underline">
               <div className="grid grid-cols-3 gap-3 max-w-lg mb-5">
                 <div className="bg-slate-50 dark:bg-slate-800/60 rounded-lg p-3 text-center">
@@ -438,7 +438,7 @@ export default function Home() {
             <h2 className="section-heading text-3xl md:text-4xl mb-6">Let&apos;s Talk</h2>
             <p className="text-slate-500 dark:text-slate-400 mb-10 leading-relaxed">
               Whether you&apos;re a contractor trying to figure out why you&apos;re leaving money on the table,
-              a firm looking to modernize operations, or just someone who wants to talk shop —
+              a firm looking to modernize operations, or just someone who wants to talk shop,
               I&apos;m always up for a conversation.
             </p>
           </div>
