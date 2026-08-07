@@ -11,12 +11,16 @@ export default class ErrorBoundary extends Component {
     return { hasError: true }
   }
 
+  componentDidCatch(error, errorInfo) {
+    console.error('ErrorBoundary caught:', error, errorInfo)
+  }
+
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex items-center justify-center min-h-[200px] p-8">
+        <div className="flex items-center justify-center min-h-[200px] p-8" role="alert" aria-live="polite">
           <div className="text-center">
-            <p className="text-sm text-slate-500">Something went wrong loading this section.</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Something went wrong loading this section.</p>
             <button
               onClick={() => this.setState({ hasError: false })}
               className="mt-3 text-xs font-semibold uppercase tracking-wider hover:underline"

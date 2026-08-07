@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
 // ============================================================
-// HONEYMOON — Croatia + Montenegro Trip Planner
+// HONEYMOON, Croatia + Montenegro Trip Planner
 // Portfolio Demo by Cain Menard
 // ============================================================
 
@@ -15,20 +15,20 @@ const DEST = {
 };
 
 const ITINERARY = [
-  { day: 0, date: "Sep 27", location: "Atlanta → Dubrovnik", dest: "travel", activity: "Overnight flight via Delta", dining: "", note: "Gold Medallion — SkyMiles redemption", spa: false, splurge: false, zero: false },
-  { day: 1, date: "Sep 28", location: "Dubrovnik", dest: "dubrovnik", activity: "Arrive + Couples Spa", dining: "Light hotel dinner", note: "Sheraton Dubrovnik Riviera — Bonvoy Award", spa: true, splurge: false, zero: false },
-  { day: 2, date: "Sep 29", location: "Dubrovnik", dest: "dubrovnik", activity: "City Walls + Old Town exploration", dining: "Nautika — Condé Nast top 6 most romantic worldwide", note: "Tasting menu overlooking Fort Lovrijenac", spa: false, splurge: true, zero: false },
-  { day: 3, date: "Sep 30", location: "Dubrovnik", dest: "dubrovnik", activity: "Elaphiti Islands private boat charter", dining: "BOWA Restaurant — boat-access only, Šipan island", note: "Swimming in hidden coves, olive groves, no cars", spa: false, splurge: false, zero: false },
-  { day: 4, date: "Oct 1", location: "Dubrovnik", dest: "dubrovnik", activity: "Pelješac Peninsula — wine + oyster day trip", dining: "Oyster farm lunch at Mali Ston Bay", note: "Miloš & Matuško wineries — Dingač reds", spa: false, splurge: false, zero: false },
-  { day: 5, date: "Oct 2", location: "Dubrovnik", dest: "dubrovnik", activity: "Rest day — Mt. Srdj cable car at sunset", dining: "Casual dinner", note: "No alarm. No plans. Just exist.", spa: false, splurge: false, zero: true },
-  { day: 6, date: "Oct 3", location: "Dubrovnik → Kotor", dest: "transit", activity: "Scenic coastal drive into Montenegro", dining: "Galion — waterfront, lit fortress at night", note: "Hyatt Regency Kotor Bay — King Sea View + Hot Tub", spa: false, splurge: true, zero: false },
+  { day: 0, date: "Sep 27", location: "Atlanta → Dubrovnik", dest: "travel", activity: "Overnight flight via Delta", dining: "", note: "Gold Medallion, SkyMiles redemption", spa: false, splurge: false, zero: false },
+  { day: 1, date: "Sep 28", location: "Dubrovnik", dest: "dubrovnik", activity: "Arrive + Couples Spa", dining: "Light hotel dinner", note: "Sheraton Dubrovnik Riviera, Bonvoy Award", spa: true, splurge: false, zero: false },
+  { day: 2, date: "Sep 29", location: "Dubrovnik", dest: "dubrovnik", activity: "City Walls + Old Town exploration", dining: "Nautika, Condé Nast top 6 most romantic worldwide", note: "Tasting menu overlooking Fort Lovrijenac", spa: false, splurge: true, zero: false },
+  { day: 3, date: "Sep 30", location: "Dubrovnik", dest: "dubrovnik", activity: "Elaphiti Islands private boat charter", dining: "BOWA Restaurant, boat-access only, Šipan island", note: "Swimming in hidden coves, olive groves, no cars", spa: false, splurge: false, zero: false },
+  { day: 4, date: "Oct 1", location: "Dubrovnik", dest: "dubrovnik", activity: "Pelješac Peninsula, wine + oyster day trip", dining: "Oyster farm lunch at Mali Ston Bay", note: "Miloš & Matuško wineries, Dingač reds", spa: false, splurge: false, zero: false },
+  { day: 5, date: "Oct 2", location: "Dubrovnik", dest: "dubrovnik", activity: "Rest day, Mt. Srdj cable car at sunset", dining: "Casual dinner", note: "No alarm. No plans. Just exist.", spa: false, splurge: false, zero: true },
+  { day: 6, date: "Oct 3", location: "Dubrovnik → Kotor", dest: "transit", activity: "Scenic coastal drive into Montenegro", dining: "Galion, waterfront, lit fortress at night", note: "Hyatt Regency Kotor Bay, King Sea View + Hot Tub", spa: false, splurge: true, zero: false },
   { day: 7, date: "Oct 4", location: "Bay of Kotor", dest: "kotor", activity: "Perast + Our Lady of the Rocks + private sunset boat", dining: "Waterfront dinner in Kotor Old Town", note: "2-hour private charter through the bay at golden hour", spa: false, splurge: false, zero: false },
-  { day: 8, date: "Oct 5", location: "Bay of Kotor", dest: "kotor", activity: "Rest day — Couples spa at Hyatt", dining: "Casual dinner", note: "Optional: Budva Old Town + Sveti Stefan viewpoint", spa: true, splurge: false, zero: true },
-  { day: 9, date: "Oct 6", location: "Kotor → Split", dest: "transit", activity: "Coastal drive + Makarska Riviera beach lunch", dining: "Hotel dinner at Le Méridien", note: "Le Méridien Split — Bonvoy Award", spa: false, splurge: false, zero: false },
-  { day: 10, date: "Oct 7", location: "Split", dest: "split", activity: "Diocletian's Palace + Marjan Hill sunset", dining: "Dvor — Michelin Guide, pine garden over Firule Bay", note: "1,700-year-old Roman palace turned living city", spa: false, splurge: true, zero: false },
-  { day: 11, date: "Oct 8", location: "Split", dest: "split", activity: "Blue Lagoon — 3-island boat tour", dining: "Articok — rooftop, truffle pasta", note: "Crystal-clear swimming, lunch on board", spa: false, splurge: false, zero: false },
-  { day: 12, date: "Oct 9", location: "Split", dest: "split", activity: "Krka National Park — waterfalls + swimming", dining: "Casual dinner", note: "Boardwalk trails through cascading falls", spa: false, splurge: false, zero: false },
-  { day: 13, date: "Oct 10", location: "Split", dest: "split", activity: "Rest day — Couples spa + Trogir + final Riva walk", dining: "Final evening — toast the trip on the Riva", note: "UNESCO medieval town, 30 min from Split", spa: true, splurge: false, zero: true },
+  { day: 8, date: "Oct 5", location: "Bay of Kotor", dest: "kotor", activity: "Rest day, Couples spa at Hyatt", dining: "Casual dinner", note: "Optional: Budva Old Town + Sveti Stefan viewpoint", spa: true, splurge: false, zero: true },
+  { day: 9, date: "Oct 6", location: "Kotor → Split", dest: "transit", activity: "Coastal drive + Makarska Riviera beach lunch", dining: "Hotel dinner at Le Méridien", note: "Le Méridien Split, Bonvoy Award", spa: false, splurge: false, zero: false },
+  { day: 10, date: "Oct 7", location: "Split", dest: "split", activity: "Diocletian's Palace + Marjan Hill sunset", dining: "Dvor, Michelin Guide, pine garden over Firule Bay", note: "1,700-year-old Roman palace turned living city", spa: false, splurge: true, zero: false },
+  { day: 11, date: "Oct 8", location: "Split", dest: "split", activity: "Blue Lagoon, 3-island boat tour", dining: "Articok, rooftop, truffle pasta", note: "Crystal-clear swimming, lunch on board", spa: false, splurge: false, zero: false },
+  { day: 12, date: "Oct 9", location: "Split", dest: "split", activity: "Krka National Park, waterfalls + swimming", dining: "Casual dinner", note: "Boardwalk trails through cascading falls", spa: false, splurge: false, zero: false },
+  { day: 13, date: "Oct 10", location: "Split", dest: "split", activity: "Rest day, Couples spa + Trogir + final Riva walk", dining: "Final evening, toast the trip on the Riva", note: "UNESCO medieval town, 30 min from Split", spa: true, splurge: false, zero: true },
   { day: 14, date: "Oct 11", location: "Split → Atlanta", dest: "travel", activity: "Depart", dining: "", note: "", spa: false, splurge: false, zero: false },
 ];
 
@@ -37,10 +37,10 @@ const BUDGET = [
   { cat: "Hotels", item: "Sheraton Dubrovnik Riviera (5 nights)", est: 0, status: "points", note: "Bonvoy Award" },
   { cat: "Hotels", item: "Hyatt Regency Kotor Bay (3 nights)", est: 1140, status: "paid", note: "King Sea View + Hot Tub + Terrace" },
   { cat: "Hotels", item: "Le Méridien Split (4 nights)", est: 0, status: "points", note: "Bonvoy Award" },
-  { cat: "Dining", item: "Nautika — Dubrovnik", est: 300, status: "planned", note: "Tasting menu for two" },
-  { cat: "Dining", item: "Galion — Kotor", est: 120, status: "planned", note: "Waterfront Mediterranean" },
-  { cat: "Dining", item: "Dvor — Split", est: 200, status: "planned", note: "Michelin Guide" },
-  { cat: "Experiences", item: "Private sunset boat — Kotor Bay", est: 225, status: "planned", note: "2-3 hour charter" },
+  { cat: "Dining", item: "Nautika, Dubrovnik", est: 300, status: "planned", note: "Tasting menu for two" },
+  { cat: "Dining", item: "Galion, Kotor", est: 120, status: "planned", note: "Waterfront Mediterranean" },
+  { cat: "Dining", item: "Dvor, Split", est: 200, status: "planned", note: "Michelin Guide" },
+  { cat: "Experiences", item: "Private sunset boat, Kotor Bay", est: 225, status: "planned", note: "2-3 hour charter" },
   { cat: "Experiences", item: "Pelješac wine + oyster tour", est: 250, status: "planned", note: "Guided, Ston + wineries" },
   { cat: "Experiences", item: "Elaphiti Islands private boat", est: 400, status: "planned", note: "Half-day charter" },
   { cat: "Experiences", item: "Blue Lagoon / 3-island tour", est: 150, status: "planned", note: "" },
@@ -55,7 +55,7 @@ const RESEARCH = [
   { name: "Konoba Jezuite", dest: "dubrovnik", type: "restaurant", price: "€€", fav: false, desc: "Romantic stone terrace hidden away from crowds.", tip: "Great casual evening option" },
   { name: "BOWA Restaurant", dest: "dubrovnik", type: "restaurant", price: "€€€", fav: true, desc: "Accessible only by boat on Šipan island. Private cabanas among olive and fig trees.", tip: "Arrange through private boat charter" },
   { name: "Galion", dest: "kotor", type: "restaurant", price: "€€€", fav: true, desc: "Floor-to-ceiling glass facing Kotor's lit-up fortress walls. Contemporary Mediterranean seafood.", tip: "Book ahead. Montenegro pricing = incredible value." },
-  { name: "Catovica Mlini", dest: "kotor", type: "restaurant", price: "€€€", fav: false, desc: "Restored 200-year-old mill. Peacocks wandering. Streams running through. World-class.", tip: "Most unique restaurant setting in Montenegro" },
+  { name: "Catovica Mlini", dest: "kotor", type: "restaurant", price: "€€€", fav: false, desc: "Restored 200-year-old mill. Peacocks wandering. Streams running through.", tip: "Most unique restaurant setting in Montenegro" },
   { name: "Dvor", dest: "split", type: "restaurant", price: "€€€€", fav: true, desc: "Michelin Guide. Pine-shaded garden overlooking Firule Bay. Chef Hrvoje Zirojević.", tip: "Book in advance. Request garden/sea view." },
   { name: "Zoi", dest: "split", type: "restaurant", price: "€€€€", fav: false, desc: "Inside Diocletian's Palace walls. Harbor views. 7-course tasting €130/person.", tip: "" },
   { name: "Private Sunset Boat", dest: "kotor", type: "activity", price: "$150-300", fav: true, desc: "Bay of Kotor at sunset. Just the two of you, a bottle of local wine, mountains turning gold.", tip: "Highest impact experience of the trip. Book via hotel concierge." },
@@ -63,7 +63,7 @@ const RESEARCH = [
   { name: "City Walls Walk", dest: "dubrovnik", type: "activity", price: "~€35", fav: true, desc: "Full 2km circuit along limestone fortifications. Red rooftops meet the Adriatic.", tip: "Go by 8:30am. The light is magic." },
   { name: "Diocletian's Palace", dest: "split", type: "activity", price: "Free", fav: true, desc: "A 1,700-year-old Roman emperor's retirement palace that became a living city.", tip: "Walk through ancient walls to reach restaurants and shops" },
   { name: "Krka National Park", dest: "split", type: "activity", price: "~€30", fav: false, desc: "Waterfalls, swimming holes, boardwalk trails through cascading falls.", tip: "Pack swimsuit. ~1.5hr drive each way." },
-  { name: "Elaphiti Islands", dest: "dubrovnik", type: "activity", price: "$300-500", fav: false, desc: "Lopud, Šipan, Koločep — quiet beaches, olive groves, no cars. Private boat through hidden coves.", tip: "" },
+  { name: "Elaphiti Islands", dest: "dubrovnik", type: "activity", price: "$300-500", fav: false, desc: "Lopud, Šipan, Koločep, quiet beaches, olive groves, no cars. Private boat through hidden coves.", tip: "" },
 ];
 
 const TODOS = [
@@ -71,13 +71,13 @@ const TODOS = [
   { text: "Book Sheraton Dubrovnik (Bonvoy Award)", done: true, when: "Feb" },
   { text: "Book Hyatt Regency Kotor Bay", done: true, when: "Feb" },
   { text: "Book Le Méridien Split (Bonvoy Award)", done: true, when: "Feb" },
-  { text: "Submit Bonvoy Nightly Upgrade — Dubrovnik", done: true, when: "Feb" },
+  { text: "Submit Bonvoy Nightly Upgrade, Dubrovnik", done: true, when: "Feb" },
   { text: "Verify passport expiration dates", done: false, pri: "high", when: "Mar-Apr" },
-  { text: "Book rental car — confirm Montenegro cross-border", done: false, pri: "med", when: "Apr-May" },
-  { text: "Travel insurance — trip interruption + medical evac", done: false, pri: "med", when: "Apr-May" },
-  { text: "Book Nautika dinner — request terrace", done: false, pri: "med", when: "Jun-Jul" },
-  { text: "Book Galion dinner — request waterfront", done: false, pri: "med", when: "Jun-Jul" },
-  { text: "Book Dvor dinner — request garden view", done: false, pri: "med", when: "Jun-Jul" },
+  { text: "Book rental car, confirm Montenegro cross-border", done: false, pri: "med", when: "Apr-May" },
+  { text: "Travel insurance, trip interruption + medical evac", done: false, pri: "med", when: "Apr-May" },
+  { text: "Book Nautika dinner, request terrace", done: false, pri: "med", when: "Jun-Jul" },
+  { text: "Book Galion dinner, request waterfront", done: false, pri: "med", when: "Jun-Jul" },
+  { text: "Book Dvor dinner, request garden view", done: false, pri: "med", when: "Jun-Jul" },
   { text: "Book Pelješac wine + oyster tour", done: false, pri: "low", when: "Jun-Jul" },
   { text: "Book 3 couples spa sessions", done: false, pri: "med", when: "Aug" },
   { text: "Book private Kotor Bay sunset boat", done: false, pri: "med", when: "Aug" },
@@ -349,7 +349,7 @@ body{font-family:'Outfit',sans-serif;background:var(--parchment);color:var(--ink
 function Hero() {
   return (
     <div className="hero">
-      <div className="hero-eyebrow">September – October 2026</div>
+      <div className="hero-eyebrow">September to October 2026</div>
       <h1 className="serif">Croatia <em>&</em> Montenegro</h1>
       <p className="hero-sub">A 13-night honeymoon along the Adriatic</p>
       <div className="hero-route">
@@ -424,8 +424,8 @@ function BudgetView() {
           {BUDGET.map((b, i) => (
             <div key={i} className="brow">
               <div className="bc">{b.cat}</div>
-              <div>{b.item}{b.note && <span style={{ fontSize: 11, color: "var(--ink-faint)", marginLeft: 6 }}>— {b.note}</span>}</div>
-              <div className="ba">{b.status === "points" ? "—" : `$${b.est.toLocaleString()}`}</div>
+              <div>{b.item}{b.note && <span style={{ fontSize: 11, color: "var(--ink-faint)", marginLeft: 6 }}>· {b.note}</span>}</div>
+              <div className="ba">{b.status === "points" ? "-" : `$${b.est.toLocaleString()}`}</div>
               <div style={{ textAlign: "center" }}><span className={`pill pill-${b.status}`}>{b.status}</span></div>
             </div>
           ))}
@@ -448,7 +448,7 @@ function TodoView() {
         <div>
           {todos.map((t, i) => !t.done && (
             <div key={i} className="todo">
-              <button className={`todo-ck${t.done ? " dn" : ""}`} onClick={() => toggle(i)} />
+              <button className={`todo-ck${t.done ? " dn" : ""}`} onClick={() => toggle(i)} role="checkbox" aria-checked={t.done} aria-label={t.text} />
               <div>
                 <div className="todo-t">
                   {t.pri && <span className={`pdot pdot-${t.pri}`} />}
@@ -466,7 +466,7 @@ function TodoView() {
           <div>
             {todos.map((t, i) => t.done && (
               <div key={i} className="todo">
-                <button className="todo-ck dn" onClick={() => toggle(i)} />
+                <button className="todo-ck dn" onClick={() => toggle(i)} role="checkbox" aria-checked={t.done} aria-label={t.text} />
                 <div><div className="todo-t dn">{t.text}</div>{t.when && <div className="todo-m">{t.when}</div>}</div>
               </div>
             ))}
@@ -529,6 +529,7 @@ function ResearchView() {
 
 export default function App() {
   const [tab, setTab] = useState("itinerary");
+  const tabsRef = useRef([]);
   const tabs = [
     { id: "itinerary", label: "Itinerary", ct: ITINERARY.length },
     { id: "budget", label: "Budget", ct: BUDGET.length },
@@ -536,28 +537,50 @@ export default function App() {
     { id: "research", label: "Research", ct: RESEARCH.length },
   ];
 
+  const handleTabKeyDown = useCallback((e, idx) => {
+    let nextIdx = null;
+    if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+    if (nextIdx !== null) {
+      e.preventDefault();
+      setTab(tabs[nextIdx].id);
+      tabsRef.current[nextIdx]?.focus();
+    }
+  }, [tabs]);
+
   return (
     <>
       <style>{css}</style>
       <div>
         <Hero />
         <div className="nav-wrap">
-          <div className="nav">
-            {tabs.map(t => (
-              <button key={t.id} className={tab === t.id ? "on" : ""} onClick={() => setTab(t.id)}>
+          <div className="nav" role="tablist" aria-label="Trip planner sections">
+            {tabs.map((t, idx) => (
+              <button
+                key={t.id}
+                ref={(el) => { tabsRef.current[idx] = el }}
+                role="tab"
+                aria-selected={tab === t.id}
+                aria-controls={`panel-${t.id}`}
+                id={`tab-${t.id}`}
+                tabIndex={tab === t.id ? 0 : -1}
+                className={tab === t.id ? "on" : ""}
+                onClick={() => setTab(t.id)}
+                onKeyDown={(e) => handleTabKeyDown(e, idx)}
+              >
                 {t.label}<span className="ct">{t.ct}</span>
               </button>
             ))}
           </div>
         </div>
-        <div className="main">
+        <div className="main" role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`}>
           {tab === "itinerary" && <ItineraryView />}
           {tab === "budget" && <BudgetView />}
           {tab === "todos" && <TodoView />}
           {tab === "research" && <ResearchView />}
         </div>
         <div className="footer">
-          Built by <a href="/">Cain Menard</a> — Honeymoon Trip Planner, 2026
+          Built by <a href="/">Cain Menard</a>, Honeymoon Trip Planner, 2026
         </div>
       </div>
     </>
