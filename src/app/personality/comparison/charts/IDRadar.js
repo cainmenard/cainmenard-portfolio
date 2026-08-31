@@ -77,7 +77,7 @@ export default function IDRadar({ idDrives }) {
           strokeWidth={0.75}
         />
       ))}
-      {/* Neutral midline (5) — emphasized */}
+      {/* Neutral midline (5): emphasized */}
       <path
         d={gridPath(5)}
         fill="none"
@@ -110,7 +110,7 @@ export default function IDRadar({ idDrives }) {
         letterSpacing="0.04em"
         fill="rgba(21,128,61,0.80)"
       >
-        USE (6–9)
+        USE (6-9)
       </text>
       {/* NEUTRAL label */}
       <text
@@ -134,7 +134,7 @@ export default function IDRadar({ idDrives }) {
         letterSpacing="0.04em"
         fill="rgba(185,28,28,0.70)"
       >
-        AVOID (1–4)
+        AVOID (1-4)
       </text>
 
       {/* ── Scale value ticks on the Verify (top) axis ── */}
@@ -259,7 +259,7 @@ export default function IDRadar({ idDrives }) {
       {/* ── Legend: scale note ── */}
       <g transform="translate(34 490)">
         <text fontSize={8.5} fill="currentColor" opacity={0.45} letterSpacing="0.03em">
-          Scale 1–9 · USE = 6–9 · NEUTRAL = 5 · AVOID = 1–4
+          Scale 1-9 · USE = 6-9 · NEUTRAL = 5 · AVOID = 1-4
         </text>
       </g>
 
@@ -274,7 +274,7 @@ export default function IDRadar({ idDrives }) {
           fill="currentColor"
           opacity={0.45}
         >
-          YOUR DATA WILL APPEAR HERE — ADJUST SLIDERS ABOVE
+          YOUR DATA WILL APPEAR HERE, ADJUST SLIDERS ABOVE
         </text>
       )}
     </svg>

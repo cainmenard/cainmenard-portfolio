@@ -2,7 +2,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { useReducedMotion } from './useReducedMotion'
 
-// easeOutCubic — fast to start, settles softly on the final figure
+// easeOutCubic, fast to start, settles softly on the final figure
 const ease = (t) => 1 - Math.pow(1 - t, 3)
 
 /**
@@ -10,8 +10,7 @@ const ease = (t) => 1 - Math.pow(1 - t, 3)
  *
  * `value` is null while idle and the current animating number once running,
  * so the caller formats it (e.g. tabular dollars). `start(from, to)` kicks a
- * tween; `reset()` clears it back to idle. Reduced motion is respected here —
- * the tween is skipped and the figure lands straight on `to` — so the caller
+ * tween; `reset()` clears it back to idle. Reduced motion is respected here,  * the tween is skipped and the figure lands straight on `to`, so the caller
  * never has to branch on it.
  *
  * @param {number} durationMs

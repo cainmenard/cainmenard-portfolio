@@ -81,10 +81,10 @@ export default function IDInput({ value, onChange }) {
                     {def.description}
                   </p>
                   <p className="text-[11px] text-emerald-700 dark:text-emerald-400 leading-snug">
-                    <span className="font-bold">USE (6–9): </span>{def.useTraits}
+                    <span className="font-bold">USE (6-9): </span>{def.useTraits}
                   </p>
                   <p className="text-[11px] text-rose-600 dark:text-rose-400 leading-snug mt-1">
-                    <span className="font-bold">AVOID (1–4): </span>{def.avoidTraits}
+                    <span className="font-bold">AVOID (1-4): </span>{def.avoidTraits}
                   </p>
                 </div>
               )}
@@ -108,7 +108,7 @@ export default function IDInput({ value, onChange }) {
                 </span>
               </div>
 
-              {/* Tick marks 1–9 */}
+              {/* Tick marks 1-9 */}
               <div className="flex justify-between text-[9px] text-slate-300 dark:text-slate-600 px-10 mt-0.5 select-none">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (
                   <span

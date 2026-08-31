@@ -12,22 +12,22 @@ const R  = 178   // node ring radius
 // Angle (degrees, 0 = 12 o'clock, clockwise) for each of the 16 types.
 // 4 types per 90° quadrant, spaced evenly at 22.5° intervals starting 11.25° in.
 const TYPE_ANGLES = {
-  // NT — top-right (0° – 90°)
+  // NT: top-right (0°: 90°)
   ENTJ: 11.25,
   INTJ: 33.75,
   ENTP: 56.25,
   INTP: 78.75,
-  // SJ — bottom-right (90° – 180°)
+  // SJ: bottom-right (90°: 180°)
   ESTJ: 101.25,
   ISTJ: 123.75,
   ESFJ: 146.25,
   ISFJ: 168.75,
-  // SP — bottom-left (180° – 270°)
+  // SP: bottom-left (180°: 270°)
   ESTP: 191.25,
   ISTP: 213.75,
   ESFP: 236.25,
   ISFP: 258.75,
-  // NF — top-left (270° – 360°)
+  // NF: top-left (270°: 360°)
   ENFJ: 281.25,
   INFJ: 303.75,
   ENFP: 326.25,
@@ -169,7 +169,7 @@ export default function MBTIWheel({ visitorType = null }) {
 
         return (
           <g key={type}>
-            {/* Dot — hidden for Cain/visitor positions (replaced by larger markers below) */}
+            {/* Dot: hidden for Cain/visitor positions (replaced by larger markers below) */}
             {!isCain && !isVisitor && (
               <circle cx={p.x} cy={p.y} r={3.5} fill="#475569" opacity={0.55} />
             )}
@@ -246,7 +246,7 @@ export default function MBTIWheel({ visitorType = null }) {
           fill="currentColor"
           opacity={0.45}
         >
-          SAMPLE COMPARISON SHOWN — SELECT YOUR TYPE ABOVE
+          SAMPLE COMPARISON SHOWN: SELECT YOUR TYPE ABOVE
         </text>
       )}
     </svg>

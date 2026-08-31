@@ -137,7 +137,7 @@ export default function DISCQuiz({ onChange }) {
         <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
           This is an unofficial, simplified assessment for educational purposes.
           The DISC model is based on William Marston's public-domain research.
-          DiSC® is a registered trademark of Wiley — this tool is not affiliated with
+          DiSC® is a registered trademark of Wiley, this tool is not affiliated with
           or endorsed by Wiley.
         </p>
         <button
@@ -176,7 +176,7 @@ export default function DISCQuiz({ onChange }) {
           </span>
         </div>
 
-        {/* Question area — keyed for fade animation */}
+        {/* Question area: keyed for fade animation */}
         <div key={current} className="animate-fadeUp">
           <p className="text-[10px] text-slate-400 dark:text-slate-500 mb-3 leading-snug">
             Pick the word that describes you{' '}

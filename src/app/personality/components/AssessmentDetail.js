@@ -67,7 +67,7 @@ function DISCDetail({ mode }) {
 
       <SectionTitle>Profile Scores</SectionTitle>
       {Object.entries(d.profile).map(([key, p], i) => (
-        <PercentileBar key={key} label={`${key} — ${p.label}`} value={p.score} index={i} />
+        <PercentileBar key={key} label={`${key}: ${p.label}`} value={p.score} index={i} />
       ))}
 
       {mode === 'full' && (
@@ -170,7 +170,7 @@ function ProScanDetail({ mode }) {
             </div>
             <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Energy Style</p>
-              <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{d.energy.style} — {d.energy.level}</p>
+              <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{d.energy.style}: {d.energy.level}</p>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{d.energy.desc}</p>
             </div>
             <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
@@ -192,7 +192,7 @@ function ProScanDetail({ mode }) {
                 <span className="text-xs font-bold shrink-0 mt-0.5" style={{ color: 'var(--accent)' }}>•</span>
                 <div>
                   <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">{p.name}</span>
-                  <span className="text-sm text-slate-500 dark:text-slate-400"> — {p.desc}</span>
+                  <span className="text-sm text-slate-500 dark:text-slate-400">: {p.desc}</span>
                 </div>
               </div>
             ))}

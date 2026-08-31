@@ -32,7 +32,7 @@ export const PROSCAN_TRAITS = {
       needs: 'Autonomy and authority commensurate with responsibility. Clear domains. Partners who push back with facts, not feelings.',
     },
     mid: {
-      description: 'Balanced assertiveness — can lead when needed but also follows others\' direction comfortably. Appropriately competitive without being domineering.',
+      description: 'Balanced assertiveness: can lead when needed but also follows others\' direction comfortably. Appropriately competitive without being domineering.',
       workStyle: 'Adapts between leading and supporting based on context. Neither needs to control nor avoids it.',
       needs: 'Clarity on role expectations. Collaborative environments where leadership is shared appropriately.',
     },
@@ -42,11 +42,11 @@ export const PROSCAN_TRAITS = {
       needs: 'Clear instructions and permission to push back. Appreciation for collaborative style rather than pressure to be more assertive.',
     },
     interactionRules: {
-      'High-High': 'Aligned on assertiveness — direct communication comes naturally and both respect each other\'s directness. Divide authority clearly to prevent power struggles. Respect each other\'s domain.',
+      'High-High': 'Aligned on assertiveness: direct communication comes naturally and both respect each other\'s directness. Divide authority clearly to prevent power struggles. Respect each other\'s domain.',
       'High-Mid': 'High-D partner should consciously share decision space. Mid partner can bridge to team members who are lower D. Good working balance.',
-      'High-Low': 'The high-D partner must actively invite input — the low-D partner will not advocate for themselves without explicit invitation. High-D should soften directness; low-D should practice stating needs.',
+      'High-Low': 'The high-D partner must actively invite input, the low-D partner will not advocate for themselves without explicit invitation. High-D should soften directness; low-D should practice stating needs.',
       'Mid-Mid': 'Collaborative and balanced. Neither dominates; both are comfortable sharing leadership.',
-      'Mid-Low': 'Comfortable dynamic — mid can lead gently and low can support without feeling dominated. Mid should ensure low\'s preferences are heard.',
+      'Mid-Low': 'Comfortable dynamic: mid can lead gently and low can support without feeling dominated. Mid should ensure low\'s preferences are heard.',
       'Low-Low': 'Highly collaborative but may struggle to make and own decisions. Need to designate a decision-owner for each project.',
     },
   },
@@ -74,7 +74,7 @@ export const PROSCAN_TRAITS = {
       'High-Low': 'High-E should give the low-E partner prep time before meetings and switch-tasks rather than spontaneous verbal demands. Low-E should communicate proactively to prevent the high-E partner from filling silence with assumptions.',
       'Mid-Mid': 'Comfortable, adaptable dynamic. Communication is appropriately calibrated to context.',
       'Mid-Low': 'Mid can be the external face while low handles deeper analytical work. Complementary when roles are respected.',
-      'Low-Low': 'Efficient and focused — less time in meetings, more in focused execution. Risk: relationship-building and stakeholder management suffers. Ensure someone covers the external face.',
+      'Low-Low': 'Efficient and focused: less time in meetings, more in focused execution. Risk: relationship-building and stakeholder management suffers. Ensure someone covers the external face.',
     },
   },
 
@@ -86,17 +86,17 @@ export const PROSCAN_TRAITS = {
       needs: 'Advance notice of changes, stable work environments, and appreciation for consistency rather than speed.',
     },
     mid: {
-      description: 'Balanced pace — can maintain consistency in stable periods and adapt when urgency demands. Neither restless nor slow to change.',
+      description: 'Balanced pace: can maintain consistency in stable periods and adapt when urgency demands. Neither restless nor slow to change.',
       workStyle: 'Flexible about tempo. Can sprint when needed and sustain when required. Adapts without significant distress.',
       needs: 'Context for pace requirements. Flexibility to adjust rather than defaulting to either extreme.',
     },
     low: {
       description: 'Urgent, spontaneous, fast-moving, and impatient. Drives change and seeks variety. Processes slowly-paced environments as friction rather than comfort.',
-      workStyle: 'Thrives in fast-paced, dynamic environments. Can move quickly across multiple initiatives. May be perceived as impatient by higher-pace teammates.',
+      workStyle: 'Thrives in high-tempo, shifting environments. Can move quickly across multiple initiatives. May be perceived as impatient by higher-pace teammates.',
       needs: 'Speed, variety, and change. Clear urgency and meaningful challenges to sustain focus.',
     },
     interactionRules: {
-      'High-High': 'Comfortable, predictable working rhythm. Both prefer stability and consistency. Risk: slow to adapt when circumstances genuinely require change. Need external push for innovation.',
+      'High-High': 'Comfortable, predictable working rhythm. Both prefer stability and consistency. Risk: slow to adapt when circumstances actually require change. Need external push for innovation.',
       'High-Mid': 'Mid partner can bridge between high-pace partner\'s need for consistency and faster-paced team members.',
       'High-Low': 'Maximum pace tension. Low partner must introduce change gradually with rationale and lead time. High partner must communicate capacity limits proactively. Both need to stretch toward the center.',
       'Mid-Mid': 'Comfortable adaptability. Neither extreme creates friction.',
@@ -123,7 +123,7 @@ export const PROSCAN_TRAITS = {
       needs: 'Autonomy, clear objectives without prescribed methods, and environments that value independent thinking.',
     },
     interactionRules: {
-      'High-High': 'Aligned on structure and process — quality is paramount and both will follow and enforce procedures. Risk: over-processing and resistance to necessary rule-bending. May struggle to adapt quickly.',
+      'High-High': 'Aligned on structure and process, quality is paramount and both will follow and enforce procedures. Risk: over-processing and resistance to necessary rule-bending. May struggle to adapt quickly.',
       'High-Mid': 'Mid can translate between high-conformity partner\'s procedural needs and more fluid team members.',
       'High-Low': 'Fundamental tension around process vs. autonomy. High-conformity partner needs clear standards followed; low-conformity partner needs freedom to determine method. Agree on constraints upfront; give latitude within them.',
       'Mid-Mid': 'Flexible and context-sensitive. Both can adapt as needed.',
@@ -148,15 +148,15 @@ export const PROSCAN_LOGIC_STYLES = {
   },
   Feeling: {
     label: 'Feeling-Based (Instinctive)',
-    description: 'Responds instinctively — makes initial automatic conclusions based on inner sense. Trusts gut over data. Decisions feel right before they can be fully articulated.',
+    description: 'Responds instinctively: makes initial automatic conclusions based on inner sense. Trusts gut over data. Decisions feel right before they can be fully articulated.',
     decisionProcess: 'Forms an immediate instinctive conclusion, then may or may not backfill supporting logic.',
-    workingWith: 'Present the overall gestalt before the detail. Don\'t expect them to change a gut conclusion with data alone — address the underlying instinct.',
+    workingWith: 'Present the overall gestalt before the detail. Don\'t expect them to change a gut conclusion with data alone, address the underlying instinct.',
   },
   Balanced: {
     label: 'Balanced',
     description: 'Uses both factual analysis and instinctive sense depending on context. Comfortable with either approach.',
     decisionProcess: 'Adapts between systematic and instinctive decision-making based on the nature of the problem.',
-    workingWith: 'Flexible — read the situation to determine whether data or intuition framing will land better.',
+    workingWith: 'Flexible: read the situation to determine whether data or intuition framing will land better.',
   },
 }
 
@@ -169,21 +169,21 @@ export const PROSCAN_LOGIC_STYLES = {
 export const PROSCAN_ENERGY_STYLES = {
   Thrust: {
     label: 'Thrust',
-    description: 'Rocket-launch style — highly inner-directed, self-starting, and intense. Generates bursts of high-energy effort from internal motivation. Zone 5 Thrust represents maximum capacity.',
+    description: 'Rocket-launch style: highly inner-directed, self-starting, and intense. Generates bursts of high-energy effort from internal motivation. Zone 5 Thrust represents maximum capacity.',
     peakContext: 'New challenges, high-stakes initiatives, competitive environments. Energized by significance and achievement.',
     drainContext: 'Routine, bureaucracy, and low-impact work. Energy drops when there\'s no meaningful challenge.',
   },
   Allegiance: {
     label: 'Allegiance',
-    description: 'Dedicated follow-through style — energized by commitment to people and causes. Sustains long-term effort through loyalty and deep investment in the mission.',
+    description: 'Dedicated follow-through style: energized by commitment to people and causes. Sustains long-term effort through loyalty and deep investment in the mission.',
     peakContext: 'Long-term relationships, mission-driven work, and environments where their contribution builds something lasting.',
     drainContext: 'Constant change of direction, lack of stability, and environments where commitment is treated as optional.',
   },
   'Ste-Nacity': {
     label: 'Ste-Nacity',
-    description: 'Persistent determination style — stays the course under pressure through steady, consistent effort. Neither sprint nor marathon — a sustainable, grinding forward momentum.',
+    description: 'Persistent determination style: stays the course under pressure through steady, consistent effort. Neither sprint nor marathon: a sustainable, grinding forward momentum.',
     peakContext: 'Complex, long-duration challenges that require sustained focus and refusal to give up.',
-    drainContext: 'Environments that don\'t reward persistence — where quick pivots matter more than sustained commitment.',
+    drainContext: 'Environments that don\'t reward persistence: where quick pivots matter more than sustained commitment.',
   },
 }
 
@@ -223,11 +223,11 @@ export function getEnergyStyleInteraction(stylesA, stylesB) {
   const allStyles = [...new Set([...stylesA, ...stylesB])]
 
   if (sharedStyles.length > 0) {
-    return `Matching energy style${sharedStyles.length > 1 ? 's' : ''} (${sharedStyles.join(', ')}) — similar work rhythms mean momentum builds naturally. Both experience the same peaks and troughs; coordinate to avoid simultaneous energy drops on critical deliverables.`
+    return `Matching energy style${sharedStyles.length > 1 ? 's' : ''} (${sharedStyles.join(', ')}): similar work rhythms mean momentum builds naturally. Both experience the same peaks and troughs; coordinate to avoid simultaneous energy drops on critical deliverables.`
   }
 
   if (allStyles.includes('Thrust') && allStyles.includes('Allegiance')) {
-    return 'Thrust vs. Allegiance: the Thrust partner generates intense bursts of momentum; the Allegiance partner provides sustained commitment through the full arc. Coordinate handoff points — Thrust launches, Allegiance carries it through.'
+    return 'Thrust vs. Allegiance: the Thrust partner generates intense bursts of momentum; the Allegiance partner provides sustained commitment through the full arc. Coordinate handoff points: Thrust launches, Allegiance carries it through.'
   }
 
   if (allStyles.includes('Thrust') && allStyles.includes('Ste-Nacity')) {
@@ -235,8 +235,8 @@ export function getEnergyStyleInteraction(stylesA, stylesB) {
   }
 
   if (allStyles.includes('Allegiance') && allStyles.includes('Ste-Nacity')) {
-    return 'Allegiance vs. Ste-Nacity: both are sustained-effort styles — neither gives up easily. Shared endurance but different motivations (people-loyalty vs. task-persistence). Leverage complementary staying power.'
+    return 'Allegiance vs. Ste-Nacity: both are sustained-effort styles: neither gives up easily. Shared endurance but different motivations (people-loyalty vs. task-persistence). Put the complementary staying power to work.'
   }
 
-  return 'Different energy styles — coordinate work rhythms explicitly and identify who drives initiation vs. who sustains execution.'
+  return 'Different energy styles: coordinate work rhythms explicitly and identify who drives initiation vs. who sustains execution.'
 }

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * FieldIntelligencePreview — a compact "Golden Hour" teaser for the Field
+ * FieldIntelligencePreview, a compact "Golden Hour" teaser for the Field
  * Intelligence interactive story. It reproduces the story's signature effect in
  * miniature: a sky that sweeps indigo predawn -> blue midday -> violet dusk, a
  * glowing sun that arcs across on the exact 4·p·(1−p) parabola the real page
@@ -9,13 +9,13 @@
  * up as a spark travels FIELD -> DECISIONS.
  *
  * Everything below is derived in pure CSS from a single scalar, --fip-p (0 = day
- * begins, 1 = dusk), which this component writes each animation frame — mirroring
+ * begins, 1 = dusk), which this component writes each animation frame, mirroring
  * how the real story drives its whole scene off --fi-progress. Colors, ramps and
  * the sun parabola are lifted from src/app/field-intelligence/field-intelligence.css.
  *
  * Motion: the day plays once (~7s, ease-out) when the card scrolls into view and
  * settles at golden dusk with all dots lit; hover/focus replays it. When the
- * viewer prefers reduced motion, no rAF runs — it renders a static golden-hour
+ * viewer prefers reduced motion, no rAF runs, it renders a static golden-hour
  * frame with every dot lit.
  */
 
@@ -24,7 +24,7 @@ import { useEffect, useRef } from 'react'
 const STATIONS = ['Field', 'Office', 'Job Cost', 'Portfolio', 'Decisions']
 
 // The frame we settle on (and freeze at, under reduced motion): the day runs to
-// dusk, so the spark reaches DECISIONS and the whole rail is lit — the story's
+// dusk, so the spark reaches DECISIONS and the whole rail is lit, the story's
 // payoff, "ending with a decision."
 const REST_P = 1
 const DURATION = 7000 // ms for a full dawn->dusk pass

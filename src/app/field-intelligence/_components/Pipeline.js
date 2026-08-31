@@ -159,7 +159,7 @@ export default function Pipeline() {
             )
           })}
 
-          {/* Valves — the clickable hand-offs */}
+          {/* Valves, the clickable hand-offs */}
           {geo.segments.map((seg, i) => renderValve(points[i], seg))}
         </svg>
       </div>

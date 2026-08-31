@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 const ARTICLE_URL = 'https://cainmenard.com/ai-evolution'
-const ARTICLE_TITLE = 'The Tool Changed. The Expertise Didn\'t.'
+const ARTICLE_TITLE = 'Weeks of Tableau Work, Rebuilt in Hours'
 const ARTICLE_TEXT = 'AI coding tools rebuilt a Tableau dashboard as a full React web app in hours. Here\'s what that means for construction.'
 
 export default function ShareButtons({ className = '' }) {

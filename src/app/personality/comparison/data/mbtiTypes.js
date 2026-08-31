@@ -163,7 +163,7 @@ export const FUNCTION_PAIRS = {
 }
 
 /**
- * Keirsey temperament descriptions — used for wheel chart quadrant labels.
+ * Keirsey temperament descriptions: used for wheel chart quadrant labels.
  */
 export const TEMPERAMENTS = {
   NT: { label: 'Rationals', focus: 'Strategic, competence-seeking, big-picture' },

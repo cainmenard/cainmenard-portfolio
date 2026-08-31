@@ -2,10 +2,10 @@
 import { useState, useRef } from 'react'
 import { ENNEAGRAM_TYPES, ENNEAGRAM_TRIADS } from '../data/enneagramTypes'
 
-// All 36 unique C(9,2) pairs — every type appears exactly 8 times (balanced scoring).
+// All 36 unique C(9,2) pairs: every type appears exactly 8 times (balanced scoring).
 // Ordered across 4 sections of 9 to naturally mix types throughout.
 const QUESTIONS = [
-  // ── Part 1 (Q1–Q9) ──────────────────────────────────────────────────────
+  // ── Part 1 (Q1: Q9) ──────────────────────────────────────────────────────
   { a: { text: 'I take charge and push hard for what I believe in', type: 8 },
     b: { text: 'I step back and let things unfold naturally', type: 9 } },
   { a: { text: 'I focus on being helpful and caring for others', type: 2 },
@@ -25,7 +25,7 @@ const QUESTIONS = [
   { a: { text: 'I find safety in knowledge and self-sufficiency', type: 5 },
     b: { text: 'I find safety in trusted people and reliable systems', type: 6 } },
 
-  // ── Part 2 (Q10–Q18) ─────────────────────────────────────────────────────
+  // ── Part 2 (Q10: Q18) ─────────────────────────────────────────────────────
   { a: { text: 'I influence through warmth, generosity, and nurturing', type: 2 },
     b: { text: 'I influence through strength, directness, and control', type: 8 } },
   { a: { text: 'I embrace my individuality even when it creates tension', type: 4 },
@@ -45,7 +45,7 @@ const QUESTIONS = [
   { a: { text: 'I pull back from the world to conserve my energy and think', type: 5 },
     b: { text: "I go along with others' agendas to keep inner conflict at bay", type: 9 } },
 
-  // ── Part 3 (Q19–Q27) ─────────────────────────────────────────────────────
+  // ── Part 3 (Q19: Q27) ─────────────────────────────────────────────────────
   { a: { text: 'I adapt how I present myself to get ahead', type: 3 },
     b: { text: "I resist changing how I present myself for others' approval", type: 4 } },
   { a: { text: "My energy naturally flows toward other people's needs", type: 2 },
@@ -58,20 +58,20 @@ const QUESTIONS = [
     b: { text: 'I measure success through depth of understanding and expertise', type: 5 } },
   { a: { text: 'I keep life stimulating with new experiences and possibilities', type: 7 },
     b: { text: 'I keep life comfortable by minimizing disruption and conflict', type: 9 } },
-  { a: { text: 'I lean into difficult emotions — they feel real and meaningful', type: 4 },
+  { a: { text: 'I lean into difficult emotions, they feel real and meaningful', type: 4 },
     b: { text: 'I step away from difficult emotions by staying busy and positive', type: 7 } },
   { a: { text: 'I push back against rules that get in the way of the mission', type: 8 },
     b: { text: 'I work within established rules to improve things from the inside', type: 1 } },
-  { a: { text: "I feel fulfilled when I've genuinely helped someone in need", type: 2 },
+  { a: { text: "I feel fulfilled when I have actually helped someone in need", type: 2 },
     b: { text: "I feel fulfilled when I've fully expressed who I really am", type: 4 } },
 
-  // ── Part 4 (Q28–Q36) ─────────────────────────────────────────────────────
+  // ── Part 4 (Q28: Q36) ─────────────────────────────────────────────────────
   { a: { text: 'I prefer to observe and analyze carefully before engaging', type: 5 },
     b: { text: 'I prefer to dive in and experience things directly first', type: 7 } },
   { a: { text: 'I achieve through efficiency, image, and adaptability', type: 3 },
     b: { text: 'I achieve through force of will, power, and directness', type: 8 } },
   { a: { text: "I'm driven by doing things the right and proper way", type: 1 },
-    b: { text: "I'm driven by being genuinely needed and loved by others", type: 2 } },
+    b: { text: "I'm driven by being needed and loved by others", type: 2 } },
   { a: { text: 'I connect with people by being warm, giving, and supportive', type: 2 },
     b: { text: 'I connect with people by sharing knowledge and deep insight', type: 5 } },
   { a: { text: 'I thrive when I can compete and earn recognition', type: 3 },
@@ -80,7 +80,7 @@ const QUESTIONS = [
     b: { text: 'I guard against vulnerability and project strength', type: 8 } },
   { a: { text: 'I protect myself by withdrawing and becoming self-sufficient', type: 5 },
     b: { text: 'I protect myself by asserting control and projecting strength', type: 8 } },
-  { a: { text: "I focus on others' needs because I genuinely want to be needed", type: 2 },
+  { a: { text: "I focus on others' needs because I want to be needed", type: 2 },
     b: { text: "I go along with others' preferences to avoid conflict", type: 9 } },
   { a: { text: 'I trust my own principles and act independently', type: 1 },
     b: { text: 'I look to trusted people and systems for guidance', type: 6 } },
@@ -240,7 +240,7 @@ export default function EnneagramQuiz({ onChange }) {
           </span>
         </div>
 
-        {/* Question content — keyed for fade animation per question */}
+        {/* Question content: keyed for fade animation per question */}
         <div key={current} className="animate-fadeUp">
           <p className="text-[10px] font-semibold text-amber-500 uppercase tracking-wider mb-3">
             Part {section} of 4 · Question {sectionQ} of 9
@@ -250,7 +250,7 @@ export default function EnneagramQuiz({ onChange }) {
             Which statement resonates with you <span className="font-bold text-slate-500 dark:text-slate-400">more</span>?
           </p>
 
-          {/* Two choice cards — stacked on mobile, side-by-side on sm+ */}
+          {/* Two choice cards: stacked on mobile, side-by-side on sm+ */}
           <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
             {[
               { key: 'a', label: 'A', stmt: q.a },

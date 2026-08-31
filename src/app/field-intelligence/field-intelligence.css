@@ -1,5 +1,5 @@
 /* ==================================================================
- * Field Intelligence — route-scoped styles
+ * Field Intelligence, route-scoped styles
  *
  * Everything here is namespaced under .fi-root so it cannot leak into
  * the rest of the site, and so the site's global dark-mode (.dark on
@@ -19,7 +19,7 @@
   --fi-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --fi-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* single stable base — one warm off-white the whole way down, so the
+  /* single stable base, one warm off-white the whole way down, so the
      background is never too light or too dark to read. Time of day lives in
      the atmosphere layer below, not in this base. */
   --fi-bg: #faf8f5;
@@ -29,7 +29,7 @@
   --fi-muted: #55606e;
   --fi-line: rgba(30, 42, 56, 0.14);
   --fi-line-strong: rgba(30, 42, 56, 0.28);
-  --fi-accent-text: #8f531f;   /* copper for TEXT — fixed, always AA on the base */
+  --fi-accent-text: #8f531f;   /* copper for TEXT, fixed, always AA on the base */
   --fi-accent-ink: #ffffff;    /* text that sits on an accent fill */
   --fi-sandbox: #2f6f7a;       /* a distinct world: teal, never copper */
   --fi-sandbox-soft: rgba(47, 111, 122, 0.10);
@@ -40,8 +40,8 @@
      --fi-progress (0 = 6:15am predawn → 1 = dusk) is written to this element
      by JS on each scroll frame. The whole scene below is derived from it in
      pure CSS, so the sky sweeps and the sun arcs continuously with the scroll.
-     The sky is genuinely bold (dark indigo dawn → bright midday → golden dusk)
-     — story content rides on opaque paper panels, so readability never depends
+     The sky is bold (dark indigo dawn → bright midday → golden dusk)
+     , story content rides on opaque paper panels, so readability never depends
      on the sky's luminance. Two half-progress ramps let three anchors blend
      smoothly through the day. */
   --fi-progress: 0;
@@ -81,7 +81,7 @@
  * sky gradient (top → horizon), a warm horizon glow, faint predawn stars, and
  * a sun that rises, arcs, and sets. Every layer derives from --fi-progress, so
  * the day passes continuously with the scroll. Story content sits on opaque
- * paper panels (below), so the sky can be genuinely dark at dawn without ever
+ * paper panels (below), so the sky can be fully dark at dawn without ever
  * risking legibility. --- */
 .fi-backdrop {
   position: fixed;
@@ -197,7 +197,7 @@
 /* Story panels: every post-hero section's content rides on an opaque paper
    card, so text is always legible no matter how dark or bright the sky behind
    it is. The sky (and the arcing sun) show in the gutters and the gaps between
-   panels. The hero is deliberately excluded — it opens straight onto the dawn
+   panels. The hero is deliberately excluded, it opens straight onto the dawn
    sky with light text. */
 .fi-station .fi-wrap,
 #finale .fi-wrap,
@@ -617,7 +617,7 @@
   flex-direction: column;
   justify-content: center;
   padding-top: var(--fi-rail-h);
-  /* The hero is the one place text meets the raw sky — and it's always the
+  /* The hero is the one place text meets the raw sky, and it's always the
      dark predawn end of the arc, so switch to light ink here. Redefining the
      palette vars cascades to every hero descendant (title, lead, kicker, cue). */
   color: #f6f2ec;
@@ -665,7 +665,7 @@
 @keyframes fi-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 
 /* ------------------------------------------------------------------ *
- * Field note vs sandbox — the two data worlds, kept visually distinct
+ * Field note vs sandbox, the two data worlds, kept visually distinct
  * ------------------------------------------------------------------ */
 .fi-note {
   position: relative;
@@ -690,7 +690,7 @@
 .fi-note--field .fi-note__tag::before {
   content: ''; width: 7px; height: 7px; border-radius: 999px; background: var(--fi-accent);
 }
-/* SANDBOX: illustrative / composite input — deliberately different */
+/* SANDBOX: illustrative / composite input, deliberately different */
 .fi-note--sandbox {
   background: var(--fi-sandbox-soft);
   border: 1px dashed var(--fi-sandbox);
@@ -718,7 +718,7 @@
 }
 
 /* ------------------------------------------------------------------ *
- * Citation affordance — hover/tap footnote
+ * Citation affordance, hover/tap footnote
  * ------------------------------------------------------------------ */
 .fi-cite { position: relative; display: inline; }
 .fi-cite__btn {
@@ -804,7 +804,7 @@
 .fi-drawer__body { padding: 0 0 1.5rem; color: var(--fi-text); line-height: 1.6; }
 
 /* ------------------------------------------------------------------ *
- * Interaction stub (spine placeholder — replaced per station)
+ * Interaction stub (spine placeholder, replaced per station)
  * ------------------------------------------------------------------ */
 .fi-stub {
   border: 1px dashed var(--fi-line-strong);
@@ -899,7 +899,7 @@
 }
 
 /* ------------------------------------------------------------------ *
- * Reduced motion — snap everything, no ambient loops
+ * Reduced motion, snap everything, no ambient loops
  * ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   .fi-backdrop,
@@ -1834,7 +1834,7 @@
 .fi-agent__constraints li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 999px; background: var(--fi-accent); }
 
 /* ------------------------------------------------------------------ *
- * Finale agent console — the live grounded-retrieval demo.
+ * Finale agent console, the live grounded-retrieval demo.
  * ------------------------------------------------------------------ */
 .fi-agent__invite {
   margin: 1.25rem 0 0.75rem;
@@ -1998,7 +1998,7 @@
 .fi-console__send:hover:not(:disabled) { filter: brightness(1.06); }
 .fi-console__send:disabled { opacity: 0.45; cursor: default; }
 
-/* the axes it can combine — a quiet range signal under the input */
+/* the axes it can combine, a quiet range signal under the input */
 .fi-console__hint {
   margin: 0; padding: 0 1rem 1rem; background: var(--fi-surface);
   font-size: 0.74rem; line-height: 1.5; color: var(--fi-muted);

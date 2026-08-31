@@ -9,7 +9,7 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
-          This page doesn&apos;t exist — maybe it got lost on the way to Everest Base Camp.
+          This page doesn&apos;t exist. Maybe it got lost on the way to Everest Base Camp.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold text-white transition hover:translate-y-[-1px] hover:shadow-lg" style={{ background: 'var(--navy)' }}>

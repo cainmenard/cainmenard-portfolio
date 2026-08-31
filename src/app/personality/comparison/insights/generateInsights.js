@@ -61,7 +61,7 @@ function proScanComplete(ps) {
  */
 function extractTip(text, letter) {
   if (!text) return ''
-  // Split on "LETTER: " boundaries — captures label and its following content
+  // Split on "LETTER: " boundaries: captures label and its following content
   const parts = text.split(/\b([A-Z]+):\s*/)
   const idx = parts.indexOf(letter)
   if (idx !== -1 && parts[idx + 1]) {
@@ -105,7 +105,7 @@ function buildCommunication(v) {
   const discData = getDISCInteraction(CAIN_DISC, vPrimary)
   if (!discData) return null
 
-  // Cain is always D — map visitor primary to alignment
+  // Cain is always D, map visitor primary to alignment
   const ALIGN = { D: 'moderate', I: 'high', S: 'low', C: 'moderate' }
 
   // Secondary MBTI communication layer (first sentence only)
@@ -200,7 +200,7 @@ function buildDelegation(v) {
   const discData = getDISCInteraction(CAIN_DISC, vPrimary)
   if (!discData) return null
 
-  // D delegating — most styles work well; other Ds need explicit territory division
+  // D delegating: most styles work well; other Ds need explicit territory division
   const ALIGN = { D: 'moderate', I: 'high', S: 'high', C: 'moderate' }
 
   let summary = firstSentence(discData.delegationTips)
@@ -249,10 +249,10 @@ function buildFeedback(v) {
   const hasEnn  = !!v.enneagram?.type
   if (!hasDisc && !hasEnn) return null
 
-  let summary    = 'Cain (Enneagram 8) delivers and expects direct, unvarnished feedback — cushioning reads as condescension.'
+  let summary    = 'Cain (Enneagram 8) delivers and expects direct, unvarnished feedback, cushioning reads as condescension.'
   let forVisitor = 'Lead with the specific behavior to change, not a broad judgment. Outcomes-first framing lands better with Cain than a relational preamble.'
   let forCain    = 'Frame feedback around shared goals, not personal shortcomings. Build psychological safety before the message will land.'
-  let watchOut   = 'Mismatched directness levels cause the message to be lost — too blunt or too soft both fail.'
+  let watchOut   = 'Mismatched directness levels cause the message to be lost, too blunt or too soft both fail.'
   let alignment  = 'moderate'
 
   if (hasDisc) {
@@ -418,7 +418,7 @@ function buildMotivation(v) {
 
   const watchOut = complementary.length > 0
     ? firstSentence(comparison[complementary[0]].note)
-    : 'Motivation styles are well matched — alignment is natural.'
+    : 'Motivation styles are well matched, alignment is natural.'
 
   const d = dim('motivation')
   return {

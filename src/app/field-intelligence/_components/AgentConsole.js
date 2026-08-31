@@ -12,7 +12,7 @@ import { track } from './track'
  * computes the answer straight from the tracker rows and returns the refs it
  * used. Those refs are cited under the answer AND highlighted in the visible
  * data table, so "a source link on every answer" is something the reader can
- * watch happen. No model, no backend — the honesty is the point.
+ * watch happen. No model, no backend, the honesty is the point.
  */
 
 function dueLabel(r) {
@@ -30,7 +30,7 @@ function dueState(r) {
 }
 
 function valueLabel(r) {
-  if (!r.amount) return '—'
+  if (!r.amount) return '·'
   return r.amount >= 1e6 ? `$${(r.amount / 1e6).toFixed(2)}M` : `$${Math.round(r.amount / 1000)}k`
 }
 
@@ -47,7 +47,7 @@ export default function AgentConsole() {
   const threadRef = useRef(null)
   const timerRef = useRef(null)
 
-  // Refs cited by the most recent agent answer — highlighted in the table.
+  // Refs cited by the most recent agent answer, highlighted in the table.
   const lastAgent = [...messages].reverse().find((m) => m.role === 'agent')
   const highlit = new Set(lastAgent?.cites || [])
 
@@ -74,7 +74,7 @@ export default function AgentConsole() {
       commit()
       return
     }
-    // A brief retrieval beat — deterministic, not a fake typewriter.
+    // A brief retrieval beat, deterministic, not a fake typewriter.
     setPending(true)
     timerRef.current = setTimeout(() => {
       setPending(false)
@@ -117,7 +117,7 @@ export default function AgentConsole() {
         </span>
       </div>
 
-      {/* The data it reads — visible, so the citations mean something. */}
+      {/* The data it reads, visible, so the citations mean something. */}
       <div className="fi-console__data">
         <div className="fi-tracker-wrap">
           <table className="fi-tracker">
@@ -174,7 +174,7 @@ export default function AgentConsole() {
                 ) : (
                   m.kind === 'declined' && (
                     <p className="fi-msg__cites">
-                      <span className="fi-msg__ro">no source — not in the data</span>
+                      <span className="fi-msg__ro">no source, not in the data</span>
                     </p>
                   )
                 )}

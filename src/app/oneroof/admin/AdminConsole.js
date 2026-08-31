@@ -10,7 +10,7 @@ const when = (ms) =>
         hour: 'numeric',
         minute: '2-digit',
       })
-    : '—'
+    : '·'
 
 const browser = (ua) => {
   if (!ua) return 'unknown'

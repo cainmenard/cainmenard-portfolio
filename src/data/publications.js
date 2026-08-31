@@ -2,7 +2,7 @@ export const PUBLICATIONS = [
   {
     title: 'Artificial Intelligence for Engineering and Construction Firms',
     outlet: 'FMI Quarterly, Second Edition 2023',
-    description: 'Feature article demystifying AI for the construction industry — from narrow AI applications to practical tools transforming scheduling, estimating, safety monitoring, and quality control.',
+    description: 'Feature article demystifying AI for the construction industry, from narrow AI applications to the tools already changing scheduling, estimating, safety monitoring, and quality control.',
     link: 'https://fmicorp.com/insights/thought-leadership/artificial-intelligence-for-engineering-and-construction-firms',
     callouts: [
       { type: 'Republished by', name: 'National Insulation Association', url: 'https://insulation.org/io/articles/artificial-intelligence-for-engineering-and-construction-firms/' },
@@ -12,7 +12,7 @@ export const PUBLICATIONS = [
   {
     title: 'Beyond the Buzz: Harnessing the Power of Data Analytics in Construction',
     outlet: 'FMI Quarterly',
-    description: 'Research article on building data infrastructure, analytics maturity, and practical approaches for construction firms to leverage data-driven decision making.',
+    description: 'Research article on building data infrastructure, analytics maturity, and how construction firms can actually make decisions off their own data.',
     link: 'https://fmicorp.com/uploads/media/FMI_Quarterly_DataAnalytics_Final.pdf',
     callouts: [],
   },

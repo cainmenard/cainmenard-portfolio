@@ -61,10 +61,10 @@ export default function MBTISelector({ value, onChange }) {
           >
             <option value="">Select a type…</option>
             {TEMPERAMENT_ORDER.map(t => (
-              <optgroup key={t} label={`${t} — ${TEMPERAMENTS[t].label}`}>
+              <optgroup key={t} label={`${t}: ${TEMPERAMENTS[t].label}`}>
                 {grouped[t].map(type => (
                   <option key={type.code} value={type.code}>
-                    {type.code} — {type.label}
+                    {type.code}: {type.label}
                   </option>
                 ))}
               </optgroup>

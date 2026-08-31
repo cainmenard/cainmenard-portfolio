@@ -5,7 +5,7 @@
  * collaboration dimensions:  communication, decisionMaking, leadership,
  * conflict, delegation.
  *
- * All copy is generated at call-time from type metadata — no 256-entry
+ * All copy is generated at call-time from type metadata, no 256-entry
  * lookup table required.
  */
 
@@ -73,8 +73,8 @@ function buildCommunication(a, b) {
     const isE = a.code[0] === 'E'
     parts.push(
       isE
-        ? 'Both extraverts — conversations will be fast-paced and externally processed. Take turns holding the floor; neither should dominate airtime.'
-        : 'Both introverts — allow processing time before expecting responses. Written communication may flow more naturally than rapid-fire verbal exchanges.'
+        ? 'Both extraverts: conversations will move quickly and get processed out loud. Take turns holding the floor; neither should dominate airtime.'
+        : 'Both introverts: allow processing time before expecting responses. Written communication may flow more naturally than rapid-fire verbal exchanges.'
     )
   } else {
     const eType = a.code[0] === 'E' ? a : b
@@ -87,7 +87,7 @@ function buildCommunication(a, b) {
   // Thinking vs Feeling communication filter
   if (isThinking(domA) && isFeeling(domB)) {
     parts.push(
-      `${a.code}'s ${domA}-led approach prioritizes ${FN_SHORT[domA]} — frame messages in logical terms but open with how the decision affects people, since ${b.code} leads with ${FN_SHORT[domB]}.`
+      `${a.code}'s ${domA}-led approach prioritizes ${FN_SHORT[domA]}: frame messages in logical terms but open with how the decision affects people, since ${b.code} leads with ${FN_SHORT[domB]}.`
     )
   } else if (isFeeling(domA) && isThinking(domB)) {
     parts.push(
@@ -95,11 +95,11 @@ function buildCommunication(a, b) {
     )
   } else if (isThinking(domA) && isThinking(domB)) {
     parts.push(
-      `Both lead with thinking functions — direct, logical communication will land well. Watch for emotional undertones neither of you naturally voices.`
+      `Both lead with thinking functions, direct, logical communication will land well. Watch for emotional undertones neither of you naturally voices.`
     )
   } else {
     parts.push(
-      `Both lead with feeling functions — emotional attunement is natural. Be explicit about logical trade-offs that neither may want to raise.`
+      `Both lead with feeling functions, emotional attunement is natural. Be explicit about logical trade-offs that neither may want to raise.`
     )
   }
 
@@ -125,14 +125,14 @@ function buildDecisionMaking(a, b) {
     const isT = a.code[2] === 'T'
     parts.push(
       isT
-        ? 'Both prioritize logical analysis in decisions — you\'ll align quickly on data-driven choices. Actively consider the human impact that neither naturally foregrounds.'
-        : 'Both prioritize values and people impact — you\'ll agree on what matters but may avoid uncomfortable logical trade-offs. Assign one person to play devil\'s advocate on the numbers.'
+        ? 'Both prioritize logical analysis in decisions, you\'ll align quickly on data-driven choices. Actively consider the human impact that neither naturally foregrounds.'
+        : 'Both prioritize values and people impact, you\'ll agree on what matters but may avoid uncomfortable logical trade-offs. Assign one person to play devil\'s advocate on the numbers.'
     )
   } else {
     const tType = a.code[2] === 'T' ? a : b
     const fType = a.code[2] === 'T' ? b : a
     parts.push(
-      `${tType.code} reaches decisions through ${FN_SHORT[dominant(tType)]}, while ${fType.code} filters through ${FN_SHORT[dominant(fType)]}. Neither is wrong — ${tType.code} should acknowledge the values dimension, and ${fType.code} should engage with the logical framework.`
+      `${tType.code} reaches decisions through ${FN_SHORT[dominant(tType)]}, while ${fType.code} filters through ${FN_SHORT[dominant(fType)]}. Neither is wrong: ${tType.code} should acknowledge the values dimension, and ${fType.code} should engage with the logical framework.`
     )
   }
 
@@ -141,14 +141,14 @@ function buildDecisionMaking(a, b) {
     const isJ = a.code[3] === 'J'
     parts.push(
       isJ
-        ? 'Both Judging types — decisions will close quickly. Guard against premature closure; schedule a brief "what are we missing?" check before finalizing.'
-        : 'Both Perceiving types — decisions stay open for a long time. Set explicit deadlines and "good enough" checkpoints to avoid analysis paralysis.'
+        ? 'Both Judging types: decisions will close quickly. Guard against premature closure; schedule a brief "what are we missing?" check before finalizing.'
+        : 'Both Perceiving types: decisions stay open for a long time. Set explicit deadlines and "good enough" checkpoints to avoid analysis paralysis.'
     )
   } else {
     const jType = a.code[3] === 'J' ? a : b
     const pType = a.code[3] === 'J' ? b : a
     parts.push(
-      `${jType.code} wants to decide and move on; ${pType.code} wants to gather more input. Agree on a decision timeline upfront — ${jType.code} gets closure, ${pType.code} gets exploration time.`
+      `${jType.code} wants to decide and move on; ${pType.code} wants to gather more input. Agree on a decision timeline upfront, ${jType.code} gets closure, ${pType.code} gets exploration time.`
     )
   }
 
@@ -163,7 +163,7 @@ function buildLeadership(a, b) {
   // Same quadra = natural working partnership
   if (a.quadra === b.quadra) {
     parts.push(
-      `Same quadra (${a.quadra}) — you share valued cognitive functions, creating an intuitive working rhythm. Leadership can rotate based on the task rather than personality dominance.`
+      `Same quadra (${a.quadra}): you share valued cognitive functions, creating an intuitive working rhythm. Leadership can rotate based on the task rather than personality dominance.`
     )
   }
 
@@ -178,18 +178,18 @@ function buildLeadership(a, b) {
     )
   } else if (isPerceiving(domA)) {
     parts.push(
-      `${a.code} leads through ${FN_SHORT[domA]} — providing information and options rather than directives.`
+      `${a.code} leads through ${FN_SHORT[domA]}: providing information and options rather than directives.`
     )
   }
 
   // Complementary or clashing dominants
   if (areFunctionPair(domA, domB)) {
     parts.push(
-      `Your dominant functions (${domA}/${domB}) are complementary opposites — ${FN_LABELS[domA]} and ${FN_LABELS[domB]}. This creates a powerful check-and-balance when you respect each other's domain.`
+      `Your dominant functions (${domA}/${domB}) are complementary opposites: ${FN_LABELS[domA]} and ${FN_LABELS[domB]}. This creates a powerful check-and-balance when you respect each other's domain.`
     )
   } else if (domA === domB) {
     parts.push(
-      `You share the same dominant function (${domA}). Leadership clarity requires explicit role definition — otherwise you'll compete for the same cognitive space.`
+      `You share the same dominant function (${domA}). Leadership clarity requires explicit role definition, otherwise you'll compete for the same cognitive space.`
     )
   }
 
@@ -212,20 +212,20 @@ function buildConflict(a, b) {
   const domA = dominant(a)
   const domB = dominant(b)
 
-  // Inferior function triggers — the primary source of stress
+  // Inferior function triggers: the primary source of stress
   parts.push(
-    `${a.code}'s blind spot is ${FN_LABELS[infA]} (${ROLE_LABELS[3]}) — conflict escalates when they're forced to operate in that space.`
+    `${a.code}'s blind spot is ${FN_LABELS[infA]} (${ROLE_LABELS[3]}): conflict escalates when they're forced to operate in that space.`
   )
 
   // When one's dominant attacks the other's inferior
   if (domA === infB) {
     parts.push(
-      `${a.code}'s natural ${domA} strength directly targets ${b.code}'s weakest function. Be conscious that your normal operating mode can feel like an attack — dial back intensity and explain your reasoning.`
+      `${a.code}'s natural ${domA} strength directly targets ${b.code}'s weakest function. Be conscious that your normal operating mode can feel like an attack, dial back intensity and explain your reasoning.`
     )
   }
   if (domB === infA) {
     parts.push(
-      `${b.code}'s natural ${domB} strength hits ${a.code}'s inferior function. ${a.code} may feel criticized or inadequate without understanding why — name the dynamic to defuse it.`
+      `${b.code}'s natural ${domB} strength hits ${a.code}'s inferior function. ${a.code} may feel criticized or inadequate without understanding why, name the dynamic to defuse it.`
     )
   }
 
@@ -241,7 +241,7 @@ function buildConflict(a, b) {
   // S/N misperception in conflict
   if (!letterMatch(a.code, b.code, 1)) {
     parts.push(
-      'S/N mismatch amplifies conflict — one focuses on "what actually happened" (facts) while the other focuses on "what it means" (implications). Validate both lenses before seeking resolution.'
+      'S/N mismatch amplifies conflict: one focuses on "what actually happened" (facts) while the other focuses on "what it means" (implications). Validate both lenses before seeking resolution.'
     )
   }
 
@@ -267,7 +267,7 @@ function buildDelegation(a, b) {
   const shared = getSharedFunctions(a.stack, b.stack)
   if (shared.length === 0) {
     parts.push(
-      'No shared cognitive functions — you cover completely different ground. Delegate by domain: each person owns the tasks that match their stack, with brief handoff syncs to stay aligned.'
+      'No shared cognitive functions: you cover completely different ground. Delegate by domain: each person owns the tasks that match their stack, with brief handoff syncs to stay aligned.'
     )
   } else if (shared.length >= 3) {
     parts.push(
