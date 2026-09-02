@@ -50,7 +50,7 @@ export async function POST(request) {
   )
 }
 
-/** DELETE /api/oneroof/admin/invite  { email } — also kills their live sessions. */
+/** DELETE /api/oneroof/admin/invite  { email }, also kills their live sessions. */
 export async function DELETE(request) {
   const owner = await requireOwner()
   if (!owner) return notFound()

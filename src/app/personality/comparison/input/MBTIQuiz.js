@@ -3,27 +3,27 @@ import { useState, useRef } from 'react'
 import { MBTI_TYPES } from '../data/mbtiTypes'
 
 const QUESTIONS = [
-  // E/I — Energy Direction
+  // E/I: Energy Direction
   { dichotomy: 'EI', left: 'E', right: 'I', text: 'After a long day, I recharge by…', leftLabel: 'Socializing', rightLabel: 'Time alone' },
   { dichotomy: 'EI', left: 'E', right: 'I', text: 'In group settings, I tend to…', leftLabel: 'Speak up first', rightLabel: 'Listen then contribute' },
   { dichotomy: 'EI', left: 'E', right: 'I', text: 'I get energized by…', leftLabel: 'Variety of activities with people', rightLabel: 'Deep focus on one thing' },
   { dichotomy: 'EI', left: 'E', right: 'I', text: 'When meeting new people…', leftLabel: 'I initiate conversation easily', rightLabel: 'I wait for others to approach' },
-  // S/N — Information Processing
+  // S/N: Information Processing
   { dichotomy: 'SN', left: 'S', right: 'N', text: 'I focus more on…', leftLabel: "What's real and present", rightLabel: "What's possible and future" },
   { dichotomy: 'SN', left: 'S', right: 'N', text: 'I trust more…', leftLabel: 'Direct experience', rightLabel: 'Theoretical patterns' },
   { dichotomy: 'SN', left: 'S', right: 'N', text: 'When explaining something…', leftLabel: 'I give specific examples', rightLabel: 'I describe the big picture' },
   { dichotomy: 'SN', left: 'S', right: 'N', text: "I'm drawn to…", leftLabel: 'Practical, proven methods', rightLabel: 'Novel, innovative approaches' },
-  // T/F — Decision-Making
+  // T/F: Decision-Making
   { dichotomy: 'TF', left: 'T', right: 'F', text: 'When deciding, I prioritize…', leftLabel: 'Logical consistency', rightLabel: 'Impact on people' },
   { dichotomy: 'TF', left: 'T', right: 'F', text: 'In disagreements, I value…', leftLabel: 'Being correct', rightLabel: 'Maintaining harmony' },
   { dichotomy: 'TF', left: 'T', right: 'F', text: "I give feedback that's…", leftLabel: 'Direct and analytical', rightLabel: 'Supportive and encouraging' },
   { dichotomy: 'TF', left: 'T', right: 'F', text: "I'm more impressed by…", leftLabel: 'Competence', rightLabel: 'Compassion' },
-  // J/P — Lifestyle Orientation
+  // J/P: Lifestyle Orientation
   { dichotomy: 'JP', left: 'J', right: 'P', text: 'I prefer to…', leftLabel: 'Plan ahead and decide early', rightLabel: 'Keep options open' },
   { dichotomy: 'JP', left: 'J', right: 'P', text: 'My workspace tends to be…', leftLabel: 'Organized with clear systems', rightLabel: 'Flexible with creative clutter' },
   { dichotomy: 'JP', left: 'J', right: 'P', text: 'Deadlines make me…', leftLabel: 'Motivated to finish early', rightLabel: 'Productive under pressure' },
   { dichotomy: 'JP', left: 'J', right: 'P', text: 'I prefer schedules that are…', leftLabel: 'Structured and predictable', rightLabel: 'Flexible and spontaneous' },
-  // A/T — Identity (16personalities variant)
+  // A/T: Identity (16personalities variant)
   { dichotomy: 'AT', left: 'A', right: 'T', text: 'After making a decision…', leftLabel: 'I move on confidently', rightLabel: 'I wonder if it was right' },
   { dichotomy: 'AT', left: 'A', right: 'T', text: 'Under pressure…', leftLabel: 'I stay calm and collected', rightLabel: 'I feel stressed and worried' },
   { dichotomy: 'AT', left: 'A', right: 'T', text: 'When criticized…', leftLabel: 'I take it in stride', rightLabel: 'It affects me deeply' },
@@ -161,7 +161,7 @@ export default function MBTIQuiz({ onChange }) {
           </span>
         </div>
 
-        {/* Question — keyed to trigger fade animation on advance */}
+        {/* Question: keyed to trigger fade animation on advance */}
         <div key={current} className="animate-fadeUp">
           <p className="text-[10px] font-semibold text-amber-500 uppercase tracking-wider mb-1">
             {DICHOTOMY_LABEL[q.dichotomy]} · {q.left}/{q.right}

@@ -70,7 +70,7 @@ export default function EnneagramSelector({ value, onChange }) {
                 const t = ENNEAGRAM_TYPES[n]
                 return (
                   <option key={n} value={n}>
-                    {n} — {t.name}
+                    {n}: {t.name}
                   </option>
                 )
               })}

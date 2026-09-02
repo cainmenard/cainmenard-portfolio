@@ -324,7 +324,7 @@ body {
   color: var(--accent);
 }
 
-/* Side nav — dark mode */
+/* Side nav, dark mode */
 .dark .side-nav {
   background: rgba(15, 23, 42, 0.85);
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.04);
@@ -1309,7 +1309,7 @@ body {
   border-top: 2px solid var(--accent);
   border-bottom: 2px solid var(--accent);
   min-height: 90vh;
-  /* No overflow:hidden — it breaks position:sticky on the column headers */
+  /* No overflow:hidden, it breaks position:sticky on the column headers */
 }
 .dark .editorial-centerpiece {
   background: #0a0f1a;
@@ -2069,7 +2069,7 @@ a.cite-num:hover {
   }
 }
 
-/* ─── Legacy Software – IDC Callout Visualization ─── */
+/* ─── Legacy Software, IDC Callout Visualization ─── */
 .legacy-callout-viz {
   background: #0f172a;
   border-radius: 16px;
@@ -2111,7 +2111,7 @@ a.cite-num:hover {
   font-weight: 500;
 }
 
-/* ─── Legacy Software – Adapt Cards ─── */
+/* ─── Legacy Software, Adapt Cards ─── */
 .adapt-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2176,7 +2176,7 @@ a.cite-num:hover {
   }
 }
 
-/* ─── Functional Experience – Pull Quote ─── */
+/* ─── Functional Experience, Pull Quote ─── */
 .bottleneck-pull-quote {
   background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
   border-radius: 16px;
@@ -2210,7 +2210,7 @@ a.cite-num:hover {
   letter-spacing: 0.02em;
 }
 
-/* ─── Functional Experience – Spreadsheet Parallel Graphic ─── */
+/* ─── Functional Experience, Spreadsheet Parallel Graphic ─── */
 .spreadsheet-parallel {
   background: #0f172a;
   border-radius: 16px;
@@ -2313,7 +2313,7 @@ a.cite-num:hover {
   }
 }
 
-/* ─── Readiness – Callout Box ─── */
+/* ─── Readiness, Callout Box ─── */
 .readiness-callout {
   background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
   border-radius: 16px;
@@ -2340,7 +2340,7 @@ a.cite-num:hover {
   color: #f1f5f9;
 }
 
-/* ─── Readiness – Framework 4-Pillar Graphic ─── */
+/* ─── Readiness, Framework 4-Pillar Graphic ─── */
 .readiness-framework {
   background: #0f172a;
   border-radius: 16px;
@@ -2443,7 +2443,7 @@ a.cite-num:hover {
   }
 }
 
-/* ─── Where the Value Lives Now – Closing Pull Quote ─── */
+/* ─── Where the Value Lives Now, Closing Pull Quote ─── */
 .closing-pullquote {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-radius: 16px;
@@ -2858,7 +2858,7 @@ a.cite-num:hover {
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   Field Intelligence card — "Golden Hour" animated preview
+   Field Intelligence card, "Golden Hour" animated preview
    A miniature of the /field-intelligence day-arc: a sky that sweeps
    indigo predawn → blue midday → violet dusk, a glowing sun arcing on the
    exact 4·p·(1−p) parabola, fading predawn stars, and a copper rail whose
@@ -3047,7 +3047,7 @@ a.cite-num:hover {
 }
 
 /* On narrow screens the five labels can't fit side by side, so label only the
-   endpoints — FIELD … DECISIONS — while the three middle dots stay as nodes.
+   endpoints (FIELD … DECISIONS) while the three middle dots stay as nodes.
    The arc still reads: a spark travelling from the field to a decision. */
 @media (max-width: 560px) {
   .fip-station:not(:first-child):not(:last-child) .fip-station__label {

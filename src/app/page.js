@@ -146,9 +146,9 @@ export default function Home() {
                   interviews, process mapping, change impact analysis) and carries through communication
                   strategy, training plans, and adoption tracking to go-live. Before CEI, I built a digital
                   operations consulting practice at Automized, helping specialty trade contractors bring
-                  the best out of their digital systems. The through-line across my career has always been
-                  the same: process before technology, and technology should serve the people in the
-                  organization, not the other way around.
+                  the best out of their digital systems. Across the refinery, the GC work, the consultancy,
+                  and now CEI, the job has been the same one: figure out how the work actually gets done
+                  before deciding what software should touch it.
                 </p>
               </div>
             </div>
@@ -190,7 +190,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 fade-section">
           <p className="section-label mb-3">Projects</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Work Samples</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements, plus featured case studies on turning field work into decisions and rebuilding analytics with AI. Explore the immersive stories or the Tableau originals.</p>
+          <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">Interactive dashboards and data tools built for real consulting engagements, plus two case studies: one following a labor hour from the jobsite to the income statement, one on rebuilding a Tableau dashboard with AI. The Tableau originals are below them.</p>
 
           {/* ─── FEATURED: Field Intelligence Interactive Case Study ─── */}
           <a href="/field-intelligence" className="featured-project-card featured-project-card--rich block mb-10 stagger-child group text-inherit no-underline">
@@ -207,9 +207,9 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Field Intelligence</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
-                  Follow one labor hour through a construction business, from the jobsite to the income statement and back.
-                  A cinematic, single-page walk through five interactive stations, ending with a grounded AI agent that turns
-                  the field&rsquo;s raw signal into a decision.
+                  Follow one labor hour through a construction business, from the jobsite to the income
+                  statement and back. Five interactive stations on a single page. The last one is an AI
+                  agent that answers only from the day&rsquo;s own tracker, and cites the rows.
                 </p>
               </div>
             </div>
@@ -241,11 +241,11 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">The Tool Changed. The Expertise Didn&apos;t.</h3>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Weeks of Tableau Work, Rebuilt in Hours</h3>
                   <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
-                    The construction industry has spent decades waiting for technology to catch up to the people
-                    who actually build things. It finally did, just not the way anyone expected. A close look at
-                    AI, domain expertise, and why construction professionals may be sitting on the biggest opportunity in the room.
+                    A project performance dashboard that took weeks in Tableau, on a $75-a-month license,
+                    rebuilt as a live React app in hours for nothing. What that says about AI, domain
+                    expertise, and how far behind construction actually is.
                   </p>
                 </div>
               </div>
@@ -398,7 +398,7 @@ export default function Home() {
           <p className="section-label mb-3">Skills &amp; Certifications</p>
           <h2 className="section-heading text-3xl md:text-4xl mb-4">Technical Toolkit</h2>
           <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">
-            My work sits at the intersection of operations consulting and technical implementation.
+            I do the operational assessment and I build the thing that comes out of it.
             These are the tools and credentials behind the work you see above.
           </p>
 

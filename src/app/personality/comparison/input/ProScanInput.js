@@ -21,7 +21,7 @@ export default function ProScanInput({ value, onChange }) {
         ProScan®
       </label>
 
-      {/* Behavioral trait dropdowns — 2×2 grid */}
+      {/* Behavioral trait dropdowns: 2×2 grid */}
       <div className="grid grid-cols-2 gap-3 mb-4">
         {TRAIT_ORDER.map(trait => {
           const def = PROSCAN_TRAITS[trait]
@@ -53,7 +53,7 @@ export default function ProScanInput({ value, onChange }) {
         })}
       </div>
 
-      {/* Logic style — segmented toggle */}
+      {/* Logic style: segmented toggle */}
       <div className="mb-4">
         <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">
           Logic Style
@@ -83,7 +83,7 @@ export default function ProScanInput({ value, onChange }) {
         )}
       </div>
 
-      {/* Energy style — multi-select pill toggles */}
+      {/* Energy style: multi-select pill toggles */}
       <div>
         <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">
           Energy Style

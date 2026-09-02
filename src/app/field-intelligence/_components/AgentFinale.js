@@ -3,7 +3,7 @@ import { FINALE } from '../_data/fieldIntelligence'
 
 /**
  * The finale: an AI layer on top of the whole pipe. Rather than describe the
- * agent, the section hands it to the reader — a live, client-side query
+ * agent, the section hands it to the reader, a live, client-side query
  * console (AgentConsole) that filters, aggregates, and ranks the program
  * tracker and cites the rows behind every answer. The prose is deliberately
  * thin so the tool is the centrepiece.

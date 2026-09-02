@@ -5,7 +5,7 @@ import DISCQuiz from './DISCQuiz'
 
 /**
  * Infer the closest DISC blend code from raw dimension scores.
- * Only adjacent blends exist on the DISC circle — opposite pairs (D-S, I-C)
+ * Only adjacent blends exist on the DISC circle, opposite pairs (D-S, I-C)
  * fall back to the dominant pure style.
  */
 function inferDISCCode(scores) {
@@ -25,7 +25,7 @@ function inferDISCCode(scores) {
 
   if (exists) return targetCode
 
-  // Opposite dimension (non-adjacent) — fall back to pure primary
+  // Opposite dimension (non-adjacent): fall back to pure primary
   return primary
 }
 
@@ -49,7 +49,7 @@ function AdvancedDISC({ onChange }) {
         <div key={dim}>
           <div className="flex justify-between text-xs mb-1">
             <span className="font-bold text-slate-600 dark:text-slate-300">
-              {dim} — {DISC_QUADRANTS[dim].label}
+              {dim}: {DISC_QUADRANTS[dim].label}
             </span>
             <span className="text-slate-400 font-mono">{scores[dim]}%</span>
           </div>
@@ -66,7 +66,7 @@ function AdvancedDISC({ onChange }) {
 
       {detected && (
         <p className="text-[11px] text-amber-600 dark:text-amber-400 font-bold">
-          Detected: {detected.code} — {detected.label}
+          Detected: {detected.code}: {detected.label}
         </p>
       )}
       <p className="text-[11px] text-slate-400 leading-snug">
@@ -117,10 +117,10 @@ export default function DISCSelector({ value, onChange }) {
         >
           <option value="">Select a style…</option>
           {['D', 'I', 'S', 'C'].map(primary => (
-            <optgroup key={primary} label={`${primary} — ${DISC_QUADRANTS[primary].label}`}>
+            <optgroup key={primary} label={`${primary}: ${DISC_QUADRANTS[primary].label}`}>
               {DISC_PROFILES.filter(p => p.primary === primary).map(p => (
                 <option key={p.code} value={p.code}>
-                  {p.code} — {p.label}
+                  {p.code}: {p.label}
                 </option>
               ))}
             </optgroup>

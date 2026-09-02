@@ -76,7 +76,7 @@ export default function AIEvolution() {
               <a href="/#projects">Case Studies</a>
             </li>
             <li className="breadcrumb-item breadcrumb-item--current" aria-current="page">
-              The Tool Changed. The Expertise Didn&apos;t.
+              Weeks of Tableau Work, Rebuilt in Hours
             </li>
           </ol>
         </nav>
@@ -89,13 +89,14 @@ export default function AIEvolution() {
               <span className="article-tag">AI &amp; Construction</span>
             </div>
             <h1 className="article-headline mb-6">
-              The Tool Changed.{' '}
+              Weeks of Tableau Work,{' '}
               <br className="hidden sm:block" />
-              The Expertise Didn&apos;t.
+              Rebuilt in Hours
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-2xl">
               The construction industry has spent decades waiting for technology to catch up to
-              the people who actually build things. It finally did, just not the way anyone expected.
+              the people who actually build things. A project performance dashboard that took weeks
+              in Tableau, on a $75-a-month license, got rebuilt as a live React app in hours, for nothing.
             </p>
             <div className="flex items-center gap-3 pb-8 border-b border-slate-200 dark:border-slate-700">
               <Image src="/headshot.jpg" alt="Cain Menard" width={44} height={44} className="rounded-full" priority />
@@ -134,10 +135,9 @@ export default function AIEvolution() {
             </div>
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
-                That&apos;s over. The tools changed. And the people who know the most about how
-                construction actually works are about to become the most valuable players in the
-                room, not despite their lack of technical background, but because of the expertise
-                they already have.
+                That&apos;s over. The tools changed. The people who know which cost drivers eat a
+                margin, and which reports nobody reads, can now build the thing that watches for it.
+                That knowledge was always the scarce part. It just never had a way out of their heads.
               </p>
             </div>
           </section>
@@ -152,16 +152,15 @@ export default function AIEvolution() {
                     <path d="M10 22h4" />
                     <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" />
                   </svg>
-                  <h2 className="key-takeaways__title">Key Takeaways</h2>
+                  <h2 className="key-takeaways__title">The short version</h2>
                 </div>
                 <ul className="key-takeaways__list">
-                  <li>AI coding tools reduced a weeks-long Tableau dashboard rebuild to hours as a fully deployed React web application</li>
-                  <li>Domain expertise, not coding ability, is the new bottleneck for AI adoption in construction</li>
-                  <li>Construction productivity has grown only 10% since 2000 vs. 90% in manufacturing</li>
-                  <li>96% of construction data goes unused; the industry is the 2nd least digitized in the U.S.</li>
-                  <li>Organizations with structured change management are 7x more likely to succeed with new technology</li>
-                  <li>The value is shifting from software itself to the expertise of knowing what to build</li>
-                  <li>Readiness (people, process, data, integration) matters more than the tool</li>
+                  <li>A Tableau dashboard that took weeks got rebuilt as a deployed React app in hours, at no hosting cost</li>
+                  <li>The bottleneck moved from writing code to knowing what to build</li>
+                  <li>Construction productivity grew 10% between 2000 and 2022. Manufacturing grew 90%</li>
+                  <li>96% of construction data goes unused, and the industry is the second-least digitized in the country</li>
+                  <li>Under 10% of technology implementation failures are technical</li>
+                  <li>Structured change management makes a project 7x more likely to hit its objectives</li>
                 </ul>
               </div>
             </div>
@@ -194,8 +193,7 @@ export default function AIEvolution() {
             </div>
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
-                It&apos;s not a prototype. It&apos;s a deployed application, built by describing what it
-                should do in plain English.
+                It is live at a public URL, built by saying out loud what it should do.
               </p>
             </div>
           </section>
@@ -215,8 +213,8 @@ export default function AIEvolution() {
                 <p className="section-label mb-3">The Proof</p>
                 <h2 className="article-section-heading mb-4">What Changed</h2>
                 <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                  Same analytical goal. Same domain expertise. Radically different process and outcome.
-                  Both tools below are live and fully functional. Click through and use them.
+                  Same analytical goal, same domain expertise, and a build process with almost nothing
+                  in common. Both tools below are live. Click through and use them.
                 </p>
               </div>
 
@@ -321,7 +319,7 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  This isn&apos;t an edge case. The productivity data is accumulating fast.
+                  The productivity data is accumulating fast.
                 </p>
                 <p>
                   GitHub&apos;s controlled experiment found developers using AI coding tools
@@ -388,8 +386,8 @@ export default function AIEvolution() {
                 For balance: a rigorous 2025 METR study found experienced open-source developers were
                 actually 19% slower with AI tools on complex maintenance tasks<a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>11</sup></a>, while believing they
                 were 20% faster. AI excels at building new things from domain knowledge. It struggles with
-                maintaining complex legacy codebases. That distinction matters significantly for how
-                companies should think about adoption.
+                maintaining complex legacy codebases. Which half of the work you point it at decides
+                whether you get the 55.8% or the 19%.
               </p>
             </div>
           </section>
@@ -448,7 +446,7 @@ export default function AIEvolution() {
                   </div>
                 </div>
               </div>
-              <p className="builder-viz__footer">Same knowledge. New medium. No code required.</p>
+              <p className="builder-viz__footer">Same knowledge, no code required.</p>
             </div>
 
             <div className="max-w-2xl mx-auto px-6 fade-section">
@@ -486,8 +484,8 @@ export default function AIEvolution() {
             </div>
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
-                Here&apos;s the shift most people miss: those same superintendents who&apos;ve never written a
-                line of code may become your most prolific software builders. Building custom applications
+                Those same superintendents who&apos;ve never written a line of code may become your most
+                prolific software builders. Building custom applications
                 is becoming as simple as describing what you need out loud, the way you&apos;d explain it to
                 a colleague.
               </p>
@@ -564,7 +562,7 @@ export default function AIEvolution() {
                   The gap is massive. Construction underspends cross-industry IT averages by 60-70%.
                 </p>
                 <p>
-                  And the tools that do get implemented? They rarely deliver. Over 70% of ERP implementations
+                  The tools that do get implemented rarely deliver. Over 70% of ERP implementations
                   fail to meet their original business objectives.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> The industry hemorrhages an estimated $177
                   billion a year to operational inefficiencies.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> In 2020, poor data management alone cost the
                   construction industry $1.84 trillion globally, and only 55% of companies even have
@@ -574,7 +572,8 @@ export default function AIEvolution() {
                   shouldn&apos;t exist.
                 </p>
                 <p>
-                  None of this is a technology problem. It&apos;s a fit problem. The people who understand the
+                  The tools exist. They were specified by people who have never coded a change order.
+                  The people who understand the
                   work best (who know exactly what dashboard they wish they had, which reports are
                   useless, which metrics actually predict when a job is going sideways) have always
                   been the furthest from the tools that could help them. They&apos;ve never had a way to turn
@@ -734,7 +733,7 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-8 mb-4" style={{ fontFamily: 'var(--font-display), Georgia, serif' }}>
-                  Not convinced? That&apos;s fair. The investment numbers warrant skepticism.
+                  The investment numbers warrant skepticism.
                 </h3>
                 <p>
                   AI venture capital hit $202 billion in 2025<a href="https://news.crunchbase.com/ai/global-vc-funding-annual-report-2025/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>20</sup></a>, capturing roughly half of all global
@@ -763,8 +762,8 @@ export default function AIEvolution() {
                 <p>
                   But the technology survived. Internet users grew from 361 million in 2000 to over 4
                   billion, continuously, straight through the bust and out the other side. More than
-                  70% of Americans were already online when the market bottomed out. The bad business models
-                  died. The technology didn&apos;t.
+                  70% of Americans were already online when the market bottomed out, and none of them
+                  logged off when the Nasdaq did.
                 </p>
                 <p>
                   And the failed ideas came back with better execution. Webvan became Instacart. Pets.com became
@@ -936,7 +935,7 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  Here&apos;s where it gets interesting, though. That same Harvard/BCG study found that
+                  That same Harvard/BCG study found that
                   when consultants applied AI to tasks outside its capability boundary, things
                   that require real judgment, intuition, or knowing which number to trust when two reports
                   disagree, they were about 20% less likely to get the right answer<a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>31</sup></a> than
@@ -945,12 +944,11 @@ export default function AIEvolution() {
                   differentiator between winning and failure.
                 </p>
                 <p>
-                  That should matter to every construction leader reading this. Knowing how projects
-                  fail (budget overruns, material price escalations, change orders stacking up
-                  and eating your margin before anyone flags it) doesn&apos;t become less
-                  important in an AI-enabled world. It becomes more valuable, because for the first time
-                  that knowledge can be expressed as fine-tuned tooling rather than shoehorned into a
-                  vendor&apos;s template that was built for a generic version of your business.
+                  Knowing how projects fail (budget overruns, material price escalations, change orders
+                  stacking up and eating your margin before anyone flags it) is the judgment that study
+                  was measuring. For the first time that knowledge can be built into the tooling itself,
+                  rather than shoehorned into a vendor&apos;s template written for a generic version of
+                  your business.
                 </p>
               </div>
             </div>
@@ -985,7 +983,7 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  The historical parallel is worth sitting with. When VisiCalc launched the first digital
+                  When VisiCalc launched the first digital
                   spreadsheet in 1980, there were 339,000 accountants in the U.S. By 2022, there were 1.4
                   million.<a href="https://timharford.com/2024/01/what-does-history-tell-us-about-the-impact-of-ai-on-jobs/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>32</sup></a> Tim Harford at the <em>Financial Times</em> put it plainly: the spreadsheet
                   didn&apos;t kill the profession. It made accountants more productive and blew the market
@@ -1038,8 +1036,8 @@ export default function AIEvolution() {
                   likely to achieve project objectives.<a href="https://www.prosci.com/blog/change-management-best-practices" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>34</sup></a> A study in the <em>Journal of Information Technology in
                   Construction</em> analyzed 167 technology-adoption cases across AEC firms<a href="https://www.itcon.org/paper/2020/17" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>35</sup></a> and identified the
                   top practices for success: change-agent effectiveness, measured benchmarks, realistic
-                  timeframes, and communicated benefits. Not better software. Not bigger budgets. People,
-                  process, and communication.
+                  timeframes, and communicated benefits. Better software and bigger budgets did not
+                  make the list.
                 </p>
               </div>
             </div>
@@ -1105,7 +1103,8 @@ export default function AIEvolution() {
                   </div>
                 </div>
                 <div className="readiness-framework__foundation">
-                  <p>Process before technology. Data before dashboards. People before platforms.</p>
+                  <p>Under 10% of these implementations fail for technical reasons. The rest fail on
+                  the four things above.</p>
                 </div>
               </div>
             </div>
@@ -1143,9 +1142,9 @@ export default function AIEvolution() {
                 <p>
                   AI coding tools are doing the same thing for domain expertise. The difference is that the
                   industries with the widest gap between what people know and what they&apos;ve been able to
-                  build with that knowledge stand to win the most, and by that measure,
-                  construction isn&apos;t just in the game. It&apos;s sitting on the biggest opportunity in
-                  the room.
+                  build with that knowledge stand to win the most. By that measure construction has the
+                  widest gap of anybody: second-least digitized industry in the country, under 1% of
+                  revenue spent on IT, and 96% of its data never looked at.
                 </p>
               </div>
             </div>
@@ -1194,8 +1193,8 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  The companies that win in this next era will get the fundamentals right before chasing the fancy
-                  new tool. Process before technology. Data before dashboards. People before platforms.
+                  The companies that win in this next era will get the fundamentals right before chasing
+                  the fancy new tool.
                 </p>
                 <p>
                   The barrier between knowing what you need and having it built has effectively disappeared. The
@@ -1217,7 +1216,7 @@ export default function AIEvolution() {
                     He&apos;s spent his career in the field, in consulting, and now in enterprise
                     transformation, helping contractors across construction and
                     infrastructure modernize how they operate. The application referenced in this
-                    article is real and live. So is everything else.
+                    article is live at project-performance-analysis.vercel.app.
                   </p>
                 </div>
                 <ShareButtons className="share-buttons--footer" />
@@ -1269,11 +1268,11 @@ export default function AIEvolution() {
                     <p>
                       Domain expertise is the most critical skill. MIT labor economist David Autor
                       argues AI&apos;s unique opportunity is to extend the relevance and value of human
-                      expertise. Stanford research found AI creates the greatest value when domain
+                      expertise. Erik Brynjolfsson at Stanford found AI creates the greatest value when domain
                       experts themselves apply it, not when filtered through IT specialists. Construction
                       professionals who understand project performance, cost drivers, and operational
-                      workflows are uniquely positioned, the barrier is now describing what
-                      to build, not knowing how to code.
+                      workflows are uniquely positioned. The barrier is now describing what
+                      to build, not writing the code.
                     </p>
                   </div>
                 </details>
@@ -1284,8 +1283,9 @@ export default function AIEvolution() {
                   <div className="faq-item__answer article-prose">
                     <p>
                       Most construction companies need foundational work before capturing AI value.
-                      Research shows less than 10% of technology implementation failures are
-                      technical, 80% depend on people and process. A readiness framework
+                      A peer-reviewed study of highway construction technology implementations found
+                      less than 10% of failures are technical, and that 80% of success depends on
+                      people and process. A readiness framework
                       should address four pillars: Talent (domain experts willing to learn), Process
                       (standardized workflows, not chaos), Data (clean, integrated, and
                       accessible, 96% of construction data currently goes unused), and
@@ -1306,7 +1306,7 @@ export default function AIEvolution() {
                       the technology itself. Construction loses an estimated $177 billion annually to
                       operational inefficiencies, and field teams lose 14+ hours per week searching for
                       project information. Companies that address process, data, and change management
-                      foundations first stand to capture significant returns.
+                      foundations first are the ones positioned to earn any of it back.
                     </p>
                   </div>
                 </details>

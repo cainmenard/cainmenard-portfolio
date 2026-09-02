@@ -3,7 +3,7 @@ import { ENNEAGRAM_TYPES, ENNEAGRAM_TRIADS } from '@/app/personality/comparison/
 
 const CAIN_TYPE = 8
 const CAIN_WING = 7
-const DEMO_TYPE = 4   // Heart triad — clear cross-triad contrast with Cain's Gut
+const DEMO_TYPE = 4   // Heart triad, clear cross-triad contrast with Cain's Gut
 
 const CX = 250
 const CY = 248
@@ -172,7 +172,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
         )
       })}
 
-      {/* ── Integration / Disintegration arrows — Cain ── */}
+      {/* ── Integration / Disintegration arrows, Cain ── */}
       <line
         x1={cainGrowthArr.from.x} y1={cainGrowthArr.from.y}
         x2={cainGrowthArr.to.x}   y2={cainGrowthArr.to.y}
@@ -184,7 +184,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
         stroke="rgba(185,28,28,0.50)" strokeWidth={1.25} strokeDasharray="3 2"
         markerEnd="url(#arr-stress)" />
 
-      {/* ── Integration / Disintegration arrows — visitor (when real type selected) ── */}
+      {/* ── Integration / Disintegration arrows, visitor (when real type selected) ── */}
       {visitorType && visGrowthArr && (
         <line
           x1={visGrowthArr.from.x} y1={visGrowthArr.from.y}
@@ -223,7 +223,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
 
         return (
           <g key={typeNum}>
-            {/* Dot (hidden for Cain / visitor — larger markers handle those) */}
+            {/* Dot (hidden for Cain / visitor, larger markers handle those) */}
             {!isCain && !isVisitor && (
               <circle cx={p.x} cy={p.y} r={4} fill="#475569" opacity={0.52} />
             )}
@@ -318,7 +318,7 @@ export default function EnneagramTriads({ visitorType = null, visitorWing = null
       {isDemoData && (
         <text x={CX} y={538} textAnchor="middle"
           fontSize={8.5} letterSpacing="0.06em" fill="currentColor" opacity={0.45}>
-          SAMPLE COMPARISON SHOWN — SELECT YOUR TYPE ABOVE
+          SAMPLE COMPARISON SHOWN: SELECT YOUR TYPE ABOVE
         </text>
       )}
     </svg>

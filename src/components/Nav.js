@@ -79,7 +79,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
     const calculate = () => {
       if (!widths) return
 
-      // Use actual container width — flex-1 min-w-0 gives the true available space
+      // Use actual container width, flex-1 min-w-0 gives the true available space
       const containerWidth = container.clientWidth
 
       // Measure the secondary link area if present in the DOM

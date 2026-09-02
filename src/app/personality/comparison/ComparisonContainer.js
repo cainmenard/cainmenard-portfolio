@@ -52,21 +52,21 @@ const QUIZ_META = [
     id: 'mbti',
     icon: '🧩',
     title: 'MBTI Type Indicator',
-    time: '5–7 min',
+    time: '5-7 min',
     description: '20 Likert-scale questions across four cognitive dichotomies to identify your personality type.',
   },
   {
     id: 'disc',
     icon: '🎯',
     title: 'DISC Behavioral Profile',
-    time: '4–5 min',
+    time: '4-5 min',
     description: '16 Most/Least word-set questions to identify your dominant behavioral style from 16 blend positions.',
   },
   {
     id: 'enneagram',
     icon: '🌀',
     title: 'Enneagram Type Finder',
-    time: '6–8 min',
+    time: '6-8 min',
     description: '36 forced-choice pairs covering all type combinations to identify your core type and wing.',
   },
 ]
@@ -110,7 +110,7 @@ export default function ComparisonContainer() {
     setActiveTab('enter')
   }
 
-  // Effective profile for Compare tab — real data ?? sample INFP fallback per framework
+  // Effective profile for Compare tab, real data ?? sample INFP fallback per framework
   const isShowingSample    = completedCount === 0
   const effectiveMBTI      = mbti ?? SAMPLE_VISITOR.mbti
   const effectiveDISC      = disc ?? SAMPLE_VISITOR.disc
@@ -123,7 +123,7 @@ export default function ComparisonContainer() {
       {/* ── Legal disclaimer ──────────────────────────────────────── */}
       <p className="text-xs text-slate-400 dark:text-slate-500 mb-5 leading-relaxed max-w-2xl">
         Enter your assessment results to see how your profile aligns with Cain&apos;s. All processing
-        happens in your browser — nothing is stored or transmitted.{' '}
+        happens in your browser: nothing is stored or transmitted.{' '}
         <span className="text-slate-300 dark:text-slate-600">
           ProScan® is a registered trademark of PDP, Inc. Instinctive Drives® is a trademark of
           Talent Dynamics Pty Ltd. These frameworks are referenced for educational and
@@ -208,7 +208,7 @@ export default function ComparisonContainer() {
       <div key={activeTab} className="animate-fadeUp">
 
         {/* ═══════════════════════════════════════════════
-            TAB 1 — ENTER RESULTS
+            TAB 1: ENTER RESULTS
         ═══════════════════════════════════════════════ */}
         {activeTab === 'enter' && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -231,7 +231,7 @@ export default function ComparisonContainer() {
         )}
 
         {/* ═══════════════════════════════════════════════
-            TAB 2 — TAKE A QUIZ
+            TAB 2: TAKE A QUIZ
         ═══════════════════════════════════════════════ */}
         {activeTab === 'quiz' && (
           <div className="space-y-3">
@@ -321,7 +321,7 @@ export default function ComparisonContainer() {
         )}
 
         {/* ═══════════════════════════════════════════════
-            TAB 3 — OUR COMPARISON
+            TAB 3: OUR COMPARISON
         ═══════════════════════════════════════════════ */}
         {activeTab === 'compare' && (
           <div>
@@ -383,10 +383,10 @@ export default function ComparisonContainer() {
               </div>
             </div>
 
-            {/* ProScan — always visible in Compare tab using effective profile */}
+            {/* ProScan: always visible in Compare tab using effective profile */}
             <ProScanBars visitorProScan={effectiveProScan} />
 
-            {/* Insights panel — only with real visitor data, never sample */}
+            {/* Insights panel: only with real visitor data, never sample */}
             {completedCount >= 2 && (
               <InsightsPanel visitorProfile={{ mbti, disc, enneagram, idDrives, proScan }} />
             )}

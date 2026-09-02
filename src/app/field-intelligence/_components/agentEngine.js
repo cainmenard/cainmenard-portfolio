@@ -8,8 +8,7 @@
  * can cite them.
  *
  * The point is coverage without an LLM. Because filters compose, the space of
- * answerable questions is filters × operations, not a fixed list of intents —
- * "overdue mechanical change orders waiting on the GC", "how much is tied up
+ * answerable questions is filters × operations, not a fixed list of intents,  * "overdue mechanical change orders waiting on the GC", "how much is tied up
  * in overdue items", "break the backlog down by book" all resolve from the
  * same grammar. Every answer carries `cites`; a question that cannot point at
  * rows returns the honest decline instead.
@@ -159,12 +158,12 @@ export function answer(query, tracker) {
 
   if (!q) return capabilities(rows)
 
-  // 1. Judgment / prediction — decline honestly, cite nothing.
+  // 1. Judgment / prediction: decline plainly, cite nothing.
   if (has(q, JUDGMENT)) {
     return {
       kind: 'declined',
       text:
-        'That is a judgment call, not a lookup. I report what is in the tracker — whether to bid, who is at fault, or what happens next is not in the data, so I will not guess. Ask me to filter, total, or rank the program items instead.',
+        'That is a judgment call, not a lookup. I report what is in the tracker. Whether to bid, who is at fault, or what happens next is not in the data, so I will not guess. Ask me to filter, total, or rank the program items instead.',
       cites: [],
     }
   }
@@ -186,7 +185,7 @@ export function answer(query, tracker) {
     const officeSide = overdue.filter((r) => OFFICE_SIDE.includes(r.waitingOn))
     return {
       kind: 'answer',
-      text: `${officeSide.length} of the ${overdue.length} overdue items are parked with the office, architect, GC, or a vendor — not the field. The crew cannot close what it is waiting on.`,
+      text: `${officeSide.length} of the ${overdue.length} overdue items are parked with the office, architect, GC, or a vendor, not the field. The crew cannot close what it is waiting on.`,
       cites: refsOf(officeSide),
     }
   }
@@ -240,7 +239,7 @@ export function answer(query, tracker) {
     const sum = valued.reduce((s, r) => s + r.amount, 0)
     return {
       kind: 'answer',
-      text: `${money(sum)} is tied up across ${valued.length} ${label(valued.length)} that carry a value${f.status === 'overdue' || f.overDays ? ' — money the office is sitting on' : ''}.`,
+      text: `${money(sum)} is tied up across ${valued.length} ${label(valued.length)} that carry a value${f.status === 'overdue' || f.overDays ? ', money the office is sitting on' : ''}.`,
       cites: refsOf(valued),
     }
   }
@@ -252,7 +251,7 @@ export function answer(query, tracker) {
     const top = valued.sort((a, b) => b.amount - a.amount)[0]
     return {
       kind: 'answer',
-      text: `The largest is "${top.task}" at ${money(top.amount)} — ${top.book} book, ${top.done ? 'now closed' : top.dueIn < 0 ? `${-top.dueIn} days past due` : `due in ${top.dueIn} days`}, waiting on ${top.waitingOn}.`,
+      text: `The largest is "${top.task}" at ${money(top.amount)}. ${top.book} book, ${top.done ? 'now closed' : top.dueIn < 0 ? `${-top.dueIn} days past due` : `due in ${top.dueIn} days`}, waiting on ${top.waitingOn}.`,
       cites: [top.ref],
     }
   }
@@ -262,7 +261,7 @@ export function answer(query, tracker) {
     const o = pool[0]
     return {
       kind: 'answer',
-      text: `The oldest is "${o.task}" — ${-o.dueIn} days past due. ${o.book} book, waiting on ${o.waitingOn}, logged as ${typePhrase(o.type)}.`,
+      text: `The oldest is "${o.task}", ${-o.dueIn} days past due. ${o.book} book, waiting on ${o.waitingOn}, logged as ${typePhrase(o.type)}.`,
       cites: [o.ref],
     }
   }
@@ -272,7 +271,7 @@ export function answer(query, tracker) {
     if (!next) return { kind: 'answer', text: 'Nothing is coming due.', cites: [] }
     return {
       kind: 'answer',
-      text: `Next up is "${next.task}" — ${next.dueIn <= 0 ? `${-next.dueIn} days past due` : `due in ${next.dueIn} days`}, ${next.book} book, waiting on ${next.waitingOn}.`,
+      text: `Next up is "${next.task}", ${next.dueIn <= 0 ? `${-next.dueIn} days past due` : `due in ${next.dueIn} days`}, ${next.book} book, waiting on ${next.waitingOn}.`,
       cites: [next.ref],
     }
   }
@@ -280,7 +279,7 @@ export function answer(query, tracker) {
   // 7. Count.
   if (wantsCount && hasFilter) {
     const mix = statusMix(subset)
-    const tail = mix && !f.status ? ` — ${mix}.` : '.'
+    const tail = mix && !f.status ? ` (${mix}).` : '.'
     return {
       kind: 'answer',
       text: `${subset.length} ${label()}${tail}`,
@@ -308,7 +307,7 @@ export function answer(query, tracker) {
     }
   }
 
-  // 10. Fell through — do not invent. Show the axes instead of a dead end.
+  // 10. Fell through: do not invent. Show the axes instead of a dead end.
   return capabilities(rows)
 }
 
@@ -316,7 +315,7 @@ function capabilities(rows) {
   const od = rows.filter(isOverdue).length
   return {
     kind: 'unknown',
-    text: `I read the program tracker — ${rows.length} items across five books, ${od} of them overdue. Ask me to filter (a book, who it is waiting on, a type, or a status), total up dollars, or rank by oldest or biggest — and you can stack those together.`,
+    text: `I read the program tracker: ${rows.length} items across five books, ${od} of them overdue. Ask me to filter (a book, who it is waiting on, a type, or a status), total up dollars, or rank by oldest or biggest, and you can stack those together.`,
     cites: [],
   }
 }

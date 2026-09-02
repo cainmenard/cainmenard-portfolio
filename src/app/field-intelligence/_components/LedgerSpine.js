@@ -5,7 +5,7 @@ import { useCountUp } from './useCountUp'
 import { track } from './track'
 
 /**
- * The ledger token — a fixed-spine marker that carries the hour's running
+ * The ledger token, a fixed-spine marker that carries the hour's running
  * value down the page and proves the "one labor hour, and back around" claim.
  *
  * It replaces the old decorative top ribbon. A single token rides a vertical
@@ -230,10 +230,10 @@ export default function LedgerSpine({ ledger, seed, activeIndex, looped, backHre
       </a>
 
       {/* ---- Desktop spine ---- */}
-      <nav className="fi-ledger__spine" aria-label="Ledger — one labor hour">
+      <nav className="fi-ledger__spine" aria-label="Ledger, one labor hour">
         <div className="fi-ledger__track">
           <span className="fi-ledger__fill" aria-hidden="true" />
-          <span className="fi-ledger__start" aria-hidden="true" title="6:15am — where the hour begins" />
+          <span className="fi-ledger__start" aria-hidden="true" title="6:15am, where the hour begins" />
 
           {ledger.map((l, i) => {
             const filled = i <= reachedIndex
@@ -246,7 +246,7 @@ export default function LedgerSpine({ ledger, seed, activeIndex, looped, backHre
                 style={{ top: `${(i / (n - 1)) * 100}%` }}
                 data-filled={filled ? '1' : '0'}
                 data-active={isActive ? '1' : '0'}
-                aria-label={`${l.stamp} — ${l.value}${l.unit ? ' ' + l.unit : ''}. Jump to this station.`}
+                aria-label={`${l.stamp}, ${l.value}${l.unit ? ' ' + l.unit : ''}. Jump to this station.`}
                 onMouseEnter={() => scrub(i)}
                 onMouseLeave={endScrub}
                 onFocus={() => scrub(i)}
@@ -303,7 +303,7 @@ export default function LedgerSpine({ ledger, seed, activeIndex, looped, backHre
 }
 
 /* ------------------------------------------------------------------ *
- * Glyphs — the visual the token becomes at each station. Line-art on
+ * Glyphs, the visual the token becomes at each station. Line-art on
  * currentColor so the tone var flows straight through.
  * ------------------------------------------------------------------ */
 function Glyph({ kind }) {
@@ -379,7 +379,7 @@ function Glyph({ kind }) {
 }
 
 /* ------------------------------------------------------------------ *
- * Shatter — the copper dot breaks into the real spread as the reader
+ * Shatter, the copper dot breaks into the real spread as the reader
  * reaches Portfolio: red shards fly left (fade), green shards fly right
  * (gain), and the -68..+28 label fades in as the truth behind the
  * "0.6pt average". Positions are deterministic (no per-render randomness).

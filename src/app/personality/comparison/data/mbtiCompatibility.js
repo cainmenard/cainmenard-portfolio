@@ -3,7 +3,7 @@
  *
  * Algorithm (from spec):
  *   baseline 50
- *   +12 S/N match, −5 S/N mismatch (heaviest weight — shared perception is key)
+ *   +12 S/N match, −5 S/N mismatch (heaviest weight: shared perception is key)
  *   +8  T/F match
  *   +3  E/I match
  *   +3  J/P match
@@ -33,7 +33,7 @@ export function areFunctionPair(fnA, fnB) {
 
 /**
  * True when stack B is the exact reverse of stack A
- * (shadow / "unconscious" pairing — high tension).
+ * (shadow / "unconscious" pairing: high tension).
  */
 export function isReversedStack(stackA, stackB) {
   if (stackA.length !== stackB.length) return false
@@ -75,7 +75,7 @@ export function getMBTICompatibility(typeA, typeB) {
   let score = 50
 
   // ── Dichotomy matching ──
-  // S/N — most important axis
+  // S/N: most important axis
   if (typeA[1] === typeB[1]) score += 12
   else score -= 5
 

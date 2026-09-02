@@ -2,11 +2,11 @@
  * Cross-framework correlation map and collaboration dimension definitions.
  *
  * Two responsibilities:
- *  1. CORRELATION MAP — which MBTI types, Enneagram types, and I.D. patterns
+ *  1. CORRELATION MAP: which MBTI types, Enneagram types, and I.D. patterns
  *     are statistically common for each DISC primary style. Used to surface
  *     "likely overlaps" when only partial profiles are entered.
  *
- *  2. COLLABORATION DIMENSIONS — the 8 dimensions used by the insights engine,
+ *  2. COLLABORATION DIMENSIONS: the 8 dimensions used by the insights engine,
  *     each specifying which frameworks are primary/secondary, what to analyze,
  *     and how to generate the synthesis.
  */
@@ -65,19 +65,19 @@ export const DISC_CORRELATIONS = {
 export const MBTI_DISC_OVERLAP = {
   NT: {
     commonDISC: ['D', 'C', 'DC'],
-    note: 'Rationals (NT) tend toward task-focused DISC styles — D when primarily leadership-oriented, C when primarily analytical, DC when both.',
+    note: 'Rationals (NT) tend toward task-focused DISC styles, D when primarily leadership-oriented, C when primarily analytical, DC when both.',
   },
   NF: {
     commonDISC: ['I', 'IS', 'DI'],
-    note: 'Idealists (NF) tend toward people-oriented DISC styles — I for the expressive types, IS for the supportive, DI for the charismatic leaders.',
+    note: 'Idealists (NF) tend toward people-oriented DISC styles, I for the expressive types, IS for the supportive, DI for the charismatic leaders.',
   },
   SP: {
     commonDISC: ['D', 'I', 'DI'],
-    note: 'Artisans (SP) tend toward fast-paced DISC styles — D for the pragmatic action-takers, I for the spontaneous performers.',
+    note: 'Artisans (SP) tend toward the high-tempo DISC styles, D for the pragmatic action-takers, I for the spontaneous performers.',
   },
   SJ: {
     commonDISC: ['S', 'C', 'SC'],
-    note: 'Guardians (SJ) tend toward steady, structured DISC styles — S for the loyal team members, C for the quality-focused analysts.',
+    note: 'Guardians (SJ) tend toward steady, structured DISC styles, S for the loyal team members, C for the quality-focused analysts.',
   },
 }
 
@@ -123,7 +123,7 @@ export const COLLABORATION_DIMENSIONS = [
     primaryFramework: 'MBTI (T/F, J/P)',
     secondaryFramework: 'Enneagram',
     whatToAnalyze: 'Analytical vs. values-based orientation, decision speed, need for consensus',
-    synthesisHint: 'MBTI T/F determines the primary filter (logic vs. values); J/P determines speed and closure need. Enneagram adds motivation layer — is the decision-making influenced by need to be right (1), avoid harm (6), or maintain control (8)?',
+    synthesisHint: 'MBTI T/F determines the primary filter (logic vs. values); J/P determines speed and closure need. Enneagram adds motivation layer: is the decision-making influenced by need to be right (1), avoid harm (6), or maintain control (8)?',
   },
   {
     id: 'conflict',
@@ -141,7 +141,7 @@ export const COLLABORATION_DIMENSIONS = [
     primaryFramework: 'DISC',
     secondaryFramework: 'I.D. (Complete drive)',
     whatToAnalyze: 'Information needs, supervision tolerance, check-in frequency preference, task ownership style',
-    synthesisHint: 'DISC determines supervision expectation: D needs minimal check-ins; S needs regular check-ins for security; C needs clear quality criteria. I.D. Complete drive modifies this — high Complete needs complete briefings; low Complete needs just the goal.',
+    synthesisHint: 'DISC determines supervision expectation: D needs minimal check-ins; S needs regular check-ins for security; C needs clear quality criteria. I.D. Complete drive modifies this: high Complete needs complete briefings; low Complete needs just the goal.',
   },
   {
     id: 'feedback',

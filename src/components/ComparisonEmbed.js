@@ -47,13 +47,13 @@ export default function ComparisonEmbed({ tableauUrl, webAppUrl }) {
           <>
             <iframe
               src={tableauUrl}
-              title="Tableau Dashboard — Project Performance Analysis"
+              title="Tableau Dashboard, Project Performance Analysis"
               allowFullScreen
               className={active === 'tableau' ? 'block' : 'hidden'}
             />
             <iframe
               src={webAppUrl}
-              title="React Web App — Project Performance Analysis"
+              title="React Web App, Project Performance Analysis"
               allowFullScreen
               className={active === 'webapp' ? 'block' : 'hidden'}
             />

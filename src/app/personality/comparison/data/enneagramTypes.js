@@ -46,7 +46,7 @@ export const ENNEAGRAM_TYPES = {
       },
       '2': {
         label: 'The Advocate',
-        description: 'Combines high standards with genuine care for people. Reforming impulse is more interpersonal — helping others improve is part of being good.',
+        description: 'Combines high standards with genuine care for people. Reforming impulse is more interpersonal, helping others improve is part of being good.',
       },
     },
     circleAngle: -50, // (1 * 40) - 90 = -50 → use CSS: (360 - 50) = 310°
@@ -66,11 +66,11 @@ export const ENNEAGRAM_TYPES = {
     wingVariants: {
       '1': {
         label: 'The Servant',
-        description: 'Principled in their giving — serves according to what\'s right, not just what others want. Can be judgmental when help isn\'t received as intended.',
+        description: 'Principled in their giving: serves according to what\'s right, not just what others want. Can be judgmental when help isn\'t received as intended.',
       },
       '3': {
         label: 'The Host',
-        description: 'More outward and achievement-oriented. Uses social connections to create opportunities — the person who knows everyone and facilitates everything.',
+        description: 'More outward and achievement-oriented. Uses social connections to create opportunities, the person who knows everyone and facilitates everything.',
       },
     },
     circleAngle: -10, // (2 * 40) - 90
@@ -90,7 +90,7 @@ export const ENNEAGRAM_TYPES = {
     wingVariants: {
       '2': {
         label: 'The Charmer',
-        description: 'Success with warmth — achieves goals through relationships and likability. More collaborative and genuinely people-oriented than the pure 3.',
+        description: 'Success with warmth: achieves goals through relationships and likability. More collaborative and more people-oriented than the pure 3.',
       },
       '4': {
         label: 'The Professional',
@@ -142,7 +142,7 @@ export const ENNEAGRAM_TYPES = {
       },
       '6': {
         label: 'The Problem-Solver',
-        description: 'Channels expertise toward practical troubleshooting and team reliability. More engaged and collaborative — knowledge exists to be applied.',
+        description: 'Channels expertise toward practical troubleshooting and team reliability. More engaged and collaborative: knowledge exists to be applied.',
       },
     },
     circleAngle: 110, // (5 * 40) - 90
@@ -162,11 +162,11 @@ export const ENNEAGRAM_TYPES = {
     wingVariants: {
       '5': {
         label: 'The Defender',
-        description: 'More analytical and self-reliant. Prepares thoroughly through research and contingency planning. Questioning instinct is strong — trust is earned slowly.',
+        description: 'More analytical and self-reliant. Prepares thoroughly through research and contingency planning. Questioning instinct is strong: trust is earned slowly.',
       },
       '7': {
         label: 'The Buddy',
-        description: 'More outgoing and optimistic. Counterphobic tendencies — faces fears directly. Uses humor and activity to manage anxiety.',
+        description: 'More outgoing and optimistic. Counterphobic tendencies: faces fears directly. Uses humor and activity to manage anxiety.',
       },
     },
     circleAngle: 150, // (6 * 40) - 90
@@ -190,7 +190,7 @@ export const ENNEAGRAM_TYPES = {
       },
       '8': {
         label: 'The Realist',
-        description: 'Bolder, more assertive, and more willing to push for what they want. Energy is more directed — not just experiencing life but conquering it.',
+        description: 'Bolder, more assertive, and more willing to push for what they want. Energy is more directed: not just experiencing life but conquering it.',
       },
     },
     circleAngle: 190, // (7 * 40) - 90
@@ -214,7 +214,7 @@ export const ENNEAGRAM_TYPES = {
       },
       '9': {
         label: 'The Bear',
-        description: 'More steady and patient, but equally immovable when provoked. The 9 wing softens the edge — builds quietly and leads through calm presence rather than overt force.',
+        description: 'More steady and patient, but equally immovable when provoked. The 9 wing softens the edge, builds quietly and leads through calm presence rather than overt force.',
       },
     },
     circleAngle: 230, // (8 * 40) - 90
@@ -238,7 +238,7 @@ export const ENNEAGRAM_TYPES = {
       },
       '1': {
         label: 'The Dreamer',
-        description: 'More principled and idealistic. The 1 wing adds structure and an ethical compass. More likely to have clear opinions — held quietly but consistently.',
+        description: 'More principled and idealistic. The 1 wing adds structure and an ethical compass. More likely to have clear opinions, held quietly but consistently.',
       },
     },
     circleAngle: 270, // (9 * 40) - 90 → top of circle (use 270° or -90°)
@@ -255,7 +255,7 @@ export const ENNEAGRAM_TRIADS = {
     lightColor: '#f0fdf4',
     label: 'Gut / Body Center',
     coreEmotion: 'Anger',
-    description: 'Instinct-driven. Processes experience through the body and gut feelings. Core emotion is anger — expressed (8), repressed (9), or redirected (1).',
+    description: 'Instinct-driven. Processes experience through the body and gut feelings. Core emotion is anger: expressed (8), repressed (9), or redirected (1).',
   },
   Heart: {
     types: [2, 3, 4],
@@ -263,7 +263,7 @@ export const ENNEAGRAM_TRIADS = {
     lightColor: '#fef2f2',
     label: 'Heart / Feeling Center',
     coreEmotion: 'Shame',
-    description: 'Image-driven. Processes experience through emotions and relationships. Core emotion is shame — redirected (2), masked (3), or amplified (4).',
+    description: 'Image-driven. Processes experience through emotions and relationships. Core emotion is shame: redirected (2), masked (3), or amplified (4).',
   },
   Head: {
     types: [5, 6, 7],
@@ -271,7 +271,7 @@ export const ENNEAGRAM_TRIADS = {
     lightColor: '#eff6ff',
     label: 'Head / Thinking Center',
     coreEmotion: 'Fear',
-    description: 'Strategy-driven. Processes experience through analysis and planning. Core emotion is fear — hoarded against (5), vigilantly managed (6), or escaped (7).',
+    description: 'Strategy-driven. Processes experience through analysis and planning. Core emotion is fear: hoarded against (5), vigilantly managed (6), or escaped (7).',
   },
 }
 

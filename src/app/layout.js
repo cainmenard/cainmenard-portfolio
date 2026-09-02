@@ -5,7 +5,7 @@ import BackToTop from '@/components/BackToTop'
 import ErrorBoundary from '@/components/ErrorBoundary'
 
 export const metadata = {
-  title: 'Cain Menard — Digital Operations Leader',
+  title: 'Cain Menard | Digital Operations Leader',
   description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure. Management Consultant, ERP & Digital Transformation at CEI.',
   icons: {
     icon: '/favicon.svg',
@@ -13,15 +13,15 @@ export const metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'Cain Menard — Digital Operations Leader',
+    title: 'Cain Menard | Digital Operations Leader',
     description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure.',
     type: 'website',
     url: 'https://cainmenard.com',
-    images: [{ url: 'https://cainmenard.com/og-image.png', width: 1200, height: 630, alt: 'Cain Menard — Digital Operations Leader' }],
+    images: [{ url: 'https://cainmenard.com/og-image.png', width: 1200, height: 630, alt: 'Cain Menard, Digital Operations Leader' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cain Menard — Digital Operations Leader',
+    title: 'Cain Menard | Digital Operations Leader',
     description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure.',
     images: ['https://cainmenard.com/og-image.png'],
   },
@@ -45,7 +45,7 @@ const jsonLd = {
     { '@type': 'EducationalOccupationalCredential', name: 'MBA, Finance & Data Analytics', credentialCategory: 'degree', recognizedBy: { '@type': 'Organization', name: 'University of Denver' } },
     { '@type': 'EducationalOccupationalCredential', name: 'Prosci Certified Change Practitioner' },
     { '@type': 'EducationalOccupationalCredential', name: 'Tableau Desktop Specialist' },
-    { '@type': 'EducationalOccupationalCredential', name: 'PCEP – Certified Python Programmer' },
+    { '@type': 'EducationalOccupationalCredential', name: 'PCEP Certified Python Programmer' },
   ],
   alumniOf: [
     { '@type': 'EducationalOrganization', name: 'University of Denver' },

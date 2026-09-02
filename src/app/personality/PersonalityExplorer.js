@@ -45,7 +45,7 @@ export default function PersonalityExplorer() {
             <p className="section-label mb-3">Personality Profile</p>
             <h1 className="section-heading text-3xl md:text-4xl mb-4">How I Operate</h1>
             <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-2xl leading-relaxed">
-              Six personality assessments mapped into one interactive profile — from leadership style and communication to decision-making and what happens under pressure.
+              Six personality assessments mapped into one interactive profile, from leadership style and communication to decision-making and what happens under pressure.
             </p>
 
             {/* Headline badges */}
@@ -94,7 +94,7 @@ export default function PersonalityExplorer() {
             <p className="section-label mb-3">Collaboration</p>
             <h2 className="section-heading text-2xl md:text-3xl mb-2">How We Work Together</h2>
             <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-2xl leading-relaxed">
-              Enter your own assessment results to see how our profiles compare across five frameworks — communication style, decision-making, conflict patterns, and more.
+              Enter your own assessment results to see how our profiles compare across five frameworks, communication style, decision-making, conflict patterns, and more.
             </p>
             <ComparisonContainer />
           </div>
@@ -104,7 +104,7 @@ export default function PersonalityExplorer() {
         <section className="py-8 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
           <div className="max-w-6xl mx-auto px-6">
             <p className="text-xs text-slate-400 leading-relaxed max-w-2xl">
-              These results reflect self-reported assessments taken at specific points in time. They&apos;re useful frameworks for understanding behavioral tendencies — not fixed labels.
+              These results reflect self-reported assessments taken at specific points in time. They&apos;re useful frameworks for understanding behavioral tendencies, not fixed labels.
               DISC scores are estimates based on qualitative descriptions. ProScan values are read from descriptive report text, not raw data exports.
             </p>
           </div>

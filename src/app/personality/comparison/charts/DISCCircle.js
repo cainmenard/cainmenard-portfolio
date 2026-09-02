@@ -1,8 +1,8 @@
 'use client'
 import { DISC_PROFILES, DISC_QUADRANTS } from '@/app/personality/comparison/data/discProfiles'
 
-const CAIN_CODE = 'D'   // pure D — angle 0°, 12 o'clock
-const DEMO_CODE = 'S'   // demo visitor — angle 180°, 6 o'clock
+const CAIN_CODE = 'D'   // pure D: angle 0°, 12 o'clock
+const DEMO_CODE = 'S'   // demo visitor: angle 180°, 6 o'clock
 
 // Center and radius
 const CX = 250
@@ -204,7 +204,7 @@ export default function DISCCircle({ visitorCode = null }) {
             {!isMe && !isVis && (
               <circle cx={p.x} cy={p.y} r={3} fill="#475569" opacity={0.5} />
             )}
-            {/* Label — omit for pure styles (D/I/S/C); they have watermarks inside ring */}
+            {/* Label: omit for pure styles (D/I/S/C); they have watermarks inside ring */}
             {profile.secondary !== null && (
               <text
                 x={lp.x}
@@ -253,7 +253,7 @@ export default function DISCCircle({ visitorCode = null }) {
         {/* Cain */}
         <circle cx={0} cy={0} r={5} fill="#f59e0b" />
         <text x={13} y={1} dominantBaseline="middle" fontSize={11} fill="currentColor" opacity={0.8}>
-          Cain (D — {DISC_QUADRANTS.D.label})
+          Cain (D: {DISC_QUADRANTS.D.label})
         </text>
 
         {/* Visitor / demo */}
@@ -271,7 +271,7 @@ export default function DISCCircle({ visitorCode = null }) {
         >
           {isDemoData
             ? `${DEMO_CODE} (sample)`
-            : `${visitorCode} — ${visitorProfile?.label}`}
+            : `${visitorCode}: ${visitorProfile?.label}`}
         </text>
       </g>
 
@@ -286,7 +286,7 @@ export default function DISCCircle({ visitorCode = null }) {
           fill="currentColor"
           opacity={0.45}
         >
-          SAMPLE COMPARISON SHOWN — SELECT YOUR STYLE ABOVE
+          SAMPLE COMPARISON SHOWN: SELECT YOUR STYLE ABOVE
         </text>
       )}
     </svg>

@@ -9,7 +9,7 @@ export const TABLEAU_DASHBOARDS = [
   {
     title: 'Financial Benchmarking Analysis',
     context: 'Deployed as a standard consulting tool',
-    description: '500+ project analysis across margin performance, direct cost variances by labor, equipment, material, and subcontractor — with profitability breakdowns by division, market segment, and customer for specialty trade contractors.',
+    description: '500+ project analysis across margin performance and direct cost variances by labor, equipment, material, and subcontractor, with profitability broken out by division, market segment, and customer for specialty trade contractors.',
     embedUrl: 'https://public.tableau.com/views/FinancialBenchmarkingAnalysis/ControlPanel?:embed=y&:display_count=no&:showVizHome=no',
     link: 'https://public.tableau.com/app/profile/cain.menard/viz/FinancialBenchmarkingAnalysis/ControlPanel',
   },

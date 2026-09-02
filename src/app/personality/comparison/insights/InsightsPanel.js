@@ -54,7 +54,7 @@ export default function InsightsPanel({ visitorProfile }) {
             key={insight.id}
             className="border-b border-slate-200 dark:border-slate-700 last:border-b-0"
           >
-            {/* Row header — always visible */}
+            {/* Row header: always visible */}
             <button
               onClick={() => toggleIdx(idx)}
               className="w-full flex items-center gap-3 px-5 py-3.5 text-left hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"

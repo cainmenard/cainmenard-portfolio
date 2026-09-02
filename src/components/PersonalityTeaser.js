@@ -18,7 +18,7 @@ export default function PersonalityTeaser() {
         ))}
       </div>
       <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-        Six personality assessments mapped into one interactive profile — from leadership style and communication to decision-making and what happens under pressure.
+        Six personality assessments mapped into one interactive profile: leadership style, communication, decision-making, and what happens under pressure.
       </p>
     </Link>
   )
