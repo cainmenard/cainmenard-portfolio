@@ -141,7 +141,7 @@ export default function Home() {
               <div>
                 <p>
                   Today I&apos;m a Management Consultant at CEI, leading change management and business
-                  readiness for a multi-year Oracle ERP implementation across 15 business units. My work
+                  readiness for a multi-year Oracle ERP implementation across 16 business units. My work
                   starts before anyone touches the new system (readiness assessments, stakeholder
                   interviews, process mapping, change impact analysis) and carries through communication
                   strategy, training plans, and adoption tracking to go-live. Before CEI, I built a digital

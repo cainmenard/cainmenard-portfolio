@@ -5,7 +5,7 @@ export const EXPERIENCE = [
     period: 'Mar 2026 - Present',
     location: 'Atlanta, GA',
     bullets: [
-      'Leading change management and business readiness for a multi-year Oracle ERP implementation across 15 business units of a publicly traded commercial roofing conglomerate.',
+      'Leading change management and business readiness for a multi-year Oracle ERP implementation across 16 business units of a publicly traded commercial roofing conglomerate.',
       'Conducting readiness assessments across 23 functional areas: process harmonization workshops, communication strategy, training plans, and getting the process owners in each business unit onto one way of doing the work before go-live.',
       '370+ interviews across a 2-year transformation program spanning operations, finance, and HR, run with practice leadership and the client business process owners who had to live with the findings.',
     ],
