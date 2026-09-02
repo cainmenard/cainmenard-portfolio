@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /oneroof
+Disallow: /oneroof/
 
 Sitemap: https://cainmenard.com/sitemap.xml
