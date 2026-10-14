@@ -10,26 +10,23 @@ import { useFadeOnScroll } from '@/hooks/useFadeOnScroll'
 const TABLEAU_URL = 'https://public.tableau.com/views/ProjectPerformanceAnalysis/AnalysisOverview?:embed=y&:display_count=no&:showVizHome=no'
 const WEBAPP_URL = 'https://project-performance-analysis.vercel.app'
 
+const SECTIONS = [
+  { id: 'the-shift', label: 'The Shift' },
+  { id: 'comparison', label: 'Comparison' },
+  { id: 'the-numbers', label: 'The Numbers' },
+  { id: 'untapped-builders', label: 'The Builders' },
+  { id: 'industry-productivity', label: 'The Industry' },
+  { id: 'legacy-software', label: 'Legacy Software' },
+  { id: 'functional-experience', label: 'The Bottleneck' },
+  { id: 'readiness', label: 'Readiness' },
+  { id: 'value', label: 'Value' },
+]
+
 export default function AIEvolution() {
   useFadeOnScroll()
   const [activeView, setActiveView] = useState('webapp')
   const comparisonRef = useRef(null)
   const [comparisonVisible, setComparisonVisible] = useState(false)
-  const [formStatus, setFormStatus] = useState('idle')
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setFormStatus('sending')
-    try {
-      const res = await fetch('https://formspree.io/f/mgollvll', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(e.target),
-      })
-      if (res.ok) { setFormStatus('sent'); e.target.reset() }
-      else { setFormStatus('error') }
-    } catch { setFormStatus('error') }
-  }
 
   useEffect(() => {
     const el = comparisonRef.current
@@ -50,7 +47,7 @@ export default function AIEvolution() {
   return (
     <>
       <ReadingProgressBar />
-      <SideNav />
+      <SideNav sections={SECTIONS} />
 
       {/* ─── Back to Home ─── */}
       <a
@@ -94,15 +91,14 @@ export default function AIEvolution() {
               Rebuilt in Hours
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-2xl">
-              The construction industry has spent decades waiting for technology to catch up to
-              the people who actually build things. A project performance dashboard that took weeks
+              A project performance dashboard that took weeks
               in Tableau, on a $75-a-month license, got rebuilt as a live React app in hours, for nothing.
             </p>
             <div className="flex items-center gap-3 pb-8 border-b border-slate-200 dark:border-slate-700">
               <Image src="/headshot.jpg" alt="Cain Menard" width={44} height={44} className="rounded-full" priority />
               <div className="flex-1">
                 <p className="text-sm font-semibold" style={{ color: 'var(--navy)' }}>Cain Menard</p>
-                <p className="text-xs text-slate-400">Management Consultant, ERP &amp; Digital Transformation &nbsp;&middot;&nbsp; 18 min read</p>
+                <p className="text-xs text-slate-400">Operations Strategy, Data Analytics &amp; AI &nbsp;&middot;&nbsp; 9 min read</p>
               </div>
               <ShareButtons className="share-buttons--hero" />
             </div>
@@ -119,28 +115,6 @@ export default function AIEvolution() {
 
         {/* ─── ARTICLE BODY ─── */}
         <div className="relative z-10">
-
-          {/* ─── OPENING ─── */}
-          <section id="opening" className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-2xl mx-auto px-6 article-prose fade-section">
-              <p className="article-drop-cap">
-                Remember that GEICO commercial? A couple of well-groomed cavemen sitting in a nice
-                restaurant, visibly offended that GEICO just told the world their website was
-                &ldquo;so easy, a caveman could do it.&rdquo;
-              </p>
-              <p>
-                The joke worked because everybody assumed some people just aren&apos;t the tech type.
-                Smart, sure. Just not <em>that kind</em> of smart.
-              </p>
-            </div>
-            <div className="max-w-3xl mx-auto px-6 fade-section">
-              <p className="article-callout">
-                That&apos;s over. The tools changed. The people who know which cost drivers eat a
-                margin, and which reports nobody reads, can now build the thing that watches for it.
-                That knowledge was always the scarce part. It just never had a way out of their heads.
-              </p>
-            </div>
-          </section>
 
           {/* ─── KEY TAKEAWAYS ─── */}
           <section className="bg-white dark:bg-slate-900 pb-4">
@@ -171,7 +145,7 @@ export default function AIEvolution() {
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="section-label mb-3">The Shift</p>
               <h2 className="article-section-heading mb-8">
-                The Gap Between Thinking and Building Just Collapsed
+                From Weeks to Hours: How AI Changes the Cost of Analytics
               </h2>
             </div>
             <div className="max-w-2xl mx-auto px-6">
@@ -179,22 +153,16 @@ export default function AIEvolution() {
                 <p>
                   A completed project performance dashboard built over several weeks or months three years
                   ago (data modeling, formulas, iterative design, testing, troubleshooting, and revisions)
-                  can be rebuilt as a full production web application in just hours today. 5 powerful dashboard
+                  can be rebuilt as a full production web application in just hours today. 5 dashboard
                   views, interactive charts, KPI cards, cross-dimensional filters, executive insights, and
                   strategic recommendations. Deployed for free. No license, no login, no IT department involved,
                   using Claude Code as an AI pair-programmer and Wispr Flow for voice-to-code.
                 </p>
                 <p>
-                  The process was stream-of-consciousness, describing what the application should do in a long,
-                  ranting &ldquo;word salad,&rdquo; refining in real time, watching production-quality lines of
-                  React code materialize from verbal instructions.
+                  I built the application by describing its requirements verbally to AI development tools
+                  (Claude Code and Wispr Flow) and refining the output in real time.
                 </p>
               </div>
-            </div>
-            <div className="max-w-3xl mx-auto px-6 fade-section">
-              <p className="article-callout">
-                It is live at a public URL, built by saying out loud what it should do.
-              </p>
             </div>
           </section>
 
@@ -319,9 +287,6 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  The productivity data is accumulating fast.
-                </p>
-                <p>
                   GitHub&apos;s controlled experiment found developers using AI coding tools
                   completed tasks 55.8% faster.<a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>1</sup></a>
                   {' '}Harvard and BCG tested 758 consultants and found AI users produced
@@ -329,36 +294,6 @@ export default function AIEvolution() {
                   {' '}A Google principal engineer gave Claude Code a three-paragraph problem description and received a working result in one
                   hour that matched what her team had spent a year building.<a href="https://the-decoder.com/google-engineer-says-claude-code-built-in-one-hour-what-her-team-spent-a-year-on/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>3</sup></a>
                 </p>
-              </div>
-            </div>
-
-            {/* ─ Data Callout Strip ─ */}
-            <div className="max-w-4xl mx-auto px-6 my-14 fade-section">
-              <div className="stat-strip">
-                <div className="stat-card stagger-child">
-                  <p className="stat-card__number">55.8%</p>
-                  <p className="stat-card__label">faster task completion with AI coding tools</p>
-                  <p className="stat-card__source">
-                    <svg className="stat-card__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                    <a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener noreferrer">Source: GitHub/arXiv RCT</a>
-                  </p>
-                </div>
-                <div className="stat-card stagger-child">
-                  <p className="stat-card__number">40%</p>
-                  <p className="stat-card__label">higher quality output</p>
-                  <p className="stat-card__source">
-                    <svg className="stat-card__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.18L18.5 7.5 12 10.82 5.5 7.5 12 4.18zM5 8.82l6 3.33v7.03l-6-3.33V8.82zm8 10.36v-7.03l6-3.33v7.03l-6 3.33z"/></svg>
-                    <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer">Source: Harvard/BCG, 758 consultants</a>
-                  </p>
-                </div>
-                <div className="stat-card stagger-child">
-                  <p className="stat-card__number">1 hr <span className="stat-card__vs">vs.</span> 1 yr</p>
-                  <p className="stat-card__label">AI reproduction of team project</p>
-                  <p className="stat-card__source">
-                    <svg className="stat-card__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-                    <a href="https://the-decoder.com/google-engineer-says-claude-code-built-in-one-hour-what-her-team-spent-a-year-on/" target="_blank" rel="noopener noreferrer">Source: Google/The Decoder</a>
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -370,25 +305,23 @@ export default function AIEvolution() {
                   {' '}Gartner projects 90% of software engineers will use AI code assistants by 2028, up from under 14% in early 2024.<a href="https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>6</sup></a>
                   {' '}The AI code tools market is valued at $7.4 billion and heading toward $25-30 billion by 2030.<a href="https://www.grandviewresearch.com/industry-analysis/ai-code-tools-market-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>7</sup></a>
                 </p>
-                <p>
-                  Andrej Karpathy, co-founder of OpenAI, coined what he calls &ldquo;vibe coding&rdquo; and
-                  declared: &ldquo;The hottest new programming language is English.&rdquo;<a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>8</sup></a> Jensen Huang,
-                  NVIDIA&apos;s CEO, at the World Government Summit: &ldquo;Everybody in the world is now a
-                  programmer.&rdquo;<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/jensen-huang-advises-against-learning-to-code-leave-it-up-to-ai" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>9</sup></a>
-                  {' '}Satya Nadella, in his 2025 letter to shareholders: &ldquo;More than any
-                  transformation before it, this generation of AI is radically changing every layer of the
-                  tech stack.&rdquo;<a href="https://businesschief.com/news/microsofts-new-growth-era-inside-satya-nadellas-ai-vision" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>10</sup></a>
-                </p>
               </div>
             </div>
             <div className="max-w-3xl mx-auto px-6 fade-section">
               <p className="article-callout">
                 For balance: a rigorous 2025 METR study found experienced open-source developers were
-                actually 19% slower with AI tools on complex maintenance tasks<a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>11</sup></a>, while believing they
+                actually 19% slower with AI tools on complex maintenance tasks<a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>8</sup></a>, while believing they
                 were 20% faster. AI excels at building new things from domain knowledge. It struggles with
                 maintaining complex legacy codebases. Which half of the work you point it at decides
                 whether you get the 55.8% or the 19%.
               </p>
+            </div>
+            <div className="max-w-2xl mx-auto px-6 fade-section">
+              <div className="article-prose">
+                <p>
+                  An MIT study found that 95% of 52 organizations reported no return on their generative AI investments.<a href="https://www.axios.com/2025/08/21/ai-wall-street-big-tech" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>9</sup></a>
+                </p>
+              </div>
             </div>
           </section>
 
@@ -446,37 +379,34 @@ export default function AIEvolution() {
                   </div>
                 </div>
               </div>
-              <p className="builder-viz__footer">Same knowledge, no code required.</p>
             </div>
 
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  Superintendents, project managers, and estimators aren&apos;t cavemen.
-                  They&apos;re the people who actually understand how projects make or lose money. Which cost
+                  Superintendents, project managers, and estimators are the people who actually understand how projects make or lose money. Which cost
                   drivers eat margins. Which reports are just busy work nobody reads. Which leading indicators
                   flag trouble six weeks before it shows up in the financials. That&apos;s fifteen, twenty,
                   thirty years of hard-earned knowledge that no software developer in Silicon Valley is going
                   to replicate.
                 </p>
                 <p>
-                  The problem has never been that construction professionals aren&apos;t smart enough for
-                  technology. The technology has never been smart enough for them. Good tech adapts to the
-                  user, and the construction industry has been forced to settle for less. I wrote about this
-                  a year ago: software developers should be upskilling and adapting their work to serve the
+                  In my 2023 <em>FMI Quarterly</em> article,{' '}
+                  <a href="https://fmicorp.com/insights/thought-leadership/artificial-intelligence-for-engineering-and-construction-firms" target="_blank" rel="noopener noreferrer">&ldquo;Artificial Intelligence for Engineering and Construction Firms,&rdquo;</a>{' '}
+                  I argued that software developers should be upskilling and adapting their work to serve the
                   construction industry, not the other way around. I still believe that.
                 </p>
                 <p>
                   Until now, the IT department (if the company even had one) occupied a small, dark corner
                   of the office. JBKnowledge found fewer than half of construction companies have a single
-                  dedicated IT employee.<a href="https://jbknowledge.com/construction-technology-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>12</sup></a> I still walk into companies where field supervisors don&apos;t have
-                  devices. Paper daily reports. Handwritten timekeeping. Multi-million-dollar projects managed
+                  dedicated IT employee.<a href="https://jbknowledge.com/construction-technology-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>10</sup></a> One company in my current program still sends paper timecards
+                  to headquarters by FedEx each week. Multi-million-dollar projects managed
                   with the same information tools available in 1985.
                 </p>
                 <p>
                   Meanwhile, those same companies are struggling to hire younger talent born into a
                   digital-first world. Gen Z participation in construction more than doubled between 2019 and
-                  2023.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> But 41% of the pre-2020 workforce is expected to retire by 2031.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> There&apos;s a ticking
+                  2023.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>11</sup></a> But 41% of the pre-2020 workforce is expected to retire by 2031.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>11</sup></a> There&apos;s a ticking
                   clock on the institutional knowledge in your people&apos;s heads, and no clear mechanism to
                   capture it before it walks out the door.
                 </p>
@@ -489,21 +419,6 @@ export default function AIEvolution() {
                 is becoming as simple as describing what you need out loud, the way you&apos;d explain it to
                 a colleague.
               </p>
-            </div>
-            <div className="max-w-2xl mx-auto px-6 fade-section">
-              <div className="article-prose">
-                <p>
-                  Kevin Roose, a <em>New York Times</em> technology columnist, built a functional app in
-                  about ten minutes.<a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a> A non-coder in the Philippines built a custom expense management app in
-                  two hours using plain language prompts. Harvard Business School has an active teaching
-                  case on it, &ldquo;Lovable: Vibe Coding for the Other 99%.&rdquo;<a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a>
-                </p>
-                <p>
-                  If those people can do it, your best PM can do it. And the software they&apos;d build would
-                  actually solve the problems they deal with every day, because they&apos;re the ones who
-                  understand those problems.
-                </p>
-              </div>
             </div>
           </section>
 
@@ -552,23 +467,18 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  Construction productivity grew 10% between 2000 and 2022. Manufacturing grew 90% over the
-                  same period.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> And from 2020 to 2022, construction productivity didn&apos;t
-                  just stagnate, it actually declined by 8%.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a>
-                </p>
-                <p>
-                  Construction is the second-least digitized major industry in the United States.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>16</sup></a> Most companies
-                  spend less than 1% of revenue on IT.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>16</sup></a> For comparison, automotive and aerospace spend 3-5%.
-                  The gap is massive. Construction underspends cross-industry IT averages by 60-70%.
+                  Construction is the second-least digitized major industry in the United States.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>12</sup></a> Most companies
+                  spend less than 1% of revenue on IT.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>12</sup></a> For comparison, automotive and aerospace spend 3-5%.
+                  Construction underspends cross-industry IT averages by 60-70%.
                 </p>
                 <p>
                   The tools that do get implemented rarely deliver. Over 70% of ERP implementations
-                  fail to meet their original business objectives.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> The industry hemorrhages an estimated $177
-                  billion a year to operational inefficiencies.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> In 2020, poor data management alone cost the
+                  fail to meet their original business objectives.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> The industry hemorrhages an estimated $177
+                  billion a year to operational inefficiencies.<a href="https://www.mckinsey.com/capabilities/operations/our-insights/delivering-on-construction-productivity" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> In 2020, poor data management alone cost the
                   construction industry $1.84 trillion globally, and only 55% of companies even have
-                  a formal data plan.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> Ninety-six percent of the data generated on construction projects goes
-                  completely unused.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> Field teams lose nearly two full working days every week (14+
-                  hours) just searching for project information<a href="https://www.construction.com/toolkit/reports/construction-disconnected" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>18</sup></a> and dealing with problems that
+                  a formal data plan.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a> Ninety-six percent of the data generated on construction projects goes
+                  completely unused.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a> Field teams lose nearly two full working days every week (14+
+                  hours) just searching for project information<a href="https://www.construction.com/toolkit/reports/construction-disconnected" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> and dealing with problems that
                   shouldn&apos;t exist.
                 </p>
                 <p>
@@ -580,12 +490,12 @@ export default function AIEvolution() {
                   that knowledge into software without a six-figure budget and a year-long timeline.
                 </p>
                 <p>
-                  AI changes that math. The AI-in-construction market sits at $3.9 billion today, projected to
-                  hit $22.7 billion by 2032.<a href="https://www.fortunebusinessinsights.com/ai-in-construction-market-109848" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>19</sup></a> Even Procore (the biggest construction management
+                  The AI-in-construction market sits at $3.9 billion today, projected to
+                  hit $22.7 billion by 2032.<a href="https://www.fortunebusinessinsights.com/ai-in-construction-market-109848" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>16</sup></a> Even Procore (the biggest construction management
                   platform in the market) launched an Agent Builder that lets construction
                   professionals customize AI workflows without writing a single line of code. The AGC&apos;s 2025
                   Workforce Survey shows 44% of firms already expect AI and robotics to improve job quality and
-                  productivity.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a>
+                  productivity.<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>11</sup></a>
                 </p>
               </div>
             </div>
@@ -593,196 +503,7 @@ export default function AIEvolution() {
               <p className="article-callout">
                 The industry that&apos;s historically been last to adopt technology may have the most to gain
                 from what&apos;s happening right now. The gap between what construction professionals know and
-                what they&apos;ve been able to build with that knowledge is wider here than anywhere else. That
-                gap is closing fast.
-              </p>
-            </div>
-          </section>
-
-          {/* ─── THE DOT-COM PARALLEL ─── */}
-          <section id="dotcom-parallel" className="bg-white dark:bg-slate-900 py-20">
-            <div className="max-w-3xl mx-auto px-6 fade-section">
-              <p className="section-label mb-3">The Pattern</p>
-              <h2 className="article-section-heading mb-8">
-                The Dot-Com Parallel
-              </h2>
-            </div>
-
-            {/* ─ Timeline Curve Graphic ─ */}
-            <div className="max-w-4xl mx-auto px-6 my-12 fade-section">
-              <div className="dotcom-chart">
-                <p className="dotcom-chart__title">The Dot-Com Pattern</p>
-                <p className="dotcom-chart__subtitle">Technology adoption follows a predictable arc</p>
-
-                <div className="dotcom-curve">
-                  {/* ── Dot-Com Bubble Curve ── */}
-                  <svg viewBox="0 0 800 340" fill="none" xmlns="http://www.w3.org/2000/svg" className="dotcom-curve__svg" preserveAspectRatio="xMidYMid meet">
-                    {/* Grid lines */}
-                    <line x1="60" y1="240" x2="760" y2="240" stroke="#1e293b" strokeWidth="1" />
-
-                    {/* Phase labels along bottom */}
-                    <text x="150" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">ERUPTION</text>
-                    <text x="340" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">FRENZY</text>
-                    <text x="480" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">CRASH</text>
-                    <text x="660" y="270" fill="#64748b" fontSize="11" fontWeight="600" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">GOLDEN AGE</text>
-
-                    {/* Phase divider ticks */}
-                    <line x1="240" y1="235" x2="240" y2="245" stroke="#334155" strokeWidth="1" />
-                    <line x1="420" y1="235" x2="420" y2="245" stroke="#334155" strokeWidth="1" />
-                    <line x1="540" y1="235" x2="540" y2="245" stroke="#334155" strokeWidth="1" />
-
-                    {/* Main dot-com curve */}
-                    <path
-                      d="M 80 220 C 120 210, 160 190, 200 160 C 240 130, 280 70, 340 30 C 380 10, 400 15, 420 30 C 460 70, 480 160, 500 200 C 520 220, 540 225, 560 218 C 600 200, 660 160, 720 120"
-                      stroke="url(#dotcomGradient)"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      className="dotcom-curve__path"
-                    />
-
-                    {/* Gradient definition */}
-                    <defs>
-                      <linearGradient id="dotcomGradient" x1="80" y1="0" x2="720" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#22c55e" />
-                        <stop offset="35%" stopColor="#f59e0b" />
-                        <stop offset="55%" stopColor="#ef4444" />
-                        <stop offset="100%" stopColor="#22c55e" />
-                      </linearGradient>
-                      <linearGradient id="aiGradient" x1="80" y1="0" x2="480" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#3b82f6" />
-                        <stop offset="100%" stopColor="#8b5cf6" />
-                      </linearGradient>
-                    </defs>
-
-                    {/* Key event markers on the curve */}
-                    {/* NASDAQ Peak */}
-                    <circle cx="340" cy="30" r="5" fill="#f59e0b" className="dotcom-curve__dot" />
-                    <line x1="340" y1="38" x2="340" y2="58" stroke="#f59e0b" strokeWidth="1" opacity="0.5" />
-                    <rect x="262" y="60" width="156" height="36" rx="6" fill="#1e293b" stroke="#f59e0b" strokeWidth="1" opacity="0.9" />
-                    <text x="340" y="75" fill="#f59e0b" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">NASDAQ PEAK</text>
-                    <text x="340" y="89" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">March 2000 &bull; 5,048</text>
-
-                    {/* Crash */}
-                    <circle cx="480" cy="188" r="5" fill="#ef4444" className="dotcom-curve__dot" />
-                    <line x1="480" y1="170" x2="480" y2="145" stroke="#ef4444" strokeWidth="1" opacity="0.5" />
-                    <rect x="414" y="112" width="132" height="36" rx="6" fill="#1e293b" stroke="#ef4444" strokeWidth="1" opacity="0.9" />
-                    <text x="480" y="127" fill="#ef4444" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">CRASH</text>
-                    <text x="480" y="141" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">$5 trillion wiped out</text>
-
-                    {/* Amazon $7 */}
-                    <circle cx="530" cy="222" r="5" fill="#ef4444" className="dotcom-curve__dot" />
-                    <line x1="530" y1="210" x2="530" y2="188" stroke="#94a3b8" strokeWidth="1" opacity="0.3" />
-                    <rect x="468" y="155" width="124" height="36" rx="6" fill="#1e293b" stroke="#64748b" strokeWidth="1" opacity="0.9" />
-                    <text x="530" y="170" fill="#e2e8f0" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">AMAZON AT $7</text>
-                    <text x="530" y="184" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">per share</text>
-
-                    {/* Golden Age */}
-                    <circle cx="700" cy="128" r="5" fill="#22c55e" className="dotcom-curve__dot" />
-                    <line x1="700" y1="120" x2="700" y2="100" stroke="#22c55e" strokeWidth="1" opacity="0.5" />
-                    <rect x="610" y="58" width="180" height="44" rx="6" fill="#1e293b" stroke="#22c55e" strokeWidth="1" opacity="0.9" />
-                    <text x="700" y="74" fill="#22c55e" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">GOLDEN AGE</text>
-                    <text x="700" y="93" fill="#94a3b8" fontSize="9.5" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">Amazon &bull; Google &bull; Booking</text>
-
-                    {/* ── AI Investment Cycle (parallel line below) ── */}
-                    <line x1="60" y1="300" x2="760" y2="300" stroke="#0f172a" strokeWidth="1" />
-
-                    {/* AI curve - partial, with dashed future */}
-                    <path
-                      d="M 80 298 C 140 290, 200 270, 260 248 C 300 234, 340 220, 380 210"
-                      stroke="url(#aiGradient)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      className="dotcom-curve__ai-path"
-                    />
-                    {/* Dashed future portion */}
-                    <path
-                      d="M 380 210 C 420 200, 460 196, 520 200 C 560 206, 600 220, 640 226 C 680 230, 720 218, 740 210"
-                      stroke="#8b5cf6"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeDasharray="6 4"
-                      opacity="0.4"
-                    />
-
-                    {/* AI label */}
-                    <rect x="80" y="308" width="200" height="24" rx="4" fill="rgba(139, 92, 246, 0.1)" stroke="#8b5cf6" strokeWidth="1" opacity="0.6" />
-                    <text x="180" y="324" fill="#a78bfa" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">AI INVESTMENT CYCLE, 2022-?</text>
-
-                    {/* AI data point markers */}
-                    <circle cx="120" cy="294" r="3.5" fill="#3b82f6" />
-                    <text x="120" y="289" fill="#93c5fd" fontSize="8" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">ChatGPT</text>
-
-                    <circle cx="220" cy="265" r="3.5" fill="#6366f1" />
-                    <text x="220" y="258" fill="#a5b4fc" fontSize="8" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">$100B+</text>
-
-                    <circle cx="320" cy="238" r="3.5" fill="#7c3aed" />
-                    <text x="320" y="231" fill="#c4b5fd" fontSize="8" textAnchor="middle" fontFamily="var(--font-body), system-ui, sans-serif">NVIDIA 10×</text>
-
-                    <circle cx="380" cy="210" r="4" fill="#8b5cf6" stroke="#c4b5fd" strokeWidth="1.5" />
-                    <text x="395" y="205" fill="#c4b5fd" fontSize="8" textAnchor="start" fontFamily="var(--font-body), system-ui, sans-serif">Today</text>
-
-                    {/* Question mark for future */}
-                    <text x="640" y="222" fill="#8b5cf6" fontSize="16" fontWeight="700" opacity="0.4" textAnchor="middle" fontFamily="var(--font-display), Georgia, serif">?</text>
-                  </svg>
-                </div>
-
-                <p className="dotcom-chart__source"><a href="https://en.wikipedia.org/wiki/Carlota_Perez" target="_blank" rel="noopener noreferrer" className="cite-num">Source: Carlota Pérez, <em>Technological Revolutions and Financial Capital</em></a></p>
-              </div>
-            </div>
-
-            <div className="max-w-2xl mx-auto px-6 fade-section">
-              <div className="article-prose">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-8 mb-4" style={{ fontFamily: 'var(--font-display), Georgia, serif' }}>
-                  The investment numbers warrant skepticism.
-                </h3>
-                <p>
-                  AI venture capital hit $202 billion in 2025<a href="https://news.crunchbase.com/ai/global-vc-funding-annual-report-2025/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>20</sup></a>, capturing roughly half of all global
-                  VC funding. NVIDIA&apos;s stock rocketed 2,000% from 2022 lows to a market cap north of $5
-                  trillion. Michael Burry called the AI boom &ldquo;a glorious folly&rdquo; and compared NVIDIA
-                  to Cisco, which surged 3,800% before crashing 88% and never recovering to its
-                  inflation-adjusted peak. Jeff Bezos called it &ldquo;kind of an industrial bubble.&rdquo; Sam
-                  Altman (ChatGPT&apos;s version of Steve Jobs) himself said,
-                  &ldquo;People will overinvest and lose money.&rdquo; An MIT study found 95% of 52
-                  organizations achieved zero ROI from generative AI investments.<a href="https://www.axios.com/2025/08/21/ai-wall-street-big-tech" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>21</sup></a>
-                </p>
-              </div>
-            </div>
-            <div className="max-w-3xl mx-auto px-6 fade-section">
-              <p className="article-callout">
-                &ldquo;95% of organizations studied achieved zero ROI from generative AI
-                investments.&rdquo; (MIT Sloan)<a href="https://exec-ed.berkeley.edu/2025/09/beyond-roi-are-we-using-the-wrong-metric-in-measuring-ai-success/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>22</sup></a>
-              </p>
-            </div>
-            <div className="max-w-2xl mx-auto px-6 fade-section">
-              <div className="article-prose">
-                <p>
-                  The dot-com crash wiped out $5 trillion in market value.<a href="https://en.wikipedia.org/wiki/Dot-com_bubble" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>23</sup></a> Pets.com went from IPO to liquidation
-                  in 268 days. Webvan raised over a billion dollars and was dead in two years.
-                </p>
-                <p>
-                  But the technology survived. Internet users grew from 361 million in 2000 to over 4
-                  billion, continuously, straight through the bust and out the other side. More than
-                  70% of Americans were already online when the market bottomed out, and none of them
-                  logged off when the Nasdaq did.
-                </p>
-                <p>
-                  And the failed ideas came back with better execution. Webvan became Instacart. Pets.com became
-                  Chewy ($8.7 billion IPO). Kozmo became DoorDash. Amazon crashed from $107 to $7 a share
-                  before becoming one of the most valuable companies on Earth.
-                </p>
-                <p>
-                  Carlota Pérez,<a href="https://en.wikipedia.org/wiki/Carlota_Perez" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>24</sup></a> a techno-economist who&apos;s studied five major technological revolutions,
-                  found they all follow the same arc: eruption, speculative frenzy, collapse, then a prosperous
-                  golden age. The question for construction leaders isn&apos;t whether there will be a
-                  correction. It&apos;s whether your company is positioned to come out the other
-                  side, because that&apos;s where the real money is made.
-                </p>
-              </div>
-            </div>
-            <div className="max-w-3xl mx-auto px-6 fade-section">
-              <p className="article-callout">
-                &ldquo;The biggest and most sustainable profits tend to be made after the bubble has collapsed,
-                not during the speculative frenzy.&rdquo; (Carlota Pérez)<a href="https://en.wikipedia.org/wiki/Carlota_Perez" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>24</sup></a>
+                what they&apos;ve been able to build with that knowledge is wider here than anywhere else.
               </p>
             </div>
           </section>
@@ -805,85 +526,11 @@ export default function AIEvolution() {
                   market share. Some will cease to exist.
                 </p>
                 <p>
-                  Microsoft CEO Satya Nadella declared &ldquo;SaaS is dead&rdquo; in late 2024.<a href="https://medium.com/@iamdavidchan/did-satya-nadelle-really-say-saas-is-dead-fa064f3d65d1" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>25</sup></a> His
-                  argument: business applications are databases with business logic bolted on. In an
-                  agent-driven world, that logic migrates to AI agents that are database-agnostic. The
-                  application layer collapses.
-                </p>
-                <p>
-                  The market is responding. The iShares Expanded Tech-Software Sector ETF fell over
-                  23% in early 2026.<a href="https://www.cnbc.com/2026/01/29/software-stocks-enter-bear-market-on-ai-disruption-fear-with-servicenow-plunging-11percent-thursday.html" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>26</sup></a> Salesforce and Workday each dropped over 40% in twelve months.<a href="https://www.bloomberg.com/opinion/articles/2026-02-12/salesforce-and-other-saas-companies-deserve-ai-disruption" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>27</sup></a>
-                  IDC concluded SaaS has become &ldquo;a patchwork of interfaces and data silos,
-                  forcing users to adapt to the software rather than the other way around.&rdquo;<a href="https://www.idc.com/resource-center/blog/is-saas-dead-rethinking-the-future-of-software-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>28</sup></a>
-                </p>
-              </div>
-            </div>
-
-            {/* ─ IDC Callout Visualization ─ */}
-            <div className="max-w-3xl mx-auto px-6 my-12 fade-section">
-              <div className="legacy-callout-viz">
-                <p className="legacy-callout-viz__label">IDC Prediction</p>
-                <p className="legacy-callout-viz__text">
-                  By 2028, <span className="legacy-callout-viz__accent">70% of software vendors</span> will
-                  need to fundamentally restructure their pricing models.<a href="https://www.idc.com/resource-center/blog/is-saas-dead-rethinking-the-future-of-software-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>28</sup></a>
-                </p>
-                <p className="legacy-callout-viz__source"><a href="https://www.idc.com/resource-center/blog/is-saas-dead-rethinking-the-future-of-software-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" className="cite-num">Source: International Data Corporation (IDC)</a></p>
-              </div>
-            </div>
-
-            {/* ─ Companies That Failed to Adapt ─ */}
-            <div className="max-w-4xl mx-auto px-6 my-16 fade-section">
-              <p className="text-center text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-6" style={{ fontFamily: 'var(--font-body), system-ui, sans-serif' }}>
-                Companies That Failed to Adapt
-              </p>
-              <div className="adapt-cards">
-                <div className="adapt-card stagger-child">
-                  <p className="adapt-card__company">Kodak</p>
-                  <p className="adapt-card__summary">
-                    Invented the digital camera in 1975. Suppressed it.
-                  </p>
-                  <p className="adapt-card__year">Bankrupt 2012</p>
-                </div>
-                <div className="adapt-card stagger-child">
-                  <p className="adapt-card__company">Blockbuster</p>
-                  <p className="adapt-card__summary">
-                    9,000 stores, rejected Netflix.
-                  </p>
-                  <p className="adapt-card__year">Bankrupt 2010</p>
-                </div>
-                <div className="adapt-card stagger-child">
-                  <p className="adapt-card__company">Nokia</p>
-                  <p className="adapt-card__summary">
-                    40%+ global market share. Missed touchscreens.
-                  </p>
-                  <p className="adapt-card__year">Sold 2014</p>
-                </div>
-                <div className="adapt-card stagger-child">
-                  <p className="adapt-card__company">Siebel</p>
-                  <p className="adapt-card__summary">
-                    Created CRM. Failed cloud transition.
-                  </p>
-                  <p className="adapt-card__year">Acquired by Oracle 2006</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="max-w-2xl mx-auto px-6 fade-section">
-              <div className="article-prose">
-                <p>
                   In construction specifically, McKinsey found individual teams routinely build their
-                  own digital solutions without coordinating<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>16</sup></a>, creating a proliferation of
+                  own digital solutions without coordinating<a href="https://www.mckinsey.com/capabilities/operations/our-insights/imagining-constructions-digital-future" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>12</sup></a>, creating a proliferation of
                   competing, overlapping tools within a single company. JBKnowledge&apos;s surveys
-                  found 65% of respondents use spreadsheets for estimating<a href="https://jbknowledge.com/construction-technology-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>12</sup></a> despite having dedicated
+                  found 65% of respondents use spreadsheets for estimating<a href="https://jbknowledge.com/construction-technology-report" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>10</sup></a> despite having dedicated
                   estimating software. The off-the-shelf products simply don&apos;t meet actual needs.
-                </p>
-                <p>
-                  Every company has its secret sauce. Every contractor knows a good project from a bad
-                  one. Every business has different requirements. For the first time, there&apos;s an
-                  accessible pathway to building exactly what it needs (facilitating its
-                  functional processes, its data, and serving its people) without a
-                  software development team or a vendor&apos;s interpretation of &ldquo;what
-                  construction companies want.&rdquo;
                 </p>
               </div>
             </div>
@@ -902,15 +549,14 @@ export default function AIEvolution() {
               <div className="article-prose">
                 <p>
                   MIT labor economist David Autor argues that AI&apos;s unique opportunity is to
-                  &ldquo;extend the relevance, reach, and value of human expertise.&rdquo;<a href="https://www.nber.org/papers/w32140" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>29</sup></a> That framing
+                  &ldquo;extend the relevance, reach, and value of human expertise.&rdquo;<a href="https://www.nber.org/papers/w32140" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> That framing
                   matters. Technical execution is being commoditized at a pace that would have been
-                  unimaginable five years ago. What&apos;s becoming scarce, truly
-                  scarce, is the domain knowledge that determines what to build and why it
-                  actually matters.
+                  unimaginable five years ago. The scarce resource is now the domain expertise
+                  that determines what to build.
                 </p>
                 <p>
                   Erik Brynjolfsson at Stanford studied over 5,000 workers and found AI increased
-                  productivity 14-15% on average.<a href="https://academic.oup.com/qje/article-abstract/139/3/1823/7612832" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>30</sup></a> But the breakdown is what&apos;s interesting:
+                  productivity 14-15% on average.<a href="https://academic.oup.com/qje/article-abstract/139/3/1823/7612832" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>18</sup></a> But the breakdown is what&apos;s interesting:
                   novice workers improved 34%, while experienced workers saw minimal gains. The AI was
                   essentially encoding top performers&apos; best practices and distributing them to everyone
                   else. A study in <em>Management Science</em> made the point explicit, AI
@@ -927,7 +573,7 @@ export default function AIEvolution() {
                   &ldquo;AI&apos;s unique opportunity is to extend the relevance, reach, and value of human expertise.&rdquo;
                 </p>
                 <p className="bottleneck-pull-quote__attribution">
-                  David Autor, MIT<a href="https://www.nber.org/papers/w32140" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>29</sup></a>
+                  David Autor, MIT<a href="https://www.nber.org/papers/w32140" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a>
                 </p>
               </div>
             </div>
@@ -938,10 +584,8 @@ export default function AIEvolution() {
                   That same Harvard/BCG study found that
                   when consultants applied AI to tasks outside its capability boundary, things
                   that require real judgment, intuition, or knowing which number to trust when two reports
-                  disagree, they were about 20% less likely to get the right answer<a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>31</sup></a> than
-                  consultants working without AI at all. The tool made sloppy work worse. It exposed people
-                  who were mailing it in. Knowing when and where to apply AI was the single biggest
-                  differentiator between winning and failure.
+                  disagree, they were about 20% less likely to get the right answer<a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>2</sup></a> than
+                  consultants working without AI at all.
                 </p>
                 <p>
                   Knowing how projects fail (budget overruns, material price escalations, change orders
@@ -985,9 +629,8 @@ export default function AIEvolution() {
                 <p>
                   When VisiCalc launched the first digital
                   spreadsheet in 1980, there were 339,000 accountants in the U.S. By 2022, there were 1.4
-                  million.<a href="https://timharford.com/2024/01/what-does-history-tell-us-about-the-impact-of-ai-on-jobs/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>32</sup></a> Tim Harford at the <em>Financial Times</em> put it plainly: the spreadsheet
-                  didn&apos;t kill the profession. It made accountants more productive and blew the market
-                  wide open for what they could do.
+                  million.<a href="https://timharford.com/2024/01/what-does-history-tell-us-about-the-impact-of-ai-on-jobs/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>19</sup></a> Tim Harford at the <em>Financial Times</em> put it plainly: the spreadsheet
+                  didn&apos;t kill the profession. It made accountants more productive.
                 </p>
               </div>
             </div>
@@ -1005,16 +648,14 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  Most construction companies aren&apos;t positioned to reap the benefits of AI tools yet. The
-                  problem isn&apos;t an inability to change or disinterest in finding better ways to
-                  work, every contractor has a story about &ldquo;that one project&rdquo;-turned
-                  success story thanks to a game-time judgment call that just might work. The problem is they
-                  haven&apos;t laid the foundation yet.
+                  Most construction companies aren&apos;t positioned to reap the benefits of AI tools yet. Most
+                  contractors have not yet built the foundation new technology requires: the right talent,
+                  sound processes, reliable data, and integrated systems.
                 </p>
                 <p>
                   A peer-reviewed study of highway construction and asset management technology implementations
                   found less than 10% of failures result from technical problems. Eighty percent of success
-                  depends on addressing people and process issues.<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10571839/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>33</sup></a>
+                  depends on addressing people and process issues.<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10571839/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>20</sup></a>
                 </p>
               </div>
             </div>
@@ -1024,7 +665,7 @@ export default function AIEvolution() {
               <div className="readiness-callout">
                 <p className="readiness-callout__text">
                   &ldquo;Any attempt to implement technology that focuses solely on technology is likely to fail
-                  in the construction industry.&rdquo;<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10571839/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>33</sup></a>
+                  in the construction industry.&rdquo;<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10571839/" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>20</sup></a>
                 </p>
               </div>
             </div>
@@ -1033,79 +674,12 @@ export default function AIEvolution() {
               <div className="article-prose">
                 <p>
                   Prosci&apos;s research shows organizations with structured change management are 7x more
-                  likely to achieve project objectives.<a href="https://www.prosci.com/blog/change-management-best-practices" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>34</sup></a> A study in the <em>Journal of Information Technology in
-                  Construction</em> analyzed 167 technology-adoption cases across AEC firms<a href="https://www.itcon.org/paper/2020/17" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>35</sup></a> and identified the
+                  likely to achieve project objectives.<a href="https://www.prosci.com/blog/change-management-best-practices" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>21</sup></a> A study in the <em>Journal of Information Technology in
+                  Construction</em> analyzed 167 technology-adoption cases across AEC firms<a href="https://www.itcon.org/paper/2020/17" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>22</sup></a> and identified the
                   top practices for success: change-agent effectiveness, measured benchmarks, realistic
                   timeframes, and communicated benefits. Better software and bigger budgets did not
                   make the list.
                 </p>
-              </div>
-            </div>
-
-            {/* ─ Visual: Readiness Framework, 4-Pillar Graphic ─ */}
-            <div className="max-w-4xl mx-auto px-6 my-16 fade-section">
-              <div className="readiness-framework">
-                <p className="readiness-framework__label">Readiness Framework</p>
-                <div className="readiness-framework__pillars">
-                  <div className="readiness-pillar stagger-child">
-                    <div className="readiness-pillar__icon" aria-hidden="true">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                    <p className="readiness-pillar__title">Talent</p>
-                    <p className="readiness-pillar__question">
-                      Do you have domain experts willing to learn new tools, and leadership willing
-                      to invest in them?
-                    </p>
-                  </div>
-                  <div className="readiness-pillar stagger-child">
-                    <div className="readiness-pillar__icon" aria-hidden="true">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="3" />
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                      </svg>
-                    </div>
-                    <p className="readiness-pillar__title">Process</p>
-                    <p className="readiness-pillar__question">
-                      Can you automate what you have, or are you automating chaos?
-                    </p>
-                  </div>
-                  <div className="readiness-pillar stagger-child">
-                    <div className="readiness-pillar__icon" aria-hidden="true">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <ellipse cx="12" cy="5" rx="9" ry="3" />
-                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-                      </svg>
-                    </div>
-                    <p className="readiness-pillar__title">Data</p>
-                    <p className="readiness-pillar__question">
-                      Is your data clean, integrated, and accessible, or siloed and unreliable?
-                    </p>
-                  </div>
-                  <div className="readiness-pillar stagger-child">
-                    <div className="readiness-pillar__icon" aria-hidden="true">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="6" cy="6" r="3" />
-                        <circle cx="18" cy="6" r="3" />
-                        <circle cx="6" cy="18" r="3" />
-                        <circle cx="18" cy="18" r="3" />
-                        <line x1="8.5" y1="7.5" x2="15.5" y2="16.5" />
-                        <line x1="15.5" y1="7.5" x2="8.5" y2="16.5" />
-                      </svg>
-                    </div>
-                    <p className="readiness-pillar__title">Integration</p>
-                    <p className="readiness-pillar__question">
-                      Do your systems talk to each other, or are they islands?
-                    </p>
-                  </div>
-                </div>
-                <div className="readiness-framework__foundation">
-                  <p>Under 10% of these implementations fail for technical reasons. The rest fail on
-                  the four things above.</p>
-                </div>
               </div>
             </div>
 
@@ -1117,34 +691,27 @@ export default function AIEvolution() {
                 </p>
                 <p>
                   <strong>Talent.</strong> Domain experts willing to learn new tools, and leadership willing to
-                  invest in their development. With 94% of firms struggling to fill positions<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>13</sup></a> and mass
+                  invest in their development. With 94% of firms struggling to fill positions<a href="https://www.agc.org/news/2025/01/15/agc-nccer-2025-workforce-survey" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>11</sup></a> and mass
                   retirements on the horizon, institutional knowledge is the most valuable and most perishable
                   asset a construction company owns.
                 </p>
                 <p>
                   <strong>Process.</strong> Automating a broken process produces broken results faster. If an
                   estimating workflow lives in fourteen spreadsheets with no version control, AI won&apos;t fix
-                  it. The Carnegie Mellon Capability Maturity Model<a href="https://en.wikipedia.org/wiki/Capability_Maturity_Model" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>36</sup></a> makes the principle clear: the quality of
+                  it. The Carnegie Mellon Capability Maturity Model<a href="https://en.wikipedia.org/wiki/Capability_Maturity_Model" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>23</sup></a> makes the principle clear: the quality of
                   any system is directly related to the quality of the process behind it.
                 </p>
                 <p>
-                  <strong>Data.</strong> Ninety-six percent of construction data goes unused.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> Gartner predicts
-                  organizations will abandon 60% of AI projects unsupported by AI-ready data.<a href="https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>37</sup></a> The average
-                  construction business uses 11 separate data environments<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>17</sup></a> (often in the form of 11 disconnected
+                  <strong>Data.</strong> Ninety-six percent of construction data goes unused.<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a> Gartner predicts
+                  organizations will abandon 60% of AI projects unsupported by AI-ready data.<a href="https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>24</sup></a> The average
+                  construction business uses 11 separate data environments<a href="https://www.autodesk.com/resources/harnessing-the-data-advantage-in-construction" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>14</sup></a> (often in the form of 11 disconnected
                   systems). If data is siloed, duplicated, and unreliable, no tool will produce reliable outputs.
                 </p>
                 <p>
                   <strong>Integration.</strong> Nearly a third of construction companies report their systems
-                  don&apos;t communicate with each other.<a href="https://www.construction.com/toolkit/reports/construction-disconnected" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>18</sup></a> Disconnected estimating tools, PM platforms, accounting
+                  don&apos;t communicate with each other.<a href="https://www.construction.com/toolkit/reports/construction-disconnected" target="_blank" rel="noopener noreferrer" className="cite-num"><sup>15</sup></a> Disconnected estimating tools, PM platforms, accounting
                   systems, and field apps don&apos;t just leave value on the table, they actively
                   create the conditions for inefficiency.
-                </p>
-                <p>
-                  AI coding tools are doing the same thing for domain expertise. The difference is that the
-                  industries with the widest gap between what people know and what they&apos;ve been able to
-                  build with that knowledge stand to win the most. By that measure construction has the
-                  widest gap of anybody: second-least digitized industry in the country, under 1% of
-                  revenue spent on IT, and 96% of its data never looked at.
                 </p>
               </div>
             </div>
@@ -1162,7 +729,7 @@ export default function AIEvolution() {
             <div className="max-w-2xl mx-auto px-6 fade-section">
               <div className="article-prose">
                 <p>
-                  The cost of building software is nose diving. Custom applications will proliferate. In the near
+                  The cost of building software is declining rapidly. Custom applications will proliferate. In the near
                   future, domain experts across every industry will build their own tools fine-tuned to their
                   specific operational processes.
                 </p>
@@ -1189,20 +756,6 @@ export default function AIEvolution() {
                 </p>
               </div>
             </div>
-
-            <div className="max-w-2xl mx-auto px-6 fade-section">
-              <div className="article-prose">
-                <p>
-                  The companies that win in this next era will get the fundamentals right before chasing
-                  the fancy new tool.
-                </p>
-                <p>
-                  The barrier between knowing what you need and having it built has effectively disappeared. The
-                  question is no longer &ldquo;Can we build it?&rdquo; It&apos;s &ldquo;Do we know what to
-                  build, and are we ready to use it?&rdquo;
-                </p>
-              </div>
-            </div>
           </section>
 
           {/* ─── ABOUT THE AUTHOR ─── */}
@@ -1212,11 +765,10 @@ export default function AIEvolution() {
                 <p className="section-label mb-3">About the Author</p>
                 <div className="author-section__body article-prose">
                   <p>
-                    Cain Menard is a Management Consultant in ERP &amp; Digital Transformation at CEI.
-                    He&apos;s spent his career in the field, in consulting, and now in enterprise
-                    transformation, helping contractors across construction and
-                    infrastructure modernize how they operate. The application referenced in this
-                    article is live at project-performance-analysis.vercel.app.
+                    Cain Menard helps companies improve margins and operating performance through
+                    process redesign, data analytics, and AI. The application referenced in this
+                    article is live at{' '}
+                    <a href={WEBAPP_URL} target="_blank" rel="noopener noreferrer">project-performance-analysis.vercel.app</a>.
                   </p>
                 </div>
                 <ShareButtons className="share-buttons--footer" />
@@ -1224,149 +776,11 @@ export default function AIEvolution() {
             </div>
           </section>
 
-          {/* ─── FAQ ─── */}
-          <section id="faq" className="bg-slate-50 dark:bg-slate-800 py-20">
-            <div className="max-w-2xl mx-auto px-6 fade-section">
-              <p className="section-label mb-3">Frequently Asked Questions</p>
-              <h2 className="article-section-heading mb-10">Common Questions</h2>
-              <div className="faq-list">
-                <details className="faq-item">
-                  <summary className="faq-item__question">
-                    Can AI replace tools like Tableau for construction analytics?
-                  </summary>
-                  <div className="faq-item__answer article-prose">
-                    <p>
-                      AI coding tools can rebuild Tableau dashboards as full production web applications
-                      in hours rather than weeks. The resulting apps are free to deploy, require no
-                      special software licenses, and are accessible to anyone with a browser. However,
-                      AI excels at building new applications from domain knowledge, a 2025
-                      METR study found experienced developers were actually 19% slower with AI on complex
-                      maintenance tasks.
-                    </p>
-                  </div>
-                </details>
-                <details className="faq-item">
-                  <summary className="faq-item__question">
-                    How long does it take to build a web app with AI coding tools?
-                  </summary>
-                  <div className="faq-item__answer article-prose">
-                    <p>
-                      Build times vary by complexity, but the case study documents a complete project
-                      performance analytics dashboard (with 5 interactive views, KPI cards,
-                      cross-dimensional filters, and executive insights) rebuilt as a
-                      deployed React web app in hours using Claude Code and voice-to-code tools.
-                      GitHub&apos;s controlled experiment found developers using AI coding tools
-                      completed tasks 55.8% faster overall.
-                    </p>
-                  </div>
-                </details>
-                <details className="faq-item">
-                  <summary className="faq-item__question">
-                    What skills do construction professionals need to use AI effectively?
-                  </summary>
-                  <div className="faq-item__answer article-prose">
-                    <p>
-                      Domain expertise is the most critical skill. MIT labor economist David Autor
-                      argues AI&apos;s unique opportunity is to extend the relevance and value of human
-                      expertise. Erik Brynjolfsson at Stanford found AI creates the greatest value when domain
-                      experts themselves apply it, not when filtered through IT specialists. Construction
-                      professionals who understand project performance, cost drivers, and operational
-                      workflows are uniquely positioned. The barrier is now describing what
-                      to build, not writing the code.
-                    </p>
-                  </div>
-                </details>
-                <details className="faq-item">
-                  <summary className="faq-item__question">
-                    Is the construction industry ready for AI adoption?
-                  </summary>
-                  <div className="faq-item__answer article-prose">
-                    <p>
-                      Most construction companies need foundational work before capturing AI value.
-                      A peer-reviewed study of highway construction technology implementations found
-                      less than 10% of failures are technical, and that 80% of success depends on
-                      people and process. A readiness framework
-                      should address four pillars: Talent (domain experts willing to learn), Process
-                      (standardized workflows, not chaos), Data (clean, integrated, and
-                      accessible, 96% of construction data currently goes unused), and
-                      Integration (connected systems, not islands). Organizations with structured
-                      change management are 7x more likely to succeed.
-                    </p>
-                  </div>
-                </details>
-                <details className="faq-item">
-                  <summary className="faq-item__question">
-                    What is the ROI of AI in construction?
-                  </summary>
-                  <div className="faq-item__answer article-prose">
-                    <p>
-                      The AI-in-construction market is projected to grow from $3.9 billion to $22.7
-                      billion by 2032. However, an MIT study found 95% of organizations achieved zero
-                      ROI from generative AI investments, largely due to readiness gaps, not
-                      the technology itself. Construction loses an estimated $177 billion annually to
-                      operational inefficiencies, and field teams lose 14+ hours per week searching for
-                      project information. Companies that address process, data, and change management
-                      foundations first are the ones positioned to earn any of it back.
-                    </p>
-                  </div>
-                </details>
-              </div>
-            </div>
-          </section>
           {/* ─── CONTACT ─── */}
-          <section id="contact" className="py-24 bg-slate-50 dark:bg-slate-800">
-            <div className="max-w-6xl mx-auto px-6 fade-section">
-              <div className="max-w-2xl mx-auto text-center">
-                <p className="section-label mb-3">Contact</p>
-                <h2 className="section-heading text-3xl md:text-4xl mb-6">Let&apos;s Talk</h2>
-                <p className="text-slate-500 dark:text-slate-400 mb-10 leading-relaxed">
-                  Whether you&apos;re a contractor trying to figure out why you&apos;re leaving money on the table,
-                  a firm looking to modernize operations, or just someone who wants to talk shop,
-                  I&apos;m always up for a conversation.
-                </p>
-              </div>
-
-              <div className="max-w-lg mx-auto mb-12">
-                {formStatus === 'sent' ? (
-                  <div className="text-center py-8" role="status" aria-live="polite">
-                    <p className="text-2xl mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--navy)' }}>Message sent.</p>
-                    <p className="text-slate-500 dark:text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Name</label>
-                        <input type="text" id="name" name="name" required
-                          className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm text-slate-800 dark:text-slate-200 placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="Your name" />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Email</label>
-                        <input type="email" id="email" name="email" required
-                          className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm text-slate-800 dark:text-slate-200 placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition" placeholder="you@company.com" />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="message" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Message</label>
-                      <textarea id="message" name="message" rows={4} required
-                        className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm text-slate-800 dark:text-slate-200 placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent transition resize-none" placeholder="What's on your mind?" />
-                    </div>
-                    <button type="submit" disabled={formStatus === 'sending'} className="btn-primary w-full justify-center">
-                      {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
-                    </button>
-                    {formStatus === 'error' && <p className="text-red-500 text-sm text-center" role="alert" aria-live="assertive">Something went wrong. Try emailing me directly.</p>}
-                  </form>
-                )}
-              </div>
-
-              <div className="max-w-2xl mx-auto text-center">
-                <div className="flex flex-wrap justify-center gap-4 mb-10">
-                  <a href="mailto:info@cainmenard.com" className="btn-outline">info@cainmenard.com</a>
-                  <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">LinkedIn ↗</a>
-                  <a href="https://github.com/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">GitHub ↗</a>
-                </div>
-                <p className="text-sm text-slate-400">(337) 654-2304 &middot; Atlanta, GA</p>
-              </div>
+          <section id="contact" className="pb-16">
+            <div className="max-w-2xl mx-auto px-6 flex flex-wrap justify-center gap-4">
+              <a href="mailto:info@cainmenard.com" className="btn-outline">info@cainmenard.com</a>
+              <a href="https://linkedin.com/in/cainmenard" target="_blank" rel="noopener noreferrer" className="btn-outline">LinkedIn ↗</a>
             </div>
           </section>
 

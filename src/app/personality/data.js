@@ -5,7 +5,6 @@
 export const mbtiData = {
   id: 'mbti',
   name: 'Myers-Briggs',
-  icon: '⚡',
   headline: 'ENTJ-A',
   subtitle: 'Commander',
   source: '16Personalities',
@@ -34,7 +33,6 @@ export const mbtiData = {
 export const discData = {
   id: 'disc',
   name: 'DISC',
-  icon: '🎯',
   headline: 'D: Producer',
   subtitle: 'High Dominance',
   source: 'Cloverleaf',
@@ -56,9 +54,8 @@ export const discData = {
 export const enneagramData = {
   id: 'enneagram',
   name: 'Enneagram',
-  icon: '◎',
   headline: '8w7',
-  subtitle: 'The Maverick',
+  subtitle: 'The Challenger',
   source: 'Cloverleaf',
   summary: 'Powerful 8w7 driven by independence, strength, and justice. The 7 wing adds playfulness and entrepreneurial spirit. Natural leader who challenges authority. Growth: embracing vulnerability and empathy.',
   type: { core: 8, wing: 7, triad: 'Body/Gut (8-9-1)', center: 'Action Center' },
@@ -80,7 +77,6 @@ export const enneagramData = {
 export const proscanData = {
   id: 'proscan',
   name: 'ProScan',
-  icon: '📊',
   headline: 'High D/E',
   subtitle: 'Thrust Energy',
   source: 'PDP: FMI Corporation, March 2022',
@@ -112,7 +108,6 @@ export const proscanData = {
 export const idDrivesData = {
   id: 'id_drives',
   name: 'Instinctive Drives',
-  icon: '🔥',
   headline: '7-7-3-3',
   subtitle: 'Verify · Authenticate',
   source: 'I.D. System',
@@ -132,9 +127,8 @@ export const idDrivesData = {
 export const bigFiveData = {
   id: 'bigfive',
   name: 'Big Five',
-  icon: '🧬',
   headline: 'High E · Low A · Low N',
-  subtitle: 'Understand Myself',
+  subtitle: 'Big Five',
   source: 'Understand Myself (Jordan Peterson)',
   summary: 'Very high extraversion (91st) with exceptional assertiveness (92nd). Very low agreeableness (11th): especially politeness (4th). Low neuroticism (26th) provides stability under pressure. A direct, dominant, authority-challenging profile built for strategic leadership.',
   factors: [

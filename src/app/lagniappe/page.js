@@ -85,14 +85,12 @@ export default function Lagniappe() {
 
             <div className="text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl space-y-5">
               <p>
-                I grew up in Lafayette, Louisiana (the heart of Cajun country), where I picked up
-                a deep appreciation for good food, good stories, and figuring things out with whatever
-                you&apos;ve got on hand. That last part hasn&apos;t changed much.
+                I grew up in Lafayette, Louisiana, in the heart of Cajun country.
               </p>
               <p>
-                I&apos;m marrying Samantha in September 2026. We met while I was earning my MBA at the
+                I married Samantha in September 2026. We met while I was earning my MBA at the
                 University of Denver, juggling three internships, and somehow still finding weekends
-                to go to concerts and snowboard mountains together. She&apos;s been along for the ride ever since.
+                to go to concerts and snowboard mountains together.
               </p>
               <p>
                 I love to travel. My senior year at UL Lafayette, I was approved to graduate several
@@ -109,7 +107,7 @@ export default function Lagniappe() {
                   className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition"
                 >
                   a local news station in Lafayette
-                </a>, my five minutes of fame.
+                </a>.
               </p>
               <p>
                 Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe. I&apos;m building
@@ -122,9 +120,6 @@ export default function Lagniappe() {
                 years, with the hearing damage to prove it. And I try to get outside as much as
                 possible, hiking in the mountains with Samantha, paddling open canoes down
                 whitewater, kayak fishing in a salt marsh, or taking the Tacoma off-road.
-              </p>
-              <p>
-                The information on this page won&apos;t be found on my resume, but it makes up a lot of who I am.
               </p>
             </div>
 
@@ -153,8 +148,6 @@ export default function Lagniappe() {
             <h2 className="section-heading text-3xl md:text-4xl mb-4">Personal Builds</h2>
             <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">
               Personal projects built to learn new tools or solve real problems.
-              Separate from professional work, but they reflect how I think about building things:
-              start with a real problem, keep the interface clean, and ship it.
             </p>
           </div>
 
@@ -196,7 +189,7 @@ export default function Lagniappe() {
 
           {/* ─── OTHER PROJECTS ─── */}
           <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               {WEB_APPS.slice(1).map((app, i) => (
                 <div key={i} className="project-card stagger-child">
                   <div className="p-6 md:p-8">

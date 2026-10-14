@@ -16,7 +16,6 @@ export default function AssessmentGrid({ active, onSelect }) {
                 : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-amber-200 dark:hover:border-amber-600 hover:shadow-sm'
             }`}
           >
-            <span className="text-xl mb-2 block">{a.icon}</span>
             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{a.name}</p>
             <p className="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
               {a.headline}

@@ -50,7 +50,7 @@ const cainProfile = {
   enneagram: {
     type: enneagramData.type.core,                 // 8
     wing: enneagramData.type.wing,                 // 7
-    label: enneagramData.subtitle,                 // "The Maverick"
+    label: enneagramData.subtitle,                 // "The Challenger"
     triad: 'Gut',
     coreEmotion: 'Anger',
     integrationPoint: enneagramData.arrows.growth.number,   // 2

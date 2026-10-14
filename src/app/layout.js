@@ -5,24 +5,24 @@ import BackToTop from '@/components/BackToTop'
 import ErrorBoundary from '@/components/ErrorBoundary'
 
 export const metadata = {
-  title: 'Cain Menard | Digital Operations Leader',
-  description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure. Management Consultant, ERP & Digital Transformation at CEI.',
+  title: 'Cain Menard | Operations Strategy, Data Analytics & AI',
+  description: 'Cain Menard helps companies improve margins and operating performance through process redesign, data analytics, and AI.',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'Cain Menard | Digital Operations Leader',
-    description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure.',
+    title: 'Cain Menard | Operations Strategy, Data Analytics & AI',
+    description: 'Cain Menard helps companies improve margins and operating performance through process redesign, data analytics, and AI.',
     type: 'website',
     url: 'https://cainmenard.com',
-    images: [{ url: 'https://cainmenard.com/og-image.png', width: 1200, height: 630, alt: 'Cain Menard, Digital Operations Leader' }],
+    images: [{ url: 'https://cainmenard.com/og-image.png', width: 1200, height: 630, alt: 'Cain Menard, Operations Strategy, Data Analytics & AI' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cain Menard | Digital Operations Leader',
-    description: 'Operations consulting, data analytics, and technology for construction, energy, and infrastructure.',
+    title: 'Cain Menard | Operations Strategy, Data Analytics & AI',
+    description: 'Cain Menard helps companies improve margins and operating performance through process redesign, data analytics, and AI.',
     images: ['https://cainmenard.com/og-image.png'],
   },
 }
@@ -31,7 +31,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Cain Menard',
-  jobTitle: 'Management Consultant, ERP & Digital Transformation',
+  jobTitle: 'Management Consultant',
   worksFor: { '@type': 'Organization', name: 'CEI' },
   url: 'https://cainmenard.com',
   sameAs: [
@@ -39,8 +39,8 @@ const jsonLd = {
     'https://github.com/cainmenard',
     'https://public.tableau.com/app/profile/cain.menard',
   ],
-  description: 'Digital operations leader specializing in ERP implementation, change management, and digital transformation for construction, energy, and infrastructure companies.',
-  knowsAbout: ['Construction Operations', 'Data Analytics', 'Operations Consulting', 'Digital Transformation', 'Change Management', 'ERP', 'Oracle', 'Business Readiness', 'Tableau', 'AWS', 'Python', 'SQL', 'Financial Benchmarking', 'Agile'],
+  description: 'Cain Menard helps companies improve margins and operating performance through process redesign, data analytics, and AI.',
+  knowsAbout: ['Construction Operations', 'Data Analytics', 'Operations Consulting', 'Digital Transformation', 'Change Management', 'Process Improvement', 'Artificial Intelligence', 'Business Readiness', 'Tableau', 'AWS', 'Python', 'SQL', 'Financial Benchmarking', 'Agile'],
   hasCredential: [
     { '@type': 'EducationalOccupationalCredential', name: 'MBA, Finance & Data Analytics', credentialCategory: 'degree', recognizedBy: { '@type': 'Organization', name: 'University of Denver' } },
     { '@type': 'EducationalOccupationalCredential', name: 'Prosci Certified Change Practitioner' },

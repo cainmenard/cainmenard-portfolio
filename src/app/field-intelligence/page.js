@@ -94,7 +94,6 @@ export default function FieldIntelligence() {
         {/* ─── HERO ─── */}
         <section id="hero" className="fi-section fi-hero" aria-label="Introduction">
           <div className="fi-wrap fade-section">
-            <p className="fi-kicker fi-hero__eyebrow">{HERO.eyebrow}</p>
             <h1 className="fi-hero__title">
               A Day of <em>Field Intelligence</em>
             </h1>
@@ -132,15 +131,12 @@ export default function FieldIntelligence() {
             <p className="fi-time">{EPILOGUE.time}</p>
             <h2 id="epilogue-title" className="fi-epilogue__title">{EPILOGUE.title}</h2>
             <p className="fi-lead" style={{ maxWidth: '38ch', margin: '0 auto' }}>{EPILOGUE.body}</p>
-            <div className="fi-closing__rule" aria-hidden="true" />
-            <p className="fi-closing">{EPILOGUE.closingLine}</p>
           </div>
         </section>
 
         {/* ─── COLOPHON ─── */}
-        <section id="colophon" className="fi-section" aria-labelledby="colophon-title">
+        <section id="colophon" className="fi-section" aria-label="Related work">
           <div className="fi-wrap fade-section">
-            <p id="colophon-title" className="fi-colophon__lede fi-display">{COLOPHON.lede}</p>
             <div className="fi-colophon__grid">
               {COLOPHON.items.map((item) => (
                 <div key={item.title} className="fi-colophon__card">

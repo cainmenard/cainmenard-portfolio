@@ -16,16 +16,16 @@ const station = STATIONS.find((s) => s.id === 'portfolio')
  *                     customer reveal in one beat that the average lied.
  *   02 the proof      the same shape across three books, with the seat flip as
  *                     a detail and the objections demoted to a quiet aside.
- *   03 the payoff     the bias now has a price, and the analysis is a live tool.
+ *   03 the payoff     the analysis is a live tool for pricing the next bid.
  */
 export default function StationPortfolio() {
   return (
     <StationShell station={station}>
-      {/* 01: the hook, the average is a liar */}
+      {/* 01: the hook, the average hides the loss */}
       <section className="fi-movement fade-section">
         <header className="fi-movement__head">
           <span className="fi-movement__idx">01</span>
-          <h3 className="fi-movement__title">The average is a liar.</h3>
+          <h3 className="fi-movement__title">A 0.6-point average margin decline concealed a $5.7M loss on the largest customer.</h3>
         </header>
         <WouldYouSign />
       </section>
@@ -67,10 +67,6 @@ export default function StationPortfolio() {
           <span className="fi-movement__idx">03</span>
           <h3 className="fi-movement__title">So you can price the next one.</h3>
         </header>
-        <p className="fi-movement__lede">
-          Once the bias has a name, it has a price.
-        </p>
-
         <GuidedEmbed />
 
         <div className="fi-movement__part fade-section">

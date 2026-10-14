@@ -67,19 +67,18 @@ export const RAIL = [
  * Hero
  * ------------------------------------------------------------------ */
 export const HERO = {
-  eyebrow: 'A capability demonstration',
   title: 'A Day of Field Intelligence',
   standfirst:
     'Follow one labor hour from the jobsite to the income statement, and back around.',
   orientation:
-    'A scale model of real consulting work, one day standing in for the whole engagement, written and built by Cain Menard.',
+    'Based on three client engagements covering 532 completed projects and $1.7B in contract value, plus one active transformation program. Client names are withheld.',
   scrollCue: 'Begin at 6:15am',
   time: '6:15am',
 }
 
 /* ------------------------------------------------------------------ *
  * The five stations (fixed narrative arc)
- * Each: one line of scene-setting, one-line handoff.
+ * Each: one line of scene-setting.
  * Interactions carry the argument; this copy stays minimal.
  * ------------------------------------------------------------------ */
 export const STATIONS = [
@@ -88,13 +87,12 @@ export const STATIONS = [
     label: 'Field',
     time: '6:15am',
     kicker: 'Station 1',
-    title: 'One hour, twelve businesses, five ways to record it.',
+    title: 'One hour, sixteen businesses, five ways to record it.',
     scene:
       'A foreman clocks in. The same hour is about to be written down five different ways, and one of them travels by FedEx.',
-    handoff: 'The hour gets approved. Now it has to survive the plumbing.',
     cast: 'the foreman who logs it',
     takeaway:
-      'The one copper marker is the tell. The business with the cleanest financials of the sixteen sits on the manual end, and it still ships its timecards to corporate by FedEx.',
+      'The highlighted company reports the strongest financials of the sixteen, yet it still sends paper timecards to headquarters by FedEx each week.',
   },
   {
     id: 'office',
@@ -104,7 +102,6 @@ export const STATIONS = [
     title: 'The hour has to survive the plumbing.',
     scene:
       'The timecard is approved. Approved does not mean counted. Between here and the books sit seven systems and a lot of re-keying.',
-    handoff: 'The hour posts to a cost code. Now the job has to tell the truth about it.',
     cast: 'the payroll clerk who reconciles it',
   },
   {
@@ -115,7 +112,6 @@ export const STATIONS = [
     title: 'The 90% cliff.',
     scene:
       'The hour lands on a budget line. Most jobs look fine, flat, and on track, right up until the number falls off a cliff near the end.',
-    handoff: 'One job can raise the question. It takes the whole book to answer it.',
     cast: 'the PM whose budget absorbs it',
   },
   {
@@ -125,8 +121,7 @@ export const STATIONS = [
     kicker: 'Station 4',
     title: 'The estimating leak.',
     scene:
-      'Estimating says the field blew the labor. The field says the estimate was fantasy. The completed jobs are the only arbitrator, and they usually split the bill.',
-    handoff: 'Now you know what the data decides. Monday, you have to decide with it.',
+      'Estimators attribute labor overruns to field execution, while field teams attribute them to the estimate. Completed-project data shows where the variance actually originates.',
     cast: 'the estimator who should have predicted it',
   },
   {
@@ -136,8 +131,7 @@ export const STATIONS = [
     kicker: 'Station 5',
     title: "Monday's docket.",
     scene:
-      'Three invitations to bid are sitting in the inbox. For the first time, you can answer them with the whole day behind you.',
-    handoff: 'Then I build the tool that sits on top of all of it.',
+      'Three invitations to bid are sitting in the inbox.',
     cast: 'the owner who prices the next one off it',
   },
 ]
@@ -149,7 +143,7 @@ export const FINALE = {
   kicker: 'Then I build the tool',
   title: 'Ask the program.',
   body:
-    "The whole day's data lands in one tracker. This reads it, answering only from what is there, citing the rows every time, never writing back. The fix for the crew left waiting on the office.",
+    "The whole day's data lands in one tracker. This reads it, answering only from what is there, citing the rows every time, never writing back.",
 }
 
 /* ------------------------------------------------------------------ *
@@ -237,12 +231,10 @@ export const EPILOGUE = {
   time: '6:15am, the next morning',
   title: 'The second dawn.',
   body:
-    'Same foreman, new job. A calibrated lookahead. A digital punch. The correction that used to take two weeks now takes a day. The map closes the loop.',
-  closingLine: 'The tool that wins the jobsite is the one the foreman opens twice.',
+    'Same foreman, new job. A calibrated lookahead. A digital punch. The target: a correction that used to take two weeks takes a day. The map closes the loop.',
 }
 
 export const COLOPHON = {
-  lede: 'This page is a scale model. The real versions run every day.',
   items: [
     {
       title: 'A program knowledge base',
@@ -259,7 +251,7 @@ export const COLOPHON = {
     },
     {
       title: 'This page',
-      body: 'Built with Claude Code. The argument for why that build speed matters is one link away.',
+      body: 'Designed and developed with Claude Code.',
       href: '/ai-evolution',
       linkLabel: 'Read the case study',
     },
@@ -309,7 +301,7 @@ export const FIELD_FACTS = [
     world: 'field',
     stat: '75%+',
     unit: 'Spanish-only',
-    text: 'More than 75% of about 800 workers at the largest business speak only Spanish. That is a go or no-go design constraint, not a localization ticket.',
+    text: 'More than 75% of about 800 workers at the largest business speak only Spanish.',
   },
 ]
 
@@ -324,7 +316,7 @@ export const FEDEX_PUNCHLINE = {
 }
 
 /**
- * The twelve businesses on the platform, placed on a manual (0) to digital (1)
+ * The businesses plotted on the board, placed on a manual (0) to digital (1)
  * axis by how their field hour is captured. A few carry real, scrubbed field
  * notes; the rest are generic tokens with no invented numbers. `lane` spreads
  * tokens vertically so neighbors do not overlap. The cleanest-financials
@@ -422,7 +414,7 @@ export const VENDOR_GAUNTLET = {
     { label: 'Winner (Miter)', value: 'about 30 customers at 1,000+ employees, all construction' },
   ],
   gate: 'Will a foreman with wet gloves at 6:15am open this a second time?',
-  honestLabel: 'Selected with broad support, runner-up validated against.',
+  honestLabel: 'Miter was selected after the runner-up was tested against the same requirements.',
 }
 
 export const TRAINING_ARC = {
@@ -436,10 +428,7 @@ export const TRAINING_ARC = {
   ],
   belief: '93% see the problem. About 20% believe the fix.',
   instrument:
-    'Adoption is instrumented, not surveyed. Timecard correction rate, corrections per paychecks processed per week, with 90% clean entry in 90 days as the goal.',
-  terminology: 'Field Trainer Network',
-  projected: true,
-  goLive: 'Go-live September 2026',
+    'The adoption measure is the timecard correction rate, corrections per paychecks processed per week, with 90% clean entry in 90 days as the goal.',
 }
 
 /* --- Station 2: Office --- */
@@ -447,7 +436,7 @@ export const PIPELINE = {
   world: 'field',
   frame: 'Five data flows, four live, connect seven systems through one middleware layer.',
   before: 'Before the build, only 2 of 10 integrations were automated.',
-  prompt: 'Approved does not mean counted. Click the hand-off where you think the hour dies.',
+  prompt: 'Click the hand-off where you think the hour dies.',
   // The stages the approved hour has to survive, left to right.
   stages: [
     { id: 'approved', label: 'Approved timecard' },
@@ -652,7 +641,7 @@ export const EPC_SCATTER = {
 }
 
 export const REPEATED_SHAPE =
-  'What you quote (materials, subs) holds or comes under. What you predict (labor, equipment) runs over. Quotes hold, predictions lose.'
+  'What you quote (materials, subs) holds or comes under. What you predict (labor, equipment) runs over.'
 
 export const BID_REBUILD = {
   world: 'sandbox',
@@ -759,7 +748,7 @@ export const MECHANISM_CARDS = [
     decision: 'Mark up self-perform labor heavier than quoted work',
     station: { id: 'portfolio', label: 'Station 4' },
     dataCut:
-      'Labor overran 25% on the mechanical book ($17.28M bid against $21.60M spent) while quoted materials and subs held. So pricing carries a dual overhead rate, heavier on self-perform labor, lighter on quoted materials. An FMI method Cain applies, not authored.',
+      'Labor overran 25% on the mechanical book ($17.28M bid against $21.60M spent) while quoted materials and subs held. So pricing carries a dual overhead rate, heavier on self-perform labor, lighter on quoted materials. Based on FMI’s methodology, which I applied on this engagement.',
   },
   {
     id: 'reprice',

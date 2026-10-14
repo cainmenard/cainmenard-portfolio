@@ -34,7 +34,6 @@ src/
 │   ├── page.js             # Home/portfolio page
 │   ├── not-found.js        # Custom 404
 │   ├── ai-evolution/       # Case study: Tableau-to-React migration
-│   ├── honeymoon-demo/     # Trip planner interactive demo
 │   └── lagniappe/          # Personal interests + Cajun recipes
 ├── components/             # Reusable React components
 │   ├── Nav.js              # Responsive top navigation with dropdown
@@ -80,7 +79,6 @@ All routes use the Next.js App Router (`src/app/`):
 | ------------------ | ----------------------------- | ------------------------------ |
 | `/`                | `src/app/page.js`             | Main portfolio (sections: about, projects, writing, experience, skills, contact) |
 | `/ai-evolution`    | `src/app/ai-evolution/page.js`| Featured case study article    |
-| `/honeymoon-demo`  | `src/app/honeymoon-demo/page.js` | Trip planner demo           |
 | `/lagniappe`       | `src/app/lagniappe/page.js`   | Personal interests + recipes   |
 | `/oneroof`         | `src/app/oneroof/route.js`    | Operation OneRoof walk-through, invite-only. Serves `private/oneroof/index.html` to a valid session, otherwise 307 to the sign-in screen |
 | `/oneroof/enter`   | `src/app/oneroof/enter/page.js` | Magic-link sign-in screen    |

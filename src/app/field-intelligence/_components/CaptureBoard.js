@@ -5,7 +5,7 @@ import { BUSINESSES, CAPTURE_METHODS } from '../_data/fieldIntelligence'
 const LANE_TOP = ['12%', '42%', '70%']
 
 /**
- * The marquee: twelve businesses placed on a Manual-to-Digital axis by how they
+ * The marquee: the businesses placed on a Manual-to-Digital axis by how they
  * capture a field hour. Noted businesses show a glanceable stat and reveal a
  * field note on hover or keyboard focus; the cleanest-financials business sits
  * on the manual side and opens the FedEx shipment story. Squint test: the
@@ -15,7 +15,7 @@ export default function CaptureBoard({ onFedexClick }) {
   const [active, setActive] = useState(null)
 
   return (
-    <figure className="fi-board" aria-label="Twelve businesses across five capture methods, from manual to digital">
+    <figure className="fi-board" aria-label="Businesses across five capture methods, from manual to digital">
       <div className="fi-board__plot">
         {BUSINESSES.map((b) => {
           const noted = Boolean(b.note)
