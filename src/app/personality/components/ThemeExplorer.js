@@ -16,7 +16,6 @@ export default function ThemeExplorer({ active, onSelect }) {
                 : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-amber-200 dark:hover:border-amber-600 hover:shadow-sm'
             }`}
           >
-            <span className="text-xl mb-2 block">{t.icon}</span>
             <p className="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
               {t.name}
             </p>
