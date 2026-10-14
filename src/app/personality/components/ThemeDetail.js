@@ -8,7 +8,6 @@ export default function ThemeDetail({ themeId }) {
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 md:p-8 animate-fadeUp">
       <div className="flex items-center gap-3 mb-4">
-        <span className="text-2xl">{theme.icon}</span>
         <h3 className="text-lg font-bold text-slate-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>{theme.name}</h3>
       </div>
 

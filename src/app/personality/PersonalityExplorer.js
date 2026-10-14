@@ -45,15 +45,8 @@ export default function PersonalityExplorer() {
             <p className="section-label mb-3">Personality Profile</p>
             <h1 className="section-heading text-3xl md:text-4xl mb-4">How I Operate</h1>
             <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-2xl leading-relaxed">
-              Six personality assessments mapped into one interactive profile, from leadership style and communication to decision-making and what happens under pressure.
+              My results from six workplace assessments (Myers-Briggs, DISC, Enneagram, ProScan, Big Five, and Instinctive Drives), with notes on how I lead, communicate, and make decisions.
             </p>
-
-            {/* Headline badges */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {HEADLINE_TAGS.map(tag => (
-                <span key={tag} className="skill-tag text-xs">{tag}</span>
-              ))}
-            </div>
 
             {/* View toggle */}
             <ViewToggle mode={viewMode} onChange={setViewMode} />
@@ -85,6 +78,13 @@ export default function PersonalityExplorer() {
                 <ThemeDetail themeId={activeTheme} />
               </div>
             )}
+
+            {/* Headline badges */}
+            <div className="flex flex-wrap gap-2 mt-8">
+              {HEADLINE_TAGS.map(tag => (
+                <span key={tag} className="skill-tag text-xs">{tag}</span>
+              ))}
+            </div>
           </div>
         </section>
 

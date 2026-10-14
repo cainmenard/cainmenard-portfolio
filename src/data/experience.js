@@ -5,9 +5,9 @@ export const EXPERIENCE = [
     period: 'Mar 2026 - Present',
     location: 'Atlanta, GA',
     bullets: [
-      'Leading change management and business readiness for a multi-year Oracle ERP implementation across 15 business units of a publicly traded commercial roofing conglomerate.',
-      'Conducting readiness assessments across 23 functional areas: process harmonization workshops, communication strategy, training plans, and getting the process owners in each business unit onto one way of doing the work before go-live.',
-      '370+ interviews across a 2-year transformation program spanning operations, finance, and HR, run with practice leadership and the client business process owners who had to live with the findings.',
+      'Lead employee readiness and adoption for field and operations teams on a 2-year, company-wide transformation at a publicly traded roofing group with 17 operating companies.',
+      "Co-lead workshops that move all 16 companies onto one standard way of working across 23 business functions, from field operations to finance and HR, with sign-off from each company's process owners.",
+      "Own the training strategy for about 1,500 field and office employees. Built and manage the program's AI assistants, which answer questions from live project data, including one that helps employees learn the new systems on the job.",
     ],
   },
   {
@@ -16,9 +16,11 @@ export const EXPERIENCE = [
     period: 'May 2024 - Feb 2026',
     location: 'Atlanta, GA (Remote)',
     bullets: [
-      'Lead operational transformation engagements for construction and industrial clients, rebuilding the processes underneath them and cutting project cycle times by 50%.',
-      'Manage cross-functional teams across 14+ business units, running interviews, process mapping, and gap analyses, then writing the implementation roadmap somebody has to actually follow.',
-      'Scaled digital operations consulting practice generating 50% year-over-year revenue growth by developing repeatable frameworks for software implementation and infrastructure modernization.',
+      'Ran day-to-day operations. Led the full team and owned hiring and firing, performance management, operations strategy, project delivery, and all client and employment contracts.',
+      "Created the firm's method for diagnosing where a company's operations and systems fall short, applied it across 30+ client engagements, and cut client project cycle times 50%.",
+      "Designed the readiness assessment for all 16 companies of a publicly traded roofing group and built the data system behind it, then led the team that ran it: 370+ interviews, 2,869 survey responses, and 3,500+ process data points, with business leaders signing off on the findings as at least 80% accurate.",
+      "Grew firm revenue 50% year over year.",
+      "Delivered a labor-compliance automation that cut a California client's wage-and-hour penalty exposure 87%.",
     ],
   },
   {
@@ -27,10 +29,10 @@ export const EXPERIENCE = [
     period: 'Dec 2021 - May 2024',
     location: 'Denver, CO → Raleigh, NC',
     bullets: [
-      'Delivered performance improvement engagements for heavy civil, highway, and energy clients ($30M to $1.5B revenue), achieving profit increases up to 50% by changing how the work was estimated and priced.',
-      'Led firm\'s first software and data analytics implementation: built AWS-hosted data pipeline (SQL, Python, Apache Airflow, DBT) reducing reporting time 30% with 100% user adoption.',
-      'Presented AI and operational strategy to executive boards, securing $700K in technology investments; recruited and developed analytics team including Chief Data Officer.',
-      'Published industry research on AI and data analytics in FMI Quarterly, republished by National Insulation Association and cited by AEC Business.',
+      'Ran about 100 profitability analyses of completed projects for contractors from $30M to $6B in revenue, covering thousands of projects. One found a $22.1M equipment overrun across a $1B portfolio and led to a $92.5K follow-on engagement.',
+      "Scoped, sold, and led the firm's first software and data analytics implementation: an AWS-hosted data pipeline (SQL, Python, Apache Airflow, DBT) that cut reporting time 30% with 100% user adoption.",
+      "Made the case to FMI's board for investing in AI and data analytics, won $500K in funding, and recruited the firm's Chief Data Officer and 3 data analysts to build the practice.",
+      "Taught FMI's Project Manager Academy to 600+ construction PMs across about 22 week-long cohorts.",
     ],
   },
   {
@@ -57,7 +59,7 @@ export const EXPERIENCE = [
     period: 'May 2019 - Sep 2020',
     location: 'Baton Rouge, LA',
     bullets: [
-      'Managed $10M commercial construction projects from pre-construction through completion, delivering on-time and under-budget. Negotiated subcontractor contracts up to $2M.',
+      'Managed $10M commercial construction projects from pre-construction through completion, delivering on-time and under-budget. Administered subcontracts up to $2M across six trades.',
     ],
   },
   {

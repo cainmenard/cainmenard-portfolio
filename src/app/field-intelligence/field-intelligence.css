@@ -246,20 +246,6 @@
   background: var(--fi-line-strong);
 }
 
-/* one-line handoff to the next station */
-.fi-handoff {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--fi-line);
-  font-family: var(--fi-font-display);
-  font-style: italic;
-  font-size: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
-  color: var(--fi-text);
-}
-.fi-handoff__arrow { color: var(--fi-accent); flex: 0 0 auto; }
 
 /* ------------------------------------------------------------------ *
  * Ledger token (replaces the old top ribbon)
@@ -628,7 +614,6 @@
   --fi-line-strong: rgba(246, 242, 236, 0.44);
   text-shadow: 0 1px 30px rgba(10, 14, 28, 0.45);
 }
-.fi-hero__eyebrow { margin-bottom: 1.5rem; }
 .fi-hero__title {
   font-family: var(--fi-font-display);
   font-weight: 420;
@@ -840,25 +825,6 @@
   font-size: clamp(2rem, 1.4rem + 3vw, 3.6rem);
   letter-spacing: -0.02em;
   margin: 1rem 0;
-}
-.fi-closing {
-  font-family: var(--fi-font-display);
-  font-style: italic;
-  font-size: clamp(1.6rem, 1.2rem + 2.6vw, 3rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  max-width: 20ch;
-  margin: 2.5rem auto 0;
-  color: var(--fi-text);
-}
-.fi-closing__rule { width: 44px; height: 2px; background: var(--fi-accent); margin: 2.5rem auto 0; }
-
-.fi-colophon__lede {
-  font-family: var(--fi-font-display);
-  font-size: clamp(1.3rem, 1.1rem + 1.2vw, 2rem);
-  line-height: 1.3;
-  max-width: 24ch;
-  margin-bottom: 2.5rem;
 }
 .fi-colophon__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
 .fi-colophon__card {

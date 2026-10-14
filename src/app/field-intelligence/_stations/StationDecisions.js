@@ -36,8 +36,7 @@ export default function StationDecisions() {
           <h3 className="fi-movement__title">What each cut of the data decides.</h3>
         </header>
         <p className="fi-movement__lede">
-          None of those calls is a hunch. Each one is a rule the day earned. Tap a rule to
-          see the exact cut behind it.
+          Tap a rule to see the exact cut behind it.
         </p>
         <MechanismGrid />
       </section>

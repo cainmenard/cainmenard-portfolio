@@ -1,7 +1,6 @@
 /**
  * Shared layout for a station: scene-setting head, the marquee interaction
- * (children), an optional data teaser, optional go-deeper drawers, and the
- * one-line handoff to the next station.
+ * (children), an optional data teaser, and optional go-deeper drawers.
  *
  * Each station file supplies its own interaction and drawers; this keeps
  * the rhythm identical across all five so the page reads as one system.
@@ -27,14 +26,6 @@ export default function StationShell({ station, children, teaser, drawers }) {
         {teaser && <div className="fade-section" style={{ marginTop: '1.75rem' }}>{teaser}</div>}
 
         {drawers && <div className="fade-section" style={{ marginTop: '2rem' }}>{drawers}</div>}
-
-        <p className="fi-handoff fade-section">
-          <svg className="fi-handoff__arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <line x1="4" y1="12" x2="19" y2="12" />
-            <polyline points="13 6 19 12 13 18" />
-          </svg>
-          {station.handoff}
-        </p>
       </div>
     </section>
   )

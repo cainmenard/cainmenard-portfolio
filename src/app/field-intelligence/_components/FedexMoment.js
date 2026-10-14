@@ -138,9 +138,6 @@ export default function FedexMoment({ trigger = 0 }) {
           </svg>
           Replay
         </button>
-        <p className="fi-muted" style={{ margin: 0, fontSize: '0.84rem' }}>
-          Two weeks from punch to correction, and the correction only ever moves one way.
-        </p>
       </div>
     </div>
   )

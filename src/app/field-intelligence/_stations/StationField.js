@@ -49,11 +49,7 @@ export default function StationField() {
             <p className="fi-gate" style={{ fontStyle: 'normal', fontFamily: 'var(--fi-font-body)', fontWeight: 600 }}>
               {TRAINING_ARC.belief}
             </p>
-            <p className="fi-muted">{TRAINING_ARC.instrument}</p>
-            <p style={{ marginBottom: 0 }}>
-              <span className="fi-projected">Projected</span> {TRAINING_ARC.goLive}. Program terminology:{' '}
-              {TRAINING_ARC.terminology}.
-            </p>
+            <p className="fi-muted" style={{ marginBottom: 0 }}>{TRAINING_ARC.instrument}</p>
           </Drawer>
 
           <Drawer title="Go deeper: the design constraint" eventId="field-constraint">
@@ -69,7 +65,7 @@ export default function StationField() {
       <p className="fi-board__takeaway">{station.takeaway}</p>
 
       <p className="fi-muted fi-board__frame">
-        That manual-heavy spread is not incidental. Construction labor productivity has grown about 0.4% a year
+        Construction labor productivity has grown about 0.4% a year
         since 2000, against about 3% in manufacturing. That is the same gap that shows up as 10% cumulative growth for
         construction against 90% for manufacturing, 2000 to 2022.
         <Citation

@@ -275,12 +275,9 @@ export default function AssessmentDetail({ assessmentId, mode }) {
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 md:p-8 animate-fadeUp">
-      <div className="flex items-center gap-3 mb-4">
-        <span className="text-2xl">{assessment.icon}</span>
-        <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>{assessment.name}</h3>
-          <p className="text-xs text-slate-400">{assessment.source}</p>
-        </div>
+      <div className="mb-4">
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>{assessment.name}</h3>
+        <p className="text-xs text-slate-400">{assessment.source}</p>
       </div>
       <DetailComponent mode={mode} />
     </div>

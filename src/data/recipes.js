@@ -2,7 +2,7 @@ export const RECIPES = [
   {
     id: 'gumbo',
     title: "Cain's Chicken, Duck & Sausage Gumbo",
-    attribution: "Me. I have been fine-tuning this recipe since I can remember, adjusting every time I cook it",
+    attribution: 'Me',
     tags: ['Cajun', 'Soup', 'Roux'],
     ingredients: [
       '2 chicken thighs',

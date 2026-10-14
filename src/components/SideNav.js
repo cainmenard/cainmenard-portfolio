@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useCallback, useRef } from 'react'
 
-const SECTIONS = [
+const DEFAULT_SECTIONS = [
   { id: 'opening', label: 'The Story' },
   { id: 'the-shift', label: 'The Shift' },
   { id: 'comparison', label: 'Comparison' },
@@ -14,7 +14,8 @@ const SECTIONS = [
   { id: 'readiness', label: 'Readiness' },
 ]
 
-export default function SideNav() {
+export default function SideNav({ sections = DEFAULT_SECTIONS }) {
+  const SECTIONS = sections
   const [activeId, setActiveId] = useState('')
   const [clickedId, setClickedId] = useState(null)
   const [hidden, setHidden] = useState(false)
@@ -37,7 +38,7 @@ export default function SideNav() {
 
     sectionEls.forEach(el => observer.observe(el))
     return () => observer.disconnect()
-  }, [])
+  }, [SECTIONS])
 
   /* ── Hide nav when comparison section is in view ── */
   useEffect(() => {
