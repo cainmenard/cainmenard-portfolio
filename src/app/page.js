@@ -60,21 +60,9 @@ export default function Home() {
               data analytics, and AI. Eight years of experience, from a $1B refinery jobsite to advising
               executive teams at companies up to $6B in revenue.
             </p>
-            <div className="flex flex-wrap gap-4 mb-12">
+            <div className="flex flex-wrap gap-4">
               <a href="#projects" className="btn-primary">See the Work ↓</a>
               <a href="#contact" className="btn-outline">Get in Touch</a>
-            </div>
-            <div className="flex flex-wrap gap-x-10 gap-y-6 pt-8 border-t border-slate-200 dark:border-slate-700">
-              {[
-                ['50+', 'consulting engagements'],
-                ['Thousands', 'of projects analyzed'],
-                ['600+', 'managers trained'],
-              ].map(([figure, label]) => (
-                <p key={label}>
-                  <span className="block text-2xl font-bold" style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}>{figure}</span>
-                  <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1">{label}</span>
-                </p>
-              ))}
             </div>
           </div>
           <div className="md:col-span-2 flex justify-center hero-fade-in" style={{ animationDelay: '0.15s' }}>
