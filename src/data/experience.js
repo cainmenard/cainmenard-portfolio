@@ -19,7 +19,8 @@ export const EXPERIENCE = [
       'Ran day-to-day operations. Led the full team and owned hiring and firing, performance management, operations strategy, project delivery, and all client and employment contracts.',
       "Created the firm's method for diagnosing where a company's operations and systems fall short, applied it across 30+ client engagements, and cut client project cycle times 50%.",
       "Designed the readiness assessment for all 16 companies of a publicly traded roofing group and built the data system behind it, then led the team that ran it: 370+ interviews, 2,869 survey responses, and 3,500+ process data points, with business leaders signing off on the findings as at least 80% accurate.",
-      "Grew firm revenue 50% year over year. Delivered a labor-compliance automation that cut a California client's wage-and-hour penalty exposure 87%.",
+      "Grew firm revenue 50% year over year.",
+      "Delivered a labor-compliance automation that cut a California client's wage-and-hour penalty exposure 87%.",
     ],
   },
   {
