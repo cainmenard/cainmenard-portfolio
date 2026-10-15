@@ -56,9 +56,8 @@ export default function Home() {
               Cain Menard
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-xl">
-              I help companies improve margins and operating performance through process redesign,
-              data analytics, and AI. Eight years of experience, from a $1B refinery jobsite to advising
-              executive teams at companies up to $6B in revenue.
+              Eight years in construction operations and consulting, helping companies grow
+              profitability with better processes, data, and AI.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#projects" className="btn-primary">See the Work ↓</a>
