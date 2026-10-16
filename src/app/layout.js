@@ -8,9 +8,9 @@ export const metadata = {
   title: 'Cain Menard | Operations Strategy, Data Analytics & AI',
   description: 'Cain Menard helps companies improve margins and operating performance through process redesign, data analytics, and AI.',
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: '/favicon.svg?v=2',
+    shortcut: '/favicon.ico?v=2',
+    apple: '/apple-touch-icon.png?v=2',
   },
   openGraph: {
     title: 'Cain Menard | Operations Strategy, Data Analytics & AI',
