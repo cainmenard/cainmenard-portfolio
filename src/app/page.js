@@ -14,6 +14,7 @@ import { TABLEAU_DASHBOARDS } from '@/data/tableauDashboards'
 import { PUBLICATIONS } from '@/data/publications'
 import { SKILLS } from '@/data/skills'
 import { CERTS } from '@/data/certifications'
+import { allAssessments } from '@/app/personality/data'
 
 // Contact lives in the nav as the "Get in Touch" button, so it is not repeated as a link.
 const HOME_NAV = NAV_ITEMS.filter(item => item.id !== 'contact')
@@ -22,6 +23,12 @@ const HOME_NAV = NAV_ITEMS.filter(item => item.id !== 'contact')
 const EXPERIENCE_GROUPS = [
   { label: '2020 – Present', jobs: EXPERIENCE.slice(0, 5), offset: 0 },
   { label: '2017 – 2020', jobs: EXPERIENCE.slice(5), offset: 5 },
+]
+
+// Personal pages, linked from the nav and from their own homepage section.
+const EXTRA_PAGES = [
+  { href: '/lagniappe', label: 'Lagniappe' },
+  { href: '/personality', label: 'Personality' },
 ]
 
 const DASHBOARD_IMAGES = {
@@ -61,13 +68,14 @@ export default function Home() {
         onToggleMobile={() => setMobileNav(!mobileNav)}
         logoHref="#"
         ctaHref="#contact"
+        secondaryLinks={EXTRA_PAGES}
       />
       <MobileNav
         navItems={NAV_ITEMS}
         activeSection={activeSection}
         mobileNav={mobileNav}
         onClose={() => setMobileNav(false)}
-        secondaryLinks={[{ href: '/lagniappe', label: 'Lagniappe' }]}
+        secondaryLinks={EXTRA_PAGES}
         ctaHref="#contact"
       />
 
@@ -311,11 +319,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── BEYOND WORK: Lagniappe + Personality ─── */}
+      <section id="beyond" className="ed-band pb-28 md:pb-32">
+        <div className="ed-wrap pt-24 md:pt-28 fade-section">
+          <SectionHead num="06" label="Off the Clock" title="A Little Something Extra" />
+          <div className="grid gap-6 md:grid-cols-2">
+            <a href="/lagniappe" className="ed-card stagger-child">
+              <div className="ed-card__media ed-card__media--wide">
+                <Image src="/lagniappe/banner.jpg" alt="Cypress trees at sunset on a Louisiana bayou" fill sizes="(min-width: 768px) 600px, 100vw" className="object-cover" style={{ objectPosition: '50% 60%' }} />
+              </div>
+              <div className="ed-card__body">
+                <span className="ed-kicker">Lagniappe</span>
+                <span className="ed-serif text-[28px] leading-tight ed-ink">The Rest of the Story</span>
+                <span className="text-[15px]">(lan-yap), Cajun French for &quot;a little something extra.&quot;</span>
+                <span className="ed-card__foot">Visit Lagniappe <Arrow /></span>
+              </div>
+            </a>
+            <a href="/personality" className="ed-card stagger-child">
+              <div className="ed-card__media ed-card__media--wide ed-profile" aria-hidden="true">
+                <div className="ed-profile__grid">
+                  {allAssessments.map(a => (
+                    <div key={a.name} className="ed-profile__cell">
+                      <span className="ed-profile__name">{a.name}</span>
+                      <span className="ed-profile__value">{a.headline}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="ed-card__body">
+                <span className="ed-kicker">Personality Profile</span>
+                <span className="ed-serif text-[28px] leading-tight ed-ink">How I Operate</span>
+                <span className="text-[15px]">
+                  My results from six workplace assessments (Myers-Briggs, DISC, Enneagram, ProScan, Big Five,
+                  and Instinctive Drives), with notes on how I lead, communicate, and make decisions.
+                </span>
+                <span className="ed-card__foot">Explore the Profile <Arrow /></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ─── CONTACT (flows into the footer as one navy block) ─── */}
       <section id="contact" className="ed-navy">
         <div className="ed-wrap pt-28 pb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-12 fade-section">
           <div>
-            <p className="ed-eyebrow ed-eyebrow--on-navy mb-5">06 / Contact</p>
+            <p className="ed-eyebrow ed-eyebrow--on-navy mb-5">07 / Contact</p>
             <h2 className="ed-serif text-[56px] md:text-[96px] leading-none tracking-tight text-white">Let&apos;s Talk</h2>
             <p className="ed-eyebrow ed-eyebrow--on-navy mt-5">Atlanta, GA</p>
           </div>
