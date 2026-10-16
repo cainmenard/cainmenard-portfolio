@@ -40,6 +40,7 @@ export default function Lagniappe() {
         navItems={LAGNIAPPE_NAV}
         activeSection={activeSection}
         scrolled={scrolled}
+        overDark
         mobileNav={mobileNav}
         onToggleMobile={() => setMobileNav(!mobileNav)}
         logoHref="/"

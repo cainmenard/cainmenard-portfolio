@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ThemeToggle from './ThemeToggle'
 
-export default function Nav({ navItems, activeSection, scrolled, mobileNav, onToggleMobile, logoHref = '/', ctaHref = null, secondaryLink = null, secondaryLinks = null }) {
+export default function Nav({ navItems, activeSection, scrolled, mobileNav, onToggleMobile, logoHref = '/', ctaHref = null, secondaryLink = null, secondaryLinks = null, overDark = false }) {
   const resolvedLinks = secondaryLinks || (secondaryLink ? [secondaryLink] : [])
   const [visibleCount, setVisibleCount] = useState(navItems.length)
   const [measured, setMeasured] = useState(false)
@@ -141,15 +141,12 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
   const overflowItems = navItems.slice(visibleCount)
 
   return (
-    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-glass nav-scrolled' : 'bg-transparent'}`}>
-      <div className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14' : 'h-20'}`}>
+    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-glass nav-scrolled' : `bg-transparent ${overDark ? 'nav--over-dark' : ''}`}`}>
+      <div className={`max-w-[1240px] mx-auto px-6 md:px-10 flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14' : 'h-20'}`}>
         {/* ── Logo ── */}
-        <a
-          href={logoHref}
-          className={`font-bold tracking-tight transition-all duration-300 flex-shrink-0 ${scrolled ? 'text-base' : 'text-lg'}`}
-          style={{ color: 'var(--navy)', fontFamily: 'var(--font-display)' }}
-        >
-          CM
+        <a href={logoHref} className="nav-logo flex-shrink-0" aria-label="Cain Menard, home">
+          <span className="nav-logo__mark" aria-hidden="true">CM</span>
+          <span className="nav-logo__name hidden sm:inline">Cain Menard</span>
         </a>
 
         {/* ── Desktop nav items ── */}
@@ -216,7 +213,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
                 <a
                   key={link.href}
                   href={link.href}
-                  className="nav-link text-slate-400 hover:text-amber-600 whitespace-nowrap flex-shrink-0"
+                  className="nav-link nav-link--secondary whitespace-nowrap flex-shrink-0"
                   style={{ borderBottom: 'none' }}
                 >
                   {link.label}
@@ -229,7 +226,7 @@ export default function Nav({ navItems, activeSection, scrolled, mobileNav, onTo
         {/* ── Controls ── */}
         <div className="flex items-center gap-2 flex-shrink-0 ml-4">
           <ThemeToggle />
-          {ctaHref && <a href={ctaHref} className="btn-primary text-xs py-2 px-5 hidden md:inline-flex">Get in Touch</a>}
+          {ctaHref && <a href={ctaHref} className="nav-cta hidden md:inline-flex">Get in Touch</a>}
           <button onClick={onToggleMobile} className="md:hidden p-2 -mr-2" aria-label="Menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {mobileNav ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></>}

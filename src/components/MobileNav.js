@@ -55,7 +55,7 @@ export default function MobileNav({ navItems, activeSection, mobileNav, onClose,
         <a
           key={item.id}
           href={`#${item.id}`}
-          className={`text-xl font-semibold transition ${activeSection === item.id ? 'text-amber-600 dark:text-amber-500' : 'text-slate-800 dark:text-slate-200 hover:text-amber-600'}`}
+          className={`mobile-nav-link ${activeSection === item.id ? 'mobile-nav-link--active' : ''}`}
           onClick={(e) => handleNavClick(e, item.id)}
         >
           {item.label}
@@ -65,11 +65,11 @@ export default function MobileNav({ navItems, activeSection, mobileNav, onClose,
         <>
           <span className="w-12 h-px bg-slate-200 dark:bg-slate-700" aria-hidden="true"></span>
           {resolvedLinks.map(link => (
-            <a key={link.href} href={link.href} className="text-lg font-medium text-slate-400 hover:text-amber-600 transition" onClick={onClose}>{link.label}</a>
+            <a key={link.href} href={link.href} className="mobile-nav-link mobile-nav-link--secondary" onClick={onClose}>{link.label}</a>
           ))}
         </>
       )}
-      {ctaHref && <a href={ctaHref} className="btn-primary mt-4" onClick={onClose}>Get in Touch</a>}
+      {ctaHref && <a href={ctaHref} className="nav-cta mt-4" onClick={onClose}>Get in Touch</a>}
     </div>
   )
 }
