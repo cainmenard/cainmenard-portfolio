@@ -153,7 +153,7 @@ export default function Lagniappe() {
           </div>
 
           {/* ─── FEATURED: Bible Atlas ─── */}
-          <div className="max-w-6xl mx-auto px-6 mb-16">
+          <div className={`max-w-6xl mx-auto px-6 ${WEB_APPS.length > 1 ? 'mb-16' : ''}`}>
             <div className="featured-project-card">
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-3">
@@ -188,8 +188,8 @@ export default function Lagniappe() {
             </div>
           </div>
 
-          {/* ─── OTHER PROJECTS ─── */}
-          <div className="max-w-6xl mx-auto px-6">
+          {/* ─── OTHER PROJECTS (only when there is more than one) ─── */}
+          {WEB_APPS.length > 1 && <div className="max-w-6xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-6">
               {WEB_APPS.slice(1).map((app, i) => (
                 <div key={i} className="project-card stagger-child">
@@ -213,7 +213,7 @@ export default function Lagniappe() {
                 </div>
               ))}
             </div>
-          </div>
+          </div>}
         </section>
 
         {/* ─── RECIPES ─── */}
