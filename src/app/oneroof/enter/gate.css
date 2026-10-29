@@ -1,0 +1,78 @@
+/* ===========================================================================
+   /oneroof sign-in screen.
+
+   The rules below are lifted verbatim from the gate block of the built
+   artifact so the login screen and the page behind it are the same screen.
+   Only the behavior changed: this one talks to a server.
+
+   Fonts are self-hosted from public/fonts/oneroof rather than pulled from
+   Google, because the page tells visitors nothing about them is sent anywhere
+   and a font CDN request would make that untrue.
+   =========================================================================== */
+
+@font-face{font-family:'OR Spectral';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/oneroof/spectral-500.woff2) format('woff2')}
+@font-face{font-family:'OR Spectral';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/oneroof/spectral-600.woff2) format('woff2')}
+@font-face{font-family:'OR Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/oneroof/ps-400.woff2) format('woff2')}
+@font-face{font-family:'OR Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/oneroof/ps-500.woff2) format('woff2')}
+@font-face{font-family:'OR Sans';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/oneroof/ps-700.woff2) format('woff2')}
+@font-face{font-family:'OR Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/oneroof/mono-400.woff2) format('woff2')}
+@font-face{font-family:'OR Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/oneroof/mono-500.woff2) format('woff2')}
+
+.orgate{
+  --lnavy:#8FB3D6;
+  --serif:'OR Spectral',Georgia,serif;
+  --sans:'OR Sans','Segoe UI',Arial,sans-serif;
+  --mono:'OR Mono',ui-monospace,monospace;
+}
+
+#gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;overflow-y:auto;
+  font-family:var(--sans);color:#EAF0F6;-webkit-font-smoothing:antialiased;
+  background:
+  linear-gradient(rgba(143,179,214,.045) 1px,transparent 1px) 0 0/46px 46px,
+  linear-gradient(90deg,rgba(143,179,214,.045) 1px,transparent 1px) 0 0/46px 46px,
+  radial-gradient(ellipse at 50% 38%,#132D48 0%,#081321 68%)}
+#gatebg{position:absolute;inset:0;z-index:0}
+.gwrap{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:0 8vw}
+.gframe{position:relative;max-width:540px}
+.gframe::before{content:"";position:absolute;left:-30px;top:6px;bottom:8px;width:1px;background:linear-gradient(180deg,transparent,rgba(143,179,214,.5) 22%,rgba(143,179,214,.5) 78%,transparent)}
+.oor{height:34px;width:auto;display:block;margin-bottom:26px;opacity:0;animation:rise .8s .05s forwards}
+.gcoord{font-family:var(--mono);font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--lnavy);opacity:0;transform:translateY(8px);animation:rise .8s .1s forwards}
+.gcoord .dim{color:#4E6E90}
+.gframe h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,4.6vw,60px);line-height:1.02;letter-spacing:-.015em;margin:20px 0 16px;color:#fff}
+.gframe h1 .ln{display:block;opacity:0;transform:translateY(14px);animation:rise .9s forwards}
+.gframe h1 .ln:nth-child(1){animation-delay:.16s}.gframe h1 .ln:nth-child(2){animation-delay:.28s}
+.gframe h1 em{font-style:italic;color:var(--lnavy);font-weight:500}
+.gframe p{color:#AEBFD2;font-size:15px;max-width:42ch;margin-bottom:30px;line-height:1.55;opacity:0;animation:rise .9s .42s forwards}
+.gate-in{display:flex;gap:0;max-width:440px;border:1px solid rgba(143,179,214,.32);border-radius:2px;background:rgba(9,20,34,.5);overflow:hidden;opacity:0;animation:rise .9s .54s forwards;transition:border-color .25s}
+.gate-in:focus-within{border-color:rgba(143,179,214,.75)}
+#email{flex:1;min-width:0;background:transparent;border:none;color:#fff;font-family:var(--sans);font-size:15px;padding:15px 18px;outline:none}
+#email::placeholder{color:#5E748F}
+#email:disabled{opacity:.5}
+#enter{font-family:var(--mono);text-transform:uppercase;letter-spacing:1.6px;font-size:11.5px;background:#EEF4FB;color:#0C2136;border:none;padding:0 26px;cursor:pointer;font-weight:600;transition:background .2s;white-space:nowrap}
+#enter:hover{background:#fff}
+#enter:disabled{cursor:default;background:#8FA3B8;color:#0C2136}
+#gerr{color:#E4A7A7;font-size:12px;margin-top:12px;min-height:16px;font-family:var(--mono);letter-spacing:.3px}
+.gate-foot{font-family:var(--mono);font-size:10px;margin-top:36px;letter-spacing:1px;color:#41597A;opacity:0;animation:rise .9s .7s forwards}
+.gate-foot b{color:#6E86A2;font-weight:400}
+.gate-note{font-family:var(--mono);font-size:12px;letter-spacing:.6px;color:#5E7896;margin-top:12px;opacity:0;animation:rise .9s .82s forwards;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.gate-note::before{content:"";width:5px;height:5px;border-radius:50%;background:#3B7A5E;box-shadow:0 0 8px 1px rgba(59,122,94,.8);flex:none;margin-top:6px}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---- the sent state, same frame, different words ---- */
+.gsent{max-width:440px;border-left:2px solid #3B7A5E;padding:2px 0 2px 20px;opacity:0;animation:rise .5s forwards}
+.gsent .gs-h{font-family:var(--serif);font-size:21px;color:#EEF4FB;margin-bottom:10px;font-weight:500}
+.gsent p{color:#AEBFD2;font-size:14.5px;line-height:1.6;margin:0 0 12px;max-width:44ch;opacity:1;animation:none}
+.gsent .gs-em{color:#DCEBF9;font-family:var(--mono);font-size:13px;letter-spacing:.3px}
+.gs-again{margin-top:6px;background:none;border:none;padding:0;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#6E86A2;text-decoration:underline;text-underline-offset:4px}
+.gs-again:hover{color:#AEBFD2}
+
+@media(max-width:640px){
+  .gwrap{padding:56px 26px}
+  #gate{align-items:flex-start}
+  .gframe::before{display:none}
+  .gate-in{flex-direction:column;max-width:none}
+  #enter{padding:15px 26px}
+}
+@media (prefers-reduced-motion: reduce){
+  .oor,.gcoord,.gframe h1 .ln,.gframe p,.gate-in,.gate-foot,.gate-note,.gsent{animation-duration:.01ms;opacity:1;transform:none}
+}

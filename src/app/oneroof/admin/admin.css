@@ -1,0 +1,64 @@
+/* Invite console. Same palette and type as the gate, laid out as a working
+   surface rather than a landing screen. */
+
+.oradmin{
+  --lnavy:#8FB3D6;
+  --serif:'OR Spectral',Georgia,serif;
+  --sans:'OR Sans','Segoe UI',Arial,sans-serif;
+  --mono:'OR Mono',ui-monospace,monospace;
+  position:fixed;inset:0;overflow-y:auto;z-index:50;
+  font-family:var(--sans);color:#EAF0F6;-webkit-font-smoothing:antialiased;
+  background:
+    linear-gradient(rgba(143,179,214,.035) 1px,transparent 1px) 0 0/46px 46px,
+    linear-gradient(90deg,rgba(143,179,214,.035) 1px,transparent 1px) 0 0/46px 46px,
+    radial-gradient(ellipse at 50% 0%,#132D48 0%,#081321 62%);
+}
+.orwrap{max-width:900px;margin:0 auto;padding:64px 40px 96px}
+
+.orhead{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.orkick{font-family:var(--mono);font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--lnavy)}
+.orhead h1{font-family:var(--serif);font-weight:600;font-size:34px;line-height:1.1;color:#fff;margin:14px 0 8px}
+.orhead .sub{color:#7E96B2;font-size:14px;max-width:52ch;line-height:1.55}
+.orwho{font-family:var(--mono);font-size:11px;letter-spacing:.6px;color:#5E7896;text-align:right;line-height:1.9}
+.orwho b{color:#AEBFD2;font-weight:400}
+
+.orsec{margin-bottom:52px}
+.orsec > h2{font-family:var(--mono);font-size:11px;letter-spacing:2.2px;text-transform:uppercase;color:var(--lnavy);padding-bottom:12px;border-bottom:1px solid rgba(143,179,214,.18);margin-bottom:22px;display:flex;justify-content:space-between;align-items:baseline}
+.orsec > h2 .n{color:#41597A;letter-spacing:1px}
+
+.orform{display:flex;gap:0;max-width:560px;border:1px solid rgba(143,179,214,.3);border-radius:2px;background:rgba(9,20,34,.5);overflow:hidden;transition:border-color .25s}
+.orform:focus-within{border-color:rgba(143,179,214,.7)}
+.orform input{flex:1;min-width:0;background:transparent;border:none;color:#fff;font-family:var(--sans);font-size:15px;padding:14px 18px;outline:none}
+.orform input::placeholder{color:#5E748F}
+.orform button{font-family:var(--mono);text-transform:uppercase;letter-spacing:1.5px;font-size:11px;background:#EEF4FB;color:#0C2136;border:none;padding:0 24px;cursor:pointer;font-weight:600;white-space:nowrap;transition:background .2s}
+.orform button:hover{background:#fff}
+.orform button:disabled{cursor:default;background:#8FA3B8}
+.orhint{font-size:12.5px;color:#5E7896;margin-top:12px;line-height:1.5;max-width:60ch}
+.ormsg{font-family:var(--mono);font-size:12px;letter-spacing:.3px;margin-top:14px;min-height:16px}
+.ormsg.ok{color:#7FC0A0}
+.ormsg.bad{color:#E4A7A7}
+
+.ortable{width:100%;border-collapse:collapse;font-size:14px}
+.ortable th{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#41597A;text-align:left;font-weight:400;padding:0 14px 10px 0}
+.ortable td{padding:13px 14px 13px 0;border-top:1px solid rgba(143,179,214,.1);color:#C4D3E4;vertical-align:top}
+.ortable tr:first-child td{border-top:1px solid rgba(143,179,214,.18)}
+.ortable .em{font-family:var(--mono);font-size:13px;color:#EEF4FB;word-break:break-all}
+.ortable .meta{font-family:var(--mono);font-size:11.5px;color:#5E7896;white-space:nowrap}
+.ortable .ua{font-size:11.5px;color:#4E6E90;max-width:26ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ortable td.act{text-align:right;padding-right:0}
+
+.ortag{font-family:var(--mono);font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;color:#0C2136;background:#8FB3D6;padding:3px 7px;border-radius:2px;margin-left:8px;white-space:nowrap}
+.orbtn{background:none;border:1px solid rgba(143,179,214,.28);color:#8FB3D6;font-family:var(--mono);font-size:10px;letter-spacing:1.3px;text-transform:uppercase;padding:7px 13px;border-radius:2px;cursor:pointer;transition:border-color .2s,color .2s;white-space:nowrap}
+.orbtn:hover{border-color:rgba(228,167,167,.75);color:#E4A7A7}
+.orbtn:disabled{opacity:.4;cursor:default}
+.orempty{color:#4E6E90;font-size:13.5px;font-style:italic;padding:8px 0}
+
+.orfoot{margin-top:64px;padding-top:22px;border-top:1px solid rgba(143,179,214,.14);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:1px;color:#41597A}
+.orfoot a{color:#6E86A2;text-decoration:none;border-bottom:1px solid rgba(110,134,162,.35);padding-bottom:2px}
+.orfoot a:hover{color:#AEBFD2}
+
+@media(max-width:680px){
+  .orwrap{padding:44px 22px 72px}
+  .orform{flex-direction:column}
+  .ortable .ua,.ortable .hide-sm{display:none}
+}

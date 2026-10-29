@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useCallback, useRef } from 'react'
 
-const SECTIONS = [
+const DEFAULT_SECTIONS = [
   { id: 'opening', label: 'The Story' },
   { id: 'the-shift', label: 'The Shift' },
   { id: 'comparison', label: 'Comparison' },
@@ -14,9 +14,11 @@ const SECTIONS = [
   { id: 'readiness', label: 'Readiness' },
 ]
 
-export default function SideNav() {
+export default function SideNav({ sections = DEFAULT_SECTIONS }) {
+  const SECTIONS = sections
   const [activeId, setActiveId] = useState('')
   const [clickedId, setClickedId] = useState(null)
+  const [hidden, setHidden] = useState(false)
   const timeoutRef = useRef(null)
 
   /* ── Intersection Observer: track which section is in view ── */
@@ -36,6 +38,18 @@ export default function SideNav() {
 
     sectionEls.forEach(el => observer.observe(el))
     return () => observer.disconnect()
+  }, [SECTIONS])
+
+  /* ── Hide nav when comparison section is in view ── */
+  useEffect(() => {
+    const compSection = document.getElementById('comparison')
+    if (!compSection) return
+    const obs = new IntersectionObserver(
+      ([entry]) => setHidden(entry.isIntersecting),
+      { threshold: 0.15 }
+    )
+    obs.observe(compSection)
+    return () => obs.disconnect()
   }, [])
 
   /* ── Clear click override once the observer catches up ── */
@@ -68,7 +82,7 @@ export default function SideNav() {
     : 0
 
   return (
-    <nav className="side-nav" aria-label="Article sections">
+    <nav className={`side-nav${hidden ? ' side-nav--hidden' : ''}`} aria-label="Article sections">
       <ul className="side-nav__list" style={{ '--rail-progress': progress }}>
         {SECTIONS.map((item) => {
           const isActive = currentActive === item.id

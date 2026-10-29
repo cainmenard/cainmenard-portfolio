@@ -1,27 +1,52 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Nav from '@/components/Nav'
 import MobileNav from '@/components/MobileNav'
 import Footer from '@/components/Footer'
 import RecipeCard from '@/components/RecipeCard'
+import YouTubeEmbed from '@/components/YouTubeEmbed'
 import { useSectionObserver } from '@/hooks/useSectionObserver'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
 import { LAGNIAPPE_NAV } from '@/data/navItems'
 import { RECIPES } from '@/data/recipes'
 import { WEB_APPS } from '@/data/webApps'
 
-const PHOTOS = [
-  { src: '/lagniappe/photo-1.jpg', alt: 'Photo' },
-  { src: '/lagniappe/photo-2.jpg', alt: 'Photo' },
-  { src: '/lagniappe/photo-3.jpg', alt: 'Photo' },
-  { src: '/lagniappe/photo-4.jpg', alt: 'Photo' },
+// Two staggered columns: each holds one portrait (3:4) and one landscape (4:3)
+// tile, so both columns end at the same height. Left reads tall then short,
+// right reads short then tall.
+const PHOTO_COLUMNS = [
+  [
+    { src: '/lagniappe/wedding.jpg', alt: 'Cain and Samantha on their wedding day', aspect: 'aspect-[3/4]' },
+    { src: '/lagniappe/photo-2.jpg', alt: 'Toyota Tacoma parked on a dirt road with the tailgate down', aspect: 'aspect-[4/3]' },
+  ],
+  [
+    { src: '/lagniappe/photo-3.jpg', alt: 'Cain in his cap and gown at Mount Everest Base Camp', aspect: 'aspect-[4/3]' },
+    { src: '/lagniappe/photo-4.jpg', alt: 'A pot of gumbo with sausage on the stove', aspect: 'aspect-[3/4]' },
+  ],
 ]
+
+const DRUM_SHORT = {
+  id: 'vKClRqnUopk',
+  title: 'When the groom takes over the drums at his wedding',
+  fullPerformance: 'https://www.youtube.com/watch?v=zw05hGdYydA',
+}
 
 export default function Lagniappe() {
   const activeSection = useSectionObserver()
   const scrolled = useScrollPosition()
   const [mobileNav, setMobileNav] = useState(false)
+
+  const embedRef = useRef(null)
+  const [embedVisible, setEmbedVisible] = useState(false)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setEmbedVisible(true); obs.disconnect() }
+    }, { rootMargin: '200px' })
+    if (embedRef.current) obs.observe(embedRef.current)
+    return () => obs.disconnect()
+  }, [])
 
   return (
     <>
@@ -29,6 +54,7 @@ export default function Lagniappe() {
         navItems={LAGNIAPPE_NAV}
         activeSection={activeSection}
         scrolled={scrolled}
+        overDark
         mobileNav={mobileNav}
         onToggleMobile={() => setMobileNav(!mobileNav)}
         logoHref="/"
@@ -60,7 +86,7 @@ export default function Lagniappe() {
             <div className="max-w-4xl mx-auto px-6 pb-10 w-full">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-2" style={{ fontFamily: 'var(--font-display)' }}>Lagniappe</h1>
               <p className="text-white/70 text-lg italic">
-                (lan-yap) — Cajun French for &quot;a little something extra.&quot;
+                (lan-yap), Cajun French for &quot;a little something extra.&quot;
               </p>
             </div>
           </div>
@@ -72,66 +98,88 @@ export default function Lagniappe() {
             <p className="section-label mb-3">About Me</p>
             <h2 className="section-heading text-3xl md:text-4xl mb-8">The Rest of the Story</h2>
 
-            <div className="text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl space-y-5">
-              <p>
-                I grew up in Lafayette, Louisiana — the heart of Cajun country — where I picked up
-                a deep appreciation for good food, good stories, and figuring things out with whatever
-                you&apos;ve got on hand. That last part hasn&apos;t changed much.
-              </p>
-              <p>
-                I&apos;m marrying Samantha in September 2026. We met while I was earning my MBA at the
-                University of Denver, juggling three internships, and somehow still finding weekends
-                to go to concerts and snowboard mountains together. She&apos;s been along for the ride ever since.
-              </p>
-              <p>
-                I love to travel. My senior year at UL Lafayette, I was approved to graduate several
-                weeks early — so instead of walking at Commencement, I boarded a flight to India.
-                I spent time in Kolkata volunteering with the Missionaries of Charity, working in
-                homes for the homeless, disabled, and dying, and spending Christmas with children
-                living in the streets. From there, I trekked to Mount Everest Base Camp, where I
-                took a photo in my cap and gown at 17,598 feet. The story was picked up
-                by{' '}
-                <a
-                  href="https://www.klfy.com/local/ul-lafayette-student-skips-graduation-heads-to-india-for-missionary-work-instead/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition"
-                >
-                  a local news station in Lafayette
-                </a>{' '}
-                — my five minutes of fame.
-              </p>
-              <p>
-                Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe — I&apos;m building
-                a{' '}
-                <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">
-                  recipe collection
-                </a>{' '}
-                below to document the journey. I&apos;m a certified YouTube mechanic, usually found under
-                the hood of my 3rd gen Toyota Tacoma or Audi Q5. I&apos;ve been playing drums for 20
-                years, with the hearing damage to prove it. And I try to get outside as much as
-                possible — hiking in the mountains with Samantha, paddling open canoes down
-                whitewater, kayak fishing in a salt marsh, or taking the Tacoma off-road.
-              </p>
-              <p>
-                The information on this page won&apos;t be found on my resume, but it makes up a lot of who I am.
-              </p>
-            </div>
+            {/* Text left, Short in a right rail beside it. On phones the rail
+                drops between the text and the photos. The rail sticks while the
+                reader scrolls past the photos, but only on screens tall enough
+                to show the whole video and caption. */}
+            <div className="grid gap-y-12 md:grid-cols-[minmax(0,1fr)_15rem] lg:grid-cols-[minmax(0,1fr)_17rem] md:gap-x-10 lg:gap-x-12">
+              <div className="md:col-start-1 md:row-start-1 text-slate-600 dark:text-slate-300 leading-relaxed space-y-5">
+                <p>
+                  I grew up in Lafayette, Louisiana, in the heart of Cajun country.
+                </p>
+                <p>
+                  I married Samantha in September 2026. We met while I was earning my MBA at the
+                  University of Denver, juggling three internships, and somehow still finding weekends
+                  to go to concerts and snowboard mountains together.
+                </p>
+                <p>
+                  I love to travel. My senior year at UL Lafayette, I was approved to graduate several
+                  weeks early, so instead of walking at Commencement, I boarded a flight to India.
+                  I spent time in Kolkata volunteering with the Missionaries of Charity, working in
+                  homes for the homeless, disabled, and dying, and spending Christmas with children
+                  living in the streets. From there, I trekked to Mount Everest Base Camp, where I
+                  took a photo in my cap and gown at 17,598 feet. The story was picked up
+                  by{' '}
+                  <a
+                    href="https://www.klfy.com/local/ul-lafayette-student-skips-graduation-heads-to-india-for-missionary-work-instead/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition"
+                  >
+                    a local news station in Lafayette
+                  </a>.
+                </p>
+                <p>
+                  Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe. I&apos;m building
+                  a{' '}
+                  <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">
+                    recipe collection
+                  </a>{' '}
+                  below to document the journey. I&apos;m a certified YouTube mechanic, usually found under
+                  the hood of my 3rd gen Toyota Tacoma or Audi Q5. I&apos;ve been playing drums for 20
+                  years, with the hearing damage to prove it. And I try to get outside as much as
+                  possible, hiking in the mountains with Samantha, paddling open canoes down
+                  whitewater, kayak fishing in a salt marsh, or taking the Tacoma off-road.
+                </p>
+              </div>
 
-            {/* ─── PHOTO GRID ─── */}
-            <div className="grid grid-cols-2 gap-3 mt-12 max-w-2xl">
-              {PHOTOS.map((p, i) => (
-                <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                  <Image
-                    src={p.src}
-                    alt={p.alt}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 400px"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+              {/* ─── DRUM SHORT ─── */}
+              <figure className="w-full max-w-[280px] mx-auto md:max-w-none md:mx-0 md:col-start-2 md:row-start-1 md:row-span-2 md:self-start [@media(min-width:768px)_and_(min-height:760px)]:sticky [@media(min-width:768px)_and_(min-height:760px)]:top-24">
+                <YouTubeEmbed videoId={DRUM_SHORT.id} title={DRUM_SHORT.title} aspect="9/16" />
+                <figcaption className="mt-4 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Taking over the drums at our wedding reception to play &ldquo;Wish I Knew You&rdquo; by
+                  The Revivalists with The Stephen Lee Band.
+                  <a
+                    href={DRUM_SHORT.fullPerformance}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mt-3 text-xs font-semibold uppercase tracking-wider hover:underline"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    Full Performance ↗
+                  </a>
+                </figcaption>
+              </figure>
+
+              {/* ─── PHOTO GRID ─── */}
+              <div className="md:col-start-1 md:row-start-2 grid grid-cols-2 gap-3">
+                {PHOTO_COLUMNS.map((col, c) => (
+                  <div key={c} className="flex flex-col gap-3">
+                    {col.map(p => (
+                      <div key={p.src} className={`relative ${p.aspect} rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700`}>
+                        <Image
+                          src={p.src}
+                          alt={p.alt}
+                          fill
+                          sizes="(max-width: 768px) 50vw, 300px"
+                          className="object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -143,11 +191,49 @@ export default function Lagniappe() {
             <h2 className="section-heading text-3xl md:text-4xl mb-4">Personal Builds</h2>
             <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-2xl">
               Personal projects built to learn new tools or solve real problems.
-              Separate from professional work, but they reflect how I think about building things:
-              start with a real problem, keep the interface clean, and ship it.
             </p>
+          </div>
+
+          {/* ─── FEATURED: Bible Atlas ─── */}
+          <div className={`max-w-6xl mx-auto px-6 ${WEB_APPS.length > 1 ? 'mb-16' : ''}`}>
+            <div className="featured-project-card">
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-amber-700 dark:text-amber-300" style={{ background: 'rgba(217, 119, 6, 0.12)' }}>Featured</span>
+                  <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">Web App</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-2">{WEB_APPS[0].title}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 max-w-2xl">{WEB_APPS[0].description}</p>
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {WEB_APPS[0].tech.map(t => <span key={t} className="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-medium">{t}</span>)}
+                </div>
+                <div className="flex gap-4 mb-6">
+                  <a href={WEB_APPS[0].link} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold uppercase tracking-wider hover:underline" style={{ color: 'var(--accent)' }}>View Live ↗</a>
+                </div>
+              </div>
+              <div ref={embedRef} className="relative w-full" style={{ paddingTop: '62.5%' }}>
+                {embedVisible ? (
+                  <iframe
+                    src="https://bibleatlas.dev"
+                    title="Bible Atlas"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full border-0 rounded-b-xl"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 animate-pulse bg-slate-100 dark:bg-slate-700/50 rounded-b-xl">
+                    <div className="w-12 h-12 rounded-lg bg-slate-200 dark:bg-slate-600" />
+                    <div className="w-40 h-3 rounded bg-slate-200 dark:bg-slate-600" />
+                    <div className="w-24 h-2 rounded bg-slate-200 dark:bg-slate-600" />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* ─── OTHER PROJECTS (only when there is more than one) ─── */}
+          {WEB_APPS.length > 1 && <div className="max-w-6xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-6">
-              {WEB_APPS.map((app, i) => (
+              {WEB_APPS.slice(1).map((app, i) => (
                 <div key={i} className="project-card stagger-child">
                   <div className="p-6 md:p-8">
                     <div className="flex items-center gap-3 mb-3">
@@ -169,7 +255,7 @@ export default function Lagniappe() {
                 </div>
               ))}
             </div>
-          </div>
+          </div>}
         </section>
 
         {/* ─── RECIPES ─── */}
