@@ -12,11 +12,18 @@ import { LAGNIAPPE_NAV } from '@/data/navItems'
 import { RECIPES } from '@/data/recipes'
 import { WEB_APPS } from '@/data/webApps'
 
-const PHOTOS = [
-  { src: '/lagniappe/photo-1.jpg', alt: 'Cain and Samantha on a mountain hike' },
-  { src: '/lagniappe/photo-2.jpg', alt: 'Traveling together in Europe' },
-  { src: '/lagniappe/photo-3.jpg', alt: 'Outdoor adventure in the mountains' },
-  { src: '/lagniappe/photo-4.jpg', alt: 'Louisiana bayou country landscape' },
+// Two staggered columns: each holds one portrait (3:4) and one landscape (4:3)
+// tile, so both columns end at the same height. Left reads tall then short,
+// right reads short then tall.
+const PHOTO_COLUMNS = [
+  [
+    { src: '/lagniappe/wedding.jpg', alt: 'Cain and Samantha on their wedding day', aspect: 'aspect-[3/4]' },
+    { src: '/lagniappe/photo-2.jpg', alt: 'Toyota Tacoma parked on a dirt road with the tailgate down', aspect: 'aspect-[4/3]' },
+  ],
+  [
+    { src: '/lagniappe/photo-3.jpg', alt: 'Cain in his cap and gown at Mount Everest Base Camp', aspect: 'aspect-[4/3]' },
+    { src: '/lagniappe/photo-4.jpg', alt: 'A pot of gumbo with sausage on the stove', aspect: 'aspect-[3/4]' },
+  ],
 ]
 
 const DRUM_SHORT = {
@@ -156,16 +163,20 @@ export default function Lagniappe() {
 
               {/* ─── PHOTO GRID ─── */}
               <div className="md:col-start-1 md:row-start-2 grid grid-cols-2 gap-3">
-                {PHOTOS.map((p, i) => (
-                  <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                    <Image
-                      src={p.src}
-                      alt={p.alt}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 300px"
-                      className="object-cover"
-                      loading="lazy"
-                    />
+                {PHOTO_COLUMNS.map((col, c) => (
+                  <div key={c} className="flex flex-col gap-3">
+                    {col.map(p => (
+                      <div key={p.src} className={`relative ${p.aspect} rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700`}>
+                        <Image
+                          src={p.src}
+                          alt={p.alt}
+                          fill
+                          sizes="(max-width: 768px) 50vw, 300px"
+                          className="object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
