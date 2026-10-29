@@ -140,7 +140,7 @@ export default function Lagniappe() {
               <figure className="w-full max-w-[280px] mx-auto md:max-w-none md:mx-0 md:col-start-2 md:row-start-1 md:row-span-2 md:self-start [@media(min-width:768px)_and_(min-height:760px)]:sticky [@media(min-width:768px)_and_(min-height:760px)]:top-24">
                 <YouTubeEmbed videoId={DRUM_SHORT.id} title={DRUM_SHORT.title} aspect="9/16" />
                 <figcaption className="mt-4 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                  Taking over the drums at our wedding to play &ldquo;Wish I Knew You&rdquo; by
+                  Taking over the drums at our wedding reception to play &ldquo;Wish I Knew You&rdquo; by
                   The Revivalists with The Stephen Lee Band.
                   <a
                     href={DRUM_SHORT.fullPerformance}
