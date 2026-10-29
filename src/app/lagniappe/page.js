@@ -5,6 +5,7 @@ import Nav from '@/components/Nav'
 import MobileNav from '@/components/MobileNav'
 import Footer from '@/components/Footer'
 import RecipeCard from '@/components/RecipeCard'
+import YouTubeEmbed from '@/components/YouTubeEmbed'
 import { useSectionObserver } from '@/hooks/useSectionObserver'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
 import { LAGNIAPPE_NAV } from '@/data/navItems'
@@ -17,6 +18,12 @@ const PHOTOS = [
   { src: '/lagniappe/photo-3.jpg', alt: 'Outdoor adventure in the mountains' },
   { src: '/lagniappe/photo-4.jpg', alt: 'Louisiana bayou country landscape' },
 ]
+
+const DRUM_SHORT = {
+  id: 'vKClRqnUopk',
+  title: 'When the groom takes over the drums at his wedding',
+  fullPerformance: 'https://www.youtube.com/watch?v=zw05hGdYydA',
+}
 
 export default function Lagniappe() {
   const activeSection = useSectionObserver()
@@ -84,60 +91,84 @@ export default function Lagniappe() {
             <p className="section-label mb-3">About Me</p>
             <h2 className="section-heading text-3xl md:text-4xl mb-8">The Rest of the Story</h2>
 
-            <div className="text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl space-y-5">
-              <p>
-                I grew up in Lafayette, Louisiana, in the heart of Cajun country.
-              </p>
-              <p>
-                I married Samantha in September 2026. We met while I was earning my MBA at the
-                University of Denver, juggling three internships, and somehow still finding weekends
-                to go to concerts and snowboard mountains together.
-              </p>
-              <p>
-                I love to travel. My senior year at UL Lafayette, I was approved to graduate several
-                weeks early, so instead of walking at Commencement, I boarded a flight to India.
-                I spent time in Kolkata volunteering with the Missionaries of Charity, working in
-                homes for the homeless, disabled, and dying, and spending Christmas with children
-                living in the streets. From there, I trekked to Mount Everest Base Camp, where I
-                took a photo in my cap and gown at 17,598 feet. The story was picked up
-                by{' '}
-                <a
-                  href="https://www.klfy.com/local/ul-lafayette-student-skips-graduation-heads-to-india-for-missionary-work-instead/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition"
-                >
-                  a local news station in Lafayette
-                </a>.
-              </p>
-              <p>
-                Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe. I&apos;m building
-                a{' '}
-                <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">
-                  recipe collection
-                </a>{' '}
-                below to document the journey. I&apos;m a certified YouTube mechanic, usually found under
-                the hood of my 3rd gen Toyota Tacoma or Audi Q5. I&apos;ve been playing drums for 20
-                years, with the hearing damage to prove it. And I try to get outside as much as
-                possible, hiking in the mountains with Samantha, paddling open canoes down
-                whitewater, kayak fishing in a salt marsh, or taking the Tacoma off-road.
-              </p>
-            </div>
+            {/* Text left, Short in a right rail beside it. On phones the rail
+                drops between the text and the photos. The rail sticks while the
+                reader scrolls past the photos, but only on screens tall enough
+                to show the whole video and caption. */}
+            <div className="grid gap-y-12 md:grid-cols-[minmax(0,1fr)_15rem] lg:grid-cols-[minmax(0,1fr)_17rem] md:gap-x-10 lg:gap-x-12">
+              <div className="md:col-start-1 md:row-start-1 text-slate-600 dark:text-slate-300 leading-relaxed space-y-5">
+                <p>
+                  I grew up in Lafayette, Louisiana, in the heart of Cajun country.
+                </p>
+                <p>
+                  I married Samantha in September 2026. We met while I was earning my MBA at the
+                  University of Denver, juggling three internships, and somehow still finding weekends
+                  to go to concerts and snowboard mountains together.
+                </p>
+                <p>
+                  I love to travel. My senior year at UL Lafayette, I was approved to graduate several
+                  weeks early, so instead of walking at Commencement, I boarded a flight to India.
+                  I spent time in Kolkata volunteering with the Missionaries of Charity, working in
+                  homes for the homeless, disabled, and dying, and spending Christmas with children
+                  living in the streets. From there, I trekked to Mount Everest Base Camp, where I
+                  took a photo in my cap and gown at 17,598 feet. The story was picked up
+                  by{' '}
+                  <a
+                    href="https://www.klfy.com/local/ul-lafayette-student-skips-graduation-heads-to-india-for-missionary-work-instead/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition"
+                  >
+                    a local news station in Lafayette
+                  </a>.
+                </p>
+                <p>
+                  Outside of work, I&apos;m on a lifelong mission to perfect my gumbo recipe. I&apos;m building
+                  a{' '}
+                  <a href="#recipes" className="font-medium underline decoration-amber-300 underline-offset-2 hover:text-amber-600 transition">
+                    recipe collection
+                  </a>{' '}
+                  below to document the journey. I&apos;m a certified YouTube mechanic, usually found under
+                  the hood of my 3rd gen Toyota Tacoma or Audi Q5. I&apos;ve been playing drums for 20
+                  years, with the hearing damage to prove it. And I try to get outside as much as
+                  possible, hiking in the mountains with Samantha, paddling open canoes down
+                  whitewater, kayak fishing in a salt marsh, or taking the Tacoma off-road.
+                </p>
+              </div>
 
-            {/* ─── PHOTO GRID ─── */}
-            <div className="grid grid-cols-2 gap-3 mt-12 max-w-2xl">
-              {PHOTOS.map((p, i) => (
-                <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                  <Image
-                    src={p.src}
-                    alt={p.alt}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 400px"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+              {/* ─── DRUM SHORT ─── */}
+              <figure className="w-full max-w-[280px] mx-auto md:max-w-none md:mx-0 md:col-start-2 md:row-start-1 md:row-span-2 md:self-start [@media(min-width:768px)_and_(min-height:760px)]:sticky [@media(min-width:768px)_and_(min-height:760px)]:top-24">
+                <YouTubeEmbed videoId={DRUM_SHORT.id} title={DRUM_SHORT.title} aspect="9/16" />
+                <figcaption className="mt-4 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Taking over the drums at our wedding reception to play &ldquo;Wish I Knew You&rdquo; by
+                  The Revivalists with The Stephen Lee Band.
+                  <a
+                    href={DRUM_SHORT.fullPerformance}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mt-3 text-xs font-semibold uppercase tracking-wider hover:underline"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    Full Performance ↗
+                  </a>
+                </figcaption>
+              </figure>
+
+              {/* ─── PHOTO GRID ─── */}
+              <div className="md:col-start-1 md:row-start-2 grid grid-cols-2 gap-3">
+                {PHOTOS.map((p, i) => (
+                  <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    <Image
+                      src={p.src}
+                      alt={p.alt}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 300px"
+                      className="object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
