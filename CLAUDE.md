@@ -43,6 +43,7 @@ src/
 │   ├── SideNav.js          # Side navigation with progress rail
 │   ├── RecipeCard.js       # Expandable recipe accordion
 │   ├── TableauEmbed.js     # Lazy-loaded Tableau iframe wrapper
+│   ├── YouTubeEmbed.js     # Lazy-loaded YouTube player (aspect="9/16" for Shorts)
 │   ├── ThemeProvider.js    # Dark mode context + localStorage persistence
 │   ├── ThemeToggle.js      # Dark/light mode toggle button
 │   └── ErrorBoundary.js    # React error boundary (class component)
